@@ -1,0 +1,22 @@
+﻿body {
+}
+
+.option-container {
+    display: flex;
+    padding: 50px;
+    text-align: center;
+}
+
+.option-child {
+    flex: 1;
+    border: 2px solid yellow;
+}
+
+#option-title {
+    text-align: center;
+}
+
+.img {
+    width: 185px;
+    height: 275px;
+}
