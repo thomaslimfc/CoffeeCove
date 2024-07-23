@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35004.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Staffee", "Staffee.csproj", "{300A8ECD-CAB8-4CD2-92B1-599DF596D4E3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeCove", "CoffeeCove.csproj", "{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{300A8ECD-CAB8-4CD2-92B1-599DF596D4E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{300A8ECD-CAB8-4CD2-92B1-599DF596D4E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{300A8ECD-CAB8-4CD2-92B1-599DF596D4E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{300A8ECD-CAB8-4CD2-92B1-599DF596D4E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {F0562B57-B24F-423B-8FA7-107DE947635E}
+		SolutionGuid = {4223FB43-D4C9-4AFB-A58B-A8413008B20E}
 	EndGlobalSection
 EndGlobal
