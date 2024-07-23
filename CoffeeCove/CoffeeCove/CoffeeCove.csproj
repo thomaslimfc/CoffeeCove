@@ -67,9 +67,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CSS\CustomerMaster.css" />
-    <Content Include="CSS\Font.css" />
-    <Content Include="CSS\home.css" />
     <Content Include="CSS\orderOption.css" />
     <Content Include="Order\orderOption.aspx" />
     <Content Include="Web.config" />
