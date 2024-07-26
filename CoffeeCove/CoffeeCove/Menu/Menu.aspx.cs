@@ -5,18 +5,13 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace CoffeeCove.Master
+namespace CoffeeCove.Menu
 {
-    public partial class User : System.Web.UI.MasterPage
+    public partial class Menu : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
-        }
-
-        protected void loginBtn_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("Login.aspx");
         }
     }
 }

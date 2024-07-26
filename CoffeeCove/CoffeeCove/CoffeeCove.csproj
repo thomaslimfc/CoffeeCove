@@ -67,11 +67,57 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CSS\Customer.css" />
+    <Content Include="CSS\Home.css" />
+    <Content Include="CSS\Menu.css" />
     <Content Include="CSS\orderOption.css" />
+    <Content Include="Home\Home.aspx" />
+    <Content Include="img\aboutUs.jpg" />
+    <Content Include="img\cartLogo.png" />
+    <Content Include="img\facebook.png" />
+    <Content Include="img\instagram.png" />
+    <Content Include="img\menuPoster.jpg" />
+    <Content Include="img\slide1.jpeg" />
+    <Content Include="img\slide2.jpeg" />
+    <Content Include="img\slide3.jpeg" />
+    <Content Include="img\twitter.png" />
+    <Content Include="Menu\Menu.aspx" />
     <Content Include="Order\orderOption.aspx" />
+    <Content Include="imgProductItems\affogato1.jpg" />
+    <Content Include="imgProductItems\affogato2.jpg" />
+    <Content Include="imgProductItems\affogato3.jpg" />
+    <Content Include="imgProductItems\affogato4.jpg" />
+    <Content Include="imgProductItems\breakfast1.jpg" />
+    <Content Include="imgProductItems\breakfast2.jpg" />
+    <Content Include="imgProductItems\breakfast3.jpg" />
+    <Content Include="imgProductItems\breakfast4.jpg" />
+    <Content Include="imgProductItems\breakfast5.jpg" />
+    <Content Include="imgProductItems\coffee1.jpg" />
+    <Content Include="imgProductItems\coffee2.jpg" />
+    <Content Include="imgProductItems\coffee3.jpg" />
+    <Content Include="imgProductItems\coffee4.jpg" />
+    <Content Include="imgProductItems\coffee5.jpg" />
+    <Content Include="imgProductItems\coffee6.jpg" />
+    <Content Include="imgProductItems\coffee7.jpg" />
+    <Content Include="imgProductItems\coffee8.jpg" />
+    <Content Include="imgProductItems\dessert1.jpg" />
+    <Content Include="imgProductItems\dessert2.jpg" />
+    <Content Include="imgProductItems\dessert3.jpg" />
+    <Content Include="imgProductItems\dessert4.jpg" />
+    <Content Include="imgProductItems\dessert5.jpg" />
+    <Content Include="imgProductItems\dessert6.jpg" />
+    <Content Include="imgProductItems\dessert7.jpg" />
+    <Content Include="imgProductItems\dessert8.jpg" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Home\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Master\Admin.Master.cs">
       <DependentUpon>Admin.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -85,6 +131,13 @@
     </Compile>
     <Compile Include="Master\Customer.Master.designer.cs">
       <DependentUpon>Customer.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Menu\Menu.aspx.cs">
+      <DependentUpon>Menu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Menu\Menu.aspx.designer.cs">
+      <DependentUpon>Menu.aspx</DependentUpon>
     </Compile>
     <Compile Include="Order\orderOption.aspx.cs">
       <DependentUpon>orderOption.aspx</DependentUpon>
@@ -107,7 +160,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Service\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
