@@ -16,7 +16,7 @@
         <!--header-->
         <div id="header">
             <div class="headerContainer">
-                <h2><a class="logo" href="Home.aspx">COFFEECOVE&#174;</a></h2>
+                <h2><a class="logo" href="../Home/Home.aspx">COFFEECOVE&#174;</a></h2>
                 <div id="menuContainer" aria-disabled="False">
                     <asp:Menu ID="Menu" runat="server" BorderStyle="None" DataSourceID="SiteMapDataSource1" Font-Size="17px" Orientation="Horizontal" StaticDisplayLevels="2" StaticSubMenuIndent="0px" ForeColor="White">
                         <StaticMenuItemStyle CssClass="menuItem" />
@@ -41,9 +41,9 @@
             <div class="footerContainer">
                 <div>
                     <h4>Quick Links</h4>
-                    <asp:HyperLink ID="homeLink" runat="server" NavigateUrl="~/Home.aspx" CssClass="quickLink">Home</asp:HyperLink>
-                    <asp:HyperLink ID="menuLink" runat="server" NavigateUrl="~/Menu.aspx" CssClass="quickLink">Menu</asp:HyperLink>
-                    <asp:HyperLink ID="serviceLink" runat="server" NavigateUrl="~/Service.aspx" CssClass="quickLink">Service</asp:HyperLink>
+                    <asp:HyperLink ID="homeLink" runat="server" NavigateUrl="../Home/Home.aspx" CssClass="quickLink">Home</asp:HyperLink>
+                    <asp:HyperLink ID="menuLink" runat="server" NavigateUrl="../Menu/Menu.aspx" CssClass="quickLink">Menu</asp:HyperLink>
+                    <asp:HyperLink ID="serviceLink" runat="server" NavigateUrl="../Service/Service.aspx" CssClass="quickLink">Service</asp:HyperLink>
                 </div>
                 <div>
                     <h4>Open Hours</h4>

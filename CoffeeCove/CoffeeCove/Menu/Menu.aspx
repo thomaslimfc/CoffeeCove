@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
     <!-- Menu Poster -->
     <div id="menuPoster">
-        <img src="img/menuPoster.jpg" />
+        <img src="/img/menuPoster.jpg" />
         <div id="menuPosterText">WELCOME TO OUR MENU</div>
     </div>
    

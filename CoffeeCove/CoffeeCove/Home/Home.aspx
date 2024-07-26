@@ -14,7 +14,7 @@
     <!-- About Us -->
     <div id="about">
         <div class="leftContent">
-            <img src="img/aboutUs.jpg" />
+            <img src="/img/aboutUs.jpg" />
         </div>
         <div class="rightContent">
             <h2>About Us</h2>
