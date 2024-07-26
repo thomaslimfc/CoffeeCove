@@ -5,7 +5,7 @@
         <img src="img/menuPoster.jpg" />
         <div id="menuPosterText">WELCOME TO OUR MENU</div>
     </div>
-    
+   
     <div id="productContainer">
         <!-- Category Menu -->
         <div id="categoryContainer">

@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Customer.Master.cs" Inherits="CoffeeCove.Master.User" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="/Master/Customer.Master.cs" Inherits="CoffeeCove.Master.User" %>
 
 <!DOCTYPE html>
 
@@ -13,7 +13,6 @@
 <body>
     <form id="form1" runat="server">
         <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
-
         <!--header-->
         <div id="header">
             <div class="headerContainer">
