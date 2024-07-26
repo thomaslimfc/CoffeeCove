@@ -10,12 +10,12 @@
     <asp:LinkButton ID="lbDelivery" runat="server" CssClass="option-child" OnClick="lbDelivery_Click" Font-Underline="false">
         <h2>Delivery</h2>
         <br />
-        <asp:Image ImageUrl="delivery.png" runat="server" class="img"/>
+        <asp:Image ImageUrl="../img/delivery.png" runat="server" class="img"/>
     </asp:LinkButton>
     <asp:LinkButton ID="lbPickUp" runat="server" CssClass="option-child" OnClick="lbPickUp_Click" Font-Underline="false">
         <h2>Pick Up</h2>
         <br />
-        <asp:Image ImageUrl="pickup.png" runat="server" class="img"/>
+        <asp:Image ImageUrl="../img/pickup.png" runat="server" class="img"/>
     </asp:LinkButton>
     
 </div>
