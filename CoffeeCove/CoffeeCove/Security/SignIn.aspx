@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Sign In" Language="C#" 
-    MasterPageFile="~/Master/Customer.Master" 
+    MasterPageFile="../Master/Customer.Master" 
     AutoEventWireup="true" CodeBehind="SignIn.aspx.cs" 
-    Inherits="CoffeeCove.Security.WebForm1" %>
+    Inherits="CoffeeCove.Security.SignIn" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
     <div id="signIn_container" class="sign_container">

@@ -71,6 +71,7 @@
     <Content Include="CSS\Home.css" />
     <Content Include="CSS\Menu.css" />
     <Content Include="CSS\orderOption.css" />
+    <Content Include="CSS\Security.css" />
     <Content Include="Home\Home.aspx" />
     <Content Include="img\aboutUs.jpg" />
     <Content Include="img\cartLogo.png" />
@@ -109,6 +110,8 @@
     <Content Include="imgProductItems\dessert7.jpg" />
     <Content Include="imgProductItems\dessert8.jpg" />
     <Content Include="Security\SignIn.aspx" />
+    <Content Include="Security\ForgotPassword.aspx" />
+    <Content Include="Security\SignUp.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +157,20 @@
     </Compile>
     <Compile Include="Security\SignIn.aspx.designer.cs">
       <DependentUpon>SignIn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Security\ForgotPassword.aspx.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Security\ForgotPassword.aspx.designer.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Security\SignUp.aspx.cs">
+      <DependentUpon>SignUp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Security\SignUp.aspx.designer.cs">
+      <DependentUpon>SignUp.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

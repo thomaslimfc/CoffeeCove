@@ -11,61 +11,43 @@ namespace CoffeeCove.Security
 {
 
 
-    public partial class SignIn
+    public partial class ForgotPassword
     {
 
         /// <summary>
-        /// username2 control.
+        /// usernameEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox username2;
+        protected global::System.Web.UI.WebControls.TextBox usernameEmail;
 
         /// <summary>
-        /// username_rqdValidator2 control.
+        /// usernameEmail_rqdValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator username_rqdValidator2;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator usernameEmail_rqdValidator;
 
         /// <summary>
-        /// password2 control.
+        /// next_btn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox password2;
+        protected global::System.Web.UI.WebControls.Button next_btn;
 
         /// <summary>
-        /// password_rqdValidator2 control.
+        /// back_btn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator password_rqdValidator2;
-
-        /// <summary>
-        /// forgotPasswordLink control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink forgotPasswordLink;
-
-        /// <summary>
-        /// signIn_btn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button signIn_btn;
+        protected global::System.Web.UI.WebControls.Button back_btn;
     }
 }
