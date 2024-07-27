@@ -1,17 +1,18 @@
 ﻿
 
 body, br {
-    font-family: "Staffee-Regular";
+    /* font-family: "Staffee-Regular"; */
     user-select: none;
 }
 
 div {
-    background-color: #f9f9f9;
+    /* background-color: #3f3230; */
+    /* background-color: #f9f9f9; */
 }
 
 .sign_container {
     background-color: #ffffff;
-    font-family: "Staffee-Regular";
+    /* font-family: "Staffee-Regular"; */
     border-width: 5px;
     border-style: solid;
     border-color: #DADDE2;
@@ -32,13 +33,14 @@ div {
     /* padding-top: 500px; */
     /* } */
 
-    .sign_container > table {
-        margin: 0 auto;
-    }
+.sign_container > table {
+    margin: 0 auto;
+}
 
 #signIn_td,
 #signUp_td {
-    font-family: Staffee-Bold;
+    /* font-family: Staffee-Bold; */
+    font-weight: bold;
     text-align: left;
     margin-top: 0px;
     width: 92px;
@@ -76,7 +78,10 @@ div {
 .usernameEmail,
 .location_ddl {
     /* Placeholder text */
-    /* color: #757575; */
+    background-color: #C89857;
+    color: #ffffff;
+    font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-weight: bold;
     padding-left: 10px;
     border-radius: 5px;
     border-width: 0;
@@ -85,19 +90,30 @@ div {
     margin-right: 5px;
 }
 
+.username::placeholder,
+.username2::placeholder,
+.emailAdd::placeholder,
+.password::placeholder,
+.password2::placeholder,
+.passReenter::placeholder,
+.usernameEmail::placeholder {
+    color: #ffffff;
+}
+
 .input_div {
-    background-color: #b371f2;
+    background-color: #C89857;
     border-radius: 10px;
     height: 40px;
     width: 250px;
-    text-align: left;
+    /* text-align: center; */
 }
 
 #forgotPassword_td,
 #agreement_td,
 #codeVerification_td {
-    font-family: Staffee-Bold;
+    /* font-family: Staffee-Bold; */
     font-size: smaller;
+    font-weight: bold;
     text-align: left;
     user-select: text;
     padding-top: 4px;
@@ -116,30 +132,118 @@ td > a {
     text-align: right;
 }
 
-.birthdayDate_cal {
-    height: 200px;
-    line-height: 30px;
+#birthdayDate_cal {
+    background-color: #ffffff;
+    color: #000000;
+    border: 2px solid #A0704E;
+    font-weight: bold;
+    border-radius: 10px;
+    line-height: 20px;
+    cursor: pointer;
+    margin-left: 7px;
+    margin-top: 4px;
+    padding-left: 18px;
+    padding-right: 12px;    
 }
 
 .gender_rbl {
+    color: #ffffff;
+    font-family: "Work Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: small;
+    font-weight: bold;
     line-height: 30px;
 }
+.gender_rbl input[type="radio"] {
+    vertical-align: middle;
+}
+.gender_rbl label {
+    line-height: 30px;
+}
+/* RadioButtonList container */
+.gender_rbl {
+    display: flex;
+    align-items: center;
+    gap: 20px; 
+    /* margin-top: 10px;  */
+}
+/* Radio button item */
+.gender_rbl input[type="radio"] {
+    display: none; /* Hide the default radio button */
+}
+/* Radio button */
+.gender_rbl input[type="radio"] + label {
+    position: relative;
+    padding-left: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    user-select: none; 
+}
+/* Radio button circle */
+.gender_rbl input[type="radio"] + label::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 10%;
+    transform: translateY(-50%);
+    width: 14px; 
+    height: 14px; 
+    border: 2px solid #A0704E; 
+    border-radius: 50%; 
+    background-color: #ffffff;
+    margin-top: 6px;
+}
+/* Radio button when checked */
+.gender_rbl input[type="radio"]:checked + label::before {
+    border-color: #ffffff; 
+    background-color: #A0704E; 
+}
 
-    .gender_rbl input[type="radio"] {
-        vertical-align: middle;
-    }
+/* Dot inside radio button when checked */
+.gender_rbl input[type="radio"]:checked + label::after {
+    content: "";
+    position: absolute;
+    left: 5.5px;
+    top: 10%;
+    transform: translateY(-50%);
+    width: 6px; /* Size of the dot */
+    height: 6px; /* Size of the dot */
+    border-radius: 50%; /* Make it a circle */
+    background-color: #ffffff; /* Dot color */
+    margin-top: 6px;
 
-    .gender_rbl label {
-        line-height: 30px;
-    }
+}
 
 .location_ddl {
-    width: 200px;
-    height: 35px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 5px;
+    background-color: #ffffff;
+    color: #000000;
+    font-weight: bold;
+    border: 2px solid #A0704E;
+    border-radius: 10px;
+    width: 185px;
+    height: 25px;
     transition: border-color 0.3s ease;
+    line-height: 10px;
+    cursor: pointer;
+    margin-left: 7px;
+    margin-top: 4px;
+    padding-left: 18px;
+}
+
+.input_div {
+    /* margin-left: 20px; */
+}
+
+#signIn_td,
+#codeVerification_td {
+    /* padding-left: 25px; */
+}
+
+.specialMargin25 {
+    margin-left: 25px;
+}
+
+.specialPadding25 {
+    padding-left: 25px;
 }
 
 #signInBtn_td,
@@ -153,36 +257,40 @@ td > a {
 .next_btn {
     background-color: #775466;
     color: #ffffff;
-    font-family: Staffee-Bold;
+    /* font-family: Staffee-Bold; */
     font-size: medium;
+    font-weight: bold;
     border-radius: 30px;
     border-width: 0;
     width: 248px;
     height: 40px;
     margin-top: 15px;
+    padding-top: 5px;
     padding-bottom: 6px;
     cursor: pointer;
 }
 
-    .signIn_btn:hover,
-    .signUp_btn:hover {
-        background-color: #DADDE2;
-        color: #775466;
-        font-family: Staffee-Bold;
-        font-size: medium;
-        border-radius: 30px;
-        border-width: 0;
-        margin-top: 15px;
-        padding-bottom: 6px;
-        cursor: pointer;
-        transition-delay: 0.25s;
-    }
+.signIn_btn:hover,
+.signUp_btn:hover {
+    background-color: #DADDE2;
+    color: #775466;
+    /* font-family: Staffee-Bold; */
+    font-weight: bold;
+    font-size: medium;
+    border-radius: 30px;
+    border-width: 0;
+    margin-top: 15px;
+    padding-bottom: 6px;
+    cursor: pointer;
+    transition-delay: 0.25s;
+}
 
 .back_btn {
     background-color: #ffffff;
     /* color: #775466; */
-    font-family: Staffee-Bold;
+    /* font-family: Staffee-Bold; */
     font-size: medium;
+    font-weight: bold;
     border-radius: 30px;
     border-width: 0;
     width: 293px;
@@ -194,7 +302,8 @@ td > a {
 
 #joinUsNow,
 #alreadySignedUp {
-    font-family: Staffee-Bold;
+    /* font-family: Staffee-Bold; */
+    font-weight: bold;;
     padding-top: 2px;
     user-select: text;
 }
