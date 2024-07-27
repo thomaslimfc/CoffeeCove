@@ -31,17 +31,20 @@
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <!-- <asp:RequiredFieldValidator 
+                                    <asp:RequiredFieldValidator 
                                         ID="username_rqdValidator" runat="server" 
                                         ControlToValidate="username" 
                                         ErrorMessage="Username is required." 
                                         Display="Dynamic" ForeColor="Red" 
-                                        CssClass="username_rqdValidator" /> -->
+                                        CssClass="rqdValidator" />
                                 </td>
                             </tr>
                         </table>
                     </div>
                 </td>
+            </tr>
+            <tr>
+                <td class="trMarginBottom20"></td>
             </tr>
             <tr>
                 <td id="emailAdd_td">
@@ -61,17 +64,20 @@
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <!-- <asp:RequiredFieldValidator 
+                                    <asp:RequiredFieldValidator 
                                         ID="emailAdd_rqdValidator" runat="server" 
                                         ControlToValidate="emailAdd" 
                                         ErrorMessage="Email Address is required." 
                                         Display="Dynamic" ForeColor="Red" 
-                                        CssClass="emailAdd_rqdValidator" /> -->
+                                        CssClass="rqdValidator" />
                                 </td>
                             </tr>
                         </table>
                     </div>
                 </td>
+            </tr>
+            <tr>
+                <td class="trMarginBottom20"></td>
             </tr>
             <tr>
                 <td id="password_td">
@@ -91,17 +97,20 @@
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <!-- <asp:RequiredFieldValidator 
+                                    <asp:RequiredFieldValidator 
                                         ID="password_rqdValidator" runat="server" 
                                         ControlToValidate="password" 
                                         ErrorMessage="Password is required." 
                                         Display="Dynamic" ForeColor="Red" 
-                                        CssClass="password_rqdValidator" /> -->
+                                        CssClass="rqdValidator" />
                                 </td>
                             </tr>
                         </table>
                     </div>
                 </td>
+            </tr>
+            <tr>
+                <td class="trMarginBottom20"></td>
             </tr>
             <tr>
                 <td id="passReenter_td">
@@ -121,17 +130,20 @@
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <!-- <asp:RequiredFieldValidator 
+                                    <asp:RequiredFieldValidator 
                                         ID="passReenter_rqdValidator" runat="server" 
                                         ControlToValidate="passReenter" 
                                         ErrorMessage="Password Re-enter is required." 
                                         Display="Dynamic" ForeColor="Red" 
-                                        CssClass="passReenter_rqdValidator" /> -->
+                                        CssClass="rqdValidator" />
                                 </td>
                             </tr>
                         </table>
                     </div>
                 </td>
+            </tr>
+            <tr>
+                <td class="trMarginBottom20"></td>
             </tr>
             <tr>
                 <td id="birthdayDate_td">
@@ -150,6 +162,9 @@
                         </table>
                     </div>
                 </td>
+            </tr>
+            <tr>
+                <td class="trMarginBottom20"></td>
             </tr>
             <tr>
                 <td id="gender_td">
@@ -171,19 +186,22 @@
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <!-- <asp:RequiredFieldValidator 
+                                    <asp:RequiredFieldValidator 
                                         ID="gender_rqdValidator" 
                                         runat="server" 
                                         ControlToValidate="gender" 
                                         InitialValue="" 
                                         ErrorMessage="Please select your gender." 
                                         Display="Dynamic"
-                                        ForeColor="Red" /> -->
+                                        ForeColor="Red" />
                                 </td>
                             </tr>
                         </table>
                     </div>
                 </td>
+            </tr>
+            <tr>
+                <td class="trMarginBottom20"></td>
             </tr>
             <tr>
                 <td id="location_td">
@@ -214,21 +232,23 @@
                                     </asp:DropDownList>
                                 </td>
                                 <td>
-                                    <!-- <asp:RequiredFieldValidator 
+                                    <asp:RequiredFieldValidator 
                                         ID="location_rqdValidator" 
                                         runat="server" 
                                         ControlToValidate="location" 
                                         InitialValue="" 
                                         ErrorMessage="Please select a location." 
                                         Display="Dynamic"
-                                        ForeColor="Red" /> -->
+                                        ForeColor="Red" />
                                 </td>
                             </tr>
                         </table>
                     </div>
                 </td>
             </tr>
-
+            <tr>
+                <td class="trMarginBottom20"></td>
+            </tr>
             <tr>
                 <td id="agreement_td">
                     By signing up, you agree to the Staffee

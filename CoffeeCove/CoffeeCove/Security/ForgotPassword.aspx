@@ -30,13 +30,13 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td colspan="2">
                                 <asp:RequiredFieldValidator 
                                     ID="usernameEmail_rqdValidator" runat="server" 
                                     ControlToValidate="usernameEmail" 
                                     ErrorMessage="Username or Email is required." 
                                     Display="Dynamic" ForeColor="Red" 
-                                    CssClass="usernameEmail_rqdValidator" />
+                                    CssClass="rqdValidator" />
                             </td>
                         </tr>
                     </table>

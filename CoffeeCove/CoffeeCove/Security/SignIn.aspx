@@ -25,7 +25,8 @@
                                     <asp:TextBox ID="username2" CssClass="username2" 
                                         runat="server"
                                         placeholder="Username" title="Username" 
-                                        OnTextChanged="Username_TextChanged2" AutoPostBack="true"></asp:TextBox>
+                                        OnTextChanged="Username_TextChanged2" 
+                                        AutoPostBack="true"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -35,12 +36,15 @@
                                         ControlToValidate="username2" 
                                         ErrorMessage="Username is required." 
                                         Display="Dynamic" ForeColor="Red" 
-                                        CssClass="username2_rqdValidator" /> -->
+                                        CssClass="rqdValidator" /> -->
                                 </td>
                             </tr>
                         </table>
                     </div>
                 </td>
+            </tr>
+            <tr>
+                <td class="trMarginBottom20"></td>
             </tr>
             <tr>
                 <td id="password_td">
@@ -66,12 +70,15 @@
                                         ControlToValidate="password2" 
                                         ErrorMessage="Password is required." 
                                         Display="Dynamic" ForeColor="Red" 
-                                        CssClass="password2_rqdValidator" /> -->
+                                        CssClass="rqdValidator" /> -->
                                 </td>
                             </tr>
                         </table>
                     </div>
                 </td>
+            </tr>
+            <tr>
+                <td class="trMarginBottom20"></td>
             </tr>
             <tr>
                 <td id="forgotPassword_td">

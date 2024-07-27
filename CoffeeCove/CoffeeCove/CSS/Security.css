@@ -5,9 +5,15 @@ body, br {
     user-select: none;
 }
 
-div {
-    /* background-color: #3f3230; */
-    /* background-color: #f9f9f9; */
+.trMarginBottom20 {
+    padding-bottom: 20px;
+}
+
+.specialMargin25 {
+    margin-left: 25px;
+}
+.specialPadding25 {
+    padding-left: 25px;
 }
 
 .sign_container {
@@ -127,7 +133,7 @@ td > a {
     color: #551a8b;
 }
 
-.usernameEmail_rqdValidator {
+.rqdValidator {
     font-size: x-small;
     text-align: right;
 }
@@ -202,7 +208,7 @@ td > a {
 .gender_rbl input[type="radio"]:checked + label::after {
     content: "";
     position: absolute;
-    left: 5.5px;
+    left: 6px;
     top: 10%;
     transform: translateY(-50%);
     width: 6px; /* Size of the dot */
@@ -227,23 +233,6 @@ td > a {
     margin-left: 7px;
     margin-top: 4px;
     padding-left: 18px;
-}
-
-.input_div {
-    /* margin-left: 20px; */
-}
-
-#signIn_td,
-#codeVerification_td {
-    /* padding-left: 25px; */
-}
-
-.specialMargin25 {
-    margin-left: 25px;
-}
-
-.specialPadding25 {
-    padding-left: 25px;
 }
 
 #signInBtn_td,
