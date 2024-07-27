@@ -1,0 +1,205 @@
+﻿
+
+body, br {
+    font-family: "Staffee-Regular";
+    user-select: none;
+}
+
+div {
+    background-color: #f9f9f9;
+}
+
+.sign_container {
+    background-color: #ffffff;
+    font-family: "Staffee-Regular";
+    border-width: 5px;
+    border-style: solid;
+    border-color: #DADDE2;
+    border-radius: 15px;
+    box-shadow: rgba(218, 221, 226) 0px 5px 15px;
+    width: 380px;
+    margin: 0 auto;
+    position: relative;
+    /* transform: translate(-50%, -50%); */
+    text-align: center;
+    /* z-index: 1000; */
+    /* Ensure menu item is above overlay */
+    /* padding: 20px; */
+    /* overflow: hidden; */
+}
+
+    /* #SignUpHolder { */
+    /* padding-top: 500px; */
+    /* } */
+
+    .sign_container > table {
+        margin: 0 auto;
+    }
+
+#signIn_td,
+#signUp_td {
+    font-family: Staffee-Bold;
+    text-align: left;
+    margin-top: 0px;
+    width: 92px;
+    height: 37px;
+}
+
+.box_input {
+    /* background-color: #9a3cf1; */
+    /* color: #ffffff; */
+    border-radius: 5px;
+    border-width: 0;
+    width: 200px;
+    height: 30px;
+    margin-right: 5px;
+}
+
+.usernameIcon,
+.mailIcon,
+.passwordIcon,
+.cakeIcon,
+.genderIcon,
+.locationIcon {
+    width: 18px;
+    margin-top: 7px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.username,
+.username2,
+.emailAdd,
+.password,
+.password2,
+.passReenter,
+.usernameEmail,
+.location_ddl {
+    /* Placeholder text */
+    /* color: #757575; */
+    padding-left: 10px;
+    border-radius: 5px;
+    border-width: 0;
+    width: 200px;
+    height: 30px;
+    margin-right: 5px;
+}
+
+.input_div {
+    background-color: #b371f2;
+    border-radius: 10px;
+    height: 40px;
+    width: 250px;
+    text-align: left;
+}
+
+#forgotPassword_td,
+#agreement_td,
+#codeVerification_td {
+    font-family: Staffee-Bold;
+    font-size: smaller;
+    text-align: left;
+    user-select: text;
+    padding-top: 4px;
+}
+
+#codeVerification_td {
+    text-align: justify;
+}
+
+td > a {
+    color: #551a8b;
+}
+
+.usernameEmail_rqdValidator {
+    font-size: x-small;
+    text-align: right;
+}
+
+.birthdayDate_cal {
+    height: 200px;
+    line-height: 30px;
+}
+
+.gender_rbl {
+    line-height: 30px;
+}
+
+    .gender_rbl input[type="radio"] {
+        vertical-align: middle;
+    }
+
+    .gender_rbl label {
+        line-height: 30px;
+    }
+
+.location_ddl {
+    width: 200px;
+    height: 35px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+    transition: border-color 0.3s ease;
+}
+
+#signInBtn_td,
+#signUpBtn_td,
+#backBtn_td {
+    padding-bottom: 15px;
+}
+
+.signIn_btn,
+.signUp_btn,
+.next_btn {
+    background-color: #775466;
+    color: #ffffff;
+    font-family: Staffee-Bold;
+    font-size: medium;
+    border-radius: 30px;
+    border-width: 0;
+    width: 248px;
+    height: 40px;
+    margin-top: 15px;
+    padding-bottom: 6px;
+    cursor: pointer;
+}
+
+    .signIn_btn:hover,
+    .signUp_btn:hover {
+        background-color: #DADDE2;
+        color: #775466;
+        font-family: Staffee-Bold;
+        font-size: medium;
+        border-radius: 30px;
+        border-width: 0;
+        margin-top: 15px;
+        padding-bottom: 6px;
+        cursor: pointer;
+        transition-delay: 0.25s;
+    }
+
+.back_btn {
+    background-color: #ffffff;
+    /* color: #775466; */
+    font-family: Staffee-Bold;
+    font-size: medium;
+    border-radius: 30px;
+    border-width: 0;
+    width: 293px;
+    height: 40px;
+    margin-top: 15px;
+    padding-bottom: 6px;
+    cursor: pointer;
+}
+
+#joinUsNow,
+#alreadySignedUp {
+    font-family: Staffee-Bold;
+    padding-top: 2px;
+    user-select: text;
+}
+
+asp .validator {
+    color: red;
+    font-size: smaller;
+}
