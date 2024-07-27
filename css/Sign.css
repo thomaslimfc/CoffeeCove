@@ -19,7 +19,8 @@ div {
     box-shadow: rgba(218, 221, 226) 0px 5px 15px;
     width: 380px;
     margin: 0 auto;
-    position: relative;
+    /* margin-top: 200px; */
+    /* position: relative; */
     /* transform: translate(-50%, -50%); */
     text-align: center;
     /* z-index: 1000; */

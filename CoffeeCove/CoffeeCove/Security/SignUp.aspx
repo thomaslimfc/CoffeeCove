@@ -17,11 +17,14 @@
                         <table>
                             <tr>
                                 <td>
-                                    <img class="usernameIcon" src="../img/username_icon.png" alt="Enter your username" />
+                                    <img class="usernameIcon" src="../img/username_icon.png" 
+                                        alt="Enter your username" />
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="username" CssClass="username" runat="server"
-                                        placeholder="Username" title="Username" OnTextChanged="Username_TextChanged"></asp:TextBox>
+                                    <asp:TextBox ID="username" CssClass="username" 
+                                        runat="server" placeholder="Username" 
+                                        title="Username" 
+                                        OnTextChanged="Username_TextChanged"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -30,7 +33,8 @@
                                         ID="username_rqdValidator" runat="server" 
                                         ControlToValidate="username" 
                                         ErrorMessage="Username is required." 
-                                        Display="Dynamic" ForeColor="Red" CssClass="username_rqdValidator" />
+                                        Display="Dynamic" ForeColor="Red" 
+                                        CssClass="username_rqdValidator" />
                                 </td>
                             </tr>
                         </table>
@@ -43,11 +47,14 @@
                         <table>
                             <tr>
                                 <td>
-                                    <img class="mailIcon" src="../img/mail_icon.png" alt="Enter your email" />
+                                    <img class="mailIcon" src="../img/mail_icon.png" 
+                                        alt="Enter your email" />
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="emailAdd" CssClass="emailAdd" runat="server"
-                                        placeholder="Email Address" title="Email Address" OnTextChanged="EmailAdd_TextChanged"></asp:TextBox>
+                                    <asp:TextBox ID="emailAdd" CssClass="emailAdd" 
+                                        runat="server" placeholder="Email Address" 
+                                        title="Email Address" 
+                                        OnTextChanged="EmailAdd_TextChanged"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -56,7 +63,8 @@
                                         ID="emailAdd_rqdValidator" runat="server" 
                                         ControlToValidate="emailAdd" 
                                         ErrorMessage="Email Address is required." 
-                                        Display="Dynamic" ForeColor="Red" CssClass="emailAdd_rqdValidator" />
+                                        Display="Dynamic" ForeColor="Red" 
+                                        CssClass="emailAdd_rqdValidator" />
                                 </td>
                             </tr>
                         </table>
@@ -69,11 +77,14 @@
                         <table>
                             <tr>
                                 <td>
-                                    <img class="passwordIcon" src="../img/lock_icon.png" alt="Enter your password" />
+                                    <img class="passwordIcon" src="../img/lock_icon.png" 
+                                        alt="Enter your password" />
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="password" CssClass="password" runat="server"
-                                        placeholder="Password" title="Password" OnTextChanged="Password_TextChanged"></asp:TextBox>
+                                    <asp:TextBox ID="password" CssClass="password" 
+                                        runat="server" placeholder="Password" 
+                                        title="Password" 
+                                        OnTextChanged="Password_TextChanged"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -82,7 +93,8 @@
                                         ID="password_rqdValidator" runat="server" 
                                         ControlToValidate="password" 
                                         ErrorMessage="Password is required." 
-                                        Display="Dynamic" ForeColor="Red" CssClass="password_rqdValidator" />
+                                        Display="Dynamic" ForeColor="Red" 
+                                        CssClass="password_rqdValidator" />
                                 </td>
                             </tr>
                         </table>
@@ -95,11 +107,14 @@
                         <table>
                             <tr>
                                 <td>
-                                    <img class="passwordIcon" src="../img/lock_icon.png" alt="Re-enter your password" />
+                                    <img class="passwordIcon" src="../img/lock_icon.png" 
+                                        alt="Re-enter your password" />
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="passReenter" CssClass="passReenter" runat="server"
-                                        placeholder="Re-enter Password" title="Re-enter Password" OnTextChanged="PassReenter_TextChanged"></asp:TextBox>
+                                    <asp:TextBox ID="passReenter" CssClass="passReenter" 
+                                        runat="server" placeholder="Re-enter Password" 
+                                        title="Re-enter Password" 
+                                        OnTextChanged="PassReenter_TextChanged"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -108,7 +123,8 @@
                                         ID="passReenter_rqdValidator" runat="server" 
                                         ControlToValidate="passReenter" 
                                         ErrorMessage="Password Re-enter is required." 
-                                        Display="Dynamic" ForeColor="Red" CssClass="passReenter_rqdValidator" />
+                                        Display="Dynamic" ForeColor="Red" 
+                                        CssClass="passReenter_rqdValidator" />
                                 </td>
                             </tr>
                         </table>
@@ -121,10 +137,12 @@
                         <table>
                             <tr>
                                 <td>
-                                    <img class="cakeIcon" src="../img/cake_icon.png" alt="Enter your birthday date" />
+                                    <img class="cakeIcon" src="../img/cake_icon.png" 
+                                        alt="Enter your birthday date" />
                                 </td>
                                 <td>
-                                    <input type="date" id="birthdayDate_cal" name="date" required>
+                                    <input type="date" id="birthdayDate_cal" 
+                                        name="date" required>
                                 </td>
                             </tr>
                         </table>
@@ -137,7 +155,8 @@
                         <table>
                             <tr>
                                 <td>
-                                    <img class="genderIcon" src="../img/gender_icon.png" alt="Enter your gender" />
+                                    <img class="genderIcon" src="../img/gender_icon.png" 
+                                        alt="Enter your gender" />
                                 </td>
                                 <td>
                                     <asp:RadioButtonList ID="gender" runat="server"
@@ -170,10 +189,12 @@
                         <table>
                             <tr>
                                 <td>
-                                    <img class="locationIcon" src="../img/location_icon.png" alt="Enter your location" />
+                                    <img class="locationIcon" src="../img/location_icon.png" 
+                                        alt="Enter your location" />
                                 </td>
                                 <td>
-                                    <asp:DropDownList ID="location" runat="server" CssClass="location_ddl">
+                                    <asp:DropDownList ID="location" runat="server" 
+                                        CssClass="location_ddl">
                                         <asp:ListItem Text="~ Select a location ~" Value="" />
                                         <asp:ListItem>Selangor</asp:ListItem>
                                         <asp:ListItem>Penang</asp:ListItem>

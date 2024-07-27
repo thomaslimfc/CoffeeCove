@@ -4,6 +4,7 @@
     Inherits="CoffeeCove.Security.ForgotPassword" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
+    <link href="../CSS/Security.css" rel="stylesheet" />
     <div id="signIn_container" class="sign_container">
         <table>
             <tr>
@@ -17,11 +18,14 @@
                         <table>
                             <tr>
                                 <td>
-                                    <img class="usernameIcon" src="../images/username_icon.png" alt="Enter your username or email" />
+                                    <img class="usernameIcon" src="../img/username_icon.png" 
+                                        alt="Enter your username or email" />
                                 </td>
                                 <td>
-                                    <asp:TextBox ID="usernameEmail" CssClass="usernameEmail" runat="server"
-                                        placeholder="Username / Email" title="usernameEmail" OnTextChanged="UsernameEmail_TextChanged"></asp:TextBox>
+                                    <asp:TextBox ID="usernameEmail" CssClass="usernameEmail" 
+                                        runat="server" placeholder="Username / Email" 
+                                        title="usernameEmail" 
+                                        OnTextChanged="UsernameEmail_TextChanged"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -30,7 +34,8 @@
                                         ID="usernameEmail_rqdValidator" runat="server" 
                                         ControlToValidate="usernameEmail" 
                                         ErrorMessage="Username or Email is required." 
-                                        Display="Dynamic" ForeColor="Red" CssClass="usernameEmail_rqdValidator" />
+                                        Display="Dynamic" ForeColor="Red" 
+                                        CssClass="usernameEmail_rqdValidator" />
                                 </td>
                             </tr>
                         </table>
