@@ -4,6 +4,8 @@
     Inherits="CoffeeCove.Security.SignUp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
+    <link href="../CSS/Security.css" rel="stylesheet" />
+    <br /><br /><br /><br /><br /><br /><br /><br />
     <div id="signIn_container" class="sign_container">
         <table>
             <tr>
@@ -29,12 +31,12 @@
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <asp:RequiredFieldValidator 
+                                    <!-- <asp:RequiredFieldValidator 
                                         ID="username_rqdValidator" runat="server" 
                                         ControlToValidate="username" 
                                         ErrorMessage="Username is required." 
                                         Display="Dynamic" ForeColor="Red" 
-                                        CssClass="username_rqdValidator" />
+                                        CssClass="username_rqdValidator" /> -->
                                 </td>
                             </tr>
                         </table>
@@ -59,12 +61,12 @@
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <asp:RequiredFieldValidator 
+                                    <!-- <asp:RequiredFieldValidator 
                                         ID="emailAdd_rqdValidator" runat="server" 
                                         ControlToValidate="emailAdd" 
                                         ErrorMessage="Email Address is required." 
                                         Display="Dynamic" ForeColor="Red" 
-                                        CssClass="emailAdd_rqdValidator" />
+                                        CssClass="emailAdd_rqdValidator" /> -->
                                 </td>
                             </tr>
                         </table>
@@ -89,12 +91,12 @@
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <asp:RequiredFieldValidator 
+                                    <!-- <asp:RequiredFieldValidator 
                                         ID="password_rqdValidator" runat="server" 
                                         ControlToValidate="password" 
                                         ErrorMessage="Password is required." 
                                         Display="Dynamic" ForeColor="Red" 
-                                        CssClass="password_rqdValidator" />
+                                        CssClass="password_rqdValidator" /> -->
                                 </td>
                             </tr>
                         </table>
@@ -119,12 +121,12 @@
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <asp:RequiredFieldValidator 
+                                    <!-- <asp:RequiredFieldValidator 
                                         ID="passReenter_rqdValidator" runat="server" 
                                         ControlToValidate="passReenter" 
                                         ErrorMessage="Password Re-enter is required." 
                                         Display="Dynamic" ForeColor="Red" 
-                                        CssClass="passReenter_rqdValidator" />
+                                        CssClass="passReenter_rqdValidator" /> -->
                                 </td>
                             </tr>
                         </table>
@@ -169,14 +171,14 @@
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <asp:RequiredFieldValidator 
+                                    <!-- <asp:RequiredFieldValidator 
                                         ID="gender_rqdValidator" 
                                         runat="server" 
                                         ControlToValidate="gender" 
                                         InitialValue="" 
                                         ErrorMessage="Please select your gender." 
                                         Display="Dynamic"
-                                        ForeColor="Red" />
+                                        ForeColor="Red" /> -->
                                 </td>
                             </tr>
                         </table>
@@ -212,14 +214,14 @@
                                     </asp:DropDownList>
                                 </td>
                                 <td>
-                                    <asp:RequiredFieldValidator 
+                                    <!-- <asp:RequiredFieldValidator 
                                         ID="location_rqdValidator" 
                                         runat="server" 
                                         ControlToValidate="location" 
                                         InitialValue="" 
                                         ErrorMessage="Please select a location." 
                                         Display="Dynamic"
-                                        ForeColor="Red" />
+                                        ForeColor="Red" /> -->
                                 </td>
                             </tr>
                         </table>

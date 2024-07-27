@@ -4,6 +4,8 @@
     Inherits="CoffeeCove.Security.SignIn" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
+    <link href="../CSS/Security.css" rel="stylesheet" />
+    <br /><br /><br /><br /><br /><br /><br /><br />
     <div id="signIn_container" class="sign_container">
         <table>
             <tr>
@@ -28,12 +30,12 @@
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <asp:RequiredFieldValidator 
+                                    <!-- <asp:RequiredFieldValidator 
                                         ID="username_rqdValidator2" runat="server" 
                                         ControlToValidate="username2" 
                                         ErrorMessage="Username is required." 
                                         Display="Dynamic" ForeColor="Red" 
-                                        CssClass="username2_rqdValidator" />
+                                        CssClass="username2_rqdValidator" /> -->
                                 </td>
                             </tr>
                         </table>
@@ -59,12 +61,12 @@
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <asp:RequiredFieldValidator 
+                                    <!-- <asp:RequiredFieldValidator 
                                         ID="password_rqdValidator2" runat="server" 
                                         ControlToValidate="password2" 
                                         ErrorMessage="Password is required." 
                                         Display="Dynamic" ForeColor="Red" 
-                                        CssClass="password2_rqdValidator" />
+                                        CssClass="password2_rqdValidator" /> -->
                                 </td>
                             </tr>
                         </table>
