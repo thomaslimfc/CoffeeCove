@@ -1,16 +1,16 @@
-﻿<%@ Page Title="User Profile" Language="C#" 
+﻿<%@ Page Title="Profile Edit" Language="C#" 
     MasterPageFile="~/Master/Customer.Master" 
-    AutoEventWireup="true" CodeBehind="UserProfile.aspx.cs" 
-    Inherits="CoffeeCove.User_Management.WebForm1" %>
+    AutoEventWireup="true" CodeBehind="ProfileEdit.aspx.cs" 
+    Inherits="CoffeeCove.User_Management.ProfileEdit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
-
+    <link href="../CSS/ProfileEdit.css" rel="stylesheet" />
     <link href="../CSS/UserManagement.css" rel="stylesheet" />
     <br /><br /><br /><br /><br /><br /><br /><br />
-    
+    s
     <div>
-        <h3 class="textAlignCenter">Your current Club tier</h3>
-        <h1 class="textAlignCenter">Bronze</h1>
+        <h3 class="textAlignCenter">Edit your</h3>
+        <h1 class="textAlignCenter">Profile Information</h1>
     </div>
     <br />
     <center>
@@ -37,8 +37,5 @@
             </tr>
         </table>
     </center>
-
-    
-
 
 </asp:Content>
