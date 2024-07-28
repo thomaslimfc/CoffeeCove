@@ -8,6 +8,7 @@
     <link href="../CSS/Customer.css" rel="stylesheet" />
     <link href="../CSS/Home.css" rel="stylesheet" />
     <link href="../CSS/Menu.css" rel="stylesheet" />
+    <link href="../CSS/orderOption.css" rel="stylesheet" />
 </head>
 
 <body>
