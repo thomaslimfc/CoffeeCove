@@ -3,7 +3,13 @@
 body {
 }
 
+h1, h3 {
+    user-select: none;
+}
+
 .textAlignCenter {
+    user-select: none;
+
     text-align: center;
     /* align-items: center; */
 }
