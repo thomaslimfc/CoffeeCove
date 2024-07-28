@@ -6,8 +6,6 @@
 <head runat="server">
     <title>CoffeeCove</title>
     <link href="../CSS/Customer.css" rel="stylesheet" />
-    <link href="../CSS/Home.css" rel="stylesheet" />
-    <link href="../CSS/Menu.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -57,9 +55,9 @@
                 </div>
                 <div>
                     <h4>Follow Us</h4>
-                    <asp:ImageButton ID="facebookBtn" runat="server" ImageUrl="~/img/facebook.png" PostBackUrl="https://www.facebook.com" EnableTheming="True" Width="25px" Height="25px"/>
-                    <asp:ImageButton ID="instaBtn" runat="server" ImageUrl="~/img/instagram.png" PostBackUrl="https://www.instagram.com" Width="25px" Height="25px"/>
-                    <asp:ImageButton ID="twitterBtn" runat="server" ImageUrl="~/img/twitter.png" PostBackUrl="https://www.twitter.com" Width="25px" Height="25px"/>
+                    <asp:ImageButton ID="facebookBtn" runat="server" ImageUrl="~/img/facebook.png" PostBackUrl="https://www.facebook.com" EnableTheming="True" Width="25px" Height="25px" CssClass="SocialImg"/>
+                    <asp:ImageButton ID="instaBtn" runat="server" ImageUrl="~/img/instagram.png" PostBackUrl="https://www.instagram.com" Width="25px" Height="25px" CssClass="SocialImg"/>
+                    <asp:ImageButton ID="twitterBtn" runat="server" ImageUrl="~/img/twitter.png" PostBackUrl="https://www.twitter.com" Width="25px" Height="25px" CssClass="SocialImg"/>
                 </div>
             </div>
             <div class="footerBottom" style="font-size: 15px; font-weight: 300; color: #FFFFFF; background-color: #2a2a2a;">

@@ -1,16 +1,12 @@
 ﻿/*slideshow style*/
 .sliderContainer {
     position: relative;
-    max-width: 100%;
-    margin: auto;
+    margin: 0;
 }
 
 .sliderContainer img {
-    width:1600px;
-    height:550px;
-    object-fit: cover;
+    width:100%;
     filter: brightness(70%);
-    margin-right: 105px;
 }
 
 .navButton {
@@ -86,9 +82,8 @@
 }
 
 .leftContent img {
-    width: 72%;
+    width: 80%;
     border-radius: 10px;
-    height: 487px;
 }
 
 #about .rightContent h1 {

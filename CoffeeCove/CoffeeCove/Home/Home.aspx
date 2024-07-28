@@ -1,5 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Customer.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="CoffeeCove.Home.Home" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
+    <!-- CSS style -->
+    <link href="../CSS/Home.css" rel="stylesheet" />
+
     <!-- Slideshow -->
     <div class="sliderContainer">
         <asp:Image ID="slideImg" runat="server" />
@@ -28,5 +31,16 @@
             are here to make your experience unforgettable. Join us and create your own 
             delicious memories.</p>
         </div>
+    </div>
+
+    <!-- Our Menu -->
+    <div>
+        <div>
+            <h2>Our Menu</h2>
+        </div>
+        <div>
+
+        </div>
+
     </div>
 </asp:Content>

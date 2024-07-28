@@ -44,6 +44,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -67,19 +68,31 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\Dashboard.aspx" />
+    <Content Include="App_Data\Product.mdf" />
+    <Content Include="App_Data\Product_log.ldf">
+      <DependentUpon>Product.mdf</DependentUpon>
+    </Content>
+    <Content Include="CSS\Admin.css" />
     <Content Include="CSS\Customer.css" />
     <Content Include="CSS\Home.css" />
+    <Content Include="CSS\Dashboard.css" />
     <Content Include="CSS\Menu.css" />
     <Content Include="CSS\orderOption.css" />
+    <Content Include="Global.asax" />
     <Content Include="Home\Home.aspx" />
     <Content Include="img\aboutUs.jpg" />
     <Content Include="img\cartLogo.png" />
+    <Content Include="img\customer.png" />
     <Content Include="img\facebook.png" />
     <Content Include="img\instagram.png" />
     <Content Include="img\menuPoster.jpg" />
-    <Content Include="img\slide1.jpeg" />
-    <Content Include="img\slide2.jpeg" />
-    <Content Include="img\slide3.jpeg" />
+    <Content Include="img\order.png" />
+    <Content Include="img\revenue.png" />
+    <Content Include="img\sales.png" />
+    <Content Include="img\slideImg1.jpeg" />
+    <Content Include="img\slideImg2.jpeg" />
+    <Content Include="img\slideImg3.jpeg" />
     <Content Include="img\twitter.png" />
     <Content Include="Menu\Menu.aspx" />
     <Content Include="Order\orderOption.aspx" />
@@ -111,6 +124,16 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="Home\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

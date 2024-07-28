@@ -1,19 +1,49 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="CoffeeCove.Master.Admin" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="/Master/Admin.master.cs" Inherits="CoffeeCove.Master.Admin" %>
 
 <!DOCTYPE html>
 
 <html>
 <head runat="server">
-    <title></title>
-    <asp:ContentPlaceHolder ID="head" runat="server">
-    </asp:ContentPlaceHolder>
+    <title>CoffeeCove</title>
+    <link href="../CSS/Admin.css" rel="stylesheet" />
 </head>
+
 <body>
     <form id="form1" runat="server">
-        <div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
+
+        <!-- header -->
+        <div id="header">
+            <div class="headerContainer">
+                <h2><a class="logo" href="../Admin/Index.aspx">COFFEECOVE DASHBOARD</a></h2>
+                <div class="headerBtn">
+                    <asp:Button ID="logOutBtn" runat="server" Text="LogOut" Font-Size="17px" OnClick="LogOut_Click"/>
+                </div>
+            </div>
         </div>
+
+        <div id="mainContainer">
+            <!-- side bar -->
+            <div id="sideBar">
+                <asp:Menu ID="AdminMenu" runat="server" Font-Size="17px">
+                    <StaticMenuItemStyle CssClass="SideBarMenu" />
+                    <Items>
+                        <asp:MenuItem NavigateUrl="~/Admin/Index.aspx" Text="Dashboard" Value="Dashboard"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="#" Text="Order" Value="Order List"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="#" Text="Categories" Value="Categories"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="#" Text="Product" Value="Product"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="#" Text="Report" Value="Report"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="#" Text="Settings" Value="Settings"></asp:MenuItem>
+                    </Items>
+                </asp:Menu>
+            </div>
+
+            <!--content-->
+            <div id="adminCon">
+                <asp:ContentPlaceHolder ID="adminContent" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+
     </form>
 </body>
 </html>

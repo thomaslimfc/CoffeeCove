@@ -1,6 +1,10 @@
 ﻿body {
 }
 
+#option-title {
+    padding-top: 10%;
+}
+
 .option-container {
     display: flex;
     padding: 50px;
@@ -9,7 +13,7 @@
 
 .option-child {
     flex: 1;
-    border: 2px solid yellow;
+    border: 2px solid red;
 }
 
 #option-title {
