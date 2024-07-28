@@ -1,0 +1,21 @@
+﻿#cartContainer{
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: center;
+    border: 2px black solid;
+}
+
+#cartItemTable, #cartTotalTable{
+    width: 100%;
+    border-bottom: black solid 5px;
+}
+
+.cartItem {
+    width: 90%;
+    border: solid red 2px;
+}
+
+.cartQuantity {
+    width: 10%;
+    border: solid blue 2px;
+}
