@@ -2,12 +2,13 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
 
-    <!-- Select Order Option -->
+    <!-- Banner -->
     <div id="cartPoster">
         <img src="/img/menuPoster.jpg" />
         <div id="cartPosterText">Pick Up or Delivery</div>
     </div>
     <br />
+    <!-- Select Order Option -->
     <div id="orderOption">
         <table id="orderOptionTable">
             <tr>

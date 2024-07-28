@@ -9,6 +9,7 @@
     <link href="../CSS/Home.css" rel="stylesheet" />
     <link href="../CSS/Menu.css" rel="stylesheet" />
     <link href="../CSS/orderOption.css" rel="stylesheet" />
+    <link href="../CSS/orderCart.css" rel="stylesheet" />
 </head>
 
 <body>
