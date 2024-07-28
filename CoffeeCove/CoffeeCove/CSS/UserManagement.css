@@ -1,0 +1,32 @@
+﻿
+
+body {
+}
+
+table, td {
+    border: 1px solid #000000;
+    border-collapse: collapse;
+
+}
+
+.tdFirstCol {
+    text-align: right;
+    height: 50px;
+    width: 200px;
+    padding-right: 15px;
+}
+
+.tdSecondCol {
+    width: 400px;
+    padding-left: 10px;
+}
+
+
+
+
+
+
+
+
+
+

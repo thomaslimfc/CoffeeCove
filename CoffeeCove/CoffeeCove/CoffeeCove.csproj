@@ -70,6 +70,7 @@
     <Content Include="CSS\Menu.css" />
     <Content Include="CSS\orderOption.css" />
     <Content Include="CSS\Security.css" />
+    <Content Include="CSS\UserManagement.css" />
     <Content Include="Home\Home.aspx" />
     <Content Include="img\aboutUs.jpg" />
     <Content Include="img\cartLogo.png" />
@@ -110,6 +111,7 @@
     <Content Include="Security\SignIn.aspx" />
     <Content Include="Security\ForgotPassword.aspx" />
     <Content Include="Security\SignUp.aspx" />
+    <Content Include="User Management\UserProfile.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -169,6 +171,13 @@
     </Compile>
     <Compile Include="Security\SignUp.aspx.designer.cs">
       <DependentUpon>SignUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="User Management\UserProfile.aspx.cs">
+      <DependentUpon>UserProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User Management\UserProfile.aspx.designer.cs">
+      <DependentUpon>UserProfile.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
