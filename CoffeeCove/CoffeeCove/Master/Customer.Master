@@ -6,6 +6,13 @@
 <head runat="server">
     <title>CoffeeCove</title>
     <link href="../CSS/Customer.css" rel="stylesheet" />
+<<<<<<< HEAD
+=======
+    <link href="../CSS/Home.css" rel="stylesheet" />
+    <link href="../CSS/Menu.css" rel="stylesheet" />
+    <link href="../CSS/orderOption.css" rel="stylesheet" />
+    <link href="../CSS/orderCart.css" rel="stylesheet" />
+>>>>>>> 8a5e199df1135dcba652b8424c14d045d5dc4047
 </head>
 
 <body>
