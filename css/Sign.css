@@ -1,12 +1,12 @@
 ﻿
 
 body {
-    /* font-family: "Staffee-Regular"; */
+    font-family: "Staffee-Regular";
     user-select: none;
 }
 
 div {
-    /* background-color: #f9f9f9; */
+    background-color: #f9f9f9;
 }
 
 .sign_container {
@@ -19,8 +19,7 @@ div {
     box-shadow: rgba(218, 221, 226) 0px 5px 15px;
     width: 380px;
     margin: 0 auto;
-    /* margin-top: 200px; */
-    /* position: relative; */
+    position: relative;
     /* transform: translate(-50%, -50%); */
     text-align: center;
     /* z-index: 1000; */
