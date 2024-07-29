@@ -3,7 +3,6 @@
   "WorkspaceRootPath": "C:\\Users\\admin\\Documents\\GitHub\\Staffee\\CoffeeCove\\CoffeeCove\\",
   "Documents": [
     {
-<<<<<<< HEAD
       "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|C:\\Users\\admin\\Documents\\GitHub\\Staffee\\CoffeeCove\\CoffeeCove\\home\\home.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:home\\home.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
@@ -46,18 +45,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|C:\\Users\\admin\\Documents\\GitHub\\Staffee\\CoffeeCove\\CoffeeCove\\master\\admin.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
       "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:master\\admin.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
-=======
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|c:\\# github local repository\\coffeecove\\coffeecove\\coffeecove\\user management\\profileedit.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:user management\\profileedit.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|c:\\# github local repository\\coffeecove\\coffeecove\\coffeecove\\css\\profileedit.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:css\\profileedit.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|c:\\# github local repository\\coffeecove\\coffeecove\\coffeecove\\user management\\userprofile.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:user management\\userprofile.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
->>>>>>> parent of 8a5e199 (32)
     }
   ],
   "DocumentGroupContainers": [
@@ -67,11 +54,10 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-<<<<<<< HEAD
               "DocumentIndex": 2,
               "Title": "Customer.Master",
               "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\Staffee\\CoffeeCove\\CoffeeCove\\Master\\Customer.Master",
@@ -98,36 +84,16 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAATAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002838|",
               "WhenOpened": "2024-07-26T07:04:01.524Z",
-=======
-              "DocumentIndex": 1,
-              "Title": "ProfileEdit.css",
-              "DocumentMoniker": "C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\CoffeeCove\\CSS\\ProfileEdit.css",
-              "RelativeDocumentMoniker": "CSS\\ProfileEdit.css",
-              "ToolTip": "C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\CoffeeCove\\CSS\\ProfileEdit.css",
-              "RelativeToolTip": "CSS\\ProfileEdit.css",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-07-28T10:45:53.987Z",
->>>>>>> parent of 8a5e199 (32)
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-<<<<<<< HEAD
               "DocumentIndex": 1,
               "Title": "Menu.aspx",
               "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\Staffee\\CoffeeCove\\CoffeeCove\\Menu\\Menu.aspx",
               "RelativeDocumentMoniker": "Menu\\Menu.aspx",
               "ToolTip": "C:\\Users\\admin\\Documents\\GitHub\\Staffee\\CoffeeCove\\CoffeeCove\\Menu\\Menu.aspx",
               "RelativeToolTip": "Menu\\Menu.aspx",
-=======
-              "DocumentIndex": 0,
-              "Title": "ProfileEdit.aspx",
-              "DocumentMoniker": "C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\CoffeeCove\\User Management\\ProfileEdit.aspx",
-              "RelativeDocumentMoniker": "User Management\\ProfileEdit.aspx",
-              "ToolTip": "C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\CoffeeCove\\User Management\\ProfileEdit.aspx",
-              "RelativeToolTip": "User Management\\ProfileEdit.aspx",
->>>>>>> parent of 8a5e199 (32)
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
               "WhenOpened": "2024-07-23T07:47:49.541Z",
@@ -135,21 +101,12 @@
             },
             {
               "$type": "Document",
-<<<<<<< HEAD
               "DocumentIndex": 0,
               "Title": "Home.aspx",
               "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\Staffee\\CoffeeCove\\CoffeeCove\\Home\\Home.aspx",
               "RelativeDocumentMoniker": "Home\\Home.aspx",
               "ToolTip": "C:\\Users\\admin\\Documents\\GitHub\\Staffee\\CoffeeCove\\CoffeeCove\\Home\\Home.aspx",
               "RelativeToolTip": "Home\\Home.aspx",
-=======
-              "DocumentIndex": 2,
-              "Title": "UserProfile.aspx",
-              "DocumentMoniker": "C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\CoffeeCove\\User Management\\UserProfile.aspx",
-              "RelativeDocumentMoniker": "User Management\\UserProfile.aspx",
-              "ToolTip": "C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\CoffeeCove\\User Management\\UserProfile.aspx",
-              "RelativeToolTip": "User Management\\UserProfile.aspx",
->>>>>>> parent of 8a5e199 (32)
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
               "WhenOpened": "2024-07-23T07:34:03.094Z",
