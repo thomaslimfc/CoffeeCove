@@ -1,11 +1,6 @@
-﻿#cartPoster img {
-    width: 1600px;
-    height: 250px;
-    object-fit: cover;
-    position: relative;
+﻿body {
 }
 
-<<<<<<< HEAD
 #option-title {
     padding-top: 10%;
 }
@@ -19,45 +14,13 @@
 .option-child {
     flex: 1;
     border: 2px solid red;
-=======
-#cartPosterText {
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 4rem;
+}
+
+#option-title {
     text-align: center;
-    font-weight: bold;
-    letter-spacing: 0.5px;
-    color: white;
-}
-
-#orderOption{
-    margin: auto;
-    width: 75%;
-}
-
-#orderOptionTable{
-    width: 100%;
-    text-align: center;
-}
-
-#orderOptionTable td {
-    overflow: hidden;
->>>>>>> 8a5e199df1135dcba652b8424c14d045d5dc4047
-}
-
-.orderOptionTD {
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-}
-
-.orderOptionLB{
-    display: block;
-    margin: -10em;
-    padding:10em;
 }
 
 .img {
-    width: 318px;
-    height: 418px;
+    width: 185px;
+    height: 275px;
 }
