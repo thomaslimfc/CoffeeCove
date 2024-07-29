@@ -1,0 +1,73 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="/Master/Customer.Master.cs" Inherits="CoffeeCove.Master.User" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>CoffeeCove</title>
+    <link href="../CSS/Customer.css" rel="stylesheet" />
+    <link href="../CSS/Home.css" rel="stylesheet" />
+    <link href="../CSS/Menu.css" rel="stylesheet" />
+    <link href="../CSS/orderOption.css" rel="stylesheet" />
+    <link href="../CSS/orderCart.css" rel="stylesheet" />
+</head>
+
+<body>
+    <form id="form1" runat="server">
+        <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
+        <!--header-->
+        <div id="header">
+            <div class="headerContainer">
+                <h2><a class="logo" href="../Home/Home.aspx">COFFEECOVE&#174;</a></h2>
+                <div id="menuContainer" aria-disabled="False">
+                    <asp:Menu ID="Menu" runat="server" BorderStyle="None" DataSourceID="SiteMapDataSource1" Font-Size="17px" Orientation="Horizontal" StaticDisplayLevels="2" StaticSubMenuIndent="0px" ForeColor="White">
+                        <StaticMenuItemStyle CssClass="menuItem" />
+                        <DynamicHoverStyle BorderStyle="None" />
+                    </asp:Menu>
+                </div>
+                <div class="headerBtn">
+                    <asp:ImageButton ID="cartBtn" runat="server" ImageUrl="~/img/cartLogo.png" PostBackUrl="#" Width="25px" />
+                    <asp:Button ID="loginBtn" runat="server" Text="Login" Font-Size="17px" OnClick="loginBtn_Click" />
+                </div>
+            </div>
+        </div>
+
+        <!--content-->
+        <div id="content">
+            <asp:ContentPlaceHolder ID="Content" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+
+        <!--footer-->
+        <div id="footer" style=" font-size: 17px; font-weight: 500; color: #FFFFFF; top: 0px; left: 0px;">
+            <div class="footerContainer">
+                <div>
+                    <h4>Quick Links</h4>
+                    <asp:HyperLink ID="homeLink" runat="server" NavigateUrl="../Home/Home.aspx" CssClass="quickLink">Home</asp:HyperLink>
+                    <asp:HyperLink ID="menuLink" runat="server" NavigateUrl="../Menu/Menu.aspx" CssClass="quickLink">Menu</asp:HyperLink>
+                    <asp:HyperLink ID="serviceLink" runat="server" NavigateUrl="../Service/Service.aspx" CssClass="quickLink">Service</asp:HyperLink>
+                </div>
+                <div>
+                    <h4>Open Hours</h4>
+                    <asp:Label ID="monLabel" runat="server" Text="Label" CssClass="openHour">Mon &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11am-12am</asp:Label><br />
+                    <asp:Label ID="tueLabel" runat="server" Text="Label" CssClass="openHour">Tue &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11am-12am</asp:Label><br />
+                    <asp:Label ID="wedLabel" runat="server" Text="Label" CssClass="openHour">Wed &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11am-12am</asp:Label><br />
+                    <asp:Label ID="thursLabel" runat="server" Text="Label" CssClass="openHour">Thurs &nbsp;&nbsp;&nbsp;&nbsp;11am-12am</asp:Label><br />
+                    <asp:Label ID="friLabel" runat="server" Text="Label" CssClass="openHour">Fri &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11am-12am</asp:Label><br />
+                    <asp:Label ID="satLabel" runat="server" Text="Label" CssClass="openHour">Sat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11am-12am</asp:Label><br />
+                    <asp:Label ID="sunLabel" runat="server" Text="Label" CssClass="openHour">Sun &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Closed</asp:Label>
+                </div>
+                <div>
+                    <h4>Follow Us</h4>
+                    <asp:ImageButton ID="facebookBtn" runat="server" ImageUrl="~/img/facebook.png" PostBackUrl="https://www.facebook.com" EnableTheming="True" Width="25px" Height="25px"/>
+                    <asp:ImageButton ID="instaBtn" runat="server" ImageUrl="~/img/instagram.png" PostBackUrl="https://www.instagram.com" Width="25px" Height="25px"/>
+                    <asp:ImageButton ID="twitterBtn" runat="server" ImageUrl="~/img/twitter.png" PostBackUrl="https://www.twitter.com" Width="25px" Height="25px"/>
+                </div>
+            </div>
+            <div class="footerBottom" style="font-size: 15px; font-weight: 300; color: #FFFFFF; background-color: #2a2a2a;">
+                Developed by TheCoffeeNook Sdn.Bhd. | &copy; All right reserved. <%:DateTime.Now.Year %>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
