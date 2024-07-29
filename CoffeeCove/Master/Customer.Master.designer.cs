@@ -11,7 +11,7 @@ namespace CoffeeCove.Master
 {
 
 
-    public partial class User
+    public partial class Customer
     {
 
         /// <summary>
