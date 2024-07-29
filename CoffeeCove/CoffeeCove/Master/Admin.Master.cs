@@ -13,10 +13,5 @@ namespace CoffeeCove.Master
         {
 
         }
-
-        protected void LogOut_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("/Home/Home.aspx");
-        }
     }
 }
