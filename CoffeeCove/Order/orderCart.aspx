@@ -1,5 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Customer.Master" AutoEventWireup="true" CodeFile="orderCart.aspx.cs" Inherits="CoffeeCove.Order.orderCart" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
 
     <!-- Banner -->

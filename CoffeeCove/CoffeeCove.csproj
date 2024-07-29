@@ -44,6 +44,7 @@
   <ItemGroup>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\lib\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />
@@ -67,7 +68,6 @@
     <Content Include="CSS\Customer.css" />
     <Content Include="CSS\Home.css" />
     <Content Include="CSS\Menu.css" />
-    <Content Include="CSS\orderCart.css" />
     <Content Include="CSS\orderOption.css" />
     <Content Include="CSS\Security.css" />
     <Content Include="Home\Home.aspx" />
@@ -81,7 +81,6 @@
     <Content Include="img\slide3.jpeg" />
     <Content Include="img\twitter.png" />
     <Content Include="Menu\Menu.aspx" />
-    <Content Include="Order\orderCart.aspx" />
     <Content Include="Order\orderOption.aspx" />
     <Content Include="imgProductItems\affogato1.jpg" />
     <Content Include="imgProductItems\affogato2.jpg" />
@@ -111,7 +110,6 @@
     <Content Include="Security\SignIn.aspx" />
     <Content Include="Security\ForgotPassword.aspx" />
     <Content Include="Security\SignUp.aspx" />
-    <Content Include="User Management\UserProfile.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -143,13 +141,6 @@
     <Compile Include="Menu\Menu.aspx.designer.cs">
       <DependentUpon>Menu.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Order\orderCart.aspx.cs">
-      <DependentUpon>orderCart.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Order\orderCart.aspx.designer.cs">
-      <DependentUpon>orderCart.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Order\orderOption.aspx.cs">
       <DependentUpon>orderOption.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -178,13 +169,6 @@
     </Compile>
     <Compile Include="Security\SignUp.aspx.designer.cs">
       <DependentUpon>SignUp.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="User Management\UserProfile.aspx.cs">
-      <DependentUpon>UserProfile.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="User Management\UserProfile.aspx.designer.cs">
-      <DependentUpon>UserProfile.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -240,12 +224,5 @@
   </Target>
   <Target Name="AfterBuild">
   </Target>
-<Target Name="CopyRoslynFiles" AfterTargets="AfterBuild" Condition="!$(Disable_CopyWebApplication) And '$(OutDir)' != '$(OutputPath)'">
-    <ItemGroup>
-      <RoslynFiles Include="$(CscToolPath)\*" />
-    </ItemGroup>
-    <MakeDir Directories="$(WebProjectOutputDir)\bin\roslyn" />
-    <Copy SourceFiles="@(RoslynFiles)" DestinationFolder="$(WebProjectOutputDir)\bin\roslyn" SkipUnchangedFiles="true" Retries="$(CopyRetryCount)" RetryDelayMilliseconds="$(CopyRetryDelayMilliseconds)" />
-</Target>
   -->
 </Project>
