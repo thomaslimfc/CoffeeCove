@@ -1,3 +1,4 @@
+@ -0,0 +1,45 @@
 ﻿﻿<%@ Page Title="User Profile" Language="C#" 
     MasterPageFile="~/Master/Customer.Master" 
     AutoEventWireup="true" CodeBehind="UserProfile.aspx.cs" 
