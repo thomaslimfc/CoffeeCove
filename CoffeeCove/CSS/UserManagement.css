@@ -9,6 +9,7 @@ h1, h3 {
 
 .textAlignCenter {
     user-select: none;
+
     text-align: center;
     /* align-items: center; */
 }
@@ -16,6 +17,7 @@ h1, h3 {
 table, td {
     /* border: 1px solid #000000; */
     border-collapse: collapse;
+    
 }
 
 .tdFirstCol {
@@ -44,3 +46,11 @@ table, td {
     background-color: #F9F871;
     color: #7E5B4E;
 }
+
+
+
+
+
+
+
+
