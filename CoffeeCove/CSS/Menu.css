@@ -1,21 +1,20 @@
 ﻿#productContainer {
     display: flex;
+    width:100%;
 }
 
 #menuPoster img {
-    width: 1600px;
-    height: 550px;
-    object-fit: cover;
+    width: 100%;
     position: relative;
 }
 
 #menuPosterText {
     position: absolute;
-    top: 40%;
+    top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 4rem;
-    text-align:center;
+    text-align: center;
     font-weight: bold;
     letter-spacing: 0.5px;
     color: white;
@@ -54,29 +53,15 @@
     display: flex;
     flex-wrap: wrap;
     padding: 50px 0px 0px 50px;
-    gap: 50px;
     background-color: #fff3f3;
 }
 
 .item {
-    width: 20%;
-    height: 35%;
     background: #fff;
-    display: flex;
-    margin-left: 10px;
-    flex-direction: column;
-    justify-content: flex-start;
     box-shadow: 0px 0px 10px #948e79;
-}
-
-.product {
-    width: 100%;
-    height: auto;
-}
-
-.productName {
-    font-size: 17px;
-    text-align: center; 
+    padding:10px;
+    border-radius:5px;
+    text-align:center;
 }
 
 

@@ -14,20 +14,20 @@ namespace CoffeeCove.Home
         // Array to store slide images
         private static readonly string[] slideImages = new string[]
         {
-            "~/img/slide1.jpeg",
-            "~/img/slide2.jpeg",
-            "~/img/slide3.jpeg"
+            "/img/slideImg1.jpeg",
+            "/img/slideImg2.jpeg",
+            "/img/slideImg3.jpeg"
         };
 
         // Array to store slide texts
         private static readonly string[] slideTexts = new string[]
         {
-            "<h1>WELCOME AND ENJOY OUR SPECIAL COFFEE</h1>" +
-            "<p>Special cocktails based on Reserve coffee are waiting for you to explore!</p>",
-            "<h1>FRESHLY BREWED ESPRESSO DRINKS READY TO SERVE</h1>" +
-            "<p>Experience the rich, aromatic delight of our freshly brewed espresso drinks. Whether you prefer a classic espresso, a creamy cappuccino, or a velvety latte, each drink is made to order with the utmost care!</p>",
-            "<h1>FIND YOUR FAVOURITE COFFEE</h1>" +
-            "<p>Dive into our menu and find your perfect match!</p>"
+            @"<h1>WELCOME AND ENJOY OUR SPECIAL COFFEE</h1>
+            <p>Special cocktails based on Reserve coffee are waiting for you to explore!</p>",
+            @"<h1>FRESHLY BREWED ESPRESSO DRINKS READY TO SERVE</h1>
+            <p>Experience the rich, aromatic delight of our freshly brewed espresso drinks. Whether you prefer a classic espresso, a creamy cappuccino, or a velvety latte, each drink is made to order with the utmost care!</p>",
+            @"<h1>FIND YOUR FAVOURITE COFFEE</h1>
+            <p>Dive into our menu and find your perfect match!</p>"
         };
 
         protected void Page_Load(object sender, EventArgs e)

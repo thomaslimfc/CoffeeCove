@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Customer.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="CoffeeCove.Home.Home" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
+    
     <!-- Slideshow -->
     <div class="sliderContainer">
         <asp:Image ID="slideImg" runat="server" />
