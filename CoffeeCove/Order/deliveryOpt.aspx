@@ -2,6 +2,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
     <link href="../CSS/deliveryOpt.css" rel="stylesheet" />
     <script src="getLocation.js"></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3L6SbWC6TopqExyYVoVLWaPX7p8CQUHI&libraries=places&callback=initMap"
+    async defer></script>
     
     <div id="poster">
         <img src="../img/coffeeBag.jpg" />
@@ -11,8 +14,11 @@
                     <tr>
                         <td colspan="2">
                             <button onclick="getLocation()" type="button">📍Get Your Current Position</button>
-                            <p id="coord"></p>
-
+                            
+                            
+        
+            
+        
                         </td>
                     </tr>
                     <tr>
@@ -34,7 +40,11 @@
                     </tr>
                 </table>
             </div>
-
+            <div id="overlay"></div>
+            <div id="popupDialog">
+                <div id="map" style="height: 100%"></div>
+                <button onclick="closeFn()">Close</button>
+            </div>
         </div>
     </div>
 

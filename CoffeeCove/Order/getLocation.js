@@ -1,4 +1,11 @@
 ﻿function getLocation() {
+    document.getElementById(
+        "overlay"
+    ).style.display = "block";
+    document.getElementById(
+        "popupDialog"
+    ).style.display = "block";
+
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(handleLocation, handleError);
         
@@ -10,12 +17,16 @@
 
 function handleLocation(position) {
 
-    var lat = position.coords.latitude;
+    var latMap = position.coords.latitude;
    
 
-    var lon = position.coords.longitude;
+    var lonMap = position.coords.longitude;
+    
 
-    document.getElementById("coord").innerHTML = lat + "," +  lon;
+    var map = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: latMap, lng: lonMap },
+        zoom: 15
+    });
 
 }
 
@@ -35,4 +46,15 @@ function handleError(error) {
             break;
     }
 }
+
+function closeFn() {
+    document.getElementById(
+        "overlay"
+    ).style.display = "none";
+    document.getElementById(
+        "popupDialog"
+    ).style.display = "none";
+}
+
+
 
