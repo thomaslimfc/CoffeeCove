@@ -7,6 +7,7 @@
 
     <link href="../CSS/UserManagement.css" rel="stylesheet" />
     <br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br />
     
     <div>
         <h3 class="textAlignCenter">Your current Club tier</h3>
@@ -15,28 +16,41 @@
     </div>
     <br />
     <center>
+        <div class="profileContainer">
+        <br />
         <table>
+            <tr class="underlineRow">
+                <th colspan="2">Personal Information</th>
+            </tr>
             <tr class="oddRow">
-                <td class="tdFirstCol">Username: </td>
-                <td class="tdSecondCol">thomas7296</td>
+                <td>Username</td>
+                <td>Gender</td>
             </tr>
             <tr class="evenRow">
-                <td class="tdFirstCol">Email Address: </td>
-                <td class="tdSecondCol">thomaslimfc@gmail.com</td>
+                <td>thomas7296</td>
+                <td>Male</td>
             </tr>
+
             <tr class="oddRow">
-                <td class="tdFirstCol">Date of Birth: </td>
-                <td class="tdSecondCol">22 - 02 - 2003</td>
+                <td>Email Address</td>
+                <td>Date of Birth</td>
             </tr>
             <tr class="evenRow">
-                <td class="tdFirstCol">Gender: </td>
-                <td class="tdSecondCol">Female</td>
+                <td>thomaslim@gmail.com</td>
+                <td>21 - 02 - 2003</td>
             </tr>
+
             <tr class="oddRow">
-                <td class="tdFirstCol">Residence State: </td>
-                <td class="tdSecondCol">Penang</td>
+                <td>Residence State</td>
+                <td></td>
+            </tr>
+            <tr class="evenRow">
+                <td>Penang</td>
+                <td></td>
             </tr>
         </table>
+        <br />
+        </div>
     </center>
 
 </asp:Content>

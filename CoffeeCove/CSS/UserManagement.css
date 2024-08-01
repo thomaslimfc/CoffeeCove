@@ -1,15 +1,28 @@
-﻿
-
-body {
+﻿@ -1,57 +1,84 @@ ﻿ body {
 }
+/* body {
+} */
 
 h1, h3 {
     user-select: none;
 }
 
+.profileContainer {
+    background-color: #ffffff;
+    /* font-family: "Staffee-Regular"; */
+    border-width: 5px;
+    border-style: solid;
+    border-color: #DADDE2;
+    border-radius: 15px;
+    box-shadow: rgba(218, 221, 226) 0px 5px 15px;
+    width: 480px;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+}
+
 .textAlignCenter {
     user-select: none;
-
     text-align: center;
     /* align-items: center; */
 }
@@ -17,7 +30,6 @@ h1, h3 {
 table, td {
     /* border: 1px solid #000000; */
     border-collapse: collapse;
-    
 }
 
 .tdFirstCol {
@@ -40,17 +52,36 @@ table, td {
 .oddRow {
     background-color: #7E5B4E;
     color: #F9F871;
+    th
+
+{
+    text-align: left;
+    padding-left: 20px;
+    padding-top: 15px;
+    padding-bottom: 10px;
 }
 
 .evenRow {
     background-color: #F9F871;
     color: #7E5B4E;
+    td
+
+{
+    width: 200px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
+.oddRow {
+    font-weight: bold;
+    text-align: left;
+}
 
+.evenRow {
+    /* font-weight: lighter; */
+    text-align: left;
+}
 
-
-
-
-
-
+.underlineRow {
+    border-bottom: 1px solid #000000;
+}
