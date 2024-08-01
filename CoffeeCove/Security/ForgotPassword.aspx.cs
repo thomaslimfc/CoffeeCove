@@ -14,7 +14,7 @@ namespace CoffeeCove.Security
             if (Page.IsValid)
             {
                 // Proceed with the logic when usernameEmail is provided
-                Response.Redirect("SignUp.aspx");
+                Response.Redirect("PasswordReset.aspx");
             }
         }
 

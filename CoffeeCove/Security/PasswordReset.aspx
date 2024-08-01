@@ -85,7 +85,7 @@
         <tr>
             <td id="resetPassword_td">
                 <asp:Button ID="resetPassword_btn" runat="server" Text="Reset Password"
-                    OnClick="ResetPassword_Click" CssClass="resetPassword_btn"
+                    OnClick="ResetPasswordBtn_Click" CssClass="resetPassword_btn"
                     CausesValidation="true"/>
             </td>
         </tr>

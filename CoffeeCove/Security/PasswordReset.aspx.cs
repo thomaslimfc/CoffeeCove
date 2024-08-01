@@ -13,6 +13,11 @@ namespace CoffeeCove.Security
         {
 
         }
+        protected void ResetPasswordBtn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("SignIn.aspx");
+        }
+
         protected void ResetPassword_Click(object sender, EventArgs e)
         {
             // Add your reset password logic here
