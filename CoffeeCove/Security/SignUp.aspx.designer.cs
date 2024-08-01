@@ -33,6 +33,15 @@ namespace CoffeeCove.Security
         protected global::System.Web.UI.WebControls.RequiredFieldValidator username_rqdValidator;
 
         /// <summary>
+        /// username_regexValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator username_regexValidator;
+
+        /// <summary>
         /// emailAdd control.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,15 @@ namespace CoffeeCove.Security
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator emailAdd_rqdValidator;
+
+        /// <summary>
+        /// email_regexValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator email_regexValidator;
 
         /// <summary>
         /// password control.
@@ -69,6 +87,15 @@ namespace CoffeeCove.Security
         protected global::System.Web.UI.WebControls.RequiredFieldValidator password_rqdValidator;
 
         /// <summary>
+        /// password_regexValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator password_regexValidator;
+
+        /// <summary>
         /// passReenter control.
         /// </summary>
         /// <remarks>
@@ -78,13 +105,22 @@ namespace CoffeeCove.Security
         protected global::System.Web.UI.WebControls.TextBox passReenter;
 
         /// <summary>
-        /// passReenter_rqdValidator control.
+        /// RequiredFieldValidator1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator passReenter_rqdValidator;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+
+        /// <summary>
+        /// confirmPassword_compareValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator confirmPassword_compareValidator;
 
         /// <summary>
         /// gender control.

@@ -4,8 +4,9 @@
     Inherits="CoffeeCove.Security.PasswordReset" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
-    <link href="../CSS/Security.css" rel="stylesheet" />
-    <br /><br /><br /><br /><br /><br /><br /><br />
+<link href="../CSS/Security.css" rel="stylesheet" />
+<br /><br /><br /><br /><br /><br /><br /><br />
+
 <div id="signIn_container" class="sign_container">
     <table>
         <tr>
