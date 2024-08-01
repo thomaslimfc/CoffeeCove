@@ -9,19 +9,19 @@ namespace CoffeeCove.Security
 {
     public partial class SignIn : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!IsPostBack)
-            {
-                InitializeForm();
-            }
-        }
+        //protected void Page_Load(object sender, EventArgs e)
+        //{
+        //    //if (!IsPostBack)
+        //    //{
+        //    //    InitializeForm();
+        //    //}
+        //}
 
-        private void InitializeForm()
-        {
-            username2.Text = string.Empty;
-            password2.Text = string.Empty;
-        }
+        //private void InitializeForm()
+        //{
+        //    username2.Text = string.Empty;
+        //    password2.Text = string.Empty;
+        //}
 
         protected void Password2_TextChanged(object sender, EventArgs e)
         {

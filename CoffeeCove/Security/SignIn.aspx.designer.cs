@@ -24,13 +24,22 @@ namespace CoffeeCove.Security
         protected global::System.Web.UI.WebControls.TextBox username2;
 
         /// <summary>
-        /// username_rqdValidator2 control.
+        /// username2_rqdValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator username_rqdValidator2;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator username2_rqdValidator;
+
+        /// <summary>
+        /// username2_regexValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator username2_regexValidator;
 
         /// <summary>
         /// password2 control.
@@ -42,13 +51,22 @@ namespace CoffeeCove.Security
         protected global::System.Web.UI.WebControls.TextBox password2;
 
         /// <summary>
-        /// password_rqdValidator2 control.
+        /// password2_rqdValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator password_rqdValidator2;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator password2_rqdValidator;
+
+        /// <summary>
+        /// password2_regexValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator password2_regexValidator;
 
         /// <summary>
         /// forgotPasswordLink control.

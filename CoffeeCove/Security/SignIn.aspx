@@ -26,17 +26,26 @@
                                     runat="server"
                                     placeholder="Username" title="Username" 
                                     OnTextChanged="Username_TextChanged2" 
-                                    AutoPostBack="true"></asp:TextBox>
+                                    AutoPostBack="false"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2">
-                                <!-- <asp:RequiredFieldValidator 
-                                    ID="username_rqdValidator2" runat="server" 
+                            <td class="textAlignLeft"  colspan="2">
+                                <asp:RequiredFieldValidator 
+                                    ID="username2_rqdValidator" runat="server" 
                                     ControlToValidate="username2" 
                                     ErrorMessage="Username is required." 
                                     Display="Dynamic" ForeColor="Red" 
-                                    CssClass="rqdValidator" /> -->
+                                    CssClass="rqdValidator" />
+                                <asp:RegularExpressionValidator 
+                                    ID="username2_regexValidator" 
+                                    runat="server" 
+                                    ControlToValidate="username2" 
+                                    ErrorMessage="Must contain >10 letters and numbers only." 
+                                    Display="Dynamic" 
+                                    ForeColor="Red" 
+                                    CssClass="rqdValidator" 
+                                    ValidationExpression="^[a-zA-Z0-9]{10,}$" />
                             </td>
                         </tr>
                     </table>
@@ -60,17 +69,26 @@
                                     runat="server" placeholder="Password" 
                                     title="Password" TextMode="Password" 
                                     OnTextChanged="Password2_TextChanged" 
-                                    AutoPostBack="true"></asp:TextBox>
+                                    AutoPostBack="false"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2">
-                                <!-- <asp:RequiredFieldValidator 
-                                    ID="password_rqdValidator2" runat="server" 
+                            <td class="textAlignLeft" colspan="2">
+                                <asp:RequiredFieldValidator 
+                                    ID="password2_rqdValidator" runat="server" 
                                     ControlToValidate="password2" 
                                     ErrorMessage="Password is required." 
                                     Display="Dynamic" ForeColor="Red" 
-                                    CssClass="rqdValidator" /> -->
+                                    CssClass="rqdValidator" />
+                                <asp:RegularExpressionValidator 
+                                    ID="password2_regexValidator" 
+                                    runat="server" 
+                                    ControlToValidate="password2" 
+                                    ErrorMessage="Must contain >10 letters, numbers, and symbols." 
+                                    Display="Dynamic" 
+                                    ForeColor="Red" 
+                                    CssClass="rqdValidator" 
+                                    ValidationExpression="^(?=.*[a-zA-Z])(?=.*\d)(?=.*[\W_]).+$" />
                             </td>
                         </tr>
                     </table>

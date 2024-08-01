@@ -41,7 +41,7 @@
                                     ID="username_regexValidator" 
                                     runat="server" 
                                     ControlToValidate="username" 
-                                    ErrorMessage="Must contain >10 alphabets and numbers only." 
+                                    ErrorMessage="Must contain >10 letters and numbers only." 
                                     Display="Dynamic" 
                                     ForeColor="Red" 
                                     CssClass="rqdValidator" 
