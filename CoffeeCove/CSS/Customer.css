@@ -9,7 +9,7 @@
 #header {
     background: #433533f0;
     position: fixed;
-    width: 100%;
+    width:100%;
     z-index: 1000;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -87,13 +87,12 @@
 #content {
     min-height: 1000px;
     background-color: #fff;
-    width:auto;
 }
 
 /*footer style*/
 #footer {
     text-align: left;
-    background: #433533;
+    background: #433533f0;
     position: relative;
     width: 100%;
     z-index: 1000;
