@@ -64,12 +64,16 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CSS\Admin.css" />
     <Content Include="CSS\Customer.css" />
+    <Content Include="CSS\Dashboard.css" />
+    <Content Include="CSS\deliveryOpt.css" />
     <Content Include="CSS\Home.css" />
     <Content Include="CSS\Menu.css" />
     <Content Include="CSS\orderCart.css" />
     <Content Include="CSS\orderOption.css" />
     <Content Include="CSS\Security.css" />
+    <Content Include="CSS\UserManagement.css" />
     <Content Include="Home\Home.aspx" />
     <Content Include="img\aboutUs.jpg" />
     <Content Include="img\cartLogo.png" />
@@ -81,6 +85,8 @@
     <Content Include="img\slide3.jpeg" />
     <Content Include="img\twitter.png" />
     <Content Include="Menu\Menu.aspx" />
+    <Content Include="Order\deliveryOpt.aspx" />
+    <Content Include="Order\getLocation.js" />
     <Content Include="Order\orderCart.aspx" />
     <Content Include="Order\orderOption.aspx" />
     <Content Include="imgProductItems\affogato1.jpg" />
@@ -111,7 +117,8 @@
     <Content Include="Security\SignIn.aspx" />
     <Content Include="Security\ForgotPassword.aspx" />
     <Content Include="Security\SignUp.aspx" />
-    <Content Include="User Management\UserProfile.aspx" />
+    <Content Include="UserManagement\ProfileEdit.aspx" />
+    <Content Include="UserManagement\UserProfile.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +149,13 @@
     </Compile>
     <Compile Include="Menu\Menu.aspx.designer.cs">
       <DependentUpon>Menu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Order\deliveryOpt.aspx.cs">
+      <DependentUpon>deliveryOpt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Order\deliveryOpt.aspx.designer.cs">
+      <DependentUpon>deliveryOpt.aspx</DependentUpon>
     </Compile>
     <Compile Include="Order\orderCart.aspx.cs">
       <DependentUpon>orderCart.aspx</DependentUpon>
@@ -179,11 +193,18 @@
     <Compile Include="Security\SignUp.aspx.designer.cs">
       <DependentUpon>SignUp.aspx</DependentUpon>
     </Compile>
-    <Compile Include="User Management\UserProfile.aspx.cs">
+    <Compile Include="UserManagement\ProfileEdit.aspx.cs">
+      <DependentUpon>ProfileEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserManagement\ProfileEdit.aspx.designer.cs">
+      <DependentUpon>ProfileEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserManagement\UserProfile.aspx.cs">
       <DependentUpon>UserProfile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="User Management\UserProfile.aspx.designer.cs">
+    <Compile Include="UserManagement\UserProfile.aspx.designer.cs">
       <DependentUpon>UserProfile.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
