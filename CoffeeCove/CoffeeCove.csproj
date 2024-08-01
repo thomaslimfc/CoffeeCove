@@ -64,6 +64,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminSite\Dashboard.aspx" />
+    <Content Include="AdminSite\OrderManage.aspx" />
     <Content Include="CSS\Admin.css" />
     <Content Include="CSS\Customer.css" />
     <Content Include="CSS\Dashboard.css" />
@@ -122,6 +124,20 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminSite\Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSite\Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminSite\OrderManage.aspx.cs">
+      <DependentUpon>OrderManage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSite\OrderManage.aspx.designer.cs">
+      <DependentUpon>OrderManage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Home\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

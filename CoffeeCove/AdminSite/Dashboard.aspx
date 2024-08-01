@@ -1,8 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Admin.Master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="CoffeeCove.AdminSite.Dashboard" %>
-
-<%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
     <h2>Today's Sales</h2>
     <h3>Sales Summary</h3>
     
@@ -49,32 +46,5 @@
     <br />
     <br />
     <!-- Statistics -->
-    <table id="statistic">
-        <tr>
-            <td>
-                <asp:Chart ID="monthlyRevenue" runat="server" OnLoad="MonthlyRevenue_Load" BorderlineColor="Silver" BorderlineDashStyle="Solid" Palette="Pastel" Width="800px" Height="400px">
-                    <Series>
-                        <asp:Series Name="barChart" ChartType="Column"></asp:Series>
-                    </Series>
-                    <ChartAreas>
-                        <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
-                    </ChartAreas>
-                </asp:Chart>
-            </td>
-            <td style="width: 50px"></td>
-            <td>
-                <asp:Chart ID="CustomerRate" runat="server" OnLoad="CustomerRate_Load" BorderlineColor="Silver" BorderlineDashStyle="Solid" Palette="EarthTones" Height="400px" Width="400px">
-                    <Series>
-                        <asp:Series Name="lineChart" ChartType="Line"></asp:Series>
-                    </Series>
-                    <ChartAreas>
-                        <asp:ChartArea Name="ChartArea2"></asp:ChartArea>
-                    </ChartAreas>
-                </asp:Chart>
-            </td>
-        </tr>
-    </table>
-
-
 
 </asp:Content>

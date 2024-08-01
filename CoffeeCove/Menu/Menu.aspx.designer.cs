@@ -186,31 +186,31 @@ namespace CoffeeCove.Menu
         protected global::System.Web.UI.WebControls.Label itemNameLabel;
 
         /// <summary>
-        /// ddlSize control.
+        /// rblSize control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSize;
+        protected global::System.Web.UI.WebControls.RadioButtonList rblSize;
 
         /// <summary>
-        /// ddlSugarLevel control.
+        /// rblSugar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSugarLevel;
+        protected global::System.Web.UI.WebControls.RadioButtonList rblSugar;
 
         /// <summary>
-        /// ddlIceLevel control.
+        /// rblIce control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlIceLevel;
+        protected global::System.Web.UI.WebControls.RadioButtonList rblIce;
 
         /// <summary>
         /// txtInstructions control.
