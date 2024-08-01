@@ -7,48 +7,103 @@
 
 #container {
     position: absolute;
-    width: 500px;
+    width: 90%;
     height: 500px;
     top: 20%;
     left: 0;
     right: 0;
     margin-left: auto;
     margin-right: auto;
-    border: solid green 2px;
 }
 
-.element {
-    position: absolute;
-    width: 100%;
+#tableContainer {
     height: 100%;
-    text-align: center;
-
-    border: solid red 2px;
-    color: white;
+    width: 100%;
+    color: black;
 }
 
-#popupDialog {
+.tableElement {
+    text-align: center;
+}
+
+.tableElement div {
+    background-color: #f0f0f0;
+    height: 90%;
+    text-align: center;
+    border-radius: 25px;
+}
+
+.leftElement {
+    text-align: right;
+    width: 50%;
+}
+
+.fullElement {
+    text-align: right;
+}
+
+#btnLocation {
+    border-radius: 12px;
+    padding: 10px 100px;
+    transition-duration: 0.4s;
+    border: 2px solid #342320;
+}
+
+#btnLocation:hover{
+    background-color: #413432; 
+    color: white;
+    cursor: pointer;
+}
+
+#btnClose {
+    border-radius: 12px;
+    padding: 10px 100px;
+    transition-duration: 0.4s;
+    border: 2px solid #342320;
+}
+
+#btnClose:hover {
+    background-color: #413432;
+    color: white;
+    cursor: pointer;
+}
+
+#btnCont {
+    border-radius: 12px;
+    padding: 10px 100px;
+    transition-duration: 0.4s;
+    border: 2px solid #342320;
+}
+
+#btnCont:hover{
+    background-color: #413432; 
+    color: white;
+    cursor: pointer;
+}
+
+.popupDialog {
     display: none;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 20px;
-    width:90%;
-    height:90%;
+    width: 90%;
+    height: 90%;
     background-color: #fff;
     border: 1px solid #ccc;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border-radius: 25px;
 }
 
 #overlay {
-    position:relative;
+    position: relative;
     display: none;
     left: 0;
     right: 0;
     margin-left: auto;
     margin-right: auto;
-    width: 500px;
-    height: 500px;
     background: rgba(0, 0, 0, 0.5);
+    border-radius: 25px;
 }
