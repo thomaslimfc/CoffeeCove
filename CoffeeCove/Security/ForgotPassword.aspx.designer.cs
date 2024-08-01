@@ -33,6 +33,15 @@ namespace CoffeeCove.Security
         protected global::System.Web.UI.WebControls.RequiredFieldValidator usernameEmail_rqdValidator;
 
         /// <summary>
+        /// usernameEmail_regexValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator usernameEmail_regexValidator;
+
+        /// <summary>
         /// next_btn control.
         /// </summary>
         /// <remarks>

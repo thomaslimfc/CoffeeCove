@@ -28,17 +28,26 @@
                                     runat="server" placeholder="New Password" 
                                     title="New Password" TextMode="Password" 
                                     OnTextChanged="Password3_TextChanged" 
-                                    AutoPostBack="true"></asp:TextBox>
+                                    AutoPostBack="false"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2">
-                                <!-- <asp:RequiredFieldValidator 
-                                    ID="password_rqdValidator3" runat="server" 
+                            <td class="textAlignLeft" colspan="2">
+                                <asp:RequiredFieldValidator 
+                                    ID="password3_rqdValidator" runat="server" 
                                     ControlToValidate="password3" 
                                     ErrorMessage="Password is required." 
                                     Display="Dynamic" ForeColor="Red" 
-                                    CssClass="rqdValidator" /> -->
+                                    CssClass="rqdValidator" />
+                                <asp:RegularExpressionValidator 
+                                    ID="password_regexValidator" 
+                                    runat="server" 
+                                    ControlToValidate="password3" 
+                                    ErrorMessage="Must contain >10 letters, numbers, and symbols." 
+                                    Display="Dynamic" 
+                                    ForeColor="Red" 
+                                    CssClass="rqdValidator" 
+                                    ValidationExpression="^(?=.*[a-zA-Z])(?=.*\d)(?=.*[\W_]).+$" />
                             </td>
                         </tr>
                     </table>
@@ -62,17 +71,26 @@
                                     runat="server" placeholder="Confirm New Password" 
                                     title="Confirm New Password" TextMode="Password" 
                                     OnTextChanged="PasswordConfirm_TextChanged" 
-                                    AutoPostBack="true"></asp:TextBox>
+                                    AutoPostBack="false"></asp:TextBox>
                             </td>
                         </tr>
-                     <tr>
-                            <td colspan="2">
-                                <!-- <asp:RequiredFieldValidator 
+                        <tr>
+                            <td class="textAlignLeft" colspan="2">
+                                <asp:RequiredFieldValidator 
                                     ID="passwordConfirm_rqdValidator" runat="server" 
                                     ControlToValidate="passwordConfirm" 
-                                    ErrorMessage="Password is required." 
+                                    ErrorMessage="Password Confirmation is required." 
                                     Display="Dynamic" ForeColor="Red" 
-                                    CssClass="rqdValidator" /> -->
+                                    CssClass="rqdValidator" />
+                                <asp:CompareValidator 
+                                    ID="confirmPassword_compareValidator" 
+                                    runat="server" 
+                                    ControlToValidate="passwordConfirm" 
+                                    ControlToCompare="password3" 
+                                    ErrorMessage="Passwords do not match." 
+                                    Display="Dynamic" 
+                                    ForeColor="Red" 
+                                    CssClass="rqdValidator" />
                             </td>
                         </tr>
                     </table>

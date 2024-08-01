@@ -35,9 +35,18 @@
                                 <asp:RequiredFieldValidator 
                                     ID="usernameEmail_rqdValidator" runat="server" 
                                     ControlToValidate="usernameEmail" 
-                                    ErrorMessage="Username or Email is required." 
+                                    ErrorMessage="Username is required." 
                                     Display="Dynamic" ForeColor="Red" 
                                     CssClass="rqdValidator" />
+                                <asp:RegularExpressionValidator 
+                                    ID="usernameEmail_regexValidator" 
+                                    runat="server" 
+                                    ControlToValidate="usernameEmail" 
+                                    ErrorMessage="Must contain >10 letters and numbers only." 
+                                    Display="Dynamic" 
+                                    ForeColor="Red" 
+                                    CssClass="rqdValidator" 
+                                    ValidationExpression="^[a-zA-Z0-9]{10,}$" />
                             </td>
                         </tr>
                     </table>
