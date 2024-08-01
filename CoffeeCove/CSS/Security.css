@@ -44,7 +44,9 @@ body, br {
 }
 
 #signIn_td,
-#signUp_td {
+#signUp_td,
+#forgotPassword_td,
+#passwordReset_td {
     /* font-family: Staffee-Bold; */
     font-weight: bold;
     text-align: left;
@@ -116,7 +118,8 @@ body, br {
 
 #forgotPassword_td,
 #agreement_td,
-#codeVerification_td {
+#codeVerification_td,
+#passwordReset_td {
     /* font-family: Staffee-Bold; */
     font-size: smaller;
     font-weight: bold;
@@ -237,13 +240,15 @@ td > a {
 
 #signInBtn_td,
 #signUpBtn_td,
-#backBtn_td {
+#backBtn_td,
+#resetPassword_td {
     padding-bottom: 15px;
 }
 
 .signIn_btn,
 .signUp_btn,
-.next_btn {
+.next_btn,
+.resetPassword_btn {
     background-color: #775466;
     color: #ffffff;
     /* font-family: Staffee-Bold; */
@@ -260,7 +265,9 @@ td > a {
 }
 
 .signIn_btn:hover,
-.signUp_btn:hover {
+.signUp_btn:hover,
+.next_btn:hover,
+.resetPassword_btn:hover {
     background-color: #DADDE2;
     color: #775466;
     /* font-family: Staffee-Bold; */
