@@ -6,10 +6,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
     <link href="../CSS/Security.css" rel="stylesheet" />
     <br /><br /><br /><br /><br /><br /><br /><br />
-<div id="signIn_container" class="sign_container">
+<div id="forgotPassword_container" class="sign_container">
     <table>
         <tr>
-            <td id="signIn_td" class="specialPadding25">
+            <td id="forgotPassword_td" class="specialPadding25">
                 <h2>Forgot Password</h2>
             </td>
         </tr>
@@ -69,6 +69,4 @@
         </tr>
     </table>
 </div>
-
-
 </asp:Content>
