@@ -66,6 +66,8 @@
   <ItemGroup>
     <Content Include="AdminSite\Dashboard.aspx" />
     <Content Include="AdminSite\OrderManage.aspx" />
+    <Content Include="AdminSite\SignIn.aspx" />
+    <Content Include="AdminSite\SignUp.aspx" />
     <Content Include="CSS\Admin.css" />
     <Content Include="CSS\Customer.css" />
     <Content Include="CSS\Dashboard.css" />
@@ -138,6 +140,20 @@
     </Compile>
     <Compile Include="AdminSite\OrderManage.aspx.designer.cs">
       <DependentUpon>OrderManage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminSite\SignIn.aspx.cs">
+      <DependentUpon>SignIn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSite\SignIn.aspx.designer.cs">
+      <DependentUpon>SignIn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminSite\SignUp.aspx.cs">
+      <DependentUpon>SignUp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSite\SignUp.aspx.designer.cs">
+      <DependentUpon>SignUp.aspx</DependentUpon>
     </Compile>
     <Compile Include="Home\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>

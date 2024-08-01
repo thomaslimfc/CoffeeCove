@@ -1,16 +1,16 @@
 ﻿<%@ Page Title="Sign Up" Language="C#" 
-    MasterPageFile="../Master/Customer.Master" 
+    MasterPageFile="../Master/Admin.Master" 
     AutoEventWireup="true" CodeBehind="SignUp.aspx.cs" 
-    Inherits="CoffeeCove.Security.SignUp" %>
+    Inherits="CoffeeCove.AdminSite.SignUp" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <link href="../CSS/Security.css" rel="stylesheet" />
-<br /><br /><br /><br /><br /><br /><br /><br />
+<br /><br /><br /><br /><br />
 <div id="signIn_container" class="sign_container">
     <table>
         <tr>
             <td id="signUp_td">
-                <h2>Sign Up</h2>
+                <h2>Admin Registration</h2>
             </td>
         </tr>
         <tr>
@@ -23,71 +23,29 @@
                                     alt="Enter your username" />
                             </td>
                             <td>
-                                <asp:TextBox ID="username" CssClass="username" 
+                                <asp:TextBox ID="adminUsername" CssClass="adminUsername" 
                                     runat="server" placeholder="Username" 
                                     title="Username" 
-                                    OnTextChanged="Username_TextChanged"></asp:TextBox>
+                                    OnTextChanged="adminUsername_TextChanged"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td class="textAlignLeft" colspan="2">
                                 <asp:RequiredFieldValidator 
-                                    ID="username_rqdValidator" runat="server" 
-                                    ControlToValidate="username" 
+                                    ID="adminUsername_rqdValidator" runat="server" 
+                                    ControlToValidate="adminUsername" 
                                     ErrorMessage="Username is required." 
                                     Display="Dynamic" ForeColor="Red" 
                                     CssClass="rqdValidator" />
                                 <asp:RegularExpressionValidator 
-                                    ID="username_regexValidator" 
+                                    ID="adminUsername_regexValidator" 
                                     runat="server" 
-                                    ControlToValidate="username" 
+                                    ControlToValidate="adminUsername" 
                                     ErrorMessage="Must contain >10 letters and numbers only." 
                                     Display="Dynamic" 
                                     ForeColor="Red" 
                                     CssClass="rqdValidator" 
                                     ValidationExpression="^[a-zA-Z0-9]{10,}$" />
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td class="trMarginBottom20"></td>
-        </tr>
-        <tr>
-            <td id="emailAdd_td">
-                <div class="input_div">
-                    <table>
-                        <tr>
-                            <td>
-                                <img class="mailIcon" src="../img/mail_icon.png" 
-                                    alt="Enter your email" />
-                            </td>
-                            <td>
-                                <asp:TextBox ID="emailAdd" CssClass="emailAdd" 
-                                    runat="server" placeholder="Email Address" 
-                                    title="Email Address" 
-                                    OnTextChanged="EmailAdd_TextChanged"></asp:TextBox>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="textAlignLeft" colspan="2">
-                                <asp:RequiredFieldValidator 
-                                    ID="emailAdd_rqdValidator" runat="server" 
-                                    ControlToValidate="emailAdd" 
-                                    ErrorMessage="Email Address is required." 
-                                    Display="Dynamic" ForeColor="Red" 
-                                    CssClass="rqdValidator" />
-                                <asp:RegularExpressionValidator 
-                                    ID="email_regexValidator" 
-                                    runat="server" 
-                                    ControlToValidate="emailAdd" 
-                                    ErrorMessage="Invalid email format." 
-                                    Display="Dynamic" 
-                                    ForeColor="Red" 
-                                    CssClass="rqdValidator" 
-                                    ValidationExpression="^[^@\s]+@[^@\s]+\.[^@\s]+$" />
                             </td>
                         </tr>
                     </table>
@@ -107,24 +65,24 @@
                                     alt="Enter your password" />
                             </td>
                             <td>
-                                <asp:TextBox ID="password" CssClass="password" 
+                                <asp:TextBox ID="adminPassword" CssClass="adminPassword" 
                                     runat="server" placeholder="Password" 
                                     title="Password" 
-                                    OnTextChanged="Password_TextChanged"></asp:TextBox>
+                                    OnTextChanged="adminPassword_TextChanged"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td class="textAlignLeft" colspan="2">
-                                <asp:RequiredFieldValidator 
-                                    ID="password_rqdValidator" runat="server" 
-                                    ControlToValidate="password" 
+                                <asp:RequiredFieldValidator
+                                    ID="adminPassword_rqdValidator" runat="server" 
+                                    ControlToValidate="adminPassword" 
                                     ErrorMessage="Password is required." 
                                     Display="Dynamic" ForeColor="Red" 
                                     CssClass="rqdValidator" />
                                 <asp:RegularExpressionValidator 
-                                    ID="password_regexValidator" 
+                                    ID="adminPassword_regexValidator" 
                                     runat="server" 
-                                    ControlToValidate="password" 
+                                    ControlToValidate="adminPassword" 
                                     ErrorMessage="Must contain >10 letters, numbers, and symbols." 
                                     Display="Dynamic" 
                                     ForeColor="Red" 
@@ -149,50 +107,29 @@
                                     alt="Re-enter your password" />
                             </td>
                             <td>
-                                <asp:TextBox ID="passReenter" CssClass="passReenter" 
+                                <asp:TextBox ID="adminPassReenter" CssClass="adminPassReenter" 
                                     runat="server" placeholder="Re-enter Password" 
                                     title="Re-enter Password" 
-                                    OnTextChanged="PassReenter_TextChanged"></asp:TextBox>
+                                    OnTextChanged="AdminPassReenter_TextChanged"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td class="textAlignLeft" colspan="2">
                                 <asp:RequiredFieldValidator 
-                                    ID="passReenter_rqdValidator" runat="server" 
-                                    ControlToValidate="passReenter" 
+                                    ID="adminPassReenter_rqdValidator" runat="server" 
+                                    ControlToValidate="adminPassReenter" 
                                     ErrorMessage="Password Re-enter is required." 
                                     Display="Dynamic" ForeColor="Red" 
                                     CssClass="rqdValidator" />
                                 <asp:CompareValidator 
-                                    ID="confirmPassword_compareValidator" 
+                                    ID="reenterAdminPassword_compareValidator" 
                                     runat="server" 
-                                    ControlToValidate="passReenter" 
-                                    ControlToCompare="password" 
+                                    ControlToValidate="adminPassReenter" 
+                                    ControlToCompare="adminPassword" 
                                     ErrorMessage="Passwords do not match." 
                                     Display="Dynamic" 
                                     ForeColor="Red" 
                                     CssClass="rqdValidator" />
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td class="trMarginBottom20"></td>
-        </tr>
-        <tr>
-            <td id="birthdayDate_td">
-                <div class="input_div">
-                    <table>
-                        <tr>
-                            <td>
-                                <img class="cakeIcon" src="../img/cake_icon.png" 
-                                    alt="Enter your birthday date" />
-                            </td>
-                            <td>
-                                <input type="date" id="birthdayDate_cal" 
-                                    name="date" required>
                             </td>
                         </tr>
                     </table>
@@ -247,12 +184,12 @@
                         <tr>
                             <td>
                                 <img class="locationIcon" src="../img/location_icon.png" 
-                                    alt="Enter your location" />
+                                    alt="Enter your branch" />
                             </td>
                             <td>
                                 <asp:DropDownList ID="location" runat="server" 
                                     CssClass="location_ddl">
-                                    <asp:ListItem Text="~ Select a location ~" Value="" />
+                                    <asp:ListItem Text="~ Select a branch ~" Value="" />
                                     <asp:ListItem>Selangor</asp:ListItem>
                                     <asp:ListItem>Penang</asp:ListItem>
                                     <asp:ListItem>Johor</asp:ListItem>
@@ -290,15 +227,13 @@
             <td class="trMarginBottom20"></td>
         </tr>
         <tr>
-            <td id="agreement_td">
-                By signing up, you agree to the Staffee
-                <a href="#">User Agreement</a>, and
-                <a href="#">Privacy Policy</a>.
+            <td id="agreement_td" style="text-align: justify">
+                By registering, you agree to the CoffeeCove's Code of Conduct for administrators and all relevant laws and regulation governing the use of this platform.
             </td>
         </tr>
         <tr>
             <td id="signUpBtn_td">
-                <asp:Button ID="signUp_btn" runat="server" Text="Agree & Join"
+                <asp:Button ID="signUp_btn" runat="server" Text="Register Now"
                             CssClass="signUp_btn"/>
             </td>
         </tr>
@@ -306,8 +241,8 @@
 </div>
 <center>
     <p id="alreadySignedUp">
-        Already on Staffee?
-        <a href="SignIn.aspx">Sign in</a>
+        Already on CoffeeCove?
+        <a id="alreadyRegistered" class="aReset" href="SignIn.aspx">Login</a>
     </p>
 </center>
 </asp:Content>
