@@ -6,8 +6,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
 
     <link href="../CSS/UserManagement.css" rel="stylesheet" />
-    <br /><br /><br /><br /><br /><br /><br /><br />
-    <br /><br /><br />
+    <br /><br /><br /><br />
     
     <div>
         <h3 class="textAlignCenter">Your current Club tier</h3>
