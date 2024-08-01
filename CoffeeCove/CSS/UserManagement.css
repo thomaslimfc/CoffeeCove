@@ -15,7 +15,7 @@ h1, h3 {
     border-color: #DADDE2;
     border-radius: 15px;
     box-shadow: rgba(218, 221, 226) 0px 5px 15px;
-    width: 480px;
+    width: 580px;
     margin: 0 auto;
     position: relative;
     text-align: center;
@@ -35,13 +35,14 @@ table, td {
 
 th {
     text-align: left;
-    padding-left: 20px;
+    /* padding-left: 20px;
+    margin-left: 20px; */
+    border-bottom: 2px solid #000;    
 }
-td {
-    width: 200px;
+/* td {
     padding-left: 20px;
     padding-right: 20px;
-}
+} */
 
 .oddRow {
     font-weight: bold;
@@ -52,6 +53,13 @@ td {
     text-align: left;
 }
 
-.underlineRow {
+/* .underlineRow {
     border-bottom: 1px solid #000000;
+} */
+
+.contentCol {
+    width: 250px;
+}
+.blankCol {
+    width: 40px;
 }

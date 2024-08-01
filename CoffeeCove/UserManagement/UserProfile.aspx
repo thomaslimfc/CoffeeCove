@@ -20,37 +20,51 @@
         <table>
             <tr><td><br /></td></tr>
             <tr>
+                <td class="blankCol"></td>
                 <th colspan="2">Personal Information</th>
+                <td class="blankCol"></td>
             </tr>
             <tr><td><br /></td></tr>
 
             <tr class="oddRow">
-                <td>Username</td>
-                <td>Gender</td>
+                <td class="blankCol"></td>
+                <td class="contentCol" >Username</td>
+                <td class="contentCol" >Gender</td>
+                <td class="blankCol"></td>
             </tr>
             <tr class="evenRow">
-                <td>thomas7296</td>
-                <td>Male</td>
+                <td class="blankCol"></td>
+                <td class="contentCol" >thomas7296</td>
+                <td class="contentCol" >Male</td>
+                <td class="blankCol"></td>
             </tr>
             <tr><td><br /></td></tr>
 
             <tr class="oddRow">
-                <td>Email Address</td>
-                <td>Date of Birth</td>
+                <td class="blankCol"></td>
+                <td class="contentCol" >Email Address</td>
+                <td class="contentCol" >Date of Birth</td>
+                <td class="blankCol"></td>
             </tr>
             <tr class="evenRow">
-                <td>thomaslim@gmail.com</td>
-                <td>21 - 02 - 2003</td>
+                <td class="blankCol"></td>
+                <td class="contentCol" >thomaslim@gmail.com</td>
+                <td class="contentCol" >21 - 02 - 2003</td>
+                <td class="blankCol"></td>
             </tr>
             <tr><td><br /></td></tr>
 
             <tr class="oddRow">
-                <td>Residence State</td>
-                <td></td>
+                <td class="blankCol"></td>
+                <td class="contentCol" >Residence State</td>
+                <td class="contentCol" ></td>
+                <td class="blankCol"></td>
             </tr>
             <tr class="evenRow">
-                <td>Penang</td>
-                <td></td>
+                <td class="blankCol"></td>
+                <td class="contentCol" >Penang</td>
+                <td class="contentCol" ></td>
+                <td class="blankCol"></td>
             </tr>
             <tr><td><br /></td></tr>
         </table>
