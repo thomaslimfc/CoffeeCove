@@ -122,6 +122,7 @@
     <Content Include="Security\SignIn.aspx" />
     <Content Include="Security\ForgotPassword.aspx" />
     <Content Include="Security\SignUp.aspx" />
+    <Content Include="Security\TwoFactorAuthentication.aspx" />
     <Content Include="UserManagement\ProfileEdit.aspx" />
     <Content Include="UserManagement\UserProfile.aspx" />
     <Content Include="Web.config" />
@@ -232,6 +233,13 @@
     </Compile>
     <Compile Include="Security\SignUp.aspx.designer.cs">
       <DependentUpon>SignUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Security\TwoFactorAuthentication.aspx.cs">
+      <DependentUpon>TwoFactorAuthentication.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Security\TwoFactorAuthentication.aspx.designer.cs">
+      <DependentUpon>TwoFactorAuthentication.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserManagement\ProfileEdit.aspx.cs">
       <DependentUpon>ProfileEdit.aspx</DependentUpon>
