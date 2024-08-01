@@ -30,7 +30,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="2">
+                            <td class="textAlignLeft" colspan="2">
                                 <asp:RequiredFieldValidator 
                                     ID="usernameEmail_rqdValidator" runat="server" 
                                     ControlToValidate="usernameEmail" 

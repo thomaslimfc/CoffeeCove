@@ -308,3 +308,16 @@ asp .validator {
     color: red;
     font-size: smaller;
 }
+
+#username_rqdValidator,
+#emailAdd_rqdValidator,
+#password_rqdValidator,
+#passReenter_rqdValidator,
+#gender_rqdValidator,
+#location_rqdValidator, .ss {
+    text-align: left;
+}
+
+.textAlignLeft {
+    text-align: left;
+}

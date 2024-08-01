@@ -30,7 +30,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2">
+                                <td class="textAlignLeft" colspan="2">
                                     <asp:RequiredFieldValidator 
                                         ID="username_rqdValidator" runat="server" 
                                         ControlToValidate="username" 
@@ -63,7 +63,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2">
+                                <td class="textAlignLeft" colspan="2">
                                     <asp:RequiredFieldValidator 
                                         ID="emailAdd_rqdValidator" runat="server" 
                                         ControlToValidate="emailAdd" 
@@ -96,7 +96,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2">
+                                <td class="textAlignLeft" colspan="2">
                                     <asp:RequiredFieldValidator 
                                         ID="password_rqdValidator" runat="server" 
                                         ControlToValidate="password" 
@@ -129,7 +129,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2">
+                                <td class="textAlignLeft" colspan="2">
                                     <asp:RequiredFieldValidator 
                                         ID="passReenter_rqdValidator" runat="server" 
                                         ControlToValidate="passReenter" 
@@ -185,7 +185,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2">
+                                <td class="textAlignLeft" colspan="2">
                                     <asp:RequiredFieldValidator 
                                         ID="gender_rqdValidator" 
                                         runat="server" 
@@ -193,7 +193,8 @@
                                         InitialValue="" 
                                         ErrorMessage="Please select your gender." 
                                         Display="Dynamic"
-                                        ForeColor="Red" />
+                                        ForeColor="Red"
+                                        CssClass="rqdValidator" />
                                 </td>
                             </tr>
                         </table>
@@ -231,7 +232,9 @@
                                         <asp:ListItem>Sabah</asp:ListItem>
                                     </asp:DropDownList>
                                 </td>
-                                <td>
+                            </tr>
+                            <tr>
+                                <td class="textAlignLeft" colspan="2">
                                     <asp:RequiredFieldValidator 
                                         ID="location_rqdValidator" 
                                         runat="server" 
@@ -239,7 +242,8 @@
                                         InitialValue="" 
                                         ErrorMessage="Please select a location." 
                                         Display="Dynamic"
-                                        ForeColor="Red" />
+                                        ForeColor="Red"
+                                        CssClass="rqdValidator" />
                                 </td>
                             </tr>
                         </table>
