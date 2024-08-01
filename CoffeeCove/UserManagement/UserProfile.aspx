@@ -18,9 +18,12 @@
         <div class="profileContainer">
         <br />
         <table>
-            <tr class="underlineRow">
+            <tr><td><br /></td></tr>
+            <tr>
                 <th colspan="2">Personal Information</th>
             </tr>
+            <tr><td><br /></td></tr>
+
             <tr class="oddRow">
                 <td>Username</td>
                 <td>Gender</td>
@@ -29,6 +32,7 @@
                 <td>thomas7296</td>
                 <td>Male</td>
             </tr>
+            <tr><td><br /></td></tr>
 
             <tr class="oddRow">
                 <td>Email Address</td>
@@ -38,6 +42,7 @@
                 <td>thomaslim@gmail.com</td>
                 <td>21 - 02 - 2003</td>
             </tr>
+            <tr><td><br /></td></tr>
 
             <tr class="oddRow">
                 <td>Residence State</td>
@@ -47,6 +52,7 @@
                 <td>Penang</td>
                 <td></td>
             </tr>
+            <tr><td><br /></td></tr>
         </table>
         <br />
         </div>

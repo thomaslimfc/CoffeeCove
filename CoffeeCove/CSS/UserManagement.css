@@ -32,41 +32,12 @@ table, td {
     border-collapse: collapse;
 }
 
-.tdFirstCol {
-    font-weight: bold;
-    border-color: #F9F871;
-    border-radius: 30px 0 0 0;
-    text-align: right;
-    height: 50px;
-    width: 168px;
-    padding-right: 15px;
-}
 
-.tdSecondCol {
-    font-weight: bold;
-    border-radius: 0 0 80px 0;
-    width: 268px;
-    padding-left: 20px;
-}
-
-.oddRow {
-    background-color: #7E5B4E;
-    color: #F9F871;
-    th
-
-{
+th {
     text-align: left;
     padding-left: 20px;
-    padding-top: 15px;
-    padding-bottom: 10px;
 }
-
-.evenRow {
-    background-color: #F9F871;
-    color: #7E5B4E;
-    td
-
-{
+td {
     width: 200px;
     padding-left: 20px;
     padding-right: 20px;
@@ -76,7 +47,6 @@ table, td {
     font-weight: bold;
     text-align: left;
 }
-
 .evenRow {
     /* font-weight: lighter; */
     text-align: left;
