@@ -116,6 +116,7 @@
     <Content Include="imgProductItems\dessert6.jpg" />
     <Content Include="imgProductItems\dessert7.jpg" />
     <Content Include="imgProductItems\dessert8.jpg" />
+    <Content Include="Security\PasswordReset.aspx" />
     <Content Include="Security\SignIn.aspx" />
     <Content Include="Security\ForgotPassword.aspx" />
     <Content Include="Security\SignUp.aspx" />
@@ -188,6 +189,13 @@
       <DependentUpon>orderOption.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\PasswordReset.aspx.cs">
+      <DependentUpon>PasswordReset.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Security\PasswordReset.aspx.designer.cs">
+      <DependentUpon>PasswordReset.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Security\SignIn.aspx.cs">
       <DependentUpon>SignIn.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
