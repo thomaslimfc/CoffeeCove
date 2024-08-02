@@ -68,6 +68,10 @@
     <Content Include="AdminSite\OrderManage.aspx" />
     <Content Include="AdminSite\SignIn.aspx" />
     <Content Include="AdminSite\SignUp.aspx" />
+    <Content Include="App_Data\dbCoffeeCove.mdf" />
+    <Content Include="App_Data\dbCoffeeCove_log.ldf">
+      <DependentUpon>dbCoffeeCove.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
