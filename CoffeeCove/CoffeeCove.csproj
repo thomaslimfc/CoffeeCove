@@ -100,6 +100,7 @@
     <Content Include="CSS\orderOpt.css" />
     <Content Include="CSS\Security.css" />
     <Content Include="CSS\UserManagement.css" />
+    <Content Include="Global.asax" />
     <Content Include="Home\Home.aspx" />
     <Content Include="imgProductItems\BF01.jpg" />
     <Content Include="imgProductItems\BF02.jpg" />
@@ -161,6 +162,7 @@
     <Content Include="img\twitter.png" />
     <Content Include="img\username_icon.png" />
     <Content Include="Menu\Menu.aspx" />
+    <Content Include="Menu\Menu1.aspx" />
     <Content Include="Order\getLocation.js" />
     <Content Include="Order\orderCart.aspx" />
     <Content Include="Order\orderOption.aspx" />
@@ -229,6 +231,9 @@
     <Compile Include="AdminSite\AdminSignUp.aspx.designer.cs">
       <DependentUpon>AdminSignUp.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="Home\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -256,6 +261,13 @@
     </Compile>
     <Compile Include="Menu\Menu.aspx.designer.cs">
       <DependentUpon>Menu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Menu\Menu1.aspx.cs">
+      <DependentUpon>Menu1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Menu\Menu1.aspx.designer.cs">
+      <DependentUpon>Menu1.aspx</DependentUpon>
     </Compile>
     <Compile Include="Order\orderCart.aspx.cs">
       <DependentUpon>orderCart.aspx</DependentUpon>

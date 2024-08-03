@@ -1,11 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Customer.Master" AutoEventWireup="true" CodeBehind="Menu.aspx.cs" Inherits="CoffeeCove.Menu.Menu" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
-    
-    <!-- Menu Poster -->
-    <div id="menuPoster">
-        <img src="/img/poster.jpg" style="width: 102%" />
-        <div id="menuPosterText">WELCOME TO OUR MENU</div>
-    </div>
 
     <!-- Category Menu -->
     <div id="categoryContainer">
