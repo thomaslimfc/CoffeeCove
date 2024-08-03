@@ -1,13 +1,13 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Customer.Master" AutoEventWireup="true" CodeFile="deliveryOpt.aspx.cs" Inherits="CoffeeCove.Order.deliveryOpt" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Customer.Master" AutoEventWireup="true" CodeFile="orderOpt.aspx.cs" Inherits="CoffeeCove.Order.orderOpt" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
-    <link href="../CSS/deliveryOpt.css" rel="stylesheet" />
+    <link href="../CSS/orderOpt.css" rel="stylesheet" />
     <script src="getLocation.js"></script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3L6SbWC6TopqExyYVoVLWaPX7p8CQUHI&libraries=places&callback=initMap"
     async defer></script>
     
     <div id="poster">
-        <img src="../img/coffeeBag.jpg" />
+        <img src="../img/coffeeBag.jpg" style="left: 0px; top: -37px" />
         <div id="container">
                 <table id="tableContainer">
                     <tr>
@@ -15,11 +15,10 @@
                             <div>
                                 <h1>Delivery</h1>
                                 <hr />
-                                <button onclick="getLocation()" type="button" id="btnLocation">
+                                <button onclick="getLocation()" type="button" class="btnLocation">
                                 📍Get Your Current Position
                                 </button>
 
-                                <!--
 
                                 <br />
                                 <hr />
@@ -69,10 +68,6 @@
 
                                 </table>
 
-                                -->
-
-                                <asp:Literal ID="litDelivery" runat="server"></asp:Literal>
-
                             </div>
                             
 
@@ -84,11 +79,11 @@
                             <div>
                                 <h1>Pick Up</h1>
                                 <hr />
-                                <button onclick="getLocation()" type="button" id="btnLocation">
+                                <button onclick="openStoreList()" type="button" class="btnLocation">
                                 Find Our Stores Location
                                 </button>
                                 
-                                <asp:Literal ID="litPickUp" runat="server"></asp:Literal>
+                                <asp:Literal ID="litStore" runat="server" Text=""></asp:Literal>
 
                             </div>
                             
@@ -102,10 +97,63 @@
                     
                 </table>
 
-            <div id="overlay"></div>
-            <div id="popupDialog" class="popupDialog">
+            <div id="overlay" class="overlay"></div>
+            <div id="popupDialog">
                 <div id="map" style="height: 100%"></div>
-                <button onclick="closeFn()" type="button" id="btnClose">Close</button>
+                <button onclick="closeMap()" type="button" class="btnClose" id="btnClose">Close</button>
+            </div>
+
+            <div id="overlay2" class="overlay"></div>
+            <div id="popupDialog2">
+
+                <table style="width:100%">
+                    <tr>
+                        <td>
+                            <img src="../img/location_icon.png" style="height:50px;width:50px" />
+                        </td>
+                        <td class="storeListTxt">
+                            <asp:LinkButton runat="server" ID="lbGurney" Font-Underline="False">
+                                <h2>CoffeeCove Gurney Plaza</h2>
+                                170-G-23,24 Gurney Plaza, Pulau Tikus, 10250 George Town, Penang
+                            </asp:LinkButton>
+                        </td>
+
+                        <td style="width:25%">&nbsp</td>
+
+                        <td>
+                            <img src="../img/location_icon.png" style="height:50px;width:50px" />
+                        </td>
+                        <td class="storeListTxt">
+                            <asp:LinkButton runat="server" ID="lbKarpalSingh" Font-Underline="False">
+                                <h2>CoffeeCove Karpal Singh</h2>
+                                No. 29C, Lot L1-1, L1-2, Maritime, 5, Lebuh Sungai Pinang, 11600 Jelutong, Penang
+                            </asp:LinkButton>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="5">
+                            <br />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <img src="../img/location_icon.png" style="height:50px;width:50px" />
+                        </td>
+                        <td class="storeListTxt">
+                            <asp:LinkButton runat="server" ID="lbQueensBay" Font-Underline="False">
+                                <h2>CoffeeCove QueensBay</h2>
+                                1-G-01, Jalan Bayan Indah, Queens Waterfront Q1 Commercial, 11900 George Town, Pulau Pinang
+                            </asp:LinkButton>
+                        </td>
+
+                        <td colspan="3">&nbsp</td>
+                    </tr>
+                </table>
+                <br />
+                <button onclick="closeStoreList()" type="button" class="btnClose">Close</button>
+                <br />
             </div>
         </div>
     </div>

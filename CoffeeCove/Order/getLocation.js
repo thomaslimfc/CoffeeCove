@@ -1,10 +1,6 @@
 ﻿function getLocation() {
-    document.getElementById(
-        "overlay"
-    ).style.display = "block";
-    document.getElementById(
-        "popupDialog"
-    ).style.display = "block";
+    document.getElementById("overlay").style.display = "block";
+    document.getElementById("popupDialog").style.display = "block";
 
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(handleLocation, handleError);
@@ -47,14 +43,17 @@ function handleError(error) {
     }
 }
 
-function closeFn() {
-    document.getElementById(
-        "overlay"
-    ).style.display = "none";
-    document.getElementById(
-        "popupDialog"
-    ).style.display = "none";
+function closeMap() {
+    document.getElementById("overlay").style.display = "none";
+    document.getElementById("popupDialog").style.display = "none";
 }
 
+function closeStoreList() {
+    document.getElementById("overlay2").style.display = "none";
+    document.getElementById("popupDialog2").style.display = "none";
+}
 
-
+function openStoreList() {
+    document.getElementById("overlay2").style.display = "block";
+    document.getElementById("popupDialog2").style.display = "block";
+}

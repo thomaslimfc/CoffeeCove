@@ -11,7 +11,7 @@ namespace CoffeeCove.Order
 {
 
 
-    public partial class deliveryOpt
+    public partial class orderOpt
     {
     }
 }
