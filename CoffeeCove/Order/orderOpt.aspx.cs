@@ -15,7 +15,7 @@ namespace CoffeeCove.Order
         }
         protected void lbGurney_Click(object sender, EventArgs e)
         {
-            
+            litStore.Text = "Gurney Plaza";
         }
 
     }

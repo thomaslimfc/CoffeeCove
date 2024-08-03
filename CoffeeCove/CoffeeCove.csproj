@@ -64,10 +64,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-	  <Content Include="AdminSite\AdminPasswordReset.aspx" />
-	  <Content Include="AdminSite\AdminTwoFactorAuthentication.aspx" />
-	  <Content Include="AdminSite\AdminForgotPassword.aspx" />
-	  <Content Include="AdminSite\Dashboard.aspx" />
+    <Content Include="AdminSite\AdminPasswordReset.aspx" />
+    <Content Include="AdminSite\AdminTwoFactorAuthentication.aspx" />
+    <Content Include="AdminSite\AdminForgotPassword.aspx" />
+    <Content Include="AdminSite\Dashboard.aspx" />
     <Content Include="AdminSite\OrderManage.aspx" />
     <Content Include="AdminSite\AdminSignIn.aspx" />
     <Content Include="AdminSite\AdminSignUp.aspx" />
@@ -94,11 +94,10 @@
     <Content Include="CSS\Admin.css" />
     <Content Include="CSS\Customer.css" />
     <Content Include="CSS\Dashboard.css" />
-    <Content Include="CSS\deliveryOpt.css" />
     <Content Include="CSS\Home.css" />
     <Content Include="CSS\Menu.css" />
     <Content Include="CSS\orderCart.css" />
-    <Content Include="CSS\orderOption.css" />
+    <Content Include="CSS\orderOpt.css" />
     <Content Include="CSS\Security.css" />
     <Content Include="CSS\UserManagement.css" />
     <Content Include="Home\Home.aspx" />
@@ -141,20 +140,30 @@
     <Content Include="imgProductItems\OB02.jpg" />
     <Content Include="imgProductItems\OB03.jpg" />
     <Content Include="imgProductItems\OB04.jpg" />
-    <Content Include="img\aboutUs.jpg" />
+    <Content Include="img\about.jpg" />
+    <Content Include="img\cake_icon.png" />
     <Content Include="img\cartLogo.png" />
+    <Content Include="img\coffeeBag.jpg" />
+    <Content Include="img\customer.png" />
     <Content Include="img\facebook.png" />
+    <Content Include="img\gender_icon.png" />
     <Content Include="img\instagram.png" />
-    <Content Include="img\menuPoster.jpg" />
-    <Content Include="img\slide1.jpeg" />
-    <Content Include="img\slide2.jpeg" />
-    <Content Include="img\slide3.jpeg" />
+    <Content Include="img\location_icon.png" />
+    <Content Include="img\lock_icon.png" />
+    <Content Include="img\mail_icon.png" />
+    <Content Include="img\order.png" />
+    <Content Include="img\poster.jpg" />
+    <Content Include="img\revenue.png" />
+    <Content Include="img\sales.png" />
+    <Content Include="img\slideImg1.jpeg" />
+    <Content Include="img\slideImg2.jpeg" />
+    <Content Include="img\slideImg3.jpeg" />
     <Content Include="img\twitter.png" />
+    <Content Include="img\username_icon.png" />
     <Content Include="Menu\Menu.aspx" />
-    <Content Include="Order\deliveryOpt.aspx" />
     <Content Include="Order\getLocation.js" />
     <Content Include="Order\orderCart.aspx" />
-    <Content Include="Order\orderOption.aspx" />
+    <Content Include="Order\orderOpt.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -171,20 +180,20 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-	  <Compile Include="AdminSite\AdminPasswordReset.aspx.cs">
-		  <DependentUpon>AdminPasswordReset.aspx</DependentUpon>
-		  <SubType>ASPXCodeBehind</SubType>
-	  </Compile>
-	  <Compile Include="AdminSite\AdminPasswordReset.aspx.designer.cs">
-		  <DependentUpon>AdminPasswordReset.aspx</DependentUpon>
-	  </Compile>
-	  <Compile Include="AdminSite\AdminTwoFactorAuthentication.aspx.cs">
-		  <DependentUpon>AdminTwoFactorAuthentication.aspx</DependentUpon>
-		  <SubType>ASPXCodeBehind</SubType>
-	  </Compile>
-	  <Compile Include="AdminSite\AdminTwoFactorAuthentication.aspx.designer.cs">
-		  <DependentUpon>AdminTwoFactorAuthentication.aspx</DependentUpon>
-	  </Compile>
+    <Compile Include="AdminSite\AdminPasswordReset.aspx.cs">
+      <DependentUpon>AdminPasswordReset.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSite\AdminPasswordReset.aspx.designer.cs">
+      <DependentUpon>AdminPasswordReset.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminSite\AdminTwoFactorAuthentication.aspx.cs">
+      <DependentUpon>AdminTwoFactorAuthentication.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSite\AdminTwoFactorAuthentication.aspx.designer.cs">
+      <DependentUpon>AdminTwoFactorAuthentication.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminSite\Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -192,34 +201,34 @@
     <Compile Include="AdminSite\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
-	  <Compile Include="AdminSite\AdminForgotPassword.aspx.cs">
-		  <DependentUpon>AdminForgotPassword.aspx</DependentUpon>
-		  <SubType>ASPXCodeBehind</SubType>
-	  </Compile>
-	  <Compile Include="AdminSite\AdminForgotPassword.aspx.designer.cs">
-		  <DependentUpon>AdminForgotPassword.aspx</DependentUpon>
-	  </Compile>
-	  <Compile Include="AdminSite\OrderManage.aspx.cs">
+    <Compile Include="AdminSite\AdminForgotPassword.aspx.cs">
+      <DependentUpon>AdminForgotPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSite\AdminForgotPassword.aspx.designer.cs">
+      <DependentUpon>AdminForgotPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminSite\OrderManage.aspx.cs">
       <DependentUpon>OrderManage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AdminSite\OrderManage.aspx.designer.cs">
       <DependentUpon>OrderManage.aspx</DependentUpon>
     </Compile>
-	  <Compile Include="AdminSite\AdminSignIn.aspx.cs">
-		  <DependentUpon>AdminSignIn.aspx</DependentUpon>
-		  <SubType>ASPXCodeBehind</SubType>
-	  </Compile>
-	  <Compile Include="AdminSite\AdminSignIn.aspx.designer.cs">
-		  <DependentUpon>AdminSignIn.aspx</DependentUpon>
-	  </Compile>
-	  <Compile Include="AdminSite\AdminSignUp.aspx.cs">
-		  <DependentUpon>AdminSignUp.aspx</DependentUpon>
-		  <SubType>ASPXCodeBehind</SubType>
-	  </Compile>
-	  <Compile Include="AdminSite\AdminSignUp.aspx.designer.cs">
-		  <DependentUpon>AdminSignUp.aspx</DependentUpon>
-	  </Compile>
+    <Compile Include="AdminSite\AdminSignIn.aspx.cs">
+      <DependentUpon>AdminSignIn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSite\AdminSignIn.aspx.designer.cs">
+      <DependentUpon>AdminSignIn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminSite\AdminSignUp.aspx.cs">
+      <DependentUpon>AdminSignUp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSite\AdminSignUp.aspx.designer.cs">
+      <DependentUpon>AdminSignUp.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Home\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -248,13 +257,6 @@
     <Compile Include="Menu\Menu.aspx.designer.cs">
       <DependentUpon>Menu.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Order\deliveryOpt.aspx.cs">
-      <DependentUpon>deliveryOpt.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Order\deliveryOpt.aspx.designer.cs">
-      <DependentUpon>deliveryOpt.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Order\orderCart.aspx.cs">
       <DependentUpon>orderCart.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -262,12 +264,12 @@
     <Compile Include="Order\orderCart.aspx.designer.cs">
       <DependentUpon>orderCart.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Order\orderOption.aspx.cs">
-      <DependentUpon>orderOption.aspx</DependentUpon>
+    <Compile Include="Order\orderOpt.aspx.cs">
+      <DependentUpon>orderOpt.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Order\orderOption.aspx.designer.cs">
-      <DependentUpon>orderOption.aspx</DependentUpon>
+    <Compile Include="Order\orderOpt.aspx.designer.cs">
+      <DependentUpon>orderOpt.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\PasswordReset.aspx.cs">
