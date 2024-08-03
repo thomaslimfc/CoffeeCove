@@ -69,13 +69,22 @@ namespace CoffeeCove.Order
         protected global::System.Web.UI.WebControls.TextBox tbUnit;
 
         /// <summary>
-        /// litStore control.
+        /// litStoreName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litStore;
+        protected global::System.Web.UI.WebControls.Literal litStoreName;
+
+        /// <summary>
+        /// litStoreAdd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litStoreAdd;
 
         /// <summary>
         /// lbGurney control.

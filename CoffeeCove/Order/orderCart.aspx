@@ -1,11 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Customer.Master" AutoEventWireup="true" CodeFile="orderCart.aspx.cs" Inherits="CoffeeCove.Order.orderCart" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Customer.Master" AutoEventWireup="true" CodeBehind="orderCart.aspx.cs" Inherits="CoffeeCove.Order.orderCart" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
     <link href="../CSS/orderCart.css" rel="stylesheet" />
-    <link href="../CSS/orderOption.css" rel="stylesheet" />
     <!-- Banner -->
     <div id="cartPoster">
-        <img src="/img/poster.jpg" />
+        <img src="../img/coffeeBag.jpg" id="cartPosterImg" />
         <div id="cartPosterText">My Cart</div>
     </div>
     <br />

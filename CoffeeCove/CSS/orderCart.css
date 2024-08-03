@@ -1,4 +1,26 @@
-﻿#cartContainer {
+﻿﻿#cartPoster{
+    position: relative;
+}
+
+#cartPosterImg {
+    width: 1600px;
+    height: 250px;
+    object-fit: cover;
+}
+
+#cartPosterText {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4rem;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    color: white;
+}
+
+#cartContainer {
     margin-left: 10%;
     margin-right: 10%;
     text-align: center;
