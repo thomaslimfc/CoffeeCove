@@ -64,10 +64,13 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AdminSite\Dashboard.aspx" />
+	  <Content Include="AdminSite\AdminPasswordReset.aspx" />
+	  <Content Include="AdminSite\AdminTwoFactorAuthentication.aspx" />
+	  <Content Include="AdminSite\AdminForgotPassword.aspx" />
+	  <Content Include="AdminSite\Dashboard.aspx" />
     <Content Include="AdminSite\OrderManage.aspx" />
-    <Content Include="AdminSite\SignIn.aspx" />
-    <Content Include="AdminSite\SignUp.aspx" />
+    <Content Include="AdminSite\AdminSignIn.aspx" />
+    <Content Include="AdminSite\AdminSignUp.aspx" />
     <Content Include="App_Data\dbCoffeeCove.mdf" />
     <Content Include="App_Data\dbCoffeeCove_log.ldf">
       <DependentUpon>dbCoffeeCove.mdf</DependentUpon>
@@ -168,6 +171,20 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+	  <Compile Include="AdminSite\AdminPasswordReset.aspx.cs">
+		  <DependentUpon>AdminPasswordReset.aspx</DependentUpon>
+		  <SubType>ASPXCodeBehind</SubType>
+	  </Compile>
+	  <Compile Include="AdminSite\AdminPasswordReset.aspx.designer.cs">
+		  <DependentUpon>AdminPasswordReset.aspx</DependentUpon>
+	  </Compile>
+	  <Compile Include="AdminSite\AdminTwoFactorAuthentication.aspx.cs">
+		  <DependentUpon>AdminTwoFactorAuthentication.aspx</DependentUpon>
+		  <SubType>ASPXCodeBehind</SubType>
+	  </Compile>
+	  <Compile Include="AdminSite\AdminTwoFactorAuthentication.aspx.designer.cs">
+		  <DependentUpon>AdminTwoFactorAuthentication.aspx</DependentUpon>
+	  </Compile>
     <Compile Include="AdminSite\Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -175,27 +192,34 @@
     <Compile Include="AdminSite\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AdminSite\OrderManage.aspx.cs">
+	  <Compile Include="AdminSite\AdminForgotPassword.aspx.cs">
+		  <DependentUpon>AdminForgotPassword.aspx</DependentUpon>
+		  <SubType>ASPXCodeBehind</SubType>
+	  </Compile>
+	  <Compile Include="AdminSite\AdminForgotPassword.aspx.designer.cs">
+		  <DependentUpon>AdminForgotPassword.aspx</DependentUpon>
+	  </Compile>
+	  <Compile Include="AdminSite\OrderManage.aspx.cs">
       <DependentUpon>OrderManage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AdminSite\OrderManage.aspx.designer.cs">
       <DependentUpon>OrderManage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AdminSite\SignIn.aspx.cs">
-      <DependentUpon>SignIn.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminSite\SignIn.aspx.designer.cs">
-      <DependentUpon>SignIn.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AdminSite\SignUp.aspx.cs">
-      <DependentUpon>SignUp.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminSite\SignUp.aspx.designer.cs">
-      <DependentUpon>SignUp.aspx</DependentUpon>
-    </Compile>
+	  <Compile Include="AdminSite\AdminSignIn.aspx.cs">
+		  <DependentUpon>AdminSignIn.aspx</DependentUpon>
+		  <SubType>ASPXCodeBehind</SubType>
+	  </Compile>
+	  <Compile Include="AdminSite\AdminSignIn.aspx.designer.cs">
+		  <DependentUpon>AdminSignIn.aspx</DependentUpon>
+	  </Compile>
+	  <Compile Include="AdminSite\AdminSignUp.aspx.cs">
+		  <DependentUpon>AdminSignUp.aspx</DependentUpon>
+		  <SubType>ASPXCodeBehind</SubType>
+	  </Compile>
+	  <Compile Include="AdminSite\AdminSignUp.aspx.designer.cs">
+		  <DependentUpon>AdminSignUp.aspx</DependentUpon>
+	  </Compile>
     <Compile Include="Home\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
