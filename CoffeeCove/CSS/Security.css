@@ -90,7 +90,8 @@ body, br {
 .adminPassword,
 .adminPassReenter,
 .adminUsername2,
-.adminPassword2 {
+.adminPassword2,
+.adminUsernameEmail {
     /* Placeholder text */
     background-color: #C89857;
     color: #ffffff;
@@ -130,6 +131,7 @@ body, br {
 .adminPassReenter::placeholder,
 .adminUsername2::placeholder,
 .adminPassword2::placeholder,
+.adminUsernameEmail::placeholder,
 
 .otp::placeholder {
     color: #ffffff;
@@ -362,4 +364,8 @@ asp .validator {
 
 .textAlignLeft {
     text-align: left;
+}
+
+h2 {
+    font-weight: bold;
 }

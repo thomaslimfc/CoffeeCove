@@ -10,7 +10,8 @@
     <table>
         <tr>
             <td id="signIn_td">
-                <h2>Sign In</h2>
+                <h2 style="font-size: 24px; font-weight: bold">
+                    Sign In</h2>
             </td>
         </tr>
         <tr>

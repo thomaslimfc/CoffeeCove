@@ -1,16 +1,17 @@
-﻿<%@ Page Title="Sign Up" Language="C#" 
+﻿<%@ Page Title="Sign Up (Admin)" Language="C#" 
     MasterPageFile="../Master/Admin.Master" 
-    AutoEventWireup="true" CodeBehind="SignUp.aspx.cs" 
+    AutoEventWireup="true" CodeBehind="AdminSignUp.aspx.cs" 
     Inherits="CoffeeCove.AdminSite.SignUp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <link href="../CSS/Security.css" rel="stylesheet" />
-<br /><br /><br /><br /><br />
+<br /><br /><br /><br />
 <div id="signIn_container" class="sign_container">
     <table>
         <tr>
             <td id="signUp_td">
-                <h2>Admin Registration</h2>
+                <h2 style="font-size: 24px; font-weight: bold">
+                    Admin Registration</h2>
             </td>
         </tr>
         <tr>
@@ -26,7 +27,7 @@
                                 <asp:TextBox ID="adminUsername" CssClass="adminUsername" 
                                     runat="server" placeholder="Username" 
                                     title="Username" 
-                                    OnTextChanged="adminUsername_TextChanged"></asp:TextBox>
+                                    OnTextChanged="AdminUsername_TextChanged"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -68,7 +69,7 @@
                                 <asp:TextBox ID="adminPassword" CssClass="adminPassword" 
                                     runat="server" placeholder="Password" 
                                     title="Password" 
-                                    OnTextChanged="adminPassword_TextChanged"></asp:TextBox>
+                                    OnTextChanged="AdminPassword_TextChanged"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -152,8 +153,8 @@
                                 <asp:RadioButtonList ID="gender" runat="server"
                                             RepeatDirection="Horizontal"
                                             CssClass="gender_rbl">
-                                    <asp:ListItem Text="Male" Value="Male"></asp:ListItem>
-                                    <asp:ListItem Text="Female" Value="Female"></asp:ListItem>
+                                    <asp:ListItem Text="Male" Value="Male" style="padding-left: 5px"></asp:ListItem>
+                                    <asp:ListItem Text="Female" Value="Female" style="padding-left: 15px"></asp:ListItem>
                                 </asp:RadioButtonList>
                             </td>
                         </tr>
@@ -242,7 +243,9 @@
 <center>
     <p id="alreadySignedUp">
         Already on CoffeeCove?
-        <a id="alreadyRegistered" class="aReset" href="SignIn.aspx">Login</a>
+        <a id="alreadyRegistered" class="aReset" href="AdminSignIn.aspx"
+            style="font-size: medium; text-decoration: underline; color: #551a8b">
+            Login</a>
     </p>
 </center>
 </asp:Content>

@@ -1,11 +1,11 @@
-﻿<%@ Page Title="" Language="C#" 
-    MasterPageFile="~/Master/Customer.Master" 
-    AutoEventWireup="true" CodeBehind="TwoFactorAuthentication.aspx.cs" 
-    Inherits="CoffeeCove.Security.TwoFactorAuthentication" %>
+﻿<%@ Page Title="2-Factor Verification (Admin)" Language="C#" 
+    MasterPageFile="~/Master/Admin.Master" 
+    AutoEventWireup="true" CodeBehind="AdminTwoFactorAuthentication.aspx.cs" 
+    Inherits="CoffeeCove.AdminSite.AdminTwoFactorAuthentication" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <link href="../CSS/Security.css" rel="stylesheet" />
-<br /><br /><br /><br /><br /><br /><br /><br />
+<br /><br /><br /><br />
 <div id="signIn_container" class="sign_container">
     <table>
         <tr>
@@ -22,28 +22,28 @@
         </tr>
         <tr>
             <td>
-                <asp:TextBox ID="otp" CssClass="otp" 
+                <asp:TextBox ID="adminOtp" CssClass="otp" 
                     runat="server"
                     placeholder="OTP code" title="OTP code" 
-                    OnTextChanged="otp_TextChanged" 
+                    OnTextChanged="adminOtp_TextChanged" 
                     AutoPostBack="false"></asp:TextBox>
             </td>
         </tr>
         <tr>
             <td class="textAlignLeft">
                 <asp:RequiredFieldValidator 
-                    ID="otp_rqdValidator" 
+                    ID="adminOtp_rqdValidator" 
                     runat="server" 
-                    ControlToValidate="otp" 
+                    ControlToValidate="adminOtp" 
                     ErrorMessage="OTP is required." 
                     Display="Dynamic" 
                     ForeColor="Red" 
                     CssClass="rqdValidator" />
 
                 <asp:RegularExpressionValidator 
-                    ID="otp_regexValidator" 
+                    ID="adminOtp_regexValidator" 
                     runat="server" 
-                    ControlToValidate="otp" 
+                    ControlToValidate="adminOtp" 
                     ErrorMessage="Must contain exactly 6 digits." 
                     Display="Dynamic" 
                     ForeColor="Red" 
@@ -62,7 +62,9 @@
 <center>
     <p id="joinUsNow">
         Having Trouble?
-        <a href="ForgotPassword.aspx">Try me again</a>
+        <a href="AdminForgotPassword.aspx"
+            style="font-size: medium; text-decoration: underline; color: #551a8b">
+            Try me again</a>
     </p>
 </center>
 </asp:Content>

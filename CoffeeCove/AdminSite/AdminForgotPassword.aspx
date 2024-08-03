@@ -1,11 +1,11 @@
-﻿<%@ Page Title="Forgot Password" Language="C#" 
-    MasterPageFile="../Master/Customer.Master" 
-    AutoEventWireup="true" CodeBehind="ForgotPassword.aspx.cs" 
-    Inherits="CoffeeCove.Security.ForgotPassword" %>
+﻿<%@ Page Title="Forgot Password (Admin)" Language="C#" 
+    MasterPageFile="../Master/Admin.Master" 
+    AutoEventWireup="true" CodeBehind="AdminForgotPassword.aspx.cs" 
+    Inherits="CoffeeCove.AdminSite.ForgotPassword" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <link href="../CSS/Security.css" rel="stylesheet" />
-<br /><br /><br /><br /><br /><br /><br /><br />
+<br /><br /><br /><br />
 
 <div id="forgotPassword_container" class="sign_container">
     <table>
@@ -25,24 +25,24 @@
                                     alt="Enter your username or email" />
                             </td>
                             <td>
-                                <asp:TextBox ID="usernameEmail" CssClass="usernameEmail" 
+                                <asp:TextBox ID="adminUsernameEmail" CssClass="adminUsernameEmail" 
                                     runat="server" placeholder="Username / Email" 
                                     title="usernameEmail" 
-                                    OnTextChanged="UsernameEmail_TextChanged"></asp:TextBox>
+                                    OnTextChanged="AdminUsernameEmail_TextChanged"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td class="textAlignLeft" colspan="2">
                                 <asp:RequiredFieldValidator 
-                                    ID="usernameEmail_rqdValidator" runat="server" 
-                                    ControlToValidate="usernameEmail" 
+                                    ID="adminUsernameEmail_rqdValidator" runat="server" 
+                                    ControlToValidate="adminUsernameEmail" 
                                     ErrorMessage="Username is required." 
                                     Display="Dynamic" ForeColor="Red" 
                                     CssClass="rqdValidator" />
                                 <asp:RegularExpressionValidator 
                                     ID="usernameEmail_regexValidator" 
                                     runat="server" 
-                                    ControlToValidate="usernameEmail" 
+                                    ControlToValidate="adminUsernameEmail" 
                                     ErrorMessage="Must contain >10 letters and numbers only." 
                                     Display="Dynamic" 
                                     ForeColor="Red" 
@@ -66,15 +66,15 @@
         </tr>
         <tr>
             <td>
-                <asp:Button ID="next_btn" runat="server" Text="Next"
-                    OnClick="NextBtn_Click" CssClass="next_btn"
+                <asp:Button ID="adminNext_btn" runat="server" Text="Next"
+                    OnClick="AdminNextBtn_Click" CssClass="next_btn"
                     CausesValidation="true"/>
             </td>
         </tr>
         <tr>
             <td>
                 <asp:Button ID="back_btn" runat="server" Text="Back"
-                    OnClick="BackBtn_Click" CssClass="back_btn"
+                    OnClick="AdminBackBtn_Click" CssClass="back_btn"
                     CausesValidation="false"/>
             </td>
         </tr>

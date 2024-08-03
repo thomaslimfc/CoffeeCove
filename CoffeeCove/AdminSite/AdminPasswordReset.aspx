@@ -1,11 +1,11 @@
-﻿<%@ Page Title="Reset Password" Language="C#" 
-    MasterPageFile="../Master/Customer.Master" 
-    AutoEventWireup="true" CodeBehind="PasswordReset.aspx.cs" 
-    Inherits="CoffeeCove.Security.PasswordReset" %>
+﻿<%@ Page Title="Password Reset (Admin)" Language="C#" 
+    MasterPageFile="~/Master/Admin.Master" 
+    AutoEventWireup="true" CodeBehind="AdminPasswordReset.aspx.cs" 
+    Inherits="CoffeeCove.AdminSite.AdminPasswordReset" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <link href="../CSS/Security.css" rel="stylesheet" />
-<br /><br /><br /><br /><br /><br /><br /><br />
+<br /><br /><br /><br />
 
 <div id="signIn_container" class="sign_container">
     <table>
@@ -104,8 +104,8 @@
 
         <tr>
             <td id="resetPassword_td">
-                <asp:Button ID="resetPassword_btn" runat="server" Text="Reset Password"
-                    OnClick="ResetPasswordBtn_Click" CssClass="resetPassword_btn"
+                <asp:Button ID="adminResetPassword_btn" runat="server" Text="Reset Password"
+                    OnClick="AdminResetPasswordBtn_Click" CssClass="resetPassword_btn"
                     CausesValidation="true"/>
             </td>
         </tr>

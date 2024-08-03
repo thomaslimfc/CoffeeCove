@@ -13,12 +13,12 @@ namespace CoffeeCove.AdminSite
         {
 
         }
-        protected void adminUsername_TextChanged(object sender, EventArgs e)
+        protected void AdminUsername_TextChanged(object sender, EventArgs e)
         {
             // Logic for username text change event
         }
 
-        protected void adminPassword_TextChanged(object sender, EventArgs e)
+        protected void AdminPassword_TextChanged(object sender, EventArgs e)
         {
             // Logic for password text change event
         }
@@ -27,5 +27,9 @@ namespace CoffeeCove.AdminSite
         {
             // Logic for re-enter password text change event
         }
+
+
+// after register , redirect to where?
+
     }
 }

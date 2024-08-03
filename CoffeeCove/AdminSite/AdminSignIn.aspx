@@ -1,6 +1,6 @@
-﻿<%@ Page Title="Sign Up" Language="C#" 
+﻿<%@ Page Title="Sign Up (Admin)" Language="C#" 
     MasterPageFile="~/Master/Admin.Master" 
-    AutoEventWireup="true" CodeBehind="SignIn.aspx.cs" 
+    AutoEventWireup="true" CodeBehind="AdminSignIn.aspx.cs" 
     Inherits="CoffeeCove.AdminSite.SignIn" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -10,7 +10,8 @@
     <table>
         <tr>
             <td id="signIn_td">
-                <h2>Admin Login</h2>
+                <h2 style="font-size: 24px; font-weight: bold">
+                    Admin Login</h2>
             </td>
         </tr>
         <tr>
@@ -99,20 +100,20 @@
             <td class="trMarginBottom20"></td>
         </tr>
         <tr>
+            <td id="forgotPassword_td">
+                <asp:HyperLink ID="forgotPasswordLink" runat="server" 
+                    NavigateUrl="AdminForgotPassword.aspx"
+                    CssClass="adminForgotPassword" 
+                    style="font-size: small; text-decoration: underline">
+                    Forgot password?
+                </asp:HyperLink>
+            </td>
+        </tr>
+
+        <tr>
             <td id="signInBtn_td">
                 <asp:Button ID="signIn_btn" runat="server" Text="Log now" 
                     CssClass="signIn_btn"/>
-            </td>
-        </tr>
-        <tr>
-            <td class="trMarginBottom20"></td>
-        </tr>
-        <tr>
-            <td id="forgotPassword_td">
-                <asp:HyperLink ID="forgotPasswordLink" runat="server" 
-                    NavigateUrl="ForgotPassword.aspx">
-                    Forgot password?
-                </asp:HyperLink>
             </td>
         </tr>
     </table>
@@ -120,7 +121,9 @@
 <center>
     <p id="joinUsNow">
         New to CoffeeCove?
-        <a href="SignUp.aspx">Register here</a>
+        <a href="AdminSignUp.aspx"
+            style="font-size: medium; text-decoration: underline; color: #551a8b">
+            Register here</a>
     </p>
 </center>
 </asp:Content>

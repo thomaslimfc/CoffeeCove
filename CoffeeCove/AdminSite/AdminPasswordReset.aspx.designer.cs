@@ -11,79 +11,70 @@ namespace CoffeeCove.AdminSite
 {
 
 
-    public partial class SignIn
+    public partial class AdminPasswordReset
     {
 
         /// <summary>
-        /// adminUsername2 control.
+        /// password3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox adminUsername2;
+        protected global::System.Web.UI.WebControls.TextBox password3;
 
         /// <summary>
-        /// adminUsername2_rqdValidator control.
+        /// password3_rqdValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator adminUsername2_rqdValidator;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator password3_rqdValidator;
 
         /// <summary>
-        /// adminUsername2_regexValidator control.
+        /// password_regexValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator adminUsername2_regexValidator;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator password_regexValidator;
 
         /// <summary>
-        /// adminPassword2 control.
+        /// passwordConfirm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox adminPassword2;
+        protected global::System.Web.UI.WebControls.TextBox passwordConfirm;
 
         /// <summary>
-        /// adminPassword2_rqdValidator control.
+        /// passwordConfirm_rqdValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator adminPassword2_rqdValidator;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator passwordConfirm_rqdValidator;
 
         /// <summary>
-        /// adminPassword2_regexValidator control.
+        /// confirmPassword_compareValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator adminPassword2_regexValidator;
+        protected global::System.Web.UI.WebControls.CompareValidator confirmPassword_compareValidator;
 
         /// <summary>
-        /// signIn_btn control.
+        /// adminResetPassword_btn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button signIn_btn;
-
-        /// <summary>
-        /// forgotPasswordLink control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink forgotPasswordLink;
+        protected global::System.Web.UI.WebControls.Button adminResetPassword_btn;
     }
 }

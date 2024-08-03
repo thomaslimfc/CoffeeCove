@@ -10,7 +10,8 @@
     <table>
         <tr>
             <td id="signUp_td">
-                <h2>Sign Up</h2>
+                <h2 style="font-size: 24px; font-weight: bold">
+                    Sign Up</h2>
             </td>
         </tr>
         <tr>
@@ -215,8 +216,8 @@
                                 <asp:RadioButtonList ID="gender" runat="server"
                                             RepeatDirection="Horizontal"
                                             CssClass="gender_rbl">
-                                    <asp:ListItem Text="Male" Value="Male"></asp:ListItem>
-                                    <asp:ListItem Text="Female" Value="Female"></asp:ListItem>
+                                    <asp:ListItem Text="Male" Value="Male" style="padding-left: 5px"></asp:ListItem>
+                                    <asp:ListItem Text="Female" Value="Female" style="padding-left: 15px"></asp:ListItem>
                                 </asp:RadioButtonList>
                             </td>
                         </tr>
