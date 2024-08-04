@@ -48,7 +48,7 @@
                                     Display="Dynamic" 
                                     ForeColor="Red" 
                                     CssClass="rqdValidator" 
-                                    ValidationExpression="^(?=.*[a-zA-Z])(?=.*\d)(?=.*[\W_]).+$" />
+                                    ValidationExpression="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{10,}$" />
                             </td>
                         </tr>
                     </table>

@@ -88,7 +88,7 @@
                                     Display="Dynamic" 
                                     ForeColor="Red" 
                                     CssClass="rqdValidator" 
-                                    ValidationExpression="^(?=.*[a-zA-Z])(?=.*\d)(?=.*[\W_]).+$" />
+                                    ValidationExpression="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{10,}$" />
                             </td>
                         </tr>
                     </table>
@@ -150,7 +150,7 @@
                                     alt="Enter your gender" />
                             </td>
                             <td>
-                                <asp:RadioButtonList ID="gender" runat="server"
+                                <asp:RadioButtonList ID="adminGender" runat="server"
                                             RepeatDirection="Horizontal"
                                             CssClass="gender_rbl">
                                     <asp:ListItem Text="Male" Value="Male" style="padding-left: 5px"></asp:ListItem>
@@ -163,7 +163,7 @@
                                 <asp:RequiredFieldValidator 
                                     ID="gender_rqdValidator" 
                                     runat="server" 
-                                    ControlToValidate="gender" 
+                                    ControlToValidate="adminGender" 
                                     InitialValue="" 
                                     ErrorMessage="Please select your gender." 
                                     Display="Dynamic"
@@ -235,7 +235,7 @@
         <tr>
             <td id="signUpBtn_td">
                 <asp:Button ID="signUp_btn" runat="server" Text="Register Now"
-                            CssClass="signUp_btn"/>
+                            CssClass="signUp_btn" OnClick="SignUp_btn_Click"/>
             </td>
         </tr>
     </table>        
