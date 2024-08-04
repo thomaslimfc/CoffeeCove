@@ -179,7 +179,6 @@
     <Content Include="img\twitter.png" />
     <Content Include="img\username_icon.png" />
     <Content Include="Menu\Menu.aspx" />
-    <Content Include="Menu\Menu1.aspx" />
     <Content Include="Order\getLocation.js" />
     <Content Include="Order\orderCart.aspx" />
     <Content Include="Order\orderOption.aspx" />
@@ -279,13 +278,6 @@
     </Compile>
     <Compile Include="Menu\Menu.aspx.designer.cs">
       <DependentUpon>Menu.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Menu\Menu1.aspx.cs">
-      <DependentUpon>Menu1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Menu\Menu1.aspx.designer.cs">
-      <DependentUpon>Menu1.aspx</DependentUpon>
     </Compile>
     <Compile Include="Order\orderCart.aspx.cs">
       <DependentUpon>orderCart.aspx</DependentUpon>
