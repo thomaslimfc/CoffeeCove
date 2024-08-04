@@ -4,13 +4,13 @@
 
 #cartPosterImg {
     width: 1600px;
-    height: 250px;
+    height: 200px;
     object-fit: cover;
 }
 
 #cartPosterText {
     position: absolute;
-    top: 20%;
+    top: 15%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 4rem;
