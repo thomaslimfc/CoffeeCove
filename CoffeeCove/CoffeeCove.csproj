@@ -193,10 +193,12 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Security\PasswordReset.aspx" />
+    <Content Include="Security\PrivacyPolicy.aspx" />
     <Content Include="Security\SignIn.aspx" />
     <Content Include="Security\ForgotPassword.aspx" />
     <Content Include="Security\SignUp.aspx" />
     <Content Include="Security\TwoFactorAuthentication.aspx" />
+    <Content Include="Security\UserAgreement.aspx" />
     <Content Include="UserManagement\ProfileEdit.aspx" />
     <Content Include="UserManagement\UserProfile.aspx" />
     <Content Include="Web.config" />
@@ -309,6 +311,13 @@
     <Compile Include="Security\PasswordReset.aspx.designer.cs">
       <DependentUpon>PasswordReset.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Security\PrivacyPolicy.aspx.cs">
+      <DependentUpon>PrivacyPolicy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Security\PrivacyPolicy.aspx.designer.cs">
+      <DependentUpon>PrivacyPolicy.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Security\SignIn.aspx.cs">
       <DependentUpon>SignIn.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -336,6 +345,13 @@
     </Compile>
     <Compile Include="Security\TwoFactorAuthentication.aspx.designer.cs">
       <DependentUpon>TwoFactorAuthentication.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Security\UserAgreement.aspx.cs">
+      <DependentUpon>UserAgreement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Security\UserAgreement.aspx.designer.cs">
+      <DependentUpon>UserAgreement.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserManagement\ProfileEdit.aspx.cs">
       <DependentUpon>ProfileEdit.aspx</DependentUpon>

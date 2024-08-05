@@ -42,6 +42,15 @@ namespace CoffeeCove.Security
         protected global::System.Web.UI.WebControls.RegularExpressionValidator Username_SU_regexValidator;
 
         /// <summary>
+        /// UsernameErrorMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label UsernameErrorMessage;
+
+        /// <summary>
         /// EmailAdd_SU control.
         /// </summary>
         /// <remarks>

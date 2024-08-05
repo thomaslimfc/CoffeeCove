@@ -48,6 +48,9 @@
                                     ForeColor="Red" 
                                     CssClass="rqdValidator" 
                                     ValidationExpression="^[a-zA-Z0-9]{10,}$" />
+                                <asp:Label ID="UsernameErrorMessage" 
+                                    runat="server" ForeColor="Red" Visible="False">
+                                </asp:Label>
                             </td>
                         </tr>
                     </table>
@@ -291,8 +294,8 @@
         <tr>
             <td id="agreement_td">
                 By signing up, you agree to the Staffee
-                <a href="#">User Agreement</a>, and
-                <a href="#">Privacy Policy</a>.
+                <a href="UserAgreement.aspx">User Agreement</a>, and
+                <a href="PrivacyPolicy.aspx">Privacy Policy</a>.
             </td>
         </tr>
         <tr>

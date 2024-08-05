@@ -2,6 +2,8 @@
 using System.Net;
 using System.Web.UI;
 using Newtonsoft.Json;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace CoffeeCove.Security
 {
@@ -37,6 +39,21 @@ namespace CoffeeCove.Security
                 string jsonResult = client.DownloadString(apiUrl);
                 dynamic jsonData = JsonConvert.DeserializeObject(jsonResult);
                 return jsonData.success == "true";
+            }
+        }
+        private bool IsUsernameTaken(string username)
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["YourConnectionStringName"].ConnectionString;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT COUNT(*) FROM Users WHERE Username = @Username";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Username", username);
+                    connection.Open();
+                    int count = (int)command.ExecuteScalar();
+                    return count > 0;
+                }
             }
         }
     }
