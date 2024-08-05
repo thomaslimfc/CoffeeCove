@@ -11,7 +11,7 @@
 <div id="signIn_container" class="sign_container">
     <table>
         <tr>
-            <td class="signUp_td">
+            <td id="signUp_td">
                 <h2 style="font-size: 24px; font-weight: bold">
                     Sign Up</h2>
             </td>
@@ -300,10 +300,14 @@
         </tr>
         <tr>
             <td>
-                <div class="g-recaptcha" 
-                    data-sitekey="6LdzASAqAAAAAHhQdlfCCZOOzfx17iEXeR-140zQ">
-                </div>
-                <!--6LdzASAqAAAAABzxRO667snXXntcj6L0-QDrxH_ufc-->
+                <center>
+                    <div style="width: 198px; height: 40px; 
+                        transform: scale(0.65); transform-origin: 0 0">
+                        <div class="g-recaptcha" 
+                            data-sitekey="6LdzASAqAAAAAHhQdlfCCZOOzfx17iEXeR-140zQ">
+                        </div>
+                    </div>
+                </center>
             </td>
         </tr>
         <tr>
