@@ -5,11 +5,13 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
 <link href="../CSS/Security.css" rel="stylesheet" />
+<!--- reCAPTCHA -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <br /><br /><br /><br /><br /><br /><br /><br />
 <div id="signIn_container" class="sign_container">
     <table>
         <tr>
-            <td id="signUp_td">
+            <td class="signUp_td">
                 <h2 style="font-size: 24px; font-weight: bold">
                     Sign Up</h2>
             </td>
@@ -292,6 +294,20 @@
                 <a href="#">User Agreement</a>, and
                 <a href="#">Privacy Policy</a>.
             </td>
+        </tr>
+        <tr>
+            <td class="trMarginBottom20"></td>
+        </tr>
+        <tr>
+            <td>
+                <div class="g-recaptcha" 
+                    data-sitekey="6LdzASAqAAAAAHhQdlfCCZOOzfx17iEXeR-140zQ">
+                </div>
+                <!--6LdzASAqAAAAABzxRO667snXXntcj6L0-QDrxH_ufc-->
+            </td>
+        </tr>
+        <tr>
+            <td class="trMarginBottom20"></td>
         </tr>
         <tr>
             <td id="signUpBtn_td">
