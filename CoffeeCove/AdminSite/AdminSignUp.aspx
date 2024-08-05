@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Sign Up (Admin)" Language="C#" 
+﻿<!--<%@ Page Title="Sign Up (Admin)" Language="C#" 
     MasterPageFile="../Master/Admin.Master" 
     AutoEventWireup="true" CodeBehind="AdminSignUp.aspx.cs" 
     Inherits="CoffeeCove.AdminSite.SignUp" %>
@@ -249,3 +249,4 @@
     </p>
 </center>
 </asp:Content>
+-->

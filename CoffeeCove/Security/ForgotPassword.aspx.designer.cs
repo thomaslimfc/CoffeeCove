@@ -15,48 +15,48 @@ namespace CoffeeCove.Security
     {
 
         /// <summary>
-        /// usernameEmail control.
+        /// UsernameEmail_FP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox usernameEmail;
+        protected global::System.Web.UI.WebControls.TextBox UsernameEmail_FP;
 
         /// <summary>
-        /// usernameEmail_rqdValidator control.
+        /// UsernameEmail_FP_rqdValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator usernameEmail_rqdValidator;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator UsernameEmail_FP_rqdValidator;
 
         /// <summary>
-        /// usernameEmail_regexValidator control.
+        /// UsernameEmail_FP_regexValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator usernameEmail_regexValidator;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator UsernameEmail_FP_regexValidator;
 
         /// <summary>
-        /// next_btn control.
+        /// NextBtn_FP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button next_btn;
+        protected global::System.Web.UI.WebControls.Button NextBtn_FP;
 
         /// <summary>
-        /// back_btn control.
+        /// BackBtn_FP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button back_btn;
+        protected global::System.Web.UI.WebControls.Button BackBtn_FP;
     }
 }

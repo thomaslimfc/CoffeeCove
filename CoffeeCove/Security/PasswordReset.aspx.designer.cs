@@ -15,66 +15,75 @@ namespace CoffeeCove.Security
     {
 
         /// <summary>
-        /// password3 control.
+        /// Password_PR control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox password3;
+        protected global::System.Web.UI.WebControls.TextBox Password_PR;
 
         /// <summary>
-        /// password3_rqdValidator control.
+        /// Password_PR_rqdValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator password3_rqdValidator;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator Password_PR_rqdValidator;
 
         /// <summary>
-        /// password_regexValidator control.
+        /// Password_PR_regexValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator password_regexValidator;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator Password_PR_regexValidator;
 
         /// <summary>
-        /// passwordConfirm control.
+        /// PasswordConfirm_PR control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox passwordConfirm;
+        protected global::System.Web.UI.WebControls.TextBox PasswordConfirm_PR;
 
         /// <summary>
-        /// passwordConfirm_rqdValidator control.
+        /// PasswordConfirm_PR_rqdValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator passwordConfirm_rqdValidator;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator PasswordConfirm_PR_rqdValidator;
 
         /// <summary>
-        /// confirmPassword_compareValidator control.
+        /// PasswordConfirm_PR_compareValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator confirmPassword_compareValidator;
+        protected global::System.Web.UI.WebControls.CompareValidator PasswordConfirm_PR_compareValidator;
 
         /// <summary>
-        /// resetPassword_btn control.
+        /// ResetPasswordBtn_PR control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button resetPassword_btn;
+        protected global::System.Web.UI.WebControls.Button ResetPasswordBtn_PR;
+
+        /// <summary>
+        /// errorMessageLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label errorMessageLabel;
     }
 }

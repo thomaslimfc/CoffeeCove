@@ -24,24 +24,23 @@
                                     alt="Enter your username" />
                             </td>
                             <td>
-                                <asp:TextBox ID="username" CssClass="username" 
+                                <asp:TextBox ID="Username_SU" CssClass="securityInput" 
                                     runat="server" placeholder="Username" 
-                                    title="Username" 
-                                    OnTextChanged="Username_TextChanged"></asp:TextBox>
+                                    title="Username"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td class="textAlignLeft" colspan="2">
                                 <asp:RequiredFieldValidator 
-                                    ID="username_rqdValidator" runat="server" 
-                                    ControlToValidate="username" 
+                                    ID="Username_SU_rqdValidator" runat="server" 
+                                    ControlToValidate="Username_SU" 
                                     ErrorMessage="Username is required." 
                                     Display="Dynamic" ForeColor="Red" 
                                     CssClass="rqdValidator" />
                                 <asp:RegularExpressionValidator 
-                                    ID="username_regexValidator" 
+                                    ID="Username_SU_regexValidator" 
                                     runat="server" 
-                                    ControlToValidate="username" 
+                                    ControlToValidate="Username_SU" 
                                     ErrorMessage="Must contain >10 letters and numbers only." 
                                     Display="Dynamic" 
                                     ForeColor="Red" 
@@ -66,24 +65,23 @@
                                     alt="Enter your email" />
                             </td>
                             <td>
-                                <asp:TextBox ID="emailAdd" CssClass="emailAdd" 
+                                <asp:TextBox ID="EmailAdd_SU" CssClass="securityInput" 
                                     runat="server" placeholder="Email Address" 
-                                    title="Email Address" 
-                                    OnTextChanged="EmailAdd_TextChanged"></asp:TextBox>
+                                    title="Email Address"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td class="textAlignLeft" colspan="2">
                                 <asp:RequiredFieldValidator 
-                                    ID="emailAdd_rqdValidator" runat="server" 
-                                    ControlToValidate="emailAdd" 
+                                    ID="EmailAdd_SU_rqdValidator" runat="server" 
+                                    ControlToValidate="EmailAdd_SU" 
                                     ErrorMessage="Email Address is required." 
                                     Display="Dynamic" ForeColor="Red" 
                                     CssClass="rqdValidator" />
                                 <asp:RegularExpressionValidator 
-                                    ID="email_regexValidator" 
+                                    ID="EmailAdd_SU_regexValidator" 
                                     runat="server" 
-                                    ControlToValidate="emailAdd" 
+                                    ControlToValidate="EmailAdd_SU" 
                                     ErrorMessage="Invalid email format." 
                                     Display="Dynamic" 
                                     ForeColor="Red" 
@@ -108,24 +106,23 @@
                                     alt="Enter your password" />
                             </td>
                             <td>
-                                <asp:TextBox ID="password" CssClass="password" 
+                                <asp:TextBox ID="Password_SU" CssClass="securityInput" 
                                     runat="server" placeholder="Password" 
-                                    title="Password" 
-                                    OnTextChanged="Password_TextChanged"></asp:TextBox>
+                                    title="Password"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td class="textAlignLeft" colspan="2">
                                 <asp:RequiredFieldValidator 
-                                    ID="password_rqdValidator" runat="server" 
-                                    ControlToValidate="password" 
+                                    ID="Password_SU_rqdValidator" runat="server" 
+                                    ControlToValidate="Password_SU" 
                                     ErrorMessage="Password is required." 
                                     Display="Dynamic" ForeColor="Red" 
                                     CssClass="rqdValidator" />
                                 <asp:RegularExpressionValidator 
-                                    ID="password_regexValidator" 
+                                    ID="Password_SU_regexValidator" 
                                     runat="server" 
-                                    ControlToValidate="password" 
+                                    ControlToValidate="Password_SU" 
                                     ErrorMessage="Must contain >10 letters, numbers, and symbols." 
                                     Display="Dynamic" 
                                     ForeColor="Red" 
@@ -150,25 +147,24 @@
                                     alt="Re-enter your password" />
                             </td>
                             <td>
-                                <asp:TextBox ID="passReenter" CssClass="passReenter" 
+                                <asp:TextBox ID="PasswordReenter_SU" CssClass="securityInput" 
                                     runat="server" placeholder="Re-enter Password" 
-                                    title="Re-enter Password" 
-                                    OnTextChanged="PassReenter_TextChanged"></asp:TextBox>
+                                    title="Re-enter Password"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td class="textAlignLeft" colspan="2">
                                 <asp:RequiredFieldValidator 
-                                    ID="passReenter_rqdValidator" runat="server" 
-                                    ControlToValidate="passReenter" 
+                                    ID="PasswordReenter_SU_rqdValidator" runat="server" 
+                                    ControlToValidate="PasswordReenter_SU" 
                                     ErrorMessage="Password Re-enter is required." 
                                     Display="Dynamic" ForeColor="Red" 
                                     CssClass="rqdValidator" />
                                 <asp:CompareValidator 
-                                    ID="confirmPassword_compareValidator" 
+                                    ID="PasswordReenter_SU_compareValidator" 
                                     runat="server" 
-                                    ControlToValidate="passReenter" 
-                                    ControlToCompare="password" 
+                                    ControlToValidate="PasswordReenter_SU" 
+                                    ControlToCompare="Password_SU" 
                                     ErrorMessage="Passwords do not match." 
                                     Display="Dynamic" 
                                     ForeColor="Red" 
@@ -299,8 +295,8 @@
         </tr>
         <tr>
             <td id="signUpBtn_td">
-                <asp:Button ID="signUp_btn" runat="server" Text="Agree & Join"
-                            CssClass="signUp_btn"/>
+                <asp:Button ID="SignUpBtn_SU" runat="server" Text="Agree & Join"
+                            CssClass="securityPrimaryBtn" OnClick="SignUpBtn_SU_Click"/>
             </td>
         </tr>
     </table>        

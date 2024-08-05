@@ -18,42 +18,34 @@ namespace CoffeeCove.Security
             Response.Redirect("TwoFactorAuthentication.aspx");
         }
 
-        protected void ResetPassword_Click(object sender, EventArgs e)
+        protected void ResetPasswordBtn_PR_Click(object sender, EventArgs e)
         {
-            // Add your reset password logic here
-            string newPassword = password3.Text;
-            string confirmPassword = passwordConfirm.Text;
 
-            if (newPassword == confirmPassword)
-            {
-                // Assume we have a method to reset the password
-                ResetUserPassword(newPassword);
-                // Redirect to a success page or display a success message
-                Response.Redirect("PasswordResetSuccess.aspx");
-            }
-            else
-            {
-                // Display an error message
-                // For example, using a Label control to show the message
-                // errorMessage.Text = "Passwords do not match!";
-                // errorMessage.Visible = true;
-            }
         }
 
-        private void ResetUserPassword(string newPassword)
-        {
-            // Implement the logic to reset the user's password here
-            // This might involve updating the password in the database
-        }
+        //protected void ResetPassword_Click(object sender, EventArgs e)
+        //{
+        //    // Add your reset password logic here
+        //    string newPassword = password3.Text;
+        //    string confirmPassword = passwordConfirm.Text;
 
-        protected void Password3_TextChanged(object sender, EventArgs e)
-        {
-            // Handle Password TextChanged event
-        }
+        //    if (newPassword == confirmPassword)
+        //    {
+        //        // Assume we have a method to reset the password
+        //        ResetUserPassword(newPassword);
+        //        // Redirect to a success page or display a success message
+        //        Response.Redirect("PasswordResetSuccess.aspx");
+        //    }
+        //    else
+        //    {
+        //        // Display an error message
+        //        // For example, using a Label control to show the message
+        //        // errorMessage.Text = "Passwords do not match!";
+        //        // errorMessage.Visible = true;
+        //    }
+        //}
 
-        protected void PasswordConfirm_TextChanged(object sender, EventArgs e)
-        {
-            // Handle Password Re-enter TextChanged event
-        }
+
+
     }
 }

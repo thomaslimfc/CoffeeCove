@@ -9,22 +9,19 @@ namespace CoffeeCove.Security
 {
     public partial class ForgotPassword : System.Web.UI.Page
     {
-        protected void NextBtn_Click(object sender, EventArgs e)
+        protected void NextBtn_FP_Click(object sender, EventArgs e)
         {
             if (Page.IsValid)
             {
                 // Proceed with the logic when usernameEmail is provided
                 Response.Redirect("PasswordReset.aspx");
             }
+
         }
 
-        protected void BackBtn_Click(object sender, EventArgs e)
+        protected void BackBtn_FP_Click(object sender, EventArgs e)
         {
             Response.Redirect("SignIn.aspx");
-        }
-
-        protected void UsernameEmail_TextChanged(object sender, EventArgs e)
-        {
 
         }
     }

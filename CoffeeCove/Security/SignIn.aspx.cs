@@ -23,14 +23,6 @@ namespace CoffeeCove.Security
         //    password2.Text = string.Empty;
         //}
 
-        protected void Password2_TextChanged(object sender, EventArgs e)
-        {
-            // Add your logic here to handle the text changed event for the password TextBox
-        }
 
-        protected void Username_TextChanged2(object sender, EventArgs e)
-        {
-            // Add your logic here to handle the text changed event for the username TextBox
-        }
     }
 }

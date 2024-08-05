@@ -15,112 +15,112 @@ namespace CoffeeCove.Security
     {
 
         /// <summary>
-        /// username control.
+        /// Username_SU control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox username;
+        protected global::System.Web.UI.WebControls.TextBox Username_SU;
 
         /// <summary>
-        /// username_rqdValidator control.
+        /// Username_SU_rqdValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator username_rqdValidator;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator Username_SU_rqdValidator;
 
         /// <summary>
-        /// username_regexValidator control.
+        /// Username_SU_regexValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator username_regexValidator;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator Username_SU_regexValidator;
 
         /// <summary>
-        /// emailAdd control.
+        /// EmailAdd_SU control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox emailAdd;
+        protected global::System.Web.UI.WebControls.TextBox EmailAdd_SU;
 
         /// <summary>
-        /// emailAdd_rqdValidator control.
+        /// EmailAdd_SU_rqdValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator emailAdd_rqdValidator;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator EmailAdd_SU_rqdValidator;
 
         /// <summary>
-        /// email_regexValidator control.
+        /// EmailAdd_SU_regexValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator email_regexValidator;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator EmailAdd_SU_regexValidator;
 
         /// <summary>
-        /// password control.
+        /// Password_SU control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox password;
+        protected global::System.Web.UI.WebControls.TextBox Password_SU;
 
         /// <summary>
-        /// password_rqdValidator control.
+        /// Password_SU_rqdValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator password_rqdValidator;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator Password_SU_rqdValidator;
 
         /// <summary>
-        /// password_regexValidator control.
+        /// Password_SU_regexValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator password_regexValidator;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator Password_SU_regexValidator;
 
         /// <summary>
-        /// passReenter control.
+        /// PasswordReenter_SU control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox passReenter;
+        protected global::System.Web.UI.WebControls.TextBox PasswordReenter_SU;
 
         /// <summary>
-        /// passReenter_rqdValidator control.
+        /// PasswordReenter_SU_rqdValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator passReenter_rqdValidator;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator PasswordReenter_SU_rqdValidator;
 
         /// <summary>
-        /// confirmPassword_compareValidator control.
+        /// PasswordReenter_SU_compareValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator confirmPassword_compareValidator;
+        protected global::System.Web.UI.WebControls.CompareValidator PasswordReenter_SU_compareValidator;
 
         /// <summary>
         /// gender control.
@@ -159,12 +159,12 @@ namespace CoffeeCove.Security
         protected global::System.Web.UI.WebControls.RequiredFieldValidator location_rqdValidator;
 
         /// <summary>
-        /// signUp_btn control.
+        /// SignUpBtn_SU control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button signUp_btn;
+        protected global::System.Web.UI.WebControls.Button SignUpBtn_SU;
     }
 }

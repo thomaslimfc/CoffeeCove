@@ -12,6 +12,7 @@ body, br {
 .specialMargin25 {
     margin-left: 25px;
 }
+
 .specialPadding25 {
     padding-left: 25px;
 }
@@ -39,9 +40,9 @@ body, br {
     /* padding-top: 500px; */
     /* } */
 
-.sign_container > table {
-    margin: 0 auto;
-}
+    .sign_container > table {
+        margin: 0 auto;
+    }
 
 #signIn_td,
 #signUp_td,
@@ -77,6 +78,7 @@ body, br {
     margin-right: 5px;
 }
 
+.securityInput,
 .username,
 .username2,
 .emailAdd,
@@ -85,7 +87,6 @@ body, br {
 .passReenter,
 .usernameEmail,
 .location_ddl,
-
 .adminUsername,
 .adminPassword,
 .adminPassReenter,
@@ -104,6 +105,7 @@ body, br {
     height: 30px;
     margin-right: 5px;
 }
+
 .otp {
     /* Placeholder text */
     background-color: #C89857;
@@ -118,24 +120,23 @@ body, br {
     margin-right: 5px;
 }
 
-.username::placeholder,
-.username2::placeholder,
-.emailAdd::placeholder,
-.password::placeholder,
-.password2::placeholder,
-.passReenter::placeholder,
-.usernameEmail::placeholder,
-
-.adminUsername::placeholder,
-.adminPassword::placeholder,
-.adminPassReenter::placeholder,
-.adminUsername2::placeholder,
-.adminPassword2::placeholder,
-.adminUsernameEmail::placeholder,
-
-.otp::placeholder {
-    color: #ffffff;
-}
+    .securityInput::placeholder,
+    .username::placeholder,
+    .username2::placeholder,
+    .emailAdd::placeholder,
+    .password::placeholder,
+    .password2::placeholder,
+    .passReenter::placeholder,
+    .usernameEmail::placeholder,
+    .adminUsername::placeholder,
+    .adminPassword::placeholder,
+    .adminPassReenter::placeholder,
+    .adminUsername2::placeholder,
+    .adminPassword2::placeholder,
+    .adminUsernameEmail::placeholder,
+    .otp::placeholder {
+        color: #ffffff;
+    }
 
 .input_div {
     background-color: #C89857;
@@ -181,7 +182,7 @@ td > a {
     margin-left: 7px;
     margin-top: 4px;
     padding-left: 18px;
-    padding-right: 12px;    
+    padding-right: 12px;
 }
 
 .gender_rbl {
@@ -191,65 +192,66 @@ td > a {
     font-weight: bold;
     line-height: 30px;
 }
-.gender_rbl input[type="radio"] {
-    vertical-align: middle;
-}
-.gender_rbl label {
-    line-height: 30px;
-}
+
+    .gender_rbl input[type="radio"] {
+        vertical-align: middle;
+    }
+
+    .gender_rbl label {
+        line-height: 30px;
+    }
 /* RadioButtonList container */
 .gender_rbl {
     display: flex;
     align-items: center;
-    gap: 20px; 
+    gap: 20px;
     /* margin-top: 10px;  */
 }
-/* Radio button item */
-.gender_rbl input[type="radio"] {
-    display: none; /* Hide the default radio button */
-}
-/* Radio button */
-.gender_rbl input[type="radio"] + label {
-    position: relative;
-    padding-left: 25px;
-    cursor: pointer;
-    font-weight: bold;
-    user-select: none; 
-}
-/* Radio button circle */
-.gender_rbl input[type="radio"] + label::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 10%;
-    transform: translateY(-50%);
-    width: 14px; 
-    height: 14px; 
-    border: 2px solid #A0704E; 
-    border-radius: 50%; 
-    background-color: #ffffff;
-    margin-top: 6px;
-}
-/* Radio button when checked */
-.gender_rbl input[type="radio"]:checked + label::before {
-    border-color: #ffffff; 
-    background-color: #A0704E; 
-}
+    /* Radio button item */
+    .gender_rbl input[type="radio"] {
+        display: none; /* Hide the default radio button */
+    }
+        /* Radio button */
+        .gender_rbl input[type="radio"] + label {
+            position: relative;
+            padding-left: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            user-select: none;
+        }
+            /* Radio button circle */
+            .gender_rbl input[type="radio"] + label::before {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 10%;
+                transform: translateY(-50%);
+                width: 14px;
+                height: 14px;
+                border: 2px solid #A0704E;
+                border-radius: 50%;
+                background-color: #ffffff;
+                margin-top: 6px;
+            }
+        /* Radio button when checked */
+        .gender_rbl input[type="radio"]:checked + label::before {
+            border-color: #ffffff;
+            background-color: #A0704E;
+        }
 
-/* Dot inside radio button when checked */
-.gender_rbl input[type="radio"]:checked + label::after {
-    content: "";
-    position: absolute;
-    left: 6px;
-    top: 10%;
-    transform: translateY(-50%);
-    width: 6px; /* Size of the dot */
-    height: 6px; /* Size of the dot */
-    border-radius: 50%; /* Make it a circle */
-    background-color: #ffffff; /* Dot color */
-    margin-top: 6px;
-
-}
+        /* Dot inside radio button when checked */
+        .gender_rbl input[type="radio"]:checked + label::after {
+            content: "";
+            position: absolute;
+            left: 6px;
+            top: 10%;
+            transform: translateY(-50%);
+            width: 6px; /* Size of the dot */
+            height: 6px; /* Size of the dot */
+            border-radius: 50%; /* Make it a circle */
+            background-color: #ffffff; /* Dot color */
+            margin-top: 6px;
+        }
 
 .location_ddl {
     background-color: #ffffff;
@@ -275,9 +277,10 @@ td > a {
     padding-bottom: 15px;
 }
 
+.securityPrimaryBtn,
 .signIn_btn,
-.signUp_btn,
-.next_btn,
+.NextBtn_FP,
+.BackBtn_FP,
 .resetPassword_btn {
     background-color: #775466;
     color: #ffffff;
@@ -294,23 +297,25 @@ td > a {
     cursor: pointer;
 }
 
-.signIn_btn:hover,
-.signUp_btn:hover,
-.next_btn:hover,
-.resetPassword_btn:hover {
-    background-color: #DADDE2;
-    color: #775466;
-    /* font-family: Staffee-Bold; */
-    font-weight: bold;
-    font-size: medium;
-    border-radius: 30px;
-    border-width: 0;
-    margin-top: 15px;
-    padding-bottom: 6px;
-    cursor: pointer;
-    transition-delay: 0.25s;
-}
+    .securityPrimaryBtn:hover,
+    .signIn_btn:hover,
+    .signUp_btn:hover,
+    .NextBtn_FP:hover,
+    .resetPassword_btn:hover {
+        background-color: #DADDE2;
+        color: #775466;
+        /* font-family: Staffee-Bold; */
+        font-weight: bold;
+        font-size: medium;
+        border-radius: 30px;
+        border-width: 0;
+        margin-top: 15px;
+        padding-bottom: 6px;
+        cursor: pointer;
+        transition-delay: 0.25s;
+    }
 
+.securitySecondaryBtn,
 .back_btn {
     background-color: #ffffff;
     /* color: #775466; */
@@ -330,15 +335,16 @@ td > a {
 #alreadySignedUp,
 #alreadyRegistered {
     /* font-family: Staffee-Bold; */
-    font-weight: bold;;
+    font-weight: bold;
+    ;
     padding-top: 2px;
     user-select: text;
 }
 /* default <a> CSS code */
 #alreadyRegistered {
-    color: inherit; 
-    text-decoration: none; 
-    cursor: pointer; 
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .aReset {

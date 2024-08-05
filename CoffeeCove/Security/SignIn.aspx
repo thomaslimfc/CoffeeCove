@@ -23,25 +23,24 @@
                                 <img class="usernameIcon" src="../img/username_icon.png" alt="Enter your username" />
                             </td>
                             <td>
-                                <asp:TextBox ID="username2" CssClass="username2" 
+                                <asp:TextBox ID="Username_SI" CssClass="securityInput" 
                                     runat="server"
-                                    placeholder="Username" title="Username" 
-                                    OnTextChanged="Username_TextChanged2" 
+                                    placeholder="Username" title="Username"
                                     AutoPostBack="false"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td class="textAlignLeft"  colspan="2">
                                 <asp:RequiredFieldValidator 
-                                    ID="username2_rqdValidator" runat="server" 
-                                    ControlToValidate="username2" 
+                                    ID="Username_SI_rqdValidator" runat="server" 
+                                    ControlToValidate="Username_SI" 
                                     ErrorMessage="Username is required." 
                                     Display="Dynamic" ForeColor="Red" 
                                     CssClass="rqdValidator" />
                                 <asp:RegularExpressionValidator 
-                                    ID="username2_regexValidator" 
+                                    ID="Username_SI_regexValidator" 
                                     runat="server" 
-                                    ControlToValidate="username2" 
+                                    ControlToValidate="Username_SI" 
                                     ErrorMessage="Must contain >10 letters and numbers only." 
                                     Display="Dynamic" 
                                     ForeColor="Red" 
@@ -66,26 +65,25 @@
                                     alt="Enter your password" />
                             </td>
                             <td>
-                                <asp:TextBox ID="password2" CssClass="password2" 
+                                <asp:TextBox ID="Password_SI" CssClass="securityInput" 
                                     runat="server" placeholder="Password" 
-                                    title="Password" TextMode="Password" 
-                                    OnTextChanged="Password2_TextChanged" 
+                                    title="Password" TextMode="Password"
                                     AutoPostBack="false"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td class="textAlignLeft" colspan="2">
                                 <asp:RequiredFieldValidator 
-                                    ID="password2_rqdValidator" runat="server" 
-                                    ControlToValidate="password2" 
+                                    ID="Password_SI_rqdValidator" runat="server" 
+                                    ControlToValidate="Password_SI" 
                                     ErrorMessage="Password is required." 
                                     Display="Dynamic" ForeColor="Red" 
                                     CssClass="rqdValidator" />
                                 <asp:RegularExpressionValidator 
-                                    ID="password2_regexValidator" 
+                                    ID="Password_SI_regexValidator" 
                                     runat="server" 
-                                    ControlToValidate="password2" 
-                                    ErrorMessage="Must contain >10 letters, numbers, and symbols." 
+                                    ControlToValidate="Password_SI" 
+                                    ErrorMessage="Must >10 lower + uppercases, numbers & symbols." 
                                     Display="Dynamic" 
                                     ForeColor="Red" 
                                     CssClass="rqdValidator" 
@@ -109,8 +107,8 @@
         </tr>
         <tr>
             <td id="signInBtn_td">
-                <asp:Button ID="signIn_btn" runat="server" Text="Sign In" 
-                    CssClass="signIn_btn"/>
+                <asp:Button ID="SignInButton_SI" runat="server" Text="Sign In" 
+                    CssClass="securityPrimaryBtn"/>
             </td>
         </tr>
     </table>

@@ -14,24 +14,9 @@ namespace CoffeeCove.Security
             // Your logic for Page_Load
         }
 
-        protected void Username_TextChanged(object sender, EventArgs e)
+        protected void SignUpBtn_SU_Click(object sender, EventArgs e)
         {
-            // Handle Username TextChanged event
-        }
 
-        protected void EmailAdd_TextChanged(object sender, EventArgs e)
-        {
-            // Handle Email Address TextChanged event
-        }
-
-        protected void Password_TextChanged(object sender, EventArgs e)
-        {
-            // Handle Password TextChanged event
-        }
-
-        protected void PassReenter_TextChanged(object sender, EventArgs e)
-        {
-            // Handle Password Re-enter TextChanged event
         }
     }
 }

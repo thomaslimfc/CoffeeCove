@@ -25,24 +25,23 @@
                                     alt="Enter your username or email" />
                             </td>
                             <td>
-                                <asp:TextBox ID="usernameEmail" CssClass="usernameEmail" 
+                                <asp:TextBox ID="UsernameEmail_FP" CssClass="securityInput" 
                                     runat="server" placeholder="Username / Email" 
-                                    title="usernameEmail" 
-                                    OnTextChanged="UsernameEmail_TextChanged"></asp:TextBox>
+                                    title="usernameEmail"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td class="textAlignLeft" colspan="2">
                                 <asp:RequiredFieldValidator 
-                                    ID="usernameEmail_rqdValidator" runat="server" 
-                                    ControlToValidate="usernameEmail" 
+                                    ID="UsernameEmail_FP_rqdValidator" runat="server" 
+                                    ControlToValidate="UsernameEmail_FP" 
                                     ErrorMessage="Username is required." 
                                     Display="Dynamic" ForeColor="Red" 
                                     CssClass="rqdValidator" />
                                 <asp:RegularExpressionValidator 
-                                    ID="usernameEmail_regexValidator" 
+                                    ID="UsernameEmail_FP_regexValidator" 
                                     runat="server" 
-                                    ControlToValidate="usernameEmail" 
+                                    ControlToValidate="UsernameEmail_FP" 
                                     ErrorMessage="Must contain >10 letters and numbers only." 
                                     Display="Dynamic" 
                                     ForeColor="Red" 
@@ -66,16 +65,16 @@
         </tr>
         <tr>
             <td>
-                <asp:Button ID="next_btn" runat="server" Text="Next"
-                    OnClick="NextBtn_Click" CssClass="next_btn"
-                    CausesValidation="true"/>
+                <asp:Button ID="NextBtn_FP" runat="server" Text="Next"
+                    CssClass="securityPrimaryBtn"
+                    CausesValidation="true" OnClick="NextBtn_FP_Click"/>
             </td>
         </tr>
         <tr>
             <td>
-                <asp:Button ID="back_btn" runat="server" Text="Back"
-                    OnClick="BackBtn_Click" CssClass="back_btn"
-                    CausesValidation="false"/>
+                <asp:Button ID="BackBtn_FP" runat="server" Text="Back"
+                    CssClass="securitySecondaryBtn"
+                    CausesValidation="false" OnClick="BackBtn_FP_Click"/>
             </td>
         </tr>
     </table>

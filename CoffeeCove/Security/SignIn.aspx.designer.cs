@@ -15,58 +15,58 @@ namespace CoffeeCove.Security
     {
 
         /// <summary>
-        /// username2 control.
+        /// Username_SI control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox username2;
+        protected global::System.Web.UI.WebControls.TextBox Username_SI;
 
         /// <summary>
-        /// username2_rqdValidator control.
+        /// Username_SI_rqdValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator username2_rqdValidator;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator Username_SI_rqdValidator;
 
         /// <summary>
-        /// username2_regexValidator control.
+        /// Username_SI_regexValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator username2_regexValidator;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator Username_SI_regexValidator;
 
         /// <summary>
-        /// password2 control.
+        /// Password_SI control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox password2;
+        protected global::System.Web.UI.WebControls.TextBox Password_SI;
 
         /// <summary>
-        /// password2_rqdValidator control.
+        /// Password_SI_rqdValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator password2_rqdValidator;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator Password_SI_rqdValidator;
 
         /// <summary>
-        /// password2_regexValidator control.
+        /// Password_SI_regexValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator password2_regexValidator;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator Password_SI_regexValidator;
 
         /// <summary>
         /// forgotPasswordLink control.
@@ -78,12 +78,12 @@ namespace CoffeeCove.Security
         protected global::System.Web.UI.WebControls.HyperLink forgotPasswordLink;
 
         /// <summary>
-        /// signIn_btn control.
+        /// SignInButton_SI control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button signIn_btn;
+        protected global::System.Web.UI.WebControls.Button SignInButton_SI;
     }
 }

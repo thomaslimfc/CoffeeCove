@@ -237,14 +237,12 @@
     </Compile>
     <Compile Include="AdminSite\AdminSignIn.aspx.cs">
       <DependentUpon>AdminSignIn.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AdminSite\AdminSignIn.aspx.designer.cs">
       <DependentUpon>AdminSignIn.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminSite\AdminSignUp.aspx.cs">
       <DependentUpon>AdminSignUp.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AdminSite\AdminSignUp.aspx.designer.cs">
       <DependentUpon>AdminSignUp.aspx</DependentUpon>
