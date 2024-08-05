@@ -165,3 +165,5 @@ C:\# GitHub Local Repository\CoffeeCove\CoffeeCove\bin\System.Memory.dll
 C:\# GitHub Local Repository\CoffeeCove\CoffeeCove\bin\System.Numerics.Vectors.dll
 C:\# GitHub Local Repository\CoffeeCove\CoffeeCove\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\# GitHub Local Repository\CoffeeCove\CoffeeCove\obj\Debug\CoffeeCove.csproj.Up2Date
+C:\Users\admin\Documents\GitHub\CoffeeCove\CoffeeCove\bin\System.Buffers.dll
+C:\Users\admin\Documents\GitHub\CoffeeCove\CoffeeCove\bin\System.Numerics.Vectors.dll

@@ -1,111 +1,137 @@
-﻿#menuPoster {
-    margin: 0;
-    position: relative;
+﻿#menuContainer {
+    display: flex;
+    flex-direction: column;
 }
 
-#menuPoster img {
-    width: 100%;
-}
-
-#menuPosterText {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 4rem;
-    text-align: center;
-    font-weight: bold;
-    letter-spacing: 0.5px;
-    color: white;
-}
-
+/*Category Style*/
 #categoryContainer {
-    padding: 10px;
-    width: 100%;
+    padding-top: 80px;
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #b9b9b9;
 }
 
-.categoryItem {
-    display: flex;
-    padding: 10px 70px 10px 0px;
-    margin: 0 10px;
+.categoryLink {
+    border: 2px solid transparent; 
+    padding: 10px;
+    margin: 5px;
     color: #433533;
     text-decoration: none;
-    font-weight:700;
-    border-radius: 10px;
-    flex: 1;
-    min-width: 120px;
-    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: border-color 0.3s;
 }
 
-.categoryItem:hover, .categoryItem.selected {
-    background-color: #433533f0;
-    color: #fff;
-    transition: all 0.5s ease;
+.categoryLink:hover {
+    border-color: #000; 
+    border-radius:10px;
 }
 
+#productContainer {
+    position:relative;
+}
+
+/*Product Style*/
 #productItem {
-    justify-content: center;
-    border: 2px solid #c4a374;
-    margin-left: 40px;
-    overflow-y: auto;
-    height: 500px;
-    width: 95%;
-    box-sizing: border-box;
     display: flex;
-    border-collapse: separate;
-    border-spacing: 0 60px;
+    position: relative;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-left: 10%;
+    padding: 10px;
+    overflow-y: auto;
+    height: calc(100vh - 60px);
+    z-index: 0;
+}
+
+#productItem > div {
+    border: 1px solid #ddd; 
+    margin-bottom: 20px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    background-color: #fff; 
+    box-sizing: border-box; 
+    font-size: 1rem;
+    letter-spacing: -0.5px;
+}
+
+#productItem div:last-child {
+    font-size: 1rem;
+    color: #812910; 
 }
 
 #productItem::-webkit-scrollbar {
     display: none; 
 }
 
-.item {
-    background: #fff;
-    box-shadow: 0px 0px 10px #948e79;
-    padding:10px;
-    border-radius:5px;
-    text-align:center;
+.SelectBtn {
+    border: 3px solid transparent;
+    padding: 10px;
+    background-color: #433533;
+    margin: 5px;
+    color: #433533;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 400;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: border-color 0.3s;
 }
 
-.item:hover {
-    background: #dfc6a3;
+.SelectBtn:hover {
+    border-color: #ffc74c; 
 }
 
-.formOrder {
-    position: fixed;
+/* Order Form Style */
+.orderform {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+    margin: 0;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid #fff;
+    background-color: #000000f2;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 300px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    background-color: #0a0a0ade;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    height: 70%;
+    color: #fff;
+    letter-spacing: 0.5px;
 }
 
-.formHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.orderform td {
+    padding-bottom:10px;
 }
 
-.formContent {
-    margin-top: 10px;
+.orderform label {
+    margin-bottom: 5px;
+ 
 }
 
-.formFooter {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
+.rblIngredient input[type="radio"] {
+    display:flex;
+    margin-right: 100px;
 }
 
+.rblIngredient label {
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+}
 
-
-
-
-
-
+#btnClose {
+    padding: 8px 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-left: 20px;
+}
