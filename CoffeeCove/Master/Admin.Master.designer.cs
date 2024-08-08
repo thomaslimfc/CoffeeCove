@@ -24,22 +24,22 @@ namespace CoffeeCove.Master
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// logOutBtn control.
+        /// litUserName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button logOutBtn;
+        protected global::System.Web.UI.WebControls.Literal litUserName;
 
         /// <summary>
-        /// AdminMenu control.
+        /// sideBar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Menu AdminMenu;
+        protected global::System.Web.UI.WebControls.Menu sideBar;
 
         /// <summary>
         /// ContentPlaceHolder1 control.

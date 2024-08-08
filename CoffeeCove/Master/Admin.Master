@@ -6,45 +6,69 @@
 <head runat="server">
     <title>CoffeeCove</title>
 
-    <!-- CSS Style -->
+        <!-- Favicons -->
+    <link href="../Content/img/favicon.png" rel="icon">
+    <link href="../Content/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Bootstrap CSS Files -->
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="../Scripts/bootstrap.min.js"></script>
+    
+    <!-- Vendor CSS Files -->
+    <link href="Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="Content/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="Content/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="Content/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="Content/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="Content/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="Content/vendor/simple-datatables/style.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="Content/css/style.css" rel="stylesheet">
     <link href="../CSS/Admin.css" rel="stylesheet" />
-    <link href="../CSS/Dashboard.css" rel="stylesheet" />
 </head>
 
 <body>
     <form id="form1" runat="server">
- <!-- header -->
+        <!--header-->
         <div id="header">
             <div class="headerContainer">
-                <h2><a class="logo" href="../Admin/Index.aspx">DASHBOARD</a></h2>
-                <div class="headerBtn">
-                    <asp:Button ID="logOutBtn" runat="server" Text="LogOut" Font-Size="17px" OnClick="LogOut_Click"/>
+                <h3><a class="logo" href="../Home/Home.aspx">COFFEECOVE&#174;</a></h3>
+                <!-- User Login -->
+                <div class="user-login">
+                    <asp:Literal ID="litUserName" runat="server" Text="Carren1220"></asp:Literal>
                 </div>
             </div>
         </div>
-        <div id="mainContainer">
-            <!-- side bar -->
-            <div id="sideBar">
-                <asp:Menu ID="AdminMenu" runat="server" Font-Size="17px">
+        
+        <div id="container">
+            <!--side bar-->
+            <div id="sidebarContainer">
+                <asp:Menu ID="sideBar" runat="server" Font-Size="17px">
                     <StaticMenuItemStyle CssClass="SideBarMenu" />
-                    <Items>
-                        <asp:MenuItem NavigateUrl="~/Admin/Index.aspx" Text="Dashboard" Value="Dashboard"></asp:MenuItem>
-                        <asp:MenuItem NavigateUrl="#" Text="Order" Value="Order List"></asp:MenuItem>
-                        <asp:MenuItem NavigateUrl="#" Text="Categories" Value="Categories"></asp:MenuItem>
-                        <asp:MenuItem NavigateUrl="#" Text="Product" Value="Product"></asp:MenuItem>
-                        <asp:MenuItem NavigateUrl="#" Text="Report" Value="Report"></asp:MenuItem>
-                        <asp:MenuItem NavigateUrl="#" Text="Settings" Value="Settings"></asp:MenuItem>
-                    </Items>
+                        <Items>
+                            <asp:MenuItem NavigateUrl="~/AdminSite/Dashboard.aspx" Text="Dashboard" Value="Dashboard"></asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="#" Text="Users" Value="Users"></asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="#" Text="Orders" Value="Orders"></asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="#" Text="Categories" Value="Categories"></asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="#" Text="Products" Value="Products"></asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="#" Text="Report" Value="Report"></asp:MenuItem>
+                        </Items>
                 </asp:Menu>
             </div>
 
-            <!--content-->
-            <div id="adminCon">
+            <!-- Content -->
+            <div id="content">
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 </asp:ContentPlaceHolder>
             </div>
         </div>
 
+        
+        <!-- Footer -->
+        <div class="footerBottom" style="font-size: 15px; font-weight: 300; color: #FFFFFF; background-color: #2a2a2a;">
+            Developed by TheCoffeeNook Sdn.Bhd. | &copy; All right reserved. <%:DateTime.Now.Year %>
+        </div>       
     </form>
 </body>
 </html>

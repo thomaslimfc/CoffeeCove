@@ -169,3 +169,5 @@ C:\# GitHub Local Repository\CoffeeCove\CoffeeCove\obj\Debug\CoffeeCove.csproj.C
 C:\# GitHub Local Repository\CoffeeCove\CoffeeCove\obj\Debug\CoffeeCove.csproj.Up2Date
 C:\# GitHub Local Repository\CoffeeCove\CoffeeCove\obj\Debug\CoffeeCove.dll
 C:\# GitHub Local Repository\CoffeeCove\CoffeeCove\obj\Debug\CoffeeCove.pdb
+C:\Users\admin\Documents\GitHub\CoffeeCove\CoffeeCove\bin\Newtonsoft.Json.dll
+C:\Users\admin\Documents\GitHub\CoffeeCove\CoffeeCove\bin\Newtonsoft.Json.xml
