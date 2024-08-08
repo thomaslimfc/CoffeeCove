@@ -59,11 +59,6 @@
     letter-spacing: -0.5px;
 }
 
-#productItem div:last-child {
-    font-size: 1rem;
-    color: #812910; 
-}
-
 #productItem::-webkit-scrollbar {
     display: none; 
 }
