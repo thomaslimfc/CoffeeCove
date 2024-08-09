@@ -17,7 +17,7 @@
             <div class="cardDetail">
                 <div>
                     <p>Card Holder Name</p>
-                    <asp:TextBox ID="txtName" runat="server" Width="90%" CssClass="bankForm" PlaceHolder="David Lee"></asp:TextBox>
+                    <asp:TextBox ID="txtName" runat="server" Width="90%" CssClass="bankForm" PlaceHolder="Name"></asp:TextBox>
                 </div>
             </div>
             <div class="cardDetail">
