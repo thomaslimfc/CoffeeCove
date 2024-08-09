@@ -3,14 +3,14 @@
 }
 
 #posterImg {
-    width: 1600px;
+    width: 100%;
     height: 200px;
     object-fit: cover;
 }
 
 #posterText {
     position: absolute;
-    top: 15%;
+    top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 4rem;
@@ -30,8 +30,8 @@
     text-align: left;
 }
 
-.cardDetail div{
-    width:100%;
+.cardDetail div {
+    width: 100%;
 }
 
 .btn {
@@ -48,35 +48,35 @@
 }
 
 
-.btn:hover {
-    background-position: right center;
-    color: #fff;
-    text-decoration: none;
-    cursor: pointer;
-}
+    .btn:hover {
+        background-position: right center;
+        color: #fff;
+        text-decoration: none;
+        cursor: pointer;
+    }
 
-.btn a{
-    display: block;
-    width: 100%;
-    height: 100%;
-    vertical-align: middle;
-    position: relative;
-}
+    .btn a {
+        display: block;
+        width: 100%;
+        height: 100%;
+        vertical-align: middle;
+        position: relative;
+    }
 
-.btn a span{
-    position: absolute;
-    left:20px;
-}
+        .btn a span {
+            position: absolute;
+            left: 20px;
+        }
 
-.btn a span#proceed{
-    position: absolute;
-    left:95%;
-}
+            .btn a span#proceed {
+                position: absolute;
+                left: 95%;
+            }
 
-.btn:hover #proceed{
-    transform: translate(15px);
-    transition: transform 0.4s ease-in;
-}
+    .btn:hover #proceed {
+        transform: translate(15px);
+        transition: transform 0.4s ease-in;
+    }
 
 .bankForm {
     background-color: #f0f0f0;
@@ -88,10 +88,10 @@
     transition: 0.5s;
 }
 
-.bankForm:focus {
-    border: 2px solid black;
-    box-shadow: none;
-}
+    .bankForm:focus {
+        border: 2px solid black;
+        box-shadow: none;
+    }
 
 ::placeholder {
     font-size: 14px;

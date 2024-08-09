@@ -12,7 +12,7 @@
         <span>Cash</span>
         <br />
         <hr />
-        <span>Card</span>
+        <span>Debit/Credit Card</span>
         <div id="cardContainer">
             <div class="cardDetail">
                 <div>
@@ -34,7 +34,7 @@
                     </div>
                     <div>
                         <p>CVV/CVC</p>
-                        <asp:TextBox ID="txtCVV" runat="server" Width="80%" CssClass="bankForm" PlaceHolder="123"></asp:TextBox>
+                        <asp:TextBox ID="txtCVV" runat="server" Width="80%" CssClass="bankForm" PlaceHolder="XXX"></asp:TextBox>
                     </div>
                 </div>
             </div>
@@ -44,7 +44,7 @@
                     <asp:LinkButton ID="lbCard" runat="server" Font-Underline="False" ForeColor="Black">
                         <br />
                         <span>
-                            Pay RM<asp:Literal ID="litAmt" runat="server"></asp:Literal>
+                            Select to Pay RM<asp:Literal ID="litAmt" runat="server"></asp:Literal>
                         </span>
                         <span id="proceed">
                             >

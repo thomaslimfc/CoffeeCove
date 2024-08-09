@@ -1,16 +1,16 @@
-﻿﻿#cartPoster{
+﻿#cartPoster{
     position: relative;
 }
 
 #cartPosterImg {
-    width: 1600px;
+    width: 100%;
     height: 200px;
     object-fit: cover;
 }
 
 #cartPosterText {
     position: absolute;
-    top: 15%;
+    top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 4rem;
