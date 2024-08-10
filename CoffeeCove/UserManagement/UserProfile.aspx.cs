@@ -19,7 +19,7 @@ namespace CoffeeCove.UserManagement
             string username = "xylim2002";
 
             string connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["CoffeeCoveDB"].ConnectionString;
-            string query = "SELECT Username, Gender, EmailAddress, DateOfBirth, ResidenceState FROM Customer WHERE Username = @Username";
+            string query = "SELECT Username, Gender, EmailAddress, DateOfBirth, ContactNo, ResidenceState FROM Customer WHERE Username = @Username";
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
@@ -34,7 +34,12 @@ namespace CoffeeCove.UserManagement
                         lblUsername.Text = reader["Username"].ToString();
                         lblGender.Text = reader["Gender"].ToString();
                         lblEmail.Text = reader["EmailAddress"].ToString();
-                        lblDOB.Text = reader["DateOfBirth"].ToString();
+
+                        // Show short date (d) only, make time disappear
+                        DateTime dob = Convert.ToDateTime(reader["DateOfBirth"]);
+                        lblDOB.Text = dob.ToString("d");
+
+                        lblContactNo.Text = reader["ContactNo"].ToString();
                         lblResidenceState.Text = reader["ResidenceState"].ToString();
                     }
                     con.Close();

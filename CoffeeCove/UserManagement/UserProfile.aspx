@@ -8,11 +8,11 @@
     <link href="../CSS/UserManagement.css" rel="stylesheet" />
     <br /><br /><br /><br />
     
-    <div>
+    <!--<div>
         <h3 class="textAlignCenter">Your current Club tier</h3>
         <h2 class="textAlignCenter">Point Balance: 199</h2>
         <h1 class="textAlignCenter">Bronze</h1>
-    </div>
+    </div>-->
     <br />
     <center>
         <div class="profileContainer">
@@ -56,14 +56,14 @@
 
             <tr class="oddRow">
                 <td class="blankCol"></td>
+                <td class="contentCol" >Contact Number</td>
                 <td class="contentCol" >Residence State</td>
-                <td class="contentCol" ></td>
                 <td class="blankCol"></td>
             </tr>
             <tr class="evenRow">
                 <td class="blankCol"></td>
+                <td class="contentCol"><asp:Label ID="lblContactNo" runat="server" /></td>
                 <td class="contentCol"><asp:Label ID="lblResidenceState" runat="server" /></td>
-                <td class="contentCol"></td>
                 <td class="blankCol"></td>
             </tr>
             <tr><td><br /></td></tr>
