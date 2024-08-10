@@ -34,8 +34,8 @@
             </tr>
             <tr class="evenRow">
                 <td class="blankCol"></td>
-                <td class="contentCol" >thomas7296</td>
-                <td class="contentCol" >Male</td>
+                <td class="contentCol"><asp:Label ID="lblUsername" runat="server" /></td>
+                <td class="contentCol"><asp:Label ID="lblGender" runat="server" /></td>
                 <td class="blankCol"></td>
             </tr>
             <tr><td><br /></td></tr>
@@ -48,8 +48,8 @@
             </tr>
             <tr class="evenRow">
                 <td class="blankCol"></td>
-                <td class="contentCol" >thomaslim@gmail.com</td>
-                <td class="contentCol" >21 - 02 - 2003</td>
+                <td class="contentCol"><asp:Label ID="lblEmail" runat="server" /></td>
+                <td class="contentCol"><asp:Label ID="lblDOB" runat="server" /></td>
                 <td class="blankCol"></td>
             </tr>
             <tr><td><br /></td></tr>
@@ -62,8 +62,8 @@
             </tr>
             <tr class="evenRow">
                 <td class="blankCol"></td>
-                <td class="contentCol" >Penang</td>
-                <td class="contentCol" ></td>
+                <td class="contentCol"><asp:Label ID="lblResidenceState" runat="server" /></td>
+                <td class="contentCol"></td>
                 <td class="blankCol"></td>
             </tr>
             <tr><td><br /></td></tr>
