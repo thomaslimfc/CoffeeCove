@@ -13,7 +13,7 @@
     <center>
         <div class="profileContainer">
         <br />
-        <table>
+        <table style="user-select: none">
             <tr><td><br /></td></tr>
             <tr>
                 <td class="blankCol"></td>
