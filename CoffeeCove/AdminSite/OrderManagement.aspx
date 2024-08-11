@@ -1,28 +1,35 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Admin.Master" AutoEventWireup="true" CodeBehind="OrderManagement.aspx.cs" Inherits="CoffeeCove.AdminSite.OrderManagement" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <link href="../CSS/OrderManagement.css" rel="stylesheet" />
-    <div class=main id="main">
-        <div class="pagetitle" style="border: solid 2px red">
+    
+    <div id="main" class="main container-fluid" style="border:solid 5px red;margin-left: 12%">
+        
+        <!--PageTitle-->
+        <div class="pagetitle">
             <br />
             <h3>Orders Management</h3>
-
         </div>
-        <!--End page title-->
+        <!--PageTitle End-->
 
+        <section class="section">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Order History</h5>
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+                
+
+
+            </div>
+        </section>
     </div>
-
-
-    <!-- Vendor JS Files -->
-    <script src="../Content/vendor/apexcharts/apexcharts.min.js"></script>
-    <script src="../Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../Content/vendor/chart.js/chart.umd.js"></script>
-    <script src="../Content/vendor/echarts/echarts.min.js"></script>
-    <script src="../Content/vendor/quill/quill.js"></script>
-    <script src="../Content/vendor/simple-datatables/simple-datatables.js"></script>
-    <script src="../Content/vendor/tinymce/tinymce.min.js"></script>
-    <script src="../Content/vendor/php-email-form/validate.js"></script>
-
-    <!-- Template Main JS File -->
-    <script src="../Content/js/main.js"></script>
 
 </asp:Content>
