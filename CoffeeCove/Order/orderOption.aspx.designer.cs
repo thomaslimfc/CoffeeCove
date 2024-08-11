@@ -33,24 +33,6 @@ namespace CoffeeCove.Order
         protected global::System.Web.UI.WebControls.TextBox tbAddress2;
 
         /// <summary>
-        /// tbState control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbState;
-
-        /// <summary>
-        /// tbCity control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbCity;
-
-        /// <summary>
         /// tbPostCode control.
         /// </summary>
         /// <remarks>
@@ -69,22 +51,22 @@ namespace CoffeeCove.Order
         protected global::System.Web.UI.WebControls.TextBox tbUnit;
 
         /// <summary>
-        /// litStoreName control.
+        /// lblStoreName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litStoreName;
+        protected global::System.Web.UI.WebControls.Label lblStoreName;
 
         /// <summary>
-        /// litStoreAdd control.
+        /// lblStoreAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litStoreAdd;
+        protected global::System.Web.UI.WebControls.Label lblStoreAdd;
 
         /// <summary>
         /// lbGurney control.
