@@ -145,16 +145,16 @@
                                 </label>
                                 <select class="form-control" id="ccmonth">
                                     <option value="" selected disabled>--Please select your Bank--</option>
-                                    <option>Bank 1</option>
-                                    <option>Bank 2</option>
-                                    <option>Bank 3</option>
-                                    <option>Bank 4</option>
-                                    <option>Bank 5</option>
-                                    <option>Bank 6</option>
-                                    <option>Bank 7</option>
-                                    <option>Bank 8</option>
-                                    <option>Bank 9</option>
-                                    <option>Bank 10</option>
+                                    <option>Ambank</option>
+                                    <option>Alliance Bank</option>
+                                    <option>CIMB Bank</option>
+                                    <option>Citibank</option>
+                                    <option>Hong Leong Bank</option>
+                                    <option>Maybank</option>
+                                    <option>OCBC Bank</option>
+                                    <option>Public Bank</option>
+                                    <option>RHB Bank</option>
+                                    <option>UOB</option>
                                 </select>
                             </div>
                             <div class="form-group">
