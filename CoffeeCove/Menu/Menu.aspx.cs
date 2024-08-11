@@ -18,14 +18,14 @@ namespace CoffeeCove.Menu
             if (!Page.IsPostBack)
             {
                 BindCategory();
-                BindProducts("CG01"); // Default category to show all products
+                BindProducts("1"); // Default category to show all products
             }
         }
         private void BindCategory()
         {
             using (SqlConnection con = new SqlConnection(cs))
             {
-                string sql = "SELECT CategoryId, CategoryName FROM Category";
+                string sql = "SELECT CategoryId, CategoryName FROM Category WHERE IsActive = 1";
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     con.Open();
@@ -40,13 +40,13 @@ namespace CoffeeCove.Menu
         {
             using (SqlConnection con = new SqlConnection(cs))
             {
-                string sql = categoryId == "CG01"
+                string sql = categoryId == "1"
                     ? "SELECT * FROM Product"
                     : "SELECT * FROM Product WHERE CategoryId = @CategoryId";
 
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
-                    if (categoryId != "CG01")
+                    if (categoryId != "1")
                     {
                         cmd.Parameters.AddWithValue("@CategoryId", categoryId);
                     }
