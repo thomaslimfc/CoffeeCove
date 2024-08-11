@@ -13,14 +13,12 @@ async defer></script>
                     <td style="width:45%" class="tableElement">
                         <div>
                             <h2 style="padding-top:20px">Delivery</h2>
-                            <button onclick="getLocation()" type="button" class="btnLocation">
+                            <button onclick="getLocation()" type="button" class="btnLocation" style="font-weight: bold">
                             📍Get Your Current Position
                             </button>
                             <br />
-                            <hr />
-                            OR
                             <br />
-                            <hr />
+                            OR
                             <table style="width:100%; padding:2%; border-spacing:5px">
                                 <tr>
                                     <td colspan="2" class="fullElement">
@@ -59,9 +57,10 @@ async defer></script>
                     <td style="width:45%" class="tableElement">
                         <div>
                             <h2 style="padding-top:20px">Pick Up</h2>
-                            <button onclick="openStoreList()" type="button" class="btnLocation">
-                            Find Our Stores Location
+                            <button onclick="openStoreList()" type="button" class="btnLocation" style="font-weight: bold">
+                            🏪 Find Our Stores
                             </button>
+                            <br />
                             <br />
                             <span style="font-weight: bold"><asp:Label ID="lblStoreName" runat="server" EnableViewState="False"></asp:Label></span>
                             <br />
@@ -97,17 +96,17 @@ async defer></script>
                     <td>
                         <img src="../img/location_icon.png" style="height:50px;width:50px" />
                     </td>
-                    <td class="storeListTxt">
+                    <td class="storeListTxt" style="width:35%">
                         <asp:LinkButton runat="server" ID="lbGurney" Font-Underline="False" OnClientClick="closeStoreList();" OnClick="lbGurney_Click">
                             <h2>CoffeeCove Gurney Plaza</h2>
                             170-G-23,24 Gurney Plaza, Pulau Tikus, 10250 George Town, Penang
                         </asp:LinkButton>
                     </td>
-                    <td style="width:25%">&nbsp</td>
+                    <td style="width:15%">&nbsp</td>
                     <td>
                         <img src="../img/location_icon.png" style="height:50px;width:50px" />
                     </td>
-                    <td class="storeListTxt">
+                    <td class="storeListTxt" style="width:35%">
                         <asp:LinkButton runat="server" ID="lbKarpalSingh" Font-Underline="False" OnClientClick="closeStoreList();" OnClick="lbKarpalSingh_Click">
                             <h2>CoffeeCove Karpal Singh</h2>
                             No. 29C, Lot L1-1, L1-2, Maritime, 5, Lebuh Sungai Pinang, 11600 Jelutong, Penang
