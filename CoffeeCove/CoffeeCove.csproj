@@ -86,6 +86,7 @@
     <Content Include="AdminSite\AdminPasswordReset.aspx" />
     <Content Include="AdminSite\AdminTwoFactorAuthentication.aspx" />
     <Content Include="AdminSite\AdminForgotPassword.aspx" />
+    <Content Include="AdminSite\Categories.aspx" />
     <Content Include="AdminSite\Dashboard.aspx" />
     <Content Include="AdminSite\AdminSignIn.aspx" />
     <Content Include="AdminSite\AdminSignUp.aspx" />
@@ -465,6 +466,13 @@
     <Content Include="img\about.jpg" />
     <Content Include="img\cake_icon.png" />
     <Content Include="img\cartLogo.png" />
+    <Content Include="img\Category\all.jpg" />
+    <Content Include="img\Category\beverage.jpg" />
+    <Content Include="img\Category\breakfast.jpg" />
+    <Content Include="img\Category\coffee.jpg" />
+    <Content Include="img\Category\dessert.jpg" />
+    <Content Include="img\Category\Espresso.jpg" />
+    <Content Include="img\Category\lunch.jpg" />
     <Content Include="img\coffeeBag.jpg" />
     <Content Include="img\customer.png" />
     <Content Include="img\facebook.png" />
@@ -518,6 +526,13 @@
     </Compile>
     <Compile Include="AdminSite\AdminTwoFactorAuthentication.aspx.designer.cs">
       <DependentUpon>AdminTwoFactorAuthentication.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminSite\Categories.aspx.cs">
+      <DependentUpon>Categories.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSite\Categories.aspx.designer.cs">
+      <DependentUpon>Categories.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminSite\Dashboard.aspx.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
