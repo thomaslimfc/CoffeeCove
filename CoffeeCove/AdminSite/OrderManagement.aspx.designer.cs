@@ -11,7 +11,7 @@ namespace CoffeeCove.AdminSite
 {
 
 
-    public partial class OrderManage
+    public partial class OrderManagement
     {
     }
 }

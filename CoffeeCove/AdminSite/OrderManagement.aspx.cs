@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace CoffeeCove.AdminSite
 {
-    public partial class OrderManage : System.Web.UI.Page
+    public partial class OrderManagement : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

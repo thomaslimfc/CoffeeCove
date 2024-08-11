@@ -216,3 +216,7 @@ C:\Users\User\Source\Repos\CoffeeCove\CoffeeCove\obj\Debug\CoffeeCove.csproj.Cor
 C:\Users\User\Source\Repos\CoffeeCove\CoffeeCove\obj\Debug\CoffeeCove.csproj.Up2Date
 C:\Users\User\Source\Repos\CoffeeCove\CoffeeCove\obj\Debug\CoffeeCove.dll
 C:\Users\User\Source\Repos\CoffeeCove\CoffeeCove\obj\Debug\CoffeeCove.pdb
+C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\bin\Newtonsoft.Json.dll
+C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\bin\System.Buffers.dll
+C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\bin\System.Numerics.Vectors.dll
+C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\bin\Newtonsoft.Json.xml
