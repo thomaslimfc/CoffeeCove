@@ -1,8 +1,4 @@
-﻿@ -1,57 +1,84 @@ ﻿ body {
-}
-/* body {
-} */
-
+﻿
 h1, h3 {
     user-select: none;
 }
@@ -64,3 +60,11 @@ th {
     width: 40px;
 }
 
+.trMarginBottom20 {
+    padding-bottom: 20px;
+}
+
+.SizeEditTextbox {
+    width: 188px;
+    height: 25px;
+}
