@@ -87,9 +87,9 @@
     <Content Include="AdminSite\AdminTwoFactorAuthentication.aspx" />
     <Content Include="AdminSite\AdminForgotPassword.aspx" />
     <Content Include="AdminSite\Dashboard.aspx" />
-    <Content Include="AdminSite\OrderManage.aspx" />
     <Content Include="AdminSite\AdminSignIn.aspx" />
     <Content Include="AdminSite\AdminSignUp.aspx" />
+    <Content Include="AdminSite\OrderManagement.aspx" />
     <Content Include="App_Data\dbCoffeeCove.mdf" />
     <Content Include="App_Data\dbCoffeeCove_log.ldf">
       <DependentUpon>dbCoffeeCove.mdf</DependentUpon>
@@ -416,6 +416,7 @@
     <Content Include="CSS\Home.css" />
     <Content Include="CSS\Menu.css" />
     <Content Include="CSS\orderCart.css" />
+    <Content Include="CSS\OrderManagement.css" />
     <Content Include="CSS\orderOpt.css" />
     <Content Include="CSS\paymentOpt.css" />
     <Content Include="CSS\Security.css" />
@@ -532,13 +533,6 @@
     <Compile Include="AdminSite\AdminForgotPassword.aspx.designer.cs">
       <DependentUpon>AdminForgotPassword.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AdminSite\OrderManage.aspx.cs">
-      <DependentUpon>OrderManage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminSite\OrderManage.aspx.designer.cs">
-      <DependentUpon>OrderManage.aspx</DependentUpon>
-    </Compile>
     <Compile Include="AdminSite\AdminSignIn.aspx.cs">
       <DependentUpon>AdminSignIn.aspx</DependentUpon>
     </Compile>
@@ -550,6 +544,13 @@
     </Compile>
     <Compile Include="AdminSite\AdminSignUp.aspx.designer.cs">
       <DependentUpon>AdminSignUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminSite\OrderManagement.aspx.cs">
+      <DependentUpon>OrderManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSite\OrderManagement.aspx.designer.cs">
+      <DependentUpon>OrderManagement.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
