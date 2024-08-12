@@ -15,6 +15,42 @@ namespace CoffeeCove.UserManagement
     {
 
         /// <summary>
+        /// imgProfilePicture control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgProfilePicture;
+
+        /// <summary>
+        /// fuProfilePicture control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fuProfilePicture;
+
+        /// <summary>
+        /// UploadPictureBtn_UP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button UploadPictureBtn_UP;
+
+        /// <summary>
+        /// lblUploadMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblUploadMessage;
+
+        /// <summary>
         /// lblUsername control.
         /// </summary>
         /// <remarks>
@@ -195,21 +231,21 @@ namespace CoffeeCove.UserManagement
         protected global::System.Web.UI.WebControls.RequiredFieldValidator ResidenceState_rqdValidator;
 
         /// <summary>
-        /// btnEdit control.
+        /// EditBtn_UP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEdit;
+        protected global::System.Web.UI.WebControls.Button EditBtn_UP;
 
         /// <summary>
-        /// btnSave control.
+        /// SaveBtn_UP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSave;
+        protected global::System.Web.UI.WebControls.Button SaveBtn_UP;
     }
 }

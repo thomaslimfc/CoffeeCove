@@ -7,59 +7,42 @@
 async defer></script>
 
 <div id="poster">
-    <img src="../img/coffeeBag.jpg" style="left: 0px; top: -37px" />
     <div id="container">
             <table id="tableContainer">
                 <tr>
                     <td style="width:45%" class="tableElement">
                         <div>
-                            <h1>Delivery</h1>
-                            <hr />
-                            <button onclick="getLocation()" type="button" class="btnLocation">
+                            <h2>Delivery</h2>
+                            <button onclick="getLocation()" type="button" class="btnLocation" style="font-weight: bold">
                             📍Get Your Current Position
                             </button>
                             <br />
-                            <hr />
-                            OR
                             <br />
-                            <hr />
-                            <table style="width:100%; padding:2%">
+                            OR
+                            <table style="width:100%; padding:2%; border-spacing:5px">
                                 <tr>
                                     <td colspan="2" class="fullElement">
                                         Address Line 1:
-                                        <asp:TextBox runat="server" ID="tbAddress1" Width="75%">
+                                        <asp:TextBox runat="server" ID="tbAddress1" Width="75%" CssClass="textAdd" PlaceHolder="xxxxx">
                                         </asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td colspan="2" class="fullElement">
                                         Address Line 2:
-                                        <asp:TextBox runat="server" ID="tbAddress2" Width="75%">
+                                        <asp:TextBox runat="server" ID="tbAddress2" Width="75%" CssClass="textAdd" PlaceHolder="xxxxx">
                                         </asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="leftElement">
-                                        State
-                                        <asp:TextBox runat="server" ID="tbState">
+                                        PostCode:
+                                        <asp:TextBox runat="server" ID="tbPostCode" CssClass="textAdd" PlaceHolder="00000">
                                         </asp:TextBox>
                                     </td>
                                     <td class="leftElement">
-                                        City
-                                        <asp:TextBox runat="server" ID="tbCity">
-                                        </asp:TextBox>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="leftElement">
-                                        PostCode
-                                        <asp:TextBox runat="server" ID="tbPostCode">
-                                        </asp:TextBox>
-
-                                    </td>
-                                    <td class="leftElement">
-                                        Unit/Level
-                                        <asp:TextBox runat="server" ID="tbUnit">
+                                        Unit/Level:
+                                        <asp:TextBox runat="server" ID="tbUnit" CssClass="textAdd" PlaceHolder="Unit 8/Level 10">
                                         </asp:TextBox>
                                     </td>
                                 </tr>
@@ -73,18 +56,23 @@ async defer></script>
                     </td>
                     <td style="width:45%" class="tableElement">
                         <div>
-                            <h1>Pick Up</h1>
-                            <hr />
-                            <button onclick="openStoreList()" type="button" class="btnLocation">
-                            Find Our Stores Location
+                            <h2>Pick Up</h2>
+                            <button onclick="openStoreList()" type="button" class="btnLocation" style="font-weight: bold">
+                            🏪 Find Our Stores
                             </button>
                             <br />
-                            <span style="font-weight: bold"><asp:Literal ID="litStoreName" runat="server" EnableViewState="False"></asp:Literal></span>
                             <br />
-                            <asp:Literal ID="litStoreAdd" runat="server" EnableViewState="False"></asp:Literal>
+                            <span style="font-weight: bold"><asp:Label ID="lblStoreName" runat="server" EnableViewState="False"></asp:Label></span>
+                            <br />
+                            <asp:Label ID="lblStoreAdd" runat="server" EnableViewState="False"></asp:Label>
                         </div>
                     </td>
                     <!--Pick Up end-->
+                </tr>
+                <tr>
+                    <td>
+                        <br />
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="3" style="text-align:center;height:0">
@@ -96,8 +84,9 @@ async defer></script>
         <!--Overlay for Delivery Map-->
         <div id="overlay" class="overlay"></div>
         <div id="popupDialog">
-            <div id="map" style="height: 100%"></div>
-            <button onclick="closeMap()" type="button" class="btnClose" id="btnClose">Close</button>
+            <div id="map" style="height: 85%;border-radius:8px;border: 1px solid #ddd;box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)"></div>
+            <br />
+            <button onclick="closeMap()" type="button" class="btnClose">Close</button>
         </div>
 
         <!--Overlay for Pick Up-->
@@ -108,17 +97,17 @@ async defer></script>
                     <td>
                         <img src="../img/location_icon.png" style="height:50px;width:50px" />
                     </td>
-                    <td class="storeListTxt">
+                    <td class="storeListTxt" style="width:35%">
                         <asp:LinkButton runat="server" ID="lbGurney" Font-Underline="False" OnClientClick="closeStoreList();" OnClick="lbGurney_Click">
                             <h2>CoffeeCove Gurney Plaza</h2>
                             170-G-23,24 Gurney Plaza, Pulau Tikus, 10250 George Town, Penang
                         </asp:LinkButton>
                     </td>
-                    <td style="width:25%">&nbsp</td>
+                    <td style="width:15%">&nbsp</td>
                     <td>
                         <img src="../img/location_icon.png" style="height:50px;width:50px" />
                     </td>
-                    <td class="storeListTxt">
+                    <td class="storeListTxt" style="width:35%">
                         <asp:LinkButton runat="server" ID="lbKarpalSingh" Font-Underline="False" OnClientClick="closeStoreList();" OnClick="lbKarpalSingh_Click">
                             <h2>CoffeeCove Karpal Singh</h2>
                             No. 29C, Lot L1-1, L1-2, Maritime, 5, Lebuh Sungai Pinang, 11600 Jelutong, Penang
@@ -145,7 +134,6 @@ async defer></script>
             </table>
             <br />
             <button onclick="closeStoreList()" type="button" class="btnClose">Close</button>
-            <br />
         </div>
     </div>
 </div>
