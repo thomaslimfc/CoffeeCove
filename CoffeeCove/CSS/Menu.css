@@ -127,23 +127,12 @@
 }
 
 .orderform td {
-    padding-bottom:10px;
+    padding-bottom:15px;
 }
 
 .orderform label {
     margin-bottom: 5px;
  
-}
-
-.rblIngredient input[type="radio"] {
-    display:flex;
-    margin-right: 100px;
-}
-
-.rblIngredient label {
-    display: inline-block;
-    width: 100%;
-    box-sizing: border-box;
 }
 
 #btnClose {

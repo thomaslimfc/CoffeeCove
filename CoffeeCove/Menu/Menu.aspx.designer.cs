@@ -87,76 +87,94 @@ namespace CoffeeCove.Menu
         protected global::System.Web.UI.WebControls.Label lblProductDescription;
 
         /// <summary>
-        /// lblSize control.
+        /// lbSize control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSize;
+        protected global::System.Web.UI.WebControls.Label lbSize;
 
         /// <summary>
-        /// rblSize control.
+        /// ddlSize control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rblSize;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSize;
 
         /// <summary>
-        /// lblFlavour control.
+        /// lbFlavour control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFlavour;
+        protected global::System.Web.UI.WebControls.Label lbFlavour;
 
         /// <summary>
-        /// rblFlavour control.
+        /// ddlFlavour control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rblFlavour;
+        protected global::System.Web.UI.WebControls.DropDownList ddlFlavour;
 
         /// <summary>
-        /// lblIceLevel control.
+        /// lbIceLevel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblIceLevel;
+        protected global::System.Web.UI.WebControls.Label lbIceLevel;
 
         /// <summary>
-        /// rblIceLevel control.
+        /// ddlIceLevel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rblIceLevel;
+        protected global::System.Web.UI.WebControls.DropDownList ddlIceLevel;
 
         /// <summary>
-        /// lblAddOns control.
+        /// lbAddOn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAddOns;
+        protected global::System.Web.UI.WebControls.Label lbAddOn;
 
         /// <summary>
-        /// rblAddOns control.
+        /// ddlAddOn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rblAddOns;
+        protected global::System.Web.UI.WebControls.DropDownList ddlAddOn;
+
+        /// <summary>
+        /// lbSpecialInstruction control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSpecialInstruction;
+
+        /// <summary>
+        /// txtSpecialInstructions control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSpecialInstructions;
 
         /// <summary>
         /// lblPrice control.
@@ -166,6 +184,15 @@ namespace CoffeeCove.Menu
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblPrice;
+
+        /// <summary>
+        /// btnReset control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnReset;
 
         /// <summary>
         /// btnAddToCart control.
