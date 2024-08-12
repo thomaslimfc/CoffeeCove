@@ -12,7 +12,7 @@ async defer></script>
                 <tr>
                     <td style="width:45%" class="tableElement">
                         <div>
-                            <h2 style="padding-top:20px">Delivery</h2>
+                            <h2>Delivery</h2>
                             <button onclick="getLocation()" type="button" class="btnLocation" style="font-weight: bold">
                             📍Get Your Current Position
                             </button>
@@ -56,7 +56,7 @@ async defer></script>
                     </td>
                     <td style="width:45%" class="tableElement">
                         <div>
-                            <h2 style="padding-top:20px">Pick Up</h2>
+                            <h2>Pick Up</h2>
                             <button onclick="openStoreList()" type="button" class="btnLocation" style="font-weight: bold">
                             🏪 Find Our Stores
                             </button>
@@ -84,7 +84,8 @@ async defer></script>
         <!--Overlay for Delivery Map-->
         <div id="overlay" class="overlay"></div>
         <div id="popupDialog">
-            <div id="map" style="height: 100%"></div>
+            <div id="map" style="height: 85%;border-radius:8px;border: 1px solid #ddd;box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)"></div>
+            <br />
             <button onclick="closeMap()" type="button" class="btnClose">Close</button>
         </div>
 
@@ -133,7 +134,6 @@ async defer></script>
             </table>
             <br />
             <button onclick="closeStoreList()" type="button" class="btnClose">Close</button>
-            <br />
         </div>
     </div>
 </div>
