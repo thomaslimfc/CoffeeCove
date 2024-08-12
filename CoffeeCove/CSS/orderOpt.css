@@ -1,14 +1,17 @@
-﻿#poster img{
+﻿﻿#poster {
+    background-image: url('../img/coffeebag.jpg');
     width: 100%;
     height: 1000px;
     object-fit: cover;
     position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #container {
     position: absolute;
     width: 90%;
-    height: 500px;
+    height: fit-content;
     top: 20%;
     left: 0;
     right: 0;
@@ -27,10 +30,10 @@
 }
 
 .tableElement div {
-    background-color: #f0f0f0;
+    background-color: #ffffff;
     height: 70%;
     text-align: center;
-    border-radius: 25px;
+    border-radius: 8px;
 }
 
 .leftElement {
@@ -43,20 +46,20 @@
 }
 
 .btnLocation {
-    border-radius: 12px;
+    border-radius: 8px;
     padding: 10px 100px;
     transition-duration: 0.4s;
     border: 2px solid #342320;
 }
 
-.btnLocation:hover{
-    background-color: #413432; 
+.btnLocation:hover {
+    background-color: #413432;
     color: white;
     cursor: pointer;
 }
 
 .btnClose {
-    border-radius: 12px;
+    border-radius: 8px;
     padding: 10px 100px;
     transition-duration: 0.4s;
     border: 2px solid #342320;
@@ -69,14 +72,14 @@
 }
 
 #btnCont {
-    border-radius: 12px;
+    border-radius: 8px;
     padding: 10px 100px;
     transition-duration: 0.4s;
     border: 2px solid #342320;
 }
 
-#btnCont:hover{
-    background-color: #413432; 
+#btnCont:hover {
+    background-color: #413432;
     color: white;
     cursor: pointer;
 }
@@ -89,12 +92,12 @@
     transform: translate(-50%, -50%);
     padding: 20px;
     width: 90%;
-    height: 90%;
+    height: 100%;
     background-color: #fff;
     border: 1px solid #ccc;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    border-radius: 25px;
+    border-radius: 8px;
 }
 
 #popupDialog2 {
@@ -105,12 +108,12 @@
     transform: translate(-50%, -55%);
     padding: 20px;
     width: 90%;
-    height: 52%;
+    height: 85%;
     background-color: #fff;
     border: 1px solid #ccc;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    border-radius: 25px;
+    border-radius: 8px;
 }
 
 .overlay {
@@ -121,11 +124,7 @@
     margin-left: auto;
     margin-right: auto;
     background: rgba(0, 0, 0, 0.5);
-    border-radius: 25px;
-}
-
-h2{
-    margin:0;
+    border-radius: 8px;
 }
 
 .storeListTxt a {
@@ -135,17 +134,37 @@ h2{
 }
 
 .storeListTxt {
-    border-radius: 12px;
+    border-radius: 8px;
     padding: 5px 5px;
     border: 2px solid #342320;
     background-color: #f0f0f0;
 }
 
-.storeListTxt:hover{
-    background-color: #413432; 
+.storeListTxt:hover {
+    background-color: #413432;
     transition-duration: 0.4s;
 }
 
-.storeListTxt:hover a{
-    color: white;
+.storeListTxt:hover a {
+    color: white;  
+}
+
+.textAdd {
+    background-color: #cccccc;
+    border: 2px solid transparent;
+    height: 30px;
+    padding-left: 20px;
+    vertical-align: middle;
+    border-radius: 8px;
+    transition: 0.5s;
+}
+
+.textAdd:focus {
+    border: 2px solid black;
+    box-shadow: none;
+}
+
+::placeholder {
+    font-size: 14px;
+    font-weight: 600;
 }
