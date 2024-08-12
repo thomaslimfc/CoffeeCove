@@ -127,7 +127,7 @@
     width: 100px;
 }
 
-#homeLink, #menuLink, #serviceLink {
+#homeLink, #menuLink, #serviceLink, #ratingReviewLink {
     text-decoration: none;
     color: #fff;
 }

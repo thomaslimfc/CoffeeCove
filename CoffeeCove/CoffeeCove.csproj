@@ -477,8 +477,10 @@
     <Content Include="Menu\Menu.aspx" />
     <Content Include="Order\getLocation.js" />
     <Content Include="Order\orderCart.aspx" />
+    <Content Include="Order\OrderHistory.aspx" />
     <Content Include="Order\orderOption.aspx" />
     <Content Include="Payment\paymentOpt.aspx" />
+    <Content Include="RatingReview\RatingReview.aspx" />
     <Content Include="Security\PasswordReset.aspx" />
     <Content Include="Security\PrivacyPolicy.aspx" />
     <Content Include="Security\SignIn.aspx" />
@@ -583,6 +585,13 @@
     <Compile Include="Order\orderCart.aspx.designer.cs">
       <DependentUpon>orderCart.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Order\OrderHistory.aspx.cs">
+      <DependentUpon>OrderHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Order\OrderHistory.aspx.designer.cs">
+      <DependentUpon>OrderHistory.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Order\orderOption.aspx.cs">
       <DependentUpon>orderOption.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -598,6 +607,13 @@
       <DependentUpon>paymentOpt.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RatingReview\RatingReview.aspx.cs">
+      <DependentUpon>RatingReview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RatingReview\RatingReview.aspx.designer.cs">
+      <DependentUpon>RatingReview.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Security\PasswordReset.aspx.cs">
       <DependentUpon>PasswordReset.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

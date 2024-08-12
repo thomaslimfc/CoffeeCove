@@ -3,6 +3,8 @@
 	<siteMapNode url="Home/Home.aspx" title="Home"  description="Home">
 		<siteMapNode url="Menu/Menu.aspx" title="Menu"  description="Menu" />
 		<siteMapNode url="Order/orderOption.aspx" title="Service"  description="Service" />
+		<siteMapNode url="Order/OrderHistory.aspx" title="Order History" description="Order History" />
+		<siteMapNode url="RatingReview/RatingReview.aspx" title="Rating &amp; Review" description="Rating &amp; Review" />
 	</siteMapNode>
 </siteMap>
  
