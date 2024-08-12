@@ -24,31 +24,31 @@ namespace CoffeeCove.Order
         protected global::System.Web.UI.WebControls.Image imgCart;
 
         /// <summary>
-        /// litSubtotal control.
+        /// lblSubtotal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litSubtotal;
+        protected global::System.Web.UI.WebControls.Label lblSubtotal;
 
         /// <summary>
-        /// litTax control.
+        /// lblTax control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litTax;
+        protected global::System.Web.UI.WebControls.Label lblTax;
 
         /// <summary>
-        /// litTotal control.
+        /// lblTotal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litTotal;
+        protected global::System.Web.UI.WebControls.Label lblTotal;
 
         /// <summary>
         /// btnProceed control.

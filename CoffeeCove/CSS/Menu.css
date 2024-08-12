@@ -63,6 +63,7 @@
     display: none; 
 }
 
+/*
 .SelectBtn {
     border: 3px solid transparent;
     padding: 10px;
@@ -79,6 +80,29 @@
 
 .SelectBtn:hover {
     border-color: #ffc74c; 
+}
+*/
+
+#productContainer a {
+    display: inline-block;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 5px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f0f0f0;
+    color: #433533;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    transition-duration: 0.4s;
+}
+
+#productContainer a:hover{
+    background-color: #413432;
+    color: white;
 }
 
 /* Order Form Style */
