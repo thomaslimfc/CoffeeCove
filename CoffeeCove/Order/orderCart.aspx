@@ -27,19 +27,19 @@
             <tr>
                 <td class="cartLeft">Subtotal [RM]</td>
                 <td class="cartRight">RM
-                <asp:Literal ID="litSubtotal" runat="server">lit</asp:Literal>
+                <asp:Label ID="lblSubtotal" runat="server">x</asp:Label>
                 </td>
             </tr>
             <tr>
                 <td class="cartLeft">Tax [6%]</td>
                 <td class="cartRight">RM
-                <asp:Literal ID="litTax" runat="server">lit</asp:Literal>
+                <asp:Label ID="lblTax" runat="server">x</asp:Label>
                 </td>
             </tr>
             <tr>
                 <td class="cartLeft">Total [RM]</td>
                 <td class="cartRight">RM
-                <asp:Literal ID="litTotal" runat="server">lit</asp:Literal>
+                <asp:Label ID="lblTotal" runat="server">x</asp:Label>
                 </td>
             </tr>
         </table>

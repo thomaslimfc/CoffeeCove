@@ -18,7 +18,7 @@ namespace CoffeeCove.Menu
             if (!Page.IsPostBack)
             {
                 BindCategory();
-                BindProducts("CG01"); // Default category to show all products
+                BindProducts("1"); // Default category to show all products
             }
         }
         private void BindCategory()
@@ -40,13 +40,13 @@ namespace CoffeeCove.Menu
         {
             using (SqlConnection con = new SqlConnection(cs))
             {
-                string sql = categoryId == "CG01"
+                string sql = categoryId == "1"
                     ? "SELECT * FROM Product"
                     : "SELECT * FROM Product WHERE CategoryId = @CategoryId";
 
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
-                    if (categoryId != "CG01")
+                    if (categoryId != "1")
                     {
                         cmd.Parameters.AddWithValue("@CategoryId", categoryId);
                     }
@@ -95,10 +95,34 @@ namespace CoffeeCove.Menu
                         lblProductName.Text = dr["ProductName"].ToString();
                         lblProductDescription.Text = dr["Description"].ToString();
                         lblPrice.Text = $"Price: RM {dr["UnitPrice"]:0.00}";
+                        ViewState["BasePrice"] = dr["UnitPrice"];
 
-                        // Bind ingredient options 
+                        // Get the category for the product
                         string categoryId = GetProductCategoryId(productId);
-                        BindIngredientOptions(categoryId);
+
+                        // Show or hide form elements based on category
+                        if (categoryId == "5" || categoryId == "6" || categoryId == "7")
+                        {
+                            // For categories 5, 6, 7: only show special instructions
+                            lbSize.Visible = false;
+                            lbFlavour.Visible = false;
+                            lbIceLevel.Visible = false;
+                            lbAddOn.Visible = false; 
+                            ddlSize.Visible = false;
+                            ddlFlavour.Visible = false;
+                            ddlIceLevel.Visible = false;
+                            ddlAddOn.Visible = false;
+                            txtSpecialInstructions.Visible = true;
+                        }
+                        else
+                        {
+                            // For other categories (2, 3, 4): show all form elements
+                            ddlSize.Visible = true;
+                            ddlFlavour.Visible = true;
+                            ddlIceLevel.Visible = true;
+                            ddlAddOn.Visible = true;
+                            txtSpecialInstructions.Visible = true;
+                        }
 
                         // Show the panel
                         pnlOrderForm.Visible = true;
@@ -106,6 +130,8 @@ namespace CoffeeCove.Menu
                 }
             }
         }
+
+
 
         private string GetProductCategoryId(string productId)
         {
@@ -121,110 +147,30 @@ namespace CoffeeCove.Menu
             }
         }
 
-        private void BindIngredientOptions(string categoryId)
+        protected void UpdatePrice(object sender, EventArgs e)
         {
-            string sizeSql = "SELECT * FROM Ingredient WHERE IngredientType = 'Size'";
-            string flavourSql = "SELECT * FROM Ingredient WHERE IngredientType = 'Flavour'";
-            string iceSql = "SELECT * FROM Ingredient WHERE IngredientType = 'Ice'";
-            string addOnSql = "SELECT * FROM Ingredient WHERE IngredientType = 'Add on'";
+            decimal basePrice = Convert.ToDecimal(ViewState["BasePrice"]);
+            decimal finalPrice = basePrice;
 
-            using (SqlConnection con = new SqlConnection(cs))
-            {
-                con.Open();
-                SqlDataAdapter da = new SqlDataAdapter();
+            if (ddlSize.SelectedValue == "Large") finalPrice += 1.50m;
+            if (ddlFlavour.SelectedValue == "Cold") finalPrice += 1.50m;
+            if (ddlAddOn.SelectedValue == "1EspressoShot") finalPrice += 2.50m;
+            if (ddlAddOn.SelectedValue == "2EspressoShots") finalPrice += 5.00m;
 
-                DataSet ds = new DataSet();
-
-                // Size options
-                da.SelectCommand = new SqlCommand(sizeSql, con);
-                da.Fill(ds, "Size");
-
-                // Flavour options
-                da.SelectCommand.CommandText = flavourSql;
-                da.Fill(ds, "Flavour");
-
-                // Ice options
-                da.SelectCommand.CommandText = iceSql;
-                da.Fill(ds, "Ice");
-
-                // Add-on options
-                da.SelectCommand.CommandText = addOnSql;
-                da.Fill(ds, "AddOn");
-
-                // Bind to controls
-                rblSize.DataSource = ds.Tables["Size"];
-                rblSize.DataTextField = "IngredientName";
-                rblSize.DataBind();
-                rblSize.Visible = true;
-
-                rblFlavour.DataSource = ds.Tables["Flavour"];
-                rblFlavour.DataTextField = "IngredientName";
-                rblFlavour.DataBind();
-                rblFlavour.Visible = true;
-
-                rblIceLevel.DataSource = ds.Tables["Ice"];
-                rblIceLevel.DataTextField = "IngredientName";
-                rblIceLevel.DataBind();
-                rblIceLevel.Visible = true;
-
-                rblAddOns.DataSource = ds.Tables["AddOn"];
-                rblAddOns.DataTextField = "IngredientName";
-                rblAddOns.DataBind();
-                rblAddOns.Visible = true;
-            }
+            lblPrice.Text = $"Price: RM {finalPrice:N2}";
         }
 
-
-        private decimal CalculatePrice()
+        protected void btnReset_Click(object sender, EventArgs e)
         {
-            decimal basePrice = GetBasePrice();
-            decimal sizePrice = GetSelectedPrice(rblSize);
-            decimal flavourPrice = GetSelectedPrice(rblFlavour);
-            decimal icePrice = GetSelectedPrice(rblIceLevel);
-            decimal addOnPrice = GetSelectedAddOnsPrice();
+           // Clear dropdown selections
+            ddlSize.SelectedIndex = -1;
+            ddlFlavour.SelectedIndex = -1;
+            ddlIceLevel.SelectedIndex = -1;
+            ddlAddOn.SelectedIndex = -1;
 
-            return basePrice + sizePrice + flavourPrice + icePrice + addOnPrice;
-        }
-
-        private decimal GetBasePrice()
-        {
-            return 10.00m;
-        }
-
-        private decimal GetSelectedPrice(RadioButtonList rbl)
-        {
-            if (rbl.SelectedItem != null)
-            {
-                return GetIngredientPrice(rbl.SelectedValue);
-            }
-            return 0.00m;
-        }
-
-        private decimal GetSelectedAddOnsPrice()
-        {
-            decimal totalPrice = 0.00m;
-            foreach (ListItem item in rblAddOns.Items)
-            {
-                if (item.Selected)
-                {
-                    totalPrice += GetIngredientPrice(item.Value);
-                }
-            }
-            return totalPrice;
-        }
-
-        private decimal GetIngredientPrice(string ingredientId)
-        {
-            using (SqlConnection con = new SqlConnection(cs))
-            {
-                string sql = "SELECT Price FROM Ingredient WHERE IngredientId = @IngredientId";
-                using (SqlCommand cmd = new SqlCommand(sql, con))
-                {
-                    cmd.Parameters.AddWithValue("@IngredientId", ingredientId);
-                    con.Open();
-                    return (decimal)cmd.ExecuteScalar();
-                }
-            }
+            // Reset the price to the original base price
+            decimal basePrice = Convert.ToDecimal(ViewState["BasePrice"]);
+            lblPrice.Text = $"Price: RM {basePrice:N2}";
         }
 
         protected void btnClose_Click(object sender, EventArgs e)
