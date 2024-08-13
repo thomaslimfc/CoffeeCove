@@ -23,6 +23,28 @@ namespace CoffeeCove.Security
         //    password2.Text = string.Empty;
         //}
 
+        protected void UsernameOrEmailValidator_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            string input = args.Value.Trim();
+
+            // Regular expression for a valid email address
+            string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+
+            // Regular expression for a valid username (at least 10 alphanumeric characters)
+            string usernamePattern = @"^[a-zA-Z0-9]{10,}$";
+
+            // Check if the input matches either the email pattern or the username pattern
+            if (System.Text.RegularExpressions.Regex.IsMatch(input, emailPattern) ||
+                System.Text.RegularExpressions.Regex.IsMatch(input, usernamePattern))
+            {
+                args.IsValid = true;
+            }
+            else
+            {
+                args.IsValid = false;
+            }
+        }
+
 
     }
 }

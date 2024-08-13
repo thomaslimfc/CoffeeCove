@@ -33,13 +33,13 @@ namespace CoffeeCove.Security
         protected global::System.Web.UI.WebControls.RequiredFieldValidator Username_SI_rqdValidator;
 
         /// <summary>
-        /// Username_SI_regexValidator control.
+        /// Username_SI_CustomValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator Username_SI_regexValidator;
+        protected global::System.Web.UI.WebControls.CustomValidator Username_SI_CustomValidator;
 
         /// <summary>
         /// Password_SI control.

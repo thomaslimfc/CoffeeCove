@@ -25,27 +25,30 @@
                             <td>
                                 <asp:TextBox ID="Username_SI" CssClass="securityInput" 
                                     runat="server"
-                                    placeholder="Username" title="Username"
+                                    placeholder="Username / Email Address" title="Username / Email Address"
                                     AutoPostBack="false"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td class="textAlignLeft"  colspan="2">
                                 <asp:RequiredFieldValidator 
-                                    ID="Username_SI_rqdValidator" runat="server" 
-                                    ControlToValidate="Username_SI" 
-                                    ErrorMessage="Username is required." 
-                                    Display="Dynamic" ForeColor="Red" 
-                                    CssClass="rqdValidator" />
-                                <asp:RegularExpressionValidator 
-                                    ID="Username_SI_regexValidator" 
+                                    ID="Username_SI_rqdValidator" 
                                     runat="server" 
                                     ControlToValidate="Username_SI" 
-                                    ErrorMessage="Must contain >10 letters and numbers only." 
+                                    ErrorMessage="Username or Email is required." 
                                     Display="Dynamic" 
                                     ForeColor="Red" 
-                                    CssClass="rqdValidator" 
-                                    ValidationExpression="^[a-zA-Z0-9]{10,}$" />
+                                    CssClass="rqdValidator" />
+                                
+                                <asp:CustomValidator 
+                                    ID="Username_SI_CustomValidator" 
+                                    runat="server" 
+                                    ControlToValidate="Username_SI" 
+                                    ErrorMessage="Invalid Username or Email." 
+                                    Display="Dynamic" 
+                                    ForeColor="Red" 
+                                    CssClass="rqdValidator"
+                                    OnServerValidate="UsernameOrEmailValidator_ServerValidate" />
                             </td>
                         </tr>
                     </table>

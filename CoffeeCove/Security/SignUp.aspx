@@ -8,15 +8,101 @@
 <!--- reCAPTCHA -->
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <br /><br /><br /><br /><br /><br /><br /><br />
-<div id="signIn_container" class="sign_container">
+<div id="signIn_container" class="signUp_container">
     <table>
-        <tr>
+        <tr colspan="2">
             <td id="signUp_td">
                 <h2 style="font-size: 24px; font-weight: bold">
                     Sign Up</h2>
             </td>
         </tr>
         <tr>
+            <!--  First Name  -->
+            <td>
+                <div class="input_div">
+                    <table>
+                        <tr>
+                            <td>
+                                <img class="usernameIcon" src="../img/username_icon.png" 
+                                    alt="Enter your first name" />
+                            </td>
+                            <td>
+                                <asp:TextBox ID="FirstName_SU" CssClass="securityInput" 
+                                    runat="server" placeholder="First Name" 
+                                    title="First Name"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="textAlignLeft" colspan="2">
+                                <asp:RequiredFieldValidator 
+                                    ID="FirstName_SU_rqdValidator" runat="server" 
+                                    ControlToValidate="FirstName_SU" 
+                                    ErrorMessage="Name is required." 
+                                    Display="Dynamic" ForeColor="Red" 
+                                    CssClass="rqdValidator" />
+                                <asp:RegularExpressionValidator 
+                                    ID="FirstName_SU_regexValidator" 
+                                    runat="server" 
+                                    ControlToValidate="FirstName_SU" 
+                                    ErrorMessage="Must contain letters only." 
+                                    Display="Dynamic" 
+                                    ForeColor="Red" 
+                                    CssClass="rqdValidator" 
+                                    ValidationExpression="^[a-zA-Z]{1,30}$" />
+                                <asp:Label ID="NameErrorMessage" 
+                                    runat="server" ForeColor="Red" Visible="False">
+                                </asp:Label>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+            <!--  Last Name  -->
+            <td>
+                <div class="input_div">
+                    <table>
+                        <tr>
+                            <td>
+                                <img class="usernameIcon" src="../img/username_icon.png" 
+                                    alt="Enter your first name" />
+                            </td>
+                            <td>
+                                <asp:TextBox ID="LastName_SU" CssClass="securityInput" 
+                                    runat="server" placeholder="Last Name" 
+                                    title="Name"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="textAlignLeft" colspan="2">
+                                <asp:RequiredFieldValidator 
+                                    ID="LastName_SU_rqdValidator" runat="server" 
+                                    ControlToValidate="LastName_SU" 
+                                    ErrorMessage="Last Name is required." 
+                                    Display="Dynamic" ForeColor="Red" 
+                                    CssClass="rqdValidator" />
+                                <asp:RegularExpressionValidator 
+                                    ID="LastName_SU_regexValidator" 
+                                    runat="server" 
+                                    ControlToValidate="LastName_SU" 
+                                    ErrorMessage="Must contain letters only." 
+                                    Display="Dynamic" 
+                                    ForeColor="Red" 
+                                    CssClass="rqdValidator" 
+                                    ValidationExpression="^[a-zA-Z]{1,30}$" />
+                                <asp:Label ID="Label1" 
+                                    runat="server" ForeColor="Red" Visible="False">
+                                </asp:Label>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="trMarginBottom20"></td>
+        </tr>
+        <tr>
+            <!--  Username  -->
             <td>
                 <div class="input_div">
                     <table>
@@ -56,11 +142,7 @@
                     </table>
                 </div>
             </td>
-        </tr>
-        <tr>
-            <td class="trMarginBottom20"></td>
-        </tr>
-        <tr>
+            <!--  Email Address  -->
             <td id="emailAdd_td">
                 <div class="input_div">
                     <table>
@@ -102,6 +184,7 @@
             <td class="trMarginBottom20"></td>
         </tr>
         <tr>
+            <!--  Password  -->
             <td id="password_td">
                 <div class="input_div">
                     <table>
@@ -138,11 +221,7 @@
                     </table>
                 </div>
             </td>
-        </tr>
-        <tr>
-            <td class="trMarginBottom20"></td>
-        </tr>
-        <tr>
+            <!--  Password Re-enter  -->
             <td id="passReenter_td">
                 <div class="input_div">
                     <table>
@@ -184,6 +263,7 @@
             <td class="trMarginBottom20"></td>
         </tr>
         <tr>
+            <!--  Date of Birth  -->
             <td id="birthdayDate_td">
                 <div class="input_div">
                     <table>
@@ -200,11 +280,7 @@
                     </table>
                 </div>
             </td>
-        </tr>
-        <tr>
-            <td class="trMarginBottom20"></td>
-        </tr>
-        <tr>
+            <!--  Gender  -->
             <td id="gender_td">
                 <div class="input_div">
                     <table>
@@ -242,7 +318,8 @@
         <tr>
             <td class="trMarginBottom20"></td>
         </tr>
-        <tr>
+        <tr colspan="2">
+            <!--  Location  -->
             <td id="location_td">
                 <div class="input_div">
                     <table>
