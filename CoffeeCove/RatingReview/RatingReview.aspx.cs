@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace CoffeeCove.RatingReview
 {
-    public partial class RatingReview : System.Web.UI.Page
+    public partial class ratingReview : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
