@@ -100,6 +100,24 @@
     }
 </style>
 
+<!-- Password Toggle Tool -->
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        var passwordField = document.getElementById("<%= Password_SI.ClientID %>");
+        var toggleIcon = document.getElementById("PasswordToggle");
+
+        toggleIcon.addEventListener("click", function () {
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                toggleIcon.textContent = "🙈"; // Change to closed eye icon when showing password
+            } else {
+                passwordField.type = "password";
+                toggleIcon.textContent = "👁️"; // Change to open eye icon when hiding password
+            }
+        });
+    });
+</script>
+
 <div class="max-w-md mx-auto p-6 bg-card rounded-lg shadow-md">
     <h2 class="text-2xl font-bold text-foreground mb-4">Sign In</h2>
     <!-- Username -->
@@ -129,7 +147,7 @@
             ValidationExpression="^[a-zA-Z0-9]{10,}$" />
     </div>
     <!-- Password -->
-    <div class="mb-4">
+    <div class="relative mb-4">
         <asp:TextBox ID="Password_SI" 
             CssClass="w-full p-2 border border-border rounded-md focus:outline-none focus:ring focus:ring-ring"
             runat="server" 
@@ -138,6 +156,7 @@
             TextMode="Password"
             AutoPostBack="false">
         </asp:TextBox>
+        <span id="PasswordToggle" class="absolute right-2 top-2 cursor-pointer">👁️</span>
         <br />
         <asp:RequiredFieldValidator 
             ID="Password_SI_rqdValidator" runat="server" 
