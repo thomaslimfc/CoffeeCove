@@ -16,7 +16,7 @@ namespace CoffeeCove.Master
 
         protected void loginBtn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Login.aspx");
+            Response.Redirect("../Security/SignIn.aspx");
         }
     }
 }

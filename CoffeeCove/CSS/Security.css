@@ -35,14 +35,27 @@ body, br {
     /* padding: 20px; */
     /* overflow: hidden; */
 }
+.signUp_container {
+    background-color: #ffffff;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #DADDE2;
+    border-radius: 15px;
+    box-shadow: rgba(218, 221, 226) 0px 5px 15px;
+    width: 580px;
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+}
 
     /* #SignUpHolder { */
     /* padding-top: 500px; */
     /* } */
 
-    .sign_container > table {
-        margin: 0 auto;
-    }
+.sign_container > table,
+.signUp_container > table {
+    margin: 0 auto;
+}
 
 #signIn_td,
 #signUp_td,
@@ -120,23 +133,23 @@ body, br {
     margin-right: 5px;
 }
 
-    .securityInput::placeholder,
-    .username::placeholder,
-    .username2::placeholder,
-    .emailAdd::placeholder,
-    .password::placeholder,
-    .password2::placeholder,
-    .passReenter::placeholder,
-    .usernameEmail::placeholder,
-    .adminUsername::placeholder,
-    .adminPassword::placeholder,
-    .adminPassReenter::placeholder,
-    .adminUsername2::placeholder,
-    .adminPassword2::placeholder,
-    .adminUsernameEmail::placeholder,
-    .otp::placeholder {
-        color: #ffffff;
-    }
+.securityInput::placeholder,
+.username::placeholder,
+.username2::placeholder,
+.emailAdd::placeholder,
+.password::placeholder,
+.password2::placeholder,
+.passReenter::placeholder,
+.usernameEmail::placeholder,
+.adminUsername::placeholder,
+.adminPassword::placeholder,
+.adminPassReenter::placeholder,
+.adminUsername2::placeholder,
+.adminPassword2::placeholder,
+.adminUsernameEmail::placeholder,
+.otp::placeholder {
+    color: #ffffff;
+}
 
 .input_div {
     background-color: #C89857;
@@ -219,20 +232,20 @@ td > a {
             font-weight: bold;
             user-select: none;
         }
-            /* Radio button circle */
-            .gender_rbl input[type="radio"] + label::before {
-                content: "";
-                position: absolute;
-                left: 0;
-                top: 10%;
-                transform: translateY(-50%);
-                width: 14px;
-                height: 14px;
-                border: 2px solid #A0704E;
-                border-radius: 50%;
-                background-color: #ffffff;
-                margin-top: 6px;
-            }
+        /* Radio button circle */
+        .gender_rbl input[type="radio"] + label::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 10%;
+            transform: translateY(-50%);
+            width: 14px;
+            height: 14px;
+            border: 2px solid #A0704E;
+            border-radius: 50%;
+            background-color: #ffffff;
+            margin-top: 6px;
+        }
         /* Radio button when checked */
         .gender_rbl input[type="radio"]:checked + label::before {
             border-color: #ffffff;
@@ -282,38 +295,48 @@ td > a {
 .NextBtn_FP,
 .BackBtn_FP,
 .resetPassword_btn {
-    background-color: #775466;
-    color: #ffffff;
-    /* font-family: Staffee-Bold; */
+/*    background-color: #775466;*/
+/*    color: #ffffff;*/
     font-size: medium;
     font-weight: bold;
-    border-radius: 30px;
-    border-width: 0;
+/*    border-radius: 30px;*/
+/*    border-width: 0;*/
     width: 248px;
     height: 40px;
     margin-top: 15px;
     padding-top: 5px;
     padding-bottom: 6px;
     cursor: pointer;
+
+
+    border-radius: 8px;
+    transition-duration: 0.4s;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #433533;
 }
 
-    .securityPrimaryBtn:hover,
-    .signIn_btn:hover,
-    .signUp_btn:hover,
-    .NextBtn_FP:hover,
-    .resetPassword_btn:hover {
-        background-color: #DADDE2;
-        color: #775466;
-        /* font-family: Staffee-Bold; */
-        font-weight: bold;
-        font-size: medium;
-        border-radius: 30px;
-        border-width: 0;
-        margin-top: 15px;
-        padding-bottom: 6px;
-        cursor: pointer;
-        transition-delay: 0.25s;
-    }
+.securityPrimaryBtn:hover,
+.signIn_btn:hover,
+.signUp_btn:hover,
+.NextBtn_FP:hover,
+.resetPassword_btn:hover {
+/*    background-color: #DADDE2;*/
+/*    color: #775466;*/
+/*    font-family: Staffee-Bold; */
+/*    font-weight: bold;*/
+/*    font-size: medium;*/
+/*    border-radius: 30px;*/
+/*    border-width: 0;*/
+/*    margin-top: 15px;*/
+/*    padding-bottom: 6px;*/
+/*    transition-delay: 0.25s;*/
+
+
+    color: white;
+    background-color: #413432;
+    cursor: pointer;
+}
 
 .securitySecondaryBtn,
 .back_btn {
@@ -331,12 +354,46 @@ td > a {
     cursor: pointer;
 }
 
+/*.securityPrimaryBtn:hover,
+.signIn_btn:hover,
+.signUp_btn:hover,
+.NextBtn_FP:hover,
+.resetPassword_btn:hover {
+    background-color: #DADDE2;
+    color: #775466;*/
+    font-family: Staffee-Bold; 
+    /*font-weight: bold;
+    font-size: medium;
+    border-radius: 30px;
+    border-width: 0;
+    margin-top: 15px;
+    padding-bottom: 6px;
+    cursor: pointer;
+    transition-delay: 0.25s;
+}
+
+.securitySecondaryBtn,
+.back_btn {
+    background-color: #ffffff;*/
+    /* color: #775466; */
+    /* font-family: Staffee-Bold; */
+    /*font-size: medium;
+    font-weight: bold;
+    border-radius: 30px;
+    border-width: 0;
+    width: 293px;
+    height: 40px;
+    margin-top: 15px;
+    padding-bottom: 6px;
+    cursor: pointer;
+}*/
+
 #joinUsNow,
 #alreadySignedUp,
 #alreadyRegistered {
     /* font-family: Staffee-Bold; */
     font-weight: bold;
-    ;
+    
     padding-top: 2px;
     user-select: text;
 }
