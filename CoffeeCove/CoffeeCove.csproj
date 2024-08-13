@@ -91,6 +91,7 @@
     <Content Include="AdminSite\AdminSignIn.aspx" />
     <Content Include="AdminSite\AdminSignUp.aspx" />
     <Content Include="AdminSite\OrderManagement.aspx" />
+    <Content Include="AdminSite\Products.aspx" />
     <Content Include="App_Data\dbCoffeeCove.mdf" />
     <Content Include="App_Data\dbCoffeeCove_log.ldf">
       <DependentUpon>dbCoffeeCove.mdf</DependentUpon>
@@ -546,6 +547,13 @@
     </Compile>
     <Compile Include="AdminSite\OrderManagement.aspx.designer.cs">
       <DependentUpon>OrderManagement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminSite\Products.aspx.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSite\Products.aspx.designer.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
