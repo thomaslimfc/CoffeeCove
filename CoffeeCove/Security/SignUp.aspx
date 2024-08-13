@@ -7,7 +7,7 @@
 <link href="../CSS/Security.css" rel="stylesheet" />
 <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
 <script src="https://unpkg.com/unlazy@0.11.3/dist/unlazy.with-hashing.iife.js" defer init></script>
-<br /><br /><br /><br /><br />
+<br /><br /><br />
 <script type="text/javascript">
     window.tailwind.config = {
         darkMode: ['class'],
@@ -295,7 +295,7 @@
         <asp:DropDownList ID="Gender_SU" 
             runat="server" 
             CssClass="mt-1 p-2 border border-border rounded w-full">
-            <asp:ListItem Text="~ Select a gender ~" Value="" />
+            <asp:ListItem Text="~ Select your gender ~" Value="" />
             <asp:ListItem>Male</asp:ListItem>
             <asp:ListItem>Female</asp:ListItem>
             <asp:ListItem>Other</asp:ListItem>
@@ -400,7 +400,7 @@
         Text="Sign In with Email"
         style="cursor: pointer;"
         OnClick="SignUpEmailBtn_SU_Click"/>
-    </div>
+  </div>
 </div>
 <br />
 <br />

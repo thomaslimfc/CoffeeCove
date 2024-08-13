@@ -59,12 +59,12 @@ namespace CoffeeCove.Security
 
         protected void SignUpUsernameBtn_SU_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("SignIn.aspx.aspx");
         }
 
         protected void SignUpEmailBtn_SU_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("SignInWithEmail.aspx");
         }
 
         // custID

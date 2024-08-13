@@ -3,7 +3,7 @@
   "WorkspaceRootPath": "C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\security\\signup.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|c:\\# github local repository\\coffeecove\\coffeecove\\security\\signup.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:security\\signup.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
@@ -20,6 +20,19 @@
           "DockedWidth": 200,
           "SelectedChildIndex": 11,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SignUp.aspx.cs",
+              "DocumentMoniker": "C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\Security\\SignUp.aspx.cs",
+              "RelativeDocumentMoniker": "Security\\SignUp.aspx.cs",
+              "ToolTip": "C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\Security\\SignUp.aspx.cs",
+              "RelativeToolTip": "Security\\SignUp.aspx.cs",
+              "ViewState": "AQIAADQAAAAAAAAAAAAkwEIAAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-13T17:20:49.271Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
@@ -62,19 +75,6 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "SignUp.aspx.cs",
-              "DocumentMoniker": "C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\Security\\SignUp.aspx.cs",
-              "RelativeDocumentMoniker": "Security\\SignUp.aspx.cs",
-              "ToolTip": "C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\Security\\SignUp.aspx.cs",
-              "RelativeToolTip": "Security\\SignUp.aspx.cs",
-              "ViewState": "AQIAADEAAAAAAAAAAAAcwDwAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-13T17:08:55.81Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "SignUp.aspx",
               "DocumentMoniker": "C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\Security\\SignUp.aspx",
@@ -83,7 +83,7 @@
               "RelativeToolTip": "Security\\SignUp.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-08-13T15:47:56.506Z",
+              "WhenOpened": "2024-08-13T17:15:35.299Z",
               "EditorCaption": ""
             }
           ]
