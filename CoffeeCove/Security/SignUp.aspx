@@ -305,7 +305,7 @@
             runat="server" 
             ControlToValidate="Gender_SU" 
             InitialValue="" 
-            ErrorMessage="Please select a location." 
+            ErrorMessage="Please select your gender." 
             Display="Dynamic"
             ForeColor="Red"
             CssClass="rqdValidator" />
@@ -388,18 +388,18 @@
     <!-- Sign In -->
     <div class="flex justify-center space-x-4">
         <asp:Button ID="SignInUsernameBtn_SU" 
-        runat="server" 
-        CssClass="bg-secondary text-secondary-foreground p-2 rounded w-full" 
-        Text="Sign In with Username"
-        style="cursor: pointer;"
-        OnClick="SignUpUsernameBtn_SU_Click"/>
+            runat="server" 
+            CssClass="bg-secondary text-secondary-foreground p-2 rounded w-full" 
+            Text="Sign In with Username"
+            style="cursor: pointer;"
+            OnClick="SignUpUsernameBtn_SU_Click"/>
 
         <asp:Button ID="SignUpEmailBtn_SU" 
-        runat="server" 
-        CssClass="bg-secondary text-secondary-foreground p-2 rounded w-full" 
-        Text="Sign In with Email"
-        style="cursor: pointer;"
-        OnClick="SignUpEmailBtn_SU_Click"/>
+            runat="server" 
+            CssClass="bg-secondary text-secondary-foreground p-2 rounded w-full" 
+            Text="Sign In with Email"
+            style="cursor: pointer;"
+            OnClick="SignUpEmailBtn_SU_Click"/>
   </div>
 </div>
 <br />
