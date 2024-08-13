@@ -361,7 +361,7 @@ td > a {
 .resetPassword_btn:hover {
     background-color: #DADDE2;
     color: #775466;*/
-    /* font-family: Staffee-Bold; */
+    font-family: Staffee-Bold; 
     /*font-weight: bold;
     font-size: medium;
     border-radius: 30px;
@@ -393,7 +393,7 @@ td > a {
 #alreadyRegistered {
     /* font-family: Staffee-Bold; */
     font-weight: bold;
-    ;
+    
     padding-top: 2px;
     user-select: text;
 }
