@@ -57,6 +57,16 @@ namespace CoffeeCove.Security
             }
         }
 
+        protected void SignUpUsernameBtn_SU_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void SignUpEmailBtn_SU_Click(object sender, EventArgs e)
+        {
+
+        }
+
         // custID
     }
 }

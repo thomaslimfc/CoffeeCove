@@ -204,22 +204,22 @@ namespace CoffeeCove.Security
         protected global::System.Web.UI.WebControls.CompareValidator PasswordReenter_SU_compareValidator;
 
         /// <summary>
-        /// gender control.
+        /// Gender_SU control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList gender;
+        protected global::System.Web.UI.WebControls.DropDownList Gender_SU;
 
         /// <summary>
-        /// gender_rqdValidator control.
+        /// Gender_SU_rqdValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator gender_rqdValidator;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator Gender_SU_rqdValidator;
 
         /// <summary>
         /// location control.
@@ -247,5 +247,23 @@ namespace CoffeeCove.Security
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button SignUpBtn_SU;
+
+        /// <summary>
+        /// SignInUsernameBtn_SU control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button SignInUsernameBtn_SU;
+
+        /// <summary>
+        /// SignUpEmailBtn_SU control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button SignUpEmailBtn_SU;
     }
 }

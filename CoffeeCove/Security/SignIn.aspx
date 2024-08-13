@@ -177,7 +177,7 @@
     <!-- SIGN IN Button -->
     <asp:Button ID="SignInButton_SI" 
         runat="server" 
-        Text="Sign In" 
+        Text="Sign Now" 
         CssClass="w-full bg-primary text-primary-foreground p-2 rounded-md hover:bg-primary/80" />
     <!-- Forgot Password + SIGN IN with EMAIL -->
     <div class="flex justify-between text-sm mt-2">
