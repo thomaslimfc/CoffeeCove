@@ -122,7 +122,7 @@
                                     </div>
                                 </div>
                                 <div class="card-footer">
-                                    <button type="button" class="subscribe btn btn-primary btn-block shadow-sm"> Confirm Payment </button>
+                                    <button type="button" class="subscribe btn btn-primary btn-block shadow-sm" onclick="showOrderConfirmationModal()"> Confirm Payment </button>
                                 </div>
                             </form>
                         </div> <!-- End credit card info -->
@@ -184,5 +184,55 @@
 
     <br />
     <br />
+
+    <script>
+        function showOrderConfirmationModal() {
+            $('#orderConfirmationModal').modal('show');
+        }
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+
+    <!-- Modal -->
+    <div class="modal fade" id="orderConfirmationModal" tabindex="-1" aria-labelledby="orderConfirmationLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body text-start p-4">
+                    <h5 class="modal-title text-uppercase mb-5" id="orderConfirmationLabel">John Doe</h5>
+                    <h4 class="mb-5">Thanks for your order</h4>
+                    <p class="mb-0">Payment summary</p>
+                    <hr class="mt-2 mb-4" style="height: 0; background-color: transparent; opacity: .75; border-top: 2px dashed #9e9e9e;">
+
+                    <div class="d-flex justify-content-between">
+                        <p class="fw-bold mb-0">Ether Chair (Qty: 1)</p>
+                        <p class="text-muted mb-0">$1750.00</p>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <p class="small mb-0">Shipping</p>
+                        <p class="small mb-0">$175.00</p>
+                    </div>
+
+                    <div class="d-flex justify-content-between pb-1">
+                        <p class="small">Tax</p>
+                        <p class="small">$200.00</p>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <p class="fw-bold">Total</p>
+                        <p class="fw-bold">$2125.00</p>
+                    </div>
+
+                </div>
+                <div class="modal-footer d-flex justify-content-center border-top-0 py-4">
+                    <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg mb-1" style="background-color: #35558a;">
+                        Track your order
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </asp:Content>

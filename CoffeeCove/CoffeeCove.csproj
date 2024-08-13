@@ -397,6 +397,7 @@
     <Content Include="CSS\Home.css" />
     <Content Include="CSS\Menu.css" />
     <Content Include="CSS\orderCart.css" />
+    <Content Include="CSS\OrderHistory.css" />
     <Content Include="CSS\OrderManagement.css" />
     <Content Include="CSS\orderOpt.css" />
     <Content Include="CSS\paymentOpt.css" />
