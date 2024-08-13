@@ -92,14 +92,11 @@ namespace CoffeeCove.AdminSite
             string prefix = GetCategoryPrefix(categoryId);
             int nextIndex = GetNextIndex(categoryId);
 
-            // Format the index to always be two digits
             string formattedIndex = nextIndex.ToString("D2");
 
-            // Combine prefix and formatted index
             return prefix + formattedIndex;
         }
 
-        // Add or Update Product
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             string productName = txtProductName.Text.Trim();
@@ -109,7 +106,8 @@ namespace CoffeeCove.AdminSite
             int categoryId;
             bool isCategorySelected = int.TryParse(ddlCategory.SelectedValue, out categoryId);
 
-            if (string.IsNullOrEmpty(productName))
+            //if product exist
+            if (IsProductExists(productName))
             {
                 lblMsg.Text = "Product already exist.";
                 lblMsg.Visible = true;
@@ -117,14 +115,16 @@ namespace CoffeeCove.AdminSite
                 return;
             }
 
+            //if didnt select category
             if (!isCategorySelected || categoryId == 0)
             {
-                lblMsg.Text = "Please select a category.";
-                lblMsg.Visible = true;
+                lblMsg2.Text = "Please select a category.";
+                lblMsg2.Visible = true;
                 HideMessageAfterDelay();
                 return;
             }
 
+            //upload image
             string imageUrl = null;
 
             if (hdnId.Value != "0")
@@ -142,6 +142,7 @@ namespace CoffeeCove.AdminSite
             }
             else
             {
+                //add new product
                 string categoryName = ddlCategory.SelectedItem.Text;
                 string productId = GenerateProductId(categoryId);
 
@@ -194,16 +195,13 @@ namespace CoffeeCove.AdminSite
                 }
             }
 
-            lblMsg.Text = "Product updated successfully.";
+            lblMsg.Text = "Product updated successfully!";
             lblMsg.Visible = true;
             HideMessageAfterDelay();
             BindProduct();
             ClearForm();
         }
 
-
-
-        // upload image 
         private string UploadImage()
         {
             if (fuProductImage.HasFile)
@@ -218,7 +216,6 @@ namespace CoffeeCove.AdminSite
             return null; // Return null if no image uploaded
         }
 
-        // check if the category name already exist
         private bool IsProductExists(string productName)
         {
             using (SqlConnection con = new SqlConnection(cs))
@@ -263,7 +260,6 @@ namespace CoffeeCove.AdminSite
             }
         }
 
-        // display the current data in the form when click on edit button
         private void LoadProductForEdit(string productId)
         {
             using (SqlConnection con = new SqlConnection(cs))
@@ -291,8 +287,6 @@ namespace CoffeeCove.AdminSite
             btnAdd.Text = "Update";
         }
 
-
-        // delete the current category
         private void DeleteProduct(string productId)
         {
             try
@@ -301,16 +295,7 @@ namespace CoffeeCove.AdminSite
                 {
                     con.Open();
 
-                    // Step 1: Delete the product
-                    string sqlDelete = "DELETE FROM Product WHERE ProductId = @ProductId";
-                    using (SqlCommand cmd = new SqlCommand(sqlDelete, con))
-                    {
-                        cmd.Parameters.AddWithValue("@ProductId", productId);
-                        cmd.ExecuteNonQuery();
-                    }
-
-                    // Step 2: Update the ProductIds of the subsequent products
-                    // We need to fetch the category ID of the deleted product to generate the new ProductId.
+                    // Step 1: Get the category ID of the product to be deleted.
                     string sqlCategory = "SELECT CategoryId FROM Product WHERE ProductId = @ProductId";
                     int categoryId;
                     using (SqlCommand cmd = new SqlCommand(sqlCategory, con))
@@ -319,22 +304,25 @@ namespace CoffeeCove.AdminSite
                         categoryId = (int)cmd.ExecuteScalar();
                     }
 
-                    // Get the prefix for the category
+                    // Step 2: Delete the product.
+                    string sqlDelete = "DELETE FROM Product WHERE ProductId = @ProductId";
+                    using (SqlCommand cmd = new SqlCommand(sqlDelete, con))
+                    {
+                        cmd.Parameters.AddWithValue("@ProductId", productId);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    // Step 3: Reorder the remaining products in the category.
                     string prefix = GetCategoryPrefix(categoryId);
 
-                    // Find the product IDs that need updating
-                    string sqlUpdate = @"
-                UPDATE Product
-                SET ProductId = CONCAT(@Prefix, RIGHT('00' + CAST(SUBSTRING(ProductId, 3, 2) AS VARCHAR(2)), 2))
-                WHERE SUBSTRING(ProductId, 1, 2) = @Prefix AND 
-                CAST(SUBSTRING(ProductId, 3, 2) AS INT) > (
-                    SELECT CAST(SUBSTRING(@ProductId, 3, 2) AS INT)
-                )";
+                    string sqlUpdateIds = @";WITH CTE AS (SELECT ProductId,ROW_NUMBER() OVER (ORDER BY CAST(SUBSTRING(ProductId, 3, 2) AS INT)) AS RowNum
+                    FROM Product WHERE CategoryId = @CategoryId) UPDATE Product SET ProductId = @Prefix + RIGHT('00' + CAST(CTE.RowNum AS VARCHAR(2)), 2)
+                    FROM Product INNER JOIN CTE ON Product.ProductId = CTE.ProductId";
 
-                    using (SqlCommand cmd = new SqlCommand(sqlUpdate, con))
+                    using (SqlCommand cmd = new SqlCommand(sqlUpdateIds, con))
                     {
                         cmd.Parameters.AddWithValue("@Prefix", prefix);
-                        cmd.Parameters.AddWithValue("@ProductId", productId);
+                        cmd.Parameters.AddWithValue("@CategoryId", categoryId);
                         cmd.ExecuteNonQuery();
                     }
 
@@ -352,10 +340,6 @@ namespace CoffeeCove.AdminSite
             }
         }
 
-
-
-
-        // hide the lblmsg after a delay
         private void HideMessageAfterDelay()
         {
             string script = @"setTimeout(function() {

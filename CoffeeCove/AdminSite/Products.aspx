@@ -42,6 +42,7 @@
                                 <div class="col-12">
                                     <label>Category</label>
                                     <asp:DropDownList ID="ddlCategory" runat="server" CssClass="form-control"></asp:DropDownList>
+                                    <asp:Label ID="lblMsg2" runat="server" Visible="false" ForeColor="Red"></asp:Label>
                                 </div>
                                 <div class="col-12">
                                     <label>Product Image</label>
