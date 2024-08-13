@@ -486,6 +486,7 @@
     <Content Include="Security\PrivacyPolicy.aspx" />
     <Content Include="Security\SignIn.aspx" />
     <Content Include="Security\ForgotPassword.aspx" />
+    <Content Include="Security\SignInWithEmail.aspx" />
     <Content Include="Security\SignUp.aspx" />
     <Content Include="Security\TwoFactorAuthentication.aspx" />
     <Content Include="Security\UserAgreement.aspx" />
@@ -649,6 +650,13 @@
     </Compile>
     <Compile Include="Security\ForgotPassword.aspx.designer.cs">
       <DependentUpon>ForgotPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Security\SignInWithEmail.aspx.cs">
+      <DependentUpon>SignInWithEmail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Security\SignInWithEmail.aspx.designer.cs">
+      <DependentUpon>SignInWithEmail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Security\SignUp.aspx.cs">
       <DependentUpon>SignUp.aspx</DependentUpon>

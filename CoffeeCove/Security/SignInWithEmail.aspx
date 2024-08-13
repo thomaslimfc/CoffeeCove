@@ -104,29 +104,29 @@
     <h2 class="text-2xl font-bold text-foreground mb-4">Sign In</h2>
     <!-- Username -->
     <div class="mb-4">
-        <asp:TextBox ID="Username_SI" 
+        <asp:TextBox ID="EmailAdd_SI" 
             CssClass="w-full p-2 border border-border rounded-md focus:outline-none focus:ring focus:ring-ring" 
-            runat="server"
-            placeholder="Username" 
-            title="Username"
+            runat="server" 
+            placeholder="Email Address" 
+            title="Email Address"
             AutoPostBack="false">
         </asp:TextBox>
         <br />
         <asp:RequiredFieldValidator 
-            ID="Username_SI_rqdValidator" runat="server" 
-            ControlToValidate="Username_SI" 
-            ErrorMessage="Username is required." 
+            ID="EmailAdd_SI_rqdValidator" runat="server" 
+            ControlToValidate="EmailAdd_SI" 
+            ErrorMessage="Email Address is required." 
             Display="Dynamic" ForeColor="Red" 
             CssClass="rqdValidator" />
         <asp:RegularExpressionValidator 
-            ID="Username_SI_regexValidator" 
+            ID="EmailAdd_SI_regexValidator" 
             runat="server" 
-            ControlToValidate="Username_SI" 
-            ErrorMessage="Must contain >10 letters and numbers only." 
+            ControlToValidate="EmailAdd_SI" 
+            ErrorMessage="Invalid email format." 
             Display="Dynamic" 
             ForeColor="Red" 
             CssClass="rqdValidator" 
-            ValidationExpression="^[a-zA-Z0-9]{10,}$" />
+            ValidationExpression="^[^@\s]+@[^@\s]+\.[^@\s]+$" />
     </div>
     <!-- Password -->
     <div class="mb-4">
@@ -165,7 +165,7 @@
         <a href="ForgotPassword.aspx" class="text-muted-foreground text-sm">
             Forgot Password?
         </a>
-        <a href="SignInWithEmail.aspx" class="text-muted-foreground">Sign In with Email</a>
+        <a href="SignIn.aspx" class="text-muted-foreground">Sign In with Username</a>
     </div>
     <div class="trMarginBottom20"></div>
     <!-- Join Now -->

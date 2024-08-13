@@ -15,31 +15,31 @@ namespace CoffeeCove.Security
     {
 
         /// <summary>
-        /// Username_SI control.
+        /// EmailAdd_SI control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Username_SI;
+        protected global::System.Web.UI.WebControls.TextBox EmailAdd_SI;
 
         /// <summary>
-        /// Username_SI_rqdValidator control.
+        /// EmailAdd_SI_rqdValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator Username_SI_rqdValidator;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator EmailAdd_SI_rqdValidator;
 
         /// <summary>
-        /// Username_SI_regexValidator control.
+        /// EmailAdd_SI_regexValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator Username_SI_regexValidator;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator EmailAdd_SI_regexValidator;
 
         /// <summary>
         /// Password_SI control.
