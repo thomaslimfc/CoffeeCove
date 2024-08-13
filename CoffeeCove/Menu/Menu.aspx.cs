@@ -104,19 +104,35 @@ namespace CoffeeCove.Menu
                         if (categoryId == "5" || categoryId == "6" || categoryId == "7")
                         {
                             // For categories 5, 6, 7: only show special instructions
-                            lbSize.Visible = false;
-                            lbFlavour.Visible = false;
-                            lbIceLevel.Visible = false;
-                            lbAddOn.Visible = false; 
+                            lblSize.Visible = false;
+                            lblFlavour.Visible = false;
+                            lblIceLevel.Visible = false;
+                            lblAddOn.Visible = false; 
                             ddlSize.Visible = false;
                             ddlFlavour.Visible = false;
                             ddlIceLevel.Visible = false;
                             ddlAddOn.Visible = false;
                             txtSpecialInstructions.Visible = true;
+                            
+                        }
+                        else if (categoryId == "4")
+                        {
+                            lblSize.Visible = true;
+                            lblFlavour.Visible = true;
+                            lblIceLevel.Visible = true;
+                            lblAddOn.Visible = false;
+                            ddlSize.Visible = true;
+                            ddlFlavour.Visible = true;
+                            ddlIceLevel.Visible = true;
+                            ddlAddOn.Visible = false;
+                            txtSpecialInstructions.Visible = true;
                         }
                         else
                         {
-                            // For other categories (2, 3, 4): show all form elements
+                            lblSize.Visible = true;
+                            lblFlavour.Visible = true;
+                            lblIceLevel.Visible = true;
+                            lblAddOn.Visible = true;
                             ddlSize.Visible = true;
                             ddlFlavour.Visible = true;
                             ddlIceLevel.Visible = true;
@@ -130,8 +146,6 @@ namespace CoffeeCove.Menu
                 }
             }
         }
-
-
 
         private string GetProductCategoryId(string productId)
         {
@@ -147,6 +161,34 @@ namespace CoffeeCove.Menu
             }
         }
 
+        protected void btnIncrease_Click(object sender, EventArgs e)
+        {
+            int quantity = GetQuantity();
+            if (quantity < 10)
+            {
+                txtQuantity.Text = (quantity + 1).ToString();
+                UpdatePrice(sender, e); 
+            }
+            
+        }
+
+        protected void btnDecrease_Click(object sender, EventArgs e)
+        {
+            int quantity = GetQuantity();
+            if (quantity > 1)
+            {
+                txtQuantity.Text = (quantity - 1).ToString();
+                UpdatePrice(sender, e); 
+            }
+        }
+
+        private int GetQuantity()
+        {
+            int quantity;
+            int.TryParse(txtQuantity.Text, out quantity);
+            return quantity > 0 ? quantity : 1; // Quantity at least 1
+        }
+
         protected void UpdatePrice(object sender, EventArgs e)
         {
             decimal basePrice = Convert.ToDecimal(ViewState["BasePrice"]);
@@ -157,7 +199,8 @@ namespace CoffeeCove.Menu
             if (ddlAddOn.SelectedValue == "1EspressoShot") finalPrice += 2.50m;
             if (ddlAddOn.SelectedValue == "2EspressoShots") finalPrice += 5.00m;
 
-            lblPrice.Text = $"Price: RM {finalPrice:N2}";
+            int quantity = GetQuantity();
+            lblPrice.Text = $"Price: RM {finalPrice * quantity:N2}";
         }
 
         protected void btnReset_Click(object sender, EventArgs e)
@@ -167,8 +210,9 @@ namespace CoffeeCove.Menu
             ddlFlavour.SelectedIndex = -1;
             ddlIceLevel.SelectedIndex = -1;
             ddlAddOn.SelectedIndex = -1;
+            txtQuantity.Text = "1";
 
-            // Reset the price to the original base price
+            // Reset the price to the original price
             decimal basePrice = Convert.ToDecimal(ViewState["BasePrice"]);
             lblPrice.Text = $"Price: RM {basePrice:N2}";
         }

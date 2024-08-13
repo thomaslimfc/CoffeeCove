@@ -63,27 +63,7 @@
     display: none; 
 }
 
-/*
-.SelectBtn {
-    border: 3px solid transparent;
-    padding: 10px;
-    background-color: #433533;
-    margin: 5px;
-    color: #433533;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 400;
-    cursor: pointer;
-    letter-spacing: 0.5px;
-    transition: border-color 0.3s;
-}
-
-.SelectBtn:hover {
-    border-color: #ffc74c; 
-}
-*/
-
-#productContainer a {
+#productContainer a , .btnReset, .btnAdd {
     display: inline-block;
     padding: 8px 16px;
     text-decoration: none;
@@ -100,7 +80,7 @@
     transition-duration: 0.4s;
 }
 
-#productContainer a:hover{
+#productContainer a:hover , .btnReset:hover, .btnAdd:hover {
     background-color: #413432;
     color: white;
 }
@@ -111,35 +91,53 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 600px;
-    margin: 0;
-    padding: 20px;
-    border-radius: 5px;
-    border: 1px solid #fff;
-    background-color: #000000f2;
-    top: 50%;
+    max-width: 700px;
+    padding:20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px #000;
+    background-color: #fff;
+    top: 38%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 10;
-    height: 70%;
-    color: #fff;
+    height: 85%;
+    color: #000;
     letter-spacing: 0.5px;
 }
 
 .orderform td {
-    padding-bottom:15px;
+    padding-bottom:10px;
 }
 
-.orderform label {
-    margin-bottom: 5px;
- 
-}
-
-#btnClose {
-    padding: 8px 20px;
-    border-radius: 10px;
-    background-color: #fff;
+/*CLose button style*/
+.btnClose {
     border: none;
+    color: #c12727;
     cursor: pointer;
-    margin-left: 20px;
+    font-size: 20px;
+    background:none;
+}
+
+.btnClose:hover {
+    border: 1px solid #a9a9a9;
+    border-radius:5px;
+}
+
+.productImg {
+    padding:5px 20px 5px 5px;
+}
+
+.label {
+    padding-left: 10px;
+}
+
+
+.label {
+    font-size: 15px;
+}
+
+.ddlOrder {
+    font-size:15px;
+    width: 200px;
+    height: 30px;
 }
