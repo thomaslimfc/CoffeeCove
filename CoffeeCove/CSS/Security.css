@@ -295,19 +295,25 @@ td > a {
 .NextBtn_FP,
 .BackBtn_FP,
 .resetPassword_btn {
-    background-color: #775466;
-    color: #ffffff;
-    /* font-family: Staffee-Bold; */
+/*    background-color: #775466;*/
+/*    color: #ffffff;*/
     font-size: medium;
     font-weight: bold;
-    border-radius: 30px;
-    border-width: 0;
+/*    border-radius: 30px;*/
+/*    border-width: 0;*/
     width: 248px;
     height: 40px;
     margin-top: 15px;
     padding-top: 5px;
     padding-bottom: 6px;
     cursor: pointer;
+
+
+    border-radius: 8px;
+    transition-duration: 0.4s;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #433533;
 }
 
 .securityPrimaryBtn:hover,
@@ -315,17 +321,21 @@ td > a {
 .signUp_btn:hover,
 .NextBtn_FP:hover,
 .resetPassword_btn:hover {
-    background-color: #DADDE2;
-    color: #775466;
-    /* font-family: Staffee-Bold; */
-    font-weight: bold;
-    font-size: medium;
-    border-radius: 30px;
-    border-width: 0;
-    margin-top: 15px;
-    padding-bottom: 6px;
+/*    background-color: #DADDE2;*/
+/*    color: #775466;*/
+/*    font-family: Staffee-Bold; */
+/*    font-weight: bold;*/
+/*    font-size: medium;*/
+/*    border-radius: 30px;*/
+/*    border-width: 0;*/
+/*    margin-top: 15px;*/
+/*    padding-bottom: 6px;*/
+/*    transition-delay: 0.25s;*/
+
+
+    color: white;
+    background-color: #413432;
     cursor: pointer;
-    transition-delay: 0.25s;
 }
 
 .securitySecondaryBtn,
@@ -343,6 +353,40 @@ td > a {
     padding-bottom: 6px;
     cursor: pointer;
 }
+
+/*.securityPrimaryBtn:hover,
+.signIn_btn:hover,
+.signUp_btn:hover,
+.NextBtn_FP:hover,
+.resetPassword_btn:hover {
+    background-color: #DADDE2;
+    color: #775466;*/
+    /* font-family: Staffee-Bold; */
+    /*font-weight: bold;
+    font-size: medium;
+    border-radius: 30px;
+    border-width: 0;
+    margin-top: 15px;
+    padding-bottom: 6px;
+    cursor: pointer;
+    transition-delay: 0.25s;
+}
+
+.securitySecondaryBtn,
+.back_btn {
+    background-color: #ffffff;*/
+    /* color: #775466; */
+    /* font-family: Staffee-Bold; */
+    /*font-size: medium;
+    font-weight: bold;
+    border-radius: 30px;
+    border-width: 0;
+    width: 293px;
+    height: 40px;
+    margin-top: 15px;
+    padding-bottom: 6px;
+    cursor: pointer;
+}*/
 
 #joinUsNow,
 #alreadySignedUp,

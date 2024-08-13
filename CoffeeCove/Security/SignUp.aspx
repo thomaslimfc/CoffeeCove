@@ -365,10 +365,10 @@
                 </div>
             </td>
         </tr>
-        <tr>
+        <tr colspan="2">
             <td class="trMarginBottom20"></td>
         </tr>
-        <tr>
+        <tr colspan="2">
             <td id="agreement_td">
                 By signing up, you agree to the Staffee
                 <a href="UserAgreement.aspx">User Agreement</a>, and
@@ -378,7 +378,7 @@
         <tr>
             <td class="trMarginBottom20"></td>
         </tr>
-        <tr>
+        <tr colspan="4">
             <td>
                 <center>
                     <div style="width: 198px; height: 40px; 
@@ -393,7 +393,7 @@
         <tr>
             <td class="trMarginBottom20"></td>
         </tr>
-        <tr>
+        <tr colspan="2">
             <td id="signUpBtn_td">
                 <asp:Button ID="SignUpBtn_SU" runat="server" Text="Agree & Join"
                             CssClass="securityPrimaryBtn" OnClick="SignUpBtn_SU_Click"/>
