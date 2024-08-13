@@ -27,7 +27,7 @@
                 </div>
                 <div class="headerBtn">
                     <asp:ImageButton ID="cartBtn" runat="server" ImageUrl="~/img/cartLogo.png" PostBackUrl="../Order/orderCart.aspx" Width="25px" />
-                    <asp:Button ID="loginBtn" runat="server" Text="Login" Font-Size="17px" OnClick="loginBtn_Click" />
+                    <asp:Button ID="loginBtn" runat="server" Text="Sign In" Font-Size="17px" OnClick="loginBtn_Click" />
                 </div>
             </div>
         </div>
