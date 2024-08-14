@@ -357,6 +357,7 @@
         <center>
             <div class="mb-4" 
                 style="width: 198px; 
+                cursor: pointer;
                 height: 40px; 
                 transform: scale(0.65); 
                 transform-origin: 0 0">
@@ -400,7 +401,7 @@
             Text="Sign In with Email"
             style="cursor: pointer;"
             OnClick="SignUpEmailBtn_SU_Click"/>
-  </div>
+    </div>
 </div>
 <br />
 <br />
