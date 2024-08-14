@@ -419,6 +419,7 @@ asp .validator {
 #emailAdd_rqdValidator,
 #password_rqdValidator,
 #passReenter_rqdValidator,
+#DateOfBirth_PR_rqdValidator,
 #gender_rqdValidator,
 #location_rqdValidator, .ss {
     text-align: left;

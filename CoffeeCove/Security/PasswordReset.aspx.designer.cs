@@ -60,67 +60,13 @@ namespace CoffeeCove.Security
         protected global::System.Web.UI.WebControls.RequiredFieldValidator PasswordConfirm_PR_rqdValidator;
 
         /// <summary>
-        /// PasswordConfirm_PR_compareValidator control.
+        /// PasswordConfirm_PR_compValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator PasswordConfirm_PR_compareValidator;
-
-        /// <summary>
-        /// Password_SU control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Password_SU;
-
-        /// <summary>
-        /// Password_SU_rqdValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator Password_SU_rqdValidator;
-
-        /// <summary>
-        /// Password_SU_regexValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator Password_SU_regexValidator;
-
-        /// <summary>
-        /// PasswordReenter_SU control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox PasswordReenter_SU;
-
-        /// <summary>
-        /// PasswordReenter_SU_rqdValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator PasswordReenter_SU_rqdValidator;
-
-        /// <summary>
-        /// PasswordReenter_SU_compareValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator PasswordReenter_SU_compareValidator;
+        protected global::System.Web.UI.WebControls.CompareValidator PasswordConfirm_PR_compValidator;
 
         /// <summary>
         /// ResetPasswordBtn_PR control.
@@ -130,32 +76,5 @@ namespace CoffeeCove.Security
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button ResetPasswordBtn_PR;
-
-        /// <summary>
-        /// errorMessageLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label errorMessageLabel;
-
-        /// <summary>
-        /// SignInUsernameBtn_SU control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button SignInUsernameBtn_SU;
-
-        /// <summary>
-        /// SignUpEmailBtn_SU control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button SignUpEmailBtn_SU;
     }
 }
