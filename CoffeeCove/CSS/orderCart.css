@@ -29,15 +29,11 @@
 #cartItemTable, #cartTotalTable {
     width: 100%;
     text-align: left;
-}
-
-#cartItemTable {
-    border-bottom: black solid 5px;
+    border-collapse: collapse;
 }
 
 #cartTitle td {
     text-align: center;
-    border-bottom: grey solid 3px;
 }
 
 .cartLeft {
