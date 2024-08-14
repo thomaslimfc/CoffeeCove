@@ -174,6 +174,7 @@
             CssClass="rqdValidator" 
             ValidationExpression="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{10,}$" />
     </div>
+    <div class="trMarginBottom20"></div>
     <!-- SIGN IN Button -->
     <asp:Button ID="SignInButton_SI" 
         runat="server" 

@@ -206,13 +206,12 @@ td > a {
     line-height: 30px;
 }
 
-    .gender_rbl input[type="radio"] {
-        vertical-align: middle;
-    }
-
-    .gender_rbl label {
-        line-height: 30px;
-    }
+.gender_rbl input[type="radio"] {
+    vertical-align: middle;
+}
+.gender_rbl label {
+    line-height: 30px;
+}
 /* RadioButtonList container */
 .gender_rbl {
     display: flex;
@@ -345,9 +344,9 @@ td > a {
     /* font-family: Staffee-Bold; */
     font-size: medium;
     font-weight: bold;
-    border-radius: 30px;
+    /* border-radius: 30px; */
     border-width: 0;
-    width: 293px;
+    width: 400px;
     height: 40px;
     margin-top: 15px;
     padding-bottom: 6px;

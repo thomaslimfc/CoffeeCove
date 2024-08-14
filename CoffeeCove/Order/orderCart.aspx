@@ -14,13 +14,35 @@
                 <td class="cartLeft" colspan="2">Item</td>
                 <td class="cartRight">Quantity</td>
             </tr>
-            <tr>
-                <td>
-                    <asp:Image runat="server" ID="imgCart" CssClass="imgCart" ImageUrl="~/imgProductItems/coffee8.jpg"></asp:Image>
-                </td>
-                <td class="cartLeft">coffeee</td>
-                <td class="cartRight">50</td>
-            </tr>
+
+            <!--Repeater-->
+            <asp:Repeater ID="rptOrdered" runat="server">
+                <ItemTemplate>
+                    <tr>
+                        <td>
+                            <asp:Label ID="lblCode" runat="server" Text='<%# Eval("ProductId") %>' />
+                        </td>
+                        <td>
+                            <asp:Label ID="lblName" runat="server" Text='<%# Eval("ProductName") %>' />
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td>
+                                        <asp:Label ID="lblSize" runat="server" Text='<%# Eval("ProductId") %>' />
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </ItemTemplate>
+            </asp:Repeater>
+                    
+
+
+
+
+                
         </table>
 
         <table id="cartTotalTable">
