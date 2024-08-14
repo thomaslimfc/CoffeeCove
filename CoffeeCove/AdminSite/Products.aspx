@@ -1,73 +1,69 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Admin.Master" AutoEventWireup="true" CodeBehind="Products.aspx.cs" Inherits="CoffeeCove.AdminSite.Products" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <style>
-        .description-field {
-            width:5%;
-        }
-    </style>
     <div id="main" class="main">
         <div class="pagetitle">
             <br />
             <h3>Products Management</h3>
         </div>
         <section class="section">
-            <div class="alert-msg" style="margin-top:20px;">
-                <asp:Label ID="lblMsg" runat="server" Visible="false" CssClass="alert alert-warning alert-dismissible fade show"></asp:Label>
-            </div>
-            
-            <div class="row" style="margin-top:2%;" >
-
+            <div class="row" style="margin-top: 2%;">
                 <!-- Product Form -->
-                <div class="col-lg-4" >
-                    <div class="card" >
-                        <div class="card-body"  >
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
                             <h5 class="card-title">Product</h5>
                             <div class="row g-3 ">
-                                <div class="col-12">
+                                <div class="col-6">
                                     <label>Product Name</label>
                                     <asp:TextBox ID="txtProductName" runat="server" CssClass="form-control" placeholder="Enter Product Name"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Please enter Product Name." ControlToValidate="txtProductName" CssClass="error" Display="Dynamic" ValidationGroup="ProductForm"/>
-                                    <asp:HiddenField ID="hdnId" runat="server" Value="0"/>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Please enter Product Name." ControlToValidate="txtProductName" CssClass="error" Display="Dynamic" ValidationGroup="ProductForm" />
+                                    <asp:CustomValidator ID="CustomValidator1" runat="server" ControlToValidate="txtProductName" CssClass="error" Display="Dynamic" ErrorMessage="Product already exists." OnServerValidate="CustomValidator1_ServerValidate" ValidationGroup="ProductForm"></asp:CustomValidator>
+                                    <asp:HiddenField ID="hdnId" runat="server" Value="0" />
                                 </div>
-                                <div class="col-12">
+                                <div class="col-6">
                                     <label>Product Description</label>
-                                    <asp:TextBox ID="txtDesc" runat="server" CssClass="form-control" placeholder="Enter Product Description"></asp:TextBox>
+                                    <asp:TextBox ID="txtDesc" runat="server" CssClass="form-control" placeholder="Enter Product Description" MaxLength="30"></asp:TextBox>
                                 </div>
-                                <div class="col-12">
-                                    <label>Product Price</label>
+                                <div class="col-6">
+                                    <label>Product Price (RM)</label>
                                     <asp:TextBox ID="txtPrice" runat="server" CssClass="form-control" placeholder="Enter Unit Price"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Please enter Price (RM)." ControlToValidate="txtPrice" CssClass="error" Display="Dynamic" ValidationGroup="ProductForm"/>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Please enter Price (RM)." ControlToValidate="txtPrice" CssClass="error" Display="Dynamic" ValidationGroup="ProductForm" />
                                     <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Please enter a valid price (digits only)." ControlToValidate="txtPrice" CssClass="error" Display="Dynamic" ValidationGroup="ProductForm" ValidationExpression="^\d+(\.\d{1,2})?$" />
                                 </div>
-                                <div class="col-12">
+                                <div class="col-6">
                                     <label>Category</label>
                                     <asp:DropDownList ID="ddlCategory" runat="server" CssClass="form-control"></asp:DropDownList>
-                                    <asp:Label ID="lblMsg2" runat="server" Visible="false" ForeColor="Red"></asp:Label>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Please select a category." ControlToValidate="ddlCategory" CssClass="error" Display="Dynamic" ValidationGroup="ProductForm" />
                                 </div>
-                                <div class="col-12">
+                                <div class="col-6">
                                     <label>Product Image</label>
-                                    <asp:FileUpload ID="fuProductImage" runat="server" CssClass="form-control" onchange="ImagePreview(this);"/>
+                                    <asp:FileUpload ID="fuProductImage" runat="server" CssClass="form-control" onchange="ImagePreview(this);" />
                                 </div>
-                                <div class="form-check col-12">
+                                <div class="form-check col-8">
                                     <asp:CheckBox ID="cbIsActive" runat="server" Text="IsActive" />
                                 </div>
-                                <div class="col-12">
-                                    <asp:Button ID="btnAdd" runat="server" Text="Add" OnClick="btnAdd_Click" ValidationGroup="ProductForm"/>
+                                <div class="col-8">
+                                    <asp:Button ID="btnAdd" runat="server" Text="Add" OnClick="btnAdd_Click" ValidationGroup="ProductForm" />
                                     &nbsp;&nbsp;
-                                    <asp:Button ID="btnReset" runat="server" Text="Reset" OnClick="btnReset_Click"/>
+                                    <asp:Button ID="btnReset" runat="server" Text="Reset" OnClick="btnReset_Click" />
                                 </div>
-                                <div class="col-12">
-                                    <asp:Image ID="imgProduct" runat="server" CssClass="img-thumbnail"/>
+                                <div class="col-6">
+                                    <asp:Image ID="imgProduct" runat="server" CssClass="img-thumbnail" />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
+                <div class="col-lg-12">
+                    <asp:Label ID="lblMsg" runat="server" CssClass="alert alert-success" Visible="false"></asp:Label>
+                </div>
+
                 <!-- Product List -->
-                <div class="col-lg-8">
-                    <div class="card" >
-                        <div class="card-body" >
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
                             <h5 class="card-title">Product List</h5>
                             <asp:GridView ID="GridViewProduct" runat="server" AutoGenerateColumns="False" OnRowCommand="GridViewProduct_RowCommand" Width="100%" CssClass="table table-striped">
                                 <Columns>
@@ -92,7 +88,7 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:BoundField DataField="CreatedDate" HeaderText="Created Date" DataFormatString="{0:MM/dd/yyyy hh:mm:ss tt}" />
-                                    <asp:BoundField DataField="Description" HeaderText="Description"/>
+                                    <asp:BoundField DataField="Description" HeaderText="Description" />
                                     <asp:TemplateField HeaderText="Action">
                                         <ItemTemplate>
                                             <asp:LinkButton ID="lnkEdit" runat="server" CommandName="EditProduct" CommandArgument='<%# Eval("ProductId") %>' Text="Edit" />

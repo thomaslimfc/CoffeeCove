@@ -21,13 +21,24 @@ namespace CoffeeCove.AdminSite
             }
         }
 
-        private void BindCategory()
+        private void BindCategory(string searchTerm = "")
         {
+            string sql = "SELECT CategoryId, CategoryName, CategoryImageUrl, IsActive, CreatedDate FROM Category";
+
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                sql += " WHERE CategoryName LIKE @SearchTerm + '%'";
+            }
+
             using (SqlConnection con = new SqlConnection(cs))
             {
-                string sql = "SELECT CategoryId, CategoryName, CategoryImageUrl, IsActive, CreatedDate FROM Category";
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
+                    if (!string.IsNullOrEmpty(searchTerm))
+                    {
+                        cmd.Parameters.AddWithValue("@SearchTerm", searchTerm);
+                    }
+
                     con.Open();
                     SqlDataReader dr = cmd.ExecuteReader();
                     GridViewCategory.DataSource = dr;
@@ -36,12 +47,30 @@ namespace CoffeeCove.AdminSite
             }
         }
 
+        protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            string categoryName = args.Value;
+            int categoryId = Convert.ToInt32(hdnId.Value);
+            string sql = "SELECT COUNT(*) FROM Category WHERE CategoryName = @CategoryName";
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@CategoryName", categoryName);
+                   
+                    con.Open();
+                    int count = (int)cmd.ExecuteScalar();
+                    args.IsValid = count == 0;
+                }
+            }
+        }
+
         private int GetNextCategoryId()
         {
             int nextId = 1;
+            string sql = "SELECT ISNULL(MAX(CategoryId), 0) + 1 FROM Category";
             using (SqlConnection con = new SqlConnection(cs))
             {
-                string sql = "SELECT ISNULL(MAX(CategoryId), 0) + 1 FROM Category";
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     con.Open();
@@ -51,139 +80,6 @@ namespace CoffeeCove.AdminSite
             return nextId;
         }
 
-        // button add category
-        protected void btnAdd_Click(object sender, EventArgs e)
-        {
-            string categoryName = txtCategoryName.Text.Trim();
-            bool isActive = cbIsActive.Checked;
-            string categoryImageUrl = null;
-
-            if (hdnId.Value != "0")
-            {
-                // Edit existing category
-                if (fuCategoryImage.HasFile)
-                {
-                    categoryImageUrl = UploadImage();
-                }
-                else
-                {
-                    categoryImageUrl = imgCategory.Attributes["src"];
-                }
-                UpdateCategory(categoryName, categoryImageUrl, isActive);
-            }
-            else
-            {
-                // Add new category
-                int newCategoryId = GetNextCategoryId();
-                categoryImageUrl = UploadImage();
-
-                if (IsCategoryExists(categoryName))
-                {
-                    lblMsg.Text = "Category name already exists.";
-                    lblMsg.Visible = true;
-                    HideMessageAfterDelay();
-                    return;
-                }
-
-                using (SqlConnection con = new SqlConnection(cs))
-                {
-                    string sql = "INSERT INTO Category (CategoryId, CategoryName, CategoryImageUrl, IsActive, CreatedDate) VALUES (@CategoryId, @CategoryName, @CategoryImageUrl, @IsActive, @CreatedDate)";
-                    using (SqlCommand cmd = new SqlCommand(sql, con))
-                    {
-                        cmd.Parameters.AddWithValue("@CategoryId", newCategoryId);
-                        cmd.Parameters.AddWithValue("@CategoryName", categoryName);
-                        cmd.Parameters.AddWithValue("@CategoryImageUrl", string.IsNullOrEmpty(categoryImageUrl) ? (object)DBNull.Value : categoryImageUrl);
-                        cmd.Parameters.AddWithValue("@IsActive", isActive);
-                        cmd.Parameters.AddWithValue("@CreatedDate", DateTime.Now);
-                        con.Open();
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-
-                lblMsg.Text = "Category added successfully.";
-                lblMsg.Visible = true;
-                HideMessageAfterDelay();
-                BindCategory();
-                ClearForm();
-            }
-        }
-
-        // update category database
-        private void UpdateCategory(string categoryName, string categoryImageUrl, bool isActive)
-        {
-            int categoryId = Convert.ToInt32(hdnId.Value);
-
-            using (SqlConnection con = new SqlConnection(cs))
-            {
-                string sql = "UPDATE Category SET CategoryName = @CategoryName, CategoryImageUrl = @CategoryImageUrl, IsActive = @IsActive, CreatedDate = @CreatedDate WHERE CategoryId = @CategoryId";
-                using (SqlCommand cmd = new SqlCommand(sql, con))
-                {
-                    cmd.Parameters.AddWithValue("@CategoryId", categoryId);
-                    cmd.Parameters.AddWithValue("@CategoryName", categoryName);
-                    cmd.Parameters.AddWithValue("@CategoryImageUrl", categoryImageUrl);
-                    cmd.Parameters.AddWithValue("@IsActive", isActive);
-                    cmd.Parameters.AddWithValue("@CreatedDate", DateTime.Now);
-
-                    con.Open();
-                    cmd.ExecuteNonQuery();
-                }
-            }
-
-            lblMsg.Text = "Category updated successfully.";
-            lblMsg.Visible = true;
-            HideMessageAfterDelay();
-            BindCategory();
-            ClearForm();
-        }
-
-
-        // upload image 
-        private string UploadImage()
-        {
-            if (fuCategoryImage.HasFile)
-            {
-                string fileName = Path.GetFileName(fuCategoryImage.PostedFile.FileName);
-                string filePath = Server.MapPath("/img/Category/") + fileName;
-
-                // Save the uploaded image
-                fuCategoryImage.SaveAs(filePath);
-                return "/img/Category/" + fileName;
-            }
-            return null; // Return null if no image uploaded
-        }
-
-        // check if the category name already exist
-        private bool IsCategoryExists(string categoryName)
-        {
-            using (SqlConnection con = new SqlConnection(cs))
-            {
-                string sql = "SELECT COUNT(*) FROM Category WHERE CategoryName = @CategoryName";
-                using (SqlCommand cmd = new SqlCommand(sql, con))
-                {
-                    cmd.Parameters.AddWithValue("@CategoryName", categoryName);
-                    con.Open();
-                    return (int)cmd.ExecuteScalar() > 0;
-                }
-            }
-        }
-
-        // button reset
-        protected void btnReset_Click(object sender, EventArgs e)
-        {
-            ClearForm();
-        }
-
-        // clear the form
-        private void ClearForm()
-        {
-            txtCategoryName.Text = string.Empty;
-            cbIsActive.Checked = false;
-            imgCategory.Attributes["src"] = string.Empty;
-            hdnId.Value = "0";
-            btnAdd.Text = "Add";
-        }
-
-        // action edit and delete 
         protected void GridViewCategory_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "EditCategory")
@@ -198,12 +94,11 @@ namespace CoffeeCove.AdminSite
             }
         }
 
-        // display the current data in the form when click on edit button
         private void LoadCategoryForEdit(int categoryId)
         {
+            string sql = "SELECT CategoryId, CategoryName, CategoryImageUrl, IsActive FROM Category WHERE CategoryId = @CategoryId";
             using (SqlConnection con = new SqlConnection(cs))
             {
-                string sql = "SELECT CategoryId, CategoryName, CategoryImageUrl, IsActive FROM Category WHERE CategoryId = @CategoryId";
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     cmd.Parameters.AddWithValue("@CategoryId", categoryId);
@@ -223,54 +118,169 @@ namespace CoffeeCove.AdminSite
             btnAdd.Text = "Update";
         }
 
-        // delete the current category
-        private void DeleteCategory(int categoryId)
+        private void UpdateCategory(string categoryName, string categoryImageUrl, bool isActive)
         {
-            try
+            int categoryId = Convert.ToInt32(hdnId.Value);
+            string sql = "UPDATE Category SET CategoryName = @CategoryName, CategoryImageUrl = @CategoryImageUrl, IsActive = @IsActive, CreatedDate = @CreatedDate WHERE CategoryId = @CategoryId";
+            using (SqlConnection con = new SqlConnection(cs))
             {
-                using (SqlConnection con = new SqlConnection(cs))
+                using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
-                    // Step 1: Delete the category
-                    string sqlDelete = "DELETE FROM Category WHERE CategoryId = @CategoryId";
-                    using (SqlCommand cmd = new SqlCommand(sqlDelete, con))
-                    {
-                        cmd.Parameters.AddWithValue("@CategoryId", categoryId);
-                        con.Open();
-                        cmd.ExecuteNonQuery();
-                    }
+                    cmd.Parameters.AddWithValue("@CategoryId", categoryId);
+                    cmd.Parameters.AddWithValue("@CategoryName", categoryName);
+                    cmd.Parameters.AddWithValue("@CategoryImageUrl", categoryImageUrl);
+                    cmd.Parameters.AddWithValue("@IsActive", isActive);
+                    cmd.Parameters.AddWithValue("@CreatedDate", DateTime.Now);
 
-                    // Step 2: Reorder the remaining categories
-                    string sqlReorder = "UPDATE Category SET CategoryId = CategoryId - 1 WHERE CategoryId > @CategoryId";
-                    using (SqlCommand cmd = new SqlCommand(sqlReorder, con))
-                    {
-                        cmd.Parameters.AddWithValue("@CategoryId", categoryId);
-                        cmd.ExecuteNonQuery();
-                    }
-
-                    lblMsg.Text = "Category deleted successfully.";
-                    lblMsg.Visible = true;
-                    HideMessageAfterDelay();
-                    BindCategory();
+                    con.Open();
+                    cmd.ExecuteNonQuery();
                 }
             }
-            catch (Exception ex)
+            ShowSuccessMessage("Category updated successfully.");
+
+            BindCategory();
+            ClearForm();
+        }
+
+        private string UploadImage()
+        {
+            if (fuCategoryImage.HasFile)
             {
-                lblMsg.Text = "Error deleting category: " + ex.Message;
-                lblMsg.Visible = true;
-                HideMessageAfterDelay();
+                string fileName = Path.GetFileName(fuCategoryImage.PostedFile.FileName);
+                string filePath = Server.MapPath("/img/Category/") + fileName;
+
+                // Save the uploaded image
+                fuCategoryImage.SaveAs(filePath);
+                return "/img/Category/" + fileName;
+            }
+            return null; // Return null if no image uploaded
+        }
+
+        private void DeleteCategory(int categoryId)
+        {
+            string sqlDelete = "DELETE FROM Category WHERE CategoryId = @CategoryId";
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                using (SqlCommand cmd = new SqlCommand(sqlDelete, con))
+                {
+                    cmd.Parameters.AddWithValue("@CategoryId", categoryId);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                }
+
+                // reorder the remaining categories
+                string sqlReorder = "UPDATE Category SET CategoryId = CategoryId - 1 WHERE CategoryId > @CategoryId";
+                using (SqlCommand cmd = new SqlCommand(sqlReorder, con))
+                {
+                    cmd.Parameters.AddWithValue("@CategoryId", categoryId);
+                    cmd.ExecuteNonQuery();
+                }
+
+                BindCategory();
+                ClearForm();
+            }
+            ShowSuccessMessage("Category deleted successfully.");
+        }
+
+        protected void btnAdd_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                string categoryName = txtCategoryName.Text.Trim();
+                bool isActive = cbIsActive.Checked;
+                string categoryImageUrl = null;
+
+                if (hdnId.Value != "0")
+                {
+                    // Edit existing category
+                    if (fuCategoryImage.HasFile)
+                    {
+                        categoryImageUrl = UploadImage();
+                    }
+                    else
+                    {
+                        categoryImageUrl = imgCategory.Attributes["src"];
+                    }
+                    UpdateCategory(categoryName, categoryImageUrl, isActive);
+                    ClearForm();
+                }
+                else
+                {
+                    int newCategoryId = GetNextCategoryId();
+                    categoryImageUrl = UploadImage();
+
+                    string sql = "INSERT INTO Category (CategoryId, CategoryName, CategoryImageUrl, IsActive, CreatedDate) VALUES (@CategoryId, @CategoryName, @CategoryImageUrl, @IsActive, @CreatedDate)";
+                    using (SqlConnection con = new SqlConnection(cs))
+                    {
+                        using (SqlCommand cmd = new SqlCommand(sql, con))
+                        {
+                            cmd.Parameters.AddWithValue("@CategoryId", newCategoryId);
+                            cmd.Parameters.AddWithValue("@CategoryName", categoryName);
+                            cmd.Parameters.AddWithValue("@CategoryImageUrl", string.IsNullOrEmpty(categoryImageUrl) ? (object)DBNull.Value : categoryImageUrl);
+                            cmd.Parameters.AddWithValue("@IsActive", isActive);
+                            cmd.Parameters.AddWithValue("@CreatedDate", DateTime.Now);
+                            con.Open();
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                    ShowSuccessMessage("Category added successfully.");
+                }
+
+                BindCategory();
+                ClearForm();
             }
         }
 
-        // hide the lblmsg after a delay
-        private void HideMessageAfterDelay()
+        protected void btnReset_Click(object sender, EventArgs e)
         {
-            string script = @"setTimeout(function() {
-                var lblMsg = document.getElementById('" + lblMsg.ClientID + @"');
-                if (lblMsg) {
-                    lblMsg.style.display = 'none';
+            Server.Transfer("Categories.aspx");
+        }
+
+        private void ClearForm()
+        {
+            txtCategoryName.Text = string.Empty;
+            cbIsActive.Checked = false;
+            imgCategory.Attributes["src"] = string.Empty;
+            hdnId.Value = "0";
+            btnAdd.Text = "Add";
+        }
+
+        private void ShowSuccessMessage(string message)
+        {
+            lblMsg.Text = message;
+            lblMsg.Visible = true;
+            ScriptManager.RegisterStartupScript(this, GetType(), "hideMessage", "setTimeout(function() { document.getElementById('" + lblMsg.ClientID + "').style.display = 'none'; }, 3000);", true);
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            string searchTerm = txtSearch.Text.Trim();
+            BindCategory(searchTerm);
+        }
+
+        [System.Web.Script.Services.ScriptMethod()]
+        [System.Web.Services.WebMethod]
+        public static List<string> GetItemList(string prefixText)
+        {
+            List<string> getitem = new List<string>();
+
+            string sql = "SELECT CategoryName FROM Category WHERE CategoryName LIKE @Text + '%'";
+            using (SqlConnection con = new SqlConnection(Global.CS))  
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@Text", prefixText);
+                    con.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        getitem.Add(dr["CategoryName"].ToString());
+                    }
                 }
-            }, 3000);";
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "HideMessage", script, true);
+            }
+
+            return getitem;
         }
 
     }
