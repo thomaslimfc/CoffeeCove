@@ -1,10 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Customer.Master" AutoEventWireup="true" CodeBehind="orderCart.aspx.cs" Inherits="CoffeeCove.Order.orderCart" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Customer.Master" AutoEventWireup="true" CodeBehind="cartEdit.aspx.cs" Inherits="CoffeeCove.Order.cartEdit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
     <link href="../CSS/orderCart.css" rel="stylesheet" />
+
     <!-- Banner -->
     <div id="cartPoster">
         <img src="../img/coffeeBag.jpg" id="cartPosterImg" />
-        <div id="cartPosterText">My Cart</div>
+        <div id="cartPosterText">Edit Cart</div>
     </div>
     <br />
     <!-- Cart -->
@@ -52,39 +53,20 @@
                         <td style="text-align:center">
                             <asp:Label ID="lblQuantity" runat="server" Text='<%# Eval("Quantity") %>' />
                         </td>
+                        <td>
+                            <asp:LinkButton ID="lbDelete" runat="server" CommandName="btnDelete" CommandArgument='<%# Eval("ProductId") %>' >Delete</asp:LinkButton>
+                        </td>
                     </tr>
                 </ItemTemplate>
             </asp:Repeater>
-                    
-
-
-
-
-                
         </table>
-
-        <table id="cartTotalTable">
+        <br />
+        <table style="width:100%">
             <tr>
-                <td class="cartLeft">Subtotal [RM]</td>
-                <td class="cartRight">RM
-                <asp:Label ID="lblSubtotal" runat="server">x</asp:Label>
-                </td>
-            </tr>
-            <tr>
-                <td class="cartLeft">Tax [6%]</td>
-                <td class="cartRight">RM
-                <asp:Label ID="lblTax" runat="server">x</asp:Label>
-                </td>
-            </tr>
-            <tr>
-                <td class="cartLeft">Total [RM]</td>
-                <td class="cartRight">RM
-                <asp:Label ID="lblTotal" runat="server">x</asp:Label>
+                <td>
+                    <asp:Button runat="server" Text="Proceed" CSSClass="btnProceed" ID="btnProceed" OnClick="btnProceed_Click"/>
                 </td>
             </tr>
         </table>
-
-        
-        <asp:Button runat="server" Text="Proceed" CSSClass="btnProceed" ID="btnProceed"/>
     </div>
 </asp:Content>

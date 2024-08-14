@@ -11,7 +11,7 @@ namespace CoffeeCove.Order
 {
 
 
-    public partial class orderCart
+    public partial class cartEdit
     {
 
         /// <summary>
@@ -22,33 +22,6 @@ namespace CoffeeCove.Order
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptOrdered;
-
-        /// <summary>
-        /// lblSubtotal control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSubtotal;
-
-        /// <summary>
-        /// lblTax control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTax;
-
-        /// <summary>
-        /// lblTotal control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotal;
 
         /// <summary>
         /// btnProceed control.

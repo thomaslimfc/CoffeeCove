@@ -13,7 +13,7 @@ namespace CoffeeCove.Order
     public partial class orderCart : System.Web.UI.Page
     {
         string cs = Global.CS;
-        decimal subtotal;
+        string strSubtotal;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -24,9 +24,7 @@ namespace CoffeeCove.Order
                 string sql = @"SELECT * 
                             FROM OrderedItem I JOIN Product P 
                             ON I.ProductId = P.ProductId
-                            JOIN Order O ON O.OrderId = I.OrderId
                             WHERE OrderId = @ID";
-
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@ID", "12345");
@@ -38,18 +36,39 @@ namespace CoffeeCove.Order
                 rptOrdered.DataSource = ds;
                 rptOrdered.DataBind();
 
+                string sql1 = @"SELECT COUNT(*) 
+                            FROM OrderedItem I JOIN Product P 
+                            ON I.ProductId = P.ProductId
+                            WHERE OrderId = @id";
+
+                SqlCommand cmd1 = new SqlCommand(sql1, conn);
+                cmd1.Parameters.AddWithValue("@id", "12345");
+                int count = (int)cmd1.ExecuteScalar();
+
+
+                //if no record for this order
+                if (count <= 0)
+                {
+                    Response.Redirect("../Menu/Menu.aspx?id=" + id);
+                }
 
                 conn.Close();
             }
         }
-
         protected void rptOrdered_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
+            strSubtotal = "50";
+
+
+            lblSubtotal.Text = "WOW";
+
+
             //assign label
-            Label lblId = e.Item.FindControl("lblId") as Label;
-            Label lblQuantity = e.Item.FindControl("lblQuantity") as Label;
+            Label lblId = (Label)e.Item.FindControl("lblId");
+            Label lblQuantity = (Label)e.Item.FindControl("lblQuantity");
             string productId = lblId.Text;
             decimal quantity = Convert.ToDecimal(lblQuantity.Text);
+
 
             string id = Request.QueryString["id"] ?? "";
 
@@ -70,16 +89,25 @@ namespace CoffeeCove.Order
             SqlDataReader dr = cmd.ExecuteReader();
 
             //get price of each items and add them up
-            decimal linePrice = (decimal)dr["UnitPrice"]* (int)dr["Quantity"];
-            subtotal += linePrice;
-
-            lblSubtotal.Text = subtotal.ToString();
+            decimal linePrice = (decimal)dr["UnitPrice"] * 5;
+            strSubtotal = "50";
 
 
-
-
+            lblSubtotal.Text = strSubtotal;
 
             conn.Close();
+        }
+
+        protected void btnProceed_Click(object sender, EventArgs e)
+        {
+            string id = Request.QueryString["id"] ?? "";
+            Response.Redirect("../Payment/paymentOpt.aspx?id=" + id);
+        }
+
+        protected void btnEdit_Click(object sender, EventArgs e)
+        {
+            string id = Request.QueryString["id"] ?? "";
+            Response.Redirect("cartEdit.aspx?id=" + id);
         }
     }
 }

@@ -473,9 +473,10 @@
     <Content Include="img\twitter.png" />
     <Content Include="img\username_icon.png" />
     <Content Include="Menu\Menu.aspx" />
+    <Content Include="Order\cartEdit.aspx" />
     <Content Include="Order\getLocation.js" />
-    <Content Include="Order\orderCart.aspx" />
-    <Content Include="Order\OrderHistory.aspx" />
+    <Content Include="Order\cart.aspx" />
+    <Content Include="Order\orderHistory.aspx" />
     <Content Include="Order\orderOption.aspx" />
     <Content Include="Payment\paymentOpt.aspx" />
     <Content Include="RatingReview\ratingReview.aspx" />
@@ -550,19 +551,26 @@
     <Compile Include="Menu\Menu.aspx.designer.cs">
       <DependentUpon>Menu.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Order\orderCart.aspx.cs">
-      <DependentUpon>orderCart.aspx</DependentUpon>
+    <Compile Include="Order\cartEdit.aspx.cs">
+      <DependentUpon>cartEdit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Order\orderCart.aspx.designer.cs">
-      <DependentUpon>orderCart.aspx</DependentUpon>
+    <Compile Include="Order\cartEdit.aspx.designer.cs">
+      <DependentUpon>cartEdit.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Order\OrderHistory.aspx.cs">
-      <DependentUpon>OrderHistory.aspx</DependentUpon>
+    <Compile Include="Order\cart.aspx.cs">
+      <DependentUpon>cart.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Order\OrderHistory.aspx.designer.cs">
-      <DependentUpon>OrderHistory.aspx</DependentUpon>
+    <Compile Include="Order\cart.aspx.designer.cs">
+      <DependentUpon>cart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Order\orderHistory.aspx.cs">
+      <DependentUpon>orderHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Order\orderHistory.aspx.designer.cs">
+      <DependentUpon>orderHistory.aspx</DependentUpon>
     </Compile>
     <Compile Include="Order\orderOption.aspx.cs">
       <DependentUpon>orderOption.aspx</DependentUpon>
