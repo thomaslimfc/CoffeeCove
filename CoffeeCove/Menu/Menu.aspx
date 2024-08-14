@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Customer.Master" AutoEventWireup="true" CodeBehind="Menu.aspx.cs" Inherits="CoffeeCove.Menu.Menu" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
+        <link href="../CSS/Menu.css" rel="stylesheet" />
     <div id="menuContainer">
 
         <!-- Category -->
