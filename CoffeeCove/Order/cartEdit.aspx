@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
     <link href="../CSS/orderCart.css" rel="stylesheet" />
 
+
     <!-- Banner -->
     <div id="cartPoster">
         <img src="../img/coffeeBag.jpg" id="cartPosterImg" />
