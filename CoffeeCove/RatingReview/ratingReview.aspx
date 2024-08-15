@@ -78,33 +78,28 @@
                     <a href="#" class="btn btn-outline-primary btn-sm float-right">Top Rated</a>
                     <h5 class="mb-1">All Ratings and Reviews</h5>
                     <!-- Rating Container -->
-                    <asp:Repeater ID="rptUserRatingReview" runat="server">
+                    <asp:Repeater ID="rptUserRatingReview" runat="server" OnItemDataBound="rptUserRatingReview_ItemDataBound">
                         <ItemTemplate>
                             <div id="usersRatingContainer" class="reviews-members pt-4 pb-4">
                                 <div class="media">
                                     <a href="#"><img alt="Generic placeholder image" src="http://bootdey.com/img/Content/avatar/avatar1.png" class="mr-3 rounded-pill"></a>
                                     <div class="media-body">
                                         <div class="reviews-members-header">
-                                            <span class="star-rating float-right">
-                                                  <a href="#"><i class="icofont-ui-rating active"></i></a>
-                                                  <a href="#"><i class="icofont-ui-rating active"></i></a>
-                                                  <a href="#"><i class="icofont-ui-rating active"></i></a>
-                                                  <a href="#"><i class="icofont-ui-rating active"></i></a>
-                                                  <a href="#"><i class="icofont-ui-rating"></i></a>
-                                                  </span>
                                             <h4 class="mb-1"><a class="text-black" href="#"><strong><%# Eval("CustomerName") %></strong></a></h4>
                                             <p class="text-gray"><%# Eval("RatingReviewDateTime") %></p>
                                         </div>
                                         <div class="reviews-members-body">
                                             <p><%# Eval("ReviewContent") %></p>
+                                            <!-- Star Rating Placeholder -->
+                                            <asp:PlaceHolder ID="phStars" runat="server"></asp:PlaceHolder>
                                         </div>
                                     </div>
-                                    </div>
+                                </div>
                                 <hr>
                             </div>
                         </ItemTemplate>
                     </asp:Repeater>
-                    <hr>
+
                     <a class="text-center w-100 d-block mt-4 font-weight-bold" href="#">See All Reviews</a>
                 </div>
 
