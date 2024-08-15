@@ -125,11 +125,11 @@
             ID="UsernameEmail_FP_regexValidator" 
             runat="server" 
             ControlToValidate="UsernameEmail_FP" 
-            ErrorMessage="Must contain >10 letters and numbers only or a valid email." 
+            ErrorMessage="Must contain >8 letters and numbers only or a valid email." 
             Display="Dynamic" 
             ForeColor="Red" 
             CssClass="rqdValidator" 
-            ValidationExpression="(^[a-zA-Z0-9_]{10,}$)|(^[^@\s]+@[^@\s]+\.[^@\s]+$)" />
+            ValidationExpression="(^[a-zA-Z0-9_]{8,}$)|(^[^@\s]+@[^@\s]+\.[^@\s]+$)" />
     </div>
     <div class="trMarginBottom20"></div>
     <!-- Description before NEXT -->

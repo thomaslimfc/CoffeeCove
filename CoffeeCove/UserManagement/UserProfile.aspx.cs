@@ -48,6 +48,7 @@ namespace CoffeeCove.UserManagement
                             lblResidenceState.Text = reader["ResidenceState"].ToString();
 
                             // Set dropdown selected value
+                            txtGender.SelectedValue = reader["Gender"].ToString();
                             txtResidenceState.SelectedValue = reader["ResidenceState"].ToString();
                         }
                         else
@@ -73,7 +74,7 @@ namespace CoffeeCove.UserManagement
             {
                 txtUsername.Text = lblUsername.Text;
                 txtEmail.Text = lblEmail.Text;
-                txtGender.Text = lblGender.Text;
+                txtGender.SelectedValue = lblGender.Text;
                 txtDOB.Text = lblDOB.Text;
                 txtContactNo.Text = lblContactNo.Text;
                 txtResidenceState.SelectedValue = lblResidenceState.Text;
@@ -187,7 +188,7 @@ namespace CoffeeCove.UserManagement
             if (fuProfilePicture.HasFile)
             {
                 string filename = System.IO.Path.GetFileName(fuProfilePicture.PostedFile.FileName);
-                fuProfilePicture.SaveAs(Server.MapPath("~/UserManagement/UserProfilePictures/") + filename);
+                fuProfilePicture.SaveAs(Server.MapPath("/UserProfilePictures/") + filename);
                 imgProfilePicture.ImageUrl = "/UserProfilePictures/" + filename;
 
                 lblUploadMessage.Text = "Picture has been successfully uploaded.";

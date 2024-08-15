@@ -69,13 +69,22 @@ namespace CoffeeCove.UserManagement
         protected global::System.Web.UI.WebControls.TextBox txtUsername;
 
         /// <summary>
-        /// Username_rqdValidator control.
+        /// txtUsername_rqdValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator Username_rqdValidator;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator txtUsername_rqdValidator;
+
+        /// <summary>
+        /// txtUsername_regexValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator txtUsername_regexValidator;
 
         /// <summary>
         /// lblGender control.
@@ -93,16 +102,16 @@ namespace CoffeeCove.UserManagement
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtGender;
+        protected global::System.Web.UI.WebControls.DropDownList txtGender;
 
         /// <summary>
-        /// Gender_rqdValidator control.
+        /// txtGender_rqdValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator Gender_rqdValidator;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator txtGender_rqdValidator;
 
         /// <summary>
         /// lblEmail control.
@@ -193,6 +202,15 @@ namespace CoffeeCove.UserManagement
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator ContactNo_rqdValidator;
+
+        /// <summary>
+        /// txtContactNo_regexValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator txtContactNo_regexValidator;
 
         /// <summary>
         /// lblResidenceState control.

@@ -141,11 +141,11 @@
             ID="Username_SI_regexValidator" 
             runat="server" 
             ControlToValidate="Username_SI" 
-            ErrorMessage="Must contain >10 letters and numbers only." 
+            ErrorMessage="Must contain >8 letters and numbers only." 
             Display="Dynamic" 
             ForeColor="Red" 
             CssClass="rqdValidator" 
-            ValidationExpression="^[a-zA-Z0-9]{10,}$" />
+            ValidationExpression="^[a-zA-Z0-9]{8,}$" />
     </div>
 
     <!-- Password -->

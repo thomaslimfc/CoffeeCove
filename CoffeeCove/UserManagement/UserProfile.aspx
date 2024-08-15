@@ -151,27 +151,48 @@
                 <td class="blankCol"></td>
                 <td class="contentCol" style="height: 40px">
                     <asp:Label ID="lblUsername" runat="server" />
+
                     <asp:TextBox ID="txtUsername" runat="server" 
-                        CssClass="SizeEditTextbox" Visible="false" />
+                        CssClass="mt-1 p-2 border border-border rounded w-full" 
+                        Visible="false"
+                        placeholder="desmundchau7668" />
                     <asp:RequiredFieldValidator 
-                        ID="Username_rqdValidator" runat="server" 
+                        ID="txtUsername_rqdValidator" runat="server" 
                         ControlToValidate="txtUsername" 
                         ErrorMessage="Username is required." 
                         Display="Dynamic" 
                         ForeColor="Red" 
                         CssClass="rqdValidator"
                         ValidationGroup="SaveProfile" />
-                </td>
-                <td class="contentCol">
-                    <asp:Label ID="lblGender" runat="server" />
-                    <asp:TextBox ID="txtGender" runat="server" 
-                        CssClass="SizeEditTextbox" Visible="false" />
-                    <asp:RequiredFieldValidator 
-                        ID="Gender_rqdValidator" runat="server" 
-                        ControlToValidate="txtGender" 
-                        ErrorMessage="Gender is required." 
+                    <asp:RegularExpressionValidator 
+                        ID="txtUsername_regexValidator" 
+                        runat="server" 
+                        ControlToValidate="txtUsername" 
+                        ErrorMessage="Must contain >8 letters and numbers only." 
                         Display="Dynamic" 
                         ForeColor="Red" 
+                        CssClass="rqdValidator" 
+                        ValidationExpression="^[a-zA-Z0-9]{8,}$" />
+                </td>
+                <td class="contentCol">
+                    <asp:Label ID="lblGender" runat="server" CssClass="block text-sm text-muted-foreground" />
+                    
+                    <asp:DropDownList ID="txtGender" runat="server"
+                        CssClass="mt-1 p-2 border border-border rounded w-full" 
+                        Visible="false">
+                        <asp:ListItem Text="~ Select your gender ~" Value="" />
+                        <asp:ListItem>Male</asp:ListItem>
+                        <asp:ListItem>Female</asp:ListItem>
+                        <asp:ListItem>Other</asp:ListItem>
+                    </asp:DropDownList>
+
+                    <asp:RequiredFieldValidator 
+                        ID="txtGender_rqdValidator" runat="server" 
+                        ControlToValidate="txtGender" 
+                        InitialValue="" 
+                        ErrorMessage="Gender is required." 
+                        Display="Dynamic"
+                        ForeColor="Red"
                         CssClass="rqdValidator"
                         ValidationGroup="SaveProfile" />
                 </td>
@@ -190,7 +211,9 @@
                 <td class="contentCol" style="height: 40px">
                     <asp:Label ID="lblEmail" runat="server" />
                     <asp:TextBox ID="txtEmail" runat="server" 
-                        CssClass="SizeEditTextbox" Visible="false" />
+                        CssClass="mt-1 p-2 border border-border rounded w-full"  
+                        Visible="false"
+                        placeholder="deschau7668@gmail.com" />
                     <asp:RequiredFieldValidator 
                         ID="Email_rqdValidator" runat="server" 
                         ControlToValidate="txtEmail" 
@@ -245,7 +268,9 @@
                 <td class="contentCol" style="height: 40px">
                     <asp:Label ID="lblContactNo" runat="server" />
                     <asp:TextBox ID="txtContactNo" runat="server" 
-                        CssClass="SizeEditTextbox" Visible="false" />
+                        CssClass="mt-1 p-2 border border-border rounded w-full"  
+                        Visible="false"
+                        placeholder="0123456789" />
                     <asp:RequiredFieldValidator 
                         ID="ContactNo_rqdValidator" runat="server" 
                         ControlToValidate="txtContactNo" 
@@ -254,12 +279,19 @@
                         ForeColor="Red" 
                         CssClass="rqdValidator"
                         ValidationGroup="SaveProfile" />
+                    <asp:RegularExpressionValidator 
+                        ID="txtContactNo_regexValidator" 
+                        runat="server" 
+                        ControlToValidate="txtContactNo" 
+                        ErrorMessage="Must start with 0 in front without '-'." 
+                        Display="Dynamic" 
+                        ForeColor="Red" 
+                        CssClass="rqdValidator" 
+                        ValidationExpression="^01[0-9]{8,10}$" />
                 </td>
                 <td class="contentCol">
-                    <!-- Label to display selected state in view mode -->
                     <asp:Label ID="lblResidenceState" runat="server" CssClass="block text-sm text-muted-foreground" />
                     
-                    <!-- Dropdown list for editing the state -->
                     <asp:DropDownList ID="txtResidenceState" runat="server" 
                         CssClass="mt-1 p-2 border border-border rounded w-full" 
                         Visible="false">

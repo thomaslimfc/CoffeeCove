@@ -222,11 +222,11 @@
             ID="Username_SU_regexValidator" 
             runat="server" 
             ControlToValidate="Username_SU" 
-            ErrorMessage="Must contain >10 letters and numbers only." 
+            ErrorMessage="Must contain >8 letters and numbers only." 
             Display="Dynamic" 
             ForeColor="Red" 
             CssClass="rqdValidator" 
-            ValidationExpression="^[a-zA-Z0-9]{10,}$" />
+            ValidationExpression="^[a-zA-Z0-9]{8,}$" />
         <asp:Label ID="UsernameErrorMessage" 
             runat="server" ForeColor="Red" Visible="False">
         </asp:Label>
