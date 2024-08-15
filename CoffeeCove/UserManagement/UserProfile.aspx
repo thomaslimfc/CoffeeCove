@@ -101,7 +101,11 @@
                 --ring: 240 4.9% 83.9%;
             }
         }
-    </style>    
+
+        .hidden {
+            display: none;
+        }
+    </style>
 
     <center>
         <div class="profileContainer">
@@ -110,7 +114,11 @@
             <tr>
                 <td class="blankCol"></td>
                 <td class="blankCol" colspan="4">
-                    <asp:Image ID="imgProfilePicture" runat="server" Width="150px" Height="150px" />
+                    <center>
+                        <asp:Image ID="imgProfilePicture" runat="server" 
+                            Width="150px" Height="150px"
+                            style="margin-right: 15px;" />
+                    </center>
                     <br />
                     <asp:FileUpload ID="fuProfilePicture" runat="server"
                         style="margin-top: 10px" />
@@ -202,26 +210,25 @@
                         ValidationGroup="SaveProfile" />
                 </td>
                 <td class="contentCol">
-                    <asp:Label ID="lblDOB" runat="server" />
-                    <asp:TextBox ID="txtDOB" runat="server" 
-                        CssClass="SizeEditTextbox" Visible="false" />
-                    <asp:RequiredFieldValidator 
-                        ID="DOB_rqdValidator" runat="server" 
-                        ControlToValidate="txtDOB" 
-                        ErrorMessage="Date of Birth is required." 
-                        Display="Dynamic" 
-                        ForeColor="Red" 
-                        CssClass="rqdValidator"
-                        ValidationGroup="SaveProfile" />
-                    <asp:CompareValidator 
-                        ID="DOB_compareValidator" runat="server" 
-                        ControlToValidate="txtDOB" 
-                        ErrorMessage="Please enter a valid date." 
-                        Display="Dynamic" 
-                        ForeColor="Red" 
-                        CssClass="rqdValidator" 
-                        Operator="DataTypeCheck" Type="Date" 
-                        ValidationGroup="SaveProfile" />
+                    <!-- Date of Birth -->
+                    <asp:Label ID="lblDOB" runat="server" class="block text-sm text-muted-foreground" />
+                    <div class="mb-4">
+                        <asp:TextBox ID="txtDOB" 
+                            CssClass="mt-1 p-2 border border-border rounded w-full" 
+                            runat="server" 
+                            TextMode="Date"
+                            placeholder="MM/DD/YYYY"
+                            Visible="false" />
+                        <asp:CompareValidator 
+                            ID="DOB_compareValidator" runat="server" 
+                            ControlToValidate="txtDOB" 
+                            ErrorMessage="Please enter a valid date." 
+                            Display="Dynamic" 
+                            ForeColor="Red" 
+                            CssClass="rqdValidator" 
+                            Operator="DataTypeCheck" Type="Date" 
+                            ValidationGroup="SaveProfile" />
+                    </div>
                 </td>
                 <td class="blankCol"></td>
             </tr>
@@ -249,45 +256,69 @@
                         ValidationGroup="SaveProfile" />
                 </td>
                 <td class="contentCol">
-                    <asp:Label ID="lblResidenceState" runat="server" />
-                    <asp:TextBox ID="txtResidenceState" runat="server" 
-                        CssClass="SizeEditTextbox" Visible="false" />
+                    <!-- Label to display selected state in view mode -->
+                    <asp:Label ID="lblResidenceState" runat="server" CssClass="block text-sm text-muted-foreground" />
+                    
+                    <!-- Dropdown list for editing the state -->
+                    <asp:DropDownList ID="txtResidenceState" runat="server" 
+                        CssClass="mt-1 p-2 border border-border rounded w-full" 
+                        Visible="false">
+                        <asp:ListItem Text="~ Select a location ~" Value="" />
+                        <asp:ListItem>Selangor</asp:ListItem>
+                        <asp:ListItem>Penang</asp:ListItem>
+                        <asp:ListItem>Johor</asp:ListItem>
+                        <asp:ListItem>Malacca</asp:ListItem>
+                        <asp:ListItem>Negeri Sembilan</asp:ListItem>
+                        <asp:ListItem>Pahang</asp:ListItem>
+                        <asp:ListItem>Perak</asp:ListItem>
+                        <asp:ListItem>Kedah</asp:ListItem>
+                        <asp:ListItem>Kelantan</asp:ListItem>
+                        <asp:ListItem>Terengganu</asp:ListItem>
+                        <asp:ListItem>Perlis</asp:ListItem>
+                        <asp:ListItem>Sarawak</asp:ListItem>
+                        <asp:ListItem>Sabah</asp:ListItem>
+                    </asp:DropDownList>
+                
                     <asp:RequiredFieldValidator 
                         ID="ResidenceState_rqdValidator" runat="server" 
                         ControlToValidate="txtResidenceState" 
+                        InitialValue="" 
                         ErrorMessage="Residence State is required." 
-                        Display="Dynamic" 
-                        ForeColor="Red" 
+                        Display="Dynamic"
+                        ForeColor="Red"
                         CssClass="rqdValidator"
                         ValidationGroup="SaveProfile" />
                 </td>
                 <td class="blankCol"></td>
             </tr>
             <tr><td><br /></td></tr>
-        <tr>
-            <td colspan="4">
-                <div class="relative mb-4">
-                    <asp:Button ID="EditBtn_UP" 
-                        runat="server" 
-                        class="w-full bg-primary text-primary-foreground p-2 rounded-md hover:bg-primary/80"
-                        style="cursor: pointer; margin-left: 4px; width: 250px;"
-                        Text="Edit Info"
-                        CausesValidation="true" 
-                        OnClick="EditBtn_UP_Click"/>
-                    <asp:Button ID="SaveBtn_UP" 
-                        runat="server" 
-                        class="w-full bg-primary text-primary-foreground p-2 rounded-md hover:bg-primary/80"
-                        style="cursor: pointer; margin-left: 4px; width: 250px;"
-                        Text="Save Now"
-                        CausesValidation="false" 
-                        OnClick="SaveBtn_UP_Click"/>
-                </div>               
-            </td>
-        </tr>
-        <tr>
-            <td class="trMarginBottom20"></td>
-        </tr>
-    </table>
+            <tr>
+                <td class="trMarginBottom20"></td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <div class="relative mb-4">
+                        <asp:Button ID="EditBtn_UP" 
+                            runat="server" 
+                            class="w-full bg-primary text-primary-foreground p-2 rounded-md hover:bg-primary/80"
+                            style="cursor: pointer; margin-left: 4px; width: 250px;"
+                            Text="Edit Info"
+                            CausesValidation="true" 
+                            OnClick="EditBtn_UP_Click"/>
+                        <asp:Button ID="SaveBtn_UP" 
+                            runat="server" 
+                            class="w-full bg-primary text-primary-foreground p-2 rounded-md hover:bg-primary/80"
+                            style="cursor: pointer; margin-left: 4px; width: 250px;"
+                            Text="Save Now"
+                            CausesValidation="false" 
+                            OnClick="SaveBtn_UP_Click"/>
+                    </div>               
+                </td>
+            </tr>
+            <tr>
+                <td class="trMarginBottom20"></td>
+            </tr>
+        </table>
     </div>
     </center>
     <br /><br /><br />

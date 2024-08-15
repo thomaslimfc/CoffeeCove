@@ -321,10 +321,10 @@
     <label for="DateOfBirth_PR" class="block text-sm text-muted-foreground">Date of Birth</label>
     <div class="mb-4">
         <asp:TextBox ID="DateOfBirth_PR" 
-        CssClass="mt-1 p-2 border border-border rounded w-full" 
-        runat="server" 
-        TextMode="Date"
-        placeholder="MM/DD/YYYY" />
+            CssClass="mt-1 p-2 border border-border rounded w-full" 
+            runat="server" 
+            TextMode="Date"
+            placeholder="MM/DD/YYYY" />
         <asp:RequiredFieldValidator 
             ID="DateOfBirth_PR_rqdValidator" 
             runat="server" 

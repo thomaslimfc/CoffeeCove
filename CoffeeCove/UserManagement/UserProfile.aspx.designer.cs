@@ -159,15 +159,6 @@ namespace CoffeeCove.UserManagement
         protected global::System.Web.UI.WebControls.TextBox txtDOB;
 
         /// <summary>
-        /// DOB_rqdValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator DOB_rqdValidator;
-
-        /// <summary>
         /// DOB_compareValidator control.
         /// </summary>
         /// <remarks>
@@ -219,7 +210,7 @@ namespace CoffeeCove.UserManagement
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtResidenceState;
+        protected global::System.Web.UI.WebControls.DropDownList txtResidenceState;
 
         /// <summary>
         /// ResidenceState_rqdValidator control.
