@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -12,7 +13,6 @@ namespace CoffeeCove.AdminSite
     public partial class Categories : System.Web.UI.Page
     {
         string cs = Global.CS;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -21,13 +21,21 @@ namespace CoffeeCove.AdminSite
             }
         }
 
-        private void BindCategory(string searchTerm = "")
+        private void BindCategory(string searchTerm = "", string sortExpression = "", string sortDirection = "ASC")
         {
+            int pageIndex = GridViewCategory.PageIndex;
+            int pageSize = GridViewCategory.PageSize;
+
             string sql = "SELECT CategoryId, CategoryName, CategoryImageUrl, IsActive, CreatedDate FROM Category";
 
             if (!string.IsNullOrEmpty(searchTerm))
             {
                 sql += " WHERE CategoryName LIKE @SearchTerm + '%'";
+            }
+
+            if (!string.IsNullOrEmpty(sortExpression))
+            {
+                sql += $" ORDER BY {sortExpression} {sortDirection}";
             }
 
             using (SqlConnection con = new SqlConnection(cs))
@@ -41,7 +49,12 @@ namespace CoffeeCove.AdminSite
 
                     con.Open();
                     SqlDataReader dr = cmd.ExecuteReader();
-                    GridViewCategory.DataSource = dr;
+
+                    // Use a DataTable for paging
+                    DataTable dt = new DataTable();
+                    dt.Load(dr);
+
+                    GridViewCategory.DataSource = dt;
                     GridViewCategory.DataBind();
                 }
             }
@@ -57,7 +70,7 @@ namespace CoffeeCove.AdminSite
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     cmd.Parameters.AddWithValue("@CategoryName", categoryName);
-                   
+
                     con.Open();
                     int count = (int)cmd.ExecuteScalar();
                     args.IsValid = count == 0;
@@ -258,6 +271,50 @@ namespace CoffeeCove.AdminSite
             BindCategory(searchTerm);
         }
 
+        protected void GridViewCategory_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            string sortExpression = e.SortExpression;
+            string sortDirection = GetSortDirection(sortExpression);
+
+            BindCategory(txtSearch.Text.Trim(), sortExpression, sortDirection);
+        }
+
+        private string GetSortDirection(string column)
+        {
+            // By default, set the sort direction to ascending.
+            string sortDirection = "ASC";
+
+            // Retrieve the last column that was sorted.
+            string sortExpression = ViewState["SortExpression"] as string;
+
+            if (sortExpression != null)
+            {
+                // Check if the same column is being sorted.
+                if (sortExpression == column)
+                {
+                    // Reverse the sort direction.
+                    string lastDirection = ViewState["SortDirection"] as string;
+                    if ((lastDirection != null) && (lastDirection == "ASC"))
+                    {
+                        sortDirection = "DESC";
+                    }
+                }
+            }
+
+            // Save new values in ViewState.
+            ViewState["SortDirection"] = sortDirection;
+            ViewState["SortExpression"] = column;
+
+            return sortDirection;
+        }
+
+        protected void GridViewCategory_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridViewCategory.PageIndex = e.NewPageIndex;
+            BindCategory(txtSearch.Text.Trim());  // Re-bind the data with current search term
+        }
+
+
         [System.Web.Script.Services.ScriptMethod()]
         [System.Web.Services.WebMethod]
         public static List<string> GetItemList(string prefixText)
@@ -265,7 +322,7 @@ namespace CoffeeCove.AdminSite
             List<string> getitem = new List<string>();
 
             string sql = "SELECT CategoryName FROM Category WHERE CategoryName LIKE @Text + '%'";
-            using (SqlConnection con = new SqlConnection(Global.CS))  
+            using (SqlConnection con = new SqlConnection(Global.CS))
             {
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {

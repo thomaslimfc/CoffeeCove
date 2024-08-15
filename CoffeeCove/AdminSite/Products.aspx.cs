@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -12,7 +13,6 @@ namespace CoffeeCove.AdminSite
     public partial class Products : System.Web.UI.Page
     {
         string cs = Global.CS;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -40,19 +40,43 @@ namespace CoffeeCove.AdminSite
             ddlCategory.Items.Insert(0, new ListItem("Select Category", ""));
         }
 
-        private void BindProduct()
+        private void BindProduct(string searchTerm = "", string sortExpression = "", string sortDirection = "ASC")
         {
-            using (SqlConnection con = new SqlConnection(cs))
-            {
-                string sql = @"SELECT p.ProductId, p.ProductName, p.Description, p.UnitPrice, p.ImageUrl, p.IsActive, 
+            int pageIndex = GridViewProduct.PageIndex;
+            int pageSize = GridViewProduct.PageSize;
+
+            string sql = @"SELECT p.ProductId, p.ProductName, p.Description, p.UnitPrice, p.ImageUrl, p.IsActive, 
                         p.CategoryId, c.CategoryName, p.CreatedDate 
                         FROM Product p
                         INNER JOIN Category c ON p.CategoryId = c.CategoryId";
+
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                sql += " WHERE ProductId && ProductName LIKE @SearchTerm + '%'";
+            }
+
+            if (!string.IsNullOrEmpty(sortExpression))
+            {
+                sql += $" ORDER BY {sortExpression} {sortDirection}";
+            }
+
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
+                    if (!string.IsNullOrEmpty(searchTerm))
+                    {
+                        cmd.Parameters.AddWithValue("@SearchTerm", searchTerm);
+                    }
                     con.Open();
                     SqlDataReader dr = cmd.ExecuteReader();
-                    GridViewProduct.DataSource = dr;
+
+                    // Use a DataTable for paging
+                    DataTable dt = new DataTable();
+                    dt.Load(dr);
+
+                    GridViewProduct.DataSource = dt;
                     GridViewProduct.DataBind();
                 }
             }
@@ -73,7 +97,7 @@ namespace CoffeeCove.AdminSite
 
                     con.Open();
                     int count = (int)cmd.ExecuteScalar();
-                    args.IsValid = count == 0; 
+                    args.IsValid = count == 0;
                 }
             }
         }
@@ -250,16 +274,16 @@ namespace CoffeeCove.AdminSite
                 {
                     imageUrl = UploadImage();
                 }
-                else if (hdnId.Value != "0") 
+                else if (hdnId.Value != "0")
                 {
                     imageUrl = imgProduct.Attributes["src"];
                 }
 
-                if (hdnId.Value != "0") 
+                if (hdnId.Value != "0")
                 {
                     UpdateProduct(productName, description, imageUrl, unitPrice, isActive);
                 }
-                else 
+                else
                 {
                     string productId = GenerateProductId(categoryId);
 
@@ -290,7 +314,6 @@ namespace CoffeeCove.AdminSite
             }
         }
 
-
         protected void btnReset_Click(object sender, EventArgs e)
         {
             Server.Transfer("Products.aspx");
@@ -314,5 +337,81 @@ namespace CoffeeCove.AdminSite
             ScriptManager.RegisterStartupScript(this, GetType(), "hideMessage", "setTimeout(function() { document.getElementById('" + lblMsg.ClientID + "').style.display = 'none'; }, 3000);", true);
         }
 
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            string searchTerm = txtSearch.Text.Trim();
+            BindProduct(searchTerm);
+        }
+
+        protected void GridViewProduct_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            string sortExpression = e.SortExpression;
+            string sortDirection = GetSortDirection(sortExpression);
+
+            BindProduct(txtSearch.Text.Trim(), sortExpression, sortDirection);
+        }
+
+
+        private string GetSortDirection(string column)
+        {
+            // Default - ascending
+            string sortDirection = "ASC";
+
+            // Retrieve the last column that was sorted.
+            string sortExpression = ViewState["SortExpression"] as string;
+
+            if (sortExpression != null)
+            {
+                // Check if the same column is being sorted.
+                if (sortExpression == column)
+                {
+                    // Reverse the sort direction.
+                    string lastDirection = ViewState["SortDirection"] as string;
+                    if ((lastDirection != null) && (lastDirection == "ASC"))
+                    {
+                        sortDirection = "DESC";
+                    }
+                }
+            }
+
+            // Save new values in ViewState.
+            ViewState["SortDirection"] = sortDirection;
+            ViewState["SortExpression"] = column;
+
+            return sortDirection;
+        }
+
+        protected void GridViewProduct_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridViewProduct.PageIndex = e.NewPageIndex;
+            BindProduct(txtSearch.Text.Trim());
+        }
+
+
+        [System.Web.Script.Services.ScriptMethod()]
+        [System.Web.Services.WebMethod]
+        public static List<string> GetItemList(string prefixText)
+        {
+            List<string> getitem = new List<string>();
+
+            string sql = "SELECT ProductId, ProductName FROM Product WHERE ProductName && ProductId LIKE @Text + '%'";
+            using (SqlConnection con = new SqlConnection(Global.CS))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@Text", prefixText);
+                    con.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    while (dr.Read())
+                    {
+                        getitem.Add(dr["ProductId"].ToString());
+                        getitem.Add(dr["ProductName"].ToString());
+                    }
+                }
+            }
+
+            return getitem;
+        }
     }
 }

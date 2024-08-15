@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Admin.Master" AutoEventWireup="true" CodeBehind="Products.aspx.cs" Inherits="CoffeeCove.AdminSite.Products" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="main" class="main">
         <div class="pagetitle">
@@ -60,43 +62,59 @@
                     <asp:Label ID="lblMsg" runat="server" CssClass="alert alert-success" Visible="false"></asp:Label>
                 </div>
 
+                <!-- AJAX tools -->
+                <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
+                <div class="search-bar">
+                    <asp:TextBox ID="txtSearch" runat="server" Placeholder="Search..."></asp:TextBox>
+                    <asp:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtSearch"
+                        EnableCaching="false" CompletionInterval="100" CompletionSetCount="10" MinimumPrefixLength="1" ServiceMethod="GetItemList">
+                    </asp:AutoCompleteExtender>
+                    <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" CssClass="btn btn-primary" />
+                </div>
+
                 <!-- Product List -->
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Product List</h5>
-                            <asp:GridView ID="GridViewProduct" runat="server" AutoGenerateColumns="False" OnRowCommand="GridViewProduct_RowCommand" Width="100%" CssClass="table table-striped">
-                                <Columns>
-                                    <asp:BoundField DataField="ProductId" HeaderText="ID" />
-                                    <asp:BoundField DataField="ProductName" HeaderText="Name" />
-                                    <asp:BoundField DataField="UnitPrice" HeaderText="Price(RM)" DataFormatString="{0:N2}" />
-                                    <asp:TemplateField HeaderText="Image">
-                                        <ItemTemplate>
-                                            <img src='<%# Eval("ImageUrl") %>' width="50" height="50" />
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Category">
-                                        <ItemTemplate>
-                                            <%# Eval("CategoryName") %>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Is Active">
-                                        <ItemTemplate>
-                                            <%# Eval("IsActive", "{0}") == "True" ? 
+                            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                <ContentTemplate>
+                                    <asp:GridView ID="GridViewProduct" runat="server" AutoGenerateColumns="False" OnRowCommand="GridViewProduct_RowCommand" Width="100%" CssClass="table table-striped"
+                                        AllowSorting="True" OnSorting="GridViewProduct_Sorting" AllowPaging="true" OnPageIndexChanging="GridViewProduct_PageIndexChanging" PageSize="5">
+
+                                        <Columns>
+                                            <asp:BoundField DataField="ProductId" HeaderText="ID" SortExpression="ProductId" />
+                                            <asp:BoundField DataField="ProductName" HeaderText="Name" SortExpression="ProductName" />
+                                            <asp:BoundField DataField="UnitPrice" HeaderText="Price(RM)" DataFormatString="{0:N2}" SortExpression="UnitPrice" />
+                                            <asp:TemplateField HeaderText="Image">
+                                                <ItemTemplate>
+                                                    <img src='<%# Eval("ImageUrl") %>' width="50" height="50" />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Category">
+                                                <ItemTemplate>
+                                                    <%# Eval("CategoryName") %>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Is Active">
+                                                <ItemTemplate>
+                                                    <%# Eval("IsActive", "{0}") == "True" ? 
                                                     "<span class='badge rounded-pill bg-success'>Active</span>" : 
                                                     "<span class='badge rounded-pill bg-danger'>InActive</span>" %>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:BoundField DataField="CreatedDate" HeaderText="Created Date" DataFormatString="{0:MM/dd/yyyy hh:mm:ss tt}" />
-                                    <asp:BoundField DataField="Description" HeaderText="Description" />
-                                    <asp:TemplateField HeaderText="Action">
-                                        <ItemTemplate>
-                                            <asp:LinkButton ID="lnkEdit" runat="server" CommandName="EditProduct" CommandArgument='<%# Eval("ProductId") %>' Text="Edit" />
-                                            <asp:LinkButton ID="btnDelete" runat="server" CommandName="DeleteProduct" CommandArgument='<%# Eval("ProductId") %>' Text="Delete" OnClientClick="return confirmDelete();" />
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                </Columns>
-                            </asp:GridView>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:BoundField DataField="CreatedDate" HeaderText="Created Date" DataFormatString="{0:MM/dd/yyyy hh:mm:ss tt}" SortExpression="CreatedDate" />
+                                            <asp:BoundField DataField="Description" HeaderText="Description" />
+                                            <asp:TemplateField HeaderText="Action">
+                                                <ItemTemplate>
+                                                    <asp:LinkButton ID="lnkEdit" runat="server" CommandName="EditProduct" CommandArgument='<%# Eval("ProductId") %>' Text="Edit" />
+                                                    <asp:LinkButton ID="btnDelete" runat="server" CommandName="DeleteProduct" CommandArgument='<%# Eval("ProductId") %>' Text="Delete" OnClientClick="return confirmDelete();" />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                    </asp:GridView>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
                         </div>
                     </div>
                 </div>
@@ -121,5 +139,4 @@
             return confirm("Do you confirm you want to delete this product?");
         }
     </script>
-
 </asp:Content>
