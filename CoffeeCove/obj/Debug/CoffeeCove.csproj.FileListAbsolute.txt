@@ -310,3 +310,17 @@ E:\Assignment\Web App\CoffeeCove\obj\Debug\CoffeeCove.csproj.CoreCompileInputs.c
 E:\Assignment\Web App\CoffeeCove\obj\Debug\CoffeeCove.csproj.Up2Date
 E:\Assignment\Web App\CoffeeCove\obj\Debug\CoffeeCove.dll
 E:\Assignment\Web App\CoffeeCove\obj\Debug\CoffeeCove.pdb
+D:\visual studio work\CoffeeCove\CoffeeCove\bin\CoffeeCove.dll.config
+D:\visual studio work\CoffeeCove\CoffeeCove\bin\CoffeeCove.dll
+D:\visual studio work\CoffeeCove\CoffeeCove\bin\CoffeeCove.pdb
+D:\visual studio work\CoffeeCove\CoffeeCove\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\visual studio work\CoffeeCove\CoffeeCove\bin\Newtonsoft.Json.dll
+D:\visual studio work\CoffeeCove\CoffeeCove\bin\System.Buffers.dll
+D:\visual studio work\CoffeeCove\CoffeeCove\bin\System.Numerics.Vectors.dll
+D:\visual studio work\CoffeeCove\CoffeeCove\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\visual studio work\CoffeeCove\CoffeeCove\bin\Newtonsoft.Json.xml
+D:\visual studio work\CoffeeCove\CoffeeCove\obj\Debug\CoffeeCove.csproj.AssemblyReference.cache
+D:\visual studio work\CoffeeCove\CoffeeCove\obj\Debug\CoffeeCove.csproj.CoreCompileInputs.cache
+D:\visual studio work\CoffeeCove\CoffeeCove\obj\Debug\CoffeeCove.csproj.Up2Date
+D:\visual studio work\CoffeeCove\CoffeeCove\obj\Debug\CoffeeCove.dll
+D:\visual studio work\CoffeeCove\CoffeeCove\obj\Debug\CoffeeCove.pdb
