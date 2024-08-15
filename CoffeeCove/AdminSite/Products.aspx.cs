@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Data;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -13,6 +12,7 @@ namespace CoffeeCove.AdminSite
     public partial class Products : System.Web.UI.Page
     {
         string cs = Global.CS;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -24,9 +24,9 @@ namespace CoffeeCove.AdminSite
 
         private void BindCategoryDropDown()
         {
-            string sql = "SELECT CategoryId, CategoryName FROM Category WHERE CategoryId != 1";
             using (SqlConnection con = new SqlConnection(cs))
             {
+                string sql = "SELECT CategoryId, CategoryName FROM Category WHERE CategoryId != 1";
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     con.Open();
@@ -40,64 +40,20 @@ namespace CoffeeCove.AdminSite
             ddlCategory.Items.Insert(0, new ListItem("Select Category", ""));
         }
 
-        private void BindProduct(string searchTerm = "", string sortExpression = "", string sortDirection = "ASC")
+        private void BindProduct()
         {
-            int pageIndex = GridViewProduct.PageIndex;
-            int pageSize = GridViewProduct.PageSize;
-
-            string sql = @"SELECT p.ProductId, p.ProductName, p.Description, p.UnitPrice, p.ImageUrl, p.IsActive, 
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                string sql = @"SELECT p.ProductId, p.ProductName, p.Description, p.UnitPrice, p.ImageUrl, p.IsActive, 
                         p.CategoryId, c.CategoryName, p.CreatedDate 
                         FROM Product p
                         INNER JOIN Category c ON p.CategoryId = c.CategoryId";
-
-            if (!string.IsNullOrEmpty(searchTerm))
-            {
-                sql += " WHERE ProductId && ProductName LIKE @SearchTerm + '%'";
-            }
-
-            if (!string.IsNullOrEmpty(sortExpression))
-            {
-                sql += $" ORDER BY {sortExpression} {sortDirection}";
-            }
-
-            using (SqlConnection con = new SqlConnection(cs))
-            {
-
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
-                    if (!string.IsNullOrEmpty(searchTerm))
-                    {
-                        cmd.Parameters.AddWithValue("@SearchTerm", searchTerm);
-                    }
                     con.Open();
                     SqlDataReader dr = cmd.ExecuteReader();
-
-                    // Use a DataTable for paging
-                    DataTable dt = new DataTable();
-                    dt.Load(dr);
-
-                    GridViewProduct.DataSource = dt;
+                    GridViewProduct.DataSource = dr;
                     GridViewProduct.DataBind();
-                }
-            }
-        }
-
-        protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
-        {
-            string ProductName = args.Value;
-            string ProductId = hdnId.Value;
-
-            string sql = "SELECT COUNT(*) FROM Product WHERE ProductName = @ProductName AND ProductId != @ProductId";
-            using (SqlConnection con = new SqlConnection(cs))
-            {
-                using (SqlCommand cmd = new SqlCommand(sql, con))
-                {
-                    cmd.Parameters.AddWithValue("@ProductName", ProductName);
-                    cmd.Parameters.AddWithValue("@ProductId", ProductId);
-
-                    con.Open();
-                    int count = (int)cmd.ExecuteScalar();
-                    args.IsValid = count == 0;
                 }
             }
         }
@@ -118,9 +74,9 @@ namespace CoffeeCove.AdminSite
 
         public int GetNextIndex(int categoryId)
         {
-            string sql = "SELECT ISNULL(MAX(CAST(SUBSTRING(ProductId, 3, 2) AS INT)), 0) FROM Product WHERE CategoryId = @CategoryId";
             using (SqlConnection con = new SqlConnection(cs))
             {
+                string sql = "SELECT ISNULL(MAX(CAST(SUBSTRING(ProductId, 3, 2) AS INT)), 0) FROM Product WHERE CategoryId = @CategoryId";
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     cmd.Parameters.AddWithValue("@CategoryId", categoryId);
@@ -141,56 +97,94 @@ namespace CoffeeCove.AdminSite
             return prefix + formattedIndex;
         }
 
-        protected void GridViewProduct_RowCommand(object sender, GridViewCommandEventArgs e)
+        protected void btnAdd_Click(object sender, EventArgs e)
         {
-            if (e.CommandName == "EditProduct")
-            {
-                string productId = (string)e.CommandArgument;
-                LoadProductForEdit(productId);
-            }
-            else if (e.CommandName == "DeleteProduct")
-            {
-                string productId = (string)e.CommandArgument;
-                DeleteProduct(productId);
-            }
-        }
+            string productName = txtProductName.Text.Trim();
+            string description = txtDesc.Text.Trim();
+            decimal unitPrice = Convert.ToDecimal(txtPrice.Text.Trim());
+            bool isActive = cbIsActive.Checked;
+            int categoryId;
+            bool isCategorySelected = int.TryParse(ddlCategory.SelectedValue, out categoryId);
 
-        private void LoadProductForEdit(string productId)
-        {
-            string sql = "SELECT ProductId, ProductName, Description, UnitPrice, ImageUrl, IsActive, CategoryId FROM Product WHERE ProductId = @ProductId";
-            using (SqlConnection con = new SqlConnection(cs))
+            //if product exist
+            if (IsProductExists(productName))
             {
-                using (SqlCommand cmd = new SqlCommand(sql, con))
+                lblMsg.Text = "Product already exist.";
+                lblMsg.Visible = true;
+                HideMessageAfterDelay();
+                return;
+            }
+
+            //if didnt select category
+            if (!isCategorySelected || categoryId == 0)
+            {
+                lblMsg2.Text = "Please select a category.";
+                lblMsg2.Visible = true;
+                HideMessageAfterDelay();
+                return;
+            }
+
+            //upload image
+            string imageUrl = null;
+
+            if (hdnId.Value != "0")
+            {
+                if (fuProductImage.HasFile)
                 {
-                    cmd.Parameters.AddWithValue("@ProductId", productId);
-                    con.Open();
-                    SqlDataReader dr = cmd.ExecuteReader();
-                    if (dr.Read())
+                    imageUrl = UploadImage();
+                }
+                else
+                {
+                    imageUrl = imgProduct.Attributes["src"];
+                }
+
+                UpdateProduct(productName, description, imageUrl, unitPrice, isActive);
+            }
+            else
+            {
+                //add new product
+                string categoryName = ddlCategory.SelectedItem.Text;
+                string productId = GenerateProductId(categoryId);
+
+                using (SqlConnection con = new SqlConnection(cs))
+                {
+                    string sql = @"INSERT INTO Product (ProductId, ProductName, Description, UnitPrice, CategoryId, ImageUrl, IsActive, CreatedDate)
+                            VALUES (@ProductId, @ProductName, @Description, @UnitPrice, @CategoryId, @ImageUrl, @IsActive, @CreatedDate)";
+                    using (SqlCommand cmd = new SqlCommand(sql, con))
                     {
-                        txtProductName.Text = dr["ProductName"].ToString();
-                        txtDesc.Text = dr["Description"].ToString();
-                        txtPrice.Text = dr["UnitPrice"].ToString();
-                        imgProduct.Attributes["src"] = dr["ImageUrl"].ToString();
-                        ddlCategory.SelectedValue = dr["CategoryId"].ToString();
-                        cbIsActive.Checked = !Convert.IsDBNull(dr["IsActive"]) && (bool)dr["IsActive"];
-                        hdnId.Value = productId.ToString();
+                        cmd.Parameters.AddWithValue("@ProductId", productId);
+                        cmd.Parameters.AddWithValue("@ProductName", productName);
+                        cmd.Parameters.AddWithValue("@Description", description);
+                        cmd.Parameters.AddWithValue("@UnitPrice", unitPrice);
+                        cmd.Parameters.AddWithValue("@CategoryId", categoryId);
+                        cmd.Parameters.AddWithValue("@ImageUrl", string.IsNullOrEmpty(imageUrl) ? (object)DBNull.Value : imageUrl);
+                        cmd.Parameters.AddWithValue("@IsActive", isActive);
+                        cmd.Parameters.AddWithValue("@CreatedDate", DateTime.Now);
+
+                        con.Open();
+                        cmd.ExecuteNonQuery();
                     }
                 }
+                lblMsg.Text = "Product added successfully!";
+                lblMsg.Visible = true;
+                HideMessageAfterDelay();
+                BindProduct();
+                ClearForm();
             }
-            btnAdd.Text = "Update";
         }
 
         private void UpdateProduct(string productName, string description, string imageUrl, decimal unitPrice, bool isActive)
         {
             string productId = hdnId.Value;
-            string sql = "UPDATE Product SET ProductName = @ProductName, Description = @Description, ImageUrl = @ImageUrl, UnitPrice = @UnitPrice, IsActive = @IsActive, CreatedDate = @CreatedDate WHERE ProductId = @ProductId";
+
             using (SqlConnection con = new SqlConnection(cs))
             {
+                string sql = "UPDATE Product SET ProductName = @ProductName, Description = @Description, ImageUrl = @ImageUrl, UnitPrice = @UnitPrice, IsActive = @IsActive, CreatedDate = @CreatedDate WHERE ProductId = @ProductId";
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     cmd.Parameters.AddWithValue("@ProductName", productName);
                     cmd.Parameters.AddWithValue("@Description", description);
-                    cmd.Parameters.AddWithValue("@ImageUrl", string.IsNullOrEmpty(imageUrl) ? (object)DBNull.Value : imageUrl);
+                    cmd.Parameters.AddWithValue("@ImageUrl", imageUrl);
                     cmd.Parameters.AddWithValue("@UnitPrice", unitPrice);
                     cmd.Parameters.AddWithValue("@IsActive", isActive);
                     cmd.Parameters.AddWithValue("@CreatedDate", DateTime.Now);
@@ -201,7 +195,9 @@ namespace CoffeeCove.AdminSite
                 }
             }
 
-            ShowSuccessMessage("Product updated successfully.");
+            lblMsg.Text = "Product updated successfully!";
+            lblMsg.Visible = true;
+            HideMessageAfterDelay();
             BindProduct();
             ClearForm();
         }
@@ -220,103 +216,23 @@ namespace CoffeeCove.AdminSite
             return null; // Return null if no image uploaded
         }
 
-        private void DeleteProduct(string productId)
+        private bool IsProductExists(string productName)
         {
             using (SqlConnection con = new SqlConnection(cs))
             {
-                con.Open();
-                string sqlCategory = "SELECT CategoryId FROM Product WHERE ProductId = @ProductId";
-                int categoryId;
-                using (SqlCommand cmd = new SqlCommand(sqlCategory, con))
+                string sql = "SELECT COUNT(*) FROM Product WHERE ProductName = @ProductName";
+                using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
-                    cmd.Parameters.AddWithValue("@ProductId", productId);
-                    categoryId = (int)cmd.ExecuteScalar();
+                    cmd.Parameters.AddWithValue("@ProductName", productName);
+                    con.Open();
+                    return (int)cmd.ExecuteScalar() > 0;
                 }
-
-                string sqlDelete = "DELETE FROM Product WHERE ProductId = @ProductId";
-                using (SqlCommand cmd = new SqlCommand(sqlDelete, con))
-                {
-                    cmd.Parameters.AddWithValue("@ProductId", productId);
-                    cmd.ExecuteNonQuery();
-                }
-
-                string prefix = GetCategoryPrefix(categoryId);
-                string sqlUpdateIds = @";WITH CTE AS (SELECT ProductId,ROW_NUMBER() OVER (ORDER BY CAST(SUBSTRING(ProductId, 3, 2) AS INT)) AS RowNum
-                FROM Product WHERE CategoryId = @CategoryId) UPDATE Product SET ProductId = @Prefix + RIGHT('00' + CAST(CTE.RowNum AS VARCHAR(2)), 2)
-                FROM Product INNER JOIN CTE ON Product.ProductId = CTE.ProductId";
-
-                using (SqlCommand cmd = new SqlCommand(sqlUpdateIds, con))
-                {
-                    cmd.Parameters.AddWithValue("@Prefix", prefix);
-                    cmd.Parameters.AddWithValue("@CategoryId", categoryId);
-                    cmd.ExecuteNonQuery();
-                }
-
-                BindProduct();
-                ClearForm();
-            }
-            ShowSuccessMessage("Product deleted successfully.");
-        }
-
-        protected void btnAdd_Click(object sender, EventArgs e)
-        {
-            if (Page.IsValid)
-            {
-                string productName = txtProductName.Text.Trim();
-                string description = txtDesc.Text.Trim();
-                decimal unitPrice = Convert.ToDecimal(txtPrice.Text.Trim());
-                bool isActive = cbIsActive.Checked;
-                int categoryId;
-                bool isCategorySelected = int.TryParse(ddlCategory.SelectedValue, out categoryId);
-                string imageUrl = null;
-
-                if (fuProductImage.HasFile)
-                {
-                    imageUrl = UploadImage();
-                }
-                else if (hdnId.Value != "0")
-                {
-                    imageUrl = imgProduct.Attributes["src"];
-                }
-
-                if (hdnId.Value != "0")
-                {
-                    UpdateProduct(productName, description, imageUrl, unitPrice, isActive);
-                }
-                else
-                {
-                    string productId = GenerateProductId(categoryId);
-
-                    string sql = @"INSERT INTO Product (ProductId, ProductName, Description, UnitPrice, CategoryId, ImageUrl, IsActive, CreatedDate)
-                    VALUES (@ProductId, @ProductName, @Description, @UnitPrice, @CategoryId, @ImageUrl, @IsActive, @CreatedDate)";
-                    using (SqlConnection con = new SqlConnection(cs))
-                    {
-                        using (SqlCommand cmd = new SqlCommand(sql, con))
-                        {
-                            cmd.Parameters.AddWithValue("@ProductId", productId);
-                            cmd.Parameters.AddWithValue("@ProductName", productName);
-                            cmd.Parameters.AddWithValue("@Description", description);
-                            cmd.Parameters.AddWithValue("@UnitPrice", unitPrice);
-                            cmd.Parameters.AddWithValue("@CategoryId", categoryId);
-                            cmd.Parameters.AddWithValue("@ImageUrl", string.IsNullOrEmpty(imageUrl) ? (object)DBNull.Value : imageUrl);
-                            cmd.Parameters.AddWithValue("@IsActive", isActive);
-                            cmd.Parameters.AddWithValue("@CreatedDate", DateTime.Now);
-
-                            con.Open();
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
-
-                    ShowSuccessMessage("Product added successfully.");
-                }
-                BindProduct();
-                ClearForm();
             }
         }
 
         protected void btnReset_Click(object sender, EventArgs e)
         {
-            Server.Transfer("Products.aspx");
+            ClearForm();
         }
 
         private void ClearForm()
@@ -330,88 +246,109 @@ namespace CoffeeCove.AdminSite
             btnAdd.Text = "Add";
         }
 
-        private void ShowSuccessMessage(string message)
+        protected void GridViewProduct_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            lblMsg.Text = message;
-            lblMsg.Visible = true;
-            ScriptManager.RegisterStartupScript(this, GetType(), "hideMessage", "setTimeout(function() { document.getElementById('" + lblMsg.ClientID + "').style.display = 'none'; }, 3000);", true);
-        }
-
-        protected void btnSearch_Click(object sender, EventArgs e)
-        {
-            string searchTerm = txtSearch.Text.Trim();
-            BindProduct(searchTerm);
-        }
-
-        protected void GridViewProduct_Sorting(object sender, GridViewSortEventArgs e)
-        {
-            string sortExpression = e.SortExpression;
-            string sortDirection = GetSortDirection(sortExpression);
-
-            BindProduct(txtSearch.Text.Trim(), sortExpression, sortDirection);
-        }
-
-
-        private string GetSortDirection(string column)
-        {
-            // Default - ascending
-            string sortDirection = "ASC";
-
-            // Retrieve the last column that was sorted.
-            string sortExpression = ViewState["SortExpression"] as string;
-
-            if (sortExpression != null)
+            if (e.CommandName == "EditProduct")
             {
-                // Check if the same column is being sorted.
-                if (sortExpression == column)
-                {
-                    // Reverse the sort direction.
-                    string lastDirection = ViewState["SortDirection"] as string;
-                    if ((lastDirection != null) && (lastDirection == "ASC"))
-                    {
-                        sortDirection = "DESC";
-                    }
-                }
+                string productId = (string)e.CommandArgument;
+                LoadProductForEdit(productId);
             }
-
-            // Save new values in ViewState.
-            ViewState["SortDirection"] = sortDirection;
-            ViewState["SortExpression"] = column;
-
-            return sortDirection;
-        }
-
-        protected void GridViewProduct_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            GridViewProduct.PageIndex = e.NewPageIndex;
-            BindProduct(txtSearch.Text.Trim());
-        }
-
-
-        [System.Web.Script.Services.ScriptMethod()]
-        [System.Web.Services.WebMethod]
-        public static List<string> GetItemList(string prefixText)
-        {
-            List<string> getitem = new List<string>();
-
-            string sql = "SELECT ProductId, ProductName FROM Product WHERE ProductName && ProductId LIKE @Text + '%'";
-            using (SqlConnection con = new SqlConnection(Global.CS))
+            else if (e.CommandName == "DeleteProduct")
             {
+                string productId = (string)e.CommandArgument;
+                DeleteProduct(productId);
+            }
+        }
+
+        private void LoadProductForEdit(string productId)
+        {
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                string sql = "SELECT ProductId, ProductName, Description, UnitPrice, ImageUrl, IsActive, CategoryId FROM Product WHERE ProductId = @ProductId";
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
-                    cmd.Parameters.AddWithValue("@Text", prefixText);
+                    cmd.Parameters.AddWithValue("@ProductId", productId);
                     con.Open();
                     SqlDataReader dr = cmd.ExecuteReader();
-
-                    while (dr.Read())
+                    if (dr.Read())
                     {
-                        getitem.Add(dr["ProductId"].ToString());
-                        getitem.Add(dr["ProductName"].ToString());
+                        txtProductName.Text = dr["ProductName"].ToString();
+                        txtDesc.Text = dr["Description"].ToString();
+                        txtPrice.Text = dr["UnitPrice"].ToString();
+                        imgProduct.Attributes["src"] = dr["ImageUrl"].ToString();
+                        // Set the selected category by ID
+                        ddlCategory.SelectedValue = dr["CategoryId"].ToString();
+                        cbIsActive.Checked = !Convert.IsDBNull(dr["IsActive"]) && (bool)dr["IsActive"];
+                        hdnId.Value = productId.ToString();
                     }
                 }
             }
 
-            return getitem;
+            btnAdd.Text = "Update";
+        }
+
+        private void DeleteProduct(string productId)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(cs))
+                {
+                    con.Open();
+
+                    // Step 1: Get the category ID of the product to be deleted.
+                    string sqlCategory = "SELECT CategoryId FROM Product WHERE ProductId = @ProductId";
+                    int categoryId;
+                    using (SqlCommand cmd = new SqlCommand(sqlCategory, con))
+                    {
+                        cmd.Parameters.AddWithValue("@ProductId", productId);
+                        categoryId = (int)cmd.ExecuteScalar();
+                    }
+
+                    // Step 2: Delete the product.
+                    string sqlDelete = "DELETE FROM Product WHERE ProductId = @ProductId";
+                    using (SqlCommand cmd = new SqlCommand(sqlDelete, con))
+                    {
+                        cmd.Parameters.AddWithValue("@ProductId", productId);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    // Step 3: Reorder the remaining products in the category.
+                    string prefix = GetCategoryPrefix(categoryId);
+
+                    string sqlUpdateIds = @";WITH CTE AS (SELECT ProductId,ROW_NUMBER() OVER (ORDER BY CAST(SUBSTRING(ProductId, 3, 2) AS INT)) AS RowNum
+                    FROM Product WHERE CategoryId = @CategoryId) UPDATE Product SET ProductId = @Prefix + RIGHT('00' + CAST(CTE.RowNum AS VARCHAR(2)), 2)
+                    FROM Product INNER JOIN CTE ON Product.ProductId = CTE.ProductId";
+
+                    using (SqlCommand cmd = new SqlCommand(sqlUpdateIds, con))
+                    {
+                        cmd.Parameters.AddWithValue("@Prefix", prefix);
+                        cmd.Parameters.AddWithValue("@CategoryId", categoryId);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    lblMsg.Text = "Product deleted successfully.";
+                    lblMsg.Visible = true;
+                    HideMessageAfterDelay();
+                    BindProduct();
+                }
+            }
+            catch (Exception ex)
+            {
+                lblMsg.Text = "Error deleting product: " + ex.Message;
+                lblMsg.Visible = true;
+                HideMessageAfterDelay();
+            }
+        }
+
+        private void HideMessageAfterDelay()
+        {
+            string script = @"setTimeout(function() {
+        var lblMsg = document.getElementById('" + lblMsg.ClientID + @"');
+        if (lblMsg) {
+            lblMsg.style.display = 'none';
+        }
+    }, 3000);";
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "HideMessage", script, true);
         }
     }
 }

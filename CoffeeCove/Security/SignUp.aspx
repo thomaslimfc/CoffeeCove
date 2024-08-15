@@ -7,7 +7,7 @@
 <link href="../CSS/Security.css" rel="stylesheet" />
 <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
 <script src="https://unpkg.com/unlazy@0.11.3/dist/unlazy.with-hashing.iife.js" defer init></script>
-<br /><br /><br /><br />
+<br /><br /><br />
 <script type="text/javascript">
     window.tailwind.config = {
         darkMode: ['class'],
@@ -101,41 +101,13 @@
 </style>
 
 <!-- Password Toggle Tool -->
-<script type="text/javascript">
-    document.addEventListener("DOMContentLoaded", function () {
-        var passwordField = document.getElementById("<%= Password_SU.ClientID %>");
-        var toggleIcon = document.getElementById("PasswordToggle_SU");
 
-        toggleIcon.addEventListener("click", function () {
-            if (passwordField.type === "password") {
-                passwordField.type = "text";
-                toggleIcon.textContent = "🙈"; // Change to closed eye icon when showing password
-            } else {
-                passwordField.type = "password";
-                toggleIcon.textContent = "👁️"; // Change to open eye icon when hiding password
-            }
-        });
-    });
-</script>
-<script type="text/javascript">
-    document.addEventListener("DOMContentLoaded", function () {
-        var passwordField = document.getElementById("<%= PasswordReenter_SU.ClientID %>");
-        var toggleIcon = document.getElementById("PasswordToggle_SU2");
-
-        toggleIcon.addEventListener("click", function () {
-            if (passwordField.type === "password") {
-                passwordField.type = "text";
-                toggleIcon.textContent = "🙈"; // Change to closed eye icon when showing password
-            } else {
-                passwordField.type = "password";
-                toggleIcon.textContent = "👁️"; // Change to open eye icon when hiding password
-            }
-        });
-    });
-</script>
 
 <!--- reCAPTCHA -->
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<br /><br /><br /><br /><br /><br />
+
+
 
 <div class="max-w-md mx-auto p-6 bg-card rounded-lg shadow-md">
     <h2 class="text-2xl font-bold text-foreground mb-4">Sign Up</h2>
@@ -259,16 +231,13 @@
     </div>
     
     <!-- Password -->
-    <label for="first-name" class="block text-sm text-muted-foreground">Password</label>
-    <div class="relative mb-4">
+    <div class="mb-4">
+        <label for="password" class="block text-sm text-muted-foreground">Password</label>
         <asp:TextBox ID="Password_SU" 
-            CssClass="w-full p-2 border border-border rounded-md focus:outline-none"
+            CssClass="mt-1 p-2 border border-border rounded w-full" 
             runat="server" 
             placeholder="**********" 
-            title="Password" 
-            AutoPostBack="false">
-        </asp:TextBox>
-        <span id="PasswordToggle_SU" class="absolute right-2 top-2 cursor-pointer">👁️</span>
+            title="Password"></asp:TextBox>
         <asp:RequiredFieldValidator 
             ID="Password_SU_rqdValidator" 
             runat="server" 
@@ -288,23 +257,20 @@
     </div>
     
     <!-- Re-enter Password -->
-    <label for="first-name" class="block text-sm text-muted-foreground">Re-enter Password</label>
-    <div class="relative mb-4">
+    <div class="mb-4">
+        <label for="reenter-password" class="block text-sm text-muted-foreground">Re-enter Password</label>
+
         <asp:TextBox ID="PasswordReenter_SU" 
-            CssClass="w-full p-2 border border-border rounded-md focus:outline-none"
+            CssClass="mt-1 p-2 border border-border rounded w-full" 
             runat="server" 
             placeholder="**********" 
-            title="Re-enter Password" 
-            AutoPostBack="false">
-        </asp:TextBox>
-        <span id="PasswordToggle_SU2" class="absolute right-2 top-2 cursor-pointer">👁️</span>
+            title="Re-enter Password"></asp:TextBox>
         <asp:RequiredFieldValidator 
             ID="PasswordReenter_SU_rqdValidator" 
             runat="server" 
             ControlToValidate="PasswordReenter_SU" 
             ErrorMessage="Password Re-enter is required." 
-            Display="Dynamic" 
-            ForeColor="Red" 
+            Display="Dynamic" ForeColor="Red" 
             CssClass="rqdValidator" />
         <asp:CompareValidator 
             ID="PasswordReenter_SU_compareValidator" 
@@ -316,23 +282,11 @@
             ForeColor="Red" 
             CssClass="rqdValidator" />
     </div>
-
+    
     <!-- Date of Birth -->
-    <label for="DateOfBirth_PR" class="block text-sm text-muted-foreground">Date of Birth</label>
     <div class="mb-4">
-        <asp:TextBox ID="DateOfBirth_PR" 
-        CssClass="mt-1 p-2 border border-border rounded w-full" 
-        runat="server" 
-        TextMode="Date"
-        placeholder="MM/DD/YYYY" />
-        <asp:RequiredFieldValidator 
-            ID="DateOfBirth_PR_rqdValidator" 
-            runat="server" 
-            ControlToValidate="DateOfBirth_PR" 
-            ErrorMessage="Date of Birth is required." 
-            Display="Dynamic" 
-            ForeColor="Red"
-            CssClass="rqdValidator" />
+        <label for="dob" class="block text-sm text-muted-foreground">Date of Birth</label>
+        <input type="date" id="dob" class="mt-1 p-2 border border-border rounded w-full" required />
     </div>
     
     <!-- Gender -->
@@ -439,16 +393,14 @@
             CssClass="bg-secondary text-secondary-foreground p-2 rounded w-full" 
             Text="Sign In with Username"
             style="cursor: pointer;"
-            OnClick="SignUpUsernameBtn_SU_Click"
-            CausesValidation="false" />
+            OnClick="SignUpUsernameBtn_SU_Click"/>
 
         <asp:Button ID="SignUpEmailBtn_SU" 
             runat="server" 
             CssClass="bg-secondary text-secondary-foreground p-2 rounded w-full" 
             Text="Sign In with Email"
             style="cursor: pointer;"
-            OnClick="SignUpEmailBtn_SU_Click"
-            CausesValidation="false" />
+            OnClick="SignUpEmailBtn_SU_Click"/>
     </div>
 </div>
 <br />

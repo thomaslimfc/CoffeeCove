@@ -3,7 +3,117 @@
     AutoEventWireup="true" CodeBehind="PasswordReset.aspx.cs" 
     Inherits="CoffeeCove.Security.PasswordReset" %>
 
-<asp:Content ID="Content3" ContentPlaceHolderID="Content" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
+    <link href="../CSS/Security.css" rel="stylesheet" />
+    <br /><br /><br /><br /><br /><br /><br /><br />
+
+    <div id="signIn_container" class="sign_container">
+        <table>
+            <tr>
+                <td id="passwordReset_td">
+                    <h2 style="font-size: 24px; font-weight: bold">
+                        Reset Password</h2>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="input_div">
+                        <table>
+                            <tr>
+                                <td>
+                                    <img class="passwordIcon" src="../img/lock_icon.png" 
+                                        alt="Enter your new password" />
+                                </td>
+                                <td>
+                                    <asp:TextBox ID="Password_PR" CssClass="securityInput" 
+                                        runat="server" placeholder="New Password" 
+                                        title="New Password" TextMode="Password" 
+                                        AutoPostBack="false"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="textAlignLeft" colspan="2">
+                                    <asp:RequiredFieldValidator 
+                                        ID="Password_PR_rqdValidator" runat="server" 
+                                        ControlToValidate="Password_PR" 
+                                        ErrorMessage="Password is required." 
+                                        Display="Dynamic" ForeColor="Red" 
+                                        CssClass="rqdValidator" />
+                                    <asp:RegularExpressionValidator 
+                                        ID="Password_PR_regexValidator" 
+                                        runat="server" 
+                                        ControlToValidate="Password_PR" 
+                                        ErrorMessage="Must contain >10 letters, numbers, and symbols." 
+                                        Display="Dynamic" 
+                                        ForeColor="Red" 
+                                        CssClass="rqdValidator" 
+                                        ValidationExpression="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{10,}$" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="trMarginBottom20"></td>
+            </tr>
+            <tr>
+                <td id="password_td">
+                    <div class="input_div">
+                        <table>
+                            <tr>
+                                <td>
+                                    <img class="passwordIcon" src="../img/lock_icon.png" 
+                                        alt="Confirm your new password" />
+                                </td>
+                                <td>
+                                    <asp:TextBox ID="PasswordConfirm_PR" CssClass="securityInput" 
+                                        runat="server" placeholder="Confirm New Password" 
+                                        title="Confirm New Password" TextMode="Password"
+                                        AutoPostBack="false"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="textAlignLeft" colspan="2">
+                                    <asp:RequiredFieldValidator 
+                                        ID="PasswordConfirm_PR_rqdValidator" runat="server" 
+                                        ControlToValidate="PasswordConfirm_PR" 
+                                        ErrorMessage="Password Confirmation is required." 
+                                        Display="Dynamic" ForeColor="Red" 
+                                        CssClass="rqdValidator" />
+                                    <asp:CompareValidator 
+                                        ID="PasswordConfirm_PR_compareValidator" 
+                                        runat="server" 
+                                        ControlToValidate="PasswordConfirm_PR" 
+                                        ControlToCompare="Password_PR" 
+                                        ErrorMessage="Passwords do not match." 
+                                        Display="Dynamic" 
+                                        ForeColor="Red" 
+                                        CssClass="rqdValidator" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="trMarginBottom20"></td>
+            </tr>
+
+            <tr>
+                <td id="resetPassword_td">
+                    
+                </td>
+            </tr>
+        </table>
+    </div>
+</asp:Content>
+
+
+
+
+
+<asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
 <link href="../CSS/Security.css" rel="stylesheet" />
 <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
 <script src="https://unpkg.com/unlazy@0.11.3/dist/unlazy.with-hashing.iife.js" defer init></script>
@@ -101,65 +211,36 @@
 </style>
 
 <!-- Password Toggle Tool -->
-<script type="text/javascript">
-    document.addEventListener("DOMContentLoaded", function () {
-        var passwordField = document.getElementById("<%= Password_PR.ClientID %>");
-        var toggleIcon = document.getElementById("PasswordToggle");
 
-        toggleIcon.addEventListener("click", function () {
-            if (passwordField.type === "password") {
-                passwordField.type = "text";
-                toggleIcon.textContent = "🙈"; // Change to closed eye icon when showing password
-            } else {
-                passwordField.type = "password";
-                toggleIcon.textContent = "👁️"; // Change to open eye icon when hiding password
-            }
-        });
-    });
-</script>
-<script type="text/javascript">
-    document.addEventListener("DOMContentLoaded", function () {
-        var passwordField = document.getElementById("<%= PasswordConfirm_PR.ClientID %>");
-        var toggleIcon = document.getElementById("PasswordToggle");
 
-        toggleIcon.addEventListener("click", function () {
-            if (passwordField.type === "password") {
-                passwordField.type = "text";
-                toggleIcon.textContent = "🙈"; // Change to closed eye icon when showing password
-            } else {
-                passwordField.type = "password";
-                toggleIcon.textContent = "👁️"; // Change to open eye icon when hiding password
-            }
-        });
-    });
-</script>
+<!--- reCAPTCHA -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<br /><br /><br /><br /><br /><br />
+
 
 
 <div class="max-w-md mx-auto p-6 bg-card rounded-lg shadow-md">
-    <h2 class="text-2xl font-bold text-foreground mb-4">Reset Password</h2>
-
+    <h2 class="text-2xl font-bold text-foreground mb-4">Sign Up</h2>
+    
     <!-- Password -->
-    <label for="first-name" class="block text-sm text-muted-foreground">Password</label>
-    <div class="relative mb-4">
-         <asp:TextBox ID="Password_PR" 
-            CssClass="w-full p-2 border border-border rounded-md focus:outline-none focus:ring focus:ring-ring"
+    <div class="mb-4">
+        <label for="password" class="block text-sm text-muted-foreground">Password</label>
+        <asp:TextBox ID="Password_SU" 
+            CssClass="mt-1 p-2 border border-border rounded w-full" 
             runat="server" 
             placeholder="**********" 
-            title="Password" 
-            AutoPostBack="false">
-        </asp:TextBox>
-        <span id="PasswordToggle_PR" class="absolute right-2 top-2 cursor-pointer">👁️</span>
+            title="Password"></asp:TextBox>
         <asp:RequiredFieldValidator 
-            ID="Password_PR_rqdValidator" 
+            ID="Password_SU_rqdValidator" 
             runat="server" 
-            ControlToValidate="Password_PR" 
+            ControlToValidate="Password_SU" 
             ErrorMessage="Password is required." 
             Display="Dynamic" ForeColor="Red" 
             CssClass="rqdValidator" />
         <asp:RegularExpressionValidator 
-            ID="Password_PR_regexValidator" 
+            ID="Password_SU_regexValidator" 
             runat="server" 
-            ControlToValidate="Password_PR" 
+            ControlToValidate="Password_SU" 
             ErrorMessage="Must contain >10 letters, numbers, and symbols." 
             Display="Dynamic" 
             ForeColor="Red" 
@@ -168,54 +249,54 @@
     </div>
     
     <!-- Re-enter Password -->
-    <label for="first-name" class="block text-sm text-muted-foreground">Re-enter Password</label>
-    <div class="relative mb-4">
-        <asp:TextBox ID="PasswordConfirm_PR" 
-            CssClass="w-full p-2 border border-border rounded-md focus:outline-none focus:ring focus:ring-ring"
+    <div class="mb-4">
+        <label for="reenter-password" class="block text-sm text-muted-foreground">Re-enter Password</label>
+
+        <asp:TextBox ID="PasswordReenter_SU" 
+            CssClass="mt-1 p-2 border border-border rounded w-full" 
             runat="server" 
             placeholder="**********" 
-            title="Re-enter Password" 
-            AutoPostBack="false">
-        </asp:TextBox>
-        <span id="PasswordToggle_PR2" class="absolute right-2 top-2 cursor-pointer">👁️</span>
+            title="Re-enter Password"></asp:TextBox>
         <asp:RequiredFieldValidator 
-            ID="PasswordConfirm_PR_rqdValidator" 
+            ID="PasswordReenter_SU_rqdValidator" 
             runat="server" 
-            ControlToValidate="PasswordConfirm_PR" 
+            ControlToValidate="PasswordReenter_SU" 
             ErrorMessage="Password Re-enter is required." 
             Display="Dynamic" ForeColor="Red" 
             CssClass="rqdValidator" />
         <asp:CompareValidator 
-            ID="PasswordConfirm_PR_compValidator" 
+            ID="PasswordReenter_SU_compareValidator" 
             runat="server" 
-            ControlToValidate="PasswordConfirm_PR" 
-            ControlToCompare="Password_PR" 
+            ControlToValidate="PasswordReenter_SU" 
+            ControlToCompare="Password_SU" 
             ErrorMessage="Passwords do not match." 
             Display="Dynamic" 
             ForeColor="Red" 
             CssClass="rqdValidator" />
-    </div>
 
-    <!-- Terms & Conditions -->
-    <div class="text-center mt-4">
-        <span class="text-muted-foreground">By signing up, you agree to the Staffee</span>
-        
-        <a href="UserAgreement.aspx">User Agreement</a>, and
-        <a href="PrivacyPolicy.aspx">Privacy Policy</a>.
-        <div class="trMarginBottom20"></div>
-    </div>
-
-    <div class="relative mb-4">
+    <!-- Reset Password -->
         <asp:Button ID="ResetPasswordBtn_PR" 
-            runat="server" 
-            class="w-full bg-primary text-primary-foreground p-2 rounded-md hover:bg-primary/80"
-            style="cursor: pointer;"
-            Text="Next"
+            runat="server" Text="Reset Password"
+            CssClass="securityPrimaryBtn"
             CausesValidation="true" 
             OnClick="ResetPasswordBtn_PR_Click"/>
+        <asp:Label ID="errorMessageLabel" runat="server" ForeColor="Red" Visible="False"></asp:Label>
+
+    <div class="flex justify-center space-x-4">
+        <asp:Button ID="SignInUsernameBtn_SU" 
+            runat="server" 
+            CssClass="bg-secondary text-secondary-foreground p-2 rounded w-full" 
+            Text="Sign In with Username"
+            style="cursor: pointer;"
+            OnClick="SignUpUsernameBtn_SU_Click"/>
+
+        <asp:Button ID="SignUpEmailBtn_SU" 
+            runat="server" 
+            CssClass="bg-secondary text-secondary-foreground p-2 rounded w-full" 
+            Text="Sign In with Email"
+            style="cursor: pointer;"
+            OnClick="SignUpEmailBtn_SU_Click"/>
     </div>
-    
-    
 </div>
 <br />
 <br />

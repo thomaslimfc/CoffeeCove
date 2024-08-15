@@ -122,11 +122,10 @@
     <h2 class="text-2xl font-bold text-foreground mb-4">Sign In</h2>
     <!-- Username -->
     <div class="mb-4">
-        <label for="first-name" class="block text-sm text-muted-foreground">Username</label>
         <asp:TextBox ID="Username_SI" 
-            CssClass="w-full p-2 border border-border rounded-md focus:outline-none" 
+            CssClass="w-full p-2 border border-border rounded-md focus:outline-none focus:ring focus:ring-ring" 
             runat="server"
-            placeholder="deschau7668" 
+            placeholder="Username" 
             title="Username"
             AutoPostBack="false">
         </asp:TextBox>
@@ -147,14 +146,12 @@
             CssClass="rqdValidator" 
             ValidationExpression="^[a-zA-Z0-9]{10,}$" />
     </div>
-
     <!-- Password -->
-    <label for="first-name" class="block text-sm text-muted-foreground">Password</label>
     <div class="relative mb-4">
         <asp:TextBox ID="Password_SI" 
-            CssClass="w-full p-2 border border-border rounded-md focus:outline-none"
+            CssClass="w-full p-2 border border-border rounded-md focus:outline-none focus:ring focus:ring-ring"
             runat="server" 
-            placeholder="**********" 
+            placeholder="Password" 
             title="Password" 
             TextMode="Password"
             AutoPostBack="false">

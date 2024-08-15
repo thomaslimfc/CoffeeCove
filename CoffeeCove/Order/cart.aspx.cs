@@ -13,11 +13,7 @@ namespace CoffeeCove.Order
     public partial class orderCart : System.Web.UI.Page
     {
         string cs = Global.CS;
-<<<<<<< HEAD:CoffeeCove/Order/cart.aspx.cs
         string strSubtotal;
-=======
-
->>>>>>> parent of d751d06 (Merge branch 'main' of https://github.com/thomaslimfc/CoffeeCove):CoffeeCove/Order/orderCart.aspx.cs
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -26,12 +22,8 @@ namespace CoffeeCove.Order
 
                 SqlConnection conn = new SqlConnection(cs);
                 string sql = @"SELECT * 
-<<<<<<< HEAD:CoffeeCove/Order/cart.aspx.cs
                             FROM OrderedItem I JOIN Product P 
                             ON I.ProductId = P.ProductId
-=======
-                            FROM OrderedItem O JOIN Product P ON O.ProductId = P.ProductId                            
->>>>>>> parent of d751d06 (Merge branch 'main' of https://github.com/thomaslimfc/CoffeeCove):CoffeeCove/Order/orderCart.aspx.cs
                             WHERE OrderId = @ID";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
@@ -43,7 +35,6 @@ namespace CoffeeCove.Order
                 da.Fill(ds);
                 rptOrdered.DataSource = ds;
                 rptOrdered.DataBind();
-<<<<<<< HEAD:CoffeeCove/Order/cart.aspx.cs
 
                 string sql1 = @"SELECT COUNT(*) 
                             FROM OrderedItem I JOIN Product P 
@@ -118,10 +109,5 @@ namespace CoffeeCove.Order
             string id = Request.QueryString["id"] ?? "";
             Response.Redirect("cartEdit.aspx?id=" + id);
         }
-=======
-                conn.Close();
-            }
-        }
->>>>>>> parent of d751d06 (Merge branch 'main' of https://github.com/thomaslimfc/CoffeeCove):CoffeeCove/Order/orderCart.aspx.cs
     }
 }
