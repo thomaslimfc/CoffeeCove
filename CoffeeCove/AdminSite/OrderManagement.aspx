@@ -59,7 +59,9 @@
 
                     </asp:GridView>
               
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString2 %>" ProviderName="<%$ ConnectionStrings:ConnectionString2.ProviderName %>" SelectCommand="SELECT [OrderID], [OrderDate], [CustomerID], [TotalAmount] FROM [Order]"></asp:SqlDataSource>
+              
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString2 %>" ProviderName="<%$ ConnectionStrings:ConnectionString2.ProviderName %>" SelectCommand="SELECT [OrderID], [CustomerID], [OrderDate], [TotalAmount] FROM [Order]"></asp:SqlDataSource>
+              
               
                 </div>
             </div>
