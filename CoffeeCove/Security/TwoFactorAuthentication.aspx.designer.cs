@@ -42,12 +42,12 @@ namespace CoffeeCove.Security
         protected global::System.Web.UI.WebControls.RegularExpressionValidator otp_regexValidator;
 
         /// <summary>
-        /// verify_btn control.
+        /// VerifyButton_TFA control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button verify_btn;
+        protected global::System.Web.UI.WebControls.Button VerifyButton_TFA;
     }
 }

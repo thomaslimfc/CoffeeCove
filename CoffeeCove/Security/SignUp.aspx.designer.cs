@@ -204,6 +204,24 @@ namespace CoffeeCove.Security
         protected global::System.Web.UI.WebControls.CompareValidator PasswordReenter_SU_compareValidator;
 
         /// <summary>
+        /// DateOfBirth_PR control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox DateOfBirth_PR;
+
+        /// <summary>
+        /// DateOfBirth_PR_rqdValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator DateOfBirth_PR_rqdValidator;
+
+        /// <summary>
         /// Gender_SU control.
         /// </summary>
         /// <remarks>

@@ -13,14 +13,15 @@ namespace CoffeeCove.Security
         {
 
         }
-        protected void ResetPasswordBtn_Click(object sender, EventArgs e)
+
+        protected void ResetPasswordBtn_PR_Click(object sender, EventArgs e)
         {
             Response.Redirect("TwoFactorAuthentication.aspx");
         }
 
-        protected void ResetPasswordBtn_PR_Click(object sender, EventArgs e)
+        protected void BackBtn_PR_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("ForgotPassword.aspx");
         }
 
         //protected void ResetPassword_Click(object sender, EventArgs e)

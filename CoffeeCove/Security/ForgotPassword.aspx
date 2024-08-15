@@ -104,10 +104,11 @@
     <h2 class="text-2xl font-bold text-foreground mb-4">Forgot Password</h2>
     <!-- Username -->
     <div class="mb-4">
+        <label for="first-name" class="block text-sm text-muted-foreground">Username / Email</label>
         <asp:TextBox ID="UsernameEmail_FP" 
-            CssClass="w-full p-2 border border-border rounded-md focus:outline-none focus:ring focus:ring-ring" 
+            CssClass="w-full p-2 border border-border rounded-md focus:outline-none" 
             runat="server"
-            placeholder="Username / Email" 
+            placeholder="desmundchau7668 / deschau7668@gmail.com" 
             title="Username / Email Address"
             AutoPostBack="false">
         </asp:TextBox>
@@ -138,7 +139,7 @@
         </center>
     </div>
     <div class="trMarginBottom20"></div>
-    <!-- Password -->
+    <!-- NEXT & BACK -->
     <div class="relative mb-4">
         <asp:Button ID="NextBtn_FP" 
             runat="server" 
