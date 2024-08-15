@@ -100,8 +100,9 @@
     }
 </style>
 
-<div class="max-w-md mx-auto p-6 bg-card rounded-lg shadow-md">
+<div class="max-w-md mx-auto p-6 bg-card rounded-lg shadow-md" style="height: 420px;">
     <h2 class="text-2xl font-bold text-foreground mb-4">Forgot Password</h2>
+    <div class="trMarginBottom20"></div>    
     <!-- Username -->
     <div class="mb-4">
         <label for="first-name" class="block text-sm text-muted-foreground">Username / Email</label>
@@ -130,14 +131,16 @@
             CssClass="rqdValidator" 
             ValidationExpression="(^[a-zA-Z0-9_]{10,}$)|(^[^@\s]+@[^@\s]+\.[^@\s]+$)" />
     </div>
+    <div class="trMarginBottom20"></div>
     <!-- Description before NEXT -->
     <div class="relative mb-4">
         <center>
             <p>
-                We’ll send a verification code to this email or phone number if it matches an existing Staffee account.
+                We’ll send a verification code to this email address if it matches an existing CoffeeCove account.
             </p>
         </center>
     </div>
+    <div class="trMarginBottom20"></div>
     <div class="trMarginBottom20"></div>
     <!-- NEXT & BACK -->
     <div class="relative mb-4">
