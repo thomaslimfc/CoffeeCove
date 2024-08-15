@@ -46,23 +46,24 @@ namespace CoffeeCove.UserManagement
                             lblDOB.Text = Convert.ToDateTime(reader["DateOfBirth"]).ToString("yyyy-MM-dd");
                             lblContactNo.Text = reader["ContactNo"].ToString();
                             lblResidenceState.Text = reader["ResidenceState"].ToString();
+
+                            // Set dropdown selected value
+                            txtGender.SelectedValue = reader["Gender"].ToString();
+                            txtResidenceState.SelectedValue = reader["ResidenceState"].ToString();
                         }
                         else
                         {
-                            // Handle case where the username is not found
                             lblUsername.Text = "Username not found.";
                         }
                     }
                     catch (Exception ex)
                     {
-                        // Handle any errors that may have occurred
                         lblUsername.Text = "An error occurred: " + ex.Message;
                     }
                 }
             }
             else
             {
-                // Handle case where the username is null or empty
                 lblUsername.Text = "Username is not provided.";
             }
         }
@@ -71,16 +72,14 @@ namespace CoffeeCove.UserManagement
         {
             if (isEditMode)
             {
-                // Populate the text boxes with current values
                 txtUsername.Text = lblUsername.Text;
                 txtEmail.Text = lblEmail.Text;
-                txtGender.Text = lblGender.Text;
+                txtGender.SelectedValue = lblGender.Text;
                 txtDOB.Text = lblDOB.Text;
                 txtContactNo.Text = lblContactNo.Text;
-                txtResidenceState.Text = lblResidenceState.Text;
+                txtResidenceState.SelectedValue = lblResidenceState.Text;
             }
 
-            // Toggle visibility between labels and text boxes
             lblUsername.Visible = !isEditMode;
             txtUsername.Visible = isEditMode;
 
@@ -101,6 +100,9 @@ namespace CoffeeCove.UserManagement
 
             EditBtn_UP.Visible = !isEditMode;
             SaveBtn_UP.Visible = isEditMode;
+
+            fuProfilePicture.Visible = isEditMode;
+            UploadPictureBtn_UP.Visible = isEditMode;
         }
 
 
@@ -111,22 +113,16 @@ namespace CoffeeCove.UserManagement
 
         protected void SaveBtn_UP_Click(object sender, EventArgs e)
         {
-            // Manually trigger validation
             Page.Validate("SaveProfile");
 
             if (Page.IsValid)
             {
-                UpdateUserProfile(); // Call the method to save the updated profile
-
-                // Reload the profile after saving to refresh the labels
+                UpdateUserProfile();
                 LoadUserProfile();
-
-                // Redirect back to profile view mode after saving
                 SetProfileEditMode(false);
             }
             else
             {
-                // Keep in edit mode if validation fails
                 SetProfileEditMode(true);
             }
         }
@@ -145,21 +141,42 @@ namespace CoffeeCove.UserManagement
                                    "WHERE Username = @Username";
 
                     SqlCommand cmd = new SqlCommand(query, con);
-                    cmd.Parameters.AddWithValue("@EmailAddress", txtEmail.Text);
-                    cmd.Parameters.AddWithValue("@Gender", txtGender.Text);
-                    cmd.Parameters.AddWithValue("@DateOfBirth", Convert.ToDateTime(txtDOB.Text));
-                    cmd.Parameters.AddWithValue("@ContactNo", txtContactNo.Text);
-                    cmd.Parameters.AddWithValue("@ResidenceState", txtResidenceState.Text);
+
+                    // Ensure all parameters are added correctly
+                    cmd.Parameters.AddWithValue("@EmailAddress", txtEmail.Text.Trim());
+                    cmd.Parameters.AddWithValue("@Gender", txtGender.Text.Trim());
+
+                    DateTime dob;
+                    if (DateTime.TryParse(txtDOB.Text.Trim(), out dob))
+                    {
+                        cmd.Parameters.AddWithValue("@DateOfBirth", dob);
+                    }
+                    else
+                    {
+                        lblUsername.Text = "Invalid date format.";
+                        return; // Exit method if the date is invalid
+                    }
+
+                    cmd.Parameters.AddWithValue("@ContactNo", txtContactNo.Text.Trim());
+                    cmd.Parameters.AddWithValue("@ResidenceState", txtResidenceState.Text.Trim());
                     cmd.Parameters.AddWithValue("@Username", username);
 
                     try
                     {
                         con.Open();
-                        cmd.ExecuteNonQuery(); // Execute the update query
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        if (rowsAffected == 0)
+                        {
+                            lblUsername.Text = "No rows were updated. Please check the provided data.";
+                        }
+                        else
+                        {
+                            lblUsername.Text = "Profile updated successfully.";
+                        }
                     }
                     catch (Exception ex)
                     {
-                        // Handle any errors that may have occurred
                         lblUsername.Text = "An error occurred: " + ex.Message;
                     }
                 }
@@ -171,20 +188,19 @@ namespace CoffeeCove.UserManagement
             if (fuProfilePicture.HasFile)
             {
                 string filename = System.IO.Path.GetFileName(fuProfilePicture.PostedFile.FileName);
-                fuProfilePicture.SaveAs(Server.MapPath("~/UserManagement/UserProfilePictures/") + filename);
+                fuProfilePicture.SaveAs(Server.MapPath("/UserProfilePictures/") + filename);
                 imgProfilePicture.ImageUrl = "/UserProfilePictures/" + filename;
 
-                // Show success message
                 lblUploadMessage.Text = "Picture has been successfully uploaded.";
                 lblUploadMessage.Visible = true;
+                lblUploadMessage.CssClass = "text-success";
             }
             else
             {
                 lblUploadMessage.Text = "Please select a picture to upload.";
-                lblUploadMessage.CssClass = "text-danger";
                 lblUploadMessage.Visible = true;
+                lblUploadMessage.CssClass = "text-danger";
             }
         }
-
     }
 }

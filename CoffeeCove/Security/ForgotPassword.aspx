@@ -100,14 +100,16 @@
     }
 </style>
 
-<div class="max-w-md mx-auto p-6 bg-card rounded-lg shadow-md">
+<div class="max-w-md mx-auto p-6 bg-card rounded-lg shadow-md" style="height: 420px;">
     <h2 class="text-2xl font-bold text-foreground mb-4">Forgot Password</h2>
+    <div class="trMarginBottom20"></div>    
     <!-- Username -->
     <div class="mb-4">
+        <label for="first-name" class="block text-sm text-muted-foreground">Username / Email</label>
         <asp:TextBox ID="UsernameEmail_FP" 
-            CssClass="w-full p-2 border border-border rounded-md focus:outline-none focus:ring focus:ring-ring" 
+            CssClass="w-full p-2 border border-border rounded-md focus:outline-none" 
             runat="server"
-            placeholder="Username / Email" 
+            placeholder="desmundchau7668 / deschau7668@gmail.com" 
             title="Username / Email Address"
             AutoPostBack="false">
         </asp:TextBox>
@@ -123,22 +125,24 @@
             ID="UsernameEmail_FP_regexValidator" 
             runat="server" 
             ControlToValidate="UsernameEmail_FP" 
-            ErrorMessage="Must contain >10 letters and numbers only or a valid email." 
+            ErrorMessage="Must contain >8 letters and numbers only or a valid email." 
             Display="Dynamic" 
             ForeColor="Red" 
             CssClass="rqdValidator" 
-            ValidationExpression="(^[a-zA-Z0-9_]{10,}$)|(^[^@\s]+@[^@\s]+\.[^@\s]+$)" />
+            ValidationExpression="(^[a-zA-Z0-9_]{8,}$)|(^[^@\s]+@[^@\s]+\.[^@\s]+$)" />
     </div>
+    <div class="trMarginBottom20"></div>
     <!-- Description before NEXT -->
     <div class="relative mb-4">
         <center>
             <p>
-                We’ll send a verification code to this email or phone number if it matches an existing Staffee account.
+                We’ll send a verification code to this email address if it matches an existing CoffeeCove account.
             </p>
         </center>
     </div>
     <div class="trMarginBottom20"></div>
-    <!-- Password -->
+    <div class="trMarginBottom20"></div>
+    <!-- NEXT & BACK -->
     <div class="relative mb-4">
         <asp:Button ID="NextBtn_FP" 
             runat="server" 

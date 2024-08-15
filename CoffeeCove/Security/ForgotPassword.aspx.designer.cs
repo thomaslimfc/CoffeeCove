@@ -24,13 +24,13 @@ namespace CoffeeCove.Security
         protected global::System.Web.UI.WebControls.TextBox UsernameEmail_FP;
 
         /// <summary>
-        /// UsernameEmail_FP_rqdValidator control.
+        /// Username_FP_rqdValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator UsernameEmail_FP_rqdValidator;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator Username_FP_rqdValidator;
 
         /// <summary>
         /// UsernameEmail_FP_regexValidator control.

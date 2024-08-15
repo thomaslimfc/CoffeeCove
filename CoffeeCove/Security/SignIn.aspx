@@ -122,10 +122,11 @@
     <h2 class="text-2xl font-bold text-foreground mb-4">Sign In</h2>
     <!-- Username -->
     <div class="mb-4">
+        <label for="first-name" class="block text-sm text-muted-foreground">Username</label>
         <asp:TextBox ID="Username_SI" 
-            CssClass="w-full p-2 border border-border rounded-md focus:outline-none focus:ring focus:ring-ring" 
+            CssClass="w-full p-2 border border-border rounded-md focus:outline-none" 
             runat="server"
-            placeholder="Username" 
+            placeholder="desmundchau7668" 
             title="Username"
             AutoPostBack="false">
         </asp:TextBox>
@@ -140,18 +141,20 @@
             ID="Username_SI_regexValidator" 
             runat="server" 
             ControlToValidate="Username_SI" 
-            ErrorMessage="Must contain >10 letters and numbers only." 
+            ErrorMessage="Must contain >8 letters and numbers only." 
             Display="Dynamic" 
             ForeColor="Red" 
             CssClass="rqdValidator" 
-            ValidationExpression="^[a-zA-Z0-9]{10,}$" />
+            ValidationExpression="^[a-zA-Z0-9]{8,}$" />
     </div>
+
     <!-- Password -->
+    <label for="first-name" class="block text-sm text-muted-foreground">Password</label>
     <div class="relative mb-4">
         <asp:TextBox ID="Password_SI" 
-            CssClass="w-full p-2 border border-border rounded-md focus:outline-none focus:ring focus:ring-ring"
+            CssClass="w-full p-2 border border-border rounded-md focus:outline-none"
             runat="server" 
-            placeholder="Password" 
+            placeholder="**********" 
             title="Password" 
             TextMode="Password"
             AutoPostBack="false">
