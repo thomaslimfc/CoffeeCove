@@ -355,3 +355,8 @@ D:\visual studio work\CoffeeCove\CoffeeCove\bin\roslyn\vbc.exe.config
 D:\visual studio work\CoffeeCove\CoffeeCove\bin\roslyn\vbc.rsp
 D:\visual studio work\CoffeeCove\CoffeeCove\bin\roslyn\VBCSCompiler.exe
 D:\visual studio work\CoffeeCove\CoffeeCove\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\admin\Documents\GitHub\CoffeeCove\CoffeeCove\bin\AjaxControlToolkit.dll
+C:\Users\admin\Documents\GitHub\CoffeeCove\CoffeeCove\bin\EntityFramework.dll
+C:\Users\admin\Documents\GitHub\CoffeeCove\CoffeeCove\bin\EntityFramework.SqlServer.dll
+C:\Users\admin\Documents\GitHub\CoffeeCove\CoffeeCove\bin\EntityFramework.xml
+C:\Users\admin\Documents\GitHub\CoffeeCove\CoffeeCove\bin\EntityFramework.SqlServer.xml
