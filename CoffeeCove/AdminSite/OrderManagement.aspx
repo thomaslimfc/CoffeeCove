@@ -8,7 +8,7 @@
     </div>
     <section class="section">
     <div class="row" style="margin-top:20px" >
-        <!-- Category Form -->
+        <!-- Date Form -->
         <div class="col-lg-4">
 
           <div class="card">

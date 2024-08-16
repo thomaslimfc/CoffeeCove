@@ -69,30 +69,12 @@ namespace CoffeeCove.Order
         protected global::System.Web.UI.WebControls.Label lblStoreAdd;
 
         /// <summary>
-        /// lbGurney control.
+        /// rptStoreList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbGurney;
-
-        /// <summary>
-        /// lbKarpalSingh control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbKarpalSingh;
-
-        /// <summary>
-        /// lbQueensBay control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbQueensBay;
+        protected global::System.Web.UI.WebControls.Repeater rptStoreList;
     }
 }

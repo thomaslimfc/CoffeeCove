@@ -93,44 +93,16 @@ async defer></script>
         <div id="overlay2" class="overlay"></div>
         <div id="popupDialog2">
             <table style="width:100%">
-                <tr>
+            <asp:Repeater ID="rptStoreList" runat="server">
+                <ItemTemplate>
+                    <%# (Container.ItemIndex + 2) % 2 == 0 ? "<tr>" : string.Empty %>
                     <td>
-                        <img src="../img/location_icon.png" style="height:50px;width:50px" />
+                        <div><%# DataBinder.Eval(Container.DataItem, "StoreName") %></div>
+                        <div><%# DataBinder.Eval(Container.DataItem, "StoreAddress") %></div>
                     </td>
-                    <td class="storeListTxt" style="width:35%">
-                        <asp:LinkButton runat="server" ID="lbGurney" Font-Underline="False" OnClientClick="closeStoreList();" OnClick="lbGurney_Click">
-                            <h2 style="margin-top:5px">CoffeeCove Gurney Plaza</h2>
-                            170-G-23,24 Gurney Plaza, Pulau Tikus, 10250 George Town, Penang
-                        </asp:LinkButton>
-                    </td>
-                    <td style="width:15%">&nbsp</td>
-                    <td>
-                        <img src="../img/location_icon.png" style="height:50px;width:50px" />
-                    </td>
-                    <td class="storeListTxt" style="width:35%">
-                        <asp:LinkButton runat="server" ID="lbKarpalSingh" Font-Underline="False" OnClientClick="closeStoreList();" OnClick="lbKarpalSingh_Click">
-                            <h2 style="margin-top:5px">CoffeeCove Karpal Singh</h2>
-                            No. 29C, Lot L1-1, L1-2, Maritime, 5, Lebuh Sungai Pinang, 11600 Jelutong, Penang
-                        </asp:LinkButton>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="5">
-                        <br />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="../img/location_icon.png" style="height:50px;width:50px" />
-                    </td>
-                    <td class="storeListTxt">
-                        <asp:LinkButton runat="server" ID="lbQueensBay" Font-Underline="False" OnClientClick="closeStoreList();" OnClick="lbQueensBay_Click">
-                            <h2 style="margin-top:5px">CoffeeCove QueensBay</h2>
-                            1-G-01, Jalan Bayan Indah, Queens Waterfront Q1 Commercial, 11900 George Town, Pulau Pinang
-                        </asp:LinkButton>
-                    </td>
-                    <td colspan="3">&nbsp</td>
-                </tr>
+                    <%# (Container.ItemIndex + 2) % 2 == 1 ? "</tr>" : string.Empty %>
+                </ItemTemplate>
+            </asp:Repeater>
             </table>
             <br />
             <button onclick="closeStoreList()" type="button" class="btnClose">Close</button>
