@@ -1,16 +1,16 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Admin.Master" AutoEventWireup="true" CodeBehind="OrderManagement.aspx.cs" Inherits="CoffeeCove.AdminSite.OrderManagement" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
-<div id="main" class="main" style="padding-left:3%;border: solid 2px blue">
+    <link href="../CSS/orderManagement.css" rel="stylesheet" />
+<div id="main" class="container-fluid" style="border: solid 2px blue;width:100%;height:1000px">
     <div class="pagetitle">
         <br />
-        <h3>Order Management</h3>
+        <h3>Orders</h3>
     </div>
     <section class="section">
     <div class="row" style="margin-top:20px" >
         <!-- Date Form -->
         <div class="col-lg-4">
-
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Date Range</h5>
@@ -43,7 +43,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Order History</h5>
                 
-                    <asp:GridView ID="gvOrder" runat="server" DataSourceID="SqlDataSource1" AutoGenerateColumns="False" DataKeyNames="OrderID" Width="100%" CssClass="table table-striped">
+                    <asp:GridView ID="gvOrder" runat="server" DataSourceID="SqlDataSource1" AutoGenerateColumns="False" DataKeyNames="OrderID" Width="100%" CssClass="table table-striped gridview" PageSize="10" AllowPaging="true" AllowSorting="true" EmptyDataText="There are no data records">
                         <Columns>
                             <asp:BoundField DataField="OrderID" HeaderText="OrderID" ReadOnly="True" SortExpression="OrderID" />
                             <asp:BoundField DataField="OrderDate" HeaderText="OrderDate" SortExpression="OrderDate" />
@@ -51,12 +51,13 @@
                             <asp:BoundField DataField="TotalAmount" HeaderText="TotalAmount" SortExpression="TotalAmount" />
                             <asp:TemplateField HeaderText="Action">
                                 <ItemTemplate>
-                                    <asp:LinkButton ID="lnkEdit" runat="server" CommandName="EditCategory" CommandArgument='<%# Eval("OrderId") %>' Text="Edit" />
                                     <asp:LinkButton ID="btnDelete" runat="server" CommandName="DeleteCategory" CommandArgument='<%# Eval("OrderId") %>' Text="Delete"/>
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
-
+                        <HeaderStyle CssClass="grid-header" />
+                        <RowStyle CssClass="grid-row"/>
+                        <PagerStyle HorizontalAlign = "Right" CssClass = "GridPager" />
                     </asp:GridView>
               
               
@@ -67,10 +68,10 @@
             </div>
         </div>
 
+
     </div>
 
 </section>
 
 </div>
-
 </asp:Content>

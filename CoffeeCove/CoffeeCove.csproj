@@ -410,7 +410,7 @@
     <Content Include="CSS\Menu.css" />
     <Content Include="CSS\orderCart.css" />
     <Content Include="CSS\OrderHistory.css" />
-    <Content Include="CSS\OrderManagement.css" />
+    <Content Include="CSS\orderManagement.css" />
     <Content Include="CSS\orderOpt.css" />
     <Content Include="CSS\paymentOpt.css" />
     <Content Include="CSS\ratingReview.css" />
