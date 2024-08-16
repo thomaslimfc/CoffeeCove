@@ -188,7 +188,7 @@ namespace CoffeeCove.UserManagement
             if (fuProfilePicture.HasFile)
             {
                 string filename = System.IO.Path.GetFileName(fuProfilePicture.PostedFile.FileName);
-                fuProfilePicture.SaveAs(Server.MapPath("/UserProfilePictures/") + filename);
+                fuProfilePicture.SaveAs(Server.MapPath("~/UserManagement/UserProfilePictures/") + filename);
                 imgProfilePicture.ImageUrl = "/UserProfilePictures/" + filename;
 
                 lblUploadMessage.Text = "Picture has been successfully uploaded.";

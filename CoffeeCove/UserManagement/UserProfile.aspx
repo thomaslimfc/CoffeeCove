@@ -112,223 +112,237 @@
         <br /> 
         <table style="user-select: none; margin-left: 25px;">
             <tr>
-                <td class="blankCol"></td>
-                <td class="blankCol" colspan="4">
-                    <center>
-                        <asp:Image ID="imgProfilePicture" runat="server" 
-                            Width="150px" Height="150px"
-                            style="margin-right: 15px;" />
-                    </center>
-                    <br />
-                    <asp:FileUpload ID="fuProfilePicture" runat="server"
-                        style="margin-top: 10px" />
-                    <br />
-                    <asp:Button ID="UploadPictureBtn_UP" runat="server" Text="Upload Picture" 
-                        style="margin-top: 10px"
-                        CssClass="btn btn-primary" OnClick="UploadPictureBtn_UP_Click" />
-                    <br />
-                    <asp:Label ID="lblUploadMessage" runat="server"
-                        CssClass="text-success" Visible="false"></asp:Label>
-                </td>
-                <td class="blankCol"></td>
-            </tr>
-
-            <tr><td><br /></td></tr>
-            <tr>
-                <td class="blankCol"></td>
-                <th colspan="2">Personal Information</th>
-                <td class="blankCol"></td>
-            </tr>
-            <tr><td><br /></td></tr>
-
-            <tr class="oddRow">
-                <td class="blankCol"></td>
-                <td class="contentCol">Username</td>
-                <td class="contentCol">Gender</td>
-                <td class="blankCol"></td>
-            </tr>
-            <tr class="evenRow">
-                <td class="blankCol"></td>
-                <td class="contentCol" style="height: 40px">
-                    <asp:Label ID="lblUsername" runat="server" />
-
-                    <asp:TextBox ID="txtUsername" runat="server" 
-                        CssClass="mt-1 p-2 border border-border rounded w-full" 
-                        Visible="false"
-                        placeholder="desmundchau7668" />
-                    <asp:RequiredFieldValidator 
-                        ID="txtUsername_rqdValidator" runat="server" 
-                        ControlToValidate="txtUsername" 
-                        ErrorMessage="Username is required." 
-                        Display="Dynamic" 
-                        ForeColor="Red" 
-                        CssClass="rqdValidator"
-                        ValidationGroup="SaveProfile" />
-                    <asp:RegularExpressionValidator 
-                        ID="txtUsername_regexValidator" 
-                        runat="server" 
-                        ControlToValidate="txtUsername" 
-                        ErrorMessage="Must contain >8 letters and numbers only." 
-                        Display="Dynamic" 
-                        ForeColor="Red" 
-                        CssClass="rqdValidator" 
-                        ValidationExpression="^[a-zA-Z0-9]{8,}$" />
-                </td>
-                <td class="contentCol">
-                    <asp:Label ID="lblGender" runat="server" CssClass="block text-sm text-muted-foreground" />
-                    
-                    <asp:DropDownList ID="txtGender" runat="server"
-                        CssClass="mt-1 p-2 border border-border rounded w-full" 
-                        Visible="false">
-                        <asp:ListItem Text="~ Select your gender ~" Value="" />
-                        <asp:ListItem>Male</asp:ListItem>
-                        <asp:ListItem>Female</asp:ListItem>
-                        <asp:ListItem>Other</asp:ListItem>
-                    </asp:DropDownList>
-
-                    <asp:RequiredFieldValidator 
-                        ID="txtGender_rqdValidator" runat="server" 
-                        ControlToValidate="txtGender" 
-                        InitialValue="" 
-                        ErrorMessage="Gender is required." 
-                        Display="Dynamic"
-                        ForeColor="Red"
-                        CssClass="rqdValidator"
-                        ValidationGroup="SaveProfile" />
-                </td>
-                <td class="blankCol"></td>
-            </tr>
-            <tr><td><br /></td></tr>
-
-            <tr class="oddRow">
-                <td class="blankCol"></td>
-                <td class="contentCol">Email Address</td>
-                <td class="contentCol">Date of Birth</td>
-                <td class="blankCol"></td>
-            </tr>
-            <tr class="evenRow">
-                <td class="blankCol"></td>
-                <td class="contentCol" style="height: 40px">
-                    <asp:Label ID="lblEmail" runat="server" />
-                    <asp:TextBox ID="txtEmail" runat="server" 
-                        CssClass="mt-1 p-2 border border-border rounded w-full"  
-                        Visible="false"
-                        placeholder="deschau7668@gmail.com" />
-                    <asp:RequiredFieldValidator 
-                        ID="Email_rqdValidator" runat="server" 
-                        ControlToValidate="txtEmail" 
-                        ErrorMessage="Email Address is required." 
-                        Display="Dynamic" 
-                        ForeColor="Red" 
-                        CssClass="rqdValidator"
-                        ValidationGroup="SaveProfile" />
-                    <asp:RegularExpressionValidator 
-                        ID="Email_regexValidator" runat="server" 
-                        ControlToValidate="txtEmail" 
-                        ErrorMessage="Invalid email format." 
-                        Display="Dynamic" 
-                        ForeColor="Red" 
-                        CssClass="rqdValidator" 
-                        ValidationExpression="^[^@\s]+@[^@\s]+\.[^@\s]+$"
-                        ValidationGroup="SaveProfile" />
-                </td>
-                <td class="contentCol">
-                    <!-- Date of Birth -->
-                    <asp:Label ID="lblDOB" runat="server" class="block text-sm text-muted-foreground" />
-                    <div class="mb-4">
-                        <asp:TextBox ID="txtDOB" 
-                            CssClass="mt-1 p-2 border border-border rounded w-full" 
-                            runat="server" 
-                            TextMode="Date"
-                            placeholder="MM/DD/YYYY"
-                            Visible="false" />
-                        <asp:CompareValidator 
-                            ID="DOB_compareValidator" runat="server" 
-                            ControlToValidate="txtDOB" 
-                            ErrorMessage="Please enter a valid date." 
-                            Display="Dynamic" 
-                            ForeColor="Red" 
-                            CssClass="rqdValidator" 
-                            Operator="DataTypeCheck" Type="Date" 
-                            ValidationGroup="SaveProfile" />
+                <td>
+                    <!-- LEFT PORTION -->
+                    <div>
+                        <table>
+                            <tr>
+                                <td class="blankCol"></td>
+                                <td class="blankCol" colspan="4">
+                                    <center>
+                                        <asp:Image ID="imgProfilePicture" runat="server" 
+                                            Width="150px" Height="150px"
+                                            style="margin-right: 15px;" />
+                                    </center>
+                                    <br />
+                                    <asp:FileUpload ID="fuProfilePicture" runat="server"
+                                        style="margin-top: 10px" />
+                                    <br />
+                                    <asp:Button ID="UploadPictureBtn_UP" runat="server" Text="Upload Picture" 
+                                        style="margin-top: 10px"
+                                        CssClass="btn btn-primary" OnClick="UploadPictureBtn_UP_Click" />
+                                    <br />
+                                    <asp:Label ID="lblUploadMessage" runat="server"
+                                        CssClass="text-success" Visible="false"></asp:Label>
+                                </td>
+                                <td class="blankCol"></td>
+                            </tr>
+                        </table>
                     </div>
                 </td>
-                <td class="blankCol"></td>
-            </tr>
-            <tr><td><br /></td></tr>
-
-            <tr class="oddRow">
-                <td class="blankCol"></td>
-                <td class="contentCol">Contact Number</td>
-                <td class="contentCol">Residence State</td>
-                <td class="blankCol"></td>
-            </tr>
-            <tr class="evenRow">
-                <td class="blankCol"></td>
-                <td class="contentCol" style="height: 40px">
-                    <asp:Label ID="lblContactNo" runat="server" />
-                    <asp:TextBox ID="txtContactNo" runat="server" 
-                        CssClass="mt-1 p-2 border border-border rounded w-full"  
-                        Visible="false"
-                        placeholder="0123456789" />
-                    <asp:RequiredFieldValidator 
-                        ID="ContactNo_rqdValidator" runat="server" 
-                        ControlToValidate="txtContactNo" 
-                        ErrorMessage="Contact Number is required." 
-                        Display="Dynamic" 
-                        ForeColor="Red" 
-                        CssClass="rqdValidator"
-                        ValidationGroup="SaveProfile" />
-                    <asp:RegularExpressionValidator 
-                        ID="txtContactNo_regexValidator" 
-                        runat="server" 
-                        ControlToValidate="txtContactNo" 
-                        ErrorMessage="Must start with 0 in front without '-'." 
-                        Display="Dynamic" 
-                        ForeColor="Red" 
-                        CssClass="rqdValidator" 
-                        ValidationExpression="^01[0-9]{8,10}$" />
+                <td>
+                    <!-- RIGHT PORTION -->
+                    <table>
+                        <tr><td><br /></td></tr>
+                        <tr>
+                            <td class="blankCol"></td>
+                            <th colspan="2">Personal Information</th>
+                            <td class="blankCol"></td>
+                        </tr>
+                        <tr><td><br /></td></tr>
+                        
+                        <tr class="oddRow">
+                            <td class="blankCol"></td>
+                            <td class="contentCol">Username</td>
+                            <td class="contentCol">Gender</td>
+                            <td class="blankCol"></td>
+                        </tr>
+                        <tr class="evenRow">
+                            <td class="blankCol"></td>
+                            <td class="contentCol" style="height: 40px">
+                                <asp:Label ID="lblUsername" runat="server" />
+                        
+                                <asp:TextBox ID="txtUsername" runat="server" 
+                                    CssClass="mt-1 p-2 border border-border rounded w-full" 
+                                    Visible="false"
+                                    placeholder="desmundchau7668" />
+                                <asp:RequiredFieldValidator 
+                                    ID="txtUsername_rqdValidator" runat="server" 
+                                    ControlToValidate="txtUsername" 
+                                    ErrorMessage="Username is required." 
+                                    Display="Dynamic" 
+                                    ForeColor="Red" 
+                                    CssClass="rqdValidator"
+                                    ValidationGroup="SaveProfile" />
+                                <asp:RegularExpressionValidator 
+                                    ID="txtUsername_regexValidator" 
+                                    runat="server" 
+                                    ControlToValidate="txtUsername" 
+                                    ErrorMessage="Must contain >8 letters and numbers only." 
+                                    Display="Dynamic" 
+                                    ForeColor="Red" 
+                                    CssClass="rqdValidator" 
+                                    ValidationExpression="^[a-zA-Z0-9]{8,}$" />
+                            </td>
+                            <td class="contentCol">
+                                <asp:Label ID="lblGender" runat="server" CssClass="block text-sm text-muted-foreground" />
+                                
+                                <asp:DropDownList ID="txtGender" runat="server"
+                                    CssClass="mt-1 p-2 border border-border rounded w-full" 
+                                    Visible="false">
+                                    <asp:ListItem Text="~ Select your gender ~" Value="" />
+                                    <asp:ListItem>Male</asp:ListItem>
+                                    <asp:ListItem>Female</asp:ListItem>
+                                    <asp:ListItem>Other</asp:ListItem>
+                                </asp:DropDownList>
+                                <asp:RequiredFieldValidator 
+                                    ID="txtGender_rqdValidator" runat="server" 
+                                    ControlToValidate="txtGender" 
+                                    InitialValue="" 
+                                    ErrorMessage="Gender is required." 
+                                    Display="Dynamic"
+                                    ForeColor="Red"
+                                    CssClass="rqdValidator"
+                                    ValidationGroup="SaveProfile" />
+                            </td>
+                            <td class="blankCol"></td>
+                        </tr>
+                        <tr><td><br /></td></tr>
+                        
+                        <tr class="oddRow">
+                            <td class="blankCol"></td>
+                            <td class="contentCol">Email Address</td>
+                            <td class="contentCol">Date of Birth</td>
+                            <td class="blankCol"></td>
+                        </tr>
+                        <tr class="evenRow">
+                            <td class="blankCol"></td>
+                            <td class="contentCol" style="height: 40px">
+                                <asp:Label ID="lblEmail" runat="server" />
+                                <div class="mb-4">
+                                    <asp:TextBox ID="txtEmail" runat="server" 
+                                        CssClass="mt-1 p-2 border border-border rounded w-full"  
+                                        Visible="false"
+                                        placeholder="deschau7668@gmail.com" />
+                                    <asp:RequiredFieldValidator 
+                                        ID="Email_rqdValidator" runat="server" 
+                                        ControlToValidate="txtEmail" 
+                                        ErrorMessage="Email Address is required." 
+                                        Display="Dynamic" 
+                                        ForeColor="Red" 
+                                        CssClass="rqdValidator"
+                                        ValidationGroup="SaveProfile" />
+                                    <asp:RegularExpressionValidator 
+                                        ID="Email_regexValidator" runat="server" 
+                                        ControlToValidate="txtEmail" 
+                                        ErrorMessage="Invalid email format." 
+                                        Display="Dynamic" 
+                                        ForeColor="Red" 
+                                        CssClass="rqdValidator" 
+                                        ValidationExpression="^[^@\s]+@[^@\s]+\.[^@\s]+$"
+                                        ValidationGroup="SaveProfile" />
+                                </div>
+                            </td>
+                            <td class="contentCol">
+                                <!-- Date of Birth -->
+                                <asp:Label ID="lblDOB" runat="server" class="block text-sm text-muted-foreground" />
+                                <div class="mb-4">
+                                    <asp:TextBox ID="txtDOB" 
+                                        CssClass="mt-1 p-2 border border-border rounded w-full" 
+                                        runat="server" 
+                                        TextMode="Date"
+                                        placeholder="MM/DD/YYYY"
+                                        Visible="false" />
+                                    <asp:CompareValidator 
+                                        ID="DOB_compareValidator" runat="server" 
+                                        ControlToValidate="txtDOB" 
+                                        ErrorMessage="Please enter a valid date." 
+                                        Display="Dynamic" 
+                                        ForeColor="Red" 
+                                        CssClass="rqdValidator" 
+                                        Operator="DataTypeCheck" Type="Date" 
+                                        ValidationGroup="SaveProfile" />
+                                </div>
+                            </td>
+                            <td class="blankCol"></td>
+                        </tr>
+                        <tr><td><br /></td></tr>
+                        
+                        <tr class="oddRow">
+                            <td class="blankCol"></td>
+                            <td class="contentCol">Contact Number</td>
+                            <td class="contentCol">Residence State</td>
+                            <td class="blankCol"></td>
+                        </tr>
+                        <tr class="evenRow">
+                            <td class="blankCol"></td>
+                            <td class="contentCol" style="height: 40px">
+                                <asp:Label ID="lblContactNo" runat="server" />
+                                <asp:TextBox ID="txtContactNo" runat="server" 
+                                    CssClass="mt-1 p-2 border border-border rounded w-full"  
+                                    Visible="false"
+                                    placeholder="0123456789" />
+                                <asp:RequiredFieldValidator 
+                                    ID="ContactNo_rqdValidator" runat="server" 
+                                    ControlToValidate="txtContactNo" 
+                                    ErrorMessage="Contact Number is required." 
+                                    Display="Dynamic" 
+                                    ForeColor="Red" 
+                                    CssClass="rqdValidator"
+                                    ValidationGroup="SaveProfile" />
+                                <asp:RegularExpressionValidator 
+                                    ID="txtContactNo_regexValidator" 
+                                    runat="server" 
+                                    ControlToValidate="txtContactNo" 
+                                    ErrorMessage="Must start with 0 in front without '-'." 
+                                    Display="Dynamic" 
+                                    ForeColor="Red" 
+                                    CssClass="rqdValidator" 
+                                    ValidationExpression="^01[0-9]{8,10}$" />
+                            </td>
+                            <td class="contentCol">
+                                <asp:Label ID="lblResidenceState" runat="server" CssClass="block text-sm text-muted-foreground" />
+                                
+                                <asp:DropDownList ID="txtResidenceState" runat="server" 
+                                    CssClass="mt-1 p-2 border border-border rounded w-full" 
+                                    Visible="false">
+                                    <asp:ListItem Text="~ Select a location ~" Value="" />
+                                    <asp:ListItem>Selangor</asp:ListItem>
+                                    <asp:ListItem>Penang</asp:ListItem>
+                                    <asp:ListItem>Johor</asp:ListItem>
+                                    <asp:ListItem>Malacca</asp:ListItem>
+                                    <asp:ListItem>Negeri Sembilan</asp:ListItem>
+                                    <asp:ListItem>Pahang</asp:ListItem>
+                                    <asp:ListItem>Perak</asp:ListItem>
+                                    <asp:ListItem>Kedah</asp:ListItem>
+                                    <asp:ListItem>Kelantan</asp:ListItem>
+                                    <asp:ListItem>Terengganu</asp:ListItem>
+                                    <asp:ListItem>Perlis</asp:ListItem>
+                                    <asp:ListItem>Sarawak</asp:ListItem>
+                                    <asp:ListItem>Sabah</asp:ListItem>
+                                </asp:DropDownList>
+                            
+                                <asp:RequiredFieldValidator 
+                                    ID="ResidenceState_rqdValidator" runat="server" 
+                                    ControlToValidate="txtResidenceState" 
+                                    InitialValue="" 
+                                    ErrorMessage="Residence State is required." 
+                                    Display="Dynamic"
+                                    ForeColor="Red"
+                                    CssClass="rqdValidator"
+                                    ValidationGroup="SaveProfile" />
+                            </td>
+                            <td class="blankCol"></td>
+                        </tr>
+                        <tr><td><br /></td></tr>
+                        <tr>
+                            <td class="trMarginBottom20"></td>
+                        </tr>
+                    </table>
                 </td>
-                <td class="contentCol">
-                    <asp:Label ID="lblResidenceState" runat="server" CssClass="block text-sm text-muted-foreground" />
-                    
-                    <asp:DropDownList ID="txtResidenceState" runat="server" 
-                        CssClass="mt-1 p-2 border border-border rounded w-full" 
-                        Visible="false">
-                        <asp:ListItem Text="~ Select a location ~" Value="" />
-                        <asp:ListItem>Selangor</asp:ListItem>
-                        <asp:ListItem>Penang</asp:ListItem>
-                        <asp:ListItem>Johor</asp:ListItem>
-                        <asp:ListItem>Malacca</asp:ListItem>
-                        <asp:ListItem>Negeri Sembilan</asp:ListItem>
-                        <asp:ListItem>Pahang</asp:ListItem>
-                        <asp:ListItem>Perak</asp:ListItem>
-                        <asp:ListItem>Kedah</asp:ListItem>
-                        <asp:ListItem>Kelantan</asp:ListItem>
-                        <asp:ListItem>Terengganu</asp:ListItem>
-                        <asp:ListItem>Perlis</asp:ListItem>
-                        <asp:ListItem>Sarawak</asp:ListItem>
-                        <asp:ListItem>Sabah</asp:ListItem>
-                    </asp:DropDownList>
-                
-                    <asp:RequiredFieldValidator 
-                        ID="ResidenceState_rqdValidator" runat="server" 
-                        ControlToValidate="txtResidenceState" 
-                        InitialValue="" 
-                        ErrorMessage="Residence State is required." 
-                        Display="Dynamic"
-                        ForeColor="Red"
-                        CssClass="rqdValidator"
-                        ValidationGroup="SaveProfile" />
-                </td>
-                <td class="blankCol"></td>
-            </tr>
-            <tr><td><br /></td></tr>
-            <tr>
-                <td class="trMarginBottom20"></td>
             </tr>
             <tr>
-                <td colspan="4">
+                <td colspan="2">
                     <div class="relative mb-4">
                         <asp:Button ID="EditBtn_UP" 
                             runat="server" 
@@ -347,11 +361,8 @@
                     </div>               
                 </td>
             </tr>
-            <tr>
-                <td class="trMarginBottom20"></td>
-            </tr>
         </table>
-    </div>
+        </div>
     </center>
     <br /><br /><br />
 </asp:Content>
