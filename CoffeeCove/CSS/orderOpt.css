@@ -114,7 +114,6 @@
     transform: translate(-50%, -55%);
     padding: 20px;
     width: 90%;
-    height: 88%;
     background-color: #fff;
     border: 1px solid #ccc;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -131,30 +130,6 @@
     margin-right: auto;
     background: rgba(0, 0, 0, 0.5);
     border-radius: 8px;
-}
-
-.storeListTxt a {
-    display: block;
-    width: 100%;
-    color: black;
-}
-
-.storeListTxt {
-    border-radius: 8px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition-duration: 0.4s;
-    background-color: #f0f0f0;
-    color: #433533;
-}
-
-.storeListTxt:hover {
-    background-color: #413432;
-}
-
-.storeListTxt:hover a {
-    color: white;  
 }
 
 .textAdd {
@@ -175,4 +150,37 @@
 ::placeholder {
     font-size: 14px;
     font-weight: 600;
+}
+
+.evenClass a,.oddClass a {
+    display: block;
+    width: 100%;
+    color: black;
+}
+
+.evenClass, .oddClass {
+    border-radius: 8px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition-duration: 0.8s;
+    background-color: #f0f0f0;
+    color: #433533;
+}
+
+.evenClass:hover, .oddClass:hover {
+    background-color: #413432;
+}
+
+.evenClass:hover a, .oddClass:hover a {
+    color: white;
+}
+
+.evenClass:hover .storeName, .oddClass:hover .storeName{
+    border: solid 2px white;
+}
+
+.evenClass .storeName, .oddClass .storeName{
+    border: solid 2px black;
+    border-radius:8px;
 }
