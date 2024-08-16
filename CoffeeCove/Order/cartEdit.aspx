@@ -65,7 +65,7 @@
         <table style="width:100%">
             <tr>
                 <td>
-                    <asp:Button runat="server" Text="Proceed" CSSClass="btnProceed" ID="btnProceed" OnClick="btnProceed_Click"/>
+                    <asp:Button runat="server" Text="Done" CSSClass="btnProceed" ID="btnProceed" OnClick="btnProceed_Click"/>
                 </td>
             </tr>
         </table>

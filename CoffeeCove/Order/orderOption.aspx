@@ -93,11 +93,11 @@ async defer></script>
         <div id="overlay2" class="overlay"></div>
         <div id="popupDialog2">
             <table style="width:100%;border-collapse:separate;border-spacing:10px">
-            <asp:Repeater ID="rptStoreList" runat="server">
+            <asp:Repeater ID="rptStoreList" runat="server" OnItemCommand="rptStoreList_ItemCommand">
                 <ItemTemplate>
                     <%# (Container.ItemIndex + 2) % 2 == 0 ? "<tr>" : string.Empty %>
-                    <td style="width:30%" class='<%# (Container.ItemIndex + 2) % 2 == 0 ? "oddClass" : "evenClass" %>'>
-                        <asp:LinkButton ID="lbStoreList" runat="server" Font-Underline="false">
+                    <td style="width:30%" class="storeList">
+                        <asp:LinkButton ID="lbStoreList" runat="server" Font-Underline="false" CommandName="storeList" CommandArgument='<%# Eval("StoreID") %>' >
                             <div class="storeName"><h3><%# DataBinder.Eval(Container.DataItem, "StoreName") %></h3></div>
                             <div><%# DataBinder.Eval(Container.DataItem, "StoreAddress") %></div>
                         </asp:LinkButton>

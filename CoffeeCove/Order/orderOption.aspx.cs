@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data.SqlClient;
-using System.Data;
 
 namespace CoffeeCove.Order
 {
@@ -15,13 +14,9 @@ namespace CoffeeCove.Order
         string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblStoreName.Text = " ";
-            lblStoreAdd.Text = " ";
 
             if (!Page.IsPostBack)
             {
-                string id = Request.QueryString["id"] ?? "";
-
                 SqlConnection conn = new SqlConnection(cs);
                 string sql = @"SELECT * 
                             FROM Store";
@@ -35,24 +30,30 @@ namespace CoffeeCove.Order
                 rptStoreList.DataSource = ds;
                 rptStoreList.DataBind();
 
-
             }
         }
 
-        protected void lbGurney_Click(object sender, EventArgs e)
+        protected void rptStoreList_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
-            lblStoreName.Text = "CoffeeCove Gurney Plaza";
-            lblStoreAdd.Text = "170-G-23,24 Gurney Plaza, Pulau Tikus, 10250 George Town, Penang";
-        }
-        protected void lbKarpalSingh_Click(object sender, EventArgs e)
-        {
-            lblStoreName.Text = "CoffeeCove Karpal Singh";
-            lblStoreAdd.Text = "No. 29C, Lot L1-1, L1-2, Maritime, 5, Lebuh Sungai Pinang, 11600 Jelutong, Penang";
-        }
-        protected void lbQueensBay_Click(object sender, EventArgs e)
-        {
-            lblStoreName.Text = "CoffeeCove QueensBay";
-            lblStoreAdd.Text = "1-G-01, Jalan Bayan Indah, Queens Waterfront Q1 Commercial, 11900 George Town, Pulau Pinang";
+            if (e.CommandName == "storeList")
+            {
+                // Retrieve the ID of the item to edit
+                string storeId = e.CommandArgument.ToString();
+
+                SqlConnection conn = new SqlConnection(cs);
+                string sql = @"SELECT * FROM Store WHERE StoreID = @storeId";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@storeId", storeId);
+                conn.Open();
+
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                lblStoreName.Text = dr["StoreName"].ToString();
+                lblStoreAdd.Text = dr["StoreAddress"].ToString();
+
+                conn.Close();
+            }
         }
     }
 }

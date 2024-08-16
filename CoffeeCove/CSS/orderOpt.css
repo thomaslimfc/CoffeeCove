@@ -152,13 +152,13 @@
     font-weight: 600;
 }
 
-.evenClass a,.oddClass a {
+.storeList a {
     display: block;
     width: 100%;
     color: black;
 }
 
-.evenClass, .oddClass {
+.storeList {
     border-radius: 8px;
     padding: 10px;
     border: 1px solid #ddd;
@@ -168,19 +168,19 @@
     color: #433533;
 }
 
-.evenClass:hover, .oddClass:hover {
+.storeList:hover{
     background-color: #413432;
 }
 
-.evenClass:hover a, .oddClass:hover a {
+.storeList:hover a{
     color: white;
 }
 
-.evenClass:hover .storeName, .oddClass:hover .storeName{
+.storeList:hover .storeName{
     border: solid 2px white;
 }
 
-.evenClass .storeName, .oddClass .storeName{
+.storeList .storeName{
     border: solid 2px black;
     border-radius:8px;
 }
