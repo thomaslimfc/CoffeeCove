@@ -34,7 +34,6 @@ C:\# GitHub Local Repository\CoffeeCove\CoffeeCove\bin\roslyn\vbc.exe.config
 C:\# GitHub Local Repository\CoffeeCove\CoffeeCove\bin\roslyn\vbc.rsp
 C:\# GitHub Local Repository\CoffeeCove\CoffeeCove\bin\roslyn\VBCSCompiler.exe
 C:\# GitHub Local Repository\CoffeeCove\CoffeeCove\bin\roslyn\VBCSCompiler.exe.config
-C:\# GitHub Local Repository\CoffeeCove\CoffeeCove\bin\AjaxControlToolkit.dll
 C:\# GitHub Local Repository\CoffeeCove\CoffeeCove\bin\BCrypt.Net-Next.dll
 C:\# GitHub Local Repository\CoffeeCove\CoffeeCove\bin\EntityFramework.dll
 C:\# GitHub Local Repository\CoffeeCove\CoffeeCove\bin\EntityFramework.SqlServer.dll
