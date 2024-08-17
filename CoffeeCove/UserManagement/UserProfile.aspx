@@ -112,8 +112,8 @@
         <br /> 
         <table style="user-select: none; margin-left: 25px;">
             <tr>
-                <td>
-                    <!-- LEFT PORTION -->
+                <!-- LEFT PORTION -->
+                <td style="width: 400px">
                     <div>
                         <table>
                             <tr>
@@ -171,8 +171,8 @@
                         </table>
                     </div>
                 </td>
-                <td>
-                    <!-- RIGHT PORTION -->
+                <!-- RIGHT PORTION -->
+                <td style="width: 1200px;">
                     <table>
                         <tr><td><br /></td></tr>
                         <tr>
@@ -184,7 +184,7 @@
                         
                         <tr class="oddRow">
                             <td class="blankCol"></td>
-                            <td class="contentCol">Username</td>
+                            <td class="contentCol" style="margin-right: 50px;">Username</td>
                             <td class="contentCol">Gender</td>
                             <td class="blankCol"></td>
                         </tr>
