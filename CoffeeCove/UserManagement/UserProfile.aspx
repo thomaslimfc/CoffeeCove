@@ -247,6 +247,8 @@
                             <td class="blankCol"></td>
                             <td class="contentCol" style="height: 40px">
                                 <asp:Label ID="lblEmail" runat="server" />
+                                <asp:Label ID="lblEmailDisplayMode" runat="server" />
+                                <!--
                                 <div class="mb-4">
                                     <asp:TextBox ID="txtEmail" runat="server" 
                                         CssClass="mt-1 p-2 border border-border rounded w-full"  
@@ -270,6 +272,7 @@
                                         ValidationExpression="^[^@\s]+@[^@\s]+\.[^@\s]+$"
                                         ValidationGroup="SaveProfile" />
                                 </div>
+                                -->
                             </td>
                             <td class="contentCol">
                                 <!-- Date of Birth -->
@@ -379,12 +382,12 @@
                             Text="Edit Info"
                             CausesValidation="true" 
                             OnClick="EditBtn_UP_Click"/>
-                        <asp:Button ID="SaveBtn_UP" 
-                            runat="server" 
+                        <asp:Button ID="SaveBtn_UP"
+                            runat="server"
                             class="w-full bg-primary text-primary-foreground p-2 rounded-md hover:bg-primary/80"
                             style="cursor: pointer; margin-left: 4px; width: 250px;"
                             Text="Save Now"
-                            CausesValidation="false" 
+                            CausesValidation="false"
                             OnClick="SaveBtn_UP_Click"/>
                     </div>               
                 </td>

@@ -66,7 +66,7 @@ namespace CoffeeCove.UserManagement
                         }
                         else
                         {
-                            lblUsername.Text = "Username not found.";
+                            lblUsername.Text = "Username is not found in database.";
                         }
                     }
                     catch (Exception ex)
@@ -77,8 +77,14 @@ namespace CoffeeCove.UserManagement
             }
             else
             {
-                lblUsername.Text = "Username is not provided.";
+                lblUsername.Text = "Username is not in database.";
             }
+        }
+
+        // Edit Profile Info Button
+        protected void EditBtn_UP_Click(object sender, EventArgs e)
+        {
+            SetProfileEditMode(true);
         }
 
         protected void SetProfileEditMode(bool isEditMode)
@@ -96,9 +102,6 @@ namespace CoffeeCove.UserManagement
             lblUsername.Visible = !isEditMode;
             txtUsername.Visible = isEditMode;
 
-            lblEmail.Visible = !isEditMode;
-            txtEmail.Visible = isEditMode;
-
             lblGender.Visible = !isEditMode;
             txtGender.Visible = isEditMode;
 
@@ -114,20 +117,17 @@ namespace CoffeeCove.UserManagement
             EditBtn_UP.Visible = !isEditMode;
             SaveBtn_UP.Visible = isEditMode;
 
-            fuProfilePicture.Visible = isEditMode;
-            EditPictureBtn_UP.Visible = isEditMode;
-            UploadPictureBtn_UP.Visible = isEditMode;
+            fuProfilePicture.Visible = IsEditingPicture;
+            EditPictureBtn_UP.Visible = IsEditingPicture;
+            UploadPictureBtn_UP.Visible = IsEditingPicture;
 
             // Show or hide the Remove Picture button based on edit mode and if a custom picture is uploaded
             string currentImageUrl = imgProfilePicture.ImageUrl;
-            RemovePictureBtn_UP.Visible = isEditMode && currentImageUrl != "~/img/DefaultProfilePicture.png";
+            RemovePictureBtn_UP.Visible = isEditMode && !IsEditingPicture && currentImageUrl != "~/img/DefaultProfilePicture.png";
         }
 
-        protected void EditBtn_UP_Click(object sender, EventArgs e)
-        {
-            SetProfileEditMode(true);
-        }
 
+        // Save Profile Info Button
         protected void SaveBtn_UP_Click(object sender, EventArgs e)
         {
             Page.Validate("SaveProfile");
@@ -137,6 +137,7 @@ namespace CoffeeCove.UserManagement
                 UpdateUserProfile();
                 LoadUserProfile();
                 SetProfileEditMode(false);
+                IsEditingPicture = false;
             }
             else
             {
@@ -156,14 +157,13 @@ namespace CoffeeCove.UserManagement
 
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
-                    string query = "UPDATE [dbo].[Customer] SET EmailAddress = @EmailAddress, Gender = @Gender, " +
+                    string query = "UPDATE [dbo].[Customer] SET Gender = @Gender, " +
                                    "DateOfBirth = @DateOfBirth, ContactNo = @ContactNo, ResidenceState = @ResidenceState " +
                                    "WHERE Username = @Username";
 
                     SqlCommand cmd = new SqlCommand(query, con);
 
                     // Ensure all parameters are added correctly
-                    cmd.Parameters.AddWithValue("@EmailAddress", txtEmail.Text.Trim());
                     cmd.Parameters.AddWithValue("@Gender", txtGender.Text.Trim());
 
                     DateTime dob;
@@ -203,9 +203,22 @@ namespace CoffeeCove.UserManagement
             }
         }
 
+        private bool IsEditingPicture
+        {
+            get
+            {
+                return (bool)(Session["IsEditingPicture"] ?? false);
+            }
+            set
+            {
+                Session["IsEditingPicture"] = value;
+            }
+        }
+
         protected void EditPictureBtn_UP_Click(object sender, EventArgs e)
         {
-
+            IsEditingPicture = true;
+            SetProfileEditMode(true);
         }
 
         protected void UploadPictureBtn_UP_Click(object sender, EventArgs e)
@@ -253,6 +266,9 @@ namespace CoffeeCove.UserManagement
                         lblUploadMessage.CssClass = "text-success";
 
                         RemovePictureBtn_UP.Visible = true; // Show the remove button since a custom picture is now uploaded
+                        
+                        IsEditingPicture = false;
+                        SetProfileEditMode(true);
                     }
                     catch (Exception ex)
                     {
