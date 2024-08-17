@@ -104,6 +104,7 @@
     <Content Include="AdminSite\Dashboard.aspx" />
     <Content Include="AdminSite\OrderManagement.aspx" />
     <Content Include="AdminSite\Products.aspx" />
+    <Content Include="AdminSite\StoreList.aspx" />
     <Content Include="App_Data\dbCoffeeCove.mdf" />
     <Content Include="App_Data\dbCoffeeCove_log.ldf">
       <DependentUpon>dbCoffeeCove.mdf</DependentUpon>
@@ -420,6 +421,7 @@
     <Content Include="CSS\paymentOpt.css" />
     <Content Include="CSS\ratingReview.css" />
     <Content Include="CSS\Security.css" />
+    <Content Include="CSS\storeList.css" />
     <Content Include="CSS\UserManagement.css" />
     <Content Include="dbCoffeeCoveModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -504,7 +506,7 @@
     <Content Include="Order\getLocation.js" />
     <Content Include="Order\cart.aspx" />
     <Content Include="Order\orderHistory.aspx" />
-    <Content Include="Order\orderOption.aspx" />
+    <Content Include="Order\OrderOption.aspx" />
     <Content Include="packages\EntityFramework.6.2.0\lib\net40\EntityFramework.dll" />
     <Content Include="packages\EntityFramework.6.2.0\lib\net40\EntityFramework.SqlServer.dll" />
     <Content Include="packages\EntityFramework.6.2.0\lib\net40\EntityFramework.SqlServer.xml" />
@@ -601,6 +603,13 @@
     <Compile Include="AdminSite\Products.aspx.designer.cs">
       <DependentUpon>Products.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AdminSite\StoreList.aspx.cs">
+      <DependentUpon>StoreList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSite\StoreList.aspx.designer.cs">
+      <DependentUpon>StoreList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Category.cs">
       <DependentUpon>dbCoffeeCoveModel.tt</DependentUpon>
     </Compile>
@@ -671,12 +680,12 @@
     <Compile Include="Order\orderHistory.aspx.designer.cs">
       <DependentUpon>orderHistory.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Order\orderOption.aspx.cs">
-      <DependentUpon>orderOption.aspx</DependentUpon>
+    <Compile Include="Order\OrderOption.aspx.cs">
+      <DependentUpon>OrderOption.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Order\orderOption.aspx.designer.cs">
-      <DependentUpon>orderOption.aspx</DependentUpon>
+    <Compile Include="Order\OrderOption.aspx.designer.cs">
+      <DependentUpon>OrderOption.aspx</DependentUpon>
     </Compile>
     <Compile Include="Payment\paymentOpt.aspx.cs">
       <DependentUpon>paymentOpt.aspx</DependentUpon>

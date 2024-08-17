@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Customer.Master" AutoEventWireup="true" CodeBehind="orderOption.aspx.cs" Inherits="CoffeeCove.Order.orderOption" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Customer.Master" AutoEventWireup="true" CodeBehind="OrderOption.aspx.cs" Inherits="CoffeeCove.Order.orderOption" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
     <link href="../CSS/orderOpt.css" rel="stylesheet" />
 <script src="getLocation.js"></script>
@@ -21,29 +21,51 @@ async defer></script>
                             OR
                             <table style="width:100%; padding:2%; border-spacing:5px">
                                 <tr>
-                                    <td colspan="2" class="fullElement">
+                                    <td class="leftElement">
                                         Address Line 1:
-                                        <asp:TextBox runat="server" ID="tbAddress1" Width="75%" CssClass="textAdd" PlaceHolder="xxxxx">
-                                        </asp:TextBox>
+                                    </td>
+                                    <td class="rightElement">
+                                        <asp:TextBox runat="server" ID="txtAddress1" CssClass="textAdd" PlaceHolder="Enter Address 1" Width="90%"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2" class="fullElement">
+                                    <td colspan="2"><asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Please enter Address" ControlToValidate="txtAddress1" CssClass="error" Display="Dynamic" ValidationGroup="AddressForm"></asp:RequiredFieldValidator></td>
+                                </tr>
+                                <tr>
+                                    <td class="leftElement">
                                         Address Line 2:
-                                        <asp:TextBox runat="server" ID="tbAddress2" Width="75%" CssClass="textAdd" PlaceHolder="xxxxx">
-                                        </asp:TextBox>
                                     </td>
+                                    <td class="rightElement">
+                                        <asp:TextBox runat="server" ID="txtAddress2" Width="90%" CssClass="textAdd" PlaceHolder="Enter Address 2"></asp:TextBox>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Please enter Address" ControlToValidate="txtAddress2" CssClass="error" Display="Dynamic" ValidationGroup="AddressForm"></asp:RequiredFieldValidator></td>
                                 </tr>
                                 <tr>
                                     <td class="leftElement">
                                         PostCode:
-                                        <asp:TextBox runat="server" ID="tbPostCode" CssClass="textAdd" PlaceHolder="00000">
-                                        </asp:TextBox>
                                     </td>
+                                    <td class="rightElement"><asp:TextBox runat="server" ID="txtPostCode" Width="90%" CssClass="textAdd" PlaceHolder="Enter PostCode"></asp:TextBox></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Please enter PostCode" ControlToValidate="txtPostCode" CssClass="error" Display="Dynamic" ValidationGroup="AddressForm"></asp:RequiredFieldValidator>
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Please enter a valid PostCode (5 digits only)." ControlToValidate="txtPostCode" CssClass="error" Display="Dynamic" ValidationGroup="AddressForm" ValidationExpression="^\d{5}$" /></td>
+                                </tr>
+                                <tr>
                                     <td class="leftElement">
-                                        Unit/Level:
-                                        <asp:TextBox runat="server" ID="tbUnit" CssClass="textAdd" PlaceHolder="Unit 8/Level 10">
-                                        </asp:TextBox>
+                                    Unit/Level:
+                                </td>
+                                    <td class="rightElement"><asp:TextBox runat="server" ID="txtUnit" CssClass="textAdd" Width="90%" PlaceHolder="Enter Unit/Level (Optional)"></asp:TextBox></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <br />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:center" colspan="2">
+                                        <asp:LinkButton ID="lbConfirm" runat="server" CssClass="btnCont" Font-Underline="false" ValidationGroup="AddressForm">Confirm</asp:LinkButton>
                                     </td>
                                 </tr>
                             </table>
@@ -76,7 +98,7 @@ async defer></script>
                 </tr>
                 <tr>
                     <td colspan="3" style="text-align:center;height:0">
-                        <button id="btnCont" type="submit">Proceed</button>
+                        <asp:LinkButton ID="lbProceed" runat="server" CssClass="btnCont" Font-Underline="false">Proceed</asp:LinkButton>
                     </td>
                 </tr>
             </table>
