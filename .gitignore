@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/CoffeeCove/UserManagement/UserProfile.aspx
+/CoffeeCove/UserManagement/UserProfile.aspx.cs
+/CoffeeCove/UserManagement/UserProfile.aspx.designer.cs
