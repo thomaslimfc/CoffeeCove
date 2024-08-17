@@ -13,7 +13,6 @@ namespace CoffeeCove.Order
     public partial class orderCart : System.Web.UI.Page
     {
         string cs = Global.CS;
-        string strSubtotal;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -57,45 +56,48 @@ namespace CoffeeCove.Order
         }
         protected void rptOrdered_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
-            strSubtotal = "50";
+            decimal subTotal = 0;
 
-
-            lblSubtotal.Text = "WOW";
-
-
-            //assign label
+            // Assign label controls
             Label lblId = (Label)e.Item.FindControl("lblId");
             Label lblQuantity = (Label)e.Item.FindControl("lblQuantity");
             string productId = lblId.Text;
             decimal quantity = Convert.ToDecimal(lblQuantity.Text);
 
-
+            // Get the Order ID from the query string
             string id = Request.QueryString["id"] ?? "";
-
             SqlConnection conn = new SqlConnection(cs);
-            string sql = @"SELECT * 
-                            FROM OrderedItem OI JOIN Product P 
-                            ON OI.ProductId = P.ProductId
-                            JOIN Order O
-                            ON O.OrderId = OI.OrderId
-                            WHERE OrderId = @ID AND ProductId = @prodID";
-
+            // SQL query to get the product details for the specific order and product ID
+            string sql = @"SELECT P.UnitPrice 
+                   FROM OrderedItem OI 
+                   JOIN Product P ON OI.ProductId = P.ProductId
+                   JOIN Order O ON O.OrderId = OI.OrderId
+                   WHERE O.OrderId = @ID AND P.ProductId = @prodID";
 
             SqlCommand cmd = new SqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("@ID", "12345");
             cmd.Parameters.AddWithValue("@prodID", productId);
             conn.Open();
-
             SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                // Calculate the line price based on the UnitPrice and quantity
+                decimal unitPrice = (decimal)dr["UnitPrice"];
+                decimal linePrice = unitPrice * quantity;
 
-            //get price of each items and add them up
-            decimal linePrice = (decimal)dr["UnitPrice"] * 5;
-            strSubtotal = "50";
+                // Add the line price to the subtotal
+                subTotal += linePrice;
+            }
+            else
+            {
+                // Handle the case where no data is found
+                lblSubtotal.Text = "X";
+            }
 
+            // Display the subtotal
+            lblSubtotal.Text = subTotal.ToString("C"); // "C" formats the number as currency
 
-            lblSubtotal.Text = strSubtotal;
-
-            conn.Close();
+            
         }
 
         protected void btnProceed_Click(object sender, EventArgs e)
