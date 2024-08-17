@@ -25,7 +25,7 @@ namespace CoffeeCove.Menu
         {
             using (SqlConnection con = new SqlConnection(cs))
             {
-                string sql = "SELECT CategoryId, CategoryName FROM Category WHERE IsActive = 1 ";
+                string sql = "SELECT CategoryId, CategoryName FROM Category";
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     con.Open();
@@ -41,8 +41,8 @@ namespace CoffeeCove.Menu
             using (SqlConnection con = new SqlConnection(cs))
             {
                 string sql = categoryId == "1"
-                    ? "SELECT * FROM Product WHERE IsActive = 1"
-                    : "SELECT * FROM Product WHERE CategoryId = @CategoryId ";
+                    ? "SELECT * FROM Product"
+                    : "SELECT * FROM Product WHERE CategoryId = @CategoryId";
 
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {

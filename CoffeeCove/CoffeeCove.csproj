@@ -43,14 +43,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-<<<<<<< Updated upstream
     <Reference Include="AjaxControlToolkit, Version=20.1.0.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
       <HintPath>packages\AjaxControlToolkit.20.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
-=======
-    <Reference Include="AjaxControlToolkit, Version=4.1.51116.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\AjaxControlToolkit.dll</HintPath>
->>>>>>> Stashed changes
     </Reference>
     <Reference Include="BCrypt.Net-Next, Version=4.0.3.0, Culture=neutral, PublicKeyToken=1e11be04b6288443, processorArchitecture=MSIL">
       <HintPath>packages\BCrypt.Net-Next.4.0.3\lib\net48\BCrypt.Net-Next.dll</HintPath>
@@ -424,7 +418,6 @@
     <Content Include="CSS\orderManagement.css" />
     <Content Include="CSS\orderOpt.css" />
     <Content Include="CSS\paymentOpt.css" />
-    <Content Include="CSS\ProductCategory.css" />
     <Content Include="CSS\ratingReview.css" />
     <Content Include="CSS\Security.css" />
     <Content Include="CSS\UserManagement.css" />
