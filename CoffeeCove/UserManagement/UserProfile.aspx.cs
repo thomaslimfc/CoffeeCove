@@ -12,7 +12,7 @@ namespace CoffeeCove.UserManagement
         {
             if (!IsPostBack)
             {
-                Session["cusID"] = "00001"; // Hardcoded for testing purposes
+                Session["cusID"] = "00002"; // Hardcoded for testing purposes
 
                 LoadUserProfile();
                 SetProfileEditMode(false);
