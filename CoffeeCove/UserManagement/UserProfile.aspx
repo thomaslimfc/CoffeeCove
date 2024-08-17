@@ -114,6 +114,7 @@
             <tr>
                 <!-- LEFT PORTION -->
                 <td style="width: 400px">
+                    <center>
                     <div>
                         <table>
                             <tr>
@@ -137,6 +138,7 @@
                             </tr>
                             <tr>
                                 <td>
+                                    <center>
                                     <asp:Button ID="EditPictureBtn_UP"
                                         runat="server"
                                         Text="Edit Picture"
@@ -144,6 +146,14 @@
                                         width="150px"
                                         CssClass="w-full bg-primary text-primary-foreground p-2 rounded-md hover:bg-primary/80"
                                         OnClick="EditPictureBtn_UP_Click"
+                                        Visible="false"/>
+                                    <asp:Button ID="UploadBackBtn_UP" 
+                                        runat="server" 
+                                        Text="Back" 
+                                        style="margin-top: 10px"
+                                        width="150px"
+                                        CssClass="w-full bg-primary text-primary-foreground p-2 rounded-md hover:bg-primary/80"
+                                        OnClick="UploadBackBtn_UP_Click"
                                         Visible="false"/>
                                     <asp:Button ID="UploadPictureBtn_UP" 
                                         runat="server" 
@@ -166,10 +176,12 @@
                                         CssClass="text-success" Visible="false"></asp:Label>
                                     <asp:Label ID="lblRemoveMessage" runat="server"
                                         CssClass="text-success" Visible="false"></asp:Label>
+                                    </center>
                                 </td>
                             </tr>
                         </table>
                     </div>
+                    </center>
                 </td>
                 <!-- RIGHT PORTION -->
                 <td style="width: 1200px;">
@@ -209,17 +221,17 @@
                                     ID="txtUsername_regexValidator" 
                                     runat="server" 
                                     ControlToValidate="txtUsername" 
-                                    ErrorMessage="Must contain >8 letters and numbers only." 
+                                    ErrorMessage="Must contain >8 letters, numbers, and underscores only." 
                                     Display="Dynamic" 
                                     ForeColor="Red" 
                                     CssClass="rqdValidator" 
-                                    ValidationExpression="^[a-zA-Z0-9]{8,}$" />
+                                    ValidationExpression="^[a-zA-Z0-9_]{8,}$" />
                             </td>
                             <td class="contentCol">
                                 <asp:Label ID="lblGender" runat="server" CssClass="block text-sm text-muted-foreground" />
                                 
                                 <asp:DropDownList ID="txtGender" runat="server"
-                                    CssClass="mt-1 p-2 border border-border rounded w-full" 
+                                    CssClass="mt-1 p-2 border border-border rounded w-full"
                                     Visible="false">
                                     <asp:ListItem Text="~ Select your gender ~" Value="" />
                                     <asp:ListItem>Male</asp:ListItem>
@@ -290,7 +302,7 @@
                                 <asp:TextBox ID="txtContactNo" runat="server" 
                                     CssClass="mt-1 p-2 border border-border rounded w-full"  
                                     Visible="false"
-                                    placeholder="0123456789" />
+                                    placeholder="012-3456789" />
                                 <asp:RequiredFieldValidator 
                                     ID="ContactNo_rqdValidator" runat="server" 
                                     ControlToValidate="txtContactNo" 
@@ -303,11 +315,11 @@
                                     ID="txtContactNo_regexValidator" 
                                     runat="server" 
                                     ControlToValidate="txtContactNo" 
-                                    ErrorMessage="Must start with 0 in front without '-'." 
+                                    ErrorMessage="Must start with 0 in front with '-'." 
                                     Display="Dynamic" 
                                     ForeColor="Red" 
                                     CssClass="rqdValidator" 
-                                    ValidationExpression="^01[0-9]{8,10}$" />
+                                    ValidationExpression="^01[0-9]-[0-9]{7,9}$" />
                             </td>
                             <td class="contentCol">
                                 <asp:Label ID="lblResidenceState" runat="server" CssClass="block text-sm text-muted-foreground" />
@@ -356,16 +368,16 @@
                         <asp:Button ID="EditBtn_UP" 
                             runat="server" 
                             class="w-full bg-primary text-primary-foreground p-2 rounded-md hover:bg-primary/80"
-                            style="cursor: pointer; margin-left: 4px; width: 250px;"
+                            style="cursor: pointer; width: 250px;"
                             Text="Edit Info"
-                            CausesValidation="true" 
+                            CausesValidation="false" 
                             OnClick="EditBtn_UP_Click"/>
                         <asp:Button ID="SaveBtn_UP"
                             runat="server"
                             class="w-full bg-primary text-primary-foreground p-2 rounded-md hover:bg-primary/80"
-                            style="cursor: pointer; margin-left: 4px; width: 250px;"
+                            style="cursor: pointer; width: 250px;"
                             Text="Save Now"
-                            CausesValidation="false"
+                            CausesValidation="true"
                             OnClick="SaveBtn_UP_Click"/>
                     </div>               
                 </td>

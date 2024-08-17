@@ -42,6 +42,15 @@ namespace CoffeeCove.UserManagement
         protected global::System.Web.UI.WebControls.Button EditPictureBtn_UP;
 
         /// <summary>
+        /// UploadBackBtn_UP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button UploadBackBtn_UP;
+
+        /// <summary>
         /// UploadPictureBtn_UP control.
         /// </summary>
         /// <remarks>

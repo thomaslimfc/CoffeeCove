@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Text.RegularExpressions;
 
 namespace CoffeeCove.UserManagement
 {
@@ -58,7 +59,7 @@ namespace CoffeeCove.UserManagement
                             }
                             else
                             {
-                                imgProfilePicture.ImageUrl = "~/img/DefaultProfilePicture.png";
+                                imgProfilePicture.ImageUrl = "/img/DefaultProfilePicture.jpg";
                                 RemovePictureBtn_UP.Visible = false;
                             }
                         }
@@ -113,14 +114,14 @@ namespace CoffeeCove.UserManagement
             EditBtn_UP.Visible = !isEditMode;
             SaveBtn_UP.Visible = isEditMode;
 
-            fuProfilePicture.Visible = isEditMode && !IsEditingPicture;
+            // Show or hide the picture-related controls based on edit mode and picture editing state
+            fuProfilePicture.Visible = isEditMode && IsEditingPicture;
+            UploadPictureBtn_UP.Visible = isEditMode && IsEditingPicture;
+            UploadBackBtn_UP.Visible = isEditMode && IsEditingPicture;
 
+            // Hide Remove and Edit Picture buttons when in picture editing mode
+            RemovePictureBtn_UP.Visible = isEditMode && !IsEditingPicture && imgProfilePicture.ImageUrl != "/img/DefaultProfilePicture.jpg";
             EditPictureBtn_UP.Visible = isEditMode && !IsEditingPicture;
-            UploadPictureBtn_UP.Visible = isEditMode && !IsEditingPicture;
-
-            string currentImageUrl = imgProfilePicture.ImageUrl;
-            RemovePictureBtn_UP.Visible = isEditMode && !IsEditingPicture && imgProfilePicture.ImageUrl != "~/img/DefaultProfilePicture.png";
-            //RemovePictureBtn_UP.Visible = isEditMode && !IsEditingPicture && currentImageUrl != "~/img/DefaultProfilePicture.png";
         }
 
         protected void SaveBtn_UP_Click(object sender, EventArgs e)
@@ -222,47 +223,58 @@ namespace CoffeeCove.UserManagement
 
             if (fuProfilePicture.HasFile)
             {
-                string cusID = Session["cusID"]?.ToString();
-                if (!string.IsNullOrEmpty(cusID))
+                string fileExtension = System.IO.Path.GetExtension(fuProfilePicture.PostedFile.FileName).ToLower();
+
+                // Validate the file extension
+                if (fileExtension == ".png" || fileExtension == ".jpg" || fileExtension == ".jpeg")
                 {
-                    string fileExtension = System.IO.Path.GetExtension(fuProfilePicture.PostedFile.FileName);
-                    string filename = cusID + fileExtension;
-                    string savePath = Server.MapPath("~/UserManagement/UserProfilePictures/") + filename;
-
-                    try
+                    string cusID = Session["cusID"]?.ToString();
+                    if (!string.IsNullOrEmpty(cusID))
                     {
-                        fuProfilePicture.SaveAs(savePath);
+                        string filename = cusID + fileExtension;
+                        string savePath = Server.MapPath("~/UserManagement/UserProfilePictures/") + filename;
 
-                        imgProfilePicture.ImageUrl = "/UserManagement/UserProfilePictures/" + filename;
-
-                        string connectionString = ConfigurationManager.ConnectionStrings["CoffeeCoveDB"].ConnectionString;
-
-                        using (SqlConnection con = new SqlConnection(connectionString))
+                        try
                         {
-                            string query = "UPDATE [dbo].[Customer] SET ProfilePicturePath = @ProfilePicturePath WHERE cusID = @cusID";
-                            SqlCommand cmd = new SqlCommand(query, con);
-                            cmd.Parameters.AddWithValue("@ProfilePicturePath", filename);
-                            cmd.Parameters.AddWithValue("@cusID", cusID);
+                            fuProfilePicture.SaveAs(savePath);
 
-                            con.Open();
-                            cmd.ExecuteNonQuery();
+                            imgProfilePicture.ImageUrl = "/UserManagement/UserProfilePictures/" + filename;
+
+                            string connectionString = ConfigurationManager.ConnectionStrings["CoffeeCoveDB"].ConnectionString;
+
+                            using (SqlConnection con = new SqlConnection(connectionString))
+                            {
+                                string query = "UPDATE [dbo].[Customer] SET ProfilePicturePath = @ProfilePicturePath WHERE cusID = @cusID";
+                                SqlCommand cmd = new SqlCommand(query, con);
+                                cmd.Parameters.AddWithValue("@ProfilePicturePath", filename);
+                                cmd.Parameters.AddWithValue("@cusID", cusID);
+
+                                con.Open();
+                                cmd.ExecuteNonQuery();
+                            }
+
+                            lblUploadMessage.Text = "Picture has been successfully uploaded.";
+                            lblUploadMessage.Visible = true;
+                            lblUploadMessage.CssClass = "text-success";
+
+                            // After uploading, switch back to normal edit mode
+                            IsEditingPicture = false;
+                            SetProfileEditMode(true);
                         }
-
-                        lblUploadMessage.Text = "Picture has been successfully uploaded.";
-                        lblUploadMessage.Visible = true;
-                        lblUploadMessage.CssClass = "text-success";
-
-                        RemovePictureBtn_UP.Visible = true;
-
-                        IsEditingPicture = false;
-                        SetProfileEditMode(true);
+                        catch (Exception ex)
+                        {
+                            lblUploadMessage.Text = "An error occurred: " + ex.Message;
+                            lblUploadMessage.Visible = true;
+                            lblUploadMessage.CssClass = "text-danger";
+                        }
                     }
-                    catch (Exception ex)
-                    {
-                        lblUploadMessage.Text = "An error occurred: " + ex.Message;
-                        lblUploadMessage.Visible = true;
-                        lblUploadMessage.CssClass = "text-danger";
-                    }
+                }
+                else
+                {
+                    // If the file type is not allowed
+                    lblUploadMessage.Text = "Only PNG, JPG, and JPEG image files are allowed.";
+                    lblUploadMessage.Visible = true;
+                    lblUploadMessage.CssClass = "text-danger";
                 }
             }
             else
@@ -271,6 +283,19 @@ namespace CoffeeCove.UserManagement
                 lblUploadMessage.Visible = true;
                 lblUploadMessage.CssClass = "text-danger";
             }
+        }
+
+        protected void UploadBackBtn_UP_Click(object sender, EventArgs e)
+        {
+            // Reset the picture editing mode to false
+            IsEditingPicture = false;
+
+            // Call SetProfileEditMode to show the profile editing fields
+            SetProfileEditMode(true);
+
+            // Clear any upload messages
+            lblUploadMessage.Text = "";
+            lblRemoveMessage.Text = "";
         }
 
         protected void RemovePictureBtn_UP_Click(object sender, EventArgs e)
@@ -307,7 +332,7 @@ namespace CoffeeCove.UserManagement
 
                             cmdUpdate.ExecuteNonQuery();
 
-                            imgProfilePicture.ImageUrl = "~/img/DefaultProfilePicture.png";
+                            imgProfilePicture.ImageUrl = "/img/DefaultProfilePicture.jpg";
                             lblRemoveMessage.Text = "Picture has been successfully removed.";
                             lblRemoveMessage.Visible = true;
                             lblRemoveMessage.CssClass = "text-success";
@@ -324,5 +349,6 @@ namespace CoffeeCove.UserManagement
                 }
             }
         }
+
     }
 }
