@@ -124,30 +124,32 @@
     <div class="mb-4">
         <label for="first-name" class="block text-sm text-muted-foreground">Email Address</label>
         <div class="mb-4">
-        <asp:TextBox ID="EmailAdd_SI2" 
-            CssClass="w-full p-2 border border-border rounded-md focus:outline-none focus:ring focus:ring-ring" 
-            runat="server" 
-            placeholder="desmundchau7668" 
-            title="Email Address"
-            AutoPostBack="false">
-        </asp:TextBox>
-        <br />
-        <asp:RequiredFieldValidator 
-            ID="EmailAdd_SI2_rqdValidator" runat="server" 
-            ControlToValidate="EmailAdd_SI2" 
-            ErrorMessage="Email Address is required." 
-            Display="Dynamic" ForeColor="Red" 
-            CssClass="rqdValidator" />
-        <asp:RegularExpressionValidator 
-            ID="EmailAdd_SI2_regexValidator" 
-            runat="server" 
-            ControlToValidate="EmailAdd_SI2" 
-            ErrorMessage="Invalid email format." 
-            Display="Dynamic" 
-            ForeColor="Red" 
-            CssClass="rqdValidator" 
-            ValidationExpression="^[^@\s]+@[^@\s]+\.[^@\s]+$" />
+            <asp:TextBox ID="EmailAdd_SI2" 
+                CssClass="w-full p-2 border border-border rounded-md focus:outline-none focus:ring focus:ring-ring" 
+                runat="server" 
+                placeholder="desmundchau7668" 
+                title="Email Address"
+                AutoPostBack="false">
+            </asp:TextBox>
+            <br />
+            <asp:RequiredFieldValidator 
+                ID="EmailAdd_SI2_rqdValidator" runat="server" 
+                ControlToValidate="EmailAdd_SI2" 
+                ErrorMessage="Email Address is required." 
+                Display="Dynamic" ForeColor="Red" 
+                CssClass="rqdValidator" />
+            <asp:RegularExpressionValidator 
+                ID="EmailAdd_SI2_regexValidator" 
+                runat="server" 
+                ControlToValidate="EmailAdd_SI2" 
+                ErrorMessage="Invalid email format." 
+                Display="Dynamic" 
+                ForeColor="Red" 
+                CssClass="rqdValidator" 
+                ValidationExpression="^[^@\s]+@[^@\s]+\.[^@\s]+$" />
+        </div>
     </div>
+
     <!-- Password -->
     <label for="first-name" class="block text-sm text-muted-foreground">Password</label>
     <div class="relative mb-4">
@@ -177,11 +179,13 @@
             CssClass="rqdValidator" 
             ValidationExpression="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{10,}$" />
     </div>
+
     <!-- SIGN IN Button -->
     <asp:Button ID="SignInButton_SI" 
         runat="server" 
         Text="Sign In" 
         CssClass="w-full bg-primary text-primary-foreground p-2 rounded-md hover:bg-primary/80" />
+    
     <!-- Forgot Password + SIGN IN with EMAIL -->
     <div class="flex justify-between text-sm mt-2">
         <a href="ForgotPassword.aspx" class="text-muted-foreground text-sm">
@@ -190,6 +194,7 @@
         <a href="SignIn.aspx" class="text-muted-foreground">Sign In with Username</a>
     </div>
     <div class="trMarginBottom20"></div>
+
     <!-- Join Now -->
     <div class="text-center mt-4">
         <span class="text-muted-foreground">New to CoffeeCove? </span>
