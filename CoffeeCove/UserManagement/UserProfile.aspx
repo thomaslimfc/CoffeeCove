@@ -248,31 +248,6 @@
                             <td class="contentCol" style="height: 40px">
                                 <asp:Label ID="lblEmail" runat="server" />
                                 <asp:Label ID="lblEmailDisplayMode" runat="server" />
-                                <!--
-                                <div class="mb-4">
-                                    <asp:TextBox ID="txtEmail" runat="server" 
-                                        CssClass="mt-1 p-2 border border-border rounded w-full"  
-                                        Visible="false"
-                                        placeholder="deschau7668@gmail.com" />
-                                    <asp:RequiredFieldValidator 
-                                        ID="Email_rqdValidator" runat="server" 
-                                        ControlToValidate="txtEmail" 
-                                        ErrorMessage="Email Address is required." 
-                                        Display="Dynamic" 
-                                        ForeColor="Red" 
-                                        CssClass="rqdValidator"
-                                        ValidationGroup="SaveProfile" />
-                                    <asp:RegularExpressionValidator 
-                                        ID="Email_regexValidator" runat="server" 
-                                        ControlToValidate="txtEmail" 
-                                        ErrorMessage="Invalid email format." 
-                                        Display="Dynamic" 
-                                        ForeColor="Red" 
-                                        CssClass="rqdValidator" 
-                                        ValidationExpression="^[^@\s]+@[^@\s]+\.[^@\s]+$"
-                                        ValidationGroup="SaveProfile" />
-                                </div>
-                                -->
                             </td>
                             <td class="contentCol">
                                 <!-- Date of Birth -->
@@ -282,7 +257,7 @@
                                         CssClass="mt-1 p-2 border border-border rounded w-full" 
                                         runat="server" 
                                         TextMode="Date"
-                                        placeholder="MM/DD/YYYY"
+                                        placeholder="YYYY/MM/DD"
                                         Visible="false" />
                                     <asp:CompareValidator 
                                         ID="DOB_compareValidator" runat="server" 
