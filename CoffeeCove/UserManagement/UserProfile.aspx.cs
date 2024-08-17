@@ -326,17 +326,38 @@ namespace CoffeeCove.UserManagement
                         }
                         else
                         {
+                            // Remove the picture file from the server
+                            string filePath = Server.MapPath("~/UserManagement/UserProfilePictures/") + profilePicturePath;
+
+                            if (System.IO.File.Exists(filePath))
+                            {
+                                try
+                                {
+                                    System.IO.File.Delete(filePath);
+                                }
+                                catch (Exception ex)
+                                {
+                                    lblRemoveMessage.Text = "An error occurred while deleting the picture: " + ex.Message;
+                                    lblRemoveMessage.Visible = true;
+                                    lblRemoveMessage.CssClass = "text-danger";
+                                    return; // Exit the method to prevent further actions
+                                }
+                            }
+
+                            // Remove the picture path from the database
                             string queryUpdate = "UPDATE [dbo].[Customer] SET ProfilePicturePath = NULL WHERE cusID = @cusID";
                             SqlCommand cmdUpdate = new SqlCommand(queryUpdate, con);
                             cmdUpdate.Parameters.AddWithValue("@cusID", cusID);
 
                             cmdUpdate.ExecuteNonQuery();
 
+                            // Revert to default picture
                             imgProfilePicture.ImageUrl = "/img/DefaultProfilePicture.jpg";
                             lblRemoveMessage.Text = "Picture has been successfully removed.";
                             lblRemoveMessage.Visible = true;
                             lblRemoveMessage.CssClass = "text-success";
 
+                            // Hide the remove button since the picture has been removed
                             RemovePictureBtn_UP.Visible = false;
                         }
                     }
@@ -349,6 +370,5 @@ namespace CoffeeCove.UserManagement
                 }
             }
         }
-
     }
 }
