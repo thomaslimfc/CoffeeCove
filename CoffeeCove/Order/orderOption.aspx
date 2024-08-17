@@ -64,7 +64,7 @@ async defer></script>
                             <br />
                             <span style="font-weight: bold"><asp:Label ID="lblStoreName" runat="server" EnableViewState="False"></asp:Label></span>
                             <br />
-                            <asp:Label ID="lblStoreAdd" runat="server" EnableViewState="False"></asp:Label>
+                            <span style="padding-left:20px;padding-right:20px;display:block"><asp:Label ID="lblStoreAdd" runat="server" EnableViewState="False"></asp:Label></span>
                         </div>
                     </td>
                     <!--Pick Up end-->

@@ -49,8 +49,18 @@ namespace CoffeeCove.Order
 
                 SqlDataReader dr = cmd.ExecuteReader();
 
-                lblStoreName.Text = dr["StoreName"].ToString();
-                lblStoreAdd.Text = dr["StoreAddress"].ToString();
+                if (dr.Read()) 
+                {
+                    // Assign values to label controls
+                    lblStoreName.Text = dr["StoreName"].ToString();
+                    lblStoreAdd.Text = dr["StoreAddress"].ToString();
+                }
+                else
+                {
+                    // Handle the case where no data is found
+                    lblStoreName.Text = "Store not found.";
+                    lblStoreAdd.Text = string.Empty;
+                }
 
                 conn.Close();
             }

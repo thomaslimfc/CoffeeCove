@@ -159,33 +159,6 @@ namespace CoffeeCove.UserManagement
         protected global::System.Web.UI.WebControls.Label lblEmailDisplayMode;
 
         /// <summary>
-        /// txtEmail control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEmail;
-
-        /// <summary>
-        /// Email_rqdValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator Email_rqdValidator;
-
-        /// <summary>
-        /// Email_regexValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator Email_regexValidator;
-
-        /// <summary>
         /// lblDOB control.
         /// </summary>
         /// <remarks>

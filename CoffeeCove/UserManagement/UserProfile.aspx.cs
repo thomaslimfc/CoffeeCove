@@ -11,7 +11,7 @@ namespace CoffeeCove.UserManagement
         {
             if (!IsPostBack)
             {
-                Session["Username"] = "xylim2002"; // Hardcoded for testing purposes
+                Session["cusID"] = "00001"; // Hardcoded for testing purposes
 
                 LoadUserProfile();
                 SetProfileEditMode(false);
@@ -20,16 +20,16 @@ namespace CoffeeCove.UserManagement
 
         protected void LoadUserProfile()
         {
-            string username = Session["Username"]?.ToString();
-            if (!string.IsNullOrEmpty(username))
+            string cusID = Session["cusID"]?.ToString();
+            if (!string.IsNullOrEmpty(cusID))
             {
                 string connectionString = ConfigurationManager.ConnectionStrings["CoffeeCoveDB"].ConnectionString;
 
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
-                    string query = "SELECT EmailAddress, Gender, DateOfBirth, ContactNo, ResidenceState, ProfilePicturePath FROM [dbo].[Customer] WHERE Username = @Username";
+                    string query = "SELECT Username, EmailAddress, Gender, DateOfBirth, ContactNo, ResidenceState, ProfilePicturePath FROM [dbo].[Customer] WHERE cusID = @cusID";
                     SqlCommand cmd = new SqlCommand(query, con);
-                    cmd.Parameters.AddWithValue("@Username", username);
+                    cmd.Parameters.AddWithValue("@cusID", cusID);
 
                     try
                     {
@@ -40,33 +40,31 @@ namespace CoffeeCove.UserManagement
                         {
                             reader.Read();
 
-                            lblUsername.Text = username;
+                            lblUsername.Text = reader["Username"].ToString();
                             lblEmail.Text = reader["EmailAddress"].ToString();
                             lblGender.Text = reader["Gender"].ToString();
                             lblDOB.Text = Convert.ToDateTime(reader["DateOfBirth"]).ToString("yyyy-MM-dd");
                             lblContactNo.Text = reader["ContactNo"].ToString();
                             lblResidenceState.Text = reader["ResidenceState"].ToString();
 
-                            // Set dropdown selected value
                             txtGender.SelectedValue = reader["Gender"].ToString();
                             txtResidenceState.SelectedValue = reader["ResidenceState"].ToString();
 
-                            // Load profile picture
                             string profilePicturePath = reader["ProfilePicturePath"].ToString();
                             if (!string.IsNullOrEmpty(profilePicturePath))
                             {
                                 imgProfilePicture.ImageUrl = "/UserManagement/UserProfilePictures/" + profilePicturePath;
-                                RemovePictureBtn_UP.Visible = true; // Show remove button when a custom picture is used
+                                RemovePictureBtn_UP.Visible = true;
                             }
                             else
                             {
                                 imgProfilePicture.ImageUrl = "~/img/DefaultProfilePicture.png";
-                                RemovePictureBtn_UP.Visible = false; // Hide remove button when using the default picture
+                                RemovePictureBtn_UP.Visible = false;
                             }
                         }
                         else
                         {
-                            lblUsername.Text = "Username is not found in database.";
+                            lblUsername.Text = "Username is not found in the database.";
                         }
                     }
                     catch (Exception ex)
@@ -77,11 +75,10 @@ namespace CoffeeCove.UserManagement
             }
             else
             {
-                lblUsername.Text = "Username is not in database.";
+                lblUsername.Text = "Username is not in the database.";
             }
         }
 
-        // Edit Profile Info Button
         protected void EditBtn_UP_Click(object sender, EventArgs e)
         {
             SetProfileEditMode(true);
@@ -92,7 +89,6 @@ namespace CoffeeCove.UserManagement
             if (isEditMode)
             {
                 txtUsername.Text = lblUsername.Text;
-                txtEmail.Text = lblEmail.Text;
                 txtGender.SelectedValue = lblGender.Text;
                 txtDOB.Text = lblDOB.Text;
                 txtContactNo.Text = lblContactNo.Text;
@@ -117,17 +113,16 @@ namespace CoffeeCove.UserManagement
             EditBtn_UP.Visible = !isEditMode;
             SaveBtn_UP.Visible = isEditMode;
 
-            fuProfilePicture.Visible = IsEditingPicture;
-            EditPictureBtn_UP.Visible = IsEditingPicture;
-            UploadPictureBtn_UP.Visible = IsEditingPicture;
+            fuProfilePicture.Visible = isEditMode && !IsEditingPicture;
 
-            // Show or hide the Remove Picture button based on edit mode and if a custom picture is uploaded
+            EditPictureBtn_UP.Visible = isEditMode && !IsEditingPicture;
+            UploadPictureBtn_UP.Visible = isEditMode && !IsEditingPicture;
+
             string currentImageUrl = imgProfilePicture.ImageUrl;
-            RemovePictureBtn_UP.Visible = isEditMode && !IsEditingPicture && currentImageUrl != "~/img/DefaultProfilePicture.png";
+            RemovePictureBtn_UP.Visible = isEditMode && !IsEditingPicture && imgProfilePicture.ImageUrl != "~/img/DefaultProfilePicture.png";
+            //RemovePictureBtn_UP.Visible = isEditMode && !IsEditingPicture && currentImageUrl != "~/img/DefaultProfilePicture.png";
         }
 
-
-        // Save Profile Info Button
         protected void SaveBtn_UP_Click(object sender, EventArgs e)
         {
             Page.Validate("SaveProfile");
@@ -150,21 +145,21 @@ namespace CoffeeCove.UserManagement
 
         protected void UpdateUserProfile()
         {
-            string username = Session["Username"]?.ToString();
-            if (!string.IsNullOrEmpty(username))
+            string cusID = Session["cusID"]?.ToString();
+            if (!string.IsNullOrEmpty(cusID))
             {
                 string connectionString = ConfigurationManager.ConnectionStrings["CoffeeCoveDB"].ConnectionString;
 
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
-                    string query = "UPDATE [dbo].[Customer] SET Gender = @Gender, " +
+                    string query = "UPDATE [dbo].[Customer] SET Username = @Username, Gender = @Gender, " +
                                    "DateOfBirth = @DateOfBirth, ContactNo = @ContactNo, ResidenceState = @ResidenceState " +
-                                   "WHERE Username = @Username";
+                                   "WHERE cusID = @cusID";
 
                     SqlCommand cmd = new SqlCommand(query, con);
 
-                    // Ensure all parameters are added correctly
-                    cmd.Parameters.AddWithValue("@Gender", txtGender.Text.Trim());
+                    cmd.Parameters.AddWithValue("@Username", txtUsername.Text.Trim());
+                    cmd.Parameters.AddWithValue("@Gender", txtGender.SelectedValue.Trim());
 
                     DateTime dob;
                     if (DateTime.TryParse(txtDOB.Text.Trim(), out dob))
@@ -174,12 +169,12 @@ namespace CoffeeCove.UserManagement
                     else
                     {
                         lblUsername.Text = "Invalid date format.";
-                        return; // Exit method if the date is invalid
+                        return;
                     }
 
                     cmd.Parameters.AddWithValue("@ContactNo", txtContactNo.Text.Trim());
-                    cmd.Parameters.AddWithValue("@ResidenceState", txtResidenceState.Text.Trim());
-                    cmd.Parameters.AddWithValue("@Username", username);
+                    cmd.Parameters.AddWithValue("@ResidenceState", txtResidenceState.SelectedValue.Trim());
+                    cmd.Parameters.AddWithValue("@cusID", cusID);
 
                     try
                     {
@@ -227,35 +222,27 @@ namespace CoffeeCove.UserManagement
 
             if (fuProfilePicture.HasFile)
             {
-                string username = Session["Username"]?.ToString();
-                if (!string.IsNullOrEmpty(username))
+                string cusID = Session["cusID"]?.ToString();
+                if (!string.IsNullOrEmpty(cusID))
                 {
-                    // Get the file extension of the uploaded file
                     string fileExtension = System.IO.Path.GetExtension(fuProfilePicture.PostedFile.FileName);
-
-                    // Create a new filename using the username and the original file extension
-                    string filename = username + fileExtension;
-
-                    // Define the save path
+                    string filename = cusID + fileExtension;
                     string savePath = Server.MapPath("~/UserManagement/UserProfilePictures/") + filename;
 
                     try
                     {
-                        // Save the uploaded file with the new filename
                         fuProfilePicture.SaveAs(savePath);
 
-                        // Update the ImageUrl to display the uploaded picture
                         imgProfilePicture.ImageUrl = "/UserManagement/UserProfilePictures/" + filename;
 
-                        // Save the path to the database
                         string connectionString = ConfigurationManager.ConnectionStrings["CoffeeCoveDB"].ConnectionString;
 
                         using (SqlConnection con = new SqlConnection(connectionString))
                         {
-                            string query = "UPDATE [dbo].[Customer] SET ProfilePicturePath = @ProfilePicturePath WHERE Username = @Username";
+                            string query = "UPDATE [dbo].[Customer] SET ProfilePicturePath = @ProfilePicturePath WHERE cusID = @cusID";
                             SqlCommand cmd = new SqlCommand(query, con);
                             cmd.Parameters.AddWithValue("@ProfilePicturePath", filename);
-                            cmd.Parameters.AddWithValue("@Username", username);
+                            cmd.Parameters.AddWithValue("@cusID", cusID);
 
                             con.Open();
                             cmd.ExecuteNonQuery();
@@ -265,8 +252,8 @@ namespace CoffeeCove.UserManagement
                         lblUploadMessage.Visible = true;
                         lblUploadMessage.CssClass = "text-success";
 
-                        RemovePictureBtn_UP.Visible = true; // Show the remove button since a custom picture is now uploaded
-                        
+                        RemovePictureBtn_UP.Visible = true;
+
                         IsEditingPicture = false;
                         SetProfileEditMode(true);
                     }
@@ -290,17 +277,16 @@ namespace CoffeeCove.UserManagement
         {
             lblUploadMessage.Text = "";
 
-            string username = Session["Username"]?.ToString();
-            if (!string.IsNullOrEmpty(username))
+            string cusID = Session["cusID"]?.ToString();
+            if (!string.IsNullOrEmpty(cusID))
             {
                 string connectionString = ConfigurationManager.ConnectionStrings["CoffeeCoveDB"].ConnectionString;
 
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
-                    // Corrected SQL syntax
-                    string querySelect = "SELECT ProfilePicturePath FROM [dbo].[Customer] WHERE Username = @Username";
+                    string querySelect = "SELECT ProfilePicturePath FROM [dbo].[Customer] WHERE cusID = @cusID";
                     SqlCommand cmdSelect = new SqlCommand(querySelect, con);
-                    cmdSelect.Parameters.AddWithValue("@Username", username);
+                    cmdSelect.Parameters.AddWithValue("@cusID", cusID);
 
                     try
                     {
@@ -311,24 +297,21 @@ namespace CoffeeCove.UserManagement
                         {
                             lblRemoveMessage.Text = "There is no picture to be removed.";
                             lblRemoveMessage.Visible = true;
-                            lblRemoveMessage.CssClass = "text-warning"; // Display as a warning message
+                            lblRemoveMessage.CssClass = "text-warning";
                         }
                         else
                         {
-                            // Corrected SQL syntax
-                            string queryUpdate = "UPDATE [dbo].[Customer] SET ProfilePicturePath = NULL WHERE Username = @Username";
+                            string queryUpdate = "UPDATE [dbo].[Customer] SET ProfilePicturePath = NULL WHERE cusID = @cusID";
                             SqlCommand cmdUpdate = new SqlCommand(queryUpdate, con);
-                            cmdUpdate.Parameters.AddWithValue("@Username", username);
+                            cmdUpdate.Parameters.AddWithValue("@cusID", cusID);
 
                             cmdUpdate.ExecuteNonQuery();
 
-                            // Revert to default picture
                             imgProfilePicture.ImageUrl = "~/img/DefaultProfilePicture.png";
                             lblRemoveMessage.Text = "Picture has been successfully removed.";
                             lblRemoveMessage.Visible = true;
-                            lblRemoveMessage.CssClass = "text-success"; // Display as a success message
+                            lblRemoveMessage.CssClass = "text-success";
 
-                            // Hide the remove button when the default picture is being used
                             RemovePictureBtn_UP.Visible = false;
                         }
                     }
@@ -336,12 +319,10 @@ namespace CoffeeCove.UserManagement
                     {
                         lblRemoveMessage.Text = "An error occurred: " + ex.Message;
                         lblRemoveMessage.Visible = true;
-                        lblRemoveMessage.CssClass = "text-danger"; // Display as an error message
+                        lblRemoveMessage.CssClass = "text-danger";
                     }
                 }
             }
         }
-
-
     }
 }
