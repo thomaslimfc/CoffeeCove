@@ -117,25 +117,32 @@
                     <div>
                         <table>
                             <tr>
-                                <td class="blankCol"></td>
                                 <td class="blankCol" colspan="4">
                                     <center>
                                         <asp:Image ID="imgProfilePicture" runat="server" 
                                             Width="150px" Height="150px"
-                                            style="margin-right: 15px;" />
+                                            style="margin-right: 15px; border-radius: 20px;" />
                                     </center>
                                     <br />
-                                    <asp:FileUpload ID="fuProfilePicture" runat="server"
-                                        style="margin-top: 10px" />
                                     <br />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <asp:FileUpload ID="fuProfilePicture" runat="server"
+                                        style="margin-bottom: 10px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
                                     <asp:Button ID="UploadPictureBtn_UP" runat="server" Text="Upload Picture" 
                                         style="margin-top: 10px"
-                                        CssClass="btn btn-primary" OnClick="UploadPictureBtn_UP_Click" />
+                                        width="200px"
+                                        class="w-full bg-primary text-primary-foreground p-2 rounded-md hover:bg-primary/80"                                        OnClick="UploadPictureBtn_UP_Click" />
                                     <br />
                                     <asp:Label ID="lblUploadMessage" runat="server"
                                         CssClass="text-success" Visible="false"></asp:Label>
                                 </td>
-                                <td class="blankCol"></td>
                             </tr>
                         </table>
                     </div>

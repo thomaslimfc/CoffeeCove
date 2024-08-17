@@ -27,7 +27,7 @@ namespace CoffeeCove.UserManagement
 
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
-                    string query = "SELECT EmailAddress, Gender, DateOfBirth, ContactNo, ResidenceState FROM [dbo].[Customer] WHERE Username = @Username";
+                    string query = "SELECT EmailAddress, Gender, DateOfBirth, ContactNo, ResidenceState, ProfilePicturePath FROM [dbo].[Customer] WHERE Username = @Username";
                     SqlCommand cmd = new SqlCommand(query, con);
                     cmd.Parameters.AddWithValue("@Username", username);
 
@@ -50,6 +50,17 @@ namespace CoffeeCove.UserManagement
                             // Set dropdown selected value
                             txtGender.SelectedValue = reader["Gender"].ToString();
                             txtResidenceState.SelectedValue = reader["ResidenceState"].ToString();
+
+                            // Load profile picture
+                            string profilePicturePath = reader["ProfilePicturePath"].ToString();
+                            if (!string.IsNullOrEmpty(profilePicturePath))
+                            {
+                                imgProfilePicture.ImageUrl = "/UserManagement/UserProfilePictures/" + profilePicturePath;
+                            }
+                            else
+                            {
+                                imgProfilePicture.ImageUrl = "~/img/username_icon.png"; // Use a default picture if none is uploaded
+                            }
                         }
                         else
                         {
@@ -67,6 +78,7 @@ namespace CoffeeCove.UserManagement
                 lblUsername.Text = "Username is not provided.";
             }
         }
+
 
         protected void SetProfileEditMode(bool isEditMode)
         {
@@ -188,12 +200,39 @@ namespace CoffeeCove.UserManagement
             if (fuProfilePicture.HasFile)
             {
                 string filename = System.IO.Path.GetFileName(fuProfilePicture.PostedFile.FileName);
-                fuProfilePicture.SaveAs(Server.MapPath("~/UserManagement/UserProfilePictures/") + filename);
-                imgProfilePicture.ImageUrl = "/UserProfilePictures/" + filename;
+                string savePath = Server.MapPath("~/UserManagement/UserProfilePictures/") + filename;
+                fuProfilePicture.SaveAs(savePath);
+                imgProfilePicture.ImageUrl = "/UserManagement/UserProfilePictures/" + filename;
 
-                lblUploadMessage.Text = "Picture has been successfully uploaded.";
-                lblUploadMessage.Visible = true;
-                lblUploadMessage.CssClass = "text-success";
+                // Save the path to the database
+                string username = Session["Username"]?.ToString();
+                if (!string.IsNullOrEmpty(username))
+                {
+                    string connectionString = ConfigurationManager.ConnectionStrings["CoffeeCoveDB"].ConnectionString;
+
+                    using (SqlConnection con = new SqlConnection(connectionString))
+                    {
+                        string query = "UPDATE [dbo].[Customer] SET ProfilePicturePath = @ProfilePicturePath WHERE Username = @Username";
+                        SqlCommand cmd = new SqlCommand(query, con);
+                        cmd.Parameters.AddWithValue("@ProfilePicturePath", filename);
+                        cmd.Parameters.AddWithValue("@Username", username);
+
+                        try
+                        {
+                            con.Open();
+                            cmd.ExecuteNonQuery();
+                            lblUploadMessage.Text = "Picture has been successfully uploaded.";
+                            lblUploadMessage.Visible = true;
+                            lblUploadMessage.CssClass = "text-success";
+                        }
+                        catch (Exception ex)
+                        {
+                            lblUploadMessage.Text = "An error occurred: " + ex.Message;
+                            lblUploadMessage.Visible = true;
+                            lblUploadMessage.CssClass = "text-danger";
+                        }
+                    }
+                }
             }
             else
             {
