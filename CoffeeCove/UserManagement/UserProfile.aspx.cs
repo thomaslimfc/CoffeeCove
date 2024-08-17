@@ -113,12 +113,14 @@ namespace CoffeeCove.UserManagement
             EditBtn_UP.Visible = !isEditMode;
             SaveBtn_UP.Visible = isEditMode;
 
-            fuProfilePicture.Visible = IsEditingPicture;
-            EditPictureBtn_UP.Visible = IsEditingPicture;
-            UploadPictureBtn_UP.Visible = IsEditingPicture;
+            fuProfilePicture.Visible = isEditMode && !IsEditingPicture;
+
+            EditPictureBtn_UP.Visible = isEditMode && !IsEditingPicture;
+            UploadPictureBtn_UP.Visible = isEditMode && !IsEditingPicture;
 
             string currentImageUrl = imgProfilePicture.ImageUrl;
-            RemovePictureBtn_UP.Visible = isEditMode && !IsEditingPicture && currentImageUrl != "~/img/DefaultProfilePicture.png";
+            RemovePictureBtn_UP.Visible = isEditMode && !IsEditingPicture && imgProfilePicture.ImageUrl != "~/img/DefaultProfilePicture.png";
+            //RemovePictureBtn_UP.Visible = isEditMode && !IsEditingPicture && currentImageUrl != "~/img/DefaultProfilePicture.png";
         }
 
         protected void SaveBtn_UP_Click(object sender, EventArgs e)

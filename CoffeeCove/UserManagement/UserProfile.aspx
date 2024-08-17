@@ -132,7 +132,7 @@
                             <tr>
                                 <td>
                                     <asp:FileUpload ID="fuProfilePicture" runat="server"
-                                        style="margin-bottom: 10px" />
+                                        style="margin-bottom: 10px" Visible="false" />
                                 </td>
                             </tr>
                             <tr>
@@ -143,21 +143,24 @@
                                         style="margin-top: 10px"
                                         width="150px"
                                         CssClass="w-full bg-primary text-primary-foreground p-2 rounded-md hover:bg-primary/80"
-                                        OnClick="EditPictureBtn_UP_Click" />
+                                        OnClick="EditPictureBtn_UP_Click"
+                                        Visible="false"/>
                                     <asp:Button ID="UploadPictureBtn_UP" 
                                         runat="server" 
                                         Text="Upload Picture" 
                                         style="margin-top: 10px"
                                         width="150px"
                                         CssClass="w-full bg-primary text-primary-foreground p-2 rounded-md hover:bg-primary/80"
-                                        OnClick="UploadPictureBtn_UP_Click" />
+                                        OnClick="UploadPictureBtn_UP_Click"
+                                        Visible="false"/>
                                     <asp:Button ID="RemovePictureBtn_UP"
                                         runat="server"
                                         Text="Remove Picture"
                                         style="margin-top: 10px"
                                         width="150px"
                                         CssClass="w-full bg-primary text-primary-foreground p-2 rounded-md hover:bg-primary/80"
-                                        OnClick="RemovePictureBtn_UP_Click" />
+                                        OnClick="RemovePictureBtn_UP_Click"
+                                        Visible="false"/>
                                     <br />
                                     <asp:Label ID="lblUploadMessage" runat="server"
                                         CssClass="text-success" Visible="false"></asp:Label>
