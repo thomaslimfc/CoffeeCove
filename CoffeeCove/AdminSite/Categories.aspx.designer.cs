@@ -111,7 +111,7 @@ namespace CoffeeCove.AdminSite
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.ToolkitScriptManager ToolkitScriptManager1;
+        //protected global::AjaxControlToolkit.ToolkitScriptManager ToolkitScriptManager1;
 
         /// <summary>
         /// txtSearch control.
