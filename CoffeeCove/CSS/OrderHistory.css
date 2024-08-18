@@ -1,2 +1,39 @@
 ﻿body {
 }
+
+#title {
+    margin-top: 80px;
+    margin-left: 50px;
+}
+
+.repeaterClass {
+    margin: 20px;
+}
+
+.orderItem {
+    border: 2px solid #ccc; /* Border around the product container */
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px; /* Optional: to give rounded corners */
+}
+
+.orderHeader {
+    margin-bottom: 15px;
+}
+
+.productDetails {
+    display: flex;
+    align-items: center;
+}
+
+.productImage {
+    width: 100px; /* Adjust the size of the product image */
+    height: auto;
+    margin-right: 15px;
+}
+
+.productInfo p {
+    margin: 0;
+    font-size: 14px; /* Adjust the font size for better readability */
+}

@@ -411,8 +411,10 @@
     <Content Include="CSS\Menu.css" />
     <Content Include="CSS\orderCart.css" />
     <Content Include="CSS\OrderHistory.css" />
+    <Content Include="CSS\OrderInvoice.css" />
     <Content Include="CSS\orderManagement.css" />
     <Content Include="CSS\orderOpt.css" />
+    <Content Include="CSS\OrderTracking.css" />
     <Content Include="CSS\paymentOpt.css" />
     <Content Include="CSS\ratingReview.css" />
     <Content Include="CSS\Security.css" />
@@ -501,7 +503,9 @@
     <Content Include="Order\getLocation.js" />
     <Content Include="Order\cart.aspx" />
     <Content Include="Order\orderHistory.aspx" />
+    <Content Include="Order\OrderInvoice.aspx" />
     <Content Include="Order\OrderOption.aspx" />
+    <Content Include="Order\OrderTracking.aspx" />
     <Content Include="packages\EntityFramework.6.2.0\lib\net40\EntityFramework.dll" />
     <Content Include="packages\EntityFramework.6.2.0\lib\net40\EntityFramework.SqlServer.dll" />
     <Content Include="packages\EntityFramework.6.2.0\lib\net40\EntityFramework.SqlServer.xml" />
@@ -661,12 +665,26 @@
     <Compile Include="Order\orderHistory.aspx.designer.cs">
       <DependentUpon>orderHistory.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Order\OrderInvoice.aspx.cs">
+      <DependentUpon>OrderInvoice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Order\OrderInvoice.aspx.designer.cs">
+      <DependentUpon>OrderInvoice.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Order\OrderOption.aspx.cs">
       <DependentUpon>OrderOption.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Order\OrderOption.aspx.designer.cs">
       <DependentUpon>OrderOption.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Order\OrderTracking.aspx.cs">
+      <DependentUpon>OrderTracking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Order\OrderTracking.aspx.designer.cs">
+      <DependentUpon>OrderTracking.aspx</DependentUpon>
     </Compile>
     <Compile Include="Payment\paymentOpt.aspx.cs">
       <DependentUpon>paymentOpt.aspx</DependentUpon>
