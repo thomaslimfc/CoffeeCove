@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -10,6 +11,7 @@ namespace CoffeeCove.Home
     public partial class Home : System.Web.UI.Page
     {
         private static int slideIndex = 1;
+        string cs = Global.CS;
 
         // Array to store slide images
         private static readonly string[] slideImages = new string[]
@@ -23,7 +25,7 @@ namespace CoffeeCove.Home
         private static readonly string[] slideTexts = new string[]
         {
             @"<h1>WELCOME AND ENJOY OUR SPECIAL COFFEE</h1>
-            <p>Special cocktails based on Reserve coffee are waiting for you to explore!</p>",
+            <p>Reserve coffee are waiting for you to explore!</p>",
             @"<h1>FRESHLY BREWED ESPRESSO DRINKS READY TO SERVE</h1>
             <p>Experience the rich, aromatic delight of our freshly brewed espresso drinks. Whether you prefer a classic espresso, a creamy cappuccino, or a velvety latte, each drink is made to order with the utmost care!</p>",
             @"<h1>FIND YOUR FAVOURITE COFFEE</h1>
@@ -35,8 +37,36 @@ namespace CoffeeCove.Home
             if (!IsPostBack)
             {
                 UpdateSlide();
+                BindCategory();
             }
         }
+
+        private void BindCategory()
+        {
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                string sql = "SELECT CategoryId, CategoryName, CategoryImageUrl FROM Category WHERE IsActive = 1";
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    con.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    rptCategory.DataSource = dr;
+                    rptCategory.DataBind();
+                }
+            }
+        }
+
+        protected void rptCategory_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "OrderNow")
+            {
+                string categoryId = e.CommandArgument.ToString();
+                Response.Redirect($"/Menu/Menu.aspx?CategoryId={categoryId}");
+            }
+        }
+
+
+
 
         private void UpdateSlide()
         {

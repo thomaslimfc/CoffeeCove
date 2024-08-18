@@ -15,12 +15,23 @@ namespace CoffeeCove.Menu
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
+            if (!IsPostBack)
             {
                 BindCategory();
-                BindProducts("1"); // Default category to show all products
+
+                string categoryId = Request.QueryString["CategoryId"];
+                if (!string.IsNullOrEmpty(categoryId))
+                {
+                    BindProducts(categoryId); 
+                }
+                else
+                {
+                    BindProducts("1"); 
+                }
             }
         }
+
+
         private void BindCategory()
         {
             using (SqlConnection con = new SqlConnection(cs))
