@@ -21,6 +21,17 @@
     padding-right: 13% !important;
 }
 
+.custom-back-button {
+    background-color: #651FFF;
+    color: #ffffff;
+    border-color: #651FFF;
+}
+
+    .custom-back-button:hover {
+        background-color: #5e4ecc;
+        border-color: #5e4ecc;
+    }
+
 /*Icon progressbar*/
 #progressbar {
     margin-bottom: 30px;

@@ -25,6 +25,11 @@
                             <p>Quantity: </p>
                         </div>
                     </div>
+
+                    <!-- Track Order Button -->
+                    <div class="trackOrderButton">
+                        <asp:Button ID="TrackOrderButton" runat="server" Text="Track Order" CommandArgument='<%# Eval("OrderID") %>' OnClick="TrackOrderButton_Click" CssClass="btn btn-primary" />
+                    </div>
                 </div>
                 <hr />
             </ItemTemplate>

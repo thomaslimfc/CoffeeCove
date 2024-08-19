@@ -36,5 +36,12 @@ namespace CoffeeCove.Order
                 }
             }
         }
+
+        protected void TrackOrderButton_Click(object sender, EventArgs e)
+        {
+            var button = (Button)sender;
+            string orderId = button.CommandArgument;
+            Response.Redirect($"OrderTracking.aspx?OrderID={orderId}");
+        }
     }
 }
