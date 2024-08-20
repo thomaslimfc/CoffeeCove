@@ -6,7 +6,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="Content" runat="server">
 <link href="../CSS/Security.css" rel="stylesheet" />
 <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
-<script src="https://unpkg.com/unlazy@0.11.3/dist/unlazy.with-hashing.iife.js" defer init></script>
+<script src="https://unpkg.com/unlazy@0.11.3/dist/unlazy.with-hashing.iife.js" defer init=""></script>
 <br /><br /><br />
 <script type="text/javascript">
     window.tailwind.config = {
