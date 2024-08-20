@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Admin.Master" AutoEventWireup="true" CodeBehind="Orders.aspx.cs" Inherits="CoffeeCove.AdminSite.OrderManagement" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <link href="../CSS/ProductCategory.css" rel="stylesheet" />
@@ -41,23 +42,38 @@
         </div>
         <br />
         <br />
+
+        <!--Search Bar-->
+        <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
+        <div class="search-bar">
+            <asp:TextBox ID="txtSearch" runat="server" Placeholder="Search..." CssClass="datatable-input"></asp:TextBox>
+            <asp:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtSearch"
+                EnableCaching="false" CompletionInterval="100" CompletionSetCount="10" MinimumPrefixLength="1" ServiceMethod="GetItemList">
+            </asp:AutoCompleteExtender>
+            <asp:Button ID="Button1" runat="server" Text="Search" CssClass="btn btn-primary" />
+            <asp:Button ID="btnClear" runat="server" Text="Clear" CssClass="btn btn-secondary" />
+        </div>
+        <br />
+        <br />
         
-        <!-- Category List -->
+        <!-- Order List -->
         <div class="col-lg-12">
 
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Order List</h5>
                 
-                    <asp:GridView ID="gvOrder" runat="server" DataSourceID="SqlDataSource1" AutoGenerateColumns="False" DataKeyNames="OrderID" Width="100%" CssClass="table table-striped gridview" PageSize="10" AllowPaging="true" AllowSorting="true" EmptyDataText="There are no data records">
+                    <asp:GridView ID="gvOrder" runat="server" DataSourceID="SqlDataSource1" AutoGenerateColumns="False" DataKeyNames="OrderID" CssClass="table table-striped" PageSize="10" AllowPaging="true" AllowSorting="true" EmptyDataText="There are no data records">
                         <Columns>
                             <asp:BoundField DataField="OrderID" HeaderText="OrderID" ReadOnly="True" SortExpression="OrderID" />
                             <asp:BoundField DataField="OrderDate" HeaderText="OrderDate" SortExpression="OrderDate" />
-                            <asp:BoundField DataField="CustomerID" HeaderText="CustomerID" SortExpression="CustomerID" />
                             <asp:BoundField DataField="TotalAmount" HeaderText="TotalAmount" SortExpression="TotalAmount" />
-                            <asp:TemplateField HeaderText="Action">
+                            <asp:BoundField DataField="DeliveryNo" HeaderText="DeliveryNo" SortExpression="DeliveryNo" />
+                            <asp:BoundField DataField="PickUpNo" HeaderText="PickUpNo" SortExpression="PickUpNo " />
+                            <asp:TemplateField HeaderText="Action" ItemStyle-Width="150px">
                                 <ItemTemplate>
-                                    <asp:LinkButton ID="btnDelete" runat="server" CommandName="DeleteCategory" CommandArgument='<%# Eval("OrderId") %>' Text="Delete" CssClass="btn btn-danger btn-sm" OnClientClick="return confirmDelete();"/>
+                                    <asp:LinkButton ID="btnView" runat="server" CommandName="viewOrder" CommandArgument='<%# Eval("OrderId") %>' Text="View" CssClass="btn btn-primary btn-sm"/>
+                                    <asp:LinkButton ID="btnDelete" runat="server" CommandName="deleteOrder" CommandArgument='<%# Eval("OrderId") %>' Text="Delete" CssClass="btn btn-danger btn-sm" OnClientClick="return confirmDelete();"/>
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>

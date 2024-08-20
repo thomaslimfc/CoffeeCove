@@ -68,12 +68,12 @@
                 <div class="card" >
                     <div class="card-body" >
                         <h5 class="card-title">Store List</h5>
-                        <asp:GridView ID="gvStoreList" runat="server" DataSourceID="SqlDataSource1" AutoGenerateColumns="False" DataKeyNames="StoreID" CssClass="table table-striped gridview" PageSize="5" AllowPaging="true" AllowSorting="true" EmptyDataText="There are no data records">
+                        <asp:GridView ID="gvStoreList" runat="server" DataSourceID="SqlDataSource1" AutoGenerateColumns="False" DataKeyNames="StoreID" CssClass="table table-striped" PageSize="5" AllowPaging="true" AllowSorting="true" EmptyDataText="There are no data records">
                             <Columns>
                                 <asp:BoundField DataField="StoreID" HeaderText="No" ReadOnly="True" SortExpression="StoreID" />
                                 <asp:BoundField DataField="StoreName" HeaderText="Store Name" SortExpression="StoreName" />
                                 <asp:BoundField DataField="StoreAddress" HeaderText="Store Address" SortExpression="StoreAddress" />
-                                <asp:TemplateField HeaderText="Action">
+                                <asp:TemplateField HeaderText="Action" ItemStyle-Width="150px">
                                     <ItemTemplate>
                                         <asp:LinkButton ID="btnEdit" runat="server" CommandName="Edit" CommandArgument='<%# Eval("StoreID") %>' Text="Edit" CssClass="btn btn-primary btn-sm"/>
                                         <asp:LinkButton ID="btnDelete" runat="server" CommandName="Delete" CommandArgument='<%# Eval("StoreID") %>' Text="Delete" CssClass="btn btn-danger btn-sm" OnClientClick="return confirmDelete();"/>
