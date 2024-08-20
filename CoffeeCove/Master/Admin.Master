@@ -68,7 +68,7 @@
         
         <!-- Footer -->
         <div class="footerBottom" style="font-size: 15px; font-weight: 300; color: #FFFFFF; background-color: #2a2a2a;">
-            Developed by TheCoffeeNook Sdn.Bhd. | &copy; All right reserved. <%:DateTime.Now.Year %>
+            Developed by Coffeecove Sdn. Bhd. | &copy; All right reserved. <%:DateTime.Now.Year %>
         </div>       
     </form>
 </body>

@@ -80,9 +80,10 @@
                 }]
             });
 
-            // Custom search box handling
-            $('#tableSearch').on('keyup', function () {
-                table.search(this.value).draw();
+            // Search-Box CSS
+            $('.dataTables_filter input[type="search"]').css({
+                "width": "300px",
+                "display": "inline-block"
             });
         });
     </script>
