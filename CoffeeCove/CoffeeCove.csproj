@@ -43,6 +43,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=4.1.51116.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\AjaxControlToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="BCrypt.Net-Next, Version=4.0.3.0, Culture=neutral, PublicKeyToken=1e11be04b6288443, processorArchitecture=MSIL">
       <HintPath>packages\BCrypt.Net-Next.4.0.3\lib\net48\BCrypt.Net-Next.dll</HintPath>
     </Reference>
@@ -99,11 +103,13 @@
   <ItemGroup>
     <Content Include="AdminSite\Dashboard.aspx" />
     <Content Include="AdminSite\OrderManagement.aspx" />
+    <Content Include="AdminSite\Products.aspx" />
     <Content Include="AdminSite\StoreList.aspx" />
     <Content Include="App_Data\dbCoffeeCove.mdf" />
     <Content Include="App_Data\dbCoffeeCove_log.ldf">
       <DependentUpon>dbCoffeeCove.mdf</DependentUpon>
     </Content>
+    <Content Include="AdminSite\Categories.aspx" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\img\apple-touch-icon.png" />
     <Content Include="Content\img\card.jpg" />
@@ -416,6 +422,7 @@
     <Content Include="CSS\orderOpt.css" />
     <Content Include="CSS\OrderTracking.css" />
     <Content Include="CSS\paymentOpt.css" />
+    <Content Include="CSS\ProductCategory.css" />
     <Content Include="CSS\ratingReview.css" />
     <Content Include="CSS\Security.css" />
     <Content Include="CSS\storeList.css" />
@@ -588,12 +595,26 @@
     <Compile Include="AdminSite\OrderManagement.aspx.designer.cs">
       <DependentUpon>OrderManagement.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AdminSite\Products.aspx.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSite\Products.aspx.designer.cs">
+      <DependentUpon>Products.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminSite\StoreList.aspx.cs">
       <DependentUpon>StoreList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AdminSite\StoreList.aspx.designer.cs">
       <DependentUpon>StoreList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminSite\Categories.aspx.cs">
+      <DependentUpon>Categories.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSite\Categories.aspx.designer.cs">
+      <DependentUpon>Categories.aspx</DependentUpon>
     </Compile>
     <Compile Include="Category.cs">
       <DependentUpon>dbCoffeeCoveModel.tt</DependentUpon>
