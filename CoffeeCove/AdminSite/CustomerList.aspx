@@ -78,7 +78,34 @@
                 <div class="col-lg-12">
                     <div class="card" style="width: 1300px;">
                         <div class="card-body">
-                            ss
+                            <br />
+                            <!-- Username -->
+                            <div class="mb-4">
+                                <label for="first-name" class="block text-sm text-muted-foreground" style="padding-bottom: 3px;">Username:</label>
+                                <asp:TextBox ID="Username_SI" 
+                                    CssClass="datatable-search--box" 
+                                    runat="server"
+                                    placeholder="desmundchau7668" 
+                                    title="Username"
+                                    AutoPostBack="false">
+                                </asp:TextBox>
+                                <br />
+                                <asp:RequiredFieldValidator 
+                                    ID="Username_SI_rqdValidator" runat="server" 
+                                    ControlToValidate="Username_SI" 
+                                    ErrorMessage="Username is required." 
+                                    Display="Dynamic" ForeColor="Red" 
+                                    CssClass="rqdValidator" />
+                                <asp:RegularExpressionValidator 
+                                    ID="Username_SI_regexValidator" 
+                                    runat="server" 
+                                    ControlToValidate="Username_SI" 
+                                    ErrorMessage="Must contain >8 letters and numbers only." 
+                                    Display="Dynamic" 
+                                    ForeColor="Red" 
+                                    CssClass="rqdValidator" 
+                                    ValidationExpression="^[a-zA-Z0-9]{8,}$" />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -122,4 +149,15 @@
             });
         });
     </script>
+
+    <style>
+        .datatable-search-box {
+            width: 300px;
+            display: inline-block;
+            margin-bottom: 15px;
+            padding: 2px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
 </asp:Content>
