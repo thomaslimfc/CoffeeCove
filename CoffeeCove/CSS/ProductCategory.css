@@ -35,5 +35,13 @@
     display: inline-block;
 }
 
+.gridview-header th {
+    text-align: left; /* Align header text to the left */
+}
+
+.header-link img {
+    margin-left: 5px; /* Space between the text and the arrow */
+}
+
 
 

@@ -68,11 +68,35 @@
                 <div class="card" >
                     <div class="card-body" >
                         <h5 class="card-title">Store List</h5>
-                        <asp:GridView ID="gvStoreList" runat="server" DataSourceID="SqlDataSource1" AutoGenerateColumns="False" DataKeyNames="StoreID" CssClass="table table-striped" PageSize="5" AllowPaging="true" AllowSorting="true" EmptyDataText="There are no data records">
+                        <asp:GridView ID="gvStoreList" runat="server" DataSourceID="SqlDataSource1" AutoGenerateColumns="False" DataKeyNames="StoreID" CssClass="table table-striped" PageSize="5" AllowPaging="true" AllowSorting="true" EmptyDataText="There are no data records" OnSorting="gvStoreList_Sorting">
                             <Columns>
-                                <asp:BoundField DataField="StoreID" HeaderText="No" ReadOnly="True" SortExpression="StoreID" />
-                                <asp:BoundField DataField="StoreName" HeaderText="Store Name" SortExpression="StoreName" />
-                                <asp:BoundField DataField="StoreAddress" HeaderText="Store Address" SortExpression="StoreAddress" />
+                                <asp:TemplateField SortExpression="StoreID">
+                                    <HeaderTemplate>
+                                         <asp:LinkButton ID="lnkStoreID" runat="server" CommandArgument="StoreID" CssClass="header-link" ToolTip="Sort" >No</asp:LinkButton>
+                                    </HeaderTemplate>
+                                    <ItemTemplate>
+                                        <%# Eval("StoreID") %>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField SortExpression="StoreName">
+                                    <HeaderTemplate>
+                                        <asp:LinkButton ID="lnkStoreName" runat="server" CommandArgument="StoreName" CssClass="header-link" ToolTip="Sort" >Store Name</asp:LinkButton>
+                                    </HeaderTemplate>
+                                    <ItemTemplate>
+                                        <%# Eval("StoreName") %>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+                                <asp:TemplateField SortExpression="StoreAddress">
+                                    <HeaderTemplate>
+                                        <asp:LinkButton ID="lnkStoreAddress" runat="server" CommandArgument="StoreAddress" CssClass="header-link" ToolTip="Sort" >Store Address</asp:LinkButton>
+                                    </HeaderTemplate>
+                                    <ItemTemplate>
+                                        <%# Eval("StoreAddress") %>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
                                 <asp:TemplateField HeaderText="Action" ItemStyle-Width="150px">
                                     <ItemTemplate>
                                         <asp:LinkButton ID="btnEdit" runat="server" CommandName="Edit" CommandArgument='<%# Eval("StoreID") %>' Text="Edit" CssClass="btn btn-primary btn-sm"/>

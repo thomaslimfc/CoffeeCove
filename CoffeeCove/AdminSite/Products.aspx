@@ -67,7 +67,7 @@
                 <!--AJAX tools: Search-->
                 <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
                 <div class="search-bar">
-                    <asp:TextBox ID="txtSearch" runat="server" Placeholder="Search..." CssClass="datatable-input"></asp:TextBox>
+                    <asp:TextBox ID="txtSearch" runat="server" Placeholder="Search ID, Name" CssClass="datatable-input"></asp:TextBox>
                     <asp:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtSearch"
                         EnableCaching="false" CompletionInterval="100" CompletionSetCount="10" MinimumPrefixLength="1" ServiceMethod="GetItemList">
                     </asp:AutoCompleteExtender>
@@ -83,44 +83,60 @@
                             <h5 class="card-title">Product List</h5>
                             <asp:GridView ID="gvProduct" runat="server" AutoGenerateColumns="False" CssClass="table table-striped"
                                 OnRowCommand="gvProduct_RowCommand" Width="100%" AllowSorting="True" OnSorting="gvProduct_Sorting"
-                                AllowPaging="true" OnPageIndexChanging="gvProduct_PageIndexChanging" PageSize="5">
-
-                                <SortedAscendingHeaderStyle CssClass="sortasc" />
-                                <SortedDescendingHeaderStyle CssClass="sortdesc" />
+                                AllowPaging="true" OnPageIndexChanging="gvProduct_PageIndexChanging" PageSize="5" EmptyDataText="No Products found.">
                                 <Columns>
-                                    <asp:BoundField DataField="ProductId" HeaderText="ID" SortExpression="ProductId" ItemStyle-Width="10px">
-                                        <ItemStyle Width="10px"></ItemStyle>
-                                    </asp:BoundField>
-                                    <asp:BoundField DataField="ProductName" HeaderText="Name" SortExpression="ProductName" ItemStyle-Width="150px">
-                                        <ItemStyle Width="150px"></ItemStyle>
-                                    </asp:BoundField>
-                                    <asp:BoundField DataField="UnitPrice" HeaderText="Price(RM)" DataFormatString="{0:N2}" SortExpression="UnitPrice" ItemStyle-Width="10px">
-                                        <ItemStyle Width="10px"></ItemStyle>
-                                    </asp:BoundField>
+                                    <asp:TemplateField SortExpression="ProductId" ItemStyle-Width="10px">
+                                        <HeaderTemplate>
+                                            <asp:LinkButton ID="lnkProductId" runat="server" CommandArgument="ProductId" CssClass="header-link" ToolTip="Sort" OnClick="lnkProduct_Click">ID</asp:LinkButton>
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
+                                            <%# Eval("ProductId") %>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField SortExpression="ProductName" ItemStyle-Width="100px">
+                                        <HeaderTemplate>
+                                            <asp:LinkButton ID="lnkProductName" runat="server" CommandArgument="ProductName" CssClass="header-link" ToolTip="Sort" OnClick="lnkProduct_Click">Name</asp:LinkButton>
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
+                                            <%# Eval("ProductName") %>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField SortExpression="UnitPrice" ItemStyle-Width="30px">
+                                        <HeaderTemplate>
+                                            <asp:LinkButton ID="lnkUnitPrice" runat="server" CommandArgument="UnitPrice" CssClass="header-link" ToolTip="Sort" OnClick="lnkProduct_Click">Price(RM)</asp:LinkButton>
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
+                                            <%# Eval("UnitPrice", "{0:N2}") %>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
                                     <asp:TemplateField HeaderText="Image" ItemStyle-Width="10px">
                                         <ItemTemplate>
                                             <img src='<%# Eval("ImageUrl") %>' width="50" height="50" />
                                         </ItemTemplate>
-
-                                        <ItemStyle Width="10px"></ItemStyle>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Category" ItemStyle-Width="80px">
+
+                                    <asp:TemplateField HeaderText="Category" ItemStyle-Width="50px">
                                         <ItemTemplate>
                                             <%# Eval("CategoryName") %>
                                         </ItemTemplate>
-
-                                        <ItemStyle Width="80px"></ItemStyle>
                                     </asp:TemplateField>
+
                                     <asp:TemplateField HeaderText="Is Active" ItemStyle-Width="20px">
                                         <ItemTemplate>
                                             <%# Eval("IsActive", "{0}") == "True" ? 
-                                                    "<span class='badge rounded-pill bg-success'>Active</span>" : 
-                                                    "<span class='badge rounded-pill bg-danger'>InActive</span>" %>
+                                            "<span class='badge rounded-pill bg-success'>Active</span>" : 
+                                            "<span class='badge rounded-pill bg-danger'>InActive</span>" %>
                                         </ItemTemplate>
-
-                                        <ItemStyle Width="20px"></ItemStyle>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Created Date" SortExpression="CreatedDate" ItemStyle-Width="10px">
+
+                                    <asp:TemplateField HeaderText="CreatedDate" SortExpression="CreatedDate" ItemStyle-Width="20px">
+                                        <HeaderTemplate>
+                                            <asp:LinkButton ID="lnkSortCreatedDate" runat="server" CommandArgument="CreatedDate"
+                                                Text="Created Date" CssClass="sort-link" />
+                                        </HeaderTemplate>
                                         <ItemTemplate>
                                             <div>
                                                 <%# Convert.ToDateTime(Eval("CreatedDate")).ToString("MM/dd/yyyy") %><br />
@@ -129,25 +145,20 @@
                                                 </span>
                                             </div>
                                         </ItemTemplate>
-
-                                        <ItemStyle Width="10px"></ItemStyle>
                                     </asp:TemplateField>
-                                    <asp:BoundField DataField="Description" HeaderText="Description" ItemStyle-Width="150px">
-                                        <ItemStyle Width="150px"></ItemStyle>
-                                    </asp:BoundField>
+
+                                    <asp:BoundField DataField="Description" HeaderText="Description" ItemStyle-Width="150px" />
+
                                     <asp:TemplateField HeaderText="Action" ItemStyle-Width="100px">
                                         <ItemTemplate>
                                             <asp:LinkButton ID="lnkEdit" runat="server" CommandName="EditProduct" CommandArgument='<%# Eval("ProductId") %>' Text="Edit" CssClass="btn btn-primary btn-sm" />
                                             <asp:LinkButton ID="lnkDelete" runat="server" CommandName="DeleteProduct" CommandArgument='<%# Eval("ProductId") %>' Text="Delete" OnClientClick="return confirmDelete();" CssClass="btn btn-danger btn-sm" />
                                         </ItemTemplate>
-
-                                        <ItemStyle Width="100px"></ItemStyle>
                                     </asp:TemplateField>
                                 </Columns>
                                 <HeaderStyle CssClass="gridview-header" />
                                 <PagerStyle CssClass="datatable-pagination" />
                             </asp:GridView>
-
                         </div>
                     </div>
                 </div>
