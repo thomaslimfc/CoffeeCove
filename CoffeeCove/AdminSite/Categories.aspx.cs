@@ -34,7 +34,7 @@ namespace CoffeeCove
 
             if (!string.IsNullOrEmpty(searchTerm))
             {
-                sql += " WHERE CategoryId LIKE @SearchTerm OR CategoryName LIKE @SearchTerm";
+                sql += " WHERE CategoryName LIKE @SearchTerm + '%'";
             }
 
             if (!string.IsNullOrEmpty(SortExpression))
@@ -48,7 +48,7 @@ namespace CoffeeCove
                 {
                     if (!string.IsNullOrEmpty(searchTerm))
                     {
-                        cmd.Parameters.AddWithValue("@SearchTerm", searchTerm + '%');
+                        cmd.Parameters.AddWithValue("@SearchTerm", searchTerm);
                     }
 
                     con.Open();
@@ -60,12 +60,6 @@ namespace CoffeeCove
 
                     gvCategory.DataSource = dt;
                     gvCategory.DataBind();
-
-                    if (dt.Rows.Count == 0)
-                    {
-                        gvCategory.DataSource = null;
-                        gvCategory.DataBind();
-                    }
                 }
             }
             PositionGlyph(gvCategory, SortExpression, SortDirection);
@@ -95,6 +89,7 @@ namespace CoffeeCove
             BindCategory();
             PositionGlyph(gvCategory, SortExpression, SortDirection);
         }
+
 
         private void PositionGlyph(GridView gridView, string currentSortColumn, string currentSortDirection)
         {
@@ -422,18 +417,17 @@ namespace CoffeeCove
         {
             List<string> getitem = new List<string>();
 
-            string sql = "SELECT CategoryId, CategoryName FROM Category WHERE CategoryId LIKE @Text OR CategoryName LIKE @Text";
+            string sql = "SELECT CategoryName FROM Category WHERE CategoryName LIKE @Text + '%'";
             using (SqlConnection con = new SqlConnection(Global.CS))
             {
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
-                    cmd.Parameters.AddWithValue("@Text", prefixText + '%');
+                    cmd.Parameters.AddWithValue("@Text", prefixText);
                     con.Open();
                     SqlDataReader dr = cmd.ExecuteReader();
 
                     while (dr.Read())
                     {
-                        getitem.Add(dr["CategoryId"].ToString());
                         getitem.Add(dr["CategoryName"].ToString());
                     }
                 }
@@ -441,7 +435,6 @@ namespace CoffeeCove
 
             return getitem;
         }
-
 
     }
 }

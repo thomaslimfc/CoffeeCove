@@ -57,7 +57,7 @@
                 <!-- AJAX tools:Search -->
                 <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
                 <div class="search-bar">
-                    <asp:TextBox ID="txtSearch" runat="server" Placeholder="Search ID, Name" CssClass="datatable-input"></asp:TextBox>
+                    <asp:TextBox ID="txtSearch" runat="server" Placeholder="Search..." CssClass="datatable-input"></asp:TextBox>
                     <asp:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtSearch"
                         EnableCaching="false" CompletionInterval="100" CompletionSetCount="10" MinimumPrefixLength="1" ServiceMethod="GetItemList">
                     </asp:AutoCompleteExtender>
@@ -75,7 +75,7 @@
                             <h5 class="card-title">Category List</h5>
                             <asp:GridView ID="gvCategory" runat="server" AutoGenerateColumns="False" CssClass="table table-striped"
                                 OnRowCommand="gvCategory_RowCommand" Width="100%" AllowSorting="True" OnSorting="gvCategory_Sorting"
-                                AllowPaging="true" OnPageIndexChanging="gvCategory_PageIndexChanging" PageSize="5" EmptyDataText="No categories found.">
+                                AllowPaging="true" OnPageIndexChanging="gvCategory_PageIndexChanging" PageSize="5">
 
                                 <Columns>
                                     <asp:TemplateField SortExpression="CategoryId" ItemStyle-Width="10px">
@@ -87,7 +87,7 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField SortExpression="CategoryName" ItemStyle-Width="100px">
+                                    <asp:TemplateField SortExpression="CategoryName" ItemStyle-Width="150px">
                                         <HeaderTemplate>
                                             <asp:LinkButton ID="lnkCategoryName" runat="server" CommandArgument="CategoryName" CssClass="header-link" ToolTip="Sort" OnClick="lnkCategory_Click">Name</asp:LinkButton>
                                         </HeaderTemplate>
@@ -96,7 +96,7 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Image" ItemStyle-Width="15px">
+                                    <asp:TemplateField HeaderText="Image" ItemStyle-Width="10px">
                                         <ItemTemplate>
                                             <img src='<%# Eval("CategoryImageUrl") %>' width="50" height="50" />
                                         </ItemTemplate>
@@ -109,8 +109,7 @@
                                             "<span class='badge rounded-pill bg-danger'>InActive</span>" %>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-
-                                    <asp:TemplateField SortExpression="CreatedDate" ItemStyle-Width="20px">
+                                    <asp:TemplateField SortExpression="CreatedDate" ItemStyle-Width="10px">
                                         <HeaderTemplate>
                                             <asp:LinkButton ID="lnkCreatedDate" runat="server" CommandArgument="CreatedDate" CssClass="header-link" ToolTip="Sort" OnClick="lnkCategory_Click">CreatedDate</asp:LinkButton>
                                         </HeaderTemplate>
@@ -123,12 +122,13 @@
                                             </div>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-
-                                    <asp:TemplateField HeaderText="Action" ItemStyle-Width="40px">
+                                    <asp:TemplateField HeaderText="Action" ItemStyle-Width="100px">
                                         <ItemTemplate>
                                             <asp:LinkButton ID="lnkEdit" runat="server" CommandName="EditCategory" CommandArgument='<%# Eval("CategoryId") %>' Text="Edit" CssClass="btn btn-primary btn-sm" />
                                             <asp:LinkButton ID="lnkDelete" runat="server" CommandName="DeleteCategory" CommandArgument='<%# Eval("CategoryId") %>' Text="Delete" OnClientClick="return confirmDelete();" CssClass="btn btn-danger btn-sm" />
                                         </ItemTemplate>
+
+                                        <ItemStyle Width="100px"></ItemStyle>
                                     </asp:TemplateField>
                                 </Columns>
                                 <HeaderStyle CssClass="gridview-header" />
