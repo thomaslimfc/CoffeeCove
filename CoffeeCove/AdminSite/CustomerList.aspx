@@ -29,7 +29,7 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="card">
-            <div class="card-body" style="width: 1000px;">
+            <div class="card-body" style="width: 1300px;">
 
               <!-- Table with stripped rows -->
               <table class="table datatable">
@@ -39,9 +39,13 @@
                       <b>Customer ID</b>
                     </th>
                     <th>Username</th>
-                    <th>City</th>
-                    <th data-type="date" data-format="YYYY/DD/MM">Start Date</th>
-                    <th>Completion</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email Address</th>
+                    <th>Contact Number</th>
+                    <th>Gender</th>
+                    <th data-type="date" data-format="YYYY/DD/MM">Date of Birth</th>
+                    <th>Residence State</th>
                   </tr>
                 </thead>
                 <tbody>
