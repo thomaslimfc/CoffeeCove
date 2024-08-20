@@ -20,7 +20,6 @@ namespace CoffeeCove.AdminSite
             {
                 BindCategoryDropDown();
                 BindProduct();
-                UpdateSortingIndicators();
             }
         }
 

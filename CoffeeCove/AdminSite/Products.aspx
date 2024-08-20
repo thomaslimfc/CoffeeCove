@@ -84,27 +84,41 @@
                             <asp:GridView ID="gvProduct" runat="server" AutoGenerateColumns="False" CssClass="table table-striped"
                                 OnRowCommand="gvProduct_RowCommand" Width="100%" AllowSorting="True" OnSorting="gvProduct_Sorting"
                                 AllowPaging="true" OnPageIndexChanging="gvProduct_PageIndexChanging" PageSize="5">
-                                
+
+                                <SortedAscendingHeaderStyle CssClass="sortasc" />
+                                <SortedDescendingHeaderStyle CssClass="sortdesc" />
                                 <Columns>
-                                    <asp:BoundField DataField="ProductId" HeaderText="ID" SortExpression="ProductId" ItemStyle-Width="10px" />
-                                    <asp:BoundField DataField="ProductName" HeaderText="Name" SortExpression="ProductName" ItemStyle-Width="150px"/>
-                                    <asp:BoundField DataField="UnitPrice" HeaderText="Price(RM)" DataFormatString="{0:N2}" SortExpression="UnitPrice" ItemStyle-Width="10px" />
-                                    <asp:TemplateField HeaderText="Image" ItemStyle-Width="10px" >
+                                    <asp:BoundField DataField="ProductId" HeaderText="ID" SortExpression="ProductId" ItemStyle-Width="10px">
+                                        <ItemStyle Width="10px"></ItemStyle>
+                                    </asp:BoundField>
+                                    <asp:BoundField DataField="ProductName" HeaderText="Name" SortExpression="ProductName" ItemStyle-Width="150px">
+                                        <ItemStyle Width="150px"></ItemStyle>
+                                    </asp:BoundField>
+                                    <asp:BoundField DataField="UnitPrice" HeaderText="Price(RM)" DataFormatString="{0:N2}" SortExpression="UnitPrice" ItemStyle-Width="10px">
+                                        <ItemStyle Width="10px"></ItemStyle>
+                                    </asp:BoundField>
+                                    <asp:TemplateField HeaderText="Image" ItemStyle-Width="10px">
                                         <ItemTemplate>
                                             <img src='<%# Eval("ImageUrl") %>' width="50" height="50" />
                                         </ItemTemplate>
+
+                                        <ItemStyle Width="10px"></ItemStyle>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Category" ItemStyle-Width="80px">
                                         <ItemTemplate>
                                             <%# Eval("CategoryName") %>
                                         </ItemTemplate>
+
+                                        <ItemStyle Width="80px"></ItemStyle>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Is Active" ItemStyle-Width="20px" >
+                                    <asp:TemplateField HeaderText="Is Active" ItemStyle-Width="20px">
                                         <ItemTemplate>
                                             <%# Eval("IsActive", "{0}") == "True" ? 
                                                     "<span class='badge rounded-pill bg-success'>Active</span>" : 
                                                     "<span class='badge rounded-pill bg-danger'>InActive</span>" %>
                                         </ItemTemplate>
+
+                                        <ItemStyle Width="20px"></ItemStyle>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Created Date" SortExpression="CreatedDate" ItemStyle-Width="10px">
                                         <ItemTemplate>
@@ -115,15 +129,22 @@
                                                 </span>
                                             </div>
                                         </ItemTemplate>
+
+                                        <ItemStyle Width="10px"></ItemStyle>
                                     </asp:TemplateField>
-                                    <asp:BoundField DataField="Description" HeaderText="Description" ItemStyle-Width="150px"/>
-                                    <asp:TemplateField HeaderText="Action" ItemStyle-Width="100px" >
+                                    <asp:BoundField DataField="Description" HeaderText="Description" ItemStyle-Width="150px">
+                                        <ItemStyle Width="150px"></ItemStyle>
+                                    </asp:BoundField>
+                                    <asp:TemplateField HeaderText="Action" ItemStyle-Width="100px">
                                         <ItemTemplate>
-                                            <asp:LinkButton ID="lnkEdit" runat="server" CommandName="EditProduct" CommandArgument='<%# Eval("ProductId") %>' Text="Edit" CssClass="btn btn-primary btn-sm"/>
-                                            <asp:LinkButton ID="lnkDelete" runat="server" CommandName="DeleteProduct" CommandArgument='<%# Eval("ProductId") %>' Text="Delete" OnClientClick="return confirmDelete();" CssClass="btn btn-danger btn-sm"/>
+                                            <asp:LinkButton ID="lnkEdit" runat="server" CommandName="EditProduct" CommandArgument='<%# Eval("ProductId") %>' Text="Edit" CssClass="btn btn-primary btn-sm" />
+                                            <asp:LinkButton ID="lnkDelete" runat="server" CommandName="DeleteProduct" CommandArgument='<%# Eval("ProductId") %>' Text="Delete" OnClientClick="return confirmDelete();" CssClass="btn btn-danger btn-sm" />
                                         </ItemTemplate>
+
+                                        <ItemStyle Width="100px"></ItemStyle>
                                     </asp:TemplateField>
                                 </Columns>
+                                <HeaderStyle CssClass="gridview-header" />
                                 <PagerStyle CssClass="datatable-pagination" />
                             </asp:GridView>
 

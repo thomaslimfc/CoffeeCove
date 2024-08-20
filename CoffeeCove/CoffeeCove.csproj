@@ -490,6 +490,7 @@
     <Content Include="img\Category\lunch.jpg" />
     <Content Include="img\coffeeBag.jpg" />
     <Content Include="img\customer.png" />
+    <Content Include="img\down.png" />
     <Content Include="img\facebook.png" />
     <Content Include="img\gender_icon.png" />
     <Content Include="img\instagram.png" />
@@ -504,6 +505,7 @@
     <Content Include="img\slideImg2.jpeg" />
     <Content Include="img\slideImg3.jpeg" />
     <Content Include="img\twitter.png" />
+    <Content Include="img\up.png" />
     <Content Include="img\username_icon.png" />
     <Content Include="Menu\Menu.aspx" />
     <Content Include="Order\cartEdit.aspx" />

@@ -76,23 +76,43 @@
                             <asp:GridView ID="gvCategory" runat="server" AutoGenerateColumns="False" CssClass="table table-striped"
                                 OnRowCommand="gvCategory_RowCommand" Width="100%" AllowSorting="True" OnSorting="gvCategory_Sorting"
                                 AllowPaging="true" OnPageIndexChanging="gvCategory_PageIndexChanging" PageSize="5">
-                               
+
                                 <Columns>
-                                    <asp:BoundField DataField="CategoryId" HeaderText="ID" SortExpression="CategoryId" ItemStyle-Width="10px" />
-                                    <asp:BoundField DataField="CategoryName" HeaderText="Name" SortExpression="CategoryName" ItemStyle-Width="150px" />
-                                    <asp:TemplateField HeaderText="Image" ItemStyle-Width="10px" >
+                                    <asp:TemplateField SortExpression="CategoryId" ItemStyle-Width="10px">
+                                        <HeaderTemplate>
+                                            <asp:LinkButton ID="lnkCategoryId" runat="server" CommandArgument="CategoryId" CssClass="header-link" ToolTip="Sort" OnClick="lnkCategory_Click">ID</asp:LinkButton>
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
+                                            <%# Eval("CategoryId") %>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField SortExpression="CategoryName" ItemStyle-Width="150px">
+                                        <HeaderTemplate>
+                                            <asp:LinkButton ID="lnkCategoryName" runat="server" CommandArgument="CategoryName" CssClass="header-link" ToolTip="Sort" OnClick="lnkCategory_Click">Name</asp:LinkButton>
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
+                                            <%# Eval("CategoryName") %>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="Image" ItemStyle-Width="10px">
                                         <ItemTemplate>
                                             <img src='<%# Eval("CategoryImageUrl") %>' width="50" height="50" />
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Is Active" ItemStyle-Width="20px" >
+
+                                    <asp:TemplateField HeaderText="Is Active" ItemStyle-Width="20px">
                                         <ItemTemplate>
                                             <%# Eval("IsActive", "{0}") == "True" ? 
-                                    "<span class='badge rounded-pill bg-success'>Active</span>" : 
-                                    "<span class='badge rounded-pill bg-danger'>InActive</span>" %>
+                                            "<span class='badge rounded-pill bg-success'>Active</span>" : 
+                                            "<span class='badge rounded-pill bg-danger'>InActive</span>" %>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Created Date" SortExpression="CreatedDate" ItemStyle-Width="10px">
+                                    <asp:TemplateField SortExpression="CreatedDate" ItemStyle-Width="10px">
+                                        <HeaderTemplate>
+                                            <asp:LinkButton ID="lnkCreatedDate" runat="server" CommandArgument="CreatedDate" CssClass="header-link" ToolTip="Sort" OnClick="lnkCategory_Click">CreatedDate</asp:LinkButton>
+                                        </HeaderTemplate>
                                         <ItemTemplate>
                                             <div>
                                                 <%# Convert.ToDateTime(Eval("CreatedDate")).ToString("MM/dd/yyyy") %><br />
@@ -102,13 +122,16 @@
                                             </div>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Action" ItemStyle-Width="100px" >
+                                    <asp:TemplateField HeaderText="Action" ItemStyle-Width="100px">
                                         <ItemTemplate>
                                             <asp:LinkButton ID="lnkEdit" runat="server" CommandName="EditCategory" CommandArgument='<%# Eval("CategoryId") %>' Text="Edit" CssClass="btn btn-primary btn-sm" />
-                                            <asp:LinkButton ID="lnkDelete" runat="server" CommandName="DeleteCategory" CommandArgument='<%# Eval("CategoryId") %>' Text="Delete" OnClientClick="return confirmDelete();" CssClass="btn btn-danger btn-sm"/>
+                                            <asp:LinkButton ID="lnkDelete" runat="server" CommandName="DeleteCategory" CommandArgument='<%# Eval("CategoryId") %>' Text="Delete" OnClientClick="return confirmDelete();" CssClass="btn btn-danger btn-sm" />
                                         </ItemTemplate>
+
+                                        <ItemStyle Width="100px"></ItemStyle>
                                     </asp:TemplateField>
                                 </Columns>
+                                <HeaderStyle CssClass="gridview-header" />
                                 <PagerStyle CssClass="datatable-pagination" />
                             </asp:GridView>
                         </div>
@@ -124,8 +147,8 @@
                 var reader = new FileReader();
                 reader.onload = function (e) {
                     document.getElementById('<%= imgCategory.ClientID %>').src = e.target.result;
-                document.getElementById('<%= imgCategory.ClientID %>').width = 200;
-                document.getElementById('<%= imgCategory.ClientID %>').height = 200;
+                    document.getElementById('<%= imgCategory.ClientID %>').width = 200;
+                    document.getElementById('<%= imgCategory.ClientID %>').height = 200;
                 };
                 reader.readAsDataURL(input.files[0]);
             }

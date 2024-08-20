@@ -22,10 +22,18 @@
     color: black;
     font-weight: bold;
     text-align: center;
+    position:relative;
 }
 
 .gridview-header a {
     color: black; /* Maintain color for sorting links */
     text-decoration: none;
 }
+
+.header-link {
+    text-decoration: none;
+    display: inline-block;
+}
+
+
 

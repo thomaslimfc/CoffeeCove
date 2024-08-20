@@ -7,6 +7,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.UI.HtmlControls;
+using System.Data.Entity.Core.Common.CommandTrees;
+using System.Collections.Concurrent;
 
 namespace CoffeeCove
 {
@@ -19,6 +22,7 @@ namespace CoffeeCove
             if (!Page.IsPostBack)
             {
                 BindCategory();
+                PositionGlyph(gvCategory, SortExpression, SortDirection);
 
             }
             lblMsg.Visible = false;
@@ -50,7 +54,7 @@ namespace CoffeeCove
                     con.Open();
                     SqlDataReader dr = cmd.ExecuteReader();
 
-                    // Use a DataTable for paging
+                    // Use a DataTable for binding
                     DataTable dt = new DataTable();
                     dt.Load(dr);
 
@@ -58,6 +62,7 @@ namespace CoffeeCove
                     gvCategory.DataBind();
                 }
             }
+            PositionGlyph(gvCategory, SortExpression, SortDirection);
         }
 
         private string SortDirection
@@ -74,21 +79,78 @@ namespace CoffeeCove
 
         protected void gvCategory_Sorting(object sender, GridViewSortEventArgs e)
         {
-            if (SortExpression == e.SortExpression)
-            {
-                // Toggle sort direction
-                SortDirection = SortDirection == "ASC" ? "DESC" : "ASC";
-            }
-            else
-            {
-                // Set sort expression and default direction
-                SortExpression = e.SortExpression;
-                SortDirection = "ASC";
-            }
+            // Always toggle the sort direction
+            SortDirection = (SortDirection == "ASC") ? "DESC" : "ASC";
 
+            // Update the sort expression to the new column or keep the same column
+            SortExpression = e.SortExpression;
+
+            // Rebind the GridView with the new sorting applied
             BindCategory();
+            PositionGlyph(gvCategory, SortExpression, SortDirection);
         }
 
+
+        private void PositionGlyph(GridView gridView, string currentSortColumn, string currentSortDirection)
+        {
+            if (gridView.HeaderRow == null)
+                return;
+
+            // Remove existing glyphs
+            foreach (TableCell cell in gridView.HeaderRow.Cells)
+            {
+                foreach (Control ctrl in cell.Controls)
+                {
+                    if (ctrl is Image img && img.ID == "sortGlyph")
+                        cell.Controls.Remove(ctrl);
+                }
+            }
+
+            // Create new glyphs for each sortable column
+            foreach (TableCell cell in gridView.HeaderRow.Cells)
+            {
+                if (cell.Controls.OfType<LinkButton>().Any())
+                {
+                    LinkButton linkButton = cell.Controls.OfType<LinkButton>().First();
+                    Image glyph = new Image
+                    {
+                        ID = "sortGlyph",
+                        EnableTheming = false,
+                        Width = Unit.Pixel(10),
+                        Height = Unit.Pixel(10)
+                    };
+
+                    if (string.Compare(currentSortColumn, linkButton.CommandArgument, true) == 0)
+                    {
+                        glyph.ImageUrl = currentSortDirection == "ASC" ? "~/img/up.png" : "~/img/down.png";
+                        glyph.AlternateText = currentSortDirection == "ASC" ? "Ascending" : "Descending";
+                    }
+                    else
+                    {
+                        glyph.ImageUrl = "~/img/up.png";
+                        glyph.AlternateText = "Ascending";
+                    }
+
+                    cell.Controls.Add(glyph);
+                }
+            }
+        }
+
+        protected void lnkCategory_Click(object sender, EventArgs e)
+        {
+            if (sender is LinkButton linkButton)
+            {
+                // Always toggle the sort direction
+                SortDirection = (SortDirection == "ASC") ? "DESC" : "ASC";
+
+                // Update the sort expression to the column that was clicked
+                SortExpression = linkButton.CommandArgument;
+
+                // Rebind the GridView with the new sorting applied
+                BindCategory();
+                PositionGlyph(gvCategory, SortExpression, SortDirection);
+            }
+        }
 
         protected void gvCategory_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
