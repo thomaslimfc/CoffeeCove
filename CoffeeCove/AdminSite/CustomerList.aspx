@@ -83,7 +83,18 @@
             // Search-Box CSS
             $('.dataTables_filter input[type="search"]').css({
                 "width": "300px",
-                "display": "inline-block"
+                "display": "inline-block",
+                "margin-bottom": "15px"
+            });
+
+            // Add margin-top to "Showing 1 to X of X entries" text
+            $('.dataTables_info').css({
+                "margin-top": "5px"
+            });
+
+            // Pagination Button Margin
+            $('.dataTables_paginate').css({
+                "margin-top": "30px"
             });
         });
     </script>

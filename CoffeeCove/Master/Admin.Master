@@ -48,7 +48,7 @@
                     <StaticMenuItemStyle CssClass="SideBarMenu" />
                         <Items>
                             <asp:MenuItem NavigateUrl="~/AdminSite/Dashboard.aspx" Text="Dashboard" Value="Dashboard"></asp:MenuItem>
-                            <asp:MenuItem NavigateUrl="#" Text="Users" Value="Users"></asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/AdminSite/CustomerList.aspx" Text="Users" Value="Users"></asp:MenuItem>
                             <asp:MenuItem NavigateUrl="~/AdminSite/Orders.aspx" Text="Orders" Value="Orders"></asp:MenuItem>
                             <asp:MenuItem NavigateUrl="~/AdminSite/Categories.aspx" Text="Categories" Value="Categories"></asp:MenuItem>
                             <asp:MenuItem NavigateUrl="~/AdminSite/Products.aspx" Text="Products" Value="Products"></asp:MenuItem>
