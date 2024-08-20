@@ -1,39 +1,43 @@
 ﻿.label {
     padding-bottom: 5px;
-    font-weight:500;
+    font-weight: 500;
     letter-spacing: -0.5px;
 }
 
 .card-title {
-    font-size:25px;
+    font-size: 25px;
 }
 
 .error {
-    color:red;
-    background-image:url(../img/error.png);
-    background-repeat:no-repeat;
-    background-position:left center;
-    padding-left:25px;
+    color: red;
+    background-image: url(../img/error.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    padding-left: 25px;
 }
 
-/* Header Style for Sorted Columns (Ascending) */
 .gridview-header {
     background-color: #4CAF50;
     color: black;
     font-weight: bold;
     text-align: center;
-    position:relative;
+    position: relative;
 }
 
-.gridview-header a {
-    color: black; /* Maintain color for sorting links */
-    text-decoration: none;
-}
+    .gridview-header a {
+        color: black; 
+        text-decoration: none;
+    }
 
 .header-link {
     text-decoration: none;
     display: inline-block;
 }
 
+.gridview-header th {
+    text-align: left;
+}
 
-
+.header-link img {
+    margin-left: 5px; 
+}
