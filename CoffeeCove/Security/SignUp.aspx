@@ -257,9 +257,33 @@
             CssClass="rqdValidator" 
             ValidationExpression="^[^@\s]+@[^@\s]+\.[^@\s]+$" />
     </div>
+
+    <!-- Contact Number -->
+    <label for="first-name" class="block text-sm text-muted-foreground" style="padding-bottom: 3px;">Contact Number</label>
+    <div class="relative mb-4">
+        <asp:TextBox ID="ContactNo_SU" runat="server" 
+            CssClass="w-full p-2 border border-border rounded-md focus:outline-none"
+            placeholder="012-3456789" />
+        <asp:RequiredFieldValidator 
+            ID="ContactNo_SU_rqdValidator" runat="server" 
+            ControlToValidate="ContactNo_SU" 
+            ErrorMessage="Contact Number is required." 
+            Display="Dynamic" 
+            ForeColor="Red" 
+            CssClass="rqdValidator" />
+        <asp:RegularExpressionValidator 
+            ID="ContactNo_SU_regexValidator" 
+            runat="server" 
+            ControlToValidate="ContactNo_SU" 
+            ErrorMessage="Must start with 0 in front with '-'." 
+            Display="Dynamic" 
+            ForeColor="Red" 
+            CssClass="rqdValidator" 
+            ValidationExpression="^01[0-9]-[0-9]{7,9}$" />
+    </div>
     
     <!-- Password -->
-    <label for="first-name" class="block text-sm text-muted-foreground">Password</label>
+    <label for="first-name" class="block text-sm text-muted-foreground" style="padding-bottom: 3px;">Password</label>
     <div class="relative mb-4">
         <asp:TextBox ID="Password_SU" 
             CssClass="w-full p-2 border border-border rounded-md focus:outline-none"
@@ -288,7 +312,7 @@
     </div>
     
     <!-- Re-enter Password -->
-    <label for="first-name" class="block text-sm text-muted-foreground">Re-enter Password</label>
+    <label for="first-name" class="block text-sm text-muted-foreground" style="padding-bottom: 3px;">Re-enter Password</label>
     <div class="relative mb-4">
         <asp:TextBox ID="PasswordReenter_SU" 
             CssClass="w-full p-2 border border-border rounded-md focus:outline-none"

@@ -23,24 +23,22 @@
     <main id="main" class="main">
 
     <h3>Data Tables</h3>
+    <br />
 
-    <section class="section">
+    <section class="section" style="margin-left: 20px;">
       <div class="row">
         <div class="col-lg-12">
-
           <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Datatables</h5>
-              <p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable. Check for <a href="https://fiduswriter.github.io/simple-datatables/demos/" target="_blank">more examples</a>.</p>
+            <div class="card-body" style="width: 1000px;">
 
               <!-- Table with stripped rows -->
               <table class="table datatable">
                 <thead>
                   <tr>
                     <th>
-                      <b>N</b>ame
+                      <b>Customer ID</b>
                     </th>
-                    <th>Ext.</th>
+                    <th>Username</th>
                     <th>City</th>
                     <th data-type="date" data-format="YYYY/DD/MM">Start Date</th>
                     <th>Completion</th>

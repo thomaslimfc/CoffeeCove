@@ -150,6 +150,33 @@ namespace CoffeeCove.Security
         protected global::System.Web.UI.WebControls.RegularExpressionValidator EmailAdd_SU_regexValidator;
 
         /// <summary>
+        /// ContactNo_SU control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox ContactNo_SU;
+
+        /// <summary>
+        /// ContactNo_SU_rqdValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ContactNo_SU_rqdValidator;
+
+        /// <summary>
+        /// ContactNo_SU_regexValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator ContactNo_SU_regexValidator;
+
+        /// <summary>
         /// Password_SU control.
         /// </summary>
         /// <remarks>
