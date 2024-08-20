@@ -122,7 +122,7 @@
     <h2 class="text-2xl font-bold text-foreground mb-4">Sign In</h2>
     <!-- Email Address -->
     <div class="mb-4">
-        <label for="first-name" class="block text-sm text-muted-foreground">Email Address</label>
+        <label for="first-name" class="block text-sm text-muted-foreground" style="padding-bottom: 3px;">Email Address</label>
         <div class="mb-4">
             <asp:TextBox ID="EmailAdd_SI2" 
                 CssClass="w-full p-2 border border-border rounded-md focus:outline-none focus:ring focus:ring-ring" 
@@ -151,7 +151,7 @@
     </div>
 
     <!-- Password -->
-    <label for="first-name" class="block text-sm text-muted-foreground">Password</label>
+    <label for="first-name" class="block text-sm text-muted-foreground" style="padding-bottom: 3px;">Password</label>
     <div class="relative mb-4">
         <asp:TextBox ID="Password_SI2" 
             CssClass="w-full p-2 border border-border rounded-md focus:outline-none"

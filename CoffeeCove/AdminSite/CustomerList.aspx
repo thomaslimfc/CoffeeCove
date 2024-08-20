@@ -12,9 +12,9 @@
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 
     <main id="main" class="main">
-        <h3>Customer List</h3>
-        <br />
         <section class="section" style="margin-left: 20px;">
+            <h3>Customer List</h3>
+            <br />
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card" style="width: 1300px;">
@@ -55,6 +55,30 @@
                                     </asp:Repeater>
                                 </tbody>
                             </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br /><br />
+            <div class="row">
+                <h3>User Profile Maintenance</h3>
+                <div class="col-lg-12">
+                    <div class="card" style="width: 1300px;">
+                        <div class="card-body">
+                            ss
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br /><br />
+            <div class="row">
+                <h3>User Deletion</h3>
+                <div class="col-lg-12">
+                    <div class="card" style="width: 1300px;">
+                        <div class="card-body">
+                            ss
                         </div>
                     </div>
                 </div>

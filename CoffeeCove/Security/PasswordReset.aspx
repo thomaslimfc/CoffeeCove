@@ -139,7 +139,7 @@
     <h2 class="text-2xl font-bold text-foreground mb-4">Reset Password</h2>
 
     <!-- Password -->
-    <label for="first-name" class="block text-sm text-muted-foreground">Password</label>
+    <label for="first-name" class="block text-sm text-muted-foreground" style="padding-bottom: 3px;">Password</label>
     <div class="relative mb-4">
          <asp:TextBox ID="Password_PR" 
             CssClass="w-full p-2 border border-border rounded-md focus:outline-none focus:ring focus:ring-ring"
@@ -168,7 +168,7 @@
     </div>
     
     <!-- Re-enter Password -->
-    <label for="first-name" class="block text-sm text-muted-foreground">Re-enter Password</label>
+    <label for="first-name" class="block text-sm text-muted-foreground" style="padding-bottom: 3px;">Re-enter Password</label>
     <div class="relative mb-4">
         <asp:TextBox ID="PasswordConfirm_PR" 
             CssClass="w-full p-2 border border-border rounded-md focus:outline-none focus:ring focus:ring-ring"

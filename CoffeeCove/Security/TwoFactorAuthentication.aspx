@@ -122,7 +122,7 @@
     <h2 class="text-2xl font-bold text-foreground mb-4">2-Factor Authentication</h2>
 
     <!-- Password -->
-    <label for="first-name" class="block text-sm text-muted-foreground">OTP Code</label>
+    <label for="first-name" class="block text-sm text-muted-foreground" style="padding-bottom: 3px;">OTP Code</label>
     <div class="relative mb-4">
         <asp:TextBox ID="otp" 
             CssClass="w-full p-2 border border-border rounded-md focus:outline-none focus:ring focus:ring-ring"

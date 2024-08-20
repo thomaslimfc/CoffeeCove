@@ -122,7 +122,7 @@
     <h2 class="text-2xl font-bold text-foreground mb-4">Sign In</h2>
     <!-- Username -->
     <div class="mb-4">
-        <label for="first-name" class="block text-sm text-muted-foreground">Username</label>
+        <label for="first-name" class="block text-sm text-muted-foreground" style="padding-bottom: 3px;">Username</label>
         <asp:TextBox ID="Username_SI" 
             CssClass="w-full p-2 border border-border rounded-md focus:outline-none" 
             runat="server"
@@ -149,7 +149,7 @@
     </div>
 
     <!-- Password -->
-    <label for="first-name" class="block text-sm text-muted-foreground">Password</label>
+    <label for="first-name" class="block text-sm text-muted-foreground" style="padding-bottom: 3px;">Password</label>
     <div class="relative mb-4">
         <asp:TextBox ID="Password_SI" 
             CssClass="w-full p-2 border border-border rounded-md focus:outline-none"

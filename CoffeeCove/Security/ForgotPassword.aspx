@@ -105,7 +105,7 @@
     <div class="trMarginBottom20"></div>    
     <!-- Username -->
     <div class="mb-4">
-        <label for="first-name" class="block text-sm text-muted-foreground">Username / Email</label>
+        <label for="first-name" class="block text-sm text-muted-foreground" style="padding-bottom: 3px;">Username / Email</label>
         <asp:TextBox ID="UsernameEmail_FP" 
             CssClass="w-full p-2 border border-border rounded-md focus:outline-none" 
             runat="server"
