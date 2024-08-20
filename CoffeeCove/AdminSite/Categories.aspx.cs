@@ -30,11 +30,17 @@ namespace CoffeeCove
 
         private void BindCategory(string searchTerm = "")
         {
-            string sql = "SELECT * FROM Category";
+            string sql = "SELECT * FROM Category WHERE 1=1";
+            string filter = ddlFilter.SelectedValue;
 
             if (!string.IsNullOrEmpty(searchTerm))
             {
                 sql += " WHERE CategoryId LIKE @SearchTerm OR CategoryName LIKE @SearchTerm";
+            }
+
+            if (filter != "All")
+            {
+                sql += " AND IsActive = @IsActive";
             }
 
             if (!string.IsNullOrEmpty(SortExpression))
@@ -49,6 +55,11 @@ namespace CoffeeCove
                     if (!string.IsNullOrEmpty(searchTerm))
                     {
                         cmd.Parameters.AddWithValue("@SearchTerm", searchTerm + '%');
+                    }
+
+                    if (filter != "All")
+                    {
+                        cmd.Parameters.AddWithValue("@IsActive", filter == "True");
                     }
 
                     con.Open();
@@ -85,13 +96,11 @@ namespace CoffeeCove
 
         protected void gvCategory_Sorting(object sender, GridViewSortEventArgs e)
         {
-            // Always toggle the sort direction
             SortDirection = (SortDirection == "ASC") ? "DESC" : "ASC";
 
-            // Update the sort expression to the new column or keep the same column
+            // Update the sort expression to the new column 
             SortExpression = e.SortExpression;
 
-            // Rebind the GridView with the new sorting applied
             BindCategory();
             PositionGlyph(gvCategory, SortExpression, SortDirection);
         }
@@ -162,6 +171,11 @@ namespace CoffeeCove
             // Set the new page index
             gvCategory.PageIndex = e.NewPageIndex;
 
+            BindCategory();
+        }
+
+        protected void ddlFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
             BindCategory();
         }
 

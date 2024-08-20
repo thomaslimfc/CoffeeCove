@@ -56,27 +56,37 @@
 
                 <!-- AJAX tools:Search -->
                 <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
-                <div class="search-bar">
-                    <asp:TextBox ID="txtSearch" runat="server" Placeholder="Search ID, Name" CssClass="datatable-input"></asp:TextBox>
-                    <asp:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtSearch"
-                        EnableCaching="false" CompletionInterval="100" CompletionSetCount="10" MinimumPrefixLength="1" ServiceMethod="GetItemList">
-                    </asp:AutoCompleteExtender>
+                <table style="margin-left: 10px; margin-bottom: 10px">
+                    <tr>
+                        <td class="search-bar">
+                            <asp:TextBox ID="txtSearch" runat="server" Placeholder="Search ID, Name" CssClass="datatable-input"></asp:TextBox>
+                            <asp:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtSearch"
+                                EnableCaching="false" CompletionInterval="100" CompletionSetCount="10" MinimumPrefixLength="1" ServiceMethod="GetItemList">
+                            </asp:AutoCompleteExtender>
 
-                    <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" CssClass="btn btn-primary" />
-                    <asp:Button ID="btnClear" runat="server" Text="Clear" OnClick="btnClear_Click" CssClass="btn btn-secondary" />
-                </div>
-                <br />
-                <br />
+                            <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" CssClass="btn btn-primary" />
+                            <asp:Button ID="btnClear" runat="server" Text="Clear" OnClick="btnClear_Click" CssClass="btn btn-secondary" />
+
+                        </td>
+                        <td>
+                            <asp:DropDownList ID="ddlFilter" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlFilter_SelectedIndexChanged" CssClass="form-select" Width="80%">
+                                <asp:ListItem Text="All" Value="All" />
+                                <asp:ListItem Text="Active" Value="True" />
+                                <asp:ListItem Text="Inactive" Value="False" />
+                            </asp:DropDownList>
+                        </td>
+                    </tr>
+                </table>
 
                 <!-- Category List -->
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Category List</h5>
+
                             <asp:GridView ID="gvCategory" runat="server" AutoGenerateColumns="False" CssClass="table table-striped"
                                 OnRowCommand="gvCategory_RowCommand" Width="100%" AllowSorting="True" OnSorting="gvCategory_Sorting"
                                 AllowPaging="true" OnPageIndexChanging="gvCategory_PageIndexChanging" PageSize="5" EmptyDataText="No categories found.">
-
                                 <Columns>
                                     <asp:TemplateField SortExpression="CategoryId" ItemStyle-Width="10px">
                                         <HeaderTemplate>
@@ -147,8 +157,8 @@
                 var reader = new FileReader();
                 reader.onload = function (e) {
                     document.getElementById('<%= imgCategory.ClientID %>').src = e.target.result;
-                document.getElementById('<%= imgCategory.ClientID %>').width = 200;
-                document.getElementById('<%= imgCategory.ClientID %>').height = 200;
+                    document.getElementById('<%= imgCategory.ClientID %>').width = 200;
+                    document.getElementById('<%= imgCategory.ClientID %>').height = 200;
                 };
                 reader.readAsDataURL(input.files[0]);
             }

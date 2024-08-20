@@ -33,14 +33,23 @@ namespace CoffeeCove.AdminSite
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     con.Open();
-                    SqlDataReader dr = cmd.ExecuteReader();
-                    ddlCategory.DataSource = dr;
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    ddlCategory.DataSource = dt;
                     ddlCategory.DataTextField = "CategoryName";
                     ddlCategory.DataValueField = "CategoryId";
                     ddlCategory.DataBind();
+
+                    ddlFilterCategory.DataSource = dt;
+                    ddlFilterCategory.DataTextField = "CategoryName";
+                    ddlFilterCategory.DataValueField = "CategoryId";
+                    ddlFilterCategory.DataBind();
                 }
             }
             ddlCategory.Items.Insert(0, new ListItem("Select Category", ""));
+            ddlFilterCategory.Items.Insert(0, new ListItem("All Categories", ""));
         }
 
         private void BindProduct(string searchTerm = "")
@@ -48,11 +57,23 @@ namespace CoffeeCove.AdminSite
             string sql = @"SELECT p.ProductId, p.ProductName, p.Description, p.UnitPrice, p.ImageUrl, p.IsActive, 
                         p.CategoryId, c.CategoryName, p.CreatedDate 
                         FROM Product p
-                        INNER JOIN Category c ON p.CategoryId = c.CategoryId";
+                        INNER JOIN Category c ON p.CategoryId = c.CategoryId WHERE p.IsActive=1";
+            string selectedCategory = ddlFilterCategory.SelectedValue;
+            string filterActive = ddlFilterActive.SelectedValue;
 
             if (!string.IsNullOrEmpty(searchTerm))
             {
                 sql += " WHERE ProductId LIKE @SearchTerm OR ProductName LIKE @SearchTerm";
+            }
+
+            if (!string.IsNullOrEmpty(selectedCategory))
+            {
+                sql += " AND p.CategoryId = @CategoryId";
+            }
+
+            if (filterActive != "All")
+            {
+                sql += " AND p.IsActive = @IsActive";
             }
 
             if (!string.IsNullOrEmpty(SortExpression))
@@ -67,6 +88,16 @@ namespace CoffeeCove.AdminSite
                     if (!string.IsNullOrEmpty(searchTerm))
                     {
                         cmd.Parameters.AddWithValue("@SearchTerm", searchTerm + '%');
+                    }
+
+                    if (!string.IsNullOrEmpty(selectedCategory))
+                    {
+                        cmd.Parameters.AddWithValue("@CategoryId", selectedCategory);
+                    }
+
+                    if (filterActive != "All")
+                    {
+                        cmd.Parameters.AddWithValue("@IsActive", filterActive == "True");
                     }
 
                     con.Open();
@@ -180,6 +211,16 @@ namespace CoffeeCove.AdminSite
             // Set the new page index
             gvProduct.PageIndex = e.NewPageIndex;
 
+            BindProduct();
+        }
+
+        protected void ddlFilterActive_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindProduct();
+        }
+
+        protected void ddlFilterCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
             BindProduct();
         }
 

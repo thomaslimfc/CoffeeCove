@@ -150,6 +150,15 @@ namespace CoffeeCove
         protected global::System.Web.UI.WebControls.Button btnClear;
 
         /// <summary>
+        /// ddlFilter control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlFilter;
+
+        /// <summary>
         /// gvCategory control.
         /// </summary>
         /// <remarks>

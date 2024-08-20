@@ -66,16 +66,29 @@
 
                 <!--AJAX tools: Search-->
                 <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
-                <div class="search-bar">
-                    <asp:TextBox ID="txtSearch" runat="server" Placeholder="Search ID, Name" CssClass="datatable-input"></asp:TextBox>
-                    <asp:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtSearch"
-                        EnableCaching="false" CompletionInterval="100" CompletionSetCount="10" MinimumPrefixLength="1" ServiceMethod="GetItemList">
-                    </asp:AutoCompleteExtender>
-                    <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" CssClass="btn btn-primary" />
-                    <asp:Button ID="btnClear" runat="server" Text="Clear" OnClick="btnClear_Click" CssClass="btn btn-secondary" />
-                </div>
-                <br />
-                <br />
+                <table style="margin-left: 10px; margin-bottom: 10px">
+                    <tr>
+                        <td class="search-bar">
+                            <asp:TextBox ID="txtSearch" runat="server" Placeholder="Search ID, Name" CssClass="datatable-input"></asp:TextBox>
+                            <asp:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtSearch"
+                                EnableCaching="false" CompletionInterval="100" CompletionSetCount="10" MinimumPrefixLength="1" ServiceMethod="GetItemList">
+                            </asp:AutoCompleteExtender>
+                            <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" CssClass="btn btn-primary" />
+                            <asp:Button ID="btnClear" runat="server" Text="Clear" OnClick="btnClear_Click" CssClass="btn btn-secondary" />
+                        </td>
+                        <td>
+                            <asp:DropDownList ID="ddlFilterCategory" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlFilterCategory_SelectedIndexChanged" CssClass="form-select" Width="80%"></asp:DropDownList>
+                        </td>
+                        <td>
+                            <asp:DropDownList ID="ddlFilterActive" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlFilterActive_SelectedIndexChanged" CssClass="form-select" Width="80%">
+                                <asp:ListItem Text="All" Value="All" />
+                                <asp:ListItem Text="Active" Value="True" />
+                                <asp:ListItem Text="Inactive" Value="False" />
+                            </asp:DropDownList>
+                        </td>
+                    </tr>
+                </table>
+
                 <!-- Product List -->
                 <div class="col-lg-12">
                     <div class="card">
