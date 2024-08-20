@@ -12,7 +12,7 @@
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 
     <main id="main" class="main">
-        <h3>Data Tables</h3>
+        <h3>Customer List</h3>
         <br />
         <section class="section" style="margin-left: 20px;">
             <div class="row">
