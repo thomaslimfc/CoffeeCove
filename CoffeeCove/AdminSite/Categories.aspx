@@ -3,7 +3,9 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
     <link href="../CSS/ProductCategory.css" rel="stylesheet" />
+
     <div id="main" class="main">
         <div class="pagetitle">
             <br />
@@ -11,6 +13,7 @@
         </div>
         <section class="section">
             <div class="row" style="margin-top: 2%;">
+
                 <!-- Category Form -->
                 <div class="col-lg-12">
                     <div class="card">
@@ -44,13 +47,14 @@
                     </div>
                 </div>
 
+                <!-- Message display -->
                 <div class="col-lg-12">
                     <asp:Label ID="lblMsg" runat="server" CssClass="alert alert-success" Visible="false"></asp:Label>
                 </div>
                 <br />
                 <br />
 
-
+                <!-- AJAX tools:Search -->
                 <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
                 <div class="search-bar">
                     <asp:TextBox ID="txtSearch" runat="server" Placeholder="Search..." CssClass="datatable-input"></asp:TextBox>
@@ -61,48 +65,52 @@
                     <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" CssClass="btn btn-primary" />
                     <asp:Button ID="btnClear" runat="server" Text="Clear" OnClick="btnClear_Click" CssClass="btn btn-secondary" />
                 </div>
-
-
+                <br />
+                <br />
 
                 <!-- Category List -->
-
                 <div class="col-lg-12">
                     <div class="card">
-
                         <div class="card-body">
                             <h5 class="card-title">Category List</h5>
-
                             <asp:GridView ID="gvCategory" runat="server" AutoGenerateColumns="False" CssClass="table table-striped"
                                 OnRowCommand="gvCategory_RowCommand" Width="100%" AllowSorting="True" OnSorting="gvCategory_Sorting"
                                 AllowPaging="true" OnPageIndexChanging="gvCategory_PageIndexChanging" PageSize="5">
+                               
                                 <Columns>
-                                    <asp:BoundField DataField="CategoryId" HeaderText="ID" SortExpression="CategoryId" />
-                                    <asp:BoundField DataField="CategoryName" HeaderText="Name" SortExpression="CategoryName" />
-                                    <asp:TemplateField HeaderText="Image">
+                                    <asp:BoundField DataField="CategoryId" HeaderText="ID" SortExpression="CategoryId" ItemStyle-Width="10px" />
+                                    <asp:BoundField DataField="CategoryName" HeaderText="Name" SortExpression="CategoryName" ItemStyle-Width="150px" />
+                                    <asp:TemplateField HeaderText="Image" ItemStyle-Width="10px" >
                                         <ItemTemplate>
                                             <img src='<%# Eval("CategoryImageUrl") %>' width="50" height="50" />
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Is Active">
+                                    <asp:TemplateField HeaderText="Is Active" ItemStyle-Width="20px" >
                                         <ItemTemplate>
                                             <%# Eval("IsActive", "{0}") == "True" ? 
                                     "<span class='badge rounded-pill bg-success'>Active</span>" : 
                                     "<span class='badge rounded-pill bg-danger'>InActive</span>" %>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:BoundField DataField="CreatedDate" HeaderText="Created Date" DataFormatString="{0:MM/dd/yyyy hh:mm:ss tt}" SortExpression="CreatedDate" />
-                                    <asp:TemplateField HeaderText="Action">
+                                    <asp:TemplateField HeaderText="Created Date" SortExpression="CreatedDate" ItemStyle-Width="10px">
                                         <ItemTemplate>
-                                            <asp:LinkButton ID="lnkEdit" runat="server" CommandName="EditCategory" CommandArgument='<%# Eval("CategoryId") %>' Text="Edit" />
-                                            <asp:LinkButton ID="lnkDelete" runat="server" CommandName="DeleteCategory" CommandArgument='<%# Eval("CategoryId") %>' Text="Delete" OnClientClick="return confirmDelete();" />
+                                            <div>
+                                                <%# Convert.ToDateTime(Eval("CreatedDate")).ToString("MM/dd/yyyy") %><br />
+                                                <span style="font-size: 0.9em;">
+                                                    <%# Convert.ToDateTime(Eval("CreatedDate")).ToString("hh:mm:ss tt") %>
+                                                </span>
+                                            </div>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-
+                                    <asp:TemplateField HeaderText="Action" ItemStyle-Width="100px" >
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="lnkEdit" runat="server" CommandName="EditCategory" CommandArgument='<%# Eval("CategoryId") %>' Text="Edit" CssClass="btn btn-primary btn-sm" />
+                                            <asp:LinkButton ID="lnkDelete" runat="server" CommandName="DeleteCategory" CommandArgument='<%# Eval("CategoryId") %>' Text="Delete" OnClientClick="return confirmDelete();" CssClass="btn btn-danger btn-sm"/>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
                                 </Columns>
                                 <PagerStyle CssClass="datatable-pagination" />
                             </asp:GridView>
-
-
                         </div>
                     </div>
                 </div>

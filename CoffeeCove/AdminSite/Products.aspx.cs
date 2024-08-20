@@ -20,6 +20,7 @@ namespace CoffeeCove.AdminSite
             {
                 BindCategoryDropDown();
                 BindProduct();
+                UpdateSortingIndicators();
             }
         }
 
@@ -107,6 +108,7 @@ namespace CoffeeCove.AdminSite
             }
 
             BindProduct();
+           
         }
 
         protected void gvProduct_PageIndexChanging(object sender, GridViewPageEventArgs e)

@@ -16,3 +16,16 @@
     padding-left:25px;
 }
 
+/* Header Style for Sorted Columns (Ascending) */
+.gridview-header {
+    background-color: #4CAF50;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+}
+
+.gridview-header a {
+    color: black; /* Maintain color for sorting links */
+    text-decoration: none;
+}
+
