@@ -644,6 +644,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbCoffeeCoveModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Delivery.cs">
+      <DependentUpon>dbCoffeeCoveModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -674,6 +677,12 @@
     </Compile>
     <Compile Include="Menu\Menu.aspx.designer.cs">
       <DependentUpon>Menu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Order.cs">
+      <DependentUpon>dbCoffeeCoveModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderedItem.cs">
+      <DependentUpon>dbCoffeeCoveModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Order\cartEdit.aspx.cs">
       <DependentUpon>cartEdit.aspx</DependentUpon>
@@ -723,6 +732,9 @@
     </Compile>
     <Compile Include="Payment\paymentOpt.aspx.designer.cs">
       <DependentUpon>paymentOpt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PickUp.cs">
+      <DependentUpon>dbCoffeeCoveModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Product.cs">
       <DependentUpon>dbCoffeeCoveModel.tt</DependentUpon>
@@ -790,6 +802,9 @@
     </Compile>
     <Compile Include="Security\UserAgreement.aspx.designer.cs">
       <DependentUpon>UserAgreement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Store.cs">
+      <DependentUpon>dbCoffeeCoveModel.tt</DependentUpon>
     </Compile>
     <Compile Include="UserManagement\UserProfile.aspx.cs">
       <DependentUpon>UserProfile.aspx</DependentUpon>

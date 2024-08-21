@@ -16,7 +16,6 @@
             <div class="card-body">
               <h5 class="card-title">Order</h5>
 
-              <!-- Vertical Form -->
               <div class="row g-3">
                 <div class="col-12">
                     <label class="label">From:</label>
@@ -30,6 +29,42 @@
                     <asp:Button ID="btnSearch" runat="server" Text="Search" ValidationGroup="OrderForm" CssClass="btn btn-secondary" />
                     &nbsp;&nbsp;
                     <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-dark" />
+                </div>
+                <div class="col-8">
+                    <table id="viewOrder" style="display:none">
+                        <tr>
+                            <td>
+                                OrderNo:
+                            </td>
+                            <td>
+                                <asp:Label ID="lblOrderNo" runat="server"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Date:
+                            </td>
+                            <td>
+                                <asp:Label ID="lblDate" runat="server"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Delivery/Pick-Up No:
+                            </td>
+                            <td>
+                                <asp:Label ID="lblDelPick" runat="server"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Amount:
+                            </td>
+                            <td>
+                                <asp:Label ID="lblAmount" runat="server"></asp:Label>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
               </div>
 
@@ -63,16 +98,16 @@
                 <div class="card-body">
                     <h5 class="card-title">Order List</h5>
                 
-                    <asp:GridView ID="gvOrder" runat="server" DataSourceID="SqlDataSource1" AutoGenerateColumns="False" DataKeyNames="OrderID" CssClass="table table-striped" PageSize="10" AllowPaging="true" AllowSorting="true" EmptyDataText="There are no data records">
+                    <asp:GridView ID="gvOrder" runat="server" DataSourceID="SqlDataSource1" AutoGenerateColumns="False" DataKeyNames="OrderID" CssClass="table table-striped" PageSize="10" AllowPaging="true" AllowSorting="true" EmptyDataText="There are no data records" OnRowCommand="gvOrder_RowCommand">
                         <Columns>
                             <asp:BoundField DataField="OrderID" HeaderText="OrderID" ReadOnly="True" SortExpression="OrderID" />
-                            <asp:BoundField DataField="OrderDate" HeaderText="OrderDate" SortExpression="OrderDate" />
-                            <asp:BoundField DataField="TotalAmount" HeaderText="TotalAmount" SortExpression="TotalAmount" />
+                            <asp:BoundField DataField="OrderDate" HeaderText="Date" SortExpression="OrderDate" />
                             <asp:BoundField DataField="DeliveryNo" HeaderText="DeliveryNo" SortExpression="DeliveryNo" />
-                            <asp:BoundField DataField="PickUpNo" HeaderText="PickUpNo" SortExpression="PickUpNo " />
+                            <asp:BoundField DataField="PickUpNo" HeaderText="Pick-UpNo" SortExpression="PickUpNo " />
+                            <asp:BoundField DataField="TotalAmount" HeaderText="TotalAmount" SortExpression="TotalAmount" />
                             <asp:TemplateField HeaderText="Action" ItemStyle-Width="150px">
                                 <ItemTemplate>
-                                    <asp:LinkButton ID="btnView" runat="server" CommandName="viewOrder" CommandArgument='<%# Eval("OrderId") %>' Text="View" CssClass="btn btn-primary btn-sm"/>
+                                    <asp:LinkButton ID="btnView" runat="server" CommandName="viewOrder" CommandArgument='<%# Eval("OrderId") %>' Text="View" CssClass="btn btn-primary btn-sm" OnClientClick="viewOrder(event);"/>
                                     <asp:LinkButton ID="btnDelete" runat="server" CommandName="deleteOrder" CommandArgument='<%# Eval("OrderId") %>' Text="Delete" CssClass="btn btn-danger btn-sm" OnClientClick="return confirmDelete();"/>
                                 </ItemTemplate>
                             </asp:TemplateField>
@@ -100,5 +135,10 @@
         function confirmDelete() {
             return confirm("Do you confirm you want to delete this store from store list?");
         }
+        function viewOrder(event) {
+            document.getElementById("viewOrder").style.display = 'block';
+            event.preventDefault();
+        }
+
         </script>
 </asp:Content>
