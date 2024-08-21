@@ -112,7 +112,7 @@ namespace CoffeeCove.Menu
 
                         hfProductId.Value = dr["ProductId"].ToString();
                         hfProductName.Value = dr["ProductName"].ToString();
-                        hfSize.Value = "Regular"; 
+                        hfSize.Value = "Regular";
                         hfFlavour.Value = "Hot";
                         hfIceLevel.Value = "No Ice";
                         hfAddOn.Value = ddlAddOn.SelectedValue;
@@ -136,7 +136,7 @@ namespace CoffeeCove.Menu
                             ddlIceLevel.Visible = false;
                             ddlAddOn.Visible = false;
                             txtSpecialInstructions.Visible = true;
-                            
+
                         }
                         else if (categoryId == "4")
                         {
@@ -149,6 +149,7 @@ namespace CoffeeCove.Menu
                             ddlIceLevel.Visible = true;
                             ddlAddOn.Visible = false;
                             txtSpecialInstructions.Visible = true;
+
                         }
                         else
                         {
@@ -161,6 +162,7 @@ namespace CoffeeCove.Menu
                             ddlIceLevel.Visible = true;
                             ddlAddOn.Visible = true;
                             txtSpecialInstructions.Visible = true;
+
                         }
 
                         // Show the panel
@@ -251,21 +253,21 @@ namespace CoffeeCove.Menu
             // Retrieve values from form controls
             string productId = lblProductID.Text;
             string productName = lblProductName.Text;
-            string size = ddlSize.SelectedValue;
-            string flavour = ddlFlavour.SelectedValue;
-            string iceLevel = ddlIceLevel.SelectedValue;
-            string addOn = ddlAddOn.SelectedValue;
-            string specialInstructions = txtSpecialInstructions.Text;
+            string size = ddlSize.Visible ? ddlSize.SelectedValue : null;
+            string flavour = ddlFlavour.Visible ? ddlFlavour.SelectedValue : null;
+            string iceLevel = ddlIceLevel.Visible ? ddlIceLevel.SelectedValue : null;
+            string addOn = ddlAddOn.Visible ? ddlAddOn.SelectedValue : null;
+            string specialInstructions = txtSpecialInstructions.Visible ? txtSpecialInstructions.Text : null;
             int quantity = GetQuantity();
 
             // Calculate the updated price
             decimal basePrice = Convert.ToDecimal(ViewState["BasePrice"]);
             decimal finalPrice = basePrice;
 
-            if (ddlSize.SelectedValue == "Large") finalPrice += 1.50m;
-            if (ddlFlavour.SelectedValue == "Cold") finalPrice += 1.50m;
-            if (ddlAddOn.SelectedValue == "1EspressoShot") finalPrice += 2.50m;
-            if (ddlAddOn.SelectedValue == "2EspressoShots") finalPrice += 5.00m;
+            if (ddlSize.Visible && ddlSize.SelectedValue == "Large") finalPrice += 1.50m;
+            if (ddlFlavour.Visible && ddlFlavour.SelectedValue == "Cold") finalPrice += 1.50m;
+            if (ddlAddOn.Visible && ddlAddOn.SelectedValue == "1EspressoShot") finalPrice += 2.50m;
+            if (ddlAddOn.Visible && ddlAddOn.SelectedValue == "2EspressoShots") finalPrice += 5.00m;
 
             finalPrice *= quantity; // Total price based on quantity
 
@@ -279,11 +281,33 @@ namespace CoffeeCove.Menu
                     cmd.Parameters.AddWithValue("@ProductID", productId);
                     cmd.Parameters.AddWithValue("@OrderID", GetCurrentOrderId()); // Implement GetCurrentOrderId() to return the current order ID
                     cmd.Parameters.AddWithValue("@Quantity", quantity);
-                    cmd.Parameters.AddWithValue("@Size", size);
-                    cmd.Parameters.AddWithValue("@Flavour", flavour);
-                    cmd.Parameters.AddWithValue("@IceLevel", iceLevel);
-                    cmd.Parameters.AddWithValue("@AddOn", addOn);
-                    cmd.Parameters.AddWithValue("@Instruction", specialInstructions);
+
+                    // Conditionally add parameters based on visibility
+                    if (ddlSize.Visible)
+                        cmd.Parameters.AddWithValue("@Size", size);
+                    else
+                        cmd.Parameters.AddWithValue("@Size", DBNull.Value);
+
+                    if (ddlFlavour.Visible)
+                        cmd.Parameters.AddWithValue("@Flavour", flavour);
+                    else
+                        cmd.Parameters.AddWithValue("@Flavour", DBNull.Value);
+
+                    if (ddlIceLevel.Visible)
+                        cmd.Parameters.AddWithValue("@IceLevel", iceLevel);
+                    else
+                        cmd.Parameters.AddWithValue("@IceLevel", DBNull.Value);
+
+                    if (ddlAddOn.Visible)
+                        cmd.Parameters.AddWithValue("@AddOn", addOn);
+                    else
+                        cmd.Parameters.AddWithValue("@AddOn", DBNull.Value);
+
+                    if (txtSpecialInstructions.Visible)
+                        cmd.Parameters.AddWithValue("@Instruction", specialInstructions);
+                    else
+                        cmd.Parameters.AddWithValue("@Instruction", DBNull.Value);
+
                     cmd.Parameters.AddWithValue("@Price", finalPrice);
 
                     con.Open();
@@ -291,6 +315,7 @@ namespace CoffeeCove.Menu
                 }
             }
         }
+
 
 
         private int GetCurrentOrderId()
