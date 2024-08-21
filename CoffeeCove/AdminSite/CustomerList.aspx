@@ -81,13 +81,14 @@
                                             <h5 class="card-title">Edit Admin Profile Info</h5>
                                             <div class="row g-3">
                                                 <div class="col-8">
-                                                    <label for="first-name" class="block text-sm text-muted-foreground" style="padding-bottom: 5px;">
+                                                    <label for="first-name" class="block text-sm text-muted-foreground">
                                                         Username (Admin)
                                                     </label>
                                                     <asp:TextBox ID="UsernameEdit_CL" CssClass="form-control mb-3" Style="width: 300px" runat="server" placeholder="desmundchau7668" title="Username" AutoPostBack="false"></asp:TextBox>
-                                                    <br />
                                                     <asp:RequiredFieldValidator ID="UsernameEdit_CL_rqdValidator" runat="server" ControlToValidate="UsernameEdit_CL" ErrorMessage="Username is required." Display="Dynamic" ForeColor="Red" CssClass="rqdValidator" />
                                                     <asp:RegularExpressionValidator ID="UsernameEdit_CL_regexValidator" runat="server" ControlToValidate="UsernameEdit_CL" ErrorMessage="Must contain >8 letters and numbers only." Display="Dynamic" ForeColor="Red" CssClass="rqdValidator" ValidationExpression="^[a-zA-Z0-9]{8,}$" />
+                                                    
+                                                    <br /> 
                                                     
                                                     <label for="first-name" class="block text-sm text-muted-foreground" style="padding-bottom: 3px;">
                                                         Branch Working
@@ -115,9 +116,15 @@
                                                         ForeColor="Red"
                                                         CssClass="rqdValidator"
                                                         ValidationGroup="SaveProfile" />
-                                                    <br />
                                                 </div>
                                             </div>
+                                            <br />
+                                            <br />
+                                            <asp:Button ID="SaveChanges_CL" 
+                                                runat="server" 
+                                                Text="Save Changes" 
+                                                style="width: 300px"
+                                                CssClass="btn btn-secondary"/>
                                         </div>
                                     </div>
                                 </div>
@@ -129,7 +136,7 @@
                                 <div class="col-lg-12">
                                     <div class="card">
                                         <div class="card-body">
-                                            <h5 class="card-title">User Deletion</h5>
+                                            <h5 class="card-title">Delete User Account</h5>
                                             <div class="row g-3">
                                                 <div class="col-8">
                                                     <label for="first-name" class="block text-sm text-muted-foreground" style="padding-bottom: 3px;">
@@ -140,12 +147,13 @@
                                                     <asp:RequiredFieldValidator ID="UsernameDeletion_CL_rqdValidator" runat="server" ControlToValidate="UsernameDeletion_CL" ErrorMessage="Username is required." Display="Dynamic" ForeColor="Red" CssClass="rqdValidator" />
                                                     <asp:RegularExpressionValidator ID="UsernameDeletion_CL_regexValidator" runat="server" ControlToValidate="UsernameDeletion_CL" ErrorMessage="Must contain >8 letters and numbers only." Display="Dynamic" ForeColor="Red" CssClass="rqdValidator" ValidationExpression="^[a-zA-Z0-9]{8,}$" />
                                                 </div>
-                                                <asp:Button ID="DeleteAcc_CL" 
-                                                    runat="server" 
-                                                    Text="Delete Account" 
-                                                    ssClass="btn btn-dark"/>
-
+                                                <br />
                                             </div>
+                                            <asp:Button ID="DeleteAcc_CL" 
+                                                runat="server" 
+                                                Text="Delete Account" 
+                                                style="width: 300px"
+                                                CssClass="btn btn-secondary"/>
                                         </div>
                                     </div>
                                 </div>

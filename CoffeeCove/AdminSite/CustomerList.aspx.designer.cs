@@ -69,6 +69,15 @@ namespace CoffeeCove.AdminSite
         protected global::System.Web.UI.WebControls.RequiredFieldValidator txtBranch_rqdValidator;
 
         /// <summary>
+        /// SaveChanges_CL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button SaveChanges_CL;
+
+        /// <summary>
         /// UsernameDeletion_CL control.
         /// </summary>
         /// <remarks>
