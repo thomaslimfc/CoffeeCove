@@ -30,5 +30,17 @@ namespace CoffeeCove.AdminSite
                 rptCustomerList.DataBind();
             }
         }
+
+        protected void DeleteUserBtn_CL_Click(object sender, EventArgs e)
+        {
+            // Your logic for deleting a user.
+            // Example:
+            string username = Username_SI.Text;
+
+            // Perform the deletion logic here, e.g., remove the user from the database.
+
+            // Optionally, show a confirmation message to the user.
+            Response.Write("<script>alert('User deleted successfully.');</script>");
+        }
     }
 }
