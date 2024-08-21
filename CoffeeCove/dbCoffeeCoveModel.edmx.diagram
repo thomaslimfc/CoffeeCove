@@ -4,18 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ed3a14d0c6854db48ab3c6e14173a57c" Name="Diagram1" ZoomLevel="109">
+      <Diagram DiagramId="ed3a14d0c6854db48ab3c6e14173a57c" Name="Diagram1" ZoomLevel="103">
         <EntityTypeShape EntityType="dbCoffeeCoveModel.Category" Width="1.5" PointX="11" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="dbCoffeeCoveModel.Product" Width="1.5" PointX="8.375" PointY="3.625" IsExpanded="true" />
         <AssociationConnector Association="dbCoffeeCoveModel.FK_Product_Category" ManuallyRouted="false" />
         <EntityTypeShape EntityType="dbCoffeeCoveModel.Delivery" Width="1.5" PointX="2" PointY="0.625" />
-        <EntityTypeShape EntityType="dbCoffeeCoveModel.Order" Width="1.5" PointX="3.75" PointY="3.75" />
-        <EntityTypeShape EntityType="dbCoffeeCoveModel.OrderedItem" Width="1.5" PointX="6.25" PointY="3.625" IsExpanded="true" />
         <EntityTypeShape EntityType="dbCoffeeCoveModel.PickUp" Width="1.5" PointX="5.875" PointY="0.625" />
         <EntityTypeShape EntityType="dbCoffeeCoveModel.Store" Width="1.5" PointX="8.125" PointY="0.75" />
         <AssociationConnector Association="dbCoffeeCoveModel.FK_PickUp_Store" />
-        <AssociationConnector Association="dbCoffeeCoveModel.FK_OrderedItem_ToOrder" />
-        <AssociationConnector Association="dbCoffeeCoveModel.FK_OrderedItem_ToProduct" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

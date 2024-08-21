@@ -66,6 +66,11 @@ namespace CoffeeCove.Master
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
+        /// 
+        protected global::System.Web.UI.WebControls.Label lblCount;
+        protected global::System.Web.UI.WebControls.HiddenField hdnCartCount;
+
+
         protected global::System.Web.UI.WebControls.ContentPlaceHolder Content;
 
         /// <summary>

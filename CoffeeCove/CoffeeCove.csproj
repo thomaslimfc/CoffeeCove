@@ -510,7 +510,6 @@
     <Content Include="img\up.png" />
     <Content Include="img\username_icon.png" />
     <Content Include="Menu\Menu.aspx" />
-    <Content Include="Menu\OrderCart.aspx" />
     <Content Include="Order\cartEdit.aspx" />
     <Content Include="Order\getLocation.js" />
     <Content Include="Order\cart.aspx" />
@@ -673,13 +672,6 @@
     </Compile>
     <Compile Include="Menu\Menu.aspx.designer.cs">
       <DependentUpon>Menu.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Menu\OrderCart.aspx.cs">
-      <DependentUpon>OrderCart.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Menu\OrderCart.aspx.designer.cs">
-      <DependentUpon>OrderCart.aspx</DependentUpon>
     </Compile>
     <Compile Include="Order\cartEdit.aspx.cs">
       <DependentUpon>cartEdit.aspx</DependentUpon>

@@ -69,6 +69,15 @@ namespace CoffeeCove.Menu
         protected global::System.Web.UI.WebControls.Label lblProductID;
 
         /// <summary>
+        /// hfProductId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfProductId;
+
+        /// <summary>
         /// lblProductName control.
         /// </summary>
         /// <remarks>
@@ -76,6 +85,15 @@ namespace CoffeeCove.Menu
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblProductName;
+
+        /// <summary>
+        /// hfProductName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfProductName;
 
         /// <summary>
         /// lblProductDescription control.
@@ -96,6 +114,15 @@ namespace CoffeeCove.Menu
         protected global::System.Web.UI.WebControls.Label lblSize;
 
         /// <summary>
+        /// hfSize control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfSize;
+
+        /// <summary>
         /// ddlSize control.
         /// </summary>
         /// <remarks>
@@ -112,6 +139,15 @@ namespace CoffeeCove.Menu
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblFlavour;
+
+        /// <summary>
+        /// hfFlavour control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfFlavour;
 
         /// <summary>
         /// ddlFlavour control.
@@ -132,6 +168,15 @@ namespace CoffeeCove.Menu
         protected global::System.Web.UI.WebControls.Label lblIceLevel;
 
         /// <summary>
+        /// hfIceLevel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfIceLevel;
+
+        /// <summary>
         /// ddlIceLevel control.
         /// </summary>
         /// <remarks>
@@ -148,6 +193,15 @@ namespace CoffeeCove.Menu
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblAddOn;
+
+        /// <summary>
+        /// hfAddOn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfAddOn;
 
         /// <summary>
         /// ddlAddOn control.
@@ -168,6 +222,15 @@ namespace CoffeeCove.Menu
         protected global::System.Web.UI.WebControls.Label lblSpecialInstruction;
 
         /// <summary>
+        /// hfSpecialInstructions control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfSpecialInstructions;
+
+        /// <summary>
         /// txtSpecialInstructions control.
         /// </summary>
         /// <remarks>
@@ -184,6 +247,15 @@ namespace CoffeeCove.Menu
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblQuantity;
+
+        /// <summary>
+        /// hfQuantity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfQuantity;
 
         /// <summary>
         /// btnDecrease control.
@@ -220,6 +292,15 @@ namespace CoffeeCove.Menu
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblPrice;
+
+        /// <summary>
+        /// hfUpdatedPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfUpdatedPrice;
 
         /// <summary>
         /// btnReset control.

@@ -27,6 +27,8 @@
                 </div>
                 <div class="headerBtn">
                     <asp:ImageButton ID="cartBtn" runat="server" ImageUrl="~/img/cartLogo.png" PostBackUrl="../Order/cart.aspx" Width="25px" />
+                    <asp:Label ID="lblCount" runat="server" Text="0" CssClass="cart-badge"></asp:Label>
+                    <asp:HiddenField ID="hdnCartCount" runat="server" Value="0" />
                     <asp:Button ID="loginBtn" runat="server" Text="Sign In" Font-Size="17px" OnClick="loginBtn_Click" />
                 </div>
             </div>

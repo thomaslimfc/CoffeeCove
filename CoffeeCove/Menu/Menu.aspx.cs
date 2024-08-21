@@ -6,6 +6,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CoffeeCove.Master;
+using System.Security.Policy;
 
 namespace CoffeeCove.Menu
 {
@@ -107,6 +109,16 @@ namespace CoffeeCove.Menu
                         lblProductDescription.Text = dr["Description"].ToString();
                         lblPrice.Text = $"Price: RM {dr["UnitPrice"]:0.00}";
                         ViewState["BasePrice"] = dr["UnitPrice"];
+
+                        hfProductId.Value = dr["ProductId"].ToString();
+                        hfProductName.Value = dr["ProductName"].ToString();
+                        hfSize.Value = "Regular"; 
+                        hfFlavour.Value = "Hot";
+                        hfIceLevel.Value = "No Ice";
+                        hfAddOn.Value = ddlAddOn.SelectedValue;
+                        hfSpecialInstructions.Value = txtSpecialInstructions.Text;
+                        hfQuantity.Value = txtQuantity.Text;
+                        hfUpdatedPrice.Value = lblPrice.Text;
 
                         // Get the category for the product
                         string categoryId = GetProductCategoryId(productId);
@@ -231,6 +243,59 @@ namespace CoffeeCove.Menu
         protected void btnClose_Click(object sender, EventArgs e)
         {
             pnlOrderForm.Visible = false;
+        }
+
+        // Ensure this method is in Menu.aspx.cs and is accessible
+        protected void btnAddToCart_Click(object sender, EventArgs e)
+        {
+            // Retrieve values from form controls
+            string productId = lblProductID.Text;
+            string productName = lblProductName.Text;
+            string size = ddlSize.SelectedValue;
+            string flavour = ddlFlavour.SelectedValue;
+            string iceLevel = ddlIceLevel.SelectedValue;
+            string addOn = ddlAddOn.SelectedValue;
+            string specialInstructions = txtSpecialInstructions.Text;
+            int quantity = GetQuantity();
+
+            // Calculate the updated price
+            decimal basePrice = Convert.ToDecimal(ViewState["BasePrice"]);
+            decimal finalPrice = basePrice;
+
+            if (ddlSize.SelectedValue == "Large") finalPrice += 1.50m;
+            if (ddlFlavour.SelectedValue == "Cold") finalPrice += 1.50m;
+            if (ddlAddOn.SelectedValue == "1EspressoShot") finalPrice += 2.50m;
+            if (ddlAddOn.SelectedValue == "2EspressoShots") finalPrice += 5.00m;
+
+            finalPrice *= quantity; // Total price based on quantity
+
+            // Insert into database
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                string sql = "INSERT INTO OrderedItem (ProductID, OrderID, Quantity, Size, Flavour, IceLevel, AddOn, Instruction, Price) " +
+                             "VALUES (@ProductID, @OrderID, @Quantity, @Size, @Flavour, @IceLevel, @AddOn, @Instruction, @Price)";
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@ProductID", productId);
+                    cmd.Parameters.AddWithValue("@OrderID", GetCurrentOrderId()); // Implement GetCurrentOrderId() to return the current order ID
+                    cmd.Parameters.AddWithValue("@Quantity", quantity);
+                    cmd.Parameters.AddWithValue("@Size", size);
+                    cmd.Parameters.AddWithValue("@Flavour", flavour);
+                    cmd.Parameters.AddWithValue("@IceLevel", iceLevel);
+                    cmd.Parameters.AddWithValue("@AddOn", addOn);
+                    cmd.Parameters.AddWithValue("@Instruction", specialInstructions);
+                    cmd.Parameters.AddWithValue("@Price", finalPrice);
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+
+        private int GetCurrentOrderId()
+        {
+            return 1; 
         }
 
     }

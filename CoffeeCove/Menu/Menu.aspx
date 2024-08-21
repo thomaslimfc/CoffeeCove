@@ -52,7 +52,9 @@
                         </td>
                         <td colspan="3" style="height: 20px">
                             <asp:Label ID="lblProductID" runat="server" Font-Size="20px" />
+                            <asp:HiddenField ID="hfProductId" runat="server" />
                             <asp:Label ID="lblProductName" runat="server" Font-Size="20px" />
+                            <asp:HiddenField ID="hfProductName" runat="server" />
                         </td>
                     </tr>
                     <tr>
@@ -65,6 +67,7 @@
                     <tr>
                         <td style="width: 100px">
                             <asp:Label ID="lblSize" runat="server" Text="Size" CssClass="label" ></asp:Label>
+                            <asp:HiddenField ID="hfSize" runat="server" />
                         </td>
                         <td>   
                             <asp:DropDownList ID="ddlSize" runat="server" AutoPostBack="true" OnSelectedIndexChanged="UpdatePrice" CssClass="ddlOrder">
@@ -76,6 +79,7 @@
                     <tr>
                         <td style="width: 100px">
                             <asp:Label ID="lblFlavour" runat="server" Text="Flavour" CssClass="label"></asp:Label>
+                            <asp:HiddenField ID="hfFlavour" runat="server" />
                         </td>
                         <td>
                             <asp:DropDownList ID="ddlFlavour" runat="server" AutoPostBack="true" OnSelectedIndexChanged="UpdatePrice" CssClass="ddlOrder">
@@ -87,6 +91,7 @@
                     <tr>
                         <td style="width: 100px">
                             <asp:Label ID="lblIceLevel" runat="server" Text="Ice Level" CssClass="label"></asp:Label>
+                            <asp:HiddenField ID="hfIceLevel" runat="server" />
                         </td>
                         <td>
                             <asp:DropDownList ID="ddlIceLevel" runat="server" CssClass="ddlOrder">
@@ -99,6 +104,7 @@
                     <tr>
                         <td style="width: 100px">
                             <asp:Label ID="lblAddOn" runat="server" Text="Add-Ons" CssClass="label"></asp:Label>
+                            <asp:HiddenField ID="hfAddOn" runat="server" />
                         </td>
                         <td>
                             <asp:DropDownList ID="ddlAddOn" runat="server" AutoPostBack="true" OnSelectedIndexChanged="UpdatePrice" CssClass="ddlOrder">
@@ -111,6 +117,7 @@
                     <tr>
                         <td style="width: 100px">
                             <asp:Label ID="lblSpecialInstruction" runat="server" Text="Special Instructions" CssClass="label"></asp:Label>
+                            <asp:HiddenField ID="hfSpecialInstructions" runat="server" />
                         </td>
                         <td colspan="2">
                             <asp:TextBox ID="txtSpecialInstructions" runat="server" TextMode="MultiLine" Rows="5" Columns="40" MaxLength="500" Placeholder="e.g. no mayo" Font-Size="15px"></asp:TextBox>
@@ -119,6 +126,7 @@
                     <tr>
                         <td style="width: 100px">
                             <asp:Label ID="lblQuantity" runat="server" Text="Quantity" CssClass="label"></asp:Label>
+                            <asp:HiddenField ID="hfQuantity" runat="server" />
                         </td>
                         <td>
                             <asp:Button ID="btnDecrease" runat="server" Text="-" OnClick="btnDecrease_Click" Font-Size="20px" Width="30px" />
@@ -129,12 +137,13 @@
                     <tr>
                         <td colspan="2">
                             <asp:Label ID="lblPrice" runat="server" Text="Price: RM 0.00" Font-Size="17px" CssClass="label"/>
+                            <asp:HiddenField ID="hfUpdatedPrice" runat="server" />
                         </td>
                         <td>
                             <asp:Button ID="btnReset" runat="server" Text="Reset" OnClick="btnReset_Click" CssClass="btnReset"/>
                         </td>
                         <td>
-                            <asp:Button ID="btnAddToCart" runat="server" Text="Add to Cart" CssClass="btnAdd"/>
+                            <asp:Button ID="btnAddToCart" runat="server" Text="Add to Cart" CssClass="btnAdd" OnClick="btnAddToCart_Click"/>
                         </td>
                     </tr>
                 </table>
