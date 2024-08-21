@@ -4,6 +4,8 @@
     Inherits="CoffeeCove.AdminSite.CustomerList" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <link href="../CSS/Security.css" rel="stylesheet" />
+
     <!-- Vendor CSS Files -->
     <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 
@@ -69,8 +71,85 @@
                         <div class="tab-content pt-2" id="borderedTabJustifiedContent">
                             <!-- Admin Account Registration -->
                             <div class="tab-pane fade show active" id="bordered-justified-home" role="tabpanel" aria-labelledby="home-tab">
-                                
-                                Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Register Admin Profile Info</h5>
+                                            <div class="row g-3">
+                                                <div class="col-8">
+                                                    <label for="first-name" 
+                                                        class="block text-sm text-muted-foreground">
+                                                        Username (Admin)
+                                                    </label>
+                                                    <br />
+                                                    <asp:TextBox ID="UsernameRegister_CL" 
+                                                        ValidationGroup="RegisterAccount" 
+                                                        CssClass="mt-1 p-2 border border-border rounded w-full"
+                                                        style="width: 300px" 
+                                                        runat="server" 
+                                                        placeholder="desmundchau7668" 
+                                                        title="Username" 
+                                                        AutoPostBack="false"></asp:TextBox>
+                                                    <div>
+                                                        <asp:RequiredFieldValidator ID="UsernameRegister_CL_rqdValidator" runat="server" ControlToValidate="UsernameRegister_CL" ErrorMessage="Username is required." Display="Dynamic" ForeColor="Red" CssClass="rqdValidator"/>
+                                                        <asp:RegularExpressionValidator ID="UsernameRegister_CL_regexValidator" runat="server" ControlToValidate="UsernameRegister_CL" ErrorMessage="Must contain >8 letters and numbers only." Display="Dynamic" ForeColor="Red" CssClass="rqdValidator" ValidationExpression="^[a-zA-Z0-9]{8,}$" />
+                                                    </div>
+
+                                                    <br />
+
+                                                    <label for="first-name" class="block text-sm text-muted-foreground" style="padding-bottom: 3px;">
+                                                        Branch Location
+                                                    </label>
+                                                    <br />
+                                                    <asp:Label ID="lblBranchRegister_CL" runat="server" CssClass="block text-sm text-muted-foreground" />
+                                                    
+                                                    <asp:DropDownList ID="BranchRegister_CL" runat="server" 
+                                                        style="width: 300px"
+                                                        CssClass="mt-1 p-2 border border-border rounded w-full">
+                                                        <asp:ListItem Text="~ Select a location ~" Value="" />
+                                                        <asp:ListItem>Tanjung Tokong</asp:ListItem>
+                                                        <asp:ListItem>George Town</asp:ListItem>
+                                                        <asp:ListItem>Jelutong</asp:ListItem>
+                                                        <asp:ListItem>Butterworth</asp:ListItem>
+                                                        <asp:ListItem>Bayan Lepas</asp:ListItem>
+                                                    </asp:DropDownList>
+
+                                                    <br />
+                                                    
+                                                    <asp:RequiredFieldValidator 
+                                                        ID="BranchRegister_CL_rqdValidator" runat="server" 
+                                                        ControlToValidate="BranchRegister_CL" 
+                                                        InitialValue="" 
+                                                        ErrorMessage="Branch is required." 
+                                                        Display="Dynamic"
+                                                        ForeColor="Red"
+                                                        CssClass="rqdValidator"
+                                                        ValidationGroup="RegisterAccount" />
+
+                                                    <br />
+                                                    <br />
+
+                                                    <asp:Button ID="RegisterAcc_CL" 
+                                                        runat="server" 
+                                                        Text="Save Changes" 
+                                                        style="width: 300px"
+                                                        CssClass="btn btn-secondary"
+                                                        ValidationGroup="RegisterAccount"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                username
+                                passworrd
+                                gender
+                                branch
+
+
+                            
+                            
+                            
                             </div>
 
                             <!-- Admin Profile Maintenance -->
@@ -84,14 +163,67 @@
                                                     <label for="first-name" class="block text-sm text-muted-foreground">
                                                         Username (Admin)
                                                     </label>
-                                                    <asp:TextBox ID="UsernameEdit_CL" CssClass="form-control mb-3" Style="width: 300px" runat="server" placeholder="desmundchau7668" title="Username" AutoPostBack="false"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="UsernameEdit_CL_rqdValidator" runat="server" ControlToValidate="UsernameEdit_CL" ErrorMessage="Username is required." Display="Dynamic" ForeColor="Red" CssClass="rqdValidator" />
-                                                    <asp:RegularExpressionValidator ID="UsernameEdit_CL_regexValidator" runat="server" ControlToValidate="UsernameEdit_CL" ErrorMessage="Must contain >8 letters and numbers only." Display="Dynamic" ForeColor="Red" CssClass="rqdValidator" ValidationExpression="^[a-zA-Z0-9]{8,}$" />
+                                                    <br />
+                                                    <asp:TextBox ID="UsernameEdit_CL" 
+                                                        CssClass="mt-1 p-2 border border-border rounded w-full"
+                                                        style="width: 300px" 
+                                                        runat="server" 
+                                                        placeholder="desmundchau7668" 
+                                                        title="Username" 
+                                                        AutoPostBack="false"
+                                                        ValidationGroup="EditProfile"></asp:TextBox>
+                                                    <div>
+                                                        <asp:RequiredFieldValidator 
+                                                            ID="UsernameEdit_CL_rqdValidator" 
+                                                            runat="server" 
+                                                            ControlToValidate="UsernameEdit_CL" 
+                                                            ErrorMessage="Username is required." 
+                                                            Display="Dynamic" 
+                                                            ForeColor="Red" 
+                                                            CssClass="rqdValidator" />
+                                                        <asp:RegularExpressionValidator 
+                                                            ID="UsernameEdit_CL_regexValidator" 
+                                                            runat="server" 
+                                                            ControlToValidate="UsernameEdit_CL" 
+                                                            ErrorMessage="Must contain >8 letters and numbers only." 
+                                                            Display="Dynamic" 
+                                                            ForeColor="Red" 
+                                                            CssClass="rqdValidator" 
+                                                            ValidationExpression="^[a-zA-Z0-9]{8,}$" />
+                                                    </div>
                                                     
-                                                    <br /> 
-                                                    
+                                                    <br />
+
+
                                                     <label for="first-name" class="block text-sm text-muted-foreground" style="padding-bottom: 3px;">
-                                                        Branch Working
+                                                        Gender
+                                                    </label>
+
+                                                    <asp:DropDownList ID="txtGender" runat="server"
+                                                        CssClass="block text-sm text-muted-foreground"
+                                                        Visible="false">
+                                                        <asp:ListItem Text="~ Select your gender ~" Value="" />
+                                                        <asp:ListItem>Male</asp:ListItem>
+                                                        <asp:ListItem>Female</asp:ListItem>
+                                                        <asp:ListItem>Other</asp:ListItem>
+                                                    </asp:DropDownList>
+                                                    <asp:RequiredFieldValidator 
+                                                        ID="txtGender_rqdValidator" runat="server" 
+                                                        ControlToValidate="txtGender" 
+                                                        InitialValue="" 
+                                                        ErrorMessage="Gender is required." 
+                                                        Display="Dynamic"
+                                                        ForeColor="Red"
+                                                        CssClass="rqdValidator"
+                                                        ValidationGroup="SaveProfile" />
+
+
+
+
+
+
+                                                    <label for="first-name" class="block text-sm text-muted-foreground" style="padding-bottom: 3px;">
+                                                        Branch Location
                                                     </label>
                                                     <br />
                                                     <asp:Label ID="lblBranch" runat="server" CssClass="block text-sm text-muted-foreground" />
@@ -115,16 +247,17 @@
                                                         Display="Dynamic"
                                                         ForeColor="Red"
                                                         CssClass="rqdValidator"
-                                                        ValidationGroup="SaveProfile" />
+                                                        ValidationGroup="EditProfile" />
                                                 </div>
                                             </div>
                                             <br />
                                             <br />
-                                            <asp:Button ID="SaveChanges_CL" 
+                                            <asp:Button ID="SaveChangesBtn_CL" 
                                                 runat="server" 
                                                 Text="Save Changes" 
                                                 style="width: 300px"
-                                                CssClass="btn btn-secondary"/>
+                                                CssClass="btn btn-secondary"
+                                                ValidationGroup="EditProfile"/>
                                         </div>
                                     </div>
                                 </div>
@@ -142,18 +275,40 @@
                                                     <label for="first-name" class="block text-sm text-muted-foreground" style="padding-bottom: 3px;">
                                                         Username (Admin / Customer)
                                                     </label>
-                                                    <asp:TextBox ID="UsernameDeletion_CL" CssClass="form-control mb-3" Style="width: 300px" runat="server" placeholder="desmundchau7668" title="Username" AutoPostBack="false"></asp:TextBox>
                                                     <br />
-                                                    <asp:RequiredFieldValidator ID="UsernameDeletion_CL_rqdValidator" runat="server" ControlToValidate="UsernameDeletion_CL" ErrorMessage="Username is required." Display="Dynamic" ForeColor="Red" CssClass="rqdValidator" />
-                                                    <asp:RegularExpressionValidator ID="UsernameDeletion_CL_regexValidator" runat="server" ControlToValidate="UsernameDeletion_CL" ErrorMessage="Must contain >8 letters and numbers only." Display="Dynamic" ForeColor="Red" CssClass="rqdValidator" ValidationExpression="^[a-zA-Z0-9]{8,}$" />
+                                                    <asp:TextBox ID="UsernameDeletion_CL" 
+                                                        CssClass="mt-1 p-2 border border-border rounded w-full"
+                                                        style="width: 300px" 
+                                                        runat="server" 
+                                                        placeholder="desmundchau7668" 
+                                                        title="Username" 
+                                                        AutoPostBack="false"
+                                                        ValidationGroup="DeleteAccount"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ID="UsernameDeletion_CL_rqdValidator" 
+                                                        runat="server" 
+                                                        ControlToValidate="UsernameDeletion_CL" 
+                                                        ErrorMessage="Username is required." 
+                                                        Display="Dynamic" 
+                                                        ForeColor="Red" 
+                                                        CssClass="rqdValidator" />
+                                                    <asp:RegularExpressionValidator ID="UsernameDeletion_CL_regexValidator" 
+                                                        runat="server" 
+                                                        ControlToValidate="UsernameDeletion_CL" 
+                                                        ErrorMessage="Must contain >8 letters and numbers only." 
+                                                        Display="Dynamic" 
+                                                        ForeColor="Red" 
+                                                        CssClass="rqdValidator" 
+                                                        ValidationExpression="^[a-zA-Z0-9]{8,}$" />
                                                 </div>
-                                                <br />
                                             </div>
-                                            <asp:Button ID="DeleteAcc_CL" 
+                                            <br />
+                                            <br />
+                                            <asp:Button ID="DeleteAccBtn_CL" 
                                                 runat="server" 
                                                 Text="Delete Account" 
                                                 style="width: 300px"
-                                                CssClass="btn btn-secondary"/>
+                                                CssClass="btn btn-secondary"
+                                                ValidationGroup="DeleteAccount"/>
                                         </div>
                                     </div>
                                 </div>

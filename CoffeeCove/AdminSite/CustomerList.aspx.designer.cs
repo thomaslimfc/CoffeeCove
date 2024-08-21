@@ -15,6 +15,69 @@ namespace CoffeeCove.AdminSite
     {
 
         /// <summary>
+        /// UsernameRegister_CL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox UsernameRegister_CL;
+
+        /// <summary>
+        /// UsernameRegister_CL_rqdValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator UsernameRegister_CL_rqdValidator;
+
+        /// <summary>
+        /// UsernameRegister_CL_regexValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator UsernameRegister_CL_regexValidator;
+
+        /// <summary>
+        /// lblBranchRegister_CL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblBranchRegister_CL;
+
+        /// <summary>
+        /// BranchRegister_CL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList BranchRegister_CL;
+
+        /// <summary>
+        /// BranchRegister_CL_rqdValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator BranchRegister_CL_rqdValidator;
+
+        /// <summary>
+        /// RegisterAcc_CL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button RegisterAcc_CL;
+
+        /// <summary>
         /// UsernameEdit_CL control.
         /// </summary>
         /// <remarks>
@@ -40,6 +103,24 @@ namespace CoffeeCove.AdminSite
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator UsernameEdit_CL_regexValidator;
+
+        /// <summary>
+        /// txtGender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList txtGender;
+
+        /// <summary>
+        /// txtGender_rqdValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator txtGender_rqdValidator;
 
         /// <summary>
         /// lblBranch control.
@@ -69,13 +150,13 @@ namespace CoffeeCove.AdminSite
         protected global::System.Web.UI.WebControls.RequiredFieldValidator txtBranch_rqdValidator;
 
         /// <summary>
-        /// SaveChanges_CL control.
+        /// SaveChangesBtn_CL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button SaveChanges_CL;
+        protected global::System.Web.UI.WebControls.Button SaveChangesBtn_CL;
 
         /// <summary>
         /// UsernameDeletion_CL control.
@@ -105,13 +186,13 @@ namespace CoffeeCove.AdminSite
         protected global::System.Web.UI.WebControls.RegularExpressionValidator UsernameDeletion_CL_regexValidator;
 
         /// <summary>
-        /// DeleteAcc_CL control.
+        /// DeleteAccBtn_CL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button DeleteAcc_CL;
+        protected global::System.Web.UI.WebControls.Button DeleteAccBtn_CL;
 
         /// <summary>
         /// rptCustomerList control.
