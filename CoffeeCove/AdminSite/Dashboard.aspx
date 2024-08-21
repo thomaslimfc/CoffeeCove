@@ -2,13 +2,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="main" class="main">
         
-        <div class="pagetitle">
+        <div class="pagetitle" style="color:#fff">
             <br />
             <h3>Dashboard</h3>
         </div>
 
         <div class="section dashboard">
-             <div class="row">
+             <div class="row" style="margin-top: 2%;">
                  <div>
                      <div class="row">
                          <!-- Sales Record -->

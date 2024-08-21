@@ -179,6 +179,14 @@ namespace CoffeeCove
             BindCategory();
         }
 
+        protected void ddlPageSize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Get the selected page size from the dropdown list
+            gvCategory.PageSize = int.Parse(ddlPageSize.SelectedValue);
+
+            BindCategory();
+        }
+
         protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
         {
             if (hdnId.Value != "0")

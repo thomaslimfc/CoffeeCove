@@ -159,6 +159,15 @@ namespace CoffeeCove
         protected global::System.Web.UI.WebControls.DropDownList ddlFilter;
 
         /// <summary>
+        /// ddlPageSize control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlPageSize;
+
+        /// <summary>
         /// gvCategory control.
         /// </summary>
         /// <remarks>

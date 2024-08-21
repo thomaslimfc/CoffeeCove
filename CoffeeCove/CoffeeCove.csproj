@@ -479,6 +479,7 @@
     <Content Include="imgProductItems\OB03.jpg" />
     <Content Include="imgProductItems\OB04.jpg" />
     <Content Include="img\about.jpg" />
+    <Content Include="img\bg_1.jpg" />
     <Content Include="img\cake_icon.png" />
     <Content Include="img\cartLogo.png" />
     <Content Include="img\Category\all.jpg" />

@@ -13,7 +13,7 @@
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 
     <main id="main" class="main">
-        <div class="pagetitle">
+        <div class="pagetitle" style="color:#fff">
             <br />
             <h3>Customer List</h3>
         </div>
@@ -150,7 +150,8 @@
 
             // Add margin-top to "Showing 1 to X of X entries" text
             $('.dataTables_info').css({
-                "margin-top": "5px"
+                "margin-top": "5px",
+                "color:": "white"
             });
 
             // Pagination Button Margin

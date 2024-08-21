@@ -7,7 +7,7 @@
     <link href="../CSS/ProductCategory.css" rel="stylesheet" />
 
     <div id="main" class="main">
-        <div class="pagetitle">
+        <div class="pagetitle" style="color:#fff">
             <br />
             <h3>Categories Management</h3>
         </div>
@@ -82,8 +82,24 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Category List</h5>
-
+                            <table>
+                                <tr>
+                                    <td class="col-10">
+                                        <h5 class="card-title">Category List</h5>
+                                    </td>
+                                    <td style="padding-left:35px;padding-right:5px">Show</td>
+                                    <td class="dataTables_length" id="DataTables_Table_0_length">
+                                        <asp:DropDownList ID="ddlPageSize" runat="server" AutoPostBack="True" CssClass="form-select form-select-sm" OnSelectedIndexChanged="ddlPageSize_SelectedIndexChanged">
+                                            <asp:ListItem Value="5">5</asp:ListItem>
+                                            <asp:ListItem Value="10">10</asp:ListItem>
+                                            <asp:ListItem Value="15">15</asp:ListItem>
+                                            <asp:ListItem Value="20">20</asp:ListItem>
+                                        </asp:DropDownList>
+                                    </td>
+                                    <td style="padding-left:5px">entries</td>
+                                </tr>
+                            </table>
+                        
                             <asp:GridView ID="gvCategory" runat="server" AutoGenerateColumns="False" CssClass="table table-striped"
                                 OnRowCommand="gvCategory_RowCommand" Width="100%" AllowSorting="True" OnSorting="gvCategory_Sorting"
                                 AllowPaging="true" OnPageIndexChanging="gvCategory_PageIndexChanging" PageSize="5" EmptyDataText="No categories found.">
@@ -168,4 +184,5 @@
             return confirm("Do you confirm you want to delete this category?");
         }
     </script>
+
 </asp:Content>

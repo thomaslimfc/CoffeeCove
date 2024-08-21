@@ -4,7 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <link href="../CSS/ProductCategory.css" rel="stylesheet" />
     <div id="main" class="main">
-        <div class="pagetitle">
+        <div class="pagetitle" style="color:#fff">
             <br />
             <h3>Products Management</h3>
         </div>
