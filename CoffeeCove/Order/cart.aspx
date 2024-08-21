@@ -16,7 +16,7 @@
             </tr>
 
             <!--Repeater-->
-            <asp:Repeater ID="rptOrdered" runat="server" OnItemCommand="rptOrdered_ItemCommand">
+            <asp:Repeater ID="rptOrdered" runat="server" OnItemCommand="rptOrdered_ItemCommand" OnItemDataBound="rptOrdered_ItemDataBound">
                 <ItemTemplate>
                     <tr style="border-bottom: solid 2px #433533">
                         <td>
@@ -67,7 +67,7 @@
             <tr>
                 <td class="cartLeft">Subtotal [RM]</td>
                 <td class="cartRight">RM
-                <asp:Label ID="lblSubtotal" runat="server"></asp:Label>
+                <asp:Label ID="lblSubtotal" runat="server" Text=""></asp:Label>
                 </td>
             </tr>
             <tr>

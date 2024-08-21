@@ -13,11 +13,12 @@ namespace CoffeeCove.Order
     public partial class orderCart : System.Web.UI.Page
     {
         string cs = Global.CS;
+        double subTotal = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
-                string id = Request.QueryString["id"] ?? "";
+                string orderId = Session["OrderId"].ToString();
 
                 SqlConnection conn = new SqlConnection(cs);
                 string sql = @"SELECT * 
@@ -48,24 +49,43 @@ namespace CoffeeCove.Order
                 //if no record for this order
                 if (count <= 0)
                 {
-                    Response.Redirect("../Menu/Menu.aspx?id=" + id);
+                    Response.Redirect("../Menu/Menu.aspx");
                 }
 
                 conn.Close();
             }
+
+            
+
         }
         protected void rptOrdered_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
-            decimal subTotal = 0;
+            
+            
+            
 
+        }
+
+        protected void btnProceed_Click(object sender, EventArgs e)
+        {
+            string orderId = Session["OrderId"].ToString();
+            Response.Redirect("../Payment/paymentOpt.aspx?id=" + orderId);
+        }
+
+        protected void btnEdit_Click(object sender, EventArgs e)
+        {
+            string orderId = Session["OrderId"].ToString();
+            Response.Redirect("cartEdit.aspx?id=" + orderId);
+        }
+
+        protected void rptOrdered_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
             // Assign label controls
             Label lblId = (Label)e.Item.FindControl("lblId");
-            Label lblQuantity = (Label)e.Item.FindControl("lblQuantity");
             string productId = lblId.Text;
-            decimal quantity = Convert.ToDecimal(lblQuantity.Text);
 
             // Get the Order ID from the query string
-            string id = Request.QueryString["id"] ?? "";
+            string orderId = Session["OrderId"].ToString();
             SqlConnection conn = new SqlConnection(cs);
             // SQL query to get the product details for the specific order and product ID
             string sql = @"SELECT P.UnitPrice 
@@ -82,11 +102,12 @@ namespace CoffeeCove.Order
             if (dr.Read())
             {
                 // Calculate the line price based on the UnitPrice and quantity
-                decimal unitPrice = (decimal)dr["UnitPrice"];
-                decimal linePrice = unitPrice * quantity;
+
+                double linePrice = (double)dr["UnitPrice"] * (int)dr["Quantity"];
 
                 // Add the line price to the subtotal
                 subTotal += linePrice;
+                lblSubtotal.Text = "X";
             }
             else
             {
@@ -96,20 +117,6 @@ namespace CoffeeCove.Order
 
             // Display the subtotal
             lblSubtotal.Text = subTotal.ToString("C"); // "C" formats the number as currency
-
-            
-        }
-
-        protected void btnProceed_Click(object sender, EventArgs e)
-        {
-            string id = Request.QueryString["id"] ?? "";
-            Response.Redirect("../Payment/paymentOpt.aspx?id=" + id);
-        }
-
-        protected void btnEdit_Click(object sender, EventArgs e)
-        {
-            string id = Request.QueryString["id"] ?? "";
-            Response.Redirect("cartEdit.aspx?id=" + id);
         }
     }
 }
