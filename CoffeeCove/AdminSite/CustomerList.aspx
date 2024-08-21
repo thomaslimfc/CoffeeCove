@@ -37,7 +37,7 @@
     <section class="section">
         <div class="pagetitle" style="color:#fff">
             <br />
-            <h3>Customers Management</h3>
+            <h3>User Management</h3>
             <br />
         </div>
 
@@ -51,13 +51,13 @@
                                 <button class="nav-link w-100 active" id="home-tab" 
                                     data-bs-toggle="tab" data-bs-target="#bordered-justified-home" 
                                     type="button" role="tab" aria-controls="home" 
-                                    aria-selected="true">User Account Registration</button>
+                                    aria-selected="true">Admin Account Registration</button>
                             </li>
                             <li class="nav-item flex-fill" role="presentation">
                                 <button class="nav-link w-100" id="profile-tab" 
                                     data-bs-toggle="tab" data-bs-target="#bordered-justified-profile" 
                                     type="button" role="tab" aria-controls="profile" 
-                                    aria-selected="false">User Profile Maintenance</button>
+                                    aria-selected="false">Admin Profile Maintenance</button>
                             </li>
                             <li class="nav-item flex-fill" role="presentation">
                                 <button class="nav-link w-100" id="contact-tab" 
@@ -67,14 +67,64 @@
                             </li>
                         </ul>
                         <div class="tab-content pt-2" id="borderedTabJustifiedContent">
+                            <!-- Admin Account Registration -->
                             <div class="tab-pane fade show active" id="bordered-justified-home" role="tabpanel" aria-labelledby="home-tab">
+                                
                                 Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.
                             </div>
+
+                            <!-- Admin Profile Maintenance -->
                             <div class="tab-pane fade" id="bordered-justified-profile" role="tabpanel" aria-labelledby="profile-tab">
-                                Nesciunt totam et. Consequuntur magnam aliquid eos nulla dolor iure eos quia. Accusantium distinctio omnis et atque fugiat. Itaque doloremque aliquid sint quasi quia distinctio similique. Voluptate nihil recusandae mollitia dolores. Ut laboriosam voluptatum dicta.
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Edit Admin Profile Info</h5>
+                                            <div class="row g-3">
+                                                <div class="col-8">
+                                                    <label for="first-name" class="block text-sm text-muted-foreground" style="padding-bottom: 5px;">
+                                                        Username (Admin)
+                                                    </label>
+                                                    <asp:TextBox ID="UsernameEdit_CL" CssClass="form-control mb-3" Style="width: 300px" runat="server" placeholder="desmundchau7668" title="Username" AutoPostBack="false"></asp:TextBox>
+                                                    <br />
+                                                    <asp:RequiredFieldValidator ID="UsernameEdit_CL_rqdValidator" runat="server" ControlToValidate="UsernameEdit_CL" ErrorMessage="Username is required." Display="Dynamic" ForeColor="Red" CssClass="rqdValidator" />
+                                                    <asp:RegularExpressionValidator ID="UsernameEdit_CL_regexValidator" runat="server" ControlToValidate="UsernameEdit_CL" ErrorMessage="Must contain >8 letters and numbers only." Display="Dynamic" ForeColor="Red" CssClass="rqdValidator" ValidationExpression="^[a-zA-Z0-9]{8,}$" />
+                                                    
+                                                    <label for="first-name" class="block text-sm text-muted-foreground" style="padding-bottom: 3px;">
+                                                        Branch Working
+                                                    </label>
+                                                    <br />
+                                                    <asp:Label ID="lblBranch" runat="server" CssClass="block text-sm text-muted-foreground" />
+                                                    
+                                                    <asp:DropDownList ID="txtBranch" runat="server" 
+                                                        style="width: 300px"
+                                                        CssClass="mt-1 p-2 border border-border rounded w-full">
+                                                        <asp:ListItem Text="~ Select a location ~" Value="" />
+                                                        <asp:ListItem>Tanjung Tokong</asp:ListItem>
+                                                        <asp:ListItem>George Town</asp:ListItem>
+                                                        <asp:ListItem>Jelutong</asp:ListItem>
+                                                        <asp:ListItem>Butterworth</asp:ListItem>
+                                                        <asp:ListItem>Bayan Lepas</asp:ListItem>
+                                                    </asp:DropDownList>
+                                                    
+                                                    <asp:RequiredFieldValidator 
+                                                        ID="txtBranch_rqdValidator" runat="server" 
+                                                        ControlToValidate="txtBranch" 
+                                                        InitialValue="" 
+                                                        ErrorMessage="Branch is required." 
+                                                        Display="Dynamic"
+                                                        ForeColor="Red"
+                                                        CssClass="rqdValidator"
+                                                        ValidationGroup="SaveProfile" />
+                                                    <br />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
 
+                            <!-- User Account Deletion -->
                             <div class="tab-pane fade" id="bordered-justified-contact" role="tabpanel" aria-labelledby="contact-tab">
                                 <div class="col-lg-12">
                                     <div class="card">
@@ -83,19 +133,18 @@
                                             <div class="row g-3">
                                                 <div class="col-8">
                                                     <label for="first-name" class="block text-sm text-muted-foreground" style="padding-bottom: 3px;">
-                                                        Username
+                                                        Username (Admin / Customer)
                                                     </label>
-                                                    <asp:TextBox ID="Username_SI" CssClass="form-control mb-3" Style="width: 300px" runat="server" placeholder="desmundchau7668" title="Username" AutoPostBack="false"></asp:TextBox>
+                                                    <asp:TextBox ID="UsernameDeletion_CL" CssClass="form-control mb-3" Style="width: 300px" runat="server" placeholder="desmundchau7668" title="Username" AutoPostBack="false"></asp:TextBox>
                                                     <br />
-                                                    <asp:RequiredFieldValidator ID="Username_SI_rqdValidator" runat="server" ControlToValidate="Username_SI" ErrorMessage="Username is required." Display="Dynamic" ForeColor="Red" CssClass="rqdValidator" />
-                                                    <asp:RegularExpressionValidator ID="Username_SI_regexValidator" runat="server" ControlToValidate="Username_SI" ErrorMessage="Must contain >8 letters and numbers only." Display="Dynamic" ForeColor="Red" CssClass="rqdValidator" ValidationExpression="^[a-zA-Z0-9]{8,}$" />
+                                                    <asp:RequiredFieldValidator ID="UsernameDeletion_CL_rqdValidator" runat="server" ControlToValidate="UsernameDeletion_CL" ErrorMessage="Username is required." Display="Dynamic" ForeColor="Red" CssClass="rqdValidator" />
+                                                    <asp:RegularExpressionValidator ID="UsernameDeletion_CL_regexValidator" runat="server" ControlToValidate="UsernameDeletion_CL" ErrorMessage="Must contain >8 letters and numbers only." Display="Dynamic" ForeColor="Red" CssClass="rqdValidator" ValidationExpression="^[a-zA-Z0-9]{8,}$" />
                                                 </div>
-
-                                                <asp:Button ID="DeleteUserBtn_CL" 
+                                                <asp:Button ID="DeleteAcc_CL" 
                                                     runat="server" 
-                                                    Text="Delete User" 
-                                                    OnClick="DeleteUserBtn_CL_Click" 
-                                                    CssClass="btn btn-secondary" />
+                                                    Text="Delete Account" 
+                                                    ssClass="btn btn-dark"/>
+
                                             </div>
                                         </div>
                                     </div>
@@ -108,7 +157,7 @@
         </div>
     </section>
 
-
+    <!-- Customer List -->
     <section class="section" style="width: 1100px;">
         <div class="row" style="margin-top: 2%;">
             <div class="col-lg-12">

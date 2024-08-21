@@ -15,40 +15,94 @@ namespace CoffeeCove.AdminSite
     {
 
         /// <summary>
-        /// Username_SI control.
+        /// UsernameEdit_CL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Username_SI;
+        protected global::System.Web.UI.WebControls.TextBox UsernameEdit_CL;
 
         /// <summary>
-        /// Username_SI_rqdValidator control.
+        /// UsernameEdit_CL_rqdValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator Username_SI_rqdValidator;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator UsernameEdit_CL_rqdValidator;
 
         /// <summary>
-        /// Username_SI_regexValidator control.
+        /// UsernameEdit_CL_regexValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator Username_SI_regexValidator;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator UsernameEdit_CL_regexValidator;
 
         /// <summary>
-        /// DeleteUserBtn_CL control.
+        /// lblBranch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button DeleteUserBtn_CL;
+        protected global::System.Web.UI.WebControls.Label lblBranch;
+
+        /// <summary>
+        /// txtBranch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList txtBranch;
+
+        /// <summary>
+        /// txtBranch_rqdValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator txtBranch_rqdValidator;
+
+        /// <summary>
+        /// UsernameDeletion_CL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox UsernameDeletion_CL;
+
+        /// <summary>
+        /// UsernameDeletion_CL_rqdValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator UsernameDeletion_CL_rqdValidator;
+
+        /// <summary>
+        /// UsernameDeletion_CL_regexValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator UsernameDeletion_CL_regexValidator;
+
+        /// <summary>
+        /// DeleteAcc_CL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button DeleteAcc_CL;
 
         /// <summary>
         /// rptCustomerList control.

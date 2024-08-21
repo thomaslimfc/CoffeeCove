@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CoffeeCove.Master;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Web.UI.WebControls;
@@ -31,16 +32,42 @@ namespace CoffeeCove.AdminSite
             }
         }
 
-        protected void DeleteUserBtn_CL_Click(object sender, EventArgs e)
-        {
-            // Your logic for deleting a user.
-            // Example:
-            string username = Username_SI.Text;
+        //protected void DeleteUserBtn_CL_Click(object sender, EventArgs e)
+        //{
+        //    // Logic to delete a user from the database
+        //    string username = Username_SI.Text;
 
-            // Perform the deletion logic here, e.g., remove the user from the database.
+        //    // Add your deletion logic here. This could involve calling a method from a data access layer.
+        //    bool isDeleted = DeleteUserByUsername(username);
 
-            // Optionally, show a confirmation message to the user.
-            Response.Write("<script>alert('User deleted successfully.');</script>");
-        }
+        //    // Provide feedback to the user based on whether the deletion was successful
+        //    if (isDeleted)
+        //    {
+        //        Response.Write("<script>alert('User deleted successfully.');</script>");
+        //    }
+        //    else
+        //    {
+        //        Response.Write("<script>alert('User deletion failed. Please try again.');</script>");
+        //    }
+        //}
+
+        //private bool DeleteUserByUsername(string username)
+        //{
+        //    // Implement the logic to delete a user by their username from your database.
+        //    // This is a placeholder and should be replaced with actual code.
+        //    // Return true if the deletion is successful, otherwise false.
+        //    return true; // Replace with actual implementation
+        //}
+
+        //private Admin GetAdminByUsername(string username)
+        //{
+        //    // Your logic to fetch admin data from the database
+        //}
+
+        //private bool UpdateAdminBranch(string username, string branch)
+        //{
+        //    // Your logic to update the admin's branch in the database
+        //}
+
     }
 }
