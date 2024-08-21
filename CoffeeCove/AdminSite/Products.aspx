@@ -51,7 +51,7 @@
                                 <asp:Button ID="btnReset" runat="server" Text="Reset" OnClick="btnReset_Click" CssClass="btn btn-dark" />
                                 </div>
                                 <div class="col-6">
-                                    <asp:Image ID="imgProduct" runat="server" CssClass="img-thumbnail" />
+                                    <asp:Image ID="imgProduct" runat="server" CssClass="img-thumbnail" Width="200px" Height="200px" />
                                 </div>
                             </div>
                         </div>
@@ -190,6 +190,9 @@
                                 <PagerStyle CssClass="datatable-pagination" />
                             </asp:GridView>
                         </div>
+                    </div>
+                    <div class="col-5" style="margin-left:45%;margin-bottom:20px">
+                        <asp:Button ID="BtnExport" runat="server" Text="Export To PDF" CssClass="btn btn-success"/>
                     </div>
                 </div>
             </div>

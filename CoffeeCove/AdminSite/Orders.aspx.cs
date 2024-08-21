@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace CoffeeCove.AdminSite
 {
-    public partial class OrderManagement : System.Web.UI.Page
+  /*  public partial class OrderManagement : System.Web.UI.Page
     {
         dbCoffeeCoveEntities db = new dbCoffeeCoveEntities();
         protected void Page_Load(object sender, EventArgs e)
@@ -49,5 +49,5 @@ namespace CoffeeCove.AdminSite
                 lblOrderNo.Text = "Data not found.";
             }
         }
-    }
+    }*/
 }
