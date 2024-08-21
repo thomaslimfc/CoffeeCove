@@ -42,6 +42,15 @@ namespace CoffeeCove.AdminSite
         protected global::System.Web.UI.WebControls.RegularExpressionValidator Username_SI_regexValidator;
 
         /// <summary>
+        /// DeleteUserBtn_CL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button DeleteUserBtn_CL;
+
+        /// <summary>
         /// rptCustomerList control.
         /// </summary>
         /// <remarks>
