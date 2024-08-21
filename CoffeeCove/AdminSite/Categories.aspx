@@ -54,21 +54,19 @@
                 <br />
                 <br />
 
-                <!-- AJAX tools:Search -->
                 <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
                 <table style="margin-left: 10px; margin-bottom: 10px">
                     <tr>
-                        <td class="search-bar">
+                        <td class="search-bar"> <!-- AJAX tools:Search -->
                             <asp:TextBox ID="txtSearch" runat="server" Placeholder="Search ID, Name" CssClass="datatable-input"></asp:TextBox>
                             <asp:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtSearch"
                                 EnableCaching="false" CompletionInterval="100" CompletionSetCount="10" MinimumPrefixLength="1" ServiceMethod="GetItemList">
                             </asp:AutoCompleteExtender>
-
                             <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" CssClass="btn btn-primary" />
                             <asp:Button ID="btnClear" runat="server" Text="Clear" OnClick="btnClear_Click" CssClass="btn btn-secondary" />
 
                         </td>
-                        <td>
+                        <td><!-- filter -->
                             <asp:DropDownList ID="ddlFilter" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlFilter_SelectedIndexChanged" CssClass="form-select" Width="80%">
                                 <asp:ListItem Text="All" Value="All" />
                                 <asp:ListItem Text="Active" Value="True" />
@@ -86,7 +84,7 @@
                                 <tr>
                                     <td class="col-10">
                                         <h5 class="card-title">Category List</h5>
-                                    </td>
+                                    </td><!-- Page dropdown -->
                                     <td style="padding-left:35px;padding-right:5px">Show</td>
                                     <td class="dataTables_length" id="DataTables_Table_0_length">
                                         <asp:DropDownList ID="ddlPageSize" runat="server" AutoPostBack="True" CssClass="form-select form-select-sm" OnSelectedIndexChanged="ddlPageSize_SelectedIndexChanged">

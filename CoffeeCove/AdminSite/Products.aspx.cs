@@ -63,7 +63,7 @@ namespace CoffeeCove.AdminSite
 
             if (!string.IsNullOrEmpty(searchTerm))
             {
-                sql += " WHERE ProductId LIKE @SearchTerm OR ProductName LIKE @SearchTerm";
+                sql += " AND ProductId LIKE @SearchTerm OR ProductName LIKE @SearchTerm";
             }
 
             if (!string.IsNullOrEmpty(selectedCategory))
@@ -221,6 +221,14 @@ namespace CoffeeCove.AdminSite
 
         protected void ddlFilterCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
+            BindProduct();
+        }
+
+        protected void ddlPageSize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Get the selected page size from the dropdown list
+            gvProduct.PageSize = int.Parse(ddlPageSize.SelectedValue);
+
             BindProduct();
         }
 

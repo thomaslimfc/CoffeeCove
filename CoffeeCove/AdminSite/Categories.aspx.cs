@@ -35,7 +35,7 @@ namespace CoffeeCove
 
             if (!string.IsNullOrEmpty(searchTerm))
             {
-                sql += " WHERE CategoryId LIKE @SearchTerm OR CategoryName LIKE @SearchTerm";
+                sql += " AND CategoryId LIKE @SearchTerm OR CategoryName LIKE @SearchTerm";
             }
 
             if (filter != "All")

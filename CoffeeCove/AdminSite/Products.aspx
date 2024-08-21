@@ -64,11 +64,10 @@
                 <br />
                 <br />
 
-                <!--AJAX tools: Search-->
                 <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
                 <table style="margin-left: 10px; margin-bottom: 10px">
                     <tr>
-                        <td class="search-bar">
+                        <td class="search-bar"><!--AJAX tools: Search-->
                             <asp:TextBox ID="txtSearch" runat="server" Placeholder="Search ID, Name" CssClass="datatable-input"></asp:TextBox>
                             <asp:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtSearch"
                                 EnableCaching="false" CompletionInterval="100" CompletionSetCount="10" MinimumPrefixLength="1" ServiceMethod="GetItemList">
@@ -76,7 +75,7 @@
                             <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" CssClass="btn btn-primary" />
                             <asp:Button ID="btnClear" runat="server" Text="Clear" OnClick="btnClear_Click" CssClass="btn btn-secondary" />
                         </td>
-                        <td>
+                        <td><!-- filter -->
                             <asp:DropDownList ID="ddlFilterCategory" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlFilterCategory_SelectedIndexChanged" CssClass="form-select" Width="80%"></asp:DropDownList>
                         </td>
                         <td>
@@ -93,7 +92,25 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Product List</h5>
+                            <table>
+                                <tr>
+                                    <td class="col-10">
+                                        <h5 class="card-title">Product List</h5>
+                                    </td>
+                                    <!-- Page dropdown -->
+                                    <td style="padding-left: 35px; padding-right: 5px">Show</td>
+                                    <td class="dataTables_length" id="DataTables_Table_0_length">
+                                        <asp:DropDownList ID="ddlPageSize" runat="server" AutoPostBack="True" CssClass="form-select form-select-sm" OnSelectedIndexChanged="ddlPageSize_SelectedIndexChanged">
+                                            <asp:ListItem Value="5">5</asp:ListItem>
+                                            <asp:ListItem Value="10">10</asp:ListItem>
+                                            <asp:ListItem Value="15">15</asp:ListItem>
+                                            <asp:ListItem Value="20">20</asp:ListItem>
+                                        </asp:DropDownList>
+                                    </td>
+                                    <td style="padding-left: 5px">entries</td>
+                                </tr>
+                            </table>
+
                             <asp:GridView ID="gvProduct" runat="server" AutoGenerateColumns="False" CssClass="table table-striped"
                                 OnRowCommand="gvProduct_RowCommand" Width="100%" AllowSorting="True" OnSorting="gvProduct_Sorting"
                                 AllowPaging="true" OnPageIndexChanging="gvProduct_PageIndexChanging" PageSize="5" EmptyDataText="No Products found.">
