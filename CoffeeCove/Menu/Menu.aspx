@@ -134,7 +134,7 @@
                             <asp:Button ID="btnReset" runat="server" Text="Reset" OnClick="btnReset_Click" CssClass="btnReset"/>
                         </td>
                         <td>
-                            <asp:Button ID="btnAddToCart" runat="server" Text="Add to Cart" CssClass="btnAdd" OnClick="btnAddToCart_Click"/>
+                            <asp:Button ID="btnAddToCart" runat="server" Text="Add to Cart" CssClass="btnAdd"/>
                         </td>
                     </tr>
                 </table>
