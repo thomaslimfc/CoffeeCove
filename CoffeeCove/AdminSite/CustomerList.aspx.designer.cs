@@ -15,15 +15,6 @@ namespace CoffeeCove.AdminSite
     {
 
         /// <summary>
-        /// rptCustomerList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptCustomerList;
-
-        /// <summary>
         /// Username_SI control.
         /// </summary>
         /// <remarks>
@@ -49,5 +40,14 @@ namespace CoffeeCove.AdminSite
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator Username_SI_regexValidator;
+
+        /// <summary>
+        /// rptCustomerList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptCustomerList;
     }
 }

@@ -1,117 +1,124 @@
-﻿<%@ Page Title="Customer List (Admin)" Language="C#" 
-    MasterPageFile="../Master/Admin.Master" 
-    AutoEventWireup="true" CodeBehind="CustomerList.aspx.cs" 
+﻿<%@ Page Title="Customer List (Admin)" Language="C#"
+    MasterPageFile="../Master/Admin.Master"
+    AutoEventWireup="true" CodeBehind="CustomerList.aspx.cs"
     Inherits="CoffeeCove.AdminSite.CustomerList" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <!-- Vendor CSS Files -->
     <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
-    
+
     <!-- Required JavaScript Files -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 
     <main id="main" class="main">
-        <section class="section" style="margin-left: 20px;">
-            <h3>Customer List</h3>
+        <div class="pagetitle">
             <br />
-            <div class="row">
+            <h3>Customer List</h3>
+        </div>
+        <section class="section">
+            <div class="row" style="margin-top: 2%;">
                 <div class="col-lg-12">
-                    <div class="card" style="width: 1300px;">
-                        <br />
+                    <div class="card">
+
                         <!-- Search input for filtering -->
                         <!-- <input type="text" id="tableSearch" placeholder="Search here..." class="form-control mb-3"> -->
+
+
                         <div class="card-body">
-                            <!-- DataTable -->
-                            <table class="table datatable">
-                                <thead>
-                                    <tr>
-                                        <th>Customer ID</th>
-                                        <th>Username</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Email Address</th>
-                                        <th>Contact Number</th>
-                                        <th>Gender</th>
-                                        <th>Date of Birth</th>
-                                        <th>Residence State</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <asp:Repeater ID="rptCustomerList" runat="server">
-                                        <ItemTemplate>
-                                            <tr>
-                                                <td><%# Eval("cusID") %></td>
-                                                <td><%# Eval("Username") %></td>
-                                                <td><%# Eval("FirstName") %></td>
-                                                <td><%# Eval("LastName") %></td>
-                                                <td><%# Eval("EmailAddress") %></td>
-                                                <td><%# Eval("ContactNo") %></td>
-                                                <td><%# Eval("Gender") %></td>
-                                                <td><%# Eval("DateOfBirth", "{0:yyyy/MM/dd}") %></td>
-                                                <td><%# Eval("ResidenceState") %></td>
-                                            </tr>
-                                        </ItemTemplate>
-                                    </asp:Repeater>
-                                </tbody>
-                            </table>
+                            <h5 class="card-title">User deletion</h5>
+                            <div class="row g-3 ">
+                                <div class="col-8">
+                                    <label for="first-name" class="block text-sm text-muted-foreground"
+                                        style="padding-bottom: 3px;">
+                                        Username</label>
+                                    <asp:TextBox ID="Username_SI"
+                                        CssClass="form-control mb-3"
+                                        Style="width: 300px"
+                                        runat="server"
+                                        placeholder="desmundchau7668"
+                                        title="Username"
+                                        AutoPostBack="false">
+                                    </asp:TextBox>
+                                    <br />
+                                    <asp:RequiredFieldValidator
+                                        ID="Username_SI_rqdValidator" runat="server"
+                                        ControlToValidate="Username_SI"
+                                        ErrorMessage="Username is required."
+                                        Display="Dynamic" ForeColor="Red"
+                                        CssClass="rqdValidator" />
+                                    <asp:RegularExpressionValidator
+                                        ID="Username_SI_regexValidator"
+                                        runat="server"
+                                        ControlToValidate="Username_SI"
+                                        ErrorMessage="Must contain >8 letters and numbers only."
+                                        Display="Dynamic"
+                                        ForeColor="Red"
+                                        CssClass="rqdValidator"
+                                        ValidationExpression="^[a-zA-Z0-9]{8,}$" />
+                                </div>
+                            </div>
                         </div>
+
                     </div>
                 </div>
-            </div>
 
-            <br /><br />
-            <div class="row">
-                <h3>User Profile Maintenance</h3>
+                <div class="card-body">
+                    <!-- DataTable -->
+                    <table class="table datatable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Username</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email Address</th>
+                                <th>Contact No</th>
+                                <th>Gender</th>
+                                <th>Date of Birth</th>
+                                <th>State</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <asp:Repeater ID="rptCustomerList" runat="server">
+                                <ItemTemplate>
+                                    <tr>
+                                        <td><%# Eval("cusID") %></td>
+                                        <td><%# Eval("Username") %></td>
+                                        <td><%# Eval("FirstName") %></td>
+                                        <td><%# Eval("LastName") %></td>
+                                        <td><%# Eval("EmailAddress") %></td>
+                                        <td><%# Eval("ContactNo") %></td>
+                                        <td><%# Eval("Gender") %></td>
+                                        <td><%# Eval("DateOfBirth", "{0:yyyy/MM/dd}") %></td>
+                                        <td><%# Eval("ResidenceState") %></td>
+                                    </tr>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+                <br />
+                <br />
                 <div class="col-lg-12">
-                    <div class="card" style="width: 1300px;">
+                    <div class="card">
                         <div class="card-body">
+                            <h5 class="card-title">User Profile Maintenance</h5>
+
                             ss
                         </div>
                     </div>
                 </div>
             </div>
+   
 
-            <br /><br />
-<div class="row">
-    <h3>User Deletion</h3>
-    <div class="col-lg-12">
-        <div class="card" style="width: 1300px;">
-            <div class="card-body">
-                <br />
-                <!-- Username -->
-                <div class="mb-4">
-                    <label for="first-name" class="block text-sm text-muted-foreground" 
-                        style="padding-bottom: 3px;">Username</label>
-                    <asp:TextBox ID="Username_SI" 
-                        CssClass="form-control mb-3"
-                        style="width: 300px"
-                        runat="server"
-                        placeholder="desmundchau7668" 
-                        title="Username"
-                        AutoPostBack="false">
-                    </asp:TextBox>
-                    <br />
-                    <asp:RequiredFieldValidator 
-                        ID="Username_SI_rqdValidator" runat="server" 
-                        ControlToValidate="Username_SI" 
-                        ErrorMessage="Username is required." 
-                        Display="Dynamic" ForeColor="Red" 
-                        CssClass="rqdValidator" />
-                    <asp:RegularExpressionValidator 
-                        ID="Username_SI_regexValidator" 
-                        runat="server" 
-                        ControlToValidate="Username_SI" 
-                        ErrorMessage="Must contain >8 letters and numbers only." 
-                        Display="Dynamic" 
-                        ForeColor="Red" 
-                        CssClass="rqdValidator" 
-                        ValidationExpression="^[a-zA-Z0-9]{8,}$" />
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+            <br />
+            <br />
+
 
         </section>
     </main>
@@ -215,8 +222,8 @@
      -->
     <style type="text/tailwindcss">
         @layer base {
-    	    :root {
-    		    --background: 0 0% 100%;
+            :root {
+                --background: 0 0% 100%;
                 --foreground: 240 10% 3.9%;
                 --card: 0 0% 100%;
                 --card-foreground: 240 10% 3.9%;
@@ -236,8 +243,9 @@
                 --input: 240 5.9% 90%;
                 --ring: 240 5.9% 10%;
                 --radius: 0.5rem;
-    		}
-    		.dark {
+            }
+
+            .dark {
                 --background: 240 10% 3.9%;
                 --foreground: 0 0% 98%;
                 --card: 240 10% 3.9%;
@@ -257,7 +265,7 @@
                 --border: 240 3.7% 15.9%;
                 --input: 240 3.7% 15.9%;
                 --ring: 240 4.9% 83.9%;
-    		}
+            }
         }
     </style>
 </asp:Content>

@@ -8,6 +8,7 @@ namespace CoffeeCove.AdminSite
 {
     public partial class CustomerList : System.Web.UI.Page
     {
+        string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -20,9 +21,9 @@ namespace CoffeeCove.AdminSite
         {
             // Replace with your actual connection string
             //string connectionString = "Your_Connection_String_Here";
-            string connectionString = ConfigurationManager.ConnectionStrings["CoffeeCoveDB"].ConnectionString;
+            
 
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlConnection conn = new SqlConnection(cs))
             {
                 string query = "SELECT cusID, Username, FirstName, LastName, EmailAddress, ContactNo, Gender, DateOfBirth, ResidenceState FROM [dbo].[Customer]";
                 SqlCommand cmd = new SqlCommand(query, conn);
