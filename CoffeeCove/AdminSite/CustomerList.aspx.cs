@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Web.UI.WebControls;
@@ -8,7 +7,7 @@ namespace CoffeeCove.AdminSite
 {
     public partial class CustomerList : System.Web.UI.Page
     {
-        string cs = Global.CS;
+        string cs = Global.CS; // Assumes Global.CS is correctly configured
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -19,10 +18,6 @@ namespace CoffeeCove.AdminSite
 
         private void BindCustomerList()
         {
-            // Replace with your actual connection string
-            //string connectionString = "Your_Connection_String_Here";
-            
-
             using (SqlConnection conn = new SqlConnection(cs))
             {
                 string query = "SELECT cusID, Username, FirstName, LastName, EmailAddress, ContactNo, Gender, DateOfBirth, ResidenceState FROM [dbo].[Customer]";

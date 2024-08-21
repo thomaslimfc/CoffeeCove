@@ -8,6 +8,8 @@ namespace CoffeeCove.UserManagement
 {
     public partial class UserProfile : System.Web.UI.Page
     {
+        string cs = Global.CS;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -24,9 +26,7 @@ namespace CoffeeCove.UserManagement
             string cusID = Session["cusID"]?.ToString();
             if (!string.IsNullOrEmpty(cusID))
             {
-                string connectionString = ConfigurationManager.ConnectionStrings["CoffeeCoveDB"].ConnectionString;
-
-                using (SqlConnection con = new SqlConnection(connectionString))
+                using (SqlConnection con = new SqlConnection(cs))
                 {
                     string query = "SELECT Username, EmailAddress, Gender, DateOfBirth, ContactNo, ResidenceState, ProfilePicturePath FROM [dbo].[Customer] WHERE cusID = @cusID";
                     SqlCommand cmd = new SqlCommand(query, con);
@@ -149,9 +149,7 @@ namespace CoffeeCove.UserManagement
             string cusID = Session["cusID"]?.ToString();
             if (!string.IsNullOrEmpty(cusID))
             {
-                string connectionString = ConfigurationManager.ConnectionStrings["CoffeeCoveDB"].ConnectionString;
-
-                using (SqlConnection con = new SqlConnection(connectionString))
+                using (SqlConnection con = new SqlConnection(cs))
                 {
                     string query = "UPDATE [dbo].[Customer] SET Username = @Username, Gender = @Gender, " +
                                    "DateOfBirth = @DateOfBirth, ContactNo = @ContactNo, ResidenceState = @ResidenceState " +
@@ -240,9 +238,7 @@ namespace CoffeeCove.UserManagement
 
                             imgProfilePicture.ImageUrl = "/UserManagement/UserProfilePictures/" + filename;
 
-                            string connectionString = ConfigurationManager.ConnectionStrings["CoffeeCoveDB"].ConnectionString;
-
-                            using (SqlConnection con = new SqlConnection(connectionString))
+                            using (SqlConnection con = new SqlConnection(cs))
                             {
                                 string query = "UPDATE [dbo].[Customer] SET ProfilePicturePath = @ProfilePicturePath WHERE cusID = @cusID";
                                 SqlCommand cmd = new SqlCommand(query, con);
@@ -300,66 +296,37 @@ namespace CoffeeCove.UserManagement
 
         protected void RemovePictureBtn_UP_Click(object sender, EventArgs e)
         {
-            lblUploadMessage.Text = "";
-
+            // Delete the picture from the folder
             string cusID = Session["cusID"]?.ToString();
             if (!string.IsNullOrEmpty(cusID))
             {
-                string connectionString = ConfigurationManager.ConnectionStrings["CoffeeCoveDB"].ConnectionString;
+                string filename = cusID + ".jpg";
+                string savePath = Server.MapPath("~/UserManagement/UserProfilePictures/") + filename;
 
-                using (SqlConnection con = new SqlConnection(connectionString))
+                if (System.IO.File.Exists(savePath))
                 {
-                    string querySelect = "SELECT ProfilePicturePath FROM [dbo].[Customer] WHERE cusID = @cusID";
-                    SqlCommand cmdSelect = new SqlCommand(querySelect, con);
-                    cmdSelect.Parameters.AddWithValue("@cusID", cusID);
-
                     try
                     {
-                        con.Open();
-                        string profilePicturePath = cmdSelect.ExecuteScalar() as string;
+                        System.IO.File.Delete(savePath);
 
-                        if (string.IsNullOrEmpty(profilePicturePath))
+                        using (SqlConnection con = new SqlConnection(cs))
                         {
-                            lblRemoveMessage.Text = "There is no picture to be removed.";
-                            lblRemoveMessage.Visible = true;
-                            lblRemoveMessage.CssClass = "text-warning";
+                            string query = "UPDATE [dbo].[Customer] SET ProfilePicturePath = NULL WHERE cusID = @cusID";
+                            SqlCommand cmd = new SqlCommand(query, con);
+                            cmd.Parameters.AddWithValue("@cusID", cusID);
+
+                            con.Open();
+                            cmd.ExecuteNonQuery();
                         }
-                        else
-                        {
-                            // Remove the picture file from the server
-                            string filePath = Server.MapPath("~/UserManagement/UserProfilePictures/") + profilePicturePath;
 
-                            if (System.IO.File.Exists(filePath))
-                            {
-                                try
-                                {
-                                    System.IO.File.Delete(filePath);
-                                }
-                                catch (Exception ex)
-                                {
-                                    lblRemoveMessage.Text = "An error occurred while deleting the picture: " + ex.Message;
-                                    lblRemoveMessage.Visible = true;
-                                    lblRemoveMessage.CssClass = "text-danger";
-                                    return; // Exit the method to prevent further actions
-                                }
-                            }
+                        // Reset the profile picture to the default image
+                        imgProfilePicture.ImageUrl = "/img/DefaultProfilePicture.jpg";
+                        lblRemoveMessage.Text = "Picture has been successfully removed.";
+                        lblRemoveMessage.Visible = true;
+                        lblRemoveMessage.CssClass = "text-success";
 
-                            // Remove the picture path from the database
-                            string queryUpdate = "UPDATE [dbo].[Customer] SET ProfilePicturePath = NULL WHERE cusID = @cusID";
-                            SqlCommand cmdUpdate = new SqlCommand(queryUpdate, con);
-                            cmdUpdate.Parameters.AddWithValue("@cusID", cusID);
-
-                            cmdUpdate.ExecuteNonQuery();
-
-                            // Revert to default picture
-                            imgProfilePicture.ImageUrl = "/img/DefaultProfilePicture.jpg";
-                            lblRemoveMessage.Text = "Picture has been successfully removed.";
-                            lblRemoveMessage.Visible = true;
-                            lblRemoveMessage.CssClass = "text-success";
-
-                            // Hide the remove button since the picture has been removed
-                            RemovePictureBtn_UP.Visible = false;
-                        }
+                        // Hide the Remove Picture button after removing the picture
+                        RemovePictureBtn_UP.Visible = false;
                     }
                     catch (Exception ex)
                     {
@@ -367,6 +334,12 @@ namespace CoffeeCove.UserManagement
                         lblRemoveMessage.Visible = true;
                         lblRemoveMessage.CssClass = "text-danger";
                     }
+                }
+                else
+                {
+                    lblRemoveMessage.Text = "Picture not found.";
+                    lblRemoveMessage.Visible = true;
+                    lblRemoveMessage.CssClass = "text-danger";
                 }
             }
         }
