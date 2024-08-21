@@ -272,3 +272,5 @@ C:\# GitHub Local Repository\CoffeeCove\CoffeeCove\obj\Debug\CoffeeCove.csproj.C
 C:\# GitHub Local Repository\CoffeeCove\CoffeeCove\obj\Debug\CoffeeCove.csproj.Up2Date
 C:\# GitHub Local Repository\CoffeeCove\CoffeeCove\obj\Debug\CoffeeCove.dll
 C:\# GitHub Local Repository\CoffeeCove\CoffeeCove\obj\Debug\CoffeeCove.pdb
+D:\visual studio work\CoffeeCove\CoffeeCove\CoffeeCove\obj\Debug\CoffeeCove.csproj.AssemblyReference.cache
+D:\visual studio work\CoffeeCove\CoffeeCove\CoffeeCove\obj\Debug\CoffeeCove.csproj.CoreCompileInputs.cache

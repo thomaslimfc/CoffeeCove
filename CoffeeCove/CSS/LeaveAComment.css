@@ -1,0 +1,28 @@
+﻿body {
+}
+
+#pills-reviews {
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    background-color: #dcdcdc;
+    height: 1000px;
+}
+
+h3 {
+    font-size: 60px;
+}
+
+p {
+    font-size: 20px;
+}
+
+#rateContainer {
+    height: auto;
+    margin: 200px 200px 200px 200px;
+}
+
+.form-control.fixed-height {
+    height: 200px;
+    resize: none;
+}

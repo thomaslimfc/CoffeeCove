@@ -59,5 +59,10 @@ namespace CoffeeCove.RatingReview
                 }
             }
         }
+
+        protected void commentButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("comment.aspx");
+        }
     }
 }

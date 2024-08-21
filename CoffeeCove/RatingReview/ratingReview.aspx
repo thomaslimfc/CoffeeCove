@@ -71,11 +71,11 @@
                         </div>
                     </div>
                     <div class="graph-star-rating-footer text-center mt-3 mb-3">
-                        <button type="button" class="btn btn-outline-primary btn-sm">Rate and Review</button>
+                        <asp:Button ID="commentButton" class="btn btn-outline-primary btn-lg rating-button" runat="server" Text="Leave a Rating For Us!" OnClick="commentButton_Click" />
+                        
                     </div>
                 </div>
                 <div id="ratingReviewContainer" class="bg-white rounded shadow-sm p-4 mb-4 restaurant-detailed-ratings-and-reviews">
-                    <a href="#" class="btn btn-outline-primary btn-sm float-right">Top Rated</a>
                     <h5 class="mb-1">All Ratings and Reviews</h5>
                     <!-- Rating Container -->
                     <asp:Repeater ID="rptUserRatingReview" runat="server" OnItemDataBound="rptUserRatingReview_ItemDataBound">
@@ -99,31 +99,6 @@
                             </div>
                         </ItemTemplate>
                     </asp:Repeater>
-
-                    <a class="text-center w-100 d-block mt-4 font-weight-bold" href="#">See All Reviews</a>
-                </div>
-
-                <div id="rateContainer" class="bg-white rounded shadow-sm p-4 mb-5 rating-review-select-page">
-                    <h5 class="mb-4">Leave Comment</h5>
-                    <p class="mb-2">Rate the Place</p>
-                    <div class="mb-4">
-                        <span class="star-rating">
-                                 <a href="#"><i class="icofont-ui-rating icofont-2x"></i></a>
-                                 <a href="#"><i class="icofont-ui-rating icofont-2x"></i></a>
-                                 <a href="#"><i class="icofont-ui-rating icofont-2x"></i></a>
-                                 <a href="#"><i class="icofont-ui-rating icofont-2x"></i></a>
-                                 <a href="#"><i class="icofont-ui-rating icofont-2x"></i></a>
-                                 </span>
-                    </div>
-                    <form>
-                        <div class="form-group">
-                            <label>Your Comment</label>
-                            <textarea class="form-control"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <button class="btn btn-primary btn-sm" type="button"> Submit Comment </button>
-                        </div>
-                    </form>
                 </div>
             </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.bundle.min.js"></script>
