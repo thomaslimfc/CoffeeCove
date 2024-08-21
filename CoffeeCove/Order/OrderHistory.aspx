@@ -3,7 +3,7 @@
     <link href="../CSS/OrderHistory.css" rel="stylesheet" />
     <div class="pagetitle">
         <br />
-        <h2 id="title">Order History List</h2>
+        <h2 id="title">Order History</h2>
     </div>
 
     <div class="repeaterClass">
@@ -20,18 +20,17 @@
                     <div class="productDetails">
                         <img src="../img/Category/coffee.jpg" alt="Product Image" class="productImage" />
                         <div class="productInfo">
-                            <p>Product Name: </p>
-                            <p>Product Price: RM</p>
-                            <p>Quantity: </p>
+                            <p><strong>Product Name:</strong></p>
+                            <p><strong>Product Price:</strong> RM</p>
+                            <p><strong>Quantity:</strong></p>
                         </div>
                     </div>
 
                     <!-- Track Order Button -->
                     <div class="trackOrderButton">
-                        <asp:Button ID="TrackOrderButton" runat="server" Text="Track Order" CommandArgument='<%# Eval("OrderID") %>' OnClick="TrackOrderButton_Click" CssClass="btn btn-primary" />
+                        <asp:Button ID="TrackOrderButton" runat="server" Text="Track Order" CommandArgument='<%# Eval("OrderID") %>' OnClick="TrackOrderButton_Click" CssClass="btn track-btn" />
                     </div>
                 </div>
-                <hr />
             </ItemTemplate>
         </asp:Repeater>
     </div>

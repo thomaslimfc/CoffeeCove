@@ -137,8 +137,8 @@
                             <p class="text-muted">Note: After clicking on the button, your order will be placed. You have to pay the transaction by cash when your order is delivered to your address.</p>
                         </div> <!-- End Cash on Delivery info -->
 
-                        <!-- Net Banking info -->
-                        <div id="net-banking" class="tab-pane fade pt-3">
+                        <!-- Paypal info -->
+                        <div id="pay-pal" class="tab-pane fade pt-3">
                             <div class="form-group">
                                 <label for="Select Your Bank">
                                     <h6>Select your Bank</h6>

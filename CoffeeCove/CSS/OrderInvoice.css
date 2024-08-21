@@ -1,2 +1,144 @@
 ﻿body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+    margin: 0;
+}
+
+.outside-container {
+    padding-top:100px;
+}
+
+.invoice-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    padding: 20px 20px 20px 20px;
+}
+
+.invoice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ececec;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.invoice-header h1 {
+    font-size: 24px;
+    color: #007bff;
+}
+
+.invoice-meta {
+    text-align: right;
+    font-size: 14px;
+    color: #666;
+}
+
+.note {
+    background-color: #e9f6ff;
+    color: #007bff;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.note i {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.invoice-details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.invoice-details h2 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.invoice-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.invoice-table thead th {
+    background-color: #f7f7f7;
+    padding: 10px;
+    text-align: left;
+    font-size: 14px;
+    color: #333;
+    border-bottom: 2px solid #ececec;
+}
+
+.invoice-table tbody td {
+    padding: 10px;
+    border-bottom: 1px solid #ececec;
+    font-size: 14px;
+    color: #333;
+}
+
+.invoice-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.note-to-recipients {
+    flex: 1;
+}
+
+.note-to-recipients label {
+    font-size: 14px;
+    color: #333;
+}
+
+.note-to-recipients input {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.amount-details {
+    text-align: right;
+    font-size: 14px;
+}
+
+.amount-details p {
+    margin: 5px 0;
+    color: #333;
+}
+
+.amount-details span {
+    font-weight: bold;
+}
+
+.print-button {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.print-button .btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.print-button .btn:hover {
+    background-color: #0056b3;
 }
