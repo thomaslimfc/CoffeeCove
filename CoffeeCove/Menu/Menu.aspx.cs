@@ -233,5 +233,9 @@ namespace CoffeeCove.Menu
             pnlOrderForm.Visible = false;
         }
 
+        protected void btnAddToCart_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
