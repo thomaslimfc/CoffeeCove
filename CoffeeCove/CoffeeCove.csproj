@@ -490,6 +490,8 @@
     <Content Include="img\Category\Espresso.jpg" />
     <Content Include="img\Category\lunch.jpg" />
     <Content Include="img\coffeeBag.jpg" />
+    <Content Include="img\cup.png" />
+    <Content Include="img\cup2.png" />
     <Content Include="img\customer.png" />
     <Content Include="img\down.png" />
     <Content Include="img\facebook.png" />

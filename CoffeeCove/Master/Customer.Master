@@ -5,7 +5,7 @@
 <html>
 <head runat="server">
     <title>CoffeeCove</title>
-
+    <link rel="icon" href="../img/cup2.png" type="image/x-icon">
     <!-- CSS Style -->
     <link href="../CSS/Customer.css" rel="stylesheet" />
    

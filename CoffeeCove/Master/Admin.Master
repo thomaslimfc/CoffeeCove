@@ -4,11 +4,10 @@
 
 <html>
 <head runat="server">
-    <title>CoffeeCove</title>
+    <title>CoffeeCove - Admin</title>
 
         <!-- Favicons -->
-    <link href="../Content/img/favicon.png" rel="icon">
-    <link href="../Content/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link rel="icon" href="../img/cup.png" type="image/x-icon">
 
     <!-- Bootstrap CSS Files -->
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
