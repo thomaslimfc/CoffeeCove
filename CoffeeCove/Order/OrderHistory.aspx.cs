@@ -25,7 +25,7 @@ namespace CoffeeCove.Order
         {
             using (SqlConnection conn = new SqlConnection(cs))
             {
-                string query = "SELECT * FROM [Order]";
+                string query = "SELECT * FROM [OrderPlaced]";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
