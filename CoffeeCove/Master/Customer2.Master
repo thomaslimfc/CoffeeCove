@@ -17,8 +17,8 @@
         <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
         <!--header-->
         <div id="header">
-            <div class="headerContainer">
-                <h2><a class="logo" href="../Home/Home.aspx">COFFEECOVE&#174;</a></h2>
+            <div class="headerContainer" style="height: 72px">
+                <h2><a class="logo" style="font-size: 18pt; font-weight: 500" href="../Home/Home.aspx">COFFEECOVE&#174;</a></h2>
                 <div id="menuContainer" aria-disabled="False">
                     <asp:Menu ID="Menu" runat="server" BorderStyle="None" DataSourceID="SiteMapDataSource1" Font-Size="17px" Orientation="Horizontal" StaticDisplayLevels="2" StaticSubMenuIndent="0px" ForeColor="White">
                         <StaticMenuItemStyle CssClass="menuItem" />
@@ -61,7 +61,7 @@
             <div class="footerContainer">
                 <div>
                     <h4>Quick Links</h4>
-                    <asp:HyperLink ID="homeLink" runat="server" NavigateUrl="../Home/Home.aspx" CssClass="quickLink">Home</asp:HyperLink>
+                    <asp:HyperLink ID="homeLink" runat="server" NavigateUrl="../Home/Home.aspx" CssClass="quickLink" style="font-weight: 900">Home</asp:HyperLink>
                     <asp:HyperLink ID="menuLink" runat="server" NavigateUrl="../Menu/Menu.aspx" CssClass="quickLink">Menu</asp:HyperLink>
                     <asp:HyperLink ID="serviceLink" runat="server" NavigateUrl="../Service/Service.aspx" CssClass="quickLink">Service</asp:HyperLink>
                     <asp:HyperLink ID="ratingReviewLink" runat="server" NavigateUrl="../RatingReview/RatingReview.aspx" CssClass="quickLink">Rating & Review</asp:HyperLink>

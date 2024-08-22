@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="Reset Password" Language="C#" 
-    MasterPageFile="../Master/Customer.Master" 
+    MasterPageFile="../Master/Customer2.Master" 
     AutoEventWireup="true" CodeBehind="PasswordReset.aspx.cs" 
     Inherits="CoffeeCove.Security.PasswordReset" %>
 
