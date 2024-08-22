@@ -329,3 +329,4 @@ D:\visual studio work\CoffeeCove\CoffeeCove\CoffeeCove\bin\System.Runtime.Compil
 D:\visual studio work\CoffeeCove\CoffeeCove\CoffeeCove\obj\Debug\CoffeeCove.csproj.Up2Date
 D:\visual studio work\CoffeeCove\CoffeeCove\CoffeeCove\obj\Debug\CoffeeCove.dll
 D:\visual studio work\CoffeeCove\CoffeeCove\CoffeeCove\obj\Debug\CoffeeCove.pdb
+C:\# GitHub Local Repository\CoffeeCove\CoffeeCove\bin\System.Memory.xml
