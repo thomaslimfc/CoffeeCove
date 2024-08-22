@@ -691,10 +691,10 @@
     <Compile Include="Menu\Menu.aspx.designer.cs">
       <DependentUpon>Menu.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Order.cs">
+    <Compile Include="OrderedItem.cs">
       <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="OrderedItem.cs">
+    <Compile Include="OrderPlaced.cs">
       <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Orders\cartEdit.aspx.cs">

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="dbCoffeeCoveModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="dbCoffeeCoveModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="CategoryId" />
@@ -28,17 +28,6 @@
           <Property Name="PostCode" Type="nchar" MaxLength="10" />
           <Property Name="DeliveryStatus" Type="nchar" MaxLength="10" />
         </EntityType>
-        <EntityType Name="Order">
-          <Key>
-            <PropertyRef Name="OrderID" />
-          </Key>
-          <Property Name="OrderID" Type="int" Nullable="false" />
-          <Property Name="CustomerID" Type="nchar" MaxLength="10" />
-          <Property Name="PickUpNo" Type="nchar" MaxLength="10" />
-          <Property Name="DeliveryNo" Type="nchar" MaxLength="10" />
-          <Property Name="OrderDate" Type="date" />
-          <Property Name="TotalAmount" Type="decimal" Precision="20" Scale="2" />
-        </EntityType>
         <EntityType Name="OrderedItem">
           <Key>
             <PropertyRef Name="ProductID" />
@@ -53,6 +42,17 @@
           <Property Name="AddOn" Type="varchar" MaxLength="20" />
           <Property Name="Instruction" Type="varchar" MaxLength="50" />
           <Property Name="Price" Type="decimal" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="OrderPlaced">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="CustomerID" Type="nchar" MaxLength="10" />
+          <Property Name="PickUpNo" Type="nchar" MaxLength="10" />
+          <Property Name="DeliveryNo" Type="nchar" MaxLength="10" />
+          <Property Name="OrderDate" Type="nchar" MaxLength="10" />
+          <Property Name="TotalAmount" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="PickUp">
           <Key>
@@ -84,11 +84,11 @@
           <Property Name="StoreName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="StoreAddress" Type="nvarchar" MaxLength="150" Nullable="false" />
         </EntityType>
-        <Association Name="FK_OrderedItem_Order">
-          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+        <Association Name="FK_OrderedItem_OrderPlaced">
+          <End Role="OrderPlaced" Type="Self.OrderPlaced" Multiplicity="1" />
           <End Role="OrderedItem" Type="Self.OrderedItem" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Order">
+            <Principal Role="OrderPlaced">
               <PropertyRef Name="OrderID" />
             </Principal>
             <Dependent Role="OrderedItem">
@@ -135,13 +135,13 @@
         <EntityContainer Name="dbCoffeeCoveModelStoreContainer">
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Delivery" EntityType="Self.Delivery" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderedItem" EntityType="Self.OrderedItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderPlaced" EntityType="Self.OrderPlaced" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PickUp" EntityType="Self.PickUp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Store" EntityType="Self.Store" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_OrderedItem_Order" Association="Self.FK_OrderedItem_Order">
-            <End Role="Order" EntitySet="Order" />
+          <AssociationSet Name="FK_OrderedItem_OrderPlaced" Association="Self.FK_OrderedItem_OrderPlaced">
+            <End Role="OrderPlaced" EntitySet="OrderPlaced" />
             <End Role="OrderedItem" EntitySet="OrderedItem" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderedItem_Product" Association="Self.FK_OrderedItem_Product">
@@ -157,8 +157,7 @@
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="dbCoffeeCoveModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -186,18 +185,6 @@
           <Property Name="PostCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="DeliveryStatus" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
-        <EntityType Name="Order">
-          <Key>
-            <PropertyRef Name="OrderID" />
-          </Key>
-          <Property Name="OrderID" Type="Int32" Nullable="false" />
-          <Property Name="CustomerID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="PickUpNo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="DeliveryNo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="OrderDate" Type="DateTime" Precision="0" />
-          <Property Name="TotalAmount" Type="Decimal" Precision="20" Scale="2" />
-          <NavigationProperty Name="OrderedItems" Relationship="Self.FK_OrderedItem_Order" FromRole="Order" ToRole="OrderedItem" />
-        </EntityType>
         <EntityType Name="OrderedItem">
           <Key>
             <PropertyRef Name="ProductID" />
@@ -212,8 +199,8 @@
           <Property Name="AddOn" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Instruction" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Price" Type="Decimal" Precision="5" Scale="2" />
-          <NavigationProperty Name="Order" Relationship="Self.FK_OrderedItem_Order" FromRole="OrderedItem" ToRole="Order" />
           <NavigationProperty Name="Product" Relationship="Self.FK_OrderedItem_Product" FromRole="OrderedItem" ToRole="Product" />
+          <NavigationProperty Name="OrderPlaced" Relationship="dbCoffeeCoveModel.FK_OrderedItem_OrderPlaced" FromRole="OrderedItem" ToRole="OrderPlaced" />
         </EntityType>
         <EntityType Name="PickUp">
           <Key>
@@ -261,18 +248,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_OrderedItem_Order">
-          <End Role="Order" Type="Self.Order" Multiplicity="1" />
-          <End Role="OrderedItem" Type="Self.OrderedItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Order">
-              <PropertyRef Name="OrderID" />
-            </Principal>
-            <Dependent Role="OrderedItem">
-              <PropertyRef Name="OrderID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_OrderedItem_Product">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
           <End Role="OrderedItem" Type="Self.OrderedItem" Multiplicity="*" />
@@ -300,7 +275,6 @@
         <EntityContainer Name="dbCoffeeCoveEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Deliveries" EntityType="Self.Delivery" />
-          <EntitySet Name="Orders" EntityType="Self.Order" />
           <EntitySet Name="OrderedItems" EntityType="Self.OrderedItem" />
           <EntitySet Name="PickUps" EntityType="Self.PickUp" />
           <EntitySet Name="Products" EntityType="Self.Product" />
@@ -308,10 +282,6 @@
           <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
             <End Role="Category" EntitySet="Categories" />
             <End Role="Product" EntitySet="Products" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OrderedItem_Order" Association="Self.FK_OrderedItem_Order">
-            <End Role="Order" EntitySet="Orders" />
-            <End Role="OrderedItem" EntitySet="OrderedItems" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderedItem_Product" Association="Self.FK_OrderedItem_Product">
             <End Role="Product" EntitySet="Products" />
@@ -321,7 +291,36 @@
             <End Role="Store" EntitySet="Stores" />
             <End Role="PickUp" EntitySet="PickUps" />
           </AssociationSet>
+          <EntitySet Name="OrderPlaceds" EntityType="dbCoffeeCoveModel.OrderPlaced" />
+          <AssociationSet Name="FK_OrderedItem_OrderPlaced" Association="dbCoffeeCoveModel.FK_OrderedItem_OrderPlaced">
+            <End Role="OrderPlaced" EntitySet="OrderPlaceds" />
+            <End Role="OrderedItem" EntitySet="OrderedItems" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="OrderPlaced">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="CustomerID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="PickUpNo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="DeliveryNo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="OrderDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="TotalAmount" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="OrderedItems" Relationship="dbCoffeeCoveModel.FK_OrderedItem_OrderPlaced" FromRole="OrderPlaced" ToRole="OrderedItem" />
+        </EntityType>
+        <Association Name="FK_OrderedItem_OrderPlaced">
+          <End Type="dbCoffeeCoveModel.OrderPlaced" Role="OrderPlaced" Multiplicity="1" />
+          <End Type="dbCoffeeCoveModel.OrderedItem" Role="OrderedItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderPlaced">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderedItem">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -350,18 +349,6 @@
                 <ScalarProperty Name="Level" ColumnName="Level" />
                 <ScalarProperty Name="PostCode" ColumnName="PostCode" />
                 <ScalarProperty Name="DeliveryStatus" ColumnName="DeliveryStatus" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="dbCoffeeCoveModel.Order">
-              <MappingFragment StoreEntitySet="Order">
-                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
-                <ScalarProperty Name="PickUpNo" ColumnName="PickUpNo" />
-                <ScalarProperty Name="DeliveryNo" ColumnName="DeliveryNo" />
-                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -410,6 +397,18 @@
                 <ScalarProperty Name="StoreID" ColumnName="StoreID" />
                 <ScalarProperty Name="StoreName" ColumnName="StoreName" />
                 <ScalarProperty Name="StoreAddress" ColumnName="StoreAddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderPlaceds">
+            <EntityTypeMapping TypeName="dbCoffeeCoveModel.OrderPlaced">
+              <MappingFragment StoreEntitySet="OrderPlaced">
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="DeliveryNo" ColumnName="DeliveryNo" />
+                <ScalarProperty Name="PickUpNo" ColumnName="PickUpNo" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

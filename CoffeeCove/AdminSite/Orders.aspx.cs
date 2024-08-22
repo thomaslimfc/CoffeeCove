@@ -38,7 +38,7 @@ namespace CoffeeCove.AdminSite
 
         private void LoadOrder(string orderId)
         {
-            var o = db.Orders.SingleOrDefault(x => x.OrderID == int.Parse(orderId));
+            var o = db.OrderPlaceds.SingleOrDefault(x => x.OrderID == int.Parse(orderId));
             
             if (o != null)
             {

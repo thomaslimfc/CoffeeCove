@@ -27,10 +27,10 @@ namespace CoffeeCove
     
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Delivery> Deliveries { get; set; }
-        public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<OrderedItem> OrderedItems { get; set; }
         public virtual DbSet<PickUp> PickUps { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Store> Stores { get; set; }
+        public virtual DbSet<OrderPlaced> OrderPlaceds { get; set; }
     }
 }
