@@ -16,7 +16,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> <!-- Add this line -->
 
     <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
+    <!--<link href="assets/img/favicon.png" rel="icon">-->
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
