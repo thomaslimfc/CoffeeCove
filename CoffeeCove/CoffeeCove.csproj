@@ -428,16 +428,6 @@
     <Content Include="CSS\Security.css" />
     <Content Include="CSS\storeList.css" />
     <Content Include="CSS\UserManagement.css" />
-    <Content Include="dbCoffeeCoveModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>dbCoffeeCoveModel.Context.cs</LastGenOutput>
-      <DependentUpon>dbCoffeeCoveModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="dbCoffeeCoveModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>dbCoffeeCoveModel.edmx</DependentUpon>
-      <LastGenOutput>dbCoffeeCoveModel.cs</LastGenOutput>
-    </Content>
     <Content Include="Global.asax" />
     <Content Include="Home\Home.aspx" />
     <Content Include="imgProductItems\BF01.jpg" />
@@ -509,6 +499,7 @@
     <Content Include="img\twitter.png" />
     <Content Include="img\up.png" />
     <Content Include="img\username_icon.png" />
+    <Content Include="Menu\Carts.aspx" />
     <Content Include="Menu\Menu.aspx" />
     <Content Include="Order\cartEdit.aspx" />
     <Content Include="Order\getLocation.js" />
@@ -627,21 +618,6 @@
     <Compile Include="AdminSite\Categories.aspx.designer.cs">
       <DependentUpon>Categories.aspx</DependentUpon>
     </Compile>
-    <Compile Include="dbCoffeeCoveModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dbCoffeeCoveModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbCoffeeCoveModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dbCoffeeCoveModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbCoffeeCoveModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dbCoffeeCoveModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -665,6 +641,13 @@
     </Compile>
     <Compile Include="Master\Customer.Master.designer.cs">
       <DependentUpon>Customer.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Menu\Carts.aspx.cs">
+      <DependentUpon>Carts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Menu\Carts.aspx.designer.cs">
+      <DependentUpon>Carts.aspx</DependentUpon>
     </Compile>
     <Compile Include="Menu\Menu.aspx.cs">
       <DependentUpon>Menu.aspx</DependentUpon>
@@ -910,13 +893,6 @@
     <Content Include="Content\vendor\tinymce\license.md" />
     <Content Include="Content\vendor\tinymce\package.json" />
     <Content Include="Content\vendor\tinymce\README.md" />
-    <EntityDeploy Include="dbCoffeeCoveModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>dbCoffeeCoveModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="dbCoffeeCoveModel.edmx.diagram">
-      <DependentUpon>dbCoffeeCoveModel.edmx</DependentUpon>
-    </Content>
     <None Include="packages.config" />
     <Content Include="packages\EntityFramework.6.2.0\.signature.p7s" />
     <Content Include="packages\EntityFramework.6.2.0\content\net40\App.config.transform" />

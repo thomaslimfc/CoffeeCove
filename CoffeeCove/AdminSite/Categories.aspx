@@ -6,7 +6,7 @@
 
     <link href="../CSS/ProductCategory.css" rel="stylesheet" />
 
-    <div id="main" class="main">
+    <div id="main" class="main" style="margin-right:1%">
         <div class="pagetitle" style="color:#fff">
             <br />
             <h3>Categories Management</h3>

@@ -33,7 +33,6 @@ namespace CoffeeCove.Menu
             }
         }
 
-
         private void BindCategory()
         {
             using (SqlConnection con = new SqlConnection(cs))
@@ -130,7 +129,7 @@ namespace CoffeeCove.Menu
                             lblSize.Visible = false;
                             lblFlavour.Visible = false;
                             lblIceLevel.Visible = false;
-                            lblAddOn.Visible = false; 
+                            lblAddOn.Visible = false;
                             ddlSize.Visible = false;
                             ddlFlavour.Visible = false;
                             ddlIceLevel.Visible = false;
@@ -192,9 +191,9 @@ namespace CoffeeCove.Menu
             if (quantity < 10)
             {
                 txtQuantity.Text = (quantity + 1).ToString();
-                UpdatePrice(sender, e); 
+                UpdatePrice(sender, e);
             }
-            
+
         }
 
         protected void btnDecrease_Click(object sender, EventArgs e)
@@ -203,7 +202,7 @@ namespace CoffeeCove.Menu
             if (quantity > 1)
             {
                 txtQuantity.Text = (quantity - 1).ToString();
-                UpdatePrice(sender, e); 
+                UpdatePrice(sender, e);
             }
         }
 
@@ -230,7 +229,7 @@ namespace CoffeeCove.Menu
 
         protected void btnReset_Click(object sender, EventArgs e)
         {
-           // Clear dropdown selections
+            // Clear dropdown selections
             ddlSize.SelectedIndex = -1;
             ddlFlavour.SelectedIndex = -1;
             ddlIceLevel.SelectedIndex = -1;
@@ -247,7 +246,6 @@ namespace CoffeeCove.Menu
             pnlOrderForm.Visible = false;
         }
 
-        // Ensure this method is in Menu.aspx.cs and is accessible
         protected void btnAddToCart_Click(object sender, EventArgs e)
         {
             // Retrieve values from form controls
@@ -279,10 +277,9 @@ namespace CoffeeCove.Menu
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     cmd.Parameters.AddWithValue("@ProductID", productId);
-                    cmd.Parameters.AddWithValue("@OrderID", GetCurrentOrderId()); // Implement GetCurrentOrderId() to return the current order ID
+                    cmd.Parameters.AddWithValue("@OrderID", GetCurrentOrderId());
                     cmd.Parameters.AddWithValue("@Quantity", quantity);
 
-                    // Conditionally add parameters based on visibility
                     if (ddlSize.Visible)
                         cmd.Parameters.AddWithValue("@Size", size);
                     else
@@ -316,11 +313,9 @@ namespace CoffeeCove.Menu
             }
         }
 
-
-
         private int GetCurrentOrderId()
         {
-            return 1; 
+            return 1;
         }
 
     }

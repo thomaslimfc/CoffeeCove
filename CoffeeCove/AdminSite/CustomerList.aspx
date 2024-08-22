@@ -35,7 +35,7 @@
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
 
-<main id="main" class="main">
+<main id="main" class="main" style="margin-right:1%">
     <section class="section">
         <div class="pagetitle" style="color:#fff">
             <br />
@@ -44,8 +44,8 @@
         </div>
 
         <div class="row">
-            <div class="col-lg-6">
-                <div class="card" style="width: 1100px;">
+            <div class="col-lg-12">
+                <div class="card">
                     <div class="card-body">
                         <br />
                         <ul class="nav nav-tabs nav-tabs-bordered d-flex" id="borderedTabJustified" role="tablist">
@@ -317,12 +317,9 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
+        
     <!-- Customer List -->
-    <section class="section" style="width: 1100px;">
-        <div class="row" style="margin-top: 2%;">
+    
             <div class="col-lg-12">
                 <div class="pagetitle" style="color:#fff">
                     <br />

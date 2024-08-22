@@ -3,7 +3,7 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <link href="../CSS/ProductCategory.css" rel="stylesheet" />
-    <div id="main" class="main">
+    <div id="main" class="main" style="margin-right:1%">
         <div class="pagetitle" style="color:#fff">
             <br />
             <h3>Products Management</h3>
