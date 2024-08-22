@@ -78,6 +78,7 @@ namespace CoffeeCove.Order
             //Response.Redirect("cartEdit.aspx?id=" + orderId);
         }
 
+        /*
         protected void rptOrdered_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             // Assign label controls
@@ -118,5 +119,6 @@ namespace CoffeeCove.Order
             // Display the subtotal
             lblSubtotal.Text = subTotal.ToString("C"); // "C" formats the number as currency
         }
+        */
     }
 }

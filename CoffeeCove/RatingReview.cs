@@ -12,7 +12,7 @@ namespace CoffeeCove
     using System;
     using System.Collections.Generic;
     
-    public partial class RatingReview
+    public partial class RatingReviews
     {
         public int RatingReviewID { get; set; }
         public string CustomerID { get; set; }
