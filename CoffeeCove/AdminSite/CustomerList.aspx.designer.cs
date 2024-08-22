@@ -87,31 +87,31 @@ namespace CoffeeCove.AdminSite
         protected global::System.Web.UI.WebControls.RegularExpressionValidator Password_CL_regexValidator;
 
         /// <summary>
-        /// BranchRegister_CL control.
+        /// BranchLocation_CL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList BranchRegister_CL;
+        protected global::System.Web.UI.WebControls.DropDownList BranchLocation_CL;
 
         /// <summary>
-        /// BranchRegister_CL_rqdValidator control.
+        /// BranchLocation_CL_rqdValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator BranchRegister_CL_rqdValidator;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator BranchLocation_CL_rqdValidator;
 
         /// <summary>
-        /// lblBranchRegister_CL control.
+        /// lblBranchLocation_CL control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblBranchRegister_CL;
+        protected global::System.Web.UI.WebControls.Label lblBranchLocation_CL;
 
         /// <summary>
         /// PasswordReenter_CL control.
@@ -204,49 +204,76 @@ namespace CoffeeCove.AdminSite
         protected global::System.Web.UI.WebControls.RegularExpressionValidator UsernameEdit_CL_regexValidator;
 
         /// <summary>
-        /// txtGender control.
+        /// DropDownList1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList txtGender;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
 
         /// <summary>
-        /// txtGender_rqdValidator control.
+        /// RequiredFieldValidator1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator txtGender_rqdValidator;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
 
         /// <summary>
-        /// lblBranch control.
+        /// BranchLocation_CL2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblBranch;
+        protected global::System.Web.UI.WebControls.DropDownList BranchLocation_CL2;
 
         /// <summary>
-        /// txtBranch control.
+        /// BranchLocation_CL2_rqdValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList txtBranch;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator BranchLocation_CL2_rqdValidator;
 
         /// <summary>
-        /// txtBranch_rqdValidator control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator txtBranch_rqdValidator;
+        protected global::System.Web.UI.WebControls.Label Label1;
+
+        /// <summary>
+        /// SuperuserPassword_CL2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox SuperuserPassword_CL2;
+
+        /// <summary>
+        /// SuperuserPassword_CL2_rqdValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator SuperuserPassword_CL2_rqdValidator;
+
+        /// <summary>
+        /// SuperuserPassword_CL2_regexValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator SuperuserPassword_CL2_regexValidator;
 
         /// <summary>
         /// SaveChangesBtn_CL control.
@@ -283,6 +310,33 @@ namespace CoffeeCove.AdminSite
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator UsernameDeletion_CL_regexValidator;
+
+        /// <summary>
+        /// SuperuserPassword_CL3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox SuperuserPassword_CL3;
+
+        /// <summary>
+        /// SuperuserPassword_CL3_rqdValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator SuperuserPassword_CL3_rqdValidator;
+
+        /// <summary>
+        /// SuperuserPassword_CL3_regexValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator SuperuserPassword_CL3_regexValidator;
 
         /// <summary>
         /// DeleteAccBtn_CL control.
