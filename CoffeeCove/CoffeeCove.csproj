@@ -514,13 +514,13 @@
     <Content Include="img\username_icon.png" />
     <Content Include="Menu\Carts.aspx" />
     <Content Include="Menu\Menu.aspx" />
-    <Content Include="Order\cartEdit.aspx" />
-    <Content Include="Order\getLocation.js" />
-    <Content Include="Order\cart.aspx" />
-    <Content Include="Order\orderHistory.aspx" />
-    <Content Include="Order\OrderInvoice.aspx" />
-    <Content Include="Order\OrderOption.aspx" />
-    <Content Include="Order\OrderTracking.aspx" />
+    <Content Include="Orders\cartEdit.aspx" />
+    <Content Include="Orders\getLocation.js" />
+    <Content Include="Orders\cart.aspx" />
+    <Content Include="Orders\orderHistory.aspx" />
+    <Content Include="Orders\OrderInvoice.aspx" />
+    <Content Include="Orders\OrderOption.aspx" />
+    <Content Include="Orders\OrderTracking.aspx" />
     <Content Include="packages\EntityFramework.6.2.0\lib\net40\EntityFramework.dll" />
     <Content Include="packages\EntityFramework.6.2.0\lib\net40\EntityFramework.SqlServer.dll" />
     <Content Include="packages\EntityFramework.6.2.0\lib\net40\EntityFramework.SqlServer.xml" />
@@ -590,9 +590,6 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Admin.cs">
-      <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>
-    </Compile>
     <Compile Include="AdminSite\CustomerList.aspx.cs">
       <DependentUpon>CustomerList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -636,9 +633,6 @@
       <DependentUpon>Categories.aspx</DependentUpon>
     </Compile>
     <Compile Include="Category.cs">
-      <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Customer.cs">
       <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="dbCoffeeCoveEntities.Context.cs">
@@ -703,46 +697,46 @@
     <Compile Include="OrderedItem.cs">
       <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Order\cartEdit.aspx.cs">
+    <Compile Include="Orders\cartEdit.aspx.cs">
       <DependentUpon>cartEdit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Order\cartEdit.aspx.designer.cs">
+    <Compile Include="Orders\cartEdit.aspx.designer.cs">
       <DependentUpon>cartEdit.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Order\cart.aspx.cs">
+    <Compile Include="Orders\cart.aspx.cs">
       <DependentUpon>cart.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Order\cart.aspx.designer.cs">
+    <Compile Include="Orders\cart.aspx.designer.cs">
       <DependentUpon>cart.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Order\orderHistory.aspx.cs">
+    <Compile Include="Orders\orderHistory.aspx.cs">
       <DependentUpon>orderHistory.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Order\orderHistory.aspx.designer.cs">
+    <Compile Include="Orders\orderHistory.aspx.designer.cs">
       <DependentUpon>orderHistory.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Order\OrderInvoice.aspx.cs">
+    <Compile Include="Orders\OrderInvoice.aspx.cs">
       <DependentUpon>OrderInvoice.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Order\OrderInvoice.aspx.designer.cs">
+    <Compile Include="Orders\OrderInvoice.aspx.designer.cs">
       <DependentUpon>OrderInvoice.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Order\OrderOption.aspx.cs">
+    <Compile Include="Orders\OrderOption.aspx.cs">
       <DependentUpon>OrderOption.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Order\OrderOption.aspx.designer.cs">
+    <Compile Include="Orders\OrderOption.aspx.designer.cs">
       <DependentUpon>OrderOption.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Order\OrderTracking.aspx.cs">
+    <Compile Include="Orders\OrderTracking.aspx.cs">
       <DependentUpon>OrderTracking.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Order\OrderTracking.aspx.designer.cs">
+    <Compile Include="Orders\OrderTracking.aspx.designer.cs">
       <DependentUpon>OrderTracking.aspx</DependentUpon>
     </Compile>
     <Compile Include="Payment\paymentOpt.aspx.cs">
@@ -759,9 +753,6 @@
       <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RatingReview.cs">
-      <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>
-    </Compile>
     <Compile Include="RatingReview\comment.aspx.cs">
       <DependentUpon>comment.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

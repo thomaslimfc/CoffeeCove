@@ -37,7 +37,7 @@
                                 OrderNo:
                             </td>
                             <td>
-                                <asp:Label ID="lblOrderNo" runat="server"></asp:Label>
+                                <asp:Label ID="lblOrderNo" runat="server" Text=""></asp:Label>
                             </td>
                         </tr>
                         <tr>
@@ -45,7 +45,7 @@
                                 Date:
                             </td>
                             <td>
-                                <asp:Label ID="lblDate" runat="server"></asp:Label>
+                                <asp:Label ID="lblDate" runat="server" Text=""></asp:Label>
                             </td>
                         </tr>
                         <tr>
@@ -53,7 +53,7 @@
                                 Delivery/Pick-Up No:
                             </td>
                             <td>
-                                <asp:Label ID="lblDelPick" runat="server"></asp:Label>
+                                <asp:Label ID="lblDelPick" runat="server" Text=""></asp:Label>
                             </td>
                         </tr>
                         <tr>
@@ -61,7 +61,7 @@
                                 Amount:
                             </td>
                             <td>
-                                <asp:Label ID="lblAmount" runat="server"></asp:Label>
+                                <asp:Label ID="lblAmount" runat="server" Text=""></asp:Label>
                             </td>
                         </tr>
                     </table>
@@ -107,7 +107,7 @@
                             <asp:BoundField DataField="TotalAmount" HeaderText="TotalAmount" SortExpression="TotalAmount" />
                             <asp:TemplateField HeaderText="Action" ItemStyle-Width="150px">
                                 <ItemTemplate>
-                                    <asp:LinkButton ID="btnView" runat="server" CommandName="viewOrder" CommandArgument='<%# Eval("OrderId") %>' Text="View" CssClass="btn btn-primary btn-sm" OnClientClick="viewOrder(event);"/>
+                                    <asp:LinkButton ID="btnView" runat="server" CommandName="viewOrder" CommandArgument='<%# Eval("OrderId") %>' Text="View" CssClass="btn btn-primary btn-sm" OnClientClick="viewOrder();"/>
                                     <asp:LinkButton ID="btnDelete" runat="server" CommandName="deleteOrder" CommandArgument='<%# Eval("OrderId") %>' Text="Delete" CssClass="btn btn-danger btn-sm" OnClientClick="return confirmDelete();"/>
                                 </ItemTemplate>
                             </asp:TemplateField>
@@ -135,9 +135,9 @@
         function confirmDelete() {
             return confirm("Do you confirm you want to delete this store from store list?");
         }
-        function viewOrder(event) {
+        function viewOrder() {
             document.getElementById("viewOrder").style.display = 'block';
-            event.preventDefault();
+            //event.preventDefault();
         }
 
         </script>

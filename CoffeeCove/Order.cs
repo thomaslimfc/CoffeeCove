@@ -12,10 +12,10 @@ namespace CoffeeCove
     using System;
     using System.Collections.Generic;
     
-    public partial class Orders
+    public partial class Order
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Orders()
+        public Order()
         {
             this.OrderedItems = new HashSet<OrderedItem>();
         }
@@ -24,8 +24,8 @@ namespace CoffeeCove
         public string CustomerID { get; set; }
         public string PickUpNo { get; set; }
         public string DeliveryNo { get; set; }
-        public string OrderDate { get; set; }
-        public string TotalAmount { get; set; }
+        public Nullable<System.DateTime> OrderDate { get; set; }
+        public Nullable<decimal> TotalAmount { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderedItem> OrderedItems { get; set; }
