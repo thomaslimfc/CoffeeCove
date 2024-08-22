@@ -117,7 +117,7 @@
                     </asp:GridView>
               
               
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [OrderID], [OrderDate], [TotalAmount], [DeliveryNo], [PickUpNo] FROM [Order]"></asp:SqlDataSource>
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [OrderID], [OrderDate], [TotalAmount], [DeliveryNo], [PickUpNo] FROM [OrderPlaced]"></asp:SqlDataSource>
               
               
                 </div>

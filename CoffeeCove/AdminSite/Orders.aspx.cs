@@ -24,7 +24,7 @@ namespace CoffeeCove.AdminSite
         {
             if(e.CommandName == "viewOrder")
             {
-                string orderId = (string)e.CommandArgument;
+                int orderId = (int)e.CommandArgument;
                 LoadOrder(orderId);
 
                 lblOrderNo.Text = "1";
@@ -36,10 +36,9 @@ namespace CoffeeCove.AdminSite
             }
         }
 
-        private void LoadOrder(string orderId)
+        private void LoadOrder(int orderId)
         {
-            var o = db.OrderPlaceds.SingleOrDefault(x => x.OrderID == int.Parse(orderId));
-            
+            var o = db.OrderPlaceds.SingleOrDefault(x => x.OrderID == orderId);
             if (o != null)
             {
                 lblOrderNo.Text = o.OrderID.ToString();

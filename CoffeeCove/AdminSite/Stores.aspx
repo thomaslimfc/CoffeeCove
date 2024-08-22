@@ -68,7 +68,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Store List</h5>
-                            <asp:GridView ID="gvStoreList" runat="server" DataSourceID="SqlDataSource1" AutoGenerateColumns="False" DataKeyNames="StoreID" CssClass="table table-striped" PageSize="5" AllowPaging="true" AllowSorting="true" EmptyDataText="There are no data records" OnSorting="gvStoreList_Sorting">
+                            <asp:GridView ID="gvStoreList" runat="server" DataSourceID="SqlDataSource1" AutoGenerateColumns="False" DataKeyNames="StoreID" CssClass="table table-striped" PageSize="5" AllowPaging="true" AllowSorting="true" EmptyDataText="There are no data records" OnSorting="gvStoreList_Sorting" OnRowCommand="gvStoreList_RowCommand">
                                 <Columns>
                                     <asp:TemplateField SortExpression="StoreID">
                                         <HeaderTemplate>
