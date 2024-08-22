@@ -13,7 +13,7 @@ namespace CoffeeCove.Order
     public partial class orderCart : System.Web.UI.Page
     {
         string cs = Global.CS;
-        double subTotal = 0;
+        decimal subTotal = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -78,37 +78,34 @@ namespace CoffeeCove.Order
             //Response.Redirect("cartEdit.aspx?id=" + orderId);
         }
 
-        /*
+        
         protected void rptOrdered_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             // Assign label controls
             Label lblId = (Label)e.Item.FindControl("lblId");
             string productId = lblId.Text;
+            Label lblQuantity = (Label)e.Item.FindControl("lblQuantity");
+            int quantity = int.Parse(lblQuantity.Text);
 
-            // Get the Order ID from the query string
-            //string orderId = Session["OrderId"].ToString();
             SqlConnection conn = new SqlConnection(cs);
             // SQL query to get the product details for the specific order and product ID
             string sql = @"SELECT * 
-                   FROM OrderedItem OI 
-                   JOIN Product P ON OI.ProductId = P.ProductId
-                   JOIN [Order] O ON O.OrderId = OI.OrderId
-                   WHERE O.OrderId = @ID AND P.ProductId = @prodID";
+                   FROM Product
+                   WHERE ProductId = @prodID";
 
             SqlCommand cmd = new SqlCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@ID", "1");
             cmd.Parameters.AddWithValue("@prodID", productId);
             conn.Open();
             SqlDataReader dr = cmd.ExecuteReader();
             if (dr.Read())
             {
                 // Calculate the line price based on the UnitPrice and quantity
-
-                double linePrice = (double)dr["UnitPrice"] * (int)dr["Quantity"];
+                decimal unitPrice = (decimal)dr["UnitPrice"];
+                decimal linePrice;
+                    linePrice = unitPrice * quantity;
 
                 // Add the line price to the subtotal
                 subTotal += linePrice;
-                lblSubtotal.Text = "X";
             }
             else
             {
@@ -119,6 +116,6 @@ namespace CoffeeCove.Order
             // Display the subtotal
             lblSubtotal.Text = subTotal.ToString("C"); // "C" formats the number as currency
         }
-        */
+        
     }
 }

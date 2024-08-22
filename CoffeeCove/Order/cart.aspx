@@ -66,7 +66,7 @@
         <table id="cartTotalTable">
             <tr>
                 <td class="cartLeft">Subtotal [RM]</td>
-                <td class="cartRight">RM
+                <td class="cartRight">
                 <asp:Label ID="lblSubtotal" runat="server" Text=""></asp:Label>
                 </td>
             </tr>
