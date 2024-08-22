@@ -493,6 +493,7 @@
     <Content Include="img\cup.png" />
     <Content Include="img\cup2.png" />
     <Content Include="img\customer.png" />
+    <Content Include="img\down-white.png" />
     <Content Include="img\down.png" />
     <Content Include="img\facebook.png" />
     <Content Include="img\gender_icon.png" />
@@ -512,7 +513,6 @@
     <Content Include="img\up.png" />
     <Content Include="img\user.png" />
     <Content Include="img\username_icon.png" />
-    <Content Include="Menu\Carts.aspx" />
     <Content Include="Menu\Menu.aspx" />
     <Content Include="Order\getLocation.js" />
     <Content Include="Order\cart.aspx" />
@@ -682,13 +682,6 @@
     </Compile>
     <Compile Include="Master\Customer2.Master.designer.cs">
       <DependentUpon>Customer2.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Menu\Carts.aspx.cs">
-      <DependentUpon>Carts.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Menu\Carts.aspx.designer.cs">
-      <DependentUpon>Carts.aspx</DependentUpon>
     </Compile>
     <Compile Include="Menu\Menu.aspx.cs">
       <DependentUpon>Menu.aspx</DependentUpon>
