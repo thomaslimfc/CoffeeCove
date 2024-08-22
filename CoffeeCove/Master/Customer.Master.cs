@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -30,9 +31,36 @@ namespace CoffeeCove.Master
             }
         }
 
-        protected void loginBtn_Click(object sender, EventArgs e)
+        protected void lbtnLogin_Click(object sender, EventArgs e)
         {
-            Response.Redirect("../Security/SignIn.aspx");
+            pnlDropdownMenu.Visible = !pnlDropdownMenu.Visible;
         }
+
+        protected void lbtnLogout_Click(object sender, EventArgs e)
+        {
+            // Simulate logging out by clearing session data
+            Session.Clear();
+            Session.Abandon();
+
+            // Redirect the user to home.aspx
+            Response.Redirect("~/home.aspx");
+        }
+
+        private void UpdateLoginStatus()
+        {
+            if (Session["UserName"] != null)
+            {
+                lblUserName.Text = Session["UserName"].ToString();
+                hplLogout.Text = "Log Out";
+            }
+            else
+            {
+                lblUserName.Text = "Guest";
+                hplLogout.Text = "Login";
+                hplProfile.Visible = false;
+                hplOrderHistory.Visible = false;
+            }
+        }
+
     }
 }

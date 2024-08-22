@@ -29,7 +29,23 @@
                     <asp:ImageButton ID="cartBtn" runat="server" ImageUrl="~/img/cartLogo.png" PostBackUrl="../Order/cart.aspx" Width="25px" />
                     <asp:Label ID="lblCount" runat="server" Text="0" CssClass="cart-badge"></asp:Label>
                     <asp:HiddenField ID="hdnCartCount" runat="server" Value="0" />
-                    <asp:Button ID="loginBtn" runat="server" Text="Sign In" Font-Size="17px" OnClick="loginBtn_Click" />
+                    <asp:LinkButton ID="lbtnLogin" runat="server" CssClass="login" OnClick="lbtnLogin_Click">
+                        <table>
+                            <tr>
+                                <td style="padding-right: 10px; padding-left: 10px">
+                                    <asp:Image ID="ImgUser" runat="server" ImageUrl="../img/user.png" CssClass="UserIcon" />
+                                </td>
+                                <td>
+                                    <asp:Label ID="lblUserName" runat="server" Text="UserName" ForeColor="White" Font-Size="17px" CssClass="Username"></asp:Label></td>
+                            </tr>
+                        </table>
+                    </asp:LinkButton>
+
+                    <asp:Panel ID="pnlDropdownMenu" runat="server" CssClass="dropdown-content" Visible="false">
+                        <asp:HyperLink ID="hplProfile" runat="server" NavigateUrl="~/Profile.aspx">Profile</asp:HyperLink><br />
+                        <asp:HyperLink ID="hplOrderHistory" runat="server" NavigateUrl="~/OrderHistory.aspx">Order History</asp:HyperLink><br />
+                        <asp:HyperLink ID="hplLogout" runat="server" OnClick="lbtnLogout_Click">Log Out</asp:HyperLink>
+                    </asp:Panel>
                 </div>
             </div>
         </div>
