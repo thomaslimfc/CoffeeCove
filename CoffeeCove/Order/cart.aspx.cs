@@ -18,7 +18,7 @@ namespace CoffeeCove.Order
         {
             if (!Page.IsPostBack)
             {
-                string orderId = Session["OrderId"].ToString();
+                //string orderId = Session["OrderId"].ToString();
 
                 SqlConnection conn = new SqlConnection(cs);
                 string sql = @"SELECT * 
@@ -27,7 +27,7 @@ namespace CoffeeCove.Order
                             WHERE OrderId = @ID";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@ID", "12345");
+                cmd.Parameters.AddWithValue("@ID", "1");
                 conn.Open();
 
                 DataSet ds = new DataSet();
@@ -42,15 +42,15 @@ namespace CoffeeCove.Order
                             WHERE OrderId = @id";
 
                 SqlCommand cmd1 = new SqlCommand(sql1, conn);
-                cmd1.Parameters.AddWithValue("@id", "12345");
+                cmd1.Parameters.AddWithValue("@id", "1");
                 int count = (int)cmd1.ExecuteScalar();
 
 
                 //if no record for this order
-                if (count <= 0)
-                {
-                    Response.Redirect("../Menu/Menu.aspx");
-                }
+                //if (count <= 0)
+                //{
+                //    Response.Redirect("../Menu/Menu.aspx");
+                //}
 
                 conn.Close();
             }
@@ -68,14 +68,14 @@ namespace CoffeeCove.Order
 
         protected void btnProceed_Click(object sender, EventArgs e)
         {
-            string orderId = Session["OrderId"].ToString();
-            Response.Redirect("../Payment/paymentOpt.aspx?id=" + orderId);
+            //string orderId = Session["OrderId"].ToString();
+            //Response.Redirect("../Payment/paymentOpt.aspx?id=" + orderId);
         }
 
         protected void btnEdit_Click(object sender, EventArgs e)
         {
-            string orderId = Session["OrderId"].ToString();
-            Response.Redirect("cartEdit.aspx?id=" + orderId);
+            //string orderId = Session["OrderId"].ToString();
+            //Response.Redirect("cartEdit.aspx?id=" + orderId);
         }
 
         protected void rptOrdered_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -85,7 +85,7 @@ namespace CoffeeCove.Order
             string productId = lblId.Text;
 
             // Get the Order ID from the query string
-            string orderId = Session["OrderId"].ToString();
+            //string orderId = Session["OrderId"].ToString();
             SqlConnection conn = new SqlConnection(cs);
             // SQL query to get the product details for the specific order and product ID
             string sql = @"SELECT P.UnitPrice 
@@ -95,7 +95,7 @@ namespace CoffeeCove.Order
                    WHERE O.OrderId = @ID AND P.ProductId = @prodID";
 
             SqlCommand cmd = new SqlCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@ID", "12345");
+            cmd.Parameters.AddWithValue("@ID", "1");
             cmd.Parameters.AddWithValue("@prodID", productId);
             conn.Open();
             SqlDataReader dr = cmd.ExecuteReader();
