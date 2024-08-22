@@ -38,7 +38,7 @@
                                 <div class="col-8">
                                     <asp:Button ID="btnAdd" runat="server" Text="Add" ValidationGroup="StoreForm" CssClass="btn btn-secondary" />
                                     &nbsp;&nbsp;
-                                <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-dark" />
+                                <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-dark" OnClick="btnReset_Click"/>
                                 </div>
                             </div>
                         </div>
@@ -50,18 +50,7 @@
                 <br />
                 <br />
 
-                <!--Search Bar-->
-                <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
-                <div class="search-bar">
-                    <asp:TextBox ID="txtSearch" runat="server" Placeholder="Search..." CssClass="datatable-input"></asp:TextBox>
-                    <asp:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtSearch"
-                        EnableCaching="false" CompletionInterval="100" CompletionSetCount="10" MinimumPrefixLength="1" ServiceMethod="GetItemList">
-                    </asp:AutoCompleteExtender>
-                    <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary" />
-                    <asp:Button ID="btnClear" runat="server" Text="Clear" CssClass="btn btn-secondary" />
-                </div>
-                <br />
-                <br />
+                
 
                 <!-- Store List -->
                 <div class="col-lg-12">

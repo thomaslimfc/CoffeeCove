@@ -125,6 +125,11 @@ namespace CoffeeCove.AdminSite
             }
             btnAdd.Text = "Update";
         }
+
+        protected void btnReset_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Stores.aspx");
+        }
     }
 
 }

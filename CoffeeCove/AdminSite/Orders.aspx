@@ -78,18 +78,6 @@
         <br />
         <br />
 
-        <!--Search Bar-->
-        <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
-        <div class="search-bar">
-            <asp:TextBox ID="txtSearch" runat="server" Placeholder="Search..." CssClass="datatable-input"></asp:TextBox>
-            <asp:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtSearch"
-                EnableCaching="false" CompletionInterval="100" CompletionSetCount="10" MinimumPrefixLength="1" ServiceMethod="GetItemList">
-            </asp:AutoCompleteExtender>
-            <asp:Button ID="Button1" runat="server" Text="Search" CssClass="btn btn-primary" />
-            <asp:Button ID="btnClear" runat="server" Text="Clear" CssClass="btn btn-secondary" />
-        </div>
-        <br />
-        <br />
         
         <!-- Order List -->
         <div class="col-lg-12">
@@ -117,7 +105,7 @@
                     </asp:GridView>
               
               
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [OrderID], [OrderDate], [TotalAmount], [DeliveryNo], [PickUpNo] FROM [OrderPlaced]"></asp:SqlDataSource>
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [OrderID], [OrderDateTime], [TotalAmount], [DeliveryNo], [PickUpNo] FROM [OrderPlaced]"></asp:SqlDataSource>
               
               
                 </div>
