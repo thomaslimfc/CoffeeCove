@@ -1,2 +1,70 @@
 ﻿body {
 }
+
+#main {
+    margin-left: 100px;
+    color: #333;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.pagetitle h3 {
+    color: #ffffff;
+}
+
+.order-details-container {
+    margin-top: 30px;
+    background-color: #ffffff; /* White background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+}
+
+.order-info, .customer-info, .product-info, .order-summary {
+    margin-bottom: 20px;
+}
+
+    .order-info h4, .customer-info h4, .product-info h4, .order-summary h4 {
+        color: #333; /* Dark text color */
+        margin-bottom: 10px;
+    }
+
+    .order-info p, .customer-info p, .order-summary p {
+        color: #555; /* Medium-dark text color */
+        margin: 5px 0;
+    }
+
+    .product-info table {
+        width: 100%;
+        color: #333; /* Dark text color */
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+
+        .product-info table th, .product-info table td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd; /* Light border color */
+        }
+
+        .product-info table th {
+            background-color: #f7f7f7; /* Light gray background for headers */
+            color: #333; /* Dark text color */
+            text-align: left;
+        }
+
+        .product-info table td {
+            background-color: #ffffff; /* White background for cells */
+        }
+
+        .product-info table tr:hover {
+            background-color: #f0f0f0; /* Light gray background on hover */
+        }
+
+    .order-summary p {
+        font-size: 1.1em;
+    }
+
+        .order-summary p span {
+            float: right;
+            color: #333; /* Dark text color */
+        }
