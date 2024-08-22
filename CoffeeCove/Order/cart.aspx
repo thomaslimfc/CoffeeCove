@@ -11,28 +11,32 @@
     <div id="cartContainer">
         <table id="cartItemTable">
             <tr id="cartTitle" style="border-bottom: solid 3px #433533">
-                <td class="cartLeft" colspan="3">Item</td>
-                <td class="cartRight">Quantity</td>
+                <th class="cartLeft" colspan="3">Item</th>
+                <th class="cartRight">Price</th>
+                <th class="cartRight">Quantity</th>
+                <th class="cartRight">Total</th>
             </tr>
 
             <!--Repeater-->
-            <asp:Repeater ID="rptOrdered" runat="server" OnItemCommand="rptOrdered_ItemCommand" OnItemDataBound="rptOrdered_ItemDataBound">
+            <asp:Repeater ID="rptOrdered" runat="server" OnItemDataBound="rptOrdered_ItemDataBound" OnItemCommand="rptOrdered_ItemCommand">
                 <ItemTemplate>
                     <tr style="border-bottom: solid 2px #433533">
-                        <td>
+                        <td class="tableItem">
+                            <asp:LinkButton ID="lbDelete" runat="server" CommandName="btnDelete" CommandArgument='<%# Eval("ProductId") %>' CssClass="btnDelete" Font-Underline="false"><img src="../img/trash-bin.png" alt="Delete" class="imgDelete"/></asp:LinkButton>
+                        </td>
+                        <td class="tableItem">
                             <asp:Label ID="lblId" runat="server" Text='<%# Eval("ProductId") %>' Font-Bold="True" />
                         </td>
-                        <td>
-                            <asp:Label ID="lblName" runat="server" Text='<%# Eval("ProductName") %>' />
-                        </td>
-                        <td>
-                            <table>
+                        <td class="tableItem">
+                            <asp:Label ID="lblName" runat="server" Font-Bold="true" Text='<%# Eval("ProductName") %>' CssClass="itemName" />
+                            <table id="excludeTable">
                                 <tr>
                                     <td>
                                         Size:&nbsp&nbsp<asp:Label ID="lblSize" runat="server" Text='<%# Eval("Size") %>' />
                                     </td>
-                                </tr>
-                                <tr>
+                                    <td>
+                                        &nbsp
+                                    </td>
                                     <td>
                                         Flavour:&nbsp&nbsp<asp:Label ID="lblFlavour" runat="server" Text='<%# Eval("Flavour") %>' />
                                     </td>
@@ -41,16 +45,23 @@
                                     <td>
                                         Ice Level:&nbsp&nbsp<asp:Label ID="lblIce" runat="server" Text='<%# Eval("IceLevel") %>' />
                                     </td>
-                                </tr>
-                                <tr>
+                                    <td>
+                                        &nbsp
+                                    </td>
                                     <td>
                                         Add-Ons:&nbsp&nbsp<asp:Label ID="lblAddOn" runat="server" Text='<%# Eval("AddOn") %>' />
                                     </td>
                                 </tr>
                             </table>
                         </td>
-                        <td style="text-align:center">
+                        <td style="text-align:center" class="tableItem">
+                            <asp:Label ID="lblPrice" runat="server" Text='<%# Eval("Price") %>' />
+                        </td>
+                        <td style="text-align:center" class="tableItem">
                             <asp:Label ID="lblQuantity" runat="server" Text='<%# Eval("Quantity") %>' />
+                        </td>
+                        <td style="text-align:center" class="tableItem">
+                            <asp:Label ID="lblLineTotal" runat="server" Text="" />
                         </td>
                     </tr>
                 </ItemTemplate>
@@ -64,30 +75,28 @@
         </table>
 
         <table id="cartTotalTable">
-            <tr>
+            <tr class="amtTable">
                 <td class="cartLeft">Subtotal [RM]</td>
                 <td class="cartRight">
                 <asp:Label ID="lblSubtotal" runat="server" Text=""></asp:Label>
                 </td>
             </tr>
-            <tr>
+            <tr class="amtTable">
                 <td class="cartLeft">Tax [6%]</td>
-                <td class="cartRight">RM
-                <asp:Label ID="lblTax" runat="server">x</asp:Label>
+                <td class="cartRight">+
+                <asp:Label ID="lblTax" runat="server" Text=""></asp:Label>
                 </td>
             </tr>
-            <tr>
+            <tr class="amtTable">
                 <td class="cartLeft">Total [RM]</td>
-                <td class="cartRight">RM
-                <asp:Label ID="lblTotal" runat="server">x</asp:Label>
+                <td class="cartRight">
+                <asp:Label ID="lblTotal" runat="server" Text=""></asp:Label>
                 </td>
             </tr>
         </table>
+        <br />
         <table style="width:100%">
             <tr>
-                <td>
-                    <asp:Button runat="server" Text="Edit" CSSClass="btnProceed" ID="btnEdit" OnClick="btnEdit_Click"/>
-                </td>
                 <td>
                     <asp:Button runat="server" Text="Proceed" CSSClass="btnProceed" ID="btnProceed" OnClick="btnProceed_Click"/>
                 </td>

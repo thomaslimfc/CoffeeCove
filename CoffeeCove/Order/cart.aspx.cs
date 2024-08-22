@@ -14,6 +14,9 @@ namespace CoffeeCove.Order
     {
         string cs = Global.CS;
         decimal subTotal = 0;
+        decimal linePrice = 0;
+
+        string orderId = "1";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -58,64 +61,66 @@ namespace CoffeeCove.Order
             
 
         }
-        protected void rptOrdered_ItemCommand(object source, RepeaterCommandEventArgs e)
-        {
-            
-            
-            
-
-        }
 
         protected void btnProceed_Click(object sender, EventArgs e)
         {
             //string orderId = Session["OrderId"].ToString();
-            //Response.Redirect("../Payment/paymentOpt.aspx?id=" + orderId);
+            Response.Redirect("../Payment/paymentOpt.aspx?id=" + orderId);
         }
 
         protected void btnEdit_Click(object sender, EventArgs e)
         {
             //string orderId = Session["OrderId"].ToString();
-            //Response.Redirect("cartEdit.aspx?id=" + orderId);
+            Response.Redirect("cartEdit.aspx?id=" + orderId);
         }
 
         
         protected void rptOrdered_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            // Assign label controls
-            Label lblId = (Label)e.Item.FindControl("lblId");
-            string productId = lblId.Text;
             Label lblQuantity = (Label)e.Item.FindControl("lblQuantity");
             int quantity = int.Parse(lblQuantity.Text);
+            Label lblPrice = (Label)e.Item.FindControl("lblPrice");
+            decimal price = decimal.Parse(lblPrice.Text);
+            Label lblLineTotal = (Label)e.Item.FindControl("lblLineTotal");
+            
+            linePrice = quantity * price;
+            subTotal += linePrice;
 
-            SqlConnection conn = new SqlConnection(cs);
-            // SQL query to get the product details for the specific order and product ID
-            string sql = @"SELECT * 
-                   FROM Product
-                   WHERE ProductId = @prodID";
+            decimal tax = subTotal * (decimal)0.06;
+            decimal total = subTotal + tax;
 
-            SqlCommand cmd = new SqlCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@prodID", productId);
-            conn.Open();
-            SqlDataReader dr = cmd.ExecuteReader();
-            if (dr.Read())
-            {
-                // Calculate the line price based on the UnitPrice and quantity
-                decimal unitPrice = (decimal)dr["UnitPrice"];
-                decimal linePrice;
-                    linePrice = unitPrice * quantity;
-
-                // Add the line price to the subtotal
-                subTotal += linePrice;
-            }
-            else
-            {
-                // Handle the case where no data is found
-                lblSubtotal.Text = "X";
-            }
-
-            // Display the subtotal
             lblSubtotal.Text = subTotal.ToString("C"); // "C" formats the number as currency
+            lblTax.Text = tax.ToString("C");
+            lblTotal.Text = total.ToString("C");
+            lblLineTotal.Text = linePrice.ToString("C");
         }
-        
+
+        protected void rptOrdered_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "btnDelete")
+            {
+                // Retrieve the ID of the item to edit
+                string productId = e.CommandArgument.ToString();
+
+                //string id = Request.QueryString["id"] ?? "";
+
+                SqlConnection conn = new SqlConnection(cs);
+                string sql = @"DELETE FROM OrderedItem
+                            WHERE OrderId = @ID AND ProductID = @prodID";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@ID", orderId);
+                cmd.Parameters.AddWithValue("@prodID", productId);
+                conn.Open();
+
+                cmd.ExecuteNonQuery();
+
+                Response.Redirect("cart.aspx");
+
+
+                conn.Close();
+
+            }
+        }
     }
 }
