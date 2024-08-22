@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace CoffeeCove.AdminSite
 {
-  /*  public partial class OrderManagement : System.Web.UI.Page
+    public partial class OrderManagement : System.Web.UI.Page
     {
         dbCoffeeCoveEntities db = new dbCoffeeCoveEntities();
         protected void Page_Load(object sender, EventArgs e)
@@ -28,7 +28,8 @@ namespace CoffeeCove.AdminSite
 
         private void LoadOrder(string orderId)
         {
-            Order o = db.Orders.SingleOrDefault(x => x.OrderId == orderId);
+            
+            Orders o = db.Orders.SingleOrDefault(x => x.OrderID == int.Parse(orderId));
 
             if (o != null)
             {
@@ -49,5 +50,5 @@ namespace CoffeeCove.AdminSite
                 lblOrderNo.Text = "Data not found.";
             }
         }
-    }*/
+    }
 }

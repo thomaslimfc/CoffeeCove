@@ -88,10 +88,10 @@ namespace CoffeeCove.Order
             //string orderId = Session["OrderId"].ToString();
             SqlConnection conn = new SqlConnection(cs);
             // SQL query to get the product details for the specific order and product ID
-            string sql = @"SELECT P.UnitPrice 
+            string sql = @"SELECT * 
                    FROM OrderedItem OI 
                    JOIN Product P ON OI.ProductId = P.ProductId
-                   JOIN Order O ON O.OrderId = OI.OrderId
+                   JOIN [Order] O ON O.OrderId = OI.OrderId
                    WHERE O.OrderId = @ID AND P.ProductId = @prodID";
 
             SqlCommand cmd = new SqlCommand(sql, conn);

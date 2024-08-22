@@ -427,6 +427,16 @@
     <Content Include="CSS\Security.css" />
     <Content Include="CSS\storeList.css" />
     <Content Include="CSS\UserManagement.css" />
+    <Content Include="dbCoffeeCoveEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>dbCoffeeCoveEntities.edmx</DependentUpon>
+      <LastGenOutput>dbCoffeeCoveEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="dbCoffeeCoveEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>dbCoffeeCoveEntities.edmx</DependentUpon>
+      <LastGenOutput>dbCoffeeCoveEntities.cs</LastGenOutput>
+    </Content>
     <Content Include="Global.asax" />
     <Content Include="Home\Home.aspx" />
     <Content Include="imgProductItems\BF01.jpg" />
@@ -577,6 +587,9 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin.cs">
+      <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="AdminSite\CustomerList.aspx.cs">
       <DependentUpon>CustomerList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -593,6 +606,7 @@
     </Compile>
     <Compile Include="AdminSite\Orders.aspx.cs">
       <DependentUpon>Orders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AdminSite\Orders.aspx.designer.cs">
       <DependentUpon>Orders.aspx</DependentUpon>
@@ -617,6 +631,30 @@
     </Compile>
     <Compile Include="AdminSite\Categories.aspx.designer.cs">
       <DependentUpon>Categories.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Category.cs">
+      <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Customer.cs">
+      <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbCoffeeCoveEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbCoffeeCoveEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbCoffeeCoveEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbCoffeeCoveEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbCoffeeCoveEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Delivery.cs">
+      <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -655,6 +693,12 @@
     </Compile>
     <Compile Include="Menu\Menu.aspx.designer.cs">
       <DependentUpon>Menu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Order.cs">
+      <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderedItem.cs">
+      <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Order\cartEdit.aspx.cs">
       <DependentUpon>cartEdit.aspx</DependentUpon>
@@ -705,7 +749,16 @@
     <Compile Include="Payment\paymentOpt.aspx.designer.cs">
       <DependentUpon>paymentOpt.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PickUp.cs">
+      <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Product.cs">
+      <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RatingReview.cs">
+      <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="RatingReview\comment.aspx.cs">
       <DependentUpon>comment.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -775,6 +828,9 @@
     </Compile>
     <Compile Include="Security\UserAgreement.aspx.designer.cs">
       <DependentUpon>UserAgreement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Store.cs">
+      <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="UserManagement\UserProfile.aspx.cs">
       <DependentUpon>UserProfile.aspx</DependentUpon>
@@ -893,6 +949,13 @@
     <Content Include="Content\vendor\tinymce\license.md" />
     <Content Include="Content\vendor\tinymce\package.json" />
     <Content Include="Content\vendor\tinymce\README.md" />
+    <EntityDeploy Include="dbCoffeeCoveEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>dbCoffeeCoveEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="dbCoffeeCoveEntities.edmx.diagram">
+      <DependentUpon>dbCoffeeCoveEntities.edmx</DependentUpon>
+    </Content>
     <None Include="packages.config" />
     <Content Include="packages\EntityFramework.6.2.0\.signature.p7s" />
     <Content Include="packages\EntityFramework.6.2.0\content\net40\App.config.transform" />
