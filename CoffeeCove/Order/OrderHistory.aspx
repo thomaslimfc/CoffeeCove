@@ -28,7 +28,7 @@
 
                     <!-- Track Order Button -->
                     <div class="trackOrderButton">
-                        <asp:Button ID="TrackOrderButton" runat="server" Text="Track Order" CommandArgument='<%# Eval("OrderID") %>' OnClick="TrackOrderButton_Click" CssClass="btn track-btn" />
+                        <asp:Button ID="TrackOrderButton" runat="server" Text="Track Order" CommandArgument='<%# Eval("OrderID") %>' OnClick="TrackOrderButton_Click" CssClass="btnCont" />
                     </div>
                 </div>
             </ItemTemplate>

@@ -102,6 +102,7 @@
   <ItemGroup>
     <Content Include="AdminSite\CustomerList.aspx" />
     <Content Include="AdminSite\Dashboard.aspx" />
+    <Content Include="AdminSite\OrderDetails.aspx" />
     <Content Include="AdminSite\Orders.aspx" />
     <Content Include="AdminSite\Products.aspx" />
     <Content Include="AdminSite\Stores.aspx" />
@@ -417,6 +418,7 @@
     <Content Include="CSS\LeaveAComment.css" />
     <Content Include="CSS\Menu.css" />
     <Content Include="CSS\orderCart.css" />
+    <Content Include="CSS\OrderDetails.css" />
     <Content Include="CSS\OrderHistory.css" />
     <Content Include="CSS\OrderInvoice.css" />
     <Content Include="CSS\orderOpt.css" />
@@ -606,6 +608,13 @@
     </Compile>
     <Compile Include="AdminSite\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminSite\OrderDetails.aspx.cs">
+      <DependentUpon>OrderDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSite\OrderDetails.aspx.designer.cs">
+      <DependentUpon>OrderDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminSite\Orders.aspx.cs">
       <DependentUpon>Orders.aspx</DependentUpon>

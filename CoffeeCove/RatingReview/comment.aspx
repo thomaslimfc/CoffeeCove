@@ -22,7 +22,7 @@
                     <textarea class="form-control fixed-height"></textarea>
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-primary btn-sm" type="button"> Submit Comment </button>
+                    <asp:Button ID="btnSubmit" runat="server" CssClass="btnCont" Text="Submit Comment" OnClick="btnSubmit_Click" />
                 </div>
             </form>
         </div>

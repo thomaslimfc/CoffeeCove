@@ -45,5 +45,10 @@ namespace CoffeeCove.Order
                 Response.Redirect("orderHistory.aspx");
             }
         }
+
+        protected void InvoiceButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("OrderInvoice.aspx");
+        }
     }
 }

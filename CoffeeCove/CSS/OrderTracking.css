@@ -32,6 +32,22 @@
         border-color: #5e4ecc;
     }
 
+.btnCont {
+    border-radius: 8px;
+    padding: 10px 100px;
+    transition-duration: 0.4s;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #433533;
+    background-color: #f0f0f0;
+}
+
+    .btnCont:hover {
+        background-color: #413432;
+        color: white;
+        cursor: pointer;
+    }
+
 /*Icon progressbar*/
 #progressbar {
     margin-bottom: 30px;
@@ -110,7 +126,7 @@
 
     /*Color number of the step and the connector before it*/
     #progressbar li.active:before, #progressbar li.active:after {
-        background: #651FFF;
+        background: #433533f0;
     }
 
     #progressbar li.active:before {
@@ -128,8 +144,42 @@
     padding-bottom: 20px;
 }
 
-@media screen and (max-width: 992px) {
-    .icon-content {
-        width: 50%;
+.btn-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 500px; /* Adjust the maximum width as needed */
+}
+
+.custom-back-button,
+.custom-invoice-button {
+    flex: 1;
+    margin: 0 10px; /* Adds space between the buttons */
+    padding: 10px 20px; /* Adjust the padding for button size */
+    text-align: center;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #433533;
+    background-color: #f0f0f0;
+    transition-duration: 0.4s;
+}
+
+    .custom-back-button:hover,
+    .custom-invoice-button:hover {
+        background-color: #413432;
+        color: white;
+        cursor: pointer;
+    }
+
+@media screen and (max-width: 576px) {
+    .btn-container {
+        flex-direction: column;
+    }
+
+    .custom-back-button,
+    .custom-invoice-button {
+        margin: 5px 0; /* Adjusts margin for smaller screens */
+        width: 100%;
     }
 }

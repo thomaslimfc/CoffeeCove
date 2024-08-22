@@ -14,6 +14,22 @@ h5 {
     font-size: 40px;
 }
 
+.btnCont {
+    border-radius: 8px;
+    padding: 10px 100px;
+    transition-duration: 0.4s;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #433533;
+    background-color: #f0f0f0;
+}
+
+    .btnCont:hover {
+        background-color: #413432;
+        color: white;
+        cursor: pointer;
+    }
+
 .rating-button {
     margin-top: 20px;
     padding: 15px 30px;
@@ -103,8 +119,8 @@ h5 {
 .offer-dedicated-nav .nav-link.active,
 .offer-dedicated-nav .nav-link:hover,
 .offer-dedicated-nav .nav-link:focus {
-    border-color: #3868fb;
-    color: #3868fb;
+    border-color: #433533f0;
+    color: #433533f0;
 }
 
 .offer-dedicated-nav .nav-link {

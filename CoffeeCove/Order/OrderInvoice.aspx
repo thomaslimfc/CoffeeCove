@@ -65,7 +65,8 @@
                 </div>
             </div>
             <div class="print-button">
-                <asp:Button ID="PrintButton" runat="server" Text="Print" />
+                <asp:Button ID="BackButton" runat="server" Text="Back" CssClass="btnCont" OnClick="BackButton_Click" />
+                <asp:Button ID="PrintButton" runat="server" Text="Print" CssClass="btnCont" />
             </div>
         </div>
     </div>

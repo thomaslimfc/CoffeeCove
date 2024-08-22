@@ -55,7 +55,10 @@
             </div>
             <!-- Add your button below -->
             <div class="row d-flex justify-content-center mt-4">
-                <asp:Button ID="BackButton" runat="server" Text="Back to Order History" CssClass="btn btn-primary custom-back-button" OnClick="BackButton_Click" />
+                <div class="btn-container">
+                    <asp:Button ID="BackButton" runat="server" Text="Back to Order History" CssClass="btnCont custom-back-button" OnClick="BackButton_Click" />
+                    <asp:Button ID="InvoiceButton" runat="server" Text="View Invoice" CssClass="btnCont custom-invoice-button" OnClick="InvoiceButton_Click" />
+                </div>
             </div>
         </div>
     </div>

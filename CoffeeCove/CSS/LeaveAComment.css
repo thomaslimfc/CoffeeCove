@@ -26,3 +26,19 @@ p {
     height: 200px;
     resize: none;
 }
+
+.btnCont {
+    border-radius: 8px;
+    padding: 10px 100px;
+    transition-duration: 0.4s;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #433533;
+    background-color: #f0f0f0;
+}
+
+    .btnCont:hover {
+        background-color: #413432;
+        color: white;
+        cursor: pointer;
+    }
