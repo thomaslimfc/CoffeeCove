@@ -32,16 +32,41 @@
     border-collapse: collapse;
 }
 
-#cartTitle td {
+#cartItemTable th, .tableItem, .amtTable{
+    padding: 10px; /* Padding inside table cells */
+    border: 1px solid #ddd; /* Border around cells */
+}
+
+.amtTable td{
+    padding: 10px;
+}
+
+#cartItemTable tr:nth-child(even){
+    background-color: #f9f9f9; /* Light gray background for even rows */
+}
+
+#cartItemTable tr:nth-child(odd), #cartTotalTable tr td{
+    background-color: #fff; /* White background for odd rows */
+}
+
+#cartItemTable tr:hover, #cartTotalTable tr:hover{
+    background-color: #e2e2e2; /* Slightly darker gray for hover effect */
+}
+
+#excludeTable tr:nth-child(odd), #excludeTable tr:nth-child(even) {
+    background-color: inherit;
+}
+
+#cartTitle th {
     text-align: center;
 }
 
 .cartLeft {
-    width: 90%;
+    width: 70%;
 }
 
 .cartRight {
-    width: 10%;
+    text-align: right;
 }
 
 .btnProceed {
@@ -57,4 +82,25 @@
     background-color: #413432;
     color: white;
     cursor: pointer;
+}
+
+.itemName{
+    font-size: 1.5em;
+}
+
+.btnDelete {
+    background-color: transparent; 
+    border: none;
+    margin:0 auto;
+    padding: 0; 
+    display: inline-block; 
+}
+
+.imgDelete {
+    width: 35px; /* Set image width as needed */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.btnDelete:hover .imgDelete {
+    opacity: 0.8; /* Slightly fade image on hover */
 }
