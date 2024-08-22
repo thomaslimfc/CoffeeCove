@@ -495,6 +495,7 @@
     <Content Include="img\cup.png" />
     <Content Include="img\cup2.png" />
     <Content Include="img\customer.png" />
+    <Content Include="img\down-white.png" />
     <Content Include="img\down.png" />
     <Content Include="img\facebook.png" />
     <Content Include="img\gender_icon.png" />
@@ -514,9 +515,7 @@
     <Content Include="img\up.png" />
     <Content Include="img\user.png" />
     <Content Include="img\username_icon.png" />
-    <Content Include="Menu\Carts.aspx" />
     <Content Include="Menu\Menu.aspx" />
-    <Content Include="Order\cartEdit.aspx" />
     <Content Include="Order\getLocation.js" />
     <Content Include="Order\cart.aspx" />
     <Content Include="Order\orderHistory.aspx" />
@@ -592,9 +591,6 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Admin.cs">
-      <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>
-    </Compile>
     <Compile Include="AdminSite\CustomerList.aspx.cs">
       <DependentUpon>CustomerList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -647,9 +643,6 @@
     <Compile Include="Category.cs">
       <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Customer.cs">
-      <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>
-    </Compile>
     <Compile Include="dbCoffeeCoveEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -692,12 +685,12 @@
     <Compile Include="Master\Customer.Master.designer.cs">
       <DependentUpon>Customer.Master</DependentUpon>
     </Compile>
-    <Compile Include="Menu\Carts.aspx.cs">
-      <DependentUpon>Carts.aspx</DependentUpon>
+    <Compile Include="Master\Customer2.Master.cs">
+      <DependentUpon>Customer2.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Menu\Carts.aspx.designer.cs">
-      <DependentUpon>Carts.aspx</DependentUpon>
+    <Compile Include="Master\Customer2.Master.designer.cs">
+      <DependentUpon>Customer2.Master</DependentUpon>
     </Compile>
     <Compile Include="Menu\Menu.aspx.cs">
       <DependentUpon>Menu.aspx</DependentUpon>
@@ -706,18 +699,11 @@
     <Compile Include="Menu\Menu.aspx.designer.cs">
       <DependentUpon>Menu.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Order.cs">
-      <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>
-    </Compile>
     <Compile Include="OrderedItem.cs">
       <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Order\cartEdit.aspx.cs">
-      <DependentUpon>cartEdit.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Order\cartEdit.aspx.designer.cs">
-      <DependentUpon>cartEdit.aspx</DependentUpon>
+    <Compile Include="OrderPlaced.cs">
+      <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Order\cart.aspx.cs">
       <DependentUpon>cart.aspx</DependentUpon>
@@ -768,9 +754,6 @@
       <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RatingReview.cs">
-      <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>
-    </Compile>
     <Compile Include="RatingReview\comment.aspx.cs">
       <DependentUpon>comment.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -968,6 +951,7 @@
     <Content Include="dbCoffeeCoveEntities.edmx.diagram">
       <DependentUpon>dbCoffeeCoveEntities.edmx</DependentUpon>
     </Content>
+    <Content Include="Master\Customer2.Master" />
     <None Include="packages.config" />
     <Content Include="packages\EntityFramework.6.2.0\.signature.p7s" />
     <Content Include="packages\EntityFramework.6.2.0\content\net40\App.config.transform" />

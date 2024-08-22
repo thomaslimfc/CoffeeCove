@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="User Agreement" Language="C#" 
-    MasterPageFile="~/Master/Customer.Master" 
+    MasterPageFile="~/Master/Customer2.Master" 
     AutoEventWireup="true" CodeBehind="UserAgreement.aspx.cs" 
     Inherits="CoffeeCove.Security.UserAgreement" %>
 

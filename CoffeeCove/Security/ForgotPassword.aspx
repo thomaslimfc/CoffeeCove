@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="Forgot Password" Language="C#" 
-    MasterPageFile="../Master/Customer.Master" 
+    MasterPageFile="../Master/Customer2.Master" 
     AutoEventWireup="true" CodeBehind="ForgotPassword.aspx.cs" 
     Inherits="CoffeeCove.Security.ForgotPassword" %>
 

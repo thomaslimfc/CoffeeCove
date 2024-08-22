@@ -23,7 +23,7 @@
                             </div>
                             <div class="rating-list-center">
                                 <div class="progress">
-                                    <div style="width: 56%" aria-valuemax="5" aria-valuemin="0" aria-valuenow="5" role="progressbar" class="progress-bar bg-primary">
+                                    <div style="width: 56%; background-color: #433533f0;" aria-valuemax="5" aria-valuemin="0" aria-valuenow="5" role="progressbar" class="progress-bar">
                                         <span class="sr-only">80% Complete (danger)</span>
                                     </div>
                                 </div>
@@ -36,7 +36,7 @@
                             </div>
                             <div class="rating-list-center">
                                 <div class="progress">
-                                    <div style="width: 23%" aria-valuemax="5" aria-valuemin="0" aria-valuenow="5" role="progressbar" class="progress-bar bg-primary">
+                                    <div style="width: 23%; background-color: #433533f0;" aria-valuemax="5" aria-valuemin="0" aria-valuenow="5" role="progressbar" class="progress-bar">
                                         <span class="sr-only">80% Complete (danger)</span>
                                     </div>
                                 </div>
@@ -49,7 +49,7 @@
                             </div>
                             <div class="rating-list-center">
                                 <div class="progress">
-                                    <div style="width: 11%" aria-valuemax="5" aria-valuemin="0" aria-valuenow="5" role="progressbar" class="progress-bar bg-primary">
+                                    <div style="width: 11%; background-color: #433533f0;" aria-valuemax="5" aria-valuemin="0" aria-valuenow="5" role="progressbar" class="progress-bar">
                                         <span class="sr-only">80% Complete (danger)</span>
                                     </div>
                                 </div>
@@ -62,7 +62,7 @@
                             </div>
                             <div class="rating-list-center">
                                 <div class="progress">
-                                    <div style="width: 2%" aria-valuemax="5" aria-valuemin="0" aria-valuenow="5" role="progressbar" class="progress-bar bg-primary">
+                                    <div style="width: 2%; background-color: #433533f0;" aria-valuemax="5" aria-valuemin="0" aria-valuenow="5" role="progressbar" class="progress-bar">
                                         <span class="sr-only">80% Complete (danger)</span>
                                     </div>
                                 </div>
@@ -71,7 +71,7 @@
                         </div>
                     </div>
                     <div class="graph-star-rating-footer text-center mt-3 mb-3">
-                        <asp:Button ID="commentButton" class="btn btn-outline-primary btn-lg rating-button" runat="server" Text="Leave a Rating For Us!" OnClick="commentButton_Click" />
+                        <asp:Button ID="commentButton" CssClass="btnCont" runat="server" Text="Leave a Rating For Us!" OnClick="commentButton_Click" />
                         
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="User Profile" Language="C#" 
-    MasterPageFile="../Master/Customer.Master" 
+    MasterPageFile="../Master/Customer2.Master" 
     AutoEventWireup="true" CodeBehind="UserProfile.aspx.cs" 
     Inherits="CoffeeCove.UserManagement.UserProfile" %>
 
@@ -203,8 +203,10 @@
                         <tr class="evenRow">
                             <td class="blankCol"></td>
                             <td class="contentCol" style="height: 40px">
-                                <asp:Label ID="lblUsername" runat="server" />
-                        
+                                <asp:Label ID="lblUsername" 
+                                    runat="server"
+                                    style="font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+                                            color: black; font-size: 12pt; font-weight: 450"/>
                                 <asp:TextBox ID="txtUsername" runat="server" 
                                     CssClass="mt-1 p-2 border border-border rounded w-full" 
                                     Visible="false"
@@ -228,7 +230,10 @@
                                     ValidationExpression="^[a-zA-Z0-9_]{8,}$" />
                             </td>
                             <td class="contentCol">
-                                <asp:Label ID="lblGender" runat="server" CssClass="block text-sm text-muted-foreground" />
+                                <asp:Label ID="lblGender" runat="server" 
+                                    CssClass="block text-sm text-muted-foreground"
+                                    style="font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+                                            color: black; font-size: 12pt; font-weight: 450"/>
                                 
                                 <asp:DropDownList ID="txtGender" runat="server"
                                     CssClass="mt-1 p-2 border border-border rounded w-full"
@@ -261,12 +266,17 @@
                         <tr class="evenRow">
                             <td class="blankCol"></td>
                             <td class="contentCol" style="height: 40px">
-                                <asp:Label ID="lblEmail" runat="server" />
+                                <asp:Label ID="lblEmail" runat="server"
+                                    style="font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+                                            color: black; font-size: 12pt; font-weight: 450"/>
                                 <asp:Label ID="lblEmailDisplayMode" runat="server" />
                             </td>
                             <td class="contentCol">
                                 <!-- Date of Birth -->
-                                <asp:Label ID="lblDOB" runat="server" class="block text-sm text-muted-foreground" />
+                                <asp:Label ID="lblDOB" runat="server" 
+                                    class="block text-sm text-muted-foreground"
+                                    style="font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+                                            color: black; font-size: 12pt; font-weight: 450; padding-top: 15px"/>
                                 <div class="mb-4">
                                     <asp:TextBox ID="txtDOB" 
                                         CssClass="mt-1 p-2 border border-border rounded w-full" 
@@ -298,7 +308,9 @@
                         <tr class="evenRow">
                             <td class="blankCol"></td>
                             <td class="contentCol" style="height: 40px">
-                                <asp:Label ID="lblContactNo" runat="server" />
+                                <asp:Label ID="lblContactNo" runat="server"
+                                    style="font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+                                            color: black; font-size: 12pt; font-weight: 450"/>
                                 <asp:TextBox ID="txtContactNo" runat="server" 
                                     CssClass="mt-1 p-2 border border-border rounded w-full"  
                                     Visible="false"
@@ -326,8 +338,12 @@
                                 
                                 <asp:DropDownList ID="txtResidenceState" runat="server" 
                                     CssClass="mt-1 p-2 border border-border rounded w-full" 
-                                    Visible="false">
-                                    <asp:ListItem Text="~ Select a location ~" Value="" />
+                                    style="font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+                                        color: black; font-size: 12pt; font-weight: 450"                               
+                                    ForeColor="Black" Visible="false">
+                                    <asp:ListItem Text="~ Select a location ~" Value=""
+                                        style="font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+                                            color: black; font-size: 12pt; font-weight: 450"/>
                                     <asp:ListItem>Selangor</asp:ListItem>
                                     <asp:ListItem>Penang</asp:ListItem>
                                     <asp:ListItem>Johor</asp:ListItem>

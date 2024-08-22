@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="Sign In" Language="C#" 
-    MasterPageFile="../Master/Customer.Master" 
+    MasterPageFile="../Master/Customer2.Master" 
     AutoEventWireup="true" CodeBehind="SignIn.aspx.cs" 
     Inherits="CoffeeCove.Security.SignIn" %>
 

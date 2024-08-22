@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="Reset Password" Language="C#" 
-    MasterPageFile="../Master/Customer.Master" 
+    MasterPageFile="../Master/Customer2.Master" 
     AutoEventWireup="true" CodeBehind="PasswordReset.aspx.cs" 
     Inherits="CoffeeCove.Security.PasswordReset" %>
 
@@ -134,6 +134,7 @@
     });
 </script>
 
+    <br /><br /><br /><br /><br /><br /><br />
 
 <div class="max-w-md mx-auto p-6 bg-card rounded-lg shadow-md">
     <h2 class="text-2xl font-bold text-foreground mb-4">Reset Password</h2>

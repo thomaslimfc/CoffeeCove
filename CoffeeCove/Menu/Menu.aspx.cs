@@ -8,6 +8,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using CoffeeCove.Master;
 using System.Security.Policy;
+using System.Web.Security;
+using System.Web.Services.Description;
+using System.Web.UI.WebControls.WebParts;
 
 namespace CoffeeCove.Menu
 {
@@ -24,11 +27,11 @@ namespace CoffeeCove.Menu
                 string categoryId = Request.QueryString["CategoryId"];
                 if (!string.IsNullOrEmpty(categoryId))
                 {
-                    BindProducts(categoryId); 
+                    BindProducts(categoryId);
                 }
                 else
                 {
-                    BindProducts("1"); 
+                    BindProducts("1");
                 }
             }
         }
@@ -269,46 +272,83 @@ namespace CoffeeCove.Menu
 
             finalPrice *= quantity; // Total price based on quantity
 
-            // Insert into database
+            int orderId = GetCurrentOrderId();
+
+            // Ensure the OrderID exists in OrderPlaced table
             using (SqlConnection con = new SqlConnection(cs))
             {
-                string sql = "INSERT INTO OrderedItem (ProductID, OrderID, Quantity, Size, Flavour, IceLevel, AddOn, Instruction, Price) " +
-                             "VALUES (@ProductID, @OrderID, @Quantity, @Size, @Flavour, @IceLevel, @AddOn, @Instruction, @Price)";
-                using (SqlCommand cmd = new SqlCommand(sql, con))
+                // Begin a transaction
+                con.Open();
+                SqlTransaction transaction = con.BeginTransaction();
+
+                try
                 {
-                    cmd.Parameters.AddWithValue("@ProductID", productId);
-                    cmd.Parameters.AddWithValue("@OrderID", GetCurrentOrderId());
-                    cmd.Parameters.AddWithValue("@Quantity", quantity);
+                    // Check if the order exists, insert if not
+                    string checkOrderSql = "SELECT COUNT(*) FROM OrderPlaced WHERE OrderID = @OrderID";
+                    using (SqlCommand checkCmd = new SqlCommand(checkOrderSql, con, transaction))
+                    {
+                        checkCmd.Parameters.AddWithValue("@OrderID", orderId);
+                        int orderCount = (int)checkCmd.ExecuteScalar();
 
-                    if (ddlSize.Visible)
-                        cmd.Parameters.AddWithValue("@Size", size);
-                    else
-                        cmd.Parameters.AddWithValue("@Size", DBNull.Value);
+                        if (orderCount == 0)
+                        {
+                            string insertOrderSql = "INSERT INTO OrderPlaced (OrderID, OrderDateTime) VALUES (@OrderID, @OrderDateTime)";
+                            using (SqlCommand insertCmd = new SqlCommand(insertOrderSql, con, transaction))
+                            {
+                                insertCmd.Parameters.AddWithValue("@OrderID", orderId);
+                                insertCmd.Parameters.AddWithValue("@OrderDateTime", DateTime.Now); 
+                                insertCmd.ExecuteNonQuery();
+                            }
+                        }
+                    }
 
-                    if (ddlFlavour.Visible)
-                        cmd.Parameters.AddWithValue("@Flavour", flavour);
-                    else
-                        cmd.Parameters.AddWithValue("@Flavour", DBNull.Value);
+                    // Insert into OrderedItem table
+                    string sql = "INSERT INTO OrderedItem (ProductID, OrderID, Quantity, Size, Flavour, IceLevel, AddOn, Instruction, Price) " +
+                                 "VALUES (@ProductID, @OrderID, @Quantity, @Size, @Flavour, @IceLevel, @AddOn, @Instruction, @Price)";
+                    using (SqlCommand cmd = new SqlCommand(sql, con, transaction))
+                    {
+                        cmd.Parameters.AddWithValue("@ProductID", productId);
+                        cmd.Parameters.AddWithValue("@OrderID", orderId);
+                        cmd.Parameters.AddWithValue("@Quantity", quantity);
 
-                    if (ddlIceLevel.Visible)
-                        cmd.Parameters.AddWithValue("@IceLevel", iceLevel);
-                    else
-                        cmd.Parameters.AddWithValue("@IceLevel", DBNull.Value);
+                        if (ddlSize.Visible)
+                            cmd.Parameters.AddWithValue("@Size", size);
+                        else
+                            cmd.Parameters.AddWithValue("@Size", DBNull.Value);
 
-                    if (ddlAddOn.Visible)
-                        cmd.Parameters.AddWithValue("@AddOn", addOn);
-                    else
-                        cmd.Parameters.AddWithValue("@AddOn", DBNull.Value);
+                        if (ddlFlavour.Visible)
+                            cmd.Parameters.AddWithValue("@Flavour", flavour);
+                        else
+                            cmd.Parameters.AddWithValue("@Flavour", DBNull.Value);
 
-                    if (txtSpecialInstructions.Visible)
-                        cmd.Parameters.AddWithValue("@Instruction", specialInstructions);
-                    else
-                        cmd.Parameters.AddWithValue("@Instruction", DBNull.Value);
+                        if (ddlIceLevel.Visible)
+                            cmd.Parameters.AddWithValue("@IceLevel", iceLevel);
+                        else
+                            cmd.Parameters.AddWithValue("@IceLevel", DBNull.Value);
 
-                    cmd.Parameters.AddWithValue("@Price", finalPrice);
+                        if (ddlAddOn.Visible)
+                            cmd.Parameters.AddWithValue("@AddOn", addOn);
+                        else
+                            cmd.Parameters.AddWithValue("@AddOn", DBNull.Value);
 
-                    con.Open();
-                    cmd.ExecuteNonQuery();
+                        if (txtSpecialInstructions.Visible)
+                            cmd.Parameters.AddWithValue("@Instruction", specialInstructions);
+                        else
+                            cmd.Parameters.AddWithValue("@Instruction", DBNull.Value);
+
+                        cmd.Parameters.AddWithValue("@Price", finalPrice);
+
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    // Commit the transaction
+                    transaction.Commit();
+                }
+                catch
+                {
+                    // Rollback the transaction if an error occurs
+                    transaction.Rollback();
+                    throw;
                 }
             }
         }
@@ -319,4 +359,10 @@ namespace CoffeeCove.Menu
         }
 
     }
+
+
+
+
+
+
 }

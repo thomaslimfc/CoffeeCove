@@ -25,15 +25,12 @@ namespace CoffeeCove
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Delivery> Deliveries { get; set; }
-        public virtual DbSet<Orders> Orders { get; set; }
+        public virtual DbSet<OrderedItem> OrderedItems { get; set; }
         public virtual DbSet<PickUp> PickUps { get; set; }
         public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<RatingReviews> RatingReviews { get; set; }
         public virtual DbSet<Store> Stores { get; set; }
-        public virtual DbSet<OrderedItem> OrderedItems { get; set; }
+        public virtual DbSet<OrderPlaced> OrderPlaceds { get; set; }
     }
 }

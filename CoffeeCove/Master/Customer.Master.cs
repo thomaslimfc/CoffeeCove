@@ -15,6 +15,11 @@ namespace CoffeeCove.Master
         protected void Page_Load(object sender, EventArgs e)
         {
             UpdateCartCount();
+
+            if (IsPostBack)
+            {
+                pnlDropdownMenu.Visible = ViewState["DropdownVisible"] != null && (bool)ViewState["DropdownVisible"];
+            }
         }
 
         private void UpdateCartCount()
@@ -33,33 +38,9 @@ namespace CoffeeCove.Master
 
         protected void lbtnLogin_Click(object sender, EventArgs e)
         {
+            // Toggle the visibility of the dropdown menu panel
             pnlDropdownMenu.Visible = !pnlDropdownMenu.Visible;
-        }
-
-        protected void lbtnLogout_Click(object sender, EventArgs e)
-        {
-            // Simulate logging out by clearing session data
-            Session.Clear();
-            Session.Abandon();
-
-            // Redirect the user to home.aspx
-            Response.Redirect("~/home.aspx");
-        }
-
-        private void UpdateLoginStatus()
-        {
-            if (Session["UserName"] != null)
-            {
-                lblUserName.Text = Session["UserName"].ToString();
-                hplLogout.Text = "Log Out";
-            }
-            else
-            {
-                lblUserName.Text = "Guest";
-                hplLogout.Text = "Login";
-                hplProfile.Visible = false;
-                hplOrderHistory.Visible = false;
-            }
+            ViewState["DropdownVisible"] = pnlDropdownMenu.Visible;
         }
 
     }

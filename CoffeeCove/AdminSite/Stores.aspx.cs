@@ -90,6 +90,46 @@ namespace CoffeeCove.AdminSite
             }
         }
 
+        protected void gvStoreList_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Edit")
+            {
+                string StoreId = (string)e.CommandArgument;
+                LoadStoreForEdit(StoreId);
+            }
+            else if (e.CommandName == "Delete")
+            {
+                int StoreId = (int)e.CommandArgument;
+                //DeleteStore(StoreId);
+            }
+        }
+
+        private void LoadStoreForEdit(string StoreId)
+        {
+            string sql = "SELECT * FROM Store WHERE StoreID = @StoreId";
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@StoreId", StoreId);
+                    con.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    if (dr.Read())
+                    {
+                        txtStoreName.Text = dr["StoreName"].ToString();
+                        txtStoreAddress.Text = dr["StoreAddress"].ToString();
+                        txtPostCode.Text = dr["StorePostCode"].ToString();
+                        hdnId.Value = StoreId;
+                    }
+                }
+            }
+            btnAdd.Text = "Update";
+        }
+
+        protected void btnReset_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Stores.aspx");
+        }
     }
 
 }
