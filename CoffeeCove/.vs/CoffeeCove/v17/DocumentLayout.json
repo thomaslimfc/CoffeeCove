@@ -1,25 +1,29 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\",
+  "WorkspaceRootPath": "C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|d:\\visual studio work\\coffeecove\\coffeecove\\coffeecove\\order\\orderinvoice.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|c:\\# github local repository\\coffeecove\\coffeecove\\adminsite\\customerlist.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:adminsite\\customerlist.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|c:\\# github local repository\\coffeecove\\coffeecove\\order\\orderinvoice.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:order\\orderinvoice.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|d:\\visual studio work\\coffeecove\\coffeecove\\coffeecove\\css\\orderinvoice.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\css\\orderinvoice.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:css\\orderinvoice.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|d:\\visual studio work\\coffeecove\\coffeecove\\coffeecove\\master\\customer.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
+      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\master\\customer.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
       "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:master\\customer.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\master\\admin.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
+      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\master\\admin.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
       "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:master\\admin.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\order\\cart.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\order\\cart.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:order\\cart.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     }
   ],
@@ -30,15 +34,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 13,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
               "$type": "Bookmark",
@@ -55,6 +55,10 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
               "$type": "Bookmark",
@@ -82,12 +86,25 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "CustomerList.aspx",
+              "DocumentMoniker": "C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\AdminSite\\CustomerList.aspx",
+              "RelativeDocumentMoniker": "AdminSite\\CustomerList.aspx",
+              "ToolTip": "C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\AdminSite\\CustomerList.aspx",
+              "RelativeToolTip": "AdminSite\\CustomerList.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-08-22T08:55:10.255Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "OrderInvoice.css",
-              "DocumentMoniker": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\CSS\\OrderInvoice.css",
+              "DocumentMoniker": "C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\CSS\\OrderInvoice.css",
               "RelativeDocumentMoniker": "CSS\\OrderInvoice.css",
-              "ToolTip": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\CSS\\OrderInvoice.css*",
-              "RelativeToolTip": "CSS\\OrderInvoice.css*",
+              "ToolTip": "C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\CSS\\OrderInvoice.css",
+              "RelativeToolTip": "CSS\\OrderInvoice.css",
               "ViewState": "AgIAAFkAAAAAAAAAAAAmwGsAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2024-08-22T08:48:21.059Z",
@@ -95,12 +112,12 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "OrderInvoice.aspx",
-              "DocumentMoniker": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\Order\\OrderInvoice.aspx",
+              "DocumentMoniker": "C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\Order\\OrderInvoice.aspx",
               "RelativeDocumentMoniker": "Order\\OrderInvoice.aspx",
-              "ToolTip": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\Order\\OrderInvoice.aspx*",
-              "RelativeToolTip": "Order\\OrderInvoice.aspx*",
+              "ToolTip": "C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\Order\\OrderInvoice.aspx",
+              "RelativeToolTip": "Order\\OrderInvoice.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
               "WhenOpened": "2024-08-22T08:47:24.281Z",
@@ -108,11 +125,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Admin.Master",
-              "DocumentMoniker": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\Master\\Admin.Master",
+              "DocumentMoniker": "C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\Master\\Admin.Master",
               "RelativeDocumentMoniker": "Master\\Admin.Master",
-              "ToolTip": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\Master\\Admin.Master",
+              "ToolTip": "C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\Master\\Admin.Master",
               "RelativeToolTip": "Master\\Admin.Master",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
@@ -121,11 +138,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Customer.Master",
-              "DocumentMoniker": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\Master\\Customer.Master",
+              "DocumentMoniker": "C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\Master\\Customer.Master",
               "RelativeDocumentMoniker": "Master\\Customer.Master",
-              "ToolTip": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\Master\\Customer.Master",
+              "ToolTip": "C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\Master\\Customer.Master",
               "RelativeToolTip": "Master\\Customer.Master",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
@@ -134,11 +151,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "cart.aspx",
-              "DocumentMoniker": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\Order\\cart.aspx",
+              "DocumentMoniker": "C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\Order\\cart.aspx",
               "RelativeDocumentMoniker": "Order\\cart.aspx",
-              "ToolTip": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\Order\\cart.aspx",
+              "ToolTip": "C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\Order\\cart.aspx",
               "RelativeToolTip": "Order\\cart.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
