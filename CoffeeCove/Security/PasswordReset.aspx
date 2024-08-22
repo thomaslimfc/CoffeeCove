@@ -134,6 +134,7 @@
     });
 </script>
 
+    <br /><br /><br /><br /><br /><br /><br />
 
 <div class="max-w-md mx-auto p-6 bg-card rounded-lg shadow-md">
     <h2 class="text-2xl font-bold text-foreground mb-4">Reset Password</h2>
