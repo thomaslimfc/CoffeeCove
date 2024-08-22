@@ -56,10 +56,6 @@
                 </tbody>
             </table>
             <div class="invoice-footer">
-                <div class="note-to-recipients">
-                    <label for="note">Note to recipients:</label>
-                    <input type="text" id="note" name="note" />
-                </div>
                 <div class="amount-details">
                     <p>Subtotal: <span>$40000.00</span></p>
                     <p>Discount: <span>$0.00</span></p>
@@ -73,5 +69,4 @@
             </div>
         </div>
     </div>
-    
 </asp:Content>
