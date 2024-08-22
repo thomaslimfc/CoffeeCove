@@ -676,6 +676,13 @@
     <Compile Include="Master\Customer.Master.designer.cs">
       <DependentUpon>Customer.Master</DependentUpon>
     </Compile>
+    <Compile Include="Master\Customer2.Master.cs">
+      <DependentUpon>Customer2.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Master\Customer2.Master.designer.cs">
+      <DependentUpon>Customer2.Master</DependentUpon>
+    </Compile>
     <Compile Include="Menu\Carts.aspx.cs">
       <DependentUpon>Carts.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -942,6 +949,7 @@
     <Content Include="dbCoffeeCoveEntities.edmx.diagram">
       <DependentUpon>dbCoffeeCoveEntities.edmx</DependentUpon>
     </Content>
+    <Content Include="Master\Customer2.Master" />
     <None Include="packages.config" />
     <Content Include="packages\EntityFramework.6.2.0\.signature.p7s" />
     <Content Include="packages\EntityFramework.6.2.0\content\net40\App.config.transform" />

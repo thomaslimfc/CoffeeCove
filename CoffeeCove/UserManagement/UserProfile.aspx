@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="User Profile" Language="C#" 
-    MasterPageFile="../Master/Customer.Master" 
+    MasterPageFile="../Master/Customer2.Master" 
     AutoEventWireup="true" CodeBehind="UserProfile.aspx.cs" 
     Inherits="CoffeeCove.UserManagement.UserProfile" %>
 

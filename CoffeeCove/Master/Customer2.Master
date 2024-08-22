@@ -1,0 +1,92 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Customer.master.cs" Inherits="CoffeeCove.Master.Customer" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>CoffeeCove</title>
+    <link rel="icon" href="../img/cup2.png" type="image/x-icon">
+    <!-- CSS Style -->
+    <link href="../CSS/Customer.css" rel="stylesheet" />
+   
+
+</head>
+
+<body>
+    <form id="form1" runat="server">
+        <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
+        <!--header-->
+        <div id="header">
+            <div class="headerContainer">
+                <h2><a class="logo" href="../Home/Home.aspx">COFFEECOVE&#174;</a></h2>
+                <div id="menuContainer" aria-disabled="False">
+                    <asp:Menu ID="Menu" runat="server" BorderStyle="None" DataSourceID="SiteMapDataSource1" Font-Size="17px" Orientation="Horizontal" StaticDisplayLevels="2" StaticSubMenuIndent="0px" ForeColor="White">
+                        <StaticMenuItemStyle CssClass="menuItem" />
+                        <DynamicHoverStyle BorderStyle="None" />
+                    </asp:Menu>
+                </div>
+                <div class="headerBtn">
+                    <asp:ImageButton ID="cartBtn" runat="server" ImageUrl="~/img/cartLogo.png" PostBackUrl="../Order/Cart.aspx" Width="25px" />
+                    <asp:Label ID="lblCount" runat="server" Text="0" CssClass="cart-badge"></asp:Label>
+                    <asp:HiddenField ID="hdnCartCount" runat="server" Value="0" />
+                    <asp:LinkButton ID="lbtnLogin" runat="server" CssClass="login" OnClick="lbtnLogin_Click">
+                        <table>
+                            <tr>
+                                <td style="padding-right: 10px; padding-left: 10px">
+                                    <asp:Image ID="ImgUser" runat="server" ImageUrl="../img/user.png" CssClass="UserIcon" />
+                                </td>
+                                <td>
+                                    <asp:Label ID="lblUserName" runat="server" Text="UserName" ForeColor="White" Font-Size="17px" CssClass="Username"></asp:Label></td>
+                            </tr>
+                        </table>
+                    </asp:LinkButton>
+
+                    <asp:Panel ID="pnlDropdownMenu" runat="server" CssClass="dropdown-content" Visible="false">
+                        <asp:HyperLink ID="hplProfile" runat="server" NavigateUrl="~/Profile.aspx">Profile</asp:HyperLink><br />
+                        <asp:HyperLink ID="hplOrderHistory" runat="server" NavigateUrl="~/OrderHistory.aspx">Order History</asp:HyperLink><br />
+                        <asp:HyperLink ID="hplLogout" runat="server" OnClick="lbtnLogout_Click">Log Out</asp:HyperLink>
+                    </asp:Panel>
+                </div>
+            </div>
+        </div>
+
+        <!--content-->
+        <div id="content">
+            <asp:ContentPlaceHolder ID="Content" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+
+        <!--footer-->
+        <div id="footer" style=" font-size: 17px; font-weight: 500; color: #FFFFFF; top: 0px; left: 0px;">
+            <div class="footerContainer">
+                <div>
+                    <h4>Quick Links</h4>
+                    <asp:HyperLink ID="homeLink" runat="server" NavigateUrl="../Home/Home.aspx" CssClass="quickLink">Home</asp:HyperLink>
+                    <asp:HyperLink ID="menuLink" runat="server" NavigateUrl="../Menu/Menu.aspx" CssClass="quickLink">Menu</asp:HyperLink>
+                    <asp:HyperLink ID="serviceLink" runat="server" NavigateUrl="../Service/Service.aspx" CssClass="quickLink">Service</asp:HyperLink>
+                    <asp:HyperLink ID="ratingReviewLink" runat="server" NavigateUrl="../RatingReview/RatingReview.aspx" CssClass="quickLink">Rating & Review</asp:HyperLink>
+                </div>
+                <div>
+                    <h4>Open Hours</h4>
+                    <asp:Label ID="monLabel" runat="server" Text="Label" CssClass="openHour">Mon &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11am-12am</asp:Label><br />
+                    <asp:Label ID="tueLabel" runat="server" Text="Label" CssClass="openHour">Tue &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11am-12am</asp:Label><br />
+                    <asp:Label ID="wedLabel" runat="server" Text="Label" CssClass="openHour">Wed &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11am-12am</asp:Label><br />
+                    <asp:Label ID="thursLabel" runat="server" Text="Label" CssClass="openHour">Thurs &nbsp;&nbsp;&nbsp;&nbsp;11am-12am</asp:Label><br />
+                    <asp:Label ID="friLabel" runat="server" Text="Label" CssClass="openHour">Fri &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11am-12am</asp:Label><br />
+                    <asp:Label ID="satLabel" runat="server" Text="Label" CssClass="openHour">Sat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11am-12am</asp:Label><br />
+                    <asp:Label ID="sunLabel" runat="server" Text="Label" CssClass="openHour">Sun &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Closed</asp:Label>
+                </div>
+                <div>
+                    <h4>Follow Us</h4>
+                    <asp:ImageButton ID="facebookBtn" runat="server" ImageUrl="~/img/facebook.png" PostBackUrl="https://www.facebook.com" EnableTheming="True" Width="25px" Height="25px" CssClass="SocialImg"/>
+                    <asp:ImageButton ID="instaBtn" runat="server" ImageUrl="~/img/instagram.png" PostBackUrl="https://www.instagram.com" Width="25px" Height="25px" CssClass="SocialImg"/>
+                    <asp:ImageButton ID="twitterBtn" runat="server" ImageUrl="~/img/twitter.png" PostBackUrl="https://www.twitter.com" Width="25px" Height="25px" CssClass="SocialImg"/>
+                </div>
+            </div>
+            <div class="footerBottom" style="font-size: 15px; font-weight: 300; color: #FFFFFF; background-color: #2a2a2a;">
+                Developed by Coffeecove Sdn. Bhd. | &copy; All right reserved. <%:DateTime.Now.Year %>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

@@ -1,20 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|c:\\# github local repository\\coffeecove\\coffeecove\\usermanagement\\userprofile.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:usermanagement\\userprofile.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|c:\\# github local repository\\coffeecove\\coffeecove\\css\\customer.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:css\\customer.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|c:\\# github local repository\\coffeecove\\coffeecove\\master\\admin.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
-      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:master\\admin.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -22,34 +9,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": -1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Customer.css",
-              "DocumentMoniker": "C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\CSS\\Customer.css",
-              "RelativeDocumentMoniker": "CSS\\Customer.css",
-              "ToolTip": "C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\CSS\\Customer.css",
-              "RelativeToolTip": "CSS\\Customer.css",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-08-22T14:50:52.185Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UserProfile.aspx",
-              "DocumentMoniker": "C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\UserManagement\\UserProfile.aspx",
-              "RelativeDocumentMoniker": "UserManagement\\UserProfile.aspx",
-              "ToolTip": "C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\UserManagement\\UserProfile.aspx",
-              "RelativeToolTip": "UserManagement\\UserProfile.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-08-22T14:48:04.767Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
@@ -97,19 +58,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Admin.Master",
-              "DocumentMoniker": "C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\Master\\Admin.Master",
-              "RelativeDocumentMoniker": "Master\\Admin.Master",
-              "ToolTip": "C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\Master\\Admin.Master",
-              "RelativeToolTip": "Master\\Admin.Master",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-08-22T14:42:43.547Z",
-              "EditorCaption": ""
             }
           ]
         },
