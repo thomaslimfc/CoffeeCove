@@ -15,6 +15,11 @@ namespace CoffeeCove.Master
         protected void Page_Load(object sender, EventArgs e)
         {
             UpdateCartCount();
+
+            if (IsPostBack)
+            {
+                pnlDropdownMenu.Visible = ViewState["DropdownVisible"] != null && (bool)ViewState["DropdownVisible"];
+            }
         }
 
         private void UpdateCartCount()
@@ -33,7 +38,9 @@ namespace CoffeeCove.Master
 
         protected void lbtnLogin_Click(object sender, EventArgs e)
         {
+            // Toggle the visibility of the dropdown menu panel
             pnlDropdownMenu.Visible = !pnlDropdownMenu.Visible;
+            ViewState["DropdownVisible"] = pnlDropdownMenu.Visible;
         }
 
     }
