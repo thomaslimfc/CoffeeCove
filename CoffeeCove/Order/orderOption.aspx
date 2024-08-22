@@ -108,7 +108,16 @@ async defer></script>
         <div id="popupDialog">
             <div id="map" style="height: 85%;border-radius:8px;border: 1px solid #ddd;box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)"></div>
             <br />
-            <button onclick="closeMap()" type="button" class="btnClose">Close</button>
+            <table style="width:100%">
+                <tr>
+                    <td>
+                        <button onclick="closeMap()" class="btnCont">Close</button>
+                    </td>
+                    <td>
+                        <button onclick="closeMap()" class="btnCont">Confirm</button>
+                    </td>
+                </tr>
+            </table>
         </div>
 
         <!--Overlay for Pick Up-->
@@ -129,7 +138,7 @@ async defer></script>
             </asp:Repeater>
             </table>
             <br />
-            <button onclick="closeStoreList()" type="button" class="btnClose">Close</button>
+            <button onclick="closeStoreList()" class="btnCont">Close</button>
         </div>
     </div>
 </div>
