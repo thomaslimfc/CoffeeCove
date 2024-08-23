@@ -48,8 +48,8 @@ namespace CoffeeCove.AdminSite
                     da.Fill(dt);
 
                     // Bind the DataTable to the GridView
-                    GridView1.DataSource = dt;
-                    GridView1.DataBind();
+                    gvOrder.DataSource = dt;
+                    gvOrder.DataBind();
                 }
                 catch (Exception ex)
                 {
