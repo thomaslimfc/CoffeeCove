@@ -8,7 +8,7 @@
         <asp:Button ID="NextButton" runat="server" Text="&#10095;" OnClick="NextButton_Click" CssClass="navButton next" />
         <div id="slideText">
             <asp:Literal ID="SlideText" runat="server"></asp:Literal>
-            <asp:Button ID="SlideBtn" runat="server" Text="View More" CssClass="slideBtn" OnClick="SlideBtn_Click" Font-Size="17px" />
+            <asp:Button ID="SlideBtn" runat="server" Text="Order Now" CssClass="slideBtn" OnClick="SlideBtn_Click" Font-Size="17px" />
         </div>
     </div>
 

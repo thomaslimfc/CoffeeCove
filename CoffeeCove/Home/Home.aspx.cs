@@ -18,7 +18,7 @@ namespace CoffeeCove.Home
         {
             "/img/slideImg1.jpeg",
             "/img/slideImg2.jpeg",
-            "/img/slideImg4.jpg"
+            "/img/slideImg3.jpeg"
         };
 
         // Array to store slide texts
@@ -28,8 +28,8 @@ namespace CoffeeCove.Home
             <p>Reserve coffee are waiting for you to explore!</p>",
             @"<h1>FRESHLY BREWED ESPRESSO DRINKS READY TO SERVE</h1>
             <p>Experience the rich, aromatic delight of our freshly brewed espresso drinks. Whether you prefer a classic espresso, a creamy cappuccino, or a velvety latte, each drink is made to order with the utmost care!</p>",
-            @"<h1>PICKUP OR DELIVERY, JUST A FEW TAPS AWAY!</h1>
-            <p>Three simple steps:</br>&nbsp;&nbsp;1. Enter your address </br>2. Select your meals </br>3. Sit back and relax</p>"
+            @"<h1>FIND YOUR FAVOURITE COFFEE</h1>
+            <p>Dive into our menu and find your perfect match!</p>"
         };
 
         protected void Page_Load(object sender, EventArgs e)

@@ -67,7 +67,7 @@
                     <h4>Quick Links</h4>
                     <asp:HyperLink ID="homeLink" runat="server" NavigateUrl="../Home/Home.aspx" CssClass="quickLink">Home</asp:HyperLink>
                     <asp:HyperLink ID="menuLink" runat="server" NavigateUrl="../Menu/Menu.aspx" CssClass="quickLink">Menu</asp:HyperLink>
-                    <asp:HyperLink ID="serviceLink" runat="server" NavigateUrl="../Order/orderOption.aspx" CssClass="quickLink">Service</asp:HyperLink>
+                    <asp:HyperLink ID="serviceLink" runat="server" NavigateUrl="../Service/Service.aspx" CssClass="quickLink">Service</asp:HyperLink>
                     <asp:HyperLink ID="ratingReviewLink" runat="server" NavigateUrl="../RatingReview/RatingReview.aspx" CssClass="quickLink">Rating & Review</asp:HyperLink>
                 </div>
                 <div>
