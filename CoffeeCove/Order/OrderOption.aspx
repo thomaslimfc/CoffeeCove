@@ -65,7 +65,7 @@ async defer></script>
                                 </tr>
                                 <tr>
                                     <td style="text-align:center" colspan="2">
-                                        <asp:LinkButton ID="lbConfirm" runat="server" CssClass="btnCont" Font-Underline="false" ValidationGroup="AddressForm">Confirm</asp:LinkButton>
+                                        <asp:LinkButton ID="lbConfirmDelivery" runat="server" CssClass="btnCont" Font-Underline="false" ValidationGroup="AddressForm" OnClick="lbConfirmDelivery_Click">Delivery</asp:LinkButton>
                                     </td>
                                 </tr>
                             </table>
@@ -90,19 +90,12 @@ async defer></script>
                                 <br />
                                 <span style="padding-left:20px;padding-right:20px;display:block"><asp:Label ID="lblStoreAdd" runat="server" EnableViewState="False"></asp:Label></span>
                             </section>
+                            <br />
+                            <asp:LinkButton ID="lbConfirmPickUp" runat="server" Font-Underline="false" OnClick="lbConfirmPickUp_Click">Pick Up</asp:LinkButton>
+                            <br />
                         </div>
                     </td>
                     <!--Pick Up end-->
-                </tr>
-                <tr>
-                    <td>
-                        <br />
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="3" style="text-align:center;height:0">
-                        <asp:LinkButton ID="lbProceed" runat="server" CssClass="btnCont" Font-Underline="false" OnClick="lbProceed_Click">Proceed</asp:LinkButton>
-                    </td>
                 </tr>
             </table>
 
@@ -141,7 +134,7 @@ async defer></script>
             </asp:Repeater>
             </table>
             <br />
-            <button onclick="closeStoreList()" class="btnCont">Close</button>
+            <asp:LinkButton ID="lbCloseStoreList" runat="server" CssClass="btnCont" OnClientClick="closeStoreList()" Font-Underline="false">Close</asp:LinkButton>
         </div>
     </div>
 </div>
