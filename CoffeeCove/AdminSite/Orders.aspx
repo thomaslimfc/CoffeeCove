@@ -96,12 +96,11 @@
                 <div class="card-body">
                     <h5 class="card-title">Order List</h5>
                 
-                    <asp:GridView ID="gvOrder" runat="server" AutoGenerateColumns="False" CssClass="table table-striped" PageSize="10" AllowPaging="true" AllowSorting="true" EmptyDataText="There are no data records" OnRowCommand="gvOrder_RowCommand">
+                    <asp:GridView ID="gvOrder" runat="server" DataSourceID="SqlDataSource1" AutoGenerateColumns="False" DataKeyNames="OrderID" CssClass="table table-striped" PageSize="10" AllowPaging="true" AllowSorting="true" EmptyDataText="There are no data records" OnRowCommand="gvOrder_RowCommand">
                         <Columns>
                             <asp:BoundField DataField="OrderID" HeaderText="OrderID" ReadOnly="True" SortExpression="OrderID" />
                             <asp:BoundField DataField="OrderDateTime" HeaderText="Date" SortExpression="OrderDateTime" />
-                            <asp:BoundField DataField="DeliveryNo" HeaderText="DeliveryNo" SortExpression="DeliveryNo" />
-                            <asp:BoundField DataField="PickUpNo" HeaderText="Pick-UpNo" SortExpression="PickUpNo " />
+                            <asp:BoundField DataField="PaymentStatus" HeaderText="PaymentStatus" SortExpression="PaymentStatus" />
                             <asp:BoundField DataField="TotalAmount" HeaderText="TotalAmount" SortExpression="TotalAmount" />
                             <asp:TemplateField HeaderText="Action" ItemStyle-Width="150px">
                                 <ItemTemplate>
@@ -115,7 +114,7 @@
                     </asp:GridView>
               
               
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [OrderID], [OrderDateTime], [TotalAmount], [DeliveryNo], [PickUpNo] FROM [OrderPlaced]"></asp:SqlDataSource>
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT OrderPlaced.OrderID, OrderPlaced.OrderDateTime, OrderPlaced.TotalAmount, PaymentDetail.PaymentMethod, PaymentDetail.PaymentStatus FROM OrderPlaced INNER JOIN PaymentDetail ON OrderPlaced.OrderID = PaymentDetail.OrderID"></asp:SqlDataSource>
               
               
                 </div>

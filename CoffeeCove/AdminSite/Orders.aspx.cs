@@ -21,42 +21,7 @@ namespace CoffeeCove.AdminSite
             lblDate.Text = "21/07/2024";
             lblAmount.Text = "RM66.70";
             lblDelPick.Text = "1";
-            if (!IsPostBack)
-            {
-                BindGridView();
-            }
-        }
-
-        private void BindGridView()
-        {
-            // Define the SQL query with JOIN
-            string query = @"SELECT [OrderID], [OrderDateTime], [TotalAmount], [DeliveryNo],
-                            [PickUpNo], [UserName]
-                            FROM [OrderPlaced]
-                            INNER JOIN [Customer] ON OrderPlaced.CustomerID =
-                            Customers.CustomerID";
-
-            // Create a connection and data adapter
-            using (SqlConnection conn = new SqlConnection(cs))
-            {
-                SqlDataAdapter da = new SqlDataAdapter(query, conn);
-                DataTable dt = new DataTable();
-
-                try
-                {
-                    // Fill the DataTable with data
-                    da.Fill(dt);
-
-                    // Bind the DataTable to the GridView
-                    gvOrder.DataSource = dt;
-                    gvOrder.DataBind();
-                }
-                catch (Exception ex)
-                {
-                    // Handle exceptions (e.g., log error or show message)
-                    Console.WriteLine(ex.Message);
-                }
-            }
+            
         }
 
         protected void gvOrder_RowCommand(object sender, GridViewCommandEventArgs e)
