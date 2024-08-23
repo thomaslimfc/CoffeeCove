@@ -45,14 +45,7 @@ namespace CoffeeCove.AdminSite
                 lblOrderNo.Text = o.OrderID.ToString();
                 lblDate.Text = o.OrderDateTime.ToString();
                 lblAmount.Text = o.TotalAmount.ToString();
-                if(o.DeliveryNo != null)
-                {
-                    lblDelPick.Text = o.DeliveryNo;
-                }
-                else if(o.PickUpNo != null)
-                {
-                    lblDelPick.Text = o.PickUpNo;
-                }
+                lblDelPick.Text = o.DeliveryNo ?? o.PickUpNo ?? "N/A";
             }
             else
             {

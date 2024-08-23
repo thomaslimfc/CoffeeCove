@@ -289,7 +289,7 @@
           <Property Name="CustomerID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="PickUpNo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="DeliveryNo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="TotalAmount" Type="String" />
+          <Property Name="TotalAmount" Type="Decimal" />
           <NavigationProperty Name="OrderedItems" Relationship="dbCoffeeCoveModel.FK_OrderedItem_OrderPlaced" FromRole="OrderPlaced" ToRole="OrderedItem" />
           <Property Name="OrderDateTime" Type="DateTime" Precision="0" />
         </EntityType>

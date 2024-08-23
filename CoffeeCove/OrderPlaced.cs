@@ -24,7 +24,7 @@ namespace CoffeeCove
         public string CustomerID { get; set; }
         public string PickUpNo { get; set; }
         public string DeliveryNo { get; set; }
-        public string TotalAmount { get; set; }
+        public Nullable<decimal> TotalAmount { get; set; }
         public Nullable<System.DateTime> OrderDateTime { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
