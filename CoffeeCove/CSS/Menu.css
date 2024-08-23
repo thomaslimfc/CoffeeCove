@@ -5,7 +5,7 @@
 
 /*Category Style*/
 #categoryContainer {
-    padding-top: 80px;
+    margin-top:80px;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
@@ -50,20 +50,53 @@
 
 #productItem > div {
     border: 1px solid #ddd; 
+    border-radius:20px;
     margin-bottom: 20px;
     padding: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
-    background-color: #fff; 
+    background-image: url("/img/bg_4.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
     box-sizing: border-box; 
-    font-size: 1rem;
-    letter-spacing: -0.5px;
+    letter-spacing: -1px;
+    color:#fff;
 }
 
 #productItem::-webkit-scrollbar {
     display: none; 
 }
 
-#productContainer a, .btnReset {
+.lnkSelect {
+    margin-left:20%;
+}
+
+#productContainer a {
+    display: inline-block;
+    width:50%;
+    text-align:center;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 5px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f0f0f0;
+    color: #433533;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition-duration: 0.4s;
+}
+
+#productContainer a:hover {
+    background: none;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.btnReset {
     display: inline-block;
     padding: 8px 16px;
     text-decoration: none;
@@ -73,17 +106,17 @@
     cursor: pointer;
     border: 1px solid #ddd;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background-color: #2b2b2b;
-    color: #fff;
-    font-weight: 400;
+    background-color: #f0f0f0;
+    color: #433533;
+    font-weight: 500;
     letter-spacing: 0.5px;
     transition-duration: 0.4s;
 }
 
-#productContainer a:hover , .btnReset:hover, .btnAdd:hover {
+.btnReset:hover {
     border: 2px solid #413432;
-    color: #413432;
-    background-color:transparent;
+    color: #433533;
+    background-color: #f0f0f0;
     font-weight:500;
 }
 
@@ -97,12 +130,20 @@
     cursor: pointer;
     border: 1px solid #ddd;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background-color: #f0f0f0;
-    color: #433533;
-    font-weight: 400;
+    background-color: #413432;
+    color: #fff;
+    font-weight: 500;
     letter-spacing: 0.5px;
     transition-duration: 0.4s;
 }
+
+.btnAdd:hover {
+    border: 2px solid #413432;
+    color: #413432;
+    background-color:transparent;
+    font-weight:500;
+}
+
 
 /* Order Form Style */
 .orderform {

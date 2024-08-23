@@ -483,6 +483,7 @@
     <Content Include="imgProductItems\OB04.jpg" />
     <Content Include="img\about.jpg" />
     <Content Include="img\bg_1.jpg" />
+    <Content Include="img\bg_4.jpg" />
     <Content Include="img\cake_icon.png" />
     <Content Include="img\cartLogo.png" />
     <Content Include="img\Category\all.jpg" />
@@ -988,9 +989,7 @@
     </None>
     <Content Include="Web.sitemap" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Service\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <TypeScriptCompile Include="Content\vendor\chart.js\controllers\controller.bar.d.ts" />
     <TypeScriptCompile Include="Content\vendor\chart.js\controllers\controller.bubble.d.ts" />

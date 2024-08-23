@@ -23,11 +23,13 @@
             <div id="productItem">
                 <asp:Repeater ID="rptProduct" runat="server" OnItemCommand="rptProducts_ItemCommand">
                     <ItemTemplate>
-                        <div style="width: 20%; height: 59%;margin: 1%; box-sizing: border-box;" id="productContainer">
-                            <img src='<%# Eval("ImageUrl") %>' alt='<%# Eval("ProductName") %>' style="width: 100%; height: auto" />
-                            <div style="height:45px"><strong><%# Eval("ProductId") %>&nbsp;&nbsp;<%# Eval("ProductName") %></strong></div>
-                            <div style="padding-top:5px;font-size:17px"><%# Eval("UnitPrice", "RM {0:N2}") %></div>
-                            <asp:LinkButton ID="lnkSelectProduct" runat="server" CommandArgument='<%# Eval("ProductID") %>' CommandName="SelectProduct">Select</asp:LinkButton>
+                        <div style="width: 20%; height: 62%;margin: 1%; box-sizing: border-box;" id="productContainer">
+                            <img src='<%# Eval("ImageUrl") %>' alt='<%# Eval("ProductName") %>' style="width: 90%; height: auto; border-radius: 50%; border: 2px solid #ffce46;margin: 10px 0px 10px 10px" />
+                            <div style="height:60px;text-align:center;font-size:19px;"><%# Eval("ProductId") %><br />
+                                <%# Eval("ProductName") %></div>
+                            <br />
+                            <div style="text-align:center;font-size:18px"><%# Eval("UnitPrice", "RM {0:N2}") %></div>
+                            <asp:LinkButton ID="lnkSelectProduct" runat="server" CommandArgument='<%# Eval("ProductID") %>' CommandName="SelectProduct" CssClass="lnkSelect">Select</asp:LinkButton>
                         </div>
                     </ItemTemplate>
                 </asp:Repeater>
