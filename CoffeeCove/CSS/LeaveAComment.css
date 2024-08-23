@@ -1,11 +1,10 @@
-﻿body {
-}
-
-#pills-reviews {
+﻿#pills-reviews {
     padding-top: 50px;
     display: flex;
     flex-direction: column;
-    background-color: #dcdcdc;
+    background-image: url('../img/bg_2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
     height: 1000px;
 }
 

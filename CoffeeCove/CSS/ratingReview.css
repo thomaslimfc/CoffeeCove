@@ -1,13 +1,11 @@
-﻿body {
-    background-color: #dcdcdc;
-}
-
-#pills-reviews {
+﻿#pills-reviews {
     padding-top: 50px;
     display: flex;
     flex-direction: column;
-    background-color: #dcdcdc;
-    padding-bottom: 50px;
+    padding-bottom: 30px;
+    background-image: url('../img/bg_2.jpg');
+    background-repeat:no-repeat;
+    background-size:cover;
 }
 
 h5 {
@@ -17,16 +15,17 @@ h5 {
 .btnCont {
     border-radius: 8px;
     padding: 10px 100px;
+    color: white;
+    background-color: #413432;
     transition-duration: 0.4s;
-    border: 1px solid #ddd;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    color: #433533;
-    background-color: #f0f0f0;
+    font-weight: bold;
 }
 
     .btnCont:hover {
-        background-color: #413432;
-        color: white;
+        background-color: transparent;
+        border: 1px solid #413432;
+        color: #413432;
         cursor: pointer;
     }
 
@@ -135,7 +134,7 @@ h5 {
 }
 
 .restaurant-detailed-action-btn {
-    margin-top: 12px;
+    margin-top: 1px;
 }
 
 .restaurant-detailed-header-right .btn-success {
