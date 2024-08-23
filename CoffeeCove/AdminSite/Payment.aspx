@@ -61,7 +61,7 @@
                             <table>
                                 <tr>
                                     <td class="col-10">
-                                        <h5 class="card-title">Category List</h5>
+                                        <h5 class="card-title">Payment List</h5>
                                     </td>
                                 </tr>
                             </table>
@@ -79,7 +79,7 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField SortExpression="OrderId" ItemStyle-Width="100px">
+                                    <asp:TemplateField SortExpression="OrderId" ItemStyle-Width="20px">
                                         <HeaderTemplate>
                                             <asp:LinkButton ID="orderId" runat="server" CommandArgument="OrderId" CssClass="header-link" ToolTip="Sort">Order ID</asp:LinkButton>
                                         </HeaderTemplate>
@@ -88,7 +88,13 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField SortExpression="PaymentMethod" ItemStyle-Width="100px">
+                                    <asp:TemplateField HeaderText="Total Amount(RM)" ItemStyle-Width="20px">
+                                        <ItemTemplate>
+                                            <%# Eval("TotalAmount") %>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField SortExpression="PaymentMethod" ItemStyle-Width="20px">
                                         <HeaderTemplate>
                                             <asp:LinkButton ID="paymentMethod" runat="server" CommandArgument="PaymentMethod" CssClass="header-link" ToolTip="Sort">Payment Method</asp:LinkButton>
                                         </HeaderTemplate>
@@ -119,7 +125,7 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Action" ItemStyle-Width="40px">
+                                    <asp:TemplateField HeaderText="Action" ItemStyle-Width="100px">
                                         <ItemTemplate>
                                             <asp:LinkButton ID="lnkUpdate" runat="server" CommandName="UpdateStatus" CommandArgument='<%# Eval("PaymentID") %>' Text="Update Status" CssClass="btn btn-primary btn-sm" />
                                             <asp:LinkButton ID="lnkCancel" runat="server" CommandName="CancelPayment" CommandArgument='<%# Eval("PaymentID") %>' Text="Cancel Order" OnClientClick="return confirmDelete();" CssClass="btn btn-danger btn-sm" />

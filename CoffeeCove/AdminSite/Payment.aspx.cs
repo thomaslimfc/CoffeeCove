@@ -23,7 +23,7 @@ namespace CoffeeCove.AdminSite
         private void BindPayment()
         {
             string sql = @"
-                SELECT pd.PaymentID, pd.PaymentMethod, pd.PaymentStatus, pd.OrderID, op.OrderDateTime 
+                SELECT pd.PaymentID, pd.PaymentMethod, pd.PaymentStatus, pd.OrderID, op.OrderDateTime , op.TotalAmount
                 FROM PaymentDetail pd
                 INNER JOIN OrderPlaced op ON pd.OrderID = op.OrderID";
             using (SqlConnection con = new SqlConnection(cs))
