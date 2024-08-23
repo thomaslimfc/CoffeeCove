@@ -12,12 +12,12 @@ namespace CoffeeCove
     using System;
     using System.Collections.Generic;
     
-    public partial class Payment
+    public partial class PaymentDetail
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Payment()
+        public PaymentDetail()
         {
-            this.RatingReviews = new HashSet<RatingReview>();
+            this.Reviews = new HashSet<Review>();
         }
     
         public int PaymentID { get; set; }
@@ -27,6 +27,6 @@ namespace CoffeeCove
     
         public virtual OrderPlaced OrderPlaced { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RatingReview> RatingReviews { get; set; }
+        public virtual ICollection<Review> Reviews { get; set; }
     }
 }

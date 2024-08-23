@@ -12,14 +12,14 @@ namespace CoffeeCove
     using System;
     using System.Collections.Generic;
     
-    public partial class RatingReview
+    public partial class Review
     {
         public int RatingReviewID { get; set; }
         public int RatingScore { get; set; }
         public string ReviewContent { get; set; }
         public System.DateTime RatingReviewDateTime { get; set; }
-        public Nullable<int> PaymentID { get; set; }
+        public int PaymentID { get; set; }
     
-        public virtual Payment Payment { get; set; }
+        public virtual PaymentDetail PaymentDetail { get; set; }
     }
 }

@@ -25,7 +25,7 @@ namespace CoffeeCove
         public string Description { get; set; }
         public Nullable<decimal> UnitPrice { get; set; }
         public string ImageUrl { get; set; }
-        public Nullable<int> CategoryId { get; set; }
+        public int CategoryId { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public Nullable<bool> IsActive { get; set; }
     

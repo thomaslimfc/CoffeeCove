@@ -17,7 +17,7 @@ namespace CoffeeCove
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public OrderPlaced()
         {
-            this.Payments = new HashSet<Payment>();
+            this.PaymentDetails = new HashSet<PaymentDetail>();
         }
     
         public int OrderID { get; set; }
@@ -31,6 +31,6 @@ namespace CoffeeCove
         public virtual Delivery Delivery { get; set; }
         public virtual PickUp PickUp { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Payment> Payments { get; set; }
+        public virtual ICollection<PaymentDetail> PaymentDetails { get; set; }
     }
 }

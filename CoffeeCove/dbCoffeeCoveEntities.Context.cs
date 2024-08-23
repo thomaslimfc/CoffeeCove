@@ -13,10 +13,10 @@ namespace CoffeeCove
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class dbCoffeeCoveEntities1 : DbContext
+    public partial class dbCoffeeCoveEntities : DbContext
     {
-        public dbCoffeeCoveEntities1()
-            : base("name=dbCoffeeCoveEntities1")
+        public dbCoffeeCoveEntities()
+            : base("name=dbCoffeeCoveEntities")
         {
         }
     
@@ -31,10 +31,10 @@ namespace CoffeeCove
         public virtual DbSet<Delivery> Deliveries { get; set; }
         public virtual DbSet<OrderedItem> OrderedItems { get; set; }
         public virtual DbSet<OrderPlaced> OrderPlaceds { get; set; }
-        public virtual DbSet<Payment> Payments { get; set; }
+        public virtual DbSet<PaymentDetail> PaymentDetails { get; set; }
         public virtual DbSet<PickUp> PickUps { get; set; }
         public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<RatingReview> RatingReviews { get; set; }
+        public virtual DbSet<Review> Reviews { get; set; }
         public virtual DbSet<Store> Stores { get; set; }
     }
 }

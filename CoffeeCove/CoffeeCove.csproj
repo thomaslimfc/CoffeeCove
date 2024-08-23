@@ -749,7 +749,7 @@
     <Compile Include="Order\OrderTracking.aspx.designer.cs">
       <DependentUpon>OrderTracking.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Payment.cs">
+    <Compile Include="PaymentDetail.cs">
       <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Payment\paymentOpt.aspx.cs">
@@ -766,9 +766,6 @@
       <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RatingReview.cs">
-      <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>
-    </Compile>
     <Compile Include="RatingReview\comment.aspx.cs">
       <DependentUpon>comment.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -782,6 +779,9 @@
     </Compile>
     <Compile Include="RatingReview\ratingReview.aspx.designer.cs">
       <DependentUpon>ratingReview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Review.cs">
+      <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Security\PasswordReset.aspx.cs">
       <DependentUpon>PasswordReset.aspx</DependentUpon>
