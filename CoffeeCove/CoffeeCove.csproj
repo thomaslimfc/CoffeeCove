@@ -426,6 +426,7 @@
     <Content Include="CSS\orderManagement.css" />
     <Content Include="CSS\orderOpt.css" />
     <Content Include="CSS\OrderTracking.css" />
+    <Content Include="CSS\paymentAdmin.css" />
     <Content Include="CSS\paymentBootstrap.css" />
     <Content Include="CSS\paymentOpt.css" />
     <Content Include="CSS\ProductCategory.css" />
