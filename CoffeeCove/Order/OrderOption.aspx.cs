@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Reflection.Emit;
 
 namespace CoffeeCove.Order
 {
@@ -34,6 +35,14 @@ namespace CoffeeCove.Order
 
 
             }
+
+            if (string.IsNullOrWhiteSpace(lblStoreAdd.Text)) //if lblStoreAdd is empty
+            {
+                lbConfirmPickUp.Enabled = false;
+                lbConfirmPickUp.CssClass = "btnCont-disabled";
+            }
+
+            Session["orderOpt"] = "NULL";
         }
 
         protected void rptStoreList_ItemCommand(object source, RepeaterCommandEventArgs e)
@@ -57,6 +66,7 @@ namespace CoffeeCove.Order
                     // Assign values to label controls
                     lblStoreName.Text = dr["StoreName"].ToString();
                     lblStoreAdd.Text = dr["StoreAddress"].ToString();
+
                 }
                 else
                 {
@@ -65,13 +75,11 @@ namespace CoffeeCove.Order
                     lblStoreAdd.Text = string.Empty;
                 }
 
+                lbConfirmPickUp.Enabled = true;
+                lbConfirmPickUp.CssClass = "btnCont";
+
                 conn.Close();
             }
-        }
-
-        protected void lbProceed_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("../Menu/Menu.aspx");
         }
 
         protected void lbConfirmMap_Click(object sender, EventArgs e)
@@ -80,6 +88,22 @@ namespace CoffeeCove.Order
             txtAddress2.Text = "Seri Tanjung Pinang";
             txtPostCode.Text = "10470";
             txtUnit.Text = "8A-15-1";
+        }
+
+        protected void lbConfirmPickUp_Click(object sender, EventArgs e)
+        {
+            
+            Session["orderOpt"] = "PickUp";
+            Response.Redirect("../Menu/Menu.aspx");
+        }
+
+        protected void lbConfirmDelivery_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid) //means it choose delivery
+            {
+                Session["orderOpt"] = "Delivery";
+                Response.Redirect("../Menu/Menu.aspx");
+            }
         }
     }
 }

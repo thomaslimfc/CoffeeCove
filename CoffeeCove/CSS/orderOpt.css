@@ -28,7 +28,7 @@
 
 .tableElement div {
     background-color: #ffffff;
-    height: 70%;
+    height: 80%;
     text-align: center;
     border-radius: 8px;
     box-sizing:border-box;
@@ -80,6 +80,19 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     color: #433533;
     background-color: #f0f0f0;
+    font-weight:bold;
+}
+
+.btnCont-disabled {
+    color: #ccc; /* Gray color for text */
+    cursor: not-allowed; /* Show a 'not-allowed' cursor */
+    pointer-events: none; /* Prevent click events */
+    border-radius: 8px;
+    padding: 10px 100px;
+    transition-duration: 0.4s;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
 }
 
 .btnCont:hover {

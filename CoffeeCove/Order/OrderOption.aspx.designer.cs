@@ -87,13 +87,13 @@ namespace CoffeeCove.Order
         protected global::System.Web.UI.WebControls.TextBox txtUnit;
 
         /// <summary>
-        /// lbConfirm control.
+        /// lbConfirmDelivery control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbConfirm;
+        protected global::System.Web.UI.WebControls.LinkButton lbConfirmDelivery;
 
         /// <summary>
         /// lblStoreName control.
@@ -114,13 +114,13 @@ namespace CoffeeCove.Order
         protected global::System.Web.UI.WebControls.Label lblStoreAdd;
 
         /// <summary>
-        /// lbProceed control.
+        /// lbConfirmPickUp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbProceed;
+        protected global::System.Web.UI.WebControls.LinkButton lbConfirmPickUp;
 
         /// <summary>
         /// lbClose control.
@@ -148,5 +148,14 @@ namespace CoffeeCove.Order
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptStoreList;
+
+        /// <summary>
+        /// lbCloseStoreList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbCloseStoreList;
     }
 }
