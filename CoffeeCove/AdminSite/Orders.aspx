@@ -3,6 +3,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <link href="../CSS/ProductCategory.css" rel="stylesheet" />
+    <link href="../CSS/orderManagement.css" rel="stylesheet" />
 <div id="main" class="main">
     <div class="pagetitle" style="color:#fff">
         <br />
@@ -30,42 +31,6 @@
                     &nbsp;&nbsp;
                     <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-dark" />
                 </div>
-                <div class="col-8">
-                    <table id="viewOrder" style="display:none">
-                        <tr>
-                            <td>
-                                OrderNo:
-                            </td>
-                            <td>
-                                <asp:Label ID="lblOrderNo" runat="server" Text=""></asp:Label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Date:
-                            </td>
-                            <td>
-                                <asp:Label ID="lblDate" runat="server" Text=""></asp:Label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Delivery/Pick-Up No:
-                            </td>
-                            <td>
-                                <asp:Label ID="lblDelPick" runat="server" Text=""></asp:Label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Amount:
-                            </td>
-                            <td>
-                                <asp:Label ID="lblAmount" runat="server" Text=""></asp:Label>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
               </div>
 
             </div>
@@ -75,10 +40,55 @@
         <div class="col-lg-12">
         <asp:Label ID="lblMsg" runat="server" CssClass="alert alert-success" Visible="false"></asp:Label>
         </div>
-        <br />
-        <br />
 
-        
+        <!-- Order View -->
+        <div class="col-lg-12" id="viewOrder" style="display:none">
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Order Detail</h5>
+                        <div class="col-8">
+                            <table>
+                                <tr>
+                                    <td>
+                                        Order ID: 
+                                    </td>
+                                    <td>
+                                        #<asp:Label ID="lblOrderNo" runat="server" Text=""></asp:Label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Order Date:
+                                    </td>
+                                    <td>
+                                        <asp:Label ID="lblDate" runat="server" Text=""></asp:Label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Delivery/Pick-Up No:
+                                    </td>
+                                    <td>
+                                        <asp:Label ID="lblDelPick" runat="server" Text=""></asp:Label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Amount:
+                                    </td>
+                                    <td>
+                                        <asp:Label ID="lblAmount" runat="server" Text=""></asp:Label>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+
+
         <!-- Order List -->
         <div class="col-lg-12">
 
@@ -86,7 +96,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Order List</h5>
                 
-                    <asp:GridView ID="gvOrder" runat="server" DataSourceID="SqlDataSource1" AutoGenerateColumns="False" DataKeyNames="OrderID" CssClass="table table-striped" PageSize="10" AllowPaging="true" AllowSorting="true" EmptyDataText="There are no data records" OnRowCommand="gvOrder_RowCommand">
+                    <asp:GridView ID="gvOrder" runat="server" AutoGenerateColumns="False" CssClass="table table-striped" PageSize="10" AllowPaging="true" AllowSorting="true" EmptyDataText="There are no data records" OnRowCommand="gvOrder_RowCommand">
                         <Columns>
                             <asp:BoundField DataField="OrderID" HeaderText="OrderID" ReadOnly="True" SortExpression="OrderID" />
                             <asp:BoundField DataField="OrderDateTime" HeaderText="Date" SortExpression="OrderDateTime" />
