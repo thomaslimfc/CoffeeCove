@@ -104,7 +104,7 @@
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function () {
         var passwordField = document.getElementById("<%= Password_PR.ClientID %>");
-        var toggleIcon = document.getElementById("PasswordToggle");
+        var toggleIcon = document.getElementById("PasswordToggle_PR");
 
         toggleIcon.addEventListener("click", function () {
             if (passwordField.type === "password") {
@@ -120,7 +120,7 @@
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function () {
         var passwordField = document.getElementById("<%= PasswordConfirm_PR.ClientID %>");
-        var toggleIcon = document.getElementById("PasswordToggle");
+        var toggleIcon = document.getElementById("PasswordToggle_PR2");
 
         toggleIcon.addEventListener("click", function () {
             if (passwordField.type === "password") {
@@ -201,7 +201,8 @@
     <div class="text-center mt-4">
         <span class="text-muted-foreground">By signing up, you agree to the Staffee</span>
         
-        <a href="UserAgreement.aspx">User Agreement</a>, and
+        <a href="UserAgreement.aspx">User Agreement</a>
+        <span class="text-muted-foreground">, and</span>
         <a href="PrivacyPolicy.aspx">Privacy Policy</a>.
         <div class="trMarginBottom20"></div>
     </div>
