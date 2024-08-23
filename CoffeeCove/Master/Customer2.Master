@@ -73,8 +73,8 @@
         </div>
 
         <!--footer-->
-        <div id="footer" style=" font-size: 17px; font-weight: 500; color: #FFFFFF; top: 0px; left: 0px;">
-            <div class="footerContainer">
+        <div id="footer" style=" font-size: 17px; font-weight: 500; color: #FFFFFF; top: 0; left: 0px;">
+            <div class="footerContainer" style="padding-top:20px;">
                 <div>
                     <h4>Quick Links</h4>
                     <asp:HyperLink ID="homeLink" runat="server" NavigateUrl="../Home/Home.aspx" CssClass="quickLink">Home</asp:HyperLink>
