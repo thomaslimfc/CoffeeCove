@@ -425,6 +425,7 @@
     <Content Include="CSS\OrderTracking.css" />
     <Content Include="CSS\paymentOpt.css" />
     <Content Include="CSS\ProductCategory.css" />
+    <Content Include="CSS\ratingBootstrap.css" />
     <Content Include="CSS\ratingReview.css" />
     <Content Include="CSS\Security.css" />
     <Content Include="CSS\storeList.css" />

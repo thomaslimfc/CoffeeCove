@@ -1,8 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Customer.Master" AutoEventWireup="true" CodeBehind="ratingReview.aspx.cs" Inherits="CoffeeCove.RatingReview.ratingReview" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" />
     <link href="../CSS/ratingReview.css" rel="stylesheet" />
-
+    <link href="../CSS/ratingBootstrap.css" rel="stylesheet" />
     <div class="tab-pane fade active show" id="pills-reviews" role="tabpanel" aria-labelledby="pills-reviews-tab">
                 <div id="ratingReviewSummaryContainer" class="bg-white rounded shadow-sm p-4 mb-4 clearfix graph-star-rating">
                     <h5 class="mb-0 mb-4">Ratings and Reviews</h5>
