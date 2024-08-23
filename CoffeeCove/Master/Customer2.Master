@@ -8,8 +8,6 @@
     <link rel="icon" href="../img/cup2.png" type="image/x-icon">
     <!-- CSS Style -->
     <link href="../CSS/Customer.css" rel="stylesheet" />
-   
-
 </head>
 
 <body>
@@ -17,8 +15,13 @@
         <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
         <!--header-->
         <div id="header">
-            <div class="headerContainer">
-                <h2><a class="logo" href="../Home/Home.aspx">COFFEECOVE&#174;</a></h2>
+            <div class="headerContainer"
+                
+                style="height: 72px">   <!-- height adjustment -->
+                <h2><a class="logo" 
+                    
+                    style="font-size: 18pt"
+                    href="../Home/Home.aspx">COFFEECOVE&#174;</a></h2>  <!-- LOGO size -->
                 <div id="menuContainer" aria-disabled="False">
                     <asp:Menu ID="Menu" runat="server" BorderStyle="None" DataSourceID="SiteMapDataSource1" Font-Size="17px" Orientation="Horizontal" StaticDisplayLevels="2" StaticSubMenuIndent="0px" ForeColor="White">
                         <StaticMenuItemStyle CssClass="menuItem" />
@@ -27,8 +30,14 @@
                 </div>
                 <div class="headerBtn">
                     <asp:ImageButton ID="cartBtn" runat="server" ImageUrl="~/img/cartLogo.png" PostBackUrl="../Order/Cart.aspx" Width="25px" />
-                    <asp:Label ID="lblCount" runat="server" Text="0" CssClass="cart-badge"></asp:Label>
-                    <asp:HiddenField ID="hdnCartCount" runat="server" Value="0" />
+                    <asp:Label ID="lblCount" runat="server" Text="0" CssClass="cart-badge"
+                        
+                        style="width: 15px; height: 15px; margin-bottom: 0px"></asp:Label>    <!-- Cart Red Circle -->
+                    
+                    <div style="margin-bottom: 50px">
+                        <asp:HiddenField ID="hdnCartCount" runat="server" Value="0" />
+                    </div>  <!-- Cart Count -->
+                    
                     <asp:LinkButton ID="lbtnLogin" runat="server" CssClass="loginContainer" OnClick="lbtnLogin_Click" CausesValidation="false">
                         <table>
                             <tr>
@@ -39,13 +48,16 @@
                                     <asp:Label ID="lblUserName" runat="server" Text="UserName" ForeColor="White" Font-Size="17px" CssClass="Username"></asp:Label>
                                 </td>
                                 <td>
-                                    <img src="../img/down-white.png" class="dropdown-icon" />
-                                </td>
+                                    <img src="../img/down-white.png" class="dropdown-icon" 
+                                        style="padding-left: 2px; height: 15px; width: 17px; margin-bottom: 5px"/>
+                                </td>       <!-- DOWN ARROW -->
                             </tr>
                         </table>
                     </asp:LinkButton>
 
-                    <asp:Panel ID="pnlDropdownMenu" runat="server" CssClass="dropdown-content" Visible="false">
+                    <asp:Panel ID="pnlDropdownMenu" runat="server" CssClass="dropdown-content" Visible="false"
+                        
+                        style="margin-top: 133%">   <!-- DROP-DOWN LIST -->
                         <asp:HyperLink ID="lnkProfile" runat="server" NavigateUrl="~/UserManagement/UserProfile.aspx">Profile</asp:HyperLink><br />
                         <asp:HyperLink ID="lnkOrderHistory" runat="server" NavigateUrl="~/Order/orderHistory.aspx">Order History</asp:HyperLink><br />
                         <asp:HyperLink ID="lnkLogin" runat="server" NavigateUrl="~/Security/SignIn.aspx">Login</asp:HyperLink>

@@ -9,10 +9,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|c:\\# github local repository\\coffeecove\\coffeecove\\master\\customer.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
       "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:master\\customer.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|c:\\# github local repository\\coffeecove\\coffeecove\\master\\customer33.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:master\\customer33.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -24,19 +20,6 @@
           "DockedWidth": 223,
           "SelectedChildIndex": 14,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Customer.Master",
-              "DocumentMoniker": "C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\Master\\Customer.Master",
-              "RelativeDocumentMoniker": "Master\\Customer.Master",
-              "ToolTip": "C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\Master\\Customer.Master",
-              "RelativeToolTip": "Master\\Customer.Master",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-08-23T14:38:33.996Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
@@ -87,15 +70,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Customer33.html",
-              "DocumentMoniker": "C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\Master\\Customer33.html",
-              "RelativeDocumentMoniker": "Master\\Customer33.html",
-              "ToolTip": "C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\Master\\Customer33.html",
-              "RelativeToolTip": "Master\\Customer33.html",
-              "ViewState": "AgIAAEYAAAAAAAAAAADwv10AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2024-08-23T14:39:05.962Z",
+              "DocumentIndex": 1,
+              "Title": "Customer.Master",
+              "DocumentMoniker": "C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\Master\\Customer.Master",
+              "RelativeDocumentMoniker": "Master\\Customer.Master",
+              "ToolTip": "C:\\# GitHub Local Repository\\CoffeeCove\\CoffeeCove\\Master\\Customer.Master",
+              "RelativeToolTip": "Master\\Customer.Master",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-08-23T15:14:53.923Z",
               "EditorCaption": ""
             },
             {
