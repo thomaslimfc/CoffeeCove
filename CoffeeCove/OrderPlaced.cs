@@ -18,19 +18,21 @@ namespace CoffeeCove
         public OrderPlaced()
         {
             this.PaymentDetails = new HashSet<PaymentDetail>();
+            this.OrderedItems = new HashSet<OrderedItem>();
         }
     
         public int OrderID { get; set; }
         public int CusID { get; set; }
-        public Nullable<int> PickUpNo { get; set; }
-        public Nullable<int> DeliveryNo { get; set; }
+        public Nullable<int> StoreID { get; set; }
+        public string DeliveryAddress { get; set; }
         public System.DateTime OrderDateTime { get; set; }
         public decimal TotalAmount { get; set; }
     
         public virtual Customer Customer { get; set; }
-        public virtual Delivery Delivery { get; set; }
-        public virtual PickUp PickUp { get; set; }
+        public virtual Store Store { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PaymentDetail> PaymentDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderedItem> OrderedItems { get; set; }
     }
 }

@@ -19,7 +19,9 @@ namespace CoffeeCove
         public string ReviewContent { get; set; }
         public System.DateTime RatingReviewDateTime { get; set; }
         public int PaymentID { get; set; }
+        public int CusID { get; set; }
     
+        public virtual Customer Customer { get; set; }
         public virtual PaymentDetail PaymentDetail { get; set; }
     }
 }

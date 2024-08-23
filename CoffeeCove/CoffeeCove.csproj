@@ -688,9 +688,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbCoffeeCoveEntities.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Delivery.cs">
-      <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -779,9 +776,6 @@
     </Compile>
     <Compile Include="Payment\paymentOpt.aspx.designer.cs">
       <DependentUpon>paymentOpt.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="PickUp.cs">
-      <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Product.cs">
       <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>
