@@ -183,7 +183,8 @@
         runat="server" 
         Text="Sign Now" 
         CssClass="w-full bg-primary text-primary-foreground p-2 rounded-md hover:bg-primary/80" 
-        style="cursor: pointer" OnClick="SignInButton_SI_Click"/>
+        style="cursor: pointer; margin-top: 6px;" 
+        OnClick="SignInButton_SI_Click"/>
     <!-- Forgot Password + SIGN IN with EMAIL -->
     <div class="flex justify-between text-sm mt-2">
         <a href="ForgotPassword.aspx" class="text-muted-foreground text-sm">

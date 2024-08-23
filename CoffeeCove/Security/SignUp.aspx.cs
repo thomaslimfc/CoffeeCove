@@ -4,6 +4,7 @@ using System.Web.UI;
 using Newtonsoft.Json;
 using System.Data.SqlClient;
 using System.Configuration;
+using Newtonsoft.Json.Linq;
 
 namespace CoffeeCove.Security
 {
@@ -23,7 +24,7 @@ namespace CoffeeCove.Security
 
             if (isValidCaptcha)
             {
-                // Proceed with form submission
+                Response.Redirect("SignIn.aspx");
             }
             else
             {
@@ -37,14 +38,17 @@ namespace CoffeeCove.Security
             using (WebClient client = new WebClient())
             {
                 string jsonResult = client.DownloadString(apiUrl);
-                dynamic jsonData = JsonConvert.DeserializeObject(jsonResult);
-                return jsonData.success == "true";
+                var jsonData = JsonConvert.DeserializeObject<JObject>(jsonResult);
+                bool success = jsonData["success"].Value<bool>(); // Access 'success' as a bool
+                return success;
             }
         }
+
         private bool IsUsernameTaken(string username)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["YourConnectionStringName"].ConnectionString;
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            string cs = Global.CS;
+
+            using (SqlConnection connection = new SqlConnection(cs))
             {
                 string query = "SELECT COUNT(*) FROM Users WHERE Username = @Username";
                 using (SqlCommand command = new SqlCommand(query, connection))
