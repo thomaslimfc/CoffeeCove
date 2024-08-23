@@ -1,3 +1,34 @@
-﻿#orderView {
-    /*display:none;*/
+﻿#cartItemTable, #cartTotalTable, #customerTable, #orderTable {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+}
+
+#cartItemTable th, .tableItem, .amtTable{
+    padding: 10px; /* Padding inside table cells */
+    border: 1px solid #ddd; /* Border around cells */
+}
+
+.amtTable td{
+    padding: 10px;
+}
+
+#cartItemTable tr:nth-child(even){
+    background-color: #f9f9f9; /* Light gray background for even rows */
+}
+
+#cartItemTable tr:nth-child(odd), #cartTotalTable tr td{
+    background-color: #fff; /* White background for odd rows */
+}
+
+#cartTitle th {
+    text-align: center;
+}
+
+.cartLeft {
+    width: 70%;
+}
+
+.cartRight {
+    text-align: right;
 }

@@ -423,7 +423,6 @@
     <Content Include="CSS\OrderDetails.css" />
     <Content Include="CSS\OrderHistory.css" />
     <Content Include="CSS\OrderInvoice.css" />
-    <Content Include="CSS\orderManagement.css" />
     <Content Include="CSS\orderOpt.css" />
     <Content Include="CSS\OrderTracking.css" />
     <Content Include="CSS\paymentBootstrap.css" />

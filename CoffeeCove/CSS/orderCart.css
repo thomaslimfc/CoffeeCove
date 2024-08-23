@@ -26,7 +26,7 @@
     text-align: center;
 }
 
-#cartItemTable, #cartTotalTable {
+#cartItemTable, #cartTotalTable, #customerTable, #orderTable {
     width: 100%;
     text-align: left;
     border-collapse: collapse;
