@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Customer.Master" AutoEventWireup="true" CodeFile="comment.aspx.cs" Inherits="CoffeeCove.RatingReview.comment" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" />
+    <link href="../CSS/ratingBootstrap.css" rel="stylesheet" />
     <link href="../CSS/LeaveAComment.css" rel="stylesheet" />
 
     <div class="tab-pane fade active show" id="pills-reviews" role="tabpanel" aria-labelledby="pills-reviews-tab">

@@ -1,8 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Customer.Master" AutoEventWireup="true" CodeFile="paymentOpt.aspx.cs" Inherits="CoffeeCove.Payment.paymentOpt" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
-    <link href="../CSS/paymentOpt.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
+    <link href="../CSS/paymentBootstrap.css" rel="stylesheet" />
+    <link href="../CSS/paymentOpt.css" rel="stylesheet" />
 
     <!-- Banner -->
     <div id="poster">
@@ -60,12 +60,12 @@
                                 </li>
                                 <li class="nav-item">
                                     <a data-toggle="pill" href="#COD" class="nav-link">
-                                        <i class="fab fa-paypal mr-2"></i> Cash on Delivery
+                                        <i class="fas fa-mobile-alt mr-2"></i> Cash on Delivery
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a data-toggle="pill" href="#net-banking" class="nav-link">
-                                        <i class="fas fa-mobile-alt mr-2"></i> Net Banking
+                                    <a data-toggle="pill" href="#paypal" class="nav-link">
+                                        <i class="fab fa-paypal mr-2"></i> Paypal
                                     </a>
                                 </li>
                             </ul>
@@ -138,24 +138,18 @@
                         </div> <!-- End Cash on Delivery info -->
 
                         <!-- Paypal info -->
-                        <div id="pay-pal" class="tab-pane fade pt-3">
+                        <div id="paypal" class="tab-pane fade pt-3">
                             <div class="form-group">
-                                <label for="Select Your Bank">
-                                    <h6>Select your Bank</h6>
+                                <label for="Enter email or number">
+                                    <h6>Email or Mobile Number</h6>
                                 </label>
-                                <select class="form-control" id="ccmonth">
-                                    <option value="" selected disabled>--Please select your Bank--</option>
-                                    <option>Ambank</option>
-                                    <option>Alliance Bank</option>
-                                    <option>CIMB Bank</option>
-                                    <option>Citibank</option>
-                                    <option>Hong Leong Bank</option>
-                                    <option>Maybank</option>
-                                    <option>OCBC Bank</option>
-                                    <option>Public Bank</option>
-                                    <option>RHB Bank</option>
-                                    <option>UOB</option>
-                                </select>
+                                <input type="text" name="email" placeholder="Email or Mobile Number" required class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="Enter password">
+                                    <h6>Password</h6>
+                                </label>
+                                <input type="password" name="password" placeholder="Password" required class="form-control">
                             </div>
                             <div class="form-group">
                                 <p>

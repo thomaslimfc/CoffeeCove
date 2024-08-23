@@ -49,8 +49,10 @@
                             <asp:MenuItem NavigateUrl="~/AdminSite/Dashboard.aspx" Text="Dashboard" Value="Dashboard"></asp:MenuItem>
                             <asp:MenuItem NavigateUrl="~/AdminSite/CustomerList.aspx" Text="Users" Value="Users"></asp:MenuItem>
                             <asp:MenuItem NavigateUrl="~/AdminSite/Orders.aspx" Text="Orders" Value="Orders"></asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/AdminSite/Payment.aspx" Text="Payments" Value="Payments"></asp:MenuItem>
                             <asp:MenuItem NavigateUrl="~/AdminSite/Categories.aspx" Text="Categories" Value="Categories"></asp:MenuItem>
                             <asp:MenuItem NavigateUrl="~/AdminSite/Products.aspx" Text="Products" Value="Products"></asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/AdminSite/Review.aspx" Text="Rating Review" Value="Rating Review"></asp:MenuItem>
                             <asp:MenuItem NavigateUrl="~/AdminSite/Stores.aspx" Text="Stores" Value="Stores"></asp:MenuItem>
                             <asp:MenuItem NavigateUrl="#" Text="Report" Value="Report"></asp:MenuItem>
                         </Items>
