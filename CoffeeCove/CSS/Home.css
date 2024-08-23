@@ -258,9 +258,9 @@
 }
 
 .btnView {
-    background-color: transparent;
-    border: 1px solid #413432;
-    color: #413432;
+    border: none;
+    background-color: #413432;
+    color: #fff;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
@@ -269,10 +269,10 @@
 }
 
 .btnView:hover {
+    background-color: transparent;
+    border: 1px solid #413432;
+    color: #413432;
     transition: 0.5s;
-    border: none;
-    background-color: #383838;
-    color: #fff;
 }
 
 
