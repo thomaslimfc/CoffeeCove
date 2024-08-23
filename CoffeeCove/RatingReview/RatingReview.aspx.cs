@@ -27,7 +27,7 @@ namespace CoffeeCove.RatingReview
             using (SqlConnection conn = new SqlConnection(cs))
             {
                 string query = @"
-                    SELECT R.RatingScore, R.ReviewContent, R.RatingReviewDateTime, R.CusID, C.Username 
+                    SELECT R.RatingScore, R.ReviewContent, R.RatingReviewDateTime, R.CusID, C.Username
                     FROM Review R
                     JOIN Customer C ON R.CusID = C.CusID";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -66,6 +66,11 @@ namespace CoffeeCove.RatingReview
         protected void commentButton_Click(object sender, EventArgs e)
         {
             Response.Redirect("comment.aspx");
+        }
+
+        protected void btnCurrentUserRating_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("OwnComment.aspx");
         }
     }
 }

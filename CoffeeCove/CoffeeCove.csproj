@@ -533,6 +533,8 @@
     <Content Include="img\user2.jpg" />
     <Content Include="img\user3.jpg" />
     <Content Include="img\username_icon.png" />
+    <Content Include="img\whiteStar.png" />
+    <Content Include="img\yellowStar.png" />
     <Content Include="Master\Customer33.html" />
     <Content Include="Menu\Menu.aspx" />
     <Content Include="Order\getLocation.js" />
@@ -597,6 +599,7 @@
     <Content Include="packages\Newtonsoft.Json.13.0.3\packageIcon.png" />
     <Content Include="Payment\paymentOpt.aspx" />
     <Content Include="RatingReview\comment.aspx" />
+    <Content Include="RatingReview\OwnComment.aspx" />
     <Content Include="RatingReview\ratingReview.aspx" />
     <Content Include="Security\PasswordReset.aspx" />
     <Content Include="Security\PrivacyPolicy.aspx" />
@@ -796,6 +799,13 @@
     </Compile>
     <Compile Include="RatingReview\comment.aspx.designer.cs">
       <DependentUpon>comment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RatingReview\OwnComment.aspx.cs">
+      <DependentUpon>OwnComment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RatingReview\OwnComment.aspx.designer.cs">
+      <DependentUpon>OwnComment.aspx</DependentUpon>
     </Compile>
     <Compile Include="RatingReview\ratingReview.aspx.cs">
       <DependentUpon>ratingReview.aspx</DependentUpon>
