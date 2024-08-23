@@ -26,7 +26,10 @@ namespace CoffeeCove.RatingReview
         {
             using (SqlConnection conn = new SqlConnection(cs))
             {
-                string query = "SELECT * FROM RatingReview";
+                string query = @"
+                    SELECT R.RatingScore, R.ReviewContent, R.RatingReviewDateTime, R.CusID, C.Username 
+                    FROM Review R
+                    JOIN Customer C ON R.CusID = C.CusID";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     conn.Open();

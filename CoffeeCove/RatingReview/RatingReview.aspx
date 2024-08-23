@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Customer.Master" AutoEventWireup="true" CodeBehind="ratingReview.aspx.cs" Inherits="CoffeeCove.RatingReview.ratingReview" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
-    <link href="../CSS/ratingReview.css" rel="stylesheet" />
     <link href="../CSS/ratingBootstrap.css" rel="stylesheet" />
+    <link href="../CSS/ratingReview.css" rel="stylesheet" />
     <div class="tab-pane fade active show" id="pills-reviews" role="tabpanel" aria-labelledby="pills-reviews-tab">
                 <div id="ratingReviewSummaryContainer" class="bg-white rounded shadow-sm p-4 mb-4 clearfix graph-star-rating">
                     <h5 class="mb-0 mb-4">Ratings and Reviews</h5>
@@ -84,7 +84,7 @@
                                     <a href="#"><img alt="Generic placeholder image" src="http://bootdey.com/img/Content/avatar/avatar1.png" class="mr-3 rounded-pill"></a>
                                     <div class="media-body">
                                         <div class="reviews-members-header">
-                                            <h4 class="mb-1"><a class="text-black" href="#"><strong><%# Eval("CustomerName") %></strong></a></h4>
+                                            <h4 class="mb-1"><a class="text-black" href="#"><strong><%# Eval("Username") %></strong></a></h4>
                                             <p class="text-gray"><%# Eval("RatingReviewDateTime") %></p>
                                         </div>
                                         <div class="reviews-members-body">

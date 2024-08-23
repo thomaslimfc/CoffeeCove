@@ -13,7 +13,7 @@
                 <div class="orderItem">
                     <div class="orderHeader">
                         <h4>Order ID: <%# Eval("OrderID") %></h4>
-                        <p>Order Date: <%# Eval("OrderDate", "{0:dd-MM-yyyy}") %></p>
+                        <p>Order Date: <%# Eval("OrderDateTime", "{0:dd-MM-yyyy}") %></p>
                     </div>
 
                     <!-- Product Information -->
