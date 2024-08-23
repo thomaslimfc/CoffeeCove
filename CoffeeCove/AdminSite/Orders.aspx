@@ -89,7 +89,7 @@
                     <asp:GridView ID="gvOrder" runat="server" DataSourceID="SqlDataSource1" AutoGenerateColumns="False" DataKeyNames="OrderID" CssClass="table table-striped" PageSize="10" AllowPaging="true" AllowSorting="true" EmptyDataText="There are no data records" OnRowCommand="gvOrder_RowCommand">
                         <Columns>
                             <asp:BoundField DataField="OrderID" HeaderText="OrderID" ReadOnly="True" SortExpression="OrderID" />
-                            <asp:BoundField DataField="OrderDate" HeaderText="Date" SortExpression="OrderDate" />
+                            <asp:BoundField DataField="OrderDateTime" HeaderText="Date" SortExpression="OrderDateTime" />
                             <asp:BoundField DataField="DeliveryNo" HeaderText="DeliveryNo" SortExpression="DeliveryNo" />
                             <asp:BoundField DataField="PickUpNo" HeaderText="Pick-UpNo" SortExpression="PickUpNo " />
                             <asp:BoundField DataField="TotalAmount" HeaderText="TotalAmount" SortExpression="TotalAmount" />
