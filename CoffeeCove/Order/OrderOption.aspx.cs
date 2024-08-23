@@ -30,6 +30,9 @@ namespace CoffeeCove.Order
                 rptStoreList.DataSource = ds;
                 rptStoreList.DataBind();
 
+                
+
+
             }
         }
 
@@ -64,6 +67,19 @@ namespace CoffeeCove.Order
 
                 conn.Close();
             }
+        }
+
+        protected void lbProceed_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../Menu/Menu.aspx");
+        }
+
+        protected void lbConfirmMap_Click(object sender, EventArgs e)
+        {
+            txtAddress1.Text = "Jalan Seri Tanjung Pinang 1";
+            txtAddress2.Text = "Seri Tanjung Pinang";
+            txtPostCode.Text = "10470";
+            txtUnit.Text = "8A-15-1";
         }
     }
 }

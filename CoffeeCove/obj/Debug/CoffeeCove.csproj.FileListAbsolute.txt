@@ -277,8 +277,6 @@ D:\visual studio work\CoffeeCove\CoffeeCove\CoffeeCove\obj\Debug\CoffeeCove.dll
 D:\visual studio work\CoffeeCove\CoffeeCove\CoffeeCove\obj\Debug\CoffeeCove.pdb
 D:\visual studio work\CoffeeCove\CoffeeCove\bin\AjaxControlToolkit.dll
 D:\visual studio work\CoffeeCove\CoffeeCove\bin\System.Memory.xml
-C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\obj\Debug\CoffeeCove.csproj.AssemblyReference.cache
-C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\obj\Debug\CoffeeCove.csproj.CoreCompileInputs.cache
 C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\bin\CoffeeCove.dll.config
 C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\bin\CoffeeCove.dll
 C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\bin\CoffeeCove.pdb
@@ -330,6 +328,8 @@ C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\bin\Microsoft.C
 C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\bin\Newtonsoft.Json.xml
 C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\bin\System.Memory.xml
 C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\obj\Debug\CoffeeCove.csproj.AssemblyReference.cache
+C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\obj\Debug\CoffeeCove.csproj.CoreCompileInputs.cache
 C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\obj\Debug\CoffeeCove.csproj.Up2Date
 C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\obj\Debug\CoffeeCove.dll
 C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\obj\Debug\CoffeeCove.pdb

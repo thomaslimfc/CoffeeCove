@@ -11,6 +11,7 @@ using System.Security.Policy;
 using System.Web.Security;
 using System.Web.Services.Description;
 using System.Web.UI.WebControls.WebParts;
+using CoffeeCove.Order;
 
 namespace CoffeeCove.Menu
 {
@@ -251,6 +252,15 @@ namespace CoffeeCove.Menu
 
         protected void btnAddToCart_Click(object sender, EventArgs e)
         {
+            //if first time click without select orderOption
+            if (true)
+            {
+                Response.Redirect("../Order/OrderOption.aspx");
+            }
+
+
+
+
             // Retrieve values from form controls
             string productId = lblProductID.Text;
             string productName = lblProductName.Text;
