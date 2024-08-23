@@ -24,7 +24,7 @@
                 <asp:Repeater ID="rptProduct" runat="server" OnItemCommand="rptProducts_ItemCommand">
                     <ItemTemplate>
                         <div style="width: 20%; height: 62%;margin: 1%; box-sizing: border-box;" id="productContainer">
-                            <img src='<%# Eval("ImageUrl") %>' alt='<%# Eval("ProductName") %>' style="width: 90%; height: auto; border-radius: 50%; border: 2px solid #ffce46;margin: 10px 0px 10px 10px" />
+                            <img src='<%# Eval("ImageUrl") %>' alt='<%# Eval("ProductName") %>' style="width: 90%; height: auto; border-radius: 10px; border: 1px solid #ffce46;margin: 10px 0px 10px 10px" />
                             <div style="height:60px;text-align:center;font-size:19px;"><%# Eval("ProductId") %><br />
                                 <%# Eval("ProductName") %></div>
                             <br />

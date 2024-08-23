@@ -111,7 +111,6 @@
 }
 
 #categoryItem > div {
-    border: 1px solid #ddd; 
     margin-left:30px;
     margin-bottom:30px;
     justify-content: flex-start;
@@ -152,7 +151,7 @@
     cursor: pointer;
     border: 1px solid #ddd;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background-color: #f0f0f0;
+    background-color: #fff;
     color: #433533;
     font-weight: 500;
     letter-spacing: 0.5px;
@@ -174,13 +173,117 @@
     letter-spacing:-0.5px;
 }
 
-.categoryTitle::before {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    background-color: #a78053;
-    height: 3px;
-    box-sizing: border-box;
-    width: 250px;
+/*Service style*/
+.ourService {
+    background-image: url('../img/bg_1.jpg');
+    padding-bottom: 20px;
+    padding-top:20px;
+}
+
+.serviceTitle {
+    color: #a78053;
     text-align: center;
+}
+
+.serviceContainer {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.box {
+    text-align: center;
+    vertical-align: top;
+    box-shadow: 0 4px 8px #3a3a3a;
+    margin: 10px;
+    background: #fff;
+    border-radius:10px;
+}
+
+.box img {
+    display: block;
+    margin: 0 auto;
+}
+
+.serviceContainer h2 {
+    color: #373737;
+    text-align: center;
+}
+
+.buttonContainer {
+    margin-top: 20px; 
+    text-align: center; 
+}
+
+.btnStartOrder {
+    border: none;
+    background-color: #fff;
+    color: #000;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.btnStartOrder:hover {
+    background-color: transparent;
+    border: 1px solid white;
+    color: #fff;
+    transition: 0.5s;
+}
+
+/*Feedback style*/
+.ourFeedback {
+    padding-bottom: 20px;
+}
+
+.feedbackTitle {
+    color: #a78053;
+    text-align: center;
+}
+
+.feedbackContainer {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.feedbackContainer .box1 {
+    text-align: left;
+    vertical-align: top;
+    box-shadow: 0 4px 8px #3a3a3a;
+    margin: 10px;
+    padding-left:20px;
+    border-radius:10px;
+}
+
+.btnView {
+    background-color: transparent;
+    border: 1px solid #413432;
+    color: #413432;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.btnView:hover {
+    transition: 0.5s;
+    border: none;
+    background-color: #383838;
+    color: #fff;
+}
+
+
+.feedbackItem {
+    padding-top:20px;
+    display: flex;
+}
+
+.userImg {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 15px;
 }

@@ -499,13 +499,17 @@
     <Content Include="img\Category\dessert.jpg" />
     <Content Include="img\Category\Espresso.jpg" />
     <Content Include="img\Category\lunch.jpg" />
+    <Content Include="img\chef.gif" />
+    <Content Include="img\coffee.gif" />
     <Content Include="img\coffeeBag.jpg" />
     <Content Include="img\cup.png" />
     <Content Include="img\cup2.png" />
     <Content Include="img\customer.png" />
+    <Content Include="img\delivery-truck.gif" />
     <Content Include="img\down-white.png" />
     <Content Include="img\down.png" />
     <Content Include="img\facebook.png" />
+    <Content Include="img\food-pickup.gif" />
     <Content Include="img\gender_icon.png" />
     <Content Include="img\instagram.png" />
     <Content Include="img\location_icon.png" />
@@ -523,6 +527,9 @@
     <Content Include="img\twitter.png" />
     <Content Include="img\up.png" />
     <Content Include="img\user.png" />
+    <Content Include="img\user1.jpg" />
+    <Content Include="img\user2.jpg" />
+    <Content Include="img\user3.jpg" />
     <Content Include="img\username_icon.png" />
     <Content Include="Master\Customer33.html" />
     <Content Include="Menu\Menu.aspx" />
