@@ -1,5 +1,4 @@
 ﻿#pills-reviews {
-    padding-top: 50px;
     display: flex;
     flex-direction: column;
     background-image: url('../img/bg_2.jpg');
@@ -9,7 +8,8 @@
 }
 
 h3 {
-    font-size: 60px;
+    font-size: 40px;
+    margin-top:-10px;
 }
 
 p {
@@ -18,7 +18,7 @@ p {
 
 #rateContainer {
     height: auto;
-    margin: 200px 200px 200px 200px;
+    margin: 100px 200px 200px 200px;
 }
 
 .form-control.fixed-height {
@@ -29,15 +29,16 @@ p {
 .btnCont {
     border-radius: 8px;
     padding: 10px 100px;
+    color: white;
+    background-color: #413432;
     transition-duration: 0.4s;
-    border: 1px solid #ddd;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    color: #433533;
-    background-color: #f0f0f0;
+    font-weight: bold;
 }
 
     .btnCont:hover {
-        background-color: #413432;
-        color: white;
+        background-color: transparent;
+        border: 1px solid #413432;
+        color: #413432;
         cursor: pointer;
     }
