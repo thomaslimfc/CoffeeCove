@@ -161,7 +161,8 @@
     <asp:Button ID="VerifyButton_TFA" 
         runat="server" 
         Text="Verify Now" 
-        CssClass="w-full bg-primary text-primary-foreground p-2 rounded-md hover:bg-primary/80" />
+        CssClass="w-full bg-primary text-primary-foreground p-2 rounded-md hover:bg-primary/80" 
+        style="cursor: pointer"/>
     <div class="trMarginBottom20"></div>
     <!-- Join Now -->
     <div class="text-center mt-4">

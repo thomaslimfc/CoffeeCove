@@ -127,7 +127,7 @@
             <asp:TextBox ID="EmailAdd_SI2" 
                 CssClass="w-full p-2 border border-border rounded-md focus:outline-none focus:ring focus:ring-ring" 
                 runat="server" 
-                placeholder="desmundchau7668" 
+                placeholder="deschau7668@gmail.com" 
                 title="Email Address"
                 AutoPostBack="false">
             </asp:TextBox>
@@ -184,7 +184,8 @@
     <asp:Button ID="SignInButton_SI" 
         runat="server" 
         Text="Sign In" 
-        CssClass="w-full bg-primary text-primary-foreground p-2 rounded-md hover:bg-primary/80" />
+        CssClass="w-full bg-primary text-primary-foreground p-2 rounded-md hover:bg-primary/80" 
+        style="cursor: pointer"/>
     
     <!-- Forgot Password + SIGN IN with EMAIL -->
     <div class="flex justify-between text-sm mt-2">

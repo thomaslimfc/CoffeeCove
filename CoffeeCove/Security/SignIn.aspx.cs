@@ -45,6 +45,9 @@ namespace CoffeeCove.Security
             }
         }
 
-
+        protected void SignInButton_SI_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Home.aspx");
+        }
     }
 }
