@@ -118,7 +118,7 @@ namespace CoffeeCove.AdminSite
                     {
                         txtStoreName.Text = dr["StoreName"].ToString();
                         txtStoreAddress.Text = dr["StoreAddress"].ToString();
-                        txtPostCode.Text = dr["StorePostCode"].ToString();
+                        //txtPostCode.Text = dr["StorePostCode"].ToString();
                         hdnId.Value = StoreId;
                     }
                 }

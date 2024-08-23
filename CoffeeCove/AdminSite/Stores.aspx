@@ -29,12 +29,14 @@
                                     <asp:TextBox ID="txtStoreAddress" runat="server" CssClass="form-control" placeholder="Enter Store Address"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Please enter Store Address." ControlToValidate="txtStoreAddress" CssClass="error" Display="Dynamic" ValidationGroup="StoreForm"></asp:RequiredFieldValidator>
                                 </div>
+                                <!--
                                 <div class="col-12">
                                     <label class="label">PostCode</label>
                                     <asp:TextBox ID="txtPostCode" runat="server" CssClass="form-control" placeholder="Enter PostCode"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Please enter PostCode." ControlToValidate="txtPostCode" CssClass="error" Display="Dynamic" ValidationGroup="StoreForm" />
                                     <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Please enter a valid PostCode (5 digits only)." ControlToValidate="txtPostCode" CssClass="error" Display="Dynamic" ValidationGroup="StoreForm" ValidationExpression="^\d{5}$" />
                                 </div>
+                                -->
                                 <div class="col-8">
                                     <asp:Button ID="btnAdd" runat="server" Text="Add" ValidationGroup="StoreForm" CssClass="btn btn-secondary" />
                                     &nbsp;&nbsp;
