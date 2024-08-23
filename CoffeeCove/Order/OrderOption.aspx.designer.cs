@@ -123,6 +123,24 @@ namespace CoffeeCove.Order
         protected global::System.Web.UI.WebControls.LinkButton lbProceed;
 
         /// <summary>
+        /// lbClose control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbClose;
+
+        /// <summary>
+        /// lbConfirmMap control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbConfirmMap;
+
+        /// <summary>
         /// rptStoreList control.
         /// </summary>
         /// <remarks>

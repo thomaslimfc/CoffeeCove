@@ -518,11 +518,13 @@
     <Content Include="img\slideImg1.jpeg" />
     <Content Include="img\slideImg2.jpeg" />
     <Content Include="img\slideImg3.jpeg" />
+    <Content Include="img\slideImg4.jpg" />
     <Content Include="img\trash-bin.png" />
     <Content Include="img\twitter.png" />
     <Content Include="img\up.png" />
     <Content Include="img\user.png" />
     <Content Include="img\username_icon.png" />
+    <Content Include="Master\Customer33.html" />
     <Content Include="Menu\Menu.aspx" />
     <Content Include="Order\getLocation.js" />
     <Content Include="Order\cart.aspx" />

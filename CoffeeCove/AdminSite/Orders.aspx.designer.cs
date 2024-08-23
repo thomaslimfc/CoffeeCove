@@ -13,6 +13,41 @@ namespace CoffeeCove.AdminSite
 
     public partial class OrderManagement
     {
+        /// <summary>
+        /// rptOrdered control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptOrdered;
+
+        /// <summary>
+        /// lblSubtotal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSubtotal;
+
+        /// <summary>
+        /// lblTax control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTax;
+
+        /// <summary>
+        /// lblTotal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTotal;
 
         /// <summary>
         /// txtFrom control.
@@ -157,5 +192,11 @@ namespace CoffeeCove.AdminSite
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
+
+        protected global::System.Web.UI.WebControls.Label lblPaymentMethod;
+        protected global::System.Web.UI.WebControls.Label lblUsername;
+        protected global::System.Web.UI.WebControls.Label lblEmail;
+        protected global::System.Web.UI.WebControls.Label lblPickUp;
+        protected global::System.Web.UI.WebControls.Label lblDelivery;
     }
 }

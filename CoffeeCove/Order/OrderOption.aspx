@@ -69,6 +69,7 @@ async defer></script>
                                     </td>
                                 </tr>
                             </table>
+                            <br />
                             <!--Fill address end-->
                         </div>
                     </td>
@@ -84,9 +85,11 @@ async defer></script>
                             </button>
                             <br />
                             <br />
-                            <span style="font-weight: bold"><asp:Label ID="lblStoreName" runat="server" EnableViewState="False"></asp:Label></span>
-                            <br />
-                            <span style="padding-left:20px;padding-right:20px;display:block"><asp:Label ID="lblStoreAdd" runat="server" EnableViewState="False"></asp:Label></span>
+                            <section id="storeTxt">
+                                <span style="font-weight: bold;font-size:1.1em"><asp:Label ID="lblStoreName" runat="server" EnableViewState="False"></asp:Label></span>
+                                <br />
+                                <span style="padding-left:20px;padding-right:20px;display:block"><asp:Label ID="lblStoreAdd" runat="server" EnableViewState="False"></asp:Label></span>
+                            </section>
                         </div>
                     </td>
                     <!--Pick Up end-->
@@ -98,7 +101,7 @@ async defer></script>
                 </tr>
                 <tr>
                     <td colspan="3" style="text-align:center;height:0">
-                        <asp:LinkButton ID="lbProceed" runat="server" CssClass="btnCont" Font-Underline="false">Proceed</asp:LinkButton>
+                        <asp:LinkButton ID="lbProceed" runat="server" CssClass="btnCont" Font-Underline="false" OnClick="lbProceed_Click">Proceed</asp:LinkButton>
                     </td>
                 </tr>
             </table>
@@ -111,10 +114,10 @@ async defer></script>
             <table style="width:100%">
                 <tr>
                     <td>
-                        <button onclick="closeMap()" class="btnCont">Close</button>
+                        <asp:LinkButton ID="lbClose" runat="server" OnClientClick="closeMap(event)" CssClass="btnCont" Font-Underline="false">Close</asp:LinkButton>
                     </td>
                     <td>
-                        <button onclick="closeMap()" class="btnCont">Confirm</button>
+                        <asp:LinkButton ID="lbConfirmMap" runat="server" OnClientClick="closeMap(event)" CssClass="btnCont" Font-Underline="false" OnClick="lbConfirmMap_Click">Confirm</asp:LinkButton>
                     </td>
                 </tr>
             </table>
@@ -128,7 +131,7 @@ async defer></script>
                 <ItemTemplate>
                     <%# (Container.ItemIndex + 2) % 2 == 0 ? "<tr>" : string.Empty %>
                     <td style="width:30%" class="storeList">
-                        <asp:LinkButton ID="lbStoreList" runat="server" Font-Underline="false" CommandName="storeList" CommandArgument='<%# Eval("StoreID") %>' >
+                        <asp:LinkButton ID="lbStoreList" runat="server" Font-Underline="false" CommandName="storeList" CommandArgument='<%# Eval("StoreID") %>'>
                             <div class="storeName"><h3><%# DataBinder.Eval(Container.DataItem, "StoreName") %></h3></div>
                             <div><%# DataBinder.Eval(Container.DataItem, "StoreAddress") %></div>
                         </asp:LinkButton>
