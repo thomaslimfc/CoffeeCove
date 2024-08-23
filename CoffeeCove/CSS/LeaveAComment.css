@@ -2,7 +2,7 @@
 }
 
 #pills-reviews {
-    padding-top: 50px;
+    padding-top: 10px;
     display: flex;
     flex-direction: column;
     background-color: #dcdcdc;
@@ -19,7 +19,7 @@ p {
 
 #rateContainer {
     height: auto;
-    margin: 200px 200px 200px 200px;
+    margin: 100px 200px 200px 200px;
 }
 
 .form-control.fixed-height {
