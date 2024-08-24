@@ -300,24 +300,3 @@ h4 {
 #ratingReviewSummaryContainer {
     margin: 50px 50px 50px 50px;
 }
-
-#pills-reviews .backBtn {
-    border: none;
-    background-color: #fff;
-    color: #000;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 17px;
-    font-weight: 500;
-    margin-top:5%;
-    width:100px;
-    text-align:center;
-    margin-left:30px;
-}
-
-#pills-reviews .backBtn:hover {
-    background-color: #413432;
-    color: #fff;
-    transition: 0.5s;
-}

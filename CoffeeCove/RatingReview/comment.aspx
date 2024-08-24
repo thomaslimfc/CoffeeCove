@@ -4,7 +4,6 @@
     <link href="../CSS/LeaveAComment.css" rel="stylesheet" />
 
     <div class="tab-pane fade active show" id="pills-reviews" role="tabpanel" aria-labelledby="pills-reviews-tab">
-        <asp:Button ID="Btnback" runat="server" Text="Back" PostBackUrl="~/RatingReview/ratingReview.aspx" CssClass="backBtn"/>
         <div id="rateContainer" class="bg-white rounded shadow-sm p-4 mb-5 rating-review-select-page">
             <h3 class="mb-4">Leave Comment</h3>
             <p class="mb-2">Rate the Place</p>
