@@ -35,6 +35,7 @@
     </div>
 
     <!-- Category Section -->
+    <div style="background-image: url('../img/bg_1.jpg');">
     <h1 class="categoryTitle">Our Categories</h1>
     <div id="categoryItem">
         <asp:Repeater ID="rptCategory" runat="server" OnItemCommand="rptCategory_ItemCommand">
@@ -51,8 +52,8 @@
     </div>
 
     <!-- Services -->
-    <h1 class="serviceTitle">Our Services</h1>
     <div class="ourService">
+    <h1 class="serviceTitle">Our Services</h1>
         <table style="width: 80%; margin-left: 10%;" class="serviceContainer">
             <tr>
                 <td class="box" style="width: 45px">
@@ -77,15 +78,13 @@
             </tr>
         </table>
         <div class="buttonContainer">
-            <asp:Button ID="btnStart" runat="server" Text="Start Order" PostBackUrl="../Order/OrderOption.aspx" CssClass="btnStartOrder" />
+            <asp:Button ID="btnStart" runat="server" Text="Start Order Now" PostBackUrl="../Order/OrderOption.aspx" CssClass="btnStartOrder" />
         </div>
     </div>
-    <br />
-    <br />
 
     <!-- Feedback -->
-    <h1 class="feedbackTitle">Our Clients Say</h1>
     <div class="ourFeedback">
+    <h1 class="feedbackTitle">Our Clients Say</h1>
         <table style="width: 90%;" class="feedbackContainer">
             <tr>
                 <td class="box1" style="width: 60px;">
@@ -126,6 +125,5 @@
             <asp:Button ID="btnFeedback" runat="server" Text="View More" PostBackUrl="../RatingReview/ratingReview.aspx" CssClass="btnView" />
         </div>
     </div>
-
-    <br />
+        </div>
 </asp:Content>
