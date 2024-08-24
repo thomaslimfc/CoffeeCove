@@ -14,10 +14,7 @@ namespace CoffeeCove.Security
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (!IsPostBack)
-            //{
-            //    InitializeForm();
-            //}
+
         }
 
         protected void SignInButton_SI_Click(object sender, EventArgs e)
@@ -29,32 +26,29 @@ namespace CoffeeCove.Security
 
                 using (dbCoffeeCoveEntities db = new dbCoffeeCoveEntities())
                 {
-                    // Ensure Customers and Admins are IQueryable or IEnumerable
                     var customerQuery = db.Customers;
                     var adminQuery = db.Admins;
 
-                    // Checking for Customer
-                    Customer cust = customerQuery.SingleOrDefault(x => x.Username == username && x.HashedPassword == password);
+                    Customer cust = customerQuery.SingleOrDefault(c => c.Username == username && c.HashedPassword == password);
+
+                    Admin admin = adminQuery.SingleOrDefault(a => a.Username == username && a.HashedPassword == password);
 
                     if (cust != null)
                     {
                         Response.Redirect("~/Home/Home.aspx");
                     }
+                    else if (admin != null)
+                    {
+                        Response.Redirect("~/AdminSite/Dashboard.aspx");
+                    }
                     else
                     {
-                        // Checking for Admin
-                        Admin admin = adminQuery.SingleOrDefault(x => x.Username == username && x.HashedPassword == password);
-
-                        if (admin != null)
-                        {
-                            Response.Redirect("~/AdminSite/Dashboard.aspx");
-                        }
-                        else
-                        {
-                            //InvalidCredentialsLabel.Text = "Invalid username or password.";
-                            //InvalidCredentialsLabel.Visible = true;
-                        }
+                        //InvalidCredentialsLabel.Text = "Invalid username or password.";
+                        //InvalidCredentialsLabel.Visible = true;
+                        // Optionally, log this attempt for security reasons
+                        System.Diagnostics.Debug.WriteLine("Failed login attempt for user: " + username);
                     }
+
                 }
             }
         }
