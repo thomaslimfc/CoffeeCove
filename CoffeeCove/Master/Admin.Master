@@ -22,6 +22,8 @@
     <link href="../Content/vendor/remixicon/remixicon.css" rel="stylesheet">
     <link href="../Content/vendor/simple-datatables/style.css" rel="stylesheet">
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+
     <!-- Template Main CSS File -->
     <link href="../Content/css/style.css" rel="stylesheet">
     <link href="../CSS/Admin.css" rel="stylesheet" />
@@ -60,15 +62,14 @@
                 <asp:Menu ID="sideBar" runat="server" Font-Size="17px">
                     <StaticMenuItemStyle CssClass="SideBarMenu" />
                     <Items>
-                        <asp:MenuItem NavigateUrl="~/AdminSite/Dashboard.aspx" Text="Dashboard" Value="Dashboard"></asp:MenuItem>
-                        <asp:MenuItem NavigateUrl="~/AdminSite/CustomerList.aspx" Text="Users" Value="Users"></asp:MenuItem>
-                        <asp:MenuItem NavigateUrl="~/AdminSite/Orders.aspx" Text="Orders" Value="Orders"></asp:MenuItem>
-                        <asp:MenuItem NavigateUrl="~/AdminSite/Payment.aspx" Text="Payments" Value="Payments"></asp:MenuItem>
-                        <asp:MenuItem NavigateUrl="~/AdminSite/Categories.aspx" Text="Categories" Value="Categories"></asp:MenuItem>
-                        <asp:MenuItem NavigateUrl="~/AdminSite/Products.aspx" Text="Products" Value="Products"></asp:MenuItem>
-                        <asp:MenuItem NavigateUrl="~/AdminSite/Review.aspx" Text="Rating Review" Value="Rating Review"></asp:MenuItem>
-                        <asp:MenuItem NavigateUrl="~/AdminSite/Stores.aspx" Text="Stores" Value="Stores"></asp:MenuItem>
-                        <asp:MenuItem NavigateUrl="#" Text="Report" Value="Report"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/AdminSite/Dashboard.aspx" Text="<i class='fas fa-tachometer-alt'></i>&nbsp;&nbsp;Dashboard" Value="Dashboard"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/AdminSite/CustomerList.aspx" Text="<i class='fas fa-users'></i>&nbsp;&nbsp;Users" Value="Users"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/AdminSite/Orders.aspx" Text="<i class='fas fa-shopping-cart'></i>&nbsp;&nbsp;Orders" Value="Orders"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/AdminSite/Payment.aspx" Text="<i class='fas fa-credit-card'></i>&nbsp;&nbsp;Payments" Value="Payments"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/AdminSite/Categories.aspx" Text="<i class='fas fa-tags'></i>&nbsp;&nbsp;Categories" Value="Categories"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/AdminSite/Products.aspx" Text="<i class='fas fa-box'></i>&nbsp;&nbsp;Products" Value="Products"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/AdminSite/Review.aspx" Text="<i class='fas fa-star'></i>&nbsp;&nbsp;Rating Review"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/AdminSite/Stores.aspx" Text="<i class='fas fa-store'></i>&nbsp;&nbsp;Stores" Value="Stores"></asp:MenuItem>
                     </Items>
                 </asp:Menu>
             </div>
