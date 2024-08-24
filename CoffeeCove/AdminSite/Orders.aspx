@@ -240,7 +240,7 @@
                             <asp:BoundField DataField="PaymentStatus" HeaderText="Status" SortExpression="PaymentStatus" />
                             <asp:TemplateField HeaderText="Action" ItemStyle-Width="150px">
                                 <ItemTemplate>
-                                    <asp:LinkButton ID="btnView" runat="server" CommandName="viewOrder" CommandArgument='<%# Eval("OrderId") %>' Text="View" CssClass="btn btn-primary btn-sm" OnClientClick="viewOrder(event);"/>
+                                    <asp:LinkButton ID="btnView" runat="server" CommandName="viewOrder" CommandArgument='<%# Eval("OrderId") %>' Text="View" CssClass="btn btn-dark btn-sm" OnClientClick="viewOrder(event);"/>
                                     <asp:LinkButton ID="btnDelete" runat="server" CommandName="deleteOrder" CommandArgument='<%# Eval("OrderId") %>' Text="Delete" CssClass="btn btn-danger btn-sm" OnClientClick="return confirmDelete();"/>
                                 </ItemTemplate>
                             </asp:TemplateField>

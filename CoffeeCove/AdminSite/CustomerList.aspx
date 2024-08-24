@@ -289,7 +289,7 @@
                                                     runat="server" 
                                                     Text="Register Admin" 
                                                     style="width: 300px"
-                                                    CssClass="btn btn-secondary"
+                                                    CssClass="btn btn-dark"
                                                     ValidationGroup="RegisterAccount"/>
                                             </center>
                                         </div>
