@@ -14,9 +14,9 @@ namespace CoffeeCove.Security
 
         }
 
-        protected void otp_TextChanged(object sender, EventArgs e)
+        protected void VerifyButton_TFA_Click(object sender, EventArgs e)
         {
-            // Add your logic here to handle the text changed event for the password TextBox
+            Response.Redirect("SignIn.aspx");
         }
     }
 }

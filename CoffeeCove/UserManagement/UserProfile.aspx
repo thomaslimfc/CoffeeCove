@@ -334,7 +334,9 @@
                                     ValidationExpression="^01[0-9]-[0-9]{7,9}$" />
                             </td>
                             <td class="contentCol">
-                                <asp:Label ID="lblResidenceState" runat="server" CssClass="block text-sm text-muted-foreground" />
+                                <asp:Label ID="lblResidenceState" runat="server" CssClass="block text-sm text-muted-foreground"
+                                    style="font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+                                        color: black; font-size: 12pt; font-weight: 450" />
                                 
                                 <asp:DropDownList ID="txtResidenceState" runat="server" 
                                     CssClass="mt-1 p-2 border border-border rounded w-full" 
