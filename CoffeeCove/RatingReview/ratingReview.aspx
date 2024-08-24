@@ -80,7 +80,7 @@
                         <h5 class="mb-1">All Ratings and Reviews</h5>
                         <asp:Button ID="btnCurrentUserRating" CssClass="btnCont" runat="server" Text="Your Rating" OnClick="btnCurrentUserRating_Click" />
                     </div>
-                    
+
                     <!-- Rating Container -->
                     <asp:Repeater ID="rptUserRatingReview" runat="server" OnItemDataBound="rptUserRatingReview_ItemDataBound">
                         <ItemTemplate>
@@ -100,6 +100,7 @@
                                         <div class="review-content mt-2">
                                             <p><%# Eval("ReviewContent") %></p>
                                         </div>
+                                        <asp:PlaceHolder ID="phAdminReply" runat="server"></asp:PlaceHolder>
                                     </div>
                                 </div>
                             </div>
