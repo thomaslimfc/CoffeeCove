@@ -43,10 +43,10 @@ function handleError(error) {
     }
 }
 
-function closeMap() {
+function closeMap(event) {
     document.getElementById("overlay").style.display = "none";
     document.getElementById("popupDialog").style.display = "none";
-    //event.preventDefault();
+    event.preventDefault();
 }
 
 function closeStoreList() {

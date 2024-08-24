@@ -18,6 +18,7 @@ namespace CoffeeCove
         public Customer()
         {
             this.OrderPlaceds = new HashSet<OrderPlaced>();
+            this.Reviews = new HashSet<Review>();
         }
     
         public int CusID { get; set; }
@@ -34,5 +35,7 @@ namespace CoffeeCove
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderPlaced> OrderPlaceds { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Review> Reviews { get; set; }
     }
 }

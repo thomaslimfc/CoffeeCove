@@ -32,7 +32,7 @@ namespace CoffeeCove
         public virtual DbSet<OrderPlaced> OrderPlaceds { get; set; }
         public virtual DbSet<PaymentDetail> PaymentDetails { get; set; }
         public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<Store> Stores { get; set; }
         public virtual DbSet<Review> Reviews { get; set; }
+        public virtual DbSet<Store> Stores { get; set; }
     }
 }
