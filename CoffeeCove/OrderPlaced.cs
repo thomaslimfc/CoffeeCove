@@ -17,8 +17,8 @@ namespace CoffeeCove
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public OrderPlaced()
         {
-            this.PaymentDetails = new HashSet<PaymentDetail>();
             this.OrderedItems = new HashSet<OrderedItem>();
+            this.PaymentDetails = new HashSet<PaymentDetail>();
         }
     
         public int OrderID { get; set; }
@@ -29,10 +29,10 @@ namespace CoffeeCove
         public decimal TotalAmount { get; set; }
     
         public virtual Customer Customer { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderedItem> OrderedItems { get; set; }
         public virtual Store Store { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PaymentDetail> PaymentDetails { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderedItem> OrderedItems { get; set; }
     }
 }
