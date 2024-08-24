@@ -8,10 +8,6 @@
     font-size: 25px;
 }
 
-section {
-    width: 1500px;
-}
-
 .error {
     color: red;
     background-image: url(../img/error.png);

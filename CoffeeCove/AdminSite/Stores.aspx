@@ -90,7 +90,7 @@
 
                                     <asp:TemplateField HeaderText="Action" ItemStyle-Width="150px">
                                         <ItemTemplate>
-                                            <asp:LinkButton ID="btnEdit" runat="server" CommandName="Edit" CommandArgument='<%# Eval("StoreID") %>' Text="Edit" CssClass="btn btn-primary btn-sm" />
+                                            <asp:LinkButton ID="btnEdit" runat="server" CommandName="Edit" CommandArgument='<%# Eval("StoreID") %>' Text="Edit" CssClass="btn btn-dark btn-sm" />
                                             <asp:LinkButton ID="btnDelete" runat="server" CommandName="Delete" CommandArgument='<%# Eval("StoreID") %>' Text="Delete" CssClass="btn btn-danger btn-sm" OnClientClick="return confirmDelete();" />
                                         </ItemTemplate>
                                     </asp:TemplateField>
