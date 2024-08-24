@@ -1,5 +1,4 @@
-﻿﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Admin.Master" AutoEventWireup="true" CodeFile="Orders.aspx.cs" Inherits="CoffeeCove.AdminSite.OrderManagement" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Admin.Master" AutoEventWireup="true" CodeFile="Orders.aspx.cs" Inherits="CoffeeCove.AdminSite.OrderManagement" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -266,14 +265,13 @@
 </div>
 
         <script>
-        function confirmDelete() {
-            return confirm("Do you confirm you want to delete this store from store list?");
-        }
-        function viewOrder(event) {
-            document.getElementById("viewOrder").style.display = 'block';
-            event.preventDefault();
-        }
+            function confirmDelete() {
+                return confirm("Do you confirm you want to delete this store from store list?");
+            }
+            function viewOrder(event) {
+                document.getElementById("viewOrder").style.display = 'block';
+                event.preventDefault();
+            }
 
         </script>
 </asp:Content>
-﻿
