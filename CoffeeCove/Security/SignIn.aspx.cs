@@ -1,53 +1,48 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
+using CoffeeCove.Securities;
 
 namespace CoffeeCove.Security
 {
     public partial class SignIn : System.Web.UI.Page
     {
-        //protected void Page_Load(object sender, EventArgs e)
-        //{
-        //    //if (!IsPostBack)
-        //    //{
-        //    //    InitializeForm();
-        //    //}
-        //}
-
-        //private void InitializeForm()
-        //{
-        //    username2.Text = string.Empty;
-        //    password2.Text = string.Empty;
-        //}
-
-        protected void UsernameOrEmailValidator_ServerValidate(object source, ServerValidateEventArgs args)
+        protected void Page_Load(object sender, EventArgs e)
         {
-            string input = args.Value.Trim();
-
-            // Regular expression for a valid email address
-            string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
-
-            // Regular expression for a valid username (at least 10 alphanumeric characters)
-            string usernamePattern = @"^[a-zA-Z0-9]{10,}$";
-
-            // Check if the input matches either the email pattern or the username pattern
-            if (System.Text.RegularExpressions.Regex.IsMatch(input, emailPattern) ||
-                System.Text.RegularExpressions.Regex.IsMatch(input, usernamePattern))
-            {
-                args.IsValid = true;
-            }
-            else
-            {
-                args.IsValid = false;
-            }
         }
 
         protected void SignInButton_SI_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Home/Home.aspx");
+            if (Page.IsValid)
+            {
+                string username = Username_SI.Text;
+                string password = Password_SI.Text;
+
+                using (dbCoffeeCoveEntities db = new dbCoffeeCoveEntities())
+                {
+                    // Check for a matching customer
+                    var customer = db.Customers.SingleOrDefault(c => c.Username == username && c.HashedPassword == password);
+                    
+                    // Check for a matching admin
+                    var admin = db.Admins.SingleOrDefault(a => a.Username == username && a.HashedPassword == password);
+
+                    if (customer != null)
+                    {
+                        // Redirect to the customer home page
+                        Response.Redirect("~/Home/Home.aspx");
+                    }
+                    else if (admin != null)
+                    {
+                        // Redirect to the admin dashboard
+                        Response.Redirect("~/AdminSite/Dashboard.aspx");
+                    }
+                    else
+                    {
+                        // Handle invalid credentials
+                        System.Diagnostics.Debug.WriteLine($"Failed login attempt for user: {username}");
+                    }
+                }
+            }
         }
     }
 }

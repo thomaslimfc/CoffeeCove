@@ -147,7 +147,8 @@
             CssClass="mt-1 p-2 border border-border rounded w-full"
             runat="server" 
             placeholder="Desmund" 
-            title="First Name">
+            title="First Name"
+            ValidationGroup="SignUp">
         </asp:TextBox>
         <asp:RequiredFieldValidator 
             ID="FirstName_SU_rqdValidator" 
@@ -155,7 +156,8 @@
             ControlToValidate="FirstName_SU" 
             ErrorMessage="First Name is required." 
             Display="Dynamic" ForeColor="Red" 
-            CssClass="rqdValidator" />
+            CssClass="rqdValidator"
+            ValidationGroup="SignUp"/>
         <asp:RegularExpressionValidator 
             ID="FirstName_SU_regexValidator" 
             runat="server" 
@@ -179,14 +181,16 @@
             CssClass="mt-1 p-2 border border-border rounded w-full"
             runat="server" 
             placeholder="Chau" 
-            title="Name">
+            title="Name"
+            ValidationGroup="SignUp">
         </asp:TextBox>
         <asp:RequiredFieldValidator 
             ID="LastName_SU_rqdValidator" runat="server" 
             ControlToValidate="LastName_SU" 
             ErrorMessage="Last Name is required." 
             Display="Dynamic" ForeColor="Red" 
-            CssClass="rqdValidator" />
+            CssClass="rqdValidator"
+            ValidationGroup="SignUp"/>
         <asp:RegularExpressionValidator 
             ID="LastName_SU_regexValidator" 
             runat="server" 
@@ -210,14 +214,16 @@
             CssClass="mt-1 p-2 border border-border rounded w-full"
             runat="server" 
             placeholder="desmundchau7668" 
-            title="Username">
+            title="Username"
+            ValidationGroup="SignUp">
         </asp:TextBox>
         <asp:RequiredFieldValidator 
             ID="Username_SU_rqdValidator" runat="server" 
             ControlToValidate="Username_SU" 
             ErrorMessage="Username is required." 
             Display="Dynamic" ForeColor="Red" 
-            CssClass="rqdValidator" />
+            CssClass="rqdValidator"
+            ValidationGroup="SignUp"/>
         <asp:RegularExpressionValidator 
             ID="Username_SU_regexValidator" 
             runat="server" 
@@ -227,7 +233,18 @@
             ForeColor="Red" 
             CssClass="rqdValidator" 
             ValidationExpression="^[a-zA-Z0-9]{8,}$" />
+        <asp:CustomValidator 
+            ID="Username_SU_customValidator" 
+            runat="server" 
+            ControlToValidate="Username_SU" 
+            CssClass="error" 
+            Display="Dynamic" 
+            ErrorMessage="Your username has been used." 
+            OnServerValidate="Username_SU_ServerValidate"></asp:CustomValidator>
         <asp:Label ID="UsernameErrorMessage" 
+            runat="server" ForeColor="Red" Visible="False">
+        </asp:Label>
+        <asp:Label ID="UsernameErrorMessage2" 
             runat="server" ForeColor="Red" Visible="False">
         </asp:Label>
     </div>
@@ -239,14 +256,16 @@
             CssClass="mt-1 p-2 border border-border rounded w-full"
             runat="server" 
             placeholder="deschau7668@gmail.com" 
-            title="Email Address">
+            title="Email Address"
+            ValidationGroup="SignUp">
         </asp:TextBox>
         <asp:RequiredFieldValidator 
             ID="EmailAdd_SU_rqdValidator" runat="server" 
             ControlToValidate="EmailAdd_SU" 
             ErrorMessage="Email Address is required." 
             Display="Dynamic" ForeColor="Red" 
-            CssClass="rqdValidator" />
+            CssClass="rqdValidator"
+            ValidationGroup="SignUp"/>
         <asp:RegularExpressionValidator 
             ID="EmailAdd_SU_regexValidator" 
             runat="server" 
@@ -263,14 +282,16 @@
     <div class="relative mb-4">
         <asp:TextBox ID="ContactNo_SU" runat="server" 
             CssClass="w-full p-2 border border-border rounded-md focus:outline-none"
-            placeholder="012-3456789" />
+            placeholder="012-3456789"
+            ValidationGroup="SignUp"/>
         <asp:RequiredFieldValidator 
             ID="ContactNo_SU_rqdValidator" runat="server" 
             ControlToValidate="ContactNo_SU" 
             ErrorMessage="Contact Number is required." 
             Display="Dynamic" 
             ForeColor="Red" 
-            CssClass="rqdValidator" />
+            CssClass="rqdValidator"
+            ValidationGroup="SignUp"/>
         <asp:RegularExpressionValidator 
             ID="ContactNo_SU_regexValidator" 
             runat="server" 
@@ -290,7 +311,8 @@
             runat="server" 
             placeholder="**********" 
             title="Password" 
-            AutoPostBack="false">
+            AutoPostBack="false"
+            ValidationGroup="SignUp">
         </asp:TextBox>
         <span id="PasswordToggle_SU" class="absolute right-2 top-2 cursor-pointer">👁️</span>
         <asp:RequiredFieldValidator 
@@ -299,7 +321,8 @@
             ControlToValidate="Password_SU" 
             ErrorMessage="Password is required." 
             Display="Dynamic" ForeColor="Red" 
-            CssClass="rqdValidator" />
+            CssClass="rqdValidator"
+            ValidationGroup="SignUp"/>
         <asp:RegularExpressionValidator 
             ID="Password_SU_regexValidator" 
             runat="server" 
@@ -319,7 +342,8 @@
             runat="server" 
             placeholder="**********" 
             title="Re-enter Password" 
-            AutoPostBack="false">
+            AutoPostBack="false"
+            ValidationGroup="SignUp">
         </asp:TextBox>
         <span id="PasswordToggle_SU2" class="absolute right-2 top-2 cursor-pointer">👁️</span>
         <asp:RequiredFieldValidator 
@@ -329,7 +353,8 @@
             ErrorMessage="Password Re-enter is required." 
             Display="Dynamic" 
             ForeColor="Red" 
-            CssClass="rqdValidator" />
+            CssClass="rqdValidator"
+            ValidationGroup="SignUp"/>
         <asp:CompareValidator 
             ID="PasswordReenter_SU_compareValidator" 
             runat="server" 
@@ -348,7 +373,8 @@
             CssClass="mt-1 p-2 border border-border rounded w-full" 
             runat="server" 
             TextMode="Date"
-            placeholder="MM/DD/YYYY" />
+            placeholder="MM/DD/YYYY"
+            ValidationGroup="SignUp"/>
         <asp:RequiredFieldValidator 
             ID="DateOfBirth_PR_rqdValidator" 
             runat="server" 
@@ -356,7 +382,8 @@
             ErrorMessage="Date of Birth is required." 
             Display="Dynamic" 
             ForeColor="Red"
-            CssClass="rqdValidator" />
+            CssClass="rqdValidator"
+            ValidationGroup="SignUp"/>
     </div>
     
     <!-- Gender -->
@@ -364,7 +391,8 @@
         <label for="gender" class="block text-sm text-muted-foreground">Gender</label>
         <asp:DropDownList ID="Gender_SU" 
             runat="server" 
-            CssClass="mt-1 p-2 border border-border rounded w-full">
+            CssClass="mt-1 p-2 border border-border rounded w-full"
+            ValidationGroup="SignUp">
             <asp:ListItem Text="~ Select your gender ~" Value="" />
             <asp:ListItem>Male</asp:ListItem>
             <asp:ListItem>Female</asp:ListItem>
@@ -378,7 +406,8 @@
             ErrorMessage="Please select your gender." 
             Display="Dynamic"
             ForeColor="Red"
-            CssClass="rqdValidator" />
+            CssClass="rqdValidator"
+            ValidationGroup="SignUp"/>
     </div>
     
     <!-- Residence State -->
@@ -386,7 +415,8 @@
         <label for="location" class="block text-sm text-muted-foreground">Residence State</label>
         <asp:DropDownList ID="location" 
             runat="server" 
-            CssClass="mt-1 p-2 border border-border rounded w-full">
+            CssClass="mt-1 p-2 border border-border rounded w-full"
+            ValidationGroup="SignUp">
             <asp:ListItem Text="~ Select a location ~" Value="" />
             <asp:ListItem>Selangor</asp:ListItem>
             <asp:ListItem>Penang</asp:ListItem>
@@ -410,7 +440,8 @@
             ErrorMessage="Please select a location." 
             Display="Dynamic"
             ForeColor="Red"
-            CssClass="rqdValidator" />
+            CssClass="rqdValidator"
+            ValidationGroup="SignUp"/>
     </div>
 
     <!-- Terms & Conditions -->
@@ -446,7 +477,8 @@
         CssClass="bg-primary text-primary-foreground p-2 rounded w-full" 
         Text="Agree & Join"
         style="cursor: pointer;"
-        OnClick="SignUpBtn_SU_Click"/>
+        OnClick="SignUpBtn_SU_Click"
+        ValidationGroup="SignUp" />
         <div class="trMarginBottom20"></div>
         <div class="trMarginBottom20"></div>
     </div>
