@@ -13,6 +13,15 @@ namespace CoffeeCove.Home
         private static int slideIndex = 1;
         string cs = Global.CS;
 
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                UpdateSlide();
+                BindCategory();
+            }
+        }
+
         // Array to store slide images
         private static readonly string[] slideImages = new string[]
         {
@@ -34,42 +43,6 @@ namespace CoffeeCove.Home
             2. Select your meals</br>
             3. Sit back and relax</p>"
         };
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!IsPostBack)
-            {
-                UpdateSlide();
-                BindCategory();
-            }
-        }
-
-        private void BindCategory()
-        {
-            using (SqlConnection con = new SqlConnection(cs))
-            {
-                string sql = "SELECT CategoryId, CategoryName, CategoryImageUrl FROM Category WHERE IsActive = 1";
-                using (SqlCommand cmd = new SqlCommand(sql, con))
-                {
-                    con.Open();
-                    SqlDataReader dr = cmd.ExecuteReader();
-                    rptCategory.DataSource = dr;
-                    rptCategory.DataBind();
-                }
-            }
-        }
-
-        protected void rptCategory_ItemCommand(object source, RepeaterCommandEventArgs e)
-        {
-            if (e.CommandName == "OrderNow")
-            {
-                string categoryId = e.CommandArgument.ToString();
-                Response.Redirect($"/Menu/Menu.aspx?CategoryId={categoryId}");
-            }
-        }
-
-
-
 
         private void UpdateSlide()
         {
@@ -108,16 +81,45 @@ namespace CoffeeCove.Home
             switch (slideIndex)
             {
                 case 1:
-                    url = "CoffeeMenu.aspx";
+                    url = "/Menu/Menu.aspx";
                     break;
                 case 2:
-                    url = "EspressoMenu.aspx";
+                    url = "/Menu/Menu.aspx";
                     break;
                 case 3:
-                    url = "DessertMenu.aspx";
+                    url = "/Order/OrderOption.aspx";
                     break;
             }
             Response.Redirect(url);
         }
+
+        private void BindCategory()
+        {
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                string sql = "SELECT CategoryId, CategoryName, CategoryImageUrl FROM Category WHERE IsActive = 1";
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    con.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    rptCategory.DataSource = dr;
+                    rptCategory.DataBind();
+                }
+            }
+        }
+
+        protected void rptCategory_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "OrderNow")
+            {
+                string categoryId = e.CommandArgument.ToString();
+                Response.Redirect($"/Menu/Menu.aspx?CategoryId={categoryId}");
+            }
+        }
+
+
+
+
+        
     }
 }

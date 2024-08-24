@@ -127,8 +127,8 @@
 
                                     <asp:TemplateField HeaderText="Action" ItemStyle-Width="100px">
                                         <ItemTemplate>
-                                            <asp:LinkButton ID="lnkUpdate" runat="server" CommandName="UpdateStatus" CommandArgument='<%# Eval("PaymentID") %>' Text="Update Status" CssClass="btn btn-primary btn-sm" />
-                                            <asp:LinkButton ID="lnkCancel" runat="server" CommandName="CancelPayment" CommandArgument='<%# Eval("PaymentID") %>' Text="Cancel Order" OnClientClick="return confirmDelete();" CssClass="btn btn-danger btn-sm" />
+                                            <asp:LinkButton ID="lnkUpdate" runat="server" CommandName="UpdateStatus" CommandArgument='<%# Eval("PaymentID") %>' Text="Update" CssClass="btn btn-dark btn-sm" />
+                                            <asp:LinkButton ID="lnkCancel" runat="server" CommandName="CancelPayment" CommandArgument='<%# Eval("PaymentID") %>' Text="Cancel" OnClientClick="return confirmDelete();" CssClass="btn btn-danger btn-sm" />
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                 </Columns>

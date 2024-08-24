@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,12 +12,17 @@ namespace CoffeeCove.Master
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (IsPostBack)
+            {
+                pnlDropdownMenu.Visible = ViewState["DropdownVisible"] != null && (bool)ViewState["DropdownVisible"];
+            }
         }
 
-        protected void LogOut_Click(object sender, EventArgs e)
+        protected void lbtnLogin_Click(object sender, EventArgs e)
         {
-            Response.Redirect("/Home/Home.aspx");
+            // Toggle the visibility of the dropdown menu panel
+            pnlDropdownMenu.Visible = !pnlDropdownMenu.Visible;
+            ViewState["DropdownVisible"] = pnlDropdownMenu.Visible;
         }
 
     }

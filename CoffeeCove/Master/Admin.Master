@@ -6,13 +6,13 @@
 <head runat="server">
     <title>CoffeeCove - Admin</title>
 
-        <!-- Favicons -->
+    <!-- Favicons -->
     <link rel="icon" href="../img/cup.png" type="image/x-icon">
 
     <!-- Bootstrap CSS Files -->
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
     <script src="../Scripts/bootstrap.min.js"></script>
-    
+
     <!-- Vendor CSS Files -->
     <link href="../Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="../Content/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -21,6 +21,8 @@
     <link href="../Content/vendor/quill/quill.bubble.css" rel="stylesheet">
     <link href="../Content/vendor/remixicon/remixicon.css" rel="stylesheet">
     <link href="../Content/vendor/simple-datatables/style.css" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
 
     <!-- Template Main CSS File -->
     <link href="../Content/css/style.css" rel="stylesheet">
@@ -32,30 +34,43 @@
         <!--header-->
         <div id="header">
             <div class="headerContainer">
-                <h4 style="padding-top:10px;"><a class="logo" href="../Home/Home.aspx" >COFFEECOVE&#174;</a></h4>
-                <!-- User Login -->
-                <div class="user" style="padding-bottom:5px">
-                    <asp:Literal ID="litUser" runat="server" Text="Carren1220"></asp:Literal>
+                <h4 style="padding-top: 10px;"><a class="logo" href="../Home/Home.aspx">COFFEECOVE&#174;</a></h4>
+                <div class="headerBtn">
+                    <asp:LinkButton ID="lbtnLogin" runat="server" CssClass="loginContainer" OnClick="lbtnLogin_Click" CausesValidation="false">
+                        <table>
+                            <tr>
+                                <td>
+                                    <asp:Label ID="lblUserName" runat="server" Text="UserName" ForeColor="White" Font-Size="17px" CssClass="Username"></asp:Label>
+                                </td>
+                                <td>
+                                    <img src="../img/down-white.png" class="dropdown-icon" style="width:15px;height:15px; margin-top:5px;" />
+                                </td>
+                            </tr>
+                        </table>
+                    </asp:LinkButton>
+
+                    <asp:Panel ID="pnlDropdownMenu" runat="server" CssClass="dropdown-content" Visible="false">
+                        <asp:HyperLink ID="lnkLogin" runat="server" NavigateUrl="~/Home/Home.aspx">Log Out</asp:HyperLink>
+                    </asp:Panel>
                 </div>
             </div>
         </div>
-        
+
         <div id="container">
             <!--side bar-->
             <div id="sidebarContainer">
                 <asp:Menu ID="sideBar" runat="server" Font-Size="17px">
                     <StaticMenuItemStyle CssClass="SideBarMenu" />
-                        <Items>
-                            <asp:MenuItem NavigateUrl="~/AdminSite/Dashboard.aspx" Text="Dashboard" Value="Dashboard"></asp:MenuItem>
-                            <asp:MenuItem NavigateUrl="~/AdminSite/CustomerList.aspx" Text="Users" Value="Users"></asp:MenuItem>
-                            <asp:MenuItem NavigateUrl="~/AdminSite/Orders.aspx" Text="Orders" Value="Orders"></asp:MenuItem>
-                            <asp:MenuItem NavigateUrl="~/AdminSite/Payment.aspx" Text="Payments" Value="Payments"></asp:MenuItem>
-                            <asp:MenuItem NavigateUrl="~/AdminSite/Categories.aspx" Text="Categories" Value="Categories"></asp:MenuItem>
-                            <asp:MenuItem NavigateUrl="~/AdminSite/Products.aspx" Text="Products" Value="Products"></asp:MenuItem>
-                            <asp:MenuItem NavigateUrl="~/AdminSite/Review.aspx" Text="Rating Review" Value="Rating Review"></asp:MenuItem>
-                            <asp:MenuItem NavigateUrl="~/AdminSite/Stores.aspx" Text="Stores" Value="Stores"></asp:MenuItem>
-                            <asp:MenuItem NavigateUrl="#" Text="Report" Value="Report"></asp:MenuItem>
-                        </Items>
+                    <Items>
+                        <asp:MenuItem NavigateUrl="~/AdminSite/Dashboard.aspx" Text="<i class='fas fa-tachometer-alt'></i>&nbsp;&nbsp;Dashboard" Value="Dashboard"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/AdminSite/CustomerList.aspx" Text="<i class='fas fa-users'></i>&nbsp;&nbsp;Users" Value="Users"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/AdminSite/Orders.aspx" Text="<i class='fas fa-shopping-cart'></i>&nbsp;&nbsp;Orders" Value="Orders"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/AdminSite/Payment.aspx" Text="<i class='fas fa-credit-card'></i>&nbsp;&nbsp;Payments" Value="Payments"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/AdminSite/Categories.aspx" Text="<i class='fas fa-tags'></i>&nbsp;&nbsp;Categories" Value="Categories"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/AdminSite/Products.aspx" Text="<i class='fas fa-box'></i>&nbsp;&nbsp;Products" Value="Products"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/AdminSite/Review.aspx" Text="<i class='fas fa-star'></i>&nbsp;&nbsp;Rating Review"></asp:MenuItem>
+                        <asp:MenuItem NavigateUrl="~/AdminSite/Stores.aspx" Text="<i class='fas fa-store'></i>&nbsp;&nbsp;Stores" Value="Stores"></asp:MenuItem>
+                    </Items>
                 </asp:Menu>
             </div>
 
@@ -66,11 +81,11 @@
             </div>
         </div>
 
-        
+
         <!-- Footer -->
         <div class="footerBottom" style="font-size: 15px; font-weight: 300; color: #FFFFFF; background-color: #2a2a2a;">
             Developed by Coffeecove Sdn. Bhd. | &copy; All right reserved. <%:DateTime.Now.Year %>
-        </div>       
+        </div>
     </form>
 </body>
 </html>
