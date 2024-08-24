@@ -1,86 +1,14 @@
 {
   "Version": 1,
-<<<<<<< HEAD
-  "WorkspaceRootPath": "C:\\Users\\User\\source\\repos\\CoffeeCove\\CoffeeCove\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|C:\\Users\\User\\source\\repos\\CoffeeCove\\CoffeeCove\\RatingReview\\OwnComment.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:RatingReview\\OwnComment.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|C:\\Users\\User\\source\\repos\\CoffeeCove\\CoffeeCove\\RatingReview\\OwnComment.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:RatingReview\\OwnComment.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|c:\\users\\user\\source\\repos\\coffeecove\\coffeecove\\adminsite\\review.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:adminsite\\review.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|C:\\Users\\User\\source\\repos\\CoffeeCove\\CoffeeCove\\CSS\\ratingReview.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:CSS\\ratingReview.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|C:\\Users\\User\\source\\repos\\CoffeeCove\\CoffeeCove\\RatingReview\\RatingReview.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:RatingReview\\RatingReview.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|C:\\Users\\User\\source\\repos\\CoffeeCove\\CoffeeCove\\RatingReview\\ratingReview.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:RatingReview\\ratingReview.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-=======
-<<<<<<< HEAD
-  "WorkspaceRootPath": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|d:\\visual studio work\\coffeecove\\coffeecove\\ratingreview\\owncomment.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:ratingreview\\owncomment.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|d:\\visual studio work\\coffeecove\\coffeecove\\ratingreview\\ratingreview.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:ratingreview\\ratingreview.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|d:\\visual studio work\\coffeecove\\coffeecove\\adminsite\\review.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:adminsite\\review.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-=======
   "WorkspaceRootPath": "C:\\Users\\admin\\Documents\\GitHub\\CoffeeCove\\CoffeeCove\\",
   "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|c:\\users\\admin\\documents\\github\\coffeecove\\coffeecove\\ratingreview\\owncomment.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:ratingreview\\owncomment.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|c:\\users\\admin\\documents\\github\\coffeecove\\coffeecove\\css\\ratingreview.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:css\\ratingreview.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|c:\\users\\admin\\documents\\github\\coffeecove\\coffeecove\\css\\home.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:css\\home.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|c:\\users\\admin\\documents\\github\\coffeecove\\coffeecove\\ratingreview\\comment.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:ratingreview\\comment.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|c:\\users\\admin\\documents\\github\\coffeecove\\coffeecove\\css\\leaveacomment.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:css\\leaveacomment.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
     {
       "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|c:\\users\\admin\\documents\\github\\coffeecove\\coffeecove\\home\\home.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:home\\home.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|c:\\users\\admin\\documents\\github\\coffeecove\\coffeecove\\usermanagement\\userprofile.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:usermanagement\\userprofile.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|C:\\Users\\admin\\Documents\\GitHub\\CoffeeCove\\CoffeeCove\\security\\twofactorauthentication.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:security\\twofactorauthentication.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|C:\\Users\\admin\\Documents\\GitHub\\CoffeeCove\\CoffeeCove\\security\\twofactorauthentication.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:security\\twofactorauthentication.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
->>>>>>> 5458baddc0ea3b39be7a3a51b0556d2651111c8d
->>>>>>> 0b1ffd7254b441042d4e61d7a3429708b0bb3700
+      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|c:\\users\\admin\\documents\\github\\coffeecove\\coffeecove\\home\\home.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:home\\home.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -90,11 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 223,
-<<<<<<< HEAD
-          "SelectedChildIndex": 19,
-=======
-          "SelectedChildIndex": 15,
->>>>>>> 0b1ffd7254b441042d4e61d7a3429708b0bb3700
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -122,13 +46,10 @@
             },
             {
               "$type": "Bookmark",
-<<<<<<< HEAD
-=======
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
             },
             {
               "$type": "Bookmark",
->>>>>>> 5458baddc0ea3b39be7a3a51b0556d2651111c8d
               "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
             },
             {
@@ -141,10 +62,6 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Bookmark",
               "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
             },
             {
@@ -152,162 +69,18 @@
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
-              "$type": "Document",
-<<<<<<< HEAD
-              "DocumentIndex": 0,
-              "Title": "OwnComment.aspx",
-              "DocumentMoniker": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\RatingReview\\OwnComment.aspx",
-              "RelativeDocumentMoniker": "RatingReview\\OwnComment.aspx",
-              "ToolTip": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\RatingReview\\OwnComment.aspx",
-              "RelativeToolTip": "RatingReview\\OwnComment.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-08-24T06:53:25.312Z",
-              "EditorCaption": ""
-            },
-            {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Review.aspx",
-              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\CoffeeCove\\CoffeeCove\\AdminSite\\Review.aspx",
-              "RelativeDocumentMoniker": "AdminSite\\Review.aspx",
-              "ToolTip": "C:\\Users\\User\\source\\repos\\CoffeeCove\\CoffeeCove\\AdminSite\\Review.aspx",
-              "RelativeToolTip": "AdminSite\\Review.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-<<<<<<< HEAD
-              "WhenOpened": "2024-08-24T08:06:15.504Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ratingReview.css",
-              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\CoffeeCove\\CoffeeCove\\CSS\\ratingReview.css",
-              "RelativeDocumentMoniker": "CSS\\ratingReview.css",
-              "ToolTip": "C:\\Users\\User\\source\\repos\\CoffeeCove\\CoffeeCove\\CSS\\ratingReview.css",
-              "RelativeToolTip": "CSS\\ratingReview.css",
-              "ViewState": "AgIAAAABAAAAAAAAAAAmwAkBAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-08-24T08:06:15.507Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ratingReview.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\CoffeeCove\\CoffeeCove\\RatingReview\\RatingReview.aspx.cs",
-              "RelativeDocumentMoniker": "RatingReview\\RatingReview.aspx.cs",
-              "ToolTip": "C:\\Users\\User\\source\\repos\\CoffeeCove\\CoffeeCove\\RatingReview\\RatingReview.aspx.cs",
-              "RelativeToolTip": "RatingReview\\RatingReview.aspx.cs",
-              "ViewState": "AgIAADYAAAAAAAAAAADwv1wAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-24T08:06:15.509Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ratingReview.aspx",
-              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\CoffeeCove\\CoffeeCove\\RatingReview\\ratingReview.aspx",
-              "RelativeDocumentMoniker": "RatingReview\\ratingReview.aspx",
-              "ToolTip": "C:\\Users\\User\\source\\repos\\CoffeeCove\\CoffeeCove\\RatingReview\\ratingReview.aspx",
-              "RelativeToolTip": "RatingReview\\ratingReview.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-08-24T08:06:15.511Z",
-=======
-              "WhenOpened": "2024-08-23T21:01:05.71Z",
-=======
-              "DocumentIndex": 2,
-              "Title": "Home.css",
-              "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\CoffeeCove\\CoffeeCove\\CSS\\Home.css",
-              "RelativeDocumentMoniker": "CSS\\Home.css",
-              "ToolTip": "C:\\Users\\admin\\Documents\\GitHub\\CoffeeCove\\CoffeeCove\\CSS\\Home.css",
-              "RelativeToolTip": "CSS\\Home.css",
-              "ViewState": "AgIAABABAAAAAAAAAAAAAC8AAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-08-24T07:43:59.64Z",
->>>>>>> 5458baddc0ea3b39be7a3a51b0556d2651111c8d
->>>>>>> 0b1ffd7254b441042d4e61d7a3429708b0bb3700
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-<<<<<<< HEAD
-              "Title": "OwnComment.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\CoffeeCove\\CoffeeCove\\RatingReview\\OwnComment.aspx.cs",
-              "RelativeDocumentMoniker": "RatingReview\\OwnComment.aspx.cs",
-              "ToolTip": "C:\\Users\\User\\source\\repos\\CoffeeCove\\CoffeeCove\\RatingReview\\OwnComment.aspx.cs",
-              "RelativeToolTip": "RatingReview\\OwnComment.aspx.cs",
-              "ViewState": "AgIAADQAAAAAAAAAAADwv1oAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-24T08:06:15.513Z",
-=======
-<<<<<<< HEAD
-              "Title": "ratingReview.aspx",
-              "DocumentMoniker": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\RatingReview\\ratingReview.aspx",
-              "RelativeDocumentMoniker": "RatingReview\\ratingReview.aspx",
-              "ToolTip": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\RatingReview\\ratingReview.aspx",
-              "RelativeToolTip": "RatingReview\\ratingReview.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-08-24T06:53:21.013Z",
-=======
-              "Title": "ratingReview.css",
-              "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\CoffeeCove\\CoffeeCove\\CSS\\ratingReview.css",
-              "RelativeDocumentMoniker": "CSS\\ratingReview.css",
-              "ToolTip": "C:\\Users\\admin\\Documents\\GitHub\\CoffeeCove\\CoffeeCove\\CSS\\ratingReview.css",
-              "RelativeToolTip": "CSS\\ratingReview.css",
-              "ViewState": "AgIAADQBAAAAAAAAAAAAAEMBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-08-24T07:43:31.693Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "LeaveAComment.css",
-              "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\CoffeeCove\\CoffeeCove\\CSS\\LeaveAComment.css",
-              "RelativeDocumentMoniker": "CSS\\LeaveAComment.css",
-              "ToolTip": "C:\\Users\\admin\\Documents\\GitHub\\CoffeeCove\\CoffeeCove\\CSS\\LeaveAComment.css",
-              "RelativeToolTip": "CSS\\LeaveAComment.css",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAAADkAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-08-24T07:43:23.211Z",
->>>>>>> 0b1ffd7254b441042d4e61d7a3429708b0bb3700
-              "EditorCaption": ""
-            },
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 34,
+          "SelectedChildIndex": 0,
+          "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "OwnComment.aspx",
-<<<<<<< HEAD
-              "DocumentMoniker": "C:\\Users\\User\\source\\repos\\CoffeeCove\\CoffeeCove\\RatingReview\\OwnComment.aspx",
-              "RelativeDocumentMoniker": "RatingReview\\OwnComment.aspx",
-              "ToolTip": "C:\\Users\\User\\source\\repos\\CoffeeCove\\CoffeeCove\\RatingReview\\OwnComment.aspx",
-              "RelativeToolTip": "RatingReview\\OwnComment.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-08-24T08:06:15.515Z",
-=======
-              "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\CoffeeCove\\CoffeeCove\\RatingReview\\OwnComment.aspx",
-              "RelativeDocumentMoniker": "RatingReview\\OwnComment.aspx",
-              "ToolTip": "C:\\Users\\admin\\Documents\\GitHub\\CoffeeCove\\CoffeeCove\\RatingReview\\OwnComment.aspx",
-              "RelativeToolTip": "RatingReview\\OwnComment.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-08-24T07:42:39.022Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
               "Title": "Home.aspx",
               "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\CoffeeCove\\CoffeeCove\\Home\\Home.aspx",
               "RelativeDocumentMoniker": "Home\\Home.aspx",
@@ -315,69 +88,22 @@
               "RelativeToolTip": "Home\\Home.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-08-24T07:43:08.23Z",
+              "WhenOpened": "2024-08-24T09:20:16.09Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "comment.aspx",
-              "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\CoffeeCove\\CoffeeCove\\RatingReview\\comment.aspx",
-              "RelativeDocumentMoniker": "RatingReview\\comment.aspx",
-              "ToolTip": "C:\\Users\\admin\\Documents\\GitHub\\CoffeeCove\\CoffeeCove\\RatingReview\\comment.aspx",
-              "RelativeToolTip": "RatingReview\\comment.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-08-24T07:42:20.599Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "UserProfile.aspx",
-              "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\CoffeeCove\\CoffeeCove\\UserManagement\\UserProfile.aspx",
-              "RelativeDocumentMoniker": "UserManagement\\UserProfile.aspx",
-              "ToolTip": "C:\\Users\\admin\\Documents\\GitHub\\CoffeeCove\\CoffeeCove\\UserManagement\\UserProfile.aspx",
-              "RelativeToolTip": "UserManagement\\UserProfile.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-08-24T07:31:42.179Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "TwoFactorAuthentication.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\CoffeeCove\\CoffeeCove\\Security\\TwoFactorAuthentication.aspx.cs",
-              "RelativeDocumentMoniker": "Security\\TwoFactorAuthentication.aspx.cs",
-              "ToolTip": "C:\\Users\\admin\\Documents\\GitHub\\CoffeeCove\\CoffeeCove\\Security\\TwoFactorAuthentication.aspx.cs",
-              "RelativeToolTip": "Security\\TwoFactorAuthentication.aspx.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAqAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "Home.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\CoffeeCove\\CoffeeCove\\Home\\Home.aspx.cs",
+              "RelativeDocumentMoniker": "Home\\Home.aspx.cs",
+              "ToolTip": "C:\\Users\\admin\\Documents\\GitHub\\CoffeeCove\\CoffeeCove\\Home\\Home.aspx.cs",
+              "RelativeToolTip": "Home\\Home.aspx.cs",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAuwFkAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-24T07:22:45.114Z",
+              "WhenOpened": "2024-08-24T09:17:42.948Z",
               "EditorCaption": ""
             },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "TwoFactorAuthentication.aspx",
-              "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\CoffeeCove\\CoffeeCove\\Security\\TwoFactorAuthentication.aspx",
-              "RelativeDocumentMoniker": "Security\\TwoFactorAuthentication.aspx",
-              "ToolTip": "C:\\Users\\admin\\Documents\\GitHub\\CoffeeCove\\CoffeeCove\\Security\\TwoFactorAuthentication.aspx",
-              "RelativeToolTip": "Security\\TwoFactorAuthentication.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-08-24T07:22:39.133Z",
->>>>>>> 5458baddc0ea3b39be7a3a51b0556d2651111c8d
->>>>>>> 0b1ffd7254b441042d4e61d7a3429708b0bb3700
-              "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedWidth": 34,
-          "SelectedChildIndex": -1,
-          "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
