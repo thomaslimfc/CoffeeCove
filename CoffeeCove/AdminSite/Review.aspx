@@ -88,7 +88,7 @@
                                         </a>
                                         <div class="media-body">
                                             <div class="d-flex justify-content-between">
-                                                <h4 class="mt-0 mb-1"><a class="text-dark" href="#"><strong><%# Eval("Username") %></strong></a></h4>
+                                                <h6 class="mt-0 mb-1"><a class="text-dark" href="#"><strong><%# Eval("Username") %></strong></a></h6>
                                                 <p class="text-muted mb-0"><%# Eval("RatingReviewDateTime") %></p>
                                             </div>
                                             <div class="rating-stars mt-2">

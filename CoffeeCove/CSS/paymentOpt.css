@@ -49,6 +49,11 @@ input[type="radio"] {
     margin-right: 20px;
 }
 
-#CODBtn {
-    margin-left:20px;
+#COD {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#btnOrderHistory {
+    background-color: #35558a;
 }
