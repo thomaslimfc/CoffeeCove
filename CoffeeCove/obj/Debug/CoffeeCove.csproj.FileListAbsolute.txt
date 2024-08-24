@@ -277,6 +277,7 @@ D:\visual studio work\CoffeeCove\CoffeeCove\CoffeeCove\obj\Debug\CoffeeCove.dll
 D:\visual studio work\CoffeeCove\CoffeeCove\CoffeeCove\obj\Debug\CoffeeCove.pdb
 D:\visual studio work\CoffeeCove\CoffeeCove\bin\AjaxControlToolkit.dll
 D:\visual studio work\CoffeeCove\CoffeeCove\bin\System.Memory.xml
+C:\Users\User\source\repos\CoffeeCove\CoffeeCove\bin\System.Memory.xml
 C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\bin\CoffeeCove.dll.config
 C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\bin\CoffeeCove.dll
 C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\bin\CoffeeCove.pdb
@@ -333,4 +334,3 @@ C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\obj\Debug\Coffe
 C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\obj\Debug\CoffeeCove.csproj.Up2Date
 C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\obj\Debug\CoffeeCove.dll
 C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\obj\Debug\CoffeeCove.pdb
-C:\Users\User\source\repos\CoffeeCove\CoffeeCove\bin\System.Memory.xml
