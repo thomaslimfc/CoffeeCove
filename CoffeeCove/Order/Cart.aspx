@@ -1,12 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Customer.Master" AutoEventWireup="true" CodeBehind="Cart.aspx.cs" Inherits="CoffeeCove.Order.orderCart" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
     <link href="../CSS/orderCart.css" rel="stylesheet" />
-    <!-- Banner -->
-    <div id="cartPoster">
-        <img src="../img/coffeeBag.jpg" id="cartPosterImg" />
-        <div id="cartPosterText">My Cart</div>
-    </div>
-    <br />
+
+    <div id="container">
+    <h1 class="serviceTitle">My Cart</h1>
     <!-- Cart -->
     <div id="cartContainer">
         <table id="cartItemTable">
@@ -98,9 +95,10 @@
         <table style="width:100%">
             <tr>
                 <td>
-                    <asp:Button runat="server" Text="Proceed" CSSClass="btnProceed" ID="btnProceed" OnClick="btnProceed_Click"/>
+                    <asp:LinkButton ID="btnProceed" runat="server" OnClick="btnProceed_Click" CSSClass="btnProceed" Font-Underline="false">Proceed</asp:LinkButton>
                 </td>
             </tr>
         </table>
     </div>
+        </div>
 </asp:Content>

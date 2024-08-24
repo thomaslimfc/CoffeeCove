@@ -4,50 +4,16 @@
     <link href="../CSS/paymentBootstrap.css" rel="stylesheet" />
     <link href="../CSS/paymentOpt.css" rel="stylesheet" />
 
-    <!-- Banner -->
-    <div id="poster">
-        <img src="../img/coffeeBag.jpg" id="posterImg" />
-        <div id="posterText">Payment</div>
-    </div>
-    <br />
-
+    <div id="container">
+    <h1 class="serviceTitle">Payment</h1>
     <!-- Element -->
     <div class="container py-5">
-        <!-- For demo purpose -->
-        <div class="row mb-4">
-            <div class="col-lg-8 mx-auto text-center">
-                <h1 class="display-6">Choose Payment Method</h1>
-            </div>
-        </div> <!-- End -->
 
         <div class="row">
-            <!-- Order Summary Card -->
-            <div class="col-lg-4">
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <h5>Order Summary</h5>
-                    </div>
-                    <div class="card-body">
-                        <!-- User Information -->
-                        <h6>User Information</h6>
-                        <p class="mb-1"><strong>Name:</strong> John Doe</p> <!-- Replace with dynamic user name -->
-                        <p class="mb-1"><strong>Phone:</strong> +1234567890</p> <!-- Replace with dynamic phone number -->
-                        <p class="mb-1"><strong>Address:</strong> 123 Coffee Street, Caffeine City, 56789</p> <!-- Replace with dynamic address -->
-                        <hr>
-
-                        <!-- Order Items -->
-                        <h6>Order Items</h6>
-                        <p class="mb-1">Whiskey Barrel-Aged Affogato: RM12.00</p> <!-- Replace with dynamic item details -->
-                        <p class="mb-1">Banana Crisp Oatmilk Affogato: RM11.00</p>
-                        <p class="mb-1">Nitro Almondmilk Mocha: RM10.00</p>
-                        <hr>
-                        <p class="mb-1"><strong>Total: RM33.00</strong></p> <!-- Replace with dynamic total -->
-                    </div>
-                </div>
-            </div>
+            
 
             <!-- Payment Method Card -->
-            <div class="col-lg-8">
+            <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
                         <div class="bg-white shadow-sm pt-4 pl-2 pr-2 pb-2">
@@ -169,6 +135,7 @@
             </div>
         </div>
     </div>
+        </div>
 
     <!-- Bootstrap and jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
