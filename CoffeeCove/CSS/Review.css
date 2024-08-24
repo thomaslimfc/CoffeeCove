@@ -1,21 +1,27 @@
 ﻿#pills-reviews {
-    padding-top: 50px;
     display: flex;
     flex-direction: column;
     padding-bottom: 30px;
-    background-image: url('../img/bg_2.jpg');
-    background-repeat:no-repeat;
-    background-size:cover;
+    background-repeat: no-repeat;
+    background-size: cover;
     min-height: 1000px;
 }
 
+section {
+    width: 1500px;
+}
+
 h5 {
-    font-size: 40px;
-    margin-top:-10px;
+    font-size: 35px;
+    margin-top: -10px;
 }
 
 h4 {
     font-size: 20px;
+}
+
+.star-rating{
+    margin-bottom: 30px;
 }
 
 .btnCont {
@@ -293,16 +299,12 @@ h4 {
     height: 30px;
 }
 
-.star-rating {
-    margin-bottom: 30px;
-}
-
 #ratingReviewContainer {
-    margin: 50px 50px 50px 50px;
+    margin: 50px 50px 50px 0px;
 }
 
 #ratingReviewSummaryContainer {
-    margin: 50px 50px 50px 50px;
+    margin: 0px 50px 50px 0px;
 }
 
 #pills-reviews .backBtn {
@@ -314,14 +316,14 @@ h4 {
     cursor: pointer;
     font-size: 17px;
     font-weight: 500;
-    margin-top:4%;
-    width:100px;
-    text-align:center;
-    margin-left:30px;
+    margin-top: 4%;
+    width: 100px;
+    text-align: center;
+    margin-left: 30px;
 }
 
-#pills-reviews .backBtn:hover {
-    background-color: #413432;
-    color: #fff;
-    transition: 0.5s;
-}
+    #pills-reviews .backBtn:hover {
+        background-color: #413432;
+        color: #fff;
+        transition: 0.5s;
+    }
