@@ -817,6 +817,7 @@
     <Compile Include="Review.cs">
       <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Security\dbCoffeeCoveEntities.cs" />
     <Compile Include="Security\PasswordReset.aspx.cs">
       <DependentUpon>PasswordReset.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

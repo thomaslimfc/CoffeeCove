@@ -4,50 +4,59 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CoffeeCove.Models;
 
 namespace CoffeeCove.Security
 {
     public partial class SignIn : System.Web.UI.Page
     {
-        //protected void Page_Load(object sender, EventArgs e)
-        //{
-        //    //if (!IsPostBack)
-        //    //{
-        //    //    InitializeForm();
-        //    //}
-        //}
+        //string cs = Global.CS;
 
-        //private void InitializeForm()
-        //{
-        //    username2.Text = string.Empty;
-        //    password2.Text = string.Empty;
-        //}
-
-        protected void UsernameOrEmailValidator_ServerValidate(object source, ServerValidateEventArgs args)
+        protected void Page_Load(object sender, EventArgs e)
         {
-            string input = args.Value.Trim();
-
-            // Regular expression for a valid email address
-            string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
-
-            // Regular expression for a valid username (at least 10 alphanumeric characters)
-            string usernamePattern = @"^[a-zA-Z0-9]{10,}$";
-
-            // Check if the input matches either the email pattern or the username pattern
-            if (System.Text.RegularExpressions.Regex.IsMatch(input, emailPattern) ||
-                System.Text.RegularExpressions.Regex.IsMatch(input, usernamePattern))
-            {
-                args.IsValid = true;
-            }
-            else
-            {
-                args.IsValid = false;
-            }
+            //if (!IsPostBack)
+            //{
+            //    InitializeForm();
+            //}
         }
 
         protected void SignInButton_SI_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Home/Home.aspx");
+            if (Page.IsValid)
+            {
+                string username = Username_SI.Text;
+                string password = Password_SI.Text;
+
+                using (dbCoffeeCoveEntities db = new dbCoffeeCoveEntities())
+                {
+                    // Ensure Customers and Admins are IQueryable or IEnumerable
+                    var customerQuery = db.Customers;
+                    var adminQuery = db.Admins;
+
+                    // Checking for Customer
+                    Customer cust = customerQuery.SingleOrDefault(x => x.Username == username && x.HashedPassword == password);
+
+                    if (cust != null)
+                    {
+                        Response.Redirect("~/Home/Home.aspx");
+                    }
+                    else
+                    {
+                        // Checking for Admin
+                        Admin admin = adminQuery.SingleOrDefault(x => x.Username == username && x.HashedPassword == password);
+
+                        if (admin != null)
+                        {
+                            Response.Redirect("~/AdminSite/Dashboard.aspx");
+                        }
+                        else
+                        {
+                            //InvalidCredentialsLabel.Text = "Invalid username or password.";
+                            //InvalidCredentialsLabel.Visible = true;
+                        }
+                    }
+                }
+            }
         }
     }
 }
