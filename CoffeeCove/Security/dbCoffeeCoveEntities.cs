@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Data.Entity;
 
-namespace CoffeeCove.Models // Adjust namespace based on your folder structure
+namespace CoffeeCove.Securities // Adjust namespace based on your folder structure
 {
     public partial class dbCoffeeCoveEntities : DbContext, IDisposable
     {
         public dbCoffeeCoveEntities()
-            : base("name=Global.CS")
+            : base("name=dbCoffeeCoveEntities")
         {
         }
 

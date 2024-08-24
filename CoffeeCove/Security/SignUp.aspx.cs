@@ -7,7 +7,7 @@ using System.Configuration;
 using Newtonsoft.Json.Linq;
 using System.Web.UI.WebControls;
 using System.Linq;
-using CoffeeCove.Models;
+using CoffeeCove.Securities;
 
 namespace CoffeeCove.Security
 {

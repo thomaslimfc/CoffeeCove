@@ -639,7 +639,6 @@
     </Compile>
     <Compile Include="AdminSite\Orders.aspx.cs">
       <DependentUpon>Orders.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AdminSite\Orders.aspx.designer.cs">
       <DependentUpon>Orders.aspx</DependentUpon>
