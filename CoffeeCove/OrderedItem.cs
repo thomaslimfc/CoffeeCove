@@ -25,7 +25,7 @@ namespace CoffeeCove
         public string Instruction { get; set; }
         public Nullable<decimal> Price { get; set; }
     
-        public virtual OrderPlaced OrderPlaced { get; set; }
         public virtual Product Product { get; set; }
+        public virtual OrderPlaced OrderPlaced { get; set; }
     }
 }

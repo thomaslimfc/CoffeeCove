@@ -14,18 +14,9 @@ namespace CoffeeCove
     
     public partial class Admin
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Admin()
-        {
-            this.Reviews = new HashSet<Review>();
-        }
-    
         public string Username { get; set; }
         public string HashedPassword { get; set; }
         public string Gender { get; set; }
         public string Branch { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Review> Reviews { get; set; }
     }
 }
