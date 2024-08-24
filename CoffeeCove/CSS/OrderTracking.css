@@ -2,15 +2,20 @@
     color: #000;
     overflow-x: hidden;
     height: 100%;
-    background-color: #8C9EFF;
+}
+
+.Content {
+    background-image: url('../img/bg_2.jpg');
     background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 1000px;
 }
 
 .card {
     z-index: 0;
     background-color: #ECEFF1;
     padding-bottom: 20px;
-    margin-top: 90px;
+    margin-top: 100px;
     margin-bottom: 90px;
     border-radius: 10px;
 }
