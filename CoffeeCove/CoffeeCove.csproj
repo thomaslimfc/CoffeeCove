@@ -100,7 +100,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AdminSite\AdminReview.aspx" />
     <Content Include="AdminSite\CustomerList.aspx" />
     <Content Include="AdminSite\Dashboard.aspx" />
     <Content Include="AdminSite\OrderDetails.aspx" />
@@ -415,7 +414,6 @@
     <Content Include="Content\vendor\tinymce\tinymce.js" />
     <Content Include="Content\vendor\tinymce\tinymce.min.js" />
     <Content Include="CSS\Admin.css" />
-    <Content Include="CSS\AdminReview.css" />
     <Content Include="CSS\Customer.css" />
     <Content Include="CSS\Dashboard.css" />
     <Content Include="CSS\Home.css" />
@@ -619,13 +617,6 @@
     <Compile Include="Admin.cs">
       <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="AdminSite\AdminReview.aspx.cs">
-      <DependentUpon>AdminReview.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AdminSite\AdminReview.aspx.designer.cs">
-      <DependentUpon>AdminReview.aspx</DependentUpon>
-    </Compile>
     <Compile Include="AdminSite\CustomerList.aspx.cs">
       <DependentUpon>CustomerList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -649,7 +640,6 @@
     </Compile>
     <Compile Include="AdminSite\Orders.aspx.cs">
       <DependentUpon>Orders.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AdminSite\Orders.aspx.designer.cs">
       <DependentUpon>Orders.aspx</DependentUpon>

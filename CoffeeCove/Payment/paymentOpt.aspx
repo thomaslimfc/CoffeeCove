@@ -37,11 +37,11 @@
 
                         <!-- Order Items -->
                         <h6>Order Items</h6>
-                        <p class="mb-1">Whiskey Barrel-Aged Affogato: RM12.00</p> <!-- Replace with dynamic item details -->
-                        <p class="mb-1">Banana Crisp Oatmilk Affogato: RM11.00</p>
-                        <p class="mb-1">Nitro Almondmilk Mocha: RM10.00</p>
+                        <p class="mb-1">Item 1: $10.00</p> <!-- Replace with dynamic item details -->
+                        <p class="mb-1">Item 2: $15.00</p>
+                        <p class="mb-1">Item 3: $20.00</p>
                         <hr>
-                        <p class="mb-1"><strong>Total: RM33.00</strong></p> <!-- Replace with dynamic total -->
+                        <p class="mb-1"><strong>Total: $45.00</strong></p> <!-- Replace with dynamic total -->
                     </div>
                 </div>
             </div>
@@ -122,9 +122,7 @@
                                     </div>
                                 </div>
                                 <div class="card-footer">
-                                    <asp:Button ID="btnCreditCardPayment" runat="server" Text=" Confirm Payment " 
-                                        CssClass="subscribe btn btn-primary btn-block shadow-sm" 
-                                        OnClientClick="showOrderConfirmationModal();" OnClick="btnCreditCardPayment_Click"/>
+                                    <button type="button" class="subscribe btn btn-primary btn-block shadow-sm" onclick="showOrderConfirmationModal()"> Confirm Payment </button>
                                 </div>
                             </form>
                         </div> <!-- End credit card info -->
@@ -132,10 +130,11 @@
                         <!-- Cash on Delivery info -->
                         <div id="COD" class="tab-pane fade pt-3">
                             <p>
-                                <asp:Button ID="btnCOD" runat="server" Text=" Confirm Payment " CssClass="btn btn-primary" 
-                                    OnClientClick="showOrderConfirmationModal();" OnClick="btnCOD_Click"/>
+                                <button id="CODBtn" type="button" class="btn btn-primary">
+                                    Confirm Payment
+                                </button>
                             </p>
-                            <p>Note: After clicking on the button, your order will be placed. You have to pay the transaction by cash when your order is delivered to your address.</p>
+                            <p class="text-muted">Note: After clicking on the button, your order will be placed. You have to pay the transaction by cash when your order is delivered to your address.</p>
                         </div> <!-- End Cash on Delivery info -->
 
                         <!-- Paypal info -->
@@ -154,8 +153,9 @@
                             </div>
                             <div class="form-group">
                                 <p>
-                                    <asp:Button ID="btnPaypal" runat="server" Text=" Proceed Payment " CssClass="btn btn-primary" 
-                                        OnClientClick="showOrderConfirmationModal();" OnClick="btnPaypal_Click" />
+                                    <button type="button" class="btn btn-primary">
+                                        <i class="fas fa-mobile-alt mr-2"></i> Proceed Payment
+                                    </button>
                                 </p>
                             </div>
                             <p class="text-muted">Note: After clicking on the button, you will be directed to a secure gateway for payment. After completing the payment process, you will be redirected back to the website to view details of your order.</p>
@@ -200,23 +200,30 @@
                     <hr class="mt-2 mb-4" style="height: 0; background-color: transparent; opacity: .75; border-top: 2px dashed #9e9e9e;">
 
                     <div class="d-flex justify-content-between">
-                        <p class="fw-bold mb-0">Eggs In Purgatory</p>
-                        <p class="text-muted mb-0">RM12.50</p>
+                        <p class="fw-bold mb-0">Ether Chair (Qty: 1)</p>
+                        <p class="text-muted mb-0">$1750.00</p>
                     </div>
 
                     <div class="d-flex justify-content-between">
                         <p class="small mb-0">Shipping</p>
-                        <p class="small mb-0">RM0</p>
+                        <p class="small mb-0">$175.00</p>
+                    </div>
+
+                    <div class="d-flex justify-content-between pb-1">
+                        <p class="small">Tax</p>
+                        <p class="small">$200.00</p>
                     </div>
 
                     <div class="d-flex justify-content-between">
                         <p class="fw-bold">Total</p>
-                        <p class="fw-bold">RM12.50</p>
+                        <p class="fw-bold">$2125.00</p>
                     </div>
 
                 </div>
                 <div class="modal-footer d-flex justify-content-center border-top-0 py-4">
-                    <asp:Button ID="btnOrderHistory" runat="server" Text="Track your order" CssClass="btn btn-primary btn-lg mb-1" OnClick="btnOrderHistory_Click"/>
+                    <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg mb-1" style="background-color: #35558a;">
+                        Track your order
+                    </button>
                 </div>
             </div>
         </div>
