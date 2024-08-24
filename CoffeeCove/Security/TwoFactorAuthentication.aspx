@@ -162,7 +162,7 @@
         runat="server" 
         Text="Verify Now" 
         CssClass="w-full bg-primary text-primary-foreground p-2 rounded-md hover:bg-primary/80" 
-        style="cursor: pointer"/>
+        style="cursor: pointer" OnClick="VerifyButton_TFA_Click"/>
     <div class="trMarginBottom20"></div>
     <!-- Join Now -->
     <div class="text-center mt-4">
