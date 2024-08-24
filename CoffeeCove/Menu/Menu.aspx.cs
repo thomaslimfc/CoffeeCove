@@ -252,9 +252,8 @@ namespace CoffeeCove.Menu
 
         protected void btnAddToCart_Click(object sender, EventArgs e)
         {
-            string orderOpt = Session["orderOpt"].ToString();
             //if first time click without select orderOption
-            if (orderOpt == "NULL" || Session["orderOpt"] == null)
+            if (Session["orderOpt"] == null)
             {
                 Response.Redirect("../Order/OrderOption.aspx");
             }

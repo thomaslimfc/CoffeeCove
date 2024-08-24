@@ -42,7 +42,7 @@ namespace CoffeeCove.Order
                 lbConfirmPickUp.CssClass = "btnCont-disabled";
             }
 
-            Session["orderOpt"] = "NULL";
+            
         }
 
         protected void rptStoreList_ItemCommand(object source, RepeaterCommandEventArgs e)
