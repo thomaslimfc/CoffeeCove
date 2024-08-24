@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="dbCoffeeCoveModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="dbCoffeeCoveModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="Username" />
@@ -99,7 +99,9 @@
           <Property Name="ReviewContent" Type="varchar" MaxLength="50" />
           <Property Name="RatingReviewDateTime" Type="datetime" Nullable="false" />
           <Property Name="PaymentID" Type="int" Nullable="false" />
-          <Property Name="CusID" Type="int" Nullable="false" />
+          <Property Name="CusID" Type="int" />
+          <Property Name="ReplyTo" Type="int" />
+          <Property Name="UsernameAdmin" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Store">
           <Key>
@@ -181,8 +183,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Review_ToAdmin">
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="Review" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="UsernameAdmin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Review_ToCustomer">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
           <End Role="Review" Type="Self.Review" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Customer">
@@ -239,6 +253,10 @@
             <End Role="Category" EntitySet="Category" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
+          <AssociationSet Name="FK_Review_ToAdmin" Association="Self.FK_Review_ToAdmin">
+            <End Role="Admin" EntitySet="Admin" />
+            <End Role="Review" EntitySet="Review" />
+          </AssociationSet>
           <AssociationSet Name="FK_Review_ToCustomer" Association="Self.FK_Review_ToCustomer">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="Review" EntitySet="Review" />
@@ -248,7 +266,8 @@
             <End Role="Review" EntitySet="Review" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="dbCoffeeCoveModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -260,6 +279,7 @@
           <Property Name="HashedPassword" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Gender" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Branch" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Reviews" Relationship="Self.FK_Review_ToAdmin" FromRole="Admin" ToRole="Review" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -306,8 +326,8 @@
           <Property Name="AddOn" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Instruction" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Price" Type="Decimal" Precision="5" Scale="2" />
+          <NavigationProperty Name="OrderPlaced" Relationship="Self.FK_OrderedItem_Order" FromRole="OrderedItem" ToRole="OrderPlaced" />
           <NavigationProperty Name="Product" Relationship="Self.FK_OrderedItem_Product" FromRole="OrderedItem" ToRole="Product" />
-          <NavigationProperty Name="OrderPlaced" Relationship="dbCoffeeCoveModel.FK_OrderedItem_Order" FromRole="OrderedItem" ToRole="OrderPlaced" />
         </EntityType>
         <EntityType Name="OrderPlaced">
           <Key>
@@ -320,9 +340,9 @@
           <Property Name="OrderDateTime" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="TotalAmount" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <NavigationProperty Name="Customer" Relationship="Self.FK_OrderPlaced_ToCustomer" FromRole="OrderPlaced" ToRole="Customer" />
+          <NavigationProperty Name="OrderedItems" Relationship="Self.FK_OrderedItem_Order" FromRole="OrderPlaced" ToRole="OrderedItem" />
           <NavigationProperty Name="Store" Relationship="Self.FK_OrderPlaced_ToPickUp" FromRole="OrderPlaced" ToRole="Store" />
           <NavigationProperty Name="PaymentDetails" Relationship="Self.FK_Payment_ToOrder" FromRole="OrderPlaced" ToRole="PaymentDetail" />
-          <NavigationProperty Name="OrderedItems" Relationship="dbCoffeeCoveModel.FK_OrderedItem_Order" FromRole="OrderPlaced" ToRole="OrderedItem" />
         </EntityType>
         <EntityType Name="PaymentDetail">
           <Key>
@@ -359,7 +379,10 @@
           <Property Name="ReviewContent" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="RatingReviewDateTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="PaymentID" Type="Int32" Nullable="false" />
-          <Property Name="CusID" Type="Int32" Nullable="false" />
+          <Property Name="CusID" Type="Int32" />
+          <Property Name="ReplyTo" Type="Int32" />
+          <Property Name="UsernameAdmin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Admin" Relationship="Self.FK_Review_ToAdmin" FromRole="Review" ToRole="Admin" />
           <NavigationProperty Name="Customer" Relationship="Self.FK_Review_ToCustomer" FromRole="Review" ToRole="Customer" />
           <NavigationProperty Name="PaymentDetail" Relationship="Self.FK_Review_ToPayment" FromRole="Review" ToRole="PaymentDetail" />
         </EntityType>
@@ -372,6 +395,18 @@
           <Property Name="StoreAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="OrderPlaceds" Relationship="Self.FK_OrderPlaced_ToPickUp" FromRole="Store" ToRole="OrderPlaced" />
         </EntityType>
+        <Association Name="FK_Review_ToAdmin">
+          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
+          <End Role="Review" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Admin">
+              <PropertyRef Name="Username" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="UsernameAdmin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Product_Category">
           <End Role="Category" Type="Self.Category" Multiplicity="1" />
           <End Role="Product" Type="Self.Product" Multiplicity="*" />
@@ -397,7 +432,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Review_ToCustomer">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
           <End Role="Review" Type="Self.Review" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Customer">
@@ -405,6 +440,18 @@
             </Principal>
             <Dependent Role="Review">
               <PropertyRef Name="CusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderedItem_Order">
+          <End Role="OrderPlaced" Type="Self.OrderPlaced" Multiplicity="1" />
+          <End Role="OrderedItem" Type="Self.OrderedItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderPlaced">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderedItem">
+              <PropertyRef Name="OrderID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -466,6 +513,10 @@
           <EntitySet Name="Products" EntityType="Self.Product" />
           <EntitySet Name="Reviews" EntityType="Self.Review" />
           <EntitySet Name="Stores" EntityType="Self.Store" />
+          <AssociationSet Name="FK_Review_ToAdmin" Association="Self.FK_Review_ToAdmin">
+            <End Role="Admin" EntitySet="Admins" />
+            <End Role="Review" EntitySet="Reviews" />
+          </AssociationSet>
           <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
             <End Role="Category" EntitySet="Categories" />
             <End Role="Product" EntitySet="Products" />
@@ -477,6 +528,10 @@
           <AssociationSet Name="FK_Review_ToCustomer" Association="Self.FK_Review_ToCustomer">
             <End Role="Customer" EntitySet="Customers" />
             <End Role="Review" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderedItem_Order" Association="Self.FK_OrderedItem_Order">
+            <End Role="OrderPlaced" EntitySet="OrderPlaceds" />
+            <End Role="OrderedItem" EntitySet="OrderedItems" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderedItem_Product" Association="Self.FK_OrderedItem_Product">
             <End Role="Product" EntitySet="Products" />
@@ -494,23 +549,7 @@
             <End Role="PaymentDetail" EntitySet="PaymentDetails" />
             <End Role="Review" EntitySet="Reviews" />
           </AssociationSet>
-          <AssociationSet Name="FK_OrderedItem_Order" Association="dbCoffeeCoveModel.FK_OrderedItem_Order">
-            <End Role="OrderPlaced" EntitySet="OrderPlaceds" />
-            <End Role="OrderedItem" EntitySet="OrderedItems" />
-          </AssociationSet>
         </EntityContainer>
-        <Association Name="FK_OrderedItem_Order">
-          <End Type="dbCoffeeCoveModel.OrderPlaced" Role="OrderPlaced" Multiplicity="1" />
-          <End Type="dbCoffeeCoveModel.OrderedItem" Role="OrderedItem" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="OrderPlaced">
-              <PropertyRef Name="OrderID" />
-            </Principal>
-            <Dependent Role="OrderedItem">
-              <PropertyRef Name="OrderID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -616,6 +655,8 @@
                 <ScalarProperty Name="RatingReviewDateTime" ColumnName="RatingReviewDateTime" />
                 <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
                 <ScalarProperty Name="CusID" ColumnName="CusID" />
+                <ScalarProperty Name="ReplyTo" ColumnName="ReplyTo" />
+                <ScalarProperty Name="UsernameAdmin" ColumnName="UsernameAdmin" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
