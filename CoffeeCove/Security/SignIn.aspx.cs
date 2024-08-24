@@ -22,19 +22,21 @@ namespace CoffeeCove.Security
                 {
                     // Check for a matching customer
                     var customer = db.Customers.SingleOrDefault(c => c.Username == username && c.HashedPassword == password);
-                    
+
                     // Check for a matching admin
                     var admin = db.Admins.SingleOrDefault(a => a.Username == username && a.HashedPassword == password);
 
-                    if (customer != null)
+                    if (customer != null || admin != null)
                     {
-                        // Redirect to the customer home page
-                        Response.Redirect("~/Home/Home.aspx");
-                    }
-                    else if (admin != null)
-                    {
-                        // Redirect to the admin dashboard
-                        Response.Redirect("~/AdminSite/Dashboard.aspx");
+                        // Store user role and username in session
+                        Session["Username"] = username;
+                        Session["UserRole"] = customer != null ? "Customer" : "Admin";
+
+                        // Set a flag indicating that 2FA is required
+                        Session["2FARequired"] = true;
+
+                        // Redirect to the two-factor authentication page
+                        Response.Redirect("~/Security/TwoFactorAuthentication.aspx");
                     }
                     else
                     {
