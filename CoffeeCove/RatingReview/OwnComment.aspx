@@ -31,7 +31,7 @@
                                         <p><%# Eval("ReviewContent") %></p>
                                     </div>
                                     <div class="d-flex justify-content-end mt-2">
-                                        <asp:Button ID="btnEdit" runat="server" CssClass="btn btn-dark mr-2" Text="Edit" />
+                                        <asp:Button ID="btnEdit" runat="server" CssClass="btn btn-primary mr-2" Text="Edit" />
                                         <asp:Button ID="btnDelete" runat="server" CssClass="btn btn-danger" Text="Delete" />
                                     </div>
                                     <asp:PlaceHolder ID="phAdminReply" runat="server"></asp:PlaceHolder>
