@@ -34,7 +34,7 @@
         <!--header-->
         <div id="header">
             <div class="headerContainer">
-                <h4 style="padding-top: 10px;"><a class="logo" href="../Home/Home.aspx">COFFEECOVE&#174;</a></h4>
+                <h4 style="padding-top: 10px;"><a class="logo" href="../AdminSite/Dashboard.aspx">COFFEECOVE&#174;</a></h4>
                 <div class="headerBtn">
                     <asp:LinkButton ID="lbtnLogin" runat="server" CssClass="loginContainer" OnClick="lbtnLogin_Click" CausesValidation="false">
                         <table>

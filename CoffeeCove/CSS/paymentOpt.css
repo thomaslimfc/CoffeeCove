@@ -57,3 +57,20 @@ input[type="radio"] {
 #btnOrderHistory {
     background-color: #35558a;
 }
+
+.button nav-link {
+    border-radius: 8px;
+    padding: 10px 100px;
+    color: white;
+    background-color: #413432;
+    transition-duration: 0.4s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+}
+
+    .button nav-link:hover {
+        background-color: transparent;
+        border: 1px solid #413432;
+        color: #413432;
+        cursor: pointer;
+    }

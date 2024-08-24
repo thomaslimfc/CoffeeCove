@@ -30,6 +30,17 @@
     background-color: #651FFF;
     color: #ffffff;
     border-color: #651FFF;
+    flex: 1;
+    margin: 0 10px; /* Adds space between the buttons */
+    padding: 10px 20px; /* Adjust the padding for button size */
+    text-align: center;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: transparent;
+    border: 1px solid #413432;
+    color: #413432;
+    transition-duration: 0.4s;
 }
 
     .custom-back-button:hover {
@@ -38,6 +49,13 @@
     }
 
 .btnCont {
+    .custom-invoice-button
+
+{
+    flex: 1;
+    margin: 0 10px; /* Adds space between the buttons */
+    padding: 10px 20px; /* Adjust the padding for button size */
+    text-align: center;
     border-radius: 8px;
     padding: 10px 100px;
     transition-duration: 0.4s;
@@ -45,13 +63,29 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     color: #433533;
     background-color: #f0f0f0;
+    color: white;
+    background-color: #413432;
+    transition-duration: 0.4s;
 }
 
-    .btnCont:hover {
-        background-color: #413432;
-        color: white;
-        cursor: pointer;
-    }
+.custom-back-button:hover {
+    color: white;
+    background-color: #413432;
+    cursor: pointer;
+}
+
+.custom-invoice-button:hover {
+    background-color: transparent;
+    border: 1px solid #413432;
+    color: #413432;
+    cursor: pointer;
+}
+
+.btnCont:hover {
+    background-color: #413432;
+    color: white;
+    cursor: pointer;
+}
 
 /*Icon progressbar*/
 #progressbar {

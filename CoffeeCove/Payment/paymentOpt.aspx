@@ -54,17 +54,20 @@
                             <!-- Credit card form tabs -->
                             <ul role="tablist" class="nav bg-light nav-pills rounded nav-fill mb-3">
                                 <li class="nav-item">
-                                    <a data-toggle="pill" href="#credit-card" class="nav-link active">
+                                    <a data-toggle="pill" href="#credit-card" class="nav-link active" style="color: white;background-color: #413432;"
+>
                                         <i class="fas fa-credit-card mr-2"></i> Credit Card
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a data-toggle="pill" href="#COD" class="nav-link">
+                                    <a data-toggle="pill" href="#COD" class="nav-link" style="color: white;background-color: #413432;"
+>
                                         <i class="fas fa-mobile-alt mr-2"></i> Cash on Delivery
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a data-toggle="pill" href="#paypal" class="nav-link">
+                                    <a data-toggle="pill" href="#paypal" class="nav-link" style="color: white;background-color: #413432;"
+>
                                         <i class="fab fa-paypal mr-2"></i> Paypal
                                     </a>
                                 </li>
@@ -123,7 +126,7 @@
                                 </div>
                                 <div class="card-footer">
                                     <asp:Button ID="btnCreditCardPayment" runat="server" Text=" Confirm Payment " 
-                                        CssClass="subscribe btn btn-primary btn-block shadow-sm" 
+                                        CssClass="subscribe btn btn-dark btn-block shadow-sm" 
                                         OnClientClick="showOrderConfirmationModal();" OnClick="btnCreditCardPayment_Click"/>
                                 </div>
                             </form>
@@ -132,7 +135,7 @@
                         <!-- Cash on Delivery info -->
                         <div id="COD" class="tab-pane fade pt-3">
                             <p>
-                                <asp:Button ID="btnCOD" runat="server" Text=" Confirm Payment " CssClass="btn btn-primary" 
+                                <asp:Button ID="btnCOD" runat="server" Text=" Confirm Payment " CssClass="btn btn-dark" 
                                     OnClientClick="showOrderConfirmationModal();" OnClick="btnCOD_Click"/>
                             </p>
                             <p>Note: After clicking on the button, your order will be placed. You have to pay the transaction by cash when your order is delivered to your address.</p>
@@ -154,7 +157,7 @@
                             </div>
                             <div class="form-group">
                                 <p>
-                                    <asp:Button ID="btnPaypal" runat="server" Text=" Proceed Payment " CssClass="btn btn-primary" 
+                                    <asp:Button ID="btnPaypal" runat="server" Text=" Proceed Payment " CssClass="btn btn-dark" 
                                         OnClientClick="showOrderConfirmationModal();" OnClick="btnPaypal_Click" />
                                 </p>
                             </div>
@@ -216,7 +219,7 @@
 
                 </div>
                 <div class="modal-footer d-flex justify-content-center border-top-0 py-4">
-                    <asp:Button ID="btnOrderHistory" runat="server" Text="Track your order" CssClass="btn btn-primary btn-lg mb-1" OnClick="btnOrderHistory_Click"/>
+                    <asp:Button ID="btnOrderHistory" runat="server" Text="Track your order" CssClass="btn btn-dark btn-lg mb-1" OnClick="btnOrderHistory_Click"/>
                 </div>
             </div>
         </div>

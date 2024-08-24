@@ -74,7 +74,7 @@
                                     <h5 class="card-title">Categories</h5>
                                     <div class="d-flex align-items-center">
                                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                            <i class="bi bi-cart"></i>
+                                            <i class="bi bi-tags-fill"></i>
                                         </div>
                                         <div class="ps-3">
                                             <h6>7</h6>
@@ -92,7 +92,7 @@
 
                                     <div class="d-flex align-items-center">
                                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                            <i class="bi bi-currency-dollar"></i>
+                                            <i class="bi bi-archive-fill"></i>
                                         </div>
                                         <div class="ps-3">
                                             <h6>30</h6>
@@ -109,7 +109,7 @@
                                     <h5 class="card-title">Total Orders</h5>
                                     <div class="d-flex align-items-center">
                                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                            <i class="bi bi-people"></i>
+                                            <i class="bi bi-journal-text"></i>
                                         </div>
                                         <div class="ps-3">
                                             <h6>51</h6>
@@ -126,7 +126,7 @@
                                     <h5 class="card-title">Delivered Meals</h5>
                                     <div class="d-flex align-items-center">
                                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                            <i class="bi bi-cart"></i>
+                                            <i class="bi bi-truck"></i>
                                         </div>
                                         <div class="ps-3">
                                             <h6>45</h6>
@@ -144,7 +144,7 @@
 
                                     <div class="d-flex align-items-center">
                                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                            <i class="bi bi-currency-dollar"></i>
+                                            <i class="bi bi-clock-history"></i>
                                         </div>
                                         <div class="ps-3">
                                             <h6>6</h6>
@@ -161,7 +161,7 @@
                                     <h5 class="card-title">Feedbacks</h5>
                                     <div class="d-flex align-items-center">
                                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                            <i class="bi bi-people"></i>
+                                            <i class="bi bi-chat-left-heart-fill"></i>
                                         </div>
                                         <div class="ps-3">
                                             <h6>3</h6>
