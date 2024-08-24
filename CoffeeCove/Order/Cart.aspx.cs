@@ -100,17 +100,16 @@ namespace CoffeeCove.Order
             if (e.CommandName == "btnDelete")
             {
                 // Retrieve the ID of the item to edit
-                string productId = e.CommandArgument.ToString();
+                string orderedItemID = e.CommandArgument.ToString();
 
                 //string id = Request.QueryString["id"] ?? "";
 
                 SqlConnection conn = new SqlConnection(cs);
                 string sql = @"DELETE FROM OrderedItem
-                            WHERE OrderId = @ID AND ProductID = @prodID";
+                            WHERE OrderedItemID = @orderItemID";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@ID", orderId);
-                cmd.Parameters.AddWithValue("@prodID", productId);
+                cmd.Parameters.AddWithValue("@orderItemID", orderedItemID);
                 conn.Open();
 
                 cmd.ExecuteNonQuery();
