@@ -333,3 +333,4 @@ C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\obj\Debug\Coffe
 C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\obj\Debug\CoffeeCove.csproj.Up2Date
 C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\obj\Debug\CoffeeCove.dll
 C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\obj\Debug\CoffeeCove.pdb
+C:\Users\User\source\repos\CoffeeCove\CoffeeCove\bin\System.Memory.xml
