@@ -19,7 +19,7 @@
                 <ItemTemplate>
                     <tr style="border-bottom: solid 2px #433533">
                         <td class="tableItem" style="text-align:center">
-                            <asp:LinkButton ID="lbDelete" runat="server" CommandName="btnDelete" CommandArgument='<%# Eval("ProductId") %>' CssClass="btnDelete" Font-Underline="false"><img src="../img/trash-bin.png" alt="Delete" class="imgDelete"/></asp:LinkButton>
+                            <asp:LinkButton ID="lbDelete" runat="server" CommandName="btnDelete" CommandArgument='<%# Eval("OrderedItemID") %>' CssClass="btnDelete" Font-Underline="false"><img src="../img/trash-bin.png" alt="Delete" class="imgDelete"/></asp:LinkButton>
                         </td>
                         <td class="tableItem">
                             <asp:Label ID="lblId" runat="server" Text='<%# Eval("ProductId") %>' Font-Bold="True" />

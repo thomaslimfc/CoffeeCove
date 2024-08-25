@@ -112,10 +112,10 @@
             <table style="width: 80%;margin-left:auto;margin-right:auto">
                 <tr>
                     <td>
-                        <asp:LinkButton ID="lbClose" runat="server" OnClientClick="closeMap(event)" CssClass="btnCont" Font-Underline="false">Close</asp:LinkButton>
+                        <asp:LinkButton ID="lbClose" runat="server" OnClientClick="closeMap()" CssClass="btnCont" Font-Underline="false">Close</asp:LinkButton>
                     </td>
                     <td>
-                        <asp:LinkButton ID="lbConfirmMap" runat="server" OnClientClick="closeMap(event)" CssClass="btnCont" Font-Underline="false" OnClick="lbConfirmMap_Click">Confirm</asp:LinkButton>
+                        <asp:LinkButton ID="lbConfirmMap" runat="server" OnClientClick="closeMap()" CssClass="btnCont" Font-Underline="false" OnClick="lbConfirmMap_Click">Confirm</asp:LinkButton>
                     </td>
                 </tr>
             </table>
