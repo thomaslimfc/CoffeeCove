@@ -11,27 +11,25 @@ namespace CoffeeCove.Payment
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                
+            }
         }
 
         protected void btnCreditCardPayment_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/orderHistory.aspx");
+            Response.Redirect("~/Order/orderHistory.aspx");
         }
 
         protected void btnCOD_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/orderHistory.aspx");
+            Response.Redirect("~/Order/orderHistory.aspx");
         }
 
         protected void btnPaypal_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/orderHistory.aspx");
-        }
-
-        protected void btnOrderHistory_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/orderHistory.aspx");
+            Response.Redirect("~/Order/orderHistory.aspx");
         }
     }
 }
