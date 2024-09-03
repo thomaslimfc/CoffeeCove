@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -13,6 +10,13 @@ namespace CoffeeCove.RatingReview
     public partial class ratingReview : System.Web.UI.Page
     {
         string cs = Global.CS;
+
+        public int TotalRatings { get; set; } = 0;
+        public int FiveStarCount { get; set; } = 0;
+        public int FourStarCount { get; set; } = 0;
+        public int ThreeStarCount { get; set; } = 0;
+        public int TwoStarCount { get; set; } = 0;
+        public int OneStarCount { get; set; } = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,6 +31,56 @@ namespace CoffeeCove.RatingReview
             using (SqlConnection conn = new SqlConnection(cs))
             {
                 string query = @"
+                    SELECT RatingScore, COUNT(*) AS RatingCount
+                    FROM Review
+                    WHERE ReplyTo IS NULL
+                    GROUP BY RatingScore";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    conn.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        int ratingScore = Convert.ToInt32(reader["RatingScore"]);
+                        int ratingCount = Convert.ToInt32(reader["RatingCount"]);
+
+                        TotalRatings += ratingCount;
+
+                        switch (ratingScore)
+                        {
+                            case 5:
+                                FiveStarCount = ratingCount;
+                                break;
+                            case 4:
+                                FourStarCount = ratingCount;
+                                break;
+                            case 3:
+                                ThreeStarCount = ratingCount;
+                                break;
+                            case 2:
+                                TwoStarCount = ratingCount;
+                                break;
+                            case 1:
+                                OneStarCount = ratingCount;
+                                break;
+                        }
+                    }
+                }
+
+                // Set the total ratings count to the Literal control
+                litTotalRatings.Text = TotalRatings.ToString();
+
+                rptUserRatingReview.DataSource = GetRatingReviews();
+                rptUserRatingReview.DataBind();
+            }
+        }
+
+        private DataTable GetRatingReviews()
+        {
+            using (SqlConnection conn = new SqlConnection(cs))
+            {
+                string query = @"
                     SELECT R1.RatingScore, R1.ReviewContent, R1.RatingReviewDateTime, R1.CusID, C.Username, 
                            R2.ReviewContent AS AdminReplyContent, R2.RatingReviewDateTime AS AdminReplyDateTime, A.Username AS AdminUsername
                     FROM Review R1
@@ -35,14 +89,19 @@ namespace CoffeeCove.RatingReview
                     LEFT JOIN Admin A ON R2.UsernameAdmin = A.Username
                     WHERE R1.ReplyTo IS NULL
                     ORDER BY R1.RatingReviewDateTime DESC";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
+                using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
                 {
-                    conn.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    rptUserRatingReview.DataSource = reader;
-                    rptUserRatingReview.DataBind();
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    return dt;
                 }
             }
+        }
+
+        public string GetRatingPercentage(int ratingCount)
+        {
+            if (TotalRatings == 0) return "0%";
+            return $"{(ratingCount * 100) / TotalRatings}%";
         }
 
         protected void rptUserRatingReview_ItemDataBound(object sender, RepeaterItemEventArgs e)

@@ -8,7 +8,7 @@
                     <h5 class="mb-0 mb-4">Ratings and Reviews</h5>
                     <div class="graph-star-rating-header">
                         <div class="star-rating">
-                            <b class="text-black ml-2">Total rate: 334</b>
+                            <b class="text-black ml-2">Total rate: <asp:Literal ID="litTotalRatings" runat="server" /></b>
                         </div>
                     </div>
                     <div class="graph-star-rating-body">
@@ -18,12 +18,12 @@
                             </div>
                             <div class="rating-list-center">
                                 <div class="progress">
-                                    <div style="width: 56%; background-color: #433533f0;" aria-valuemax="5" aria-valuemin="0" aria-valuenow="5" role="progressbar" class="progress-bar">
-                                        <span class="sr-only">80% Complete (danger)</span>
+                                    <div style="width: <%= GetRatingPercentage(FiveStarCount) %>; background-color: #433533f0;" aria-valuemax="5" aria-valuemin="0" aria-valuenow="5" role="progressbar" class="progress-bar">
+                                        <span class="sr-only"><%= GetRatingPercentage(FiveStarCount) %> Complete</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="rating-list-right text-black">56%</div>
+                            <div class="rating-list-right text-black"><%= GetRatingPercentage(FiveStarCount) %></div>
                         </div>
                         <div class="rating-list">
                             <div class="rating-list-left text-black">
@@ -31,12 +31,12 @@
                             </div>
                             <div class="rating-list-center">
                                 <div class="progress">
-                                    <div style="width: 23%; background-color: #433533f0;" aria-valuemax="5" aria-valuemin="0" aria-valuenow="5" role="progressbar" class="progress-bar">
-                                        <span class="sr-only">80% Complete (danger)</span>
+                                    <div style="width: <%= GetRatingPercentage(FourStarCount) %>; background-color: #433533f0;" aria-valuemax="5" aria-valuemin="0" aria-valuenow="4" role="progressbar" class="progress-bar">
+                                        <span class="sr-only"><%= GetRatingPercentage(FourStarCount) %> Complete</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="rating-list-right text-black">23%</div>
+                            <div class="rating-list-right text-black"><%= GetRatingPercentage(FourStarCount) %></div>
                         </div>
                         <div class="rating-list">
                             <div class="rating-list-left text-black">
@@ -44,12 +44,12 @@
                             </div>
                             <div class="rating-list-center">
                                 <div class="progress">
-                                    <div style="width: 11%; background-color: #433533f0;" aria-valuemax="5" aria-valuemin="0" aria-valuenow="5" role="progressbar" class="progress-bar">
-                                        <span class="sr-only">80% Complete (danger)</span>
+                                    <div style="width: <%= GetRatingPercentage(ThreeStarCount) %>; background-color: #433533f0;" aria-valuemax="5" aria-valuemin="0" aria-valuenow="3" role="progressbar" class="progress-bar">
+                                        <span class="sr-only"><%= GetRatingPercentage(ThreeStarCount) %> Complete</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="rating-list-right text-black">11%</div>
+                            <div class="rating-list-right text-black"><%= GetRatingPercentage(ThreeStarCount) %></div>
                         </div>
                         <div class="rating-list">
                             <div class="rating-list-left text-black">
@@ -57,12 +57,25 @@
                             </div>
                             <div class="rating-list-center">
                                 <div class="progress">
-                                    <div style="width: 2%; background-color: #433533f0;" aria-valuemax="5" aria-valuemin="0" aria-valuenow="5" role="progressbar" class="progress-bar">
-                                        <span class="sr-only">80% Complete (danger)</span>
+                                    <div style="width: <%= GetRatingPercentage(TwoStarCount) %>; background-color: #433533f0;" aria-valuemax="5" aria-valuemin="0" aria-valuenow="2" role="progressbar" class="progress-bar">
+                                        <span class="sr-only"><%= GetRatingPercentage(TwoStarCount) %> Complete</span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="rating-list-right text-black">02%</div>
+                            <div class="rating-list-right text-black"><%= GetRatingPercentage(TwoStarCount) %></div>
+                        </div>
+                        <div class="rating-list">
+                            <div class="rating-list-left text-black">
+                                ⭐ 1 Stars
+                            </div>
+                            <div class="rating-list-center">
+                                <div class="progress">
+                                    <div style="width: <%= GetRatingPercentage(OneStarCount) %>; background-color: #433533f0;" aria-valuemax="5" aria-valuemin="0" aria-valuenow="1" role="progressbar" class="progress-bar">
+                                        <span class="sr-only"><%= GetRatingPercentage(OneStarCount) %> Complete</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rating-list-right text-black"><%= GetRatingPercentage(OneStarCount) %></div>
                         </div>
                     </div>
                     <div class="graph-star-rating-footer text-center mt-3 mb-3">
