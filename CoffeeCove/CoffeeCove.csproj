@@ -431,6 +431,7 @@
     <Content Include="CSS\paymentAdmin.css" />
     <Content Include="CSS\paymentBootstrap.css" />
     <Content Include="CSS\paymentOpt.css" />
+    <Content Include="CSS\PaymentSuccess.css" />
     <Content Include="CSS\ProductCategory.css" />
     <Content Include="CSS\ratingBootstrap.css" />
     <Content Include="CSS\ratingReview.css" />
@@ -601,6 +602,7 @@
     <Content Include="packages\Newtonsoft.Json.13.0.3\lib\netstandard2.0\Newtonsoft.Json.xml" />
     <Content Include="packages\Newtonsoft.Json.13.0.3\packageIcon.png" />
     <Content Include="Payment\paymentOpt.aspx" />
+    <Content Include="Payment\paymentSuccess.aspx" />
     <Content Include="RatingReview\comment.aspx" />
     <Content Include="RatingReview\OwnComment.aspx" />
     <Content Include="RatingReview\ratingReview.aspx" />
@@ -798,6 +800,13 @@
     </Compile>
     <Compile Include="Payment\paymentOpt.aspx.designer.cs">
       <DependentUpon>paymentOpt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\paymentSuccess.aspx.cs">
+      <DependentUpon>paymentSuccess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Payment\paymentSuccess.aspx.designer.cs">
+      <DependentUpon>paymentSuccess.aspx</DependentUpon>
     </Compile>
     <Compile Include="Product.cs">
       <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>

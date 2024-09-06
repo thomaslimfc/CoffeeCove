@@ -9,6 +9,10 @@ namespace CoffeeCove.Payment
 {
     public partial class paymentOpt : System.Web.UI.Page
     {
+        public string PayPalClientId { get; set; } = "";
+        public string PayPalClientSecret { get; set; } = "";
+        public string PayPalMode { get; set; } = "";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
