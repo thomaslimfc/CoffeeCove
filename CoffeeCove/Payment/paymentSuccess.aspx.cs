@@ -13,5 +13,15 @@ namespace CoffeeCove.Payment
         {
 
         }
+
+        protected void btnHome_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Home/Home.aspx");
+        }
+
+        protected void btnOrderHistory_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Order/orderHistory.aspx");
+        }
     }
 }

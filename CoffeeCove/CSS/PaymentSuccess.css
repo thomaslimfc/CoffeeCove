@@ -48,3 +48,25 @@ i {
     padding-top: 4%;
     padding-bottom: 30px;
 }
+
+.button-container {
+    margin-top: 20px;
+}
+
+.success-btn {
+    background-color: #88B04B;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+    .success-btn:hover {
+        background-color: #76a043;
+    }

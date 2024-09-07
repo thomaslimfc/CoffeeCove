@@ -23,17 +23,17 @@ namespace CoffeeCove.Payment
 
         protected void btnCreditCardPayment_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Order/orderHistory.aspx");
+            Response.Redirect("~/Payment/paymentSuccess.aspx");
         }
 
         protected void btnCOD_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Order/orderHistory.aspx");
+            Response.Redirect("~/Payment/paymentSuccess.aspx");
         }
 
         protected void btnPaypal_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Order/orderHistory.aspx");
+            Response.Redirect("~/Payment/paymentSuccess.aspx");
         }
     }
 }
