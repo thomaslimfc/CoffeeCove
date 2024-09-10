@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Customer.Master" AutoEventWireup="true" CodeFile="paymentOpt.aspx.cs" Inherits="CoffeeCove.Payment.paymentOpt" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Customer.Master" AutoEventWireup="true" CodeBehind="paymentOpt.aspx.cs" Inherits="CoffeeCove.Payment.paymentOpt" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
     <link href="../CSS/paymentBootstrap.css" rel="stylesheet" />
@@ -45,6 +45,7 @@
                                         <h6>Card Owner</h6>
                                     </label>
                                     <asp:TextBox ID="txtCardOwner" runat="server" placeholder="Card Owner Name" CssClass="form-control" />
+                                    <asp:RequiredFieldValidator runat="server" ErrorMessage="Card owner's name is required." ControlToValidate="txtCardOwner" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </div>
 
                                 <div class="form-group">
@@ -102,18 +103,6 @@
 
                             <!-- Paypal info -->
                             <div id="paypal" class="tab-pane fade pt-3">
-                                <div class="form-group">
-                                    <label for="Enter email or number">
-                                        <h6>Email or Mobile Number</h6>
-                                    </label>
-                                    <asp:TextBox ID="txtPaypalEmail" runat="server" placeholder="Email or Mobile Number" CssClass="form-control" />
-                                </div>
-                                <div class="form-group">
-                                    <label for="Enter password">
-                                        <h6>Password</h6>
-                                    </label>
-                                    <asp:TextBox ID="txtPaypalPassword" runat="server" placeholder="Password" CssClass="form-control" TextMode="Password" />
-                                </div>
                                 <div class="form-group">
                                     <p>
                                         <asp:Button ID="btnPaypal" runat="server" Text=" Proceed Payment " CssClass="btn btn-dark" 
