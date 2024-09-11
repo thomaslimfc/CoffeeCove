@@ -23,7 +23,12 @@ namespace CoffeeCove.Payment
 
         protected void btnCreditCardPayment_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Payment/paymentSuccess.aspx");
+            // Check if all the validators on the page are valid
+            if (Page.IsValid)
+            {
+                // If valid, redirect to payment success page
+                Response.Redirect("~/Payment/paymentSuccess.aspx");
+            }
         }
 
         protected void btnCOD_Click(object sender, EventArgs e)
