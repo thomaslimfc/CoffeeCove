@@ -280,3 +280,5 @@ D:\visual studio work\CoffeeCove\CoffeeCove\CoffeeCove\obj\Debug\CoffeeCove.cspr
 D:\visual studio work\CoffeeCove\CoffeeCove\CoffeeCove\obj\Debug\CoffeeCove.csproj.Up2Date
 D:\visual studio work\CoffeeCove\CoffeeCove\CoffeeCove\obj\Debug\CoffeeCove.dll
 D:\visual studio work\CoffeeCove\CoffeeCove\CoffeeCove\obj\Debug\CoffeeCove.pdb
+D:\visual studio work\CoffeeCove\CoffeeCove\CoffeeCove\bin\PayPal.dll
+D:\visual studio work\CoffeeCove\CoffeeCove\CoffeeCove\bin\PayPal.xml

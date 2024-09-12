@@ -131,7 +131,6 @@
                                 </div>
                                 <p class="text-muted">Note: After clicking on the button, you will be directed to a secure gateway for payment. After completing the payment process, you will be redirected back to the website to view details of your order.</p>
                             </div> <!-- End Paypal info -->
-
                         </div> <!-- End tab content -->
                     </div>
                 </div>
