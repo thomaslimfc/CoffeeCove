@@ -28,11 +28,7 @@ namespace CoffeeCove.Payment
 
                     if (executedPayment.state.ToLower() != "approved")
                     {
-                        Response.Write("Payment failed.");
-                    }
-                    else
-                    {
-                        Response.Write("Payment successful!");
+                        Response.Redirect("~/Payment/paymentOpt.aspx");
                     }
                 }
                 catch (Exception ex)

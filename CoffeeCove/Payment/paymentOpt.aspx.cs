@@ -80,7 +80,7 @@ namespace CoffeeCove.Payment
                     new Item()
                     {
                         name = "Coffee Purchase",
-                        currency = "USD",
+                        currency = "MYR",
                         price = "5.00",
                         quantity = "1",
                         sku = "COFFEE001"
@@ -90,7 +90,7 @@ namespace CoffeeCove.Payment
 
             var amount = new Amount()
             {
-                currency = "USD",
+                currency = "MYR",
                 total = "5.00"
             };
 

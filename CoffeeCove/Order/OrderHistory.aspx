@@ -8,7 +8,7 @@
         </div>
 
         <div class="repeaterClass">
-            <asp:Repeater ID="OrderHistoryList" runat="server">
+            <asp:Repeater ID="OrderHistoryList" runat="server" OnItemDataBound="OrderHistoryList_ItemDataBound">
                 <ItemTemplate>
                     <!-- Order Information -->
                     <div class="orderItem">
@@ -19,12 +19,28 @@
 
                         <!-- Product Information -->
                         <div class="productDetails">
-                            <img src="../img/Category/coffee.jpg" alt="Product Image" class="productImage" />
-                            <div class="productInfo">
-                                <p><strong>Product Name:</strong></p>
-                                <p><strong>Product Price:</strong> RM</p>
-                                <p><strong>Quantity:</strong></p>
-                            </div>
+                            <asp:Repeater ID="ProductListRepeater" runat="server">
+                                <HeaderTemplate>
+                                    <div class="productListContainer">
+                                </HeaderTemplate>
+
+                                <ItemTemplate>
+                                    <div class="productInfo">
+                                        <div class="productImageWrapper">
+                                            <img src='<%# Eval("ImageUrl") %>' alt="Product Image" class="productImage" />
+                                        </div>
+                                        <div class="productDetailsWrapper">
+                                            <p><strong>Product Name:</strong> <%# Eval("ProductName") %></p>
+                                            <p><strong>Product Price:</strong> RM <%# Eval("Price") %></p>
+                                            <p><strong>Quantity:</strong> <%# Eval("Quantity") %></p>
+                                        </div>
+                                    </div>
+                                </ItemTemplate>
+
+                                <FooterTemplate>
+                                    </div>
+                                </FooterTemplate>
+                            </asp:Repeater>
                         </div>
 
                         <!-- Track Order Button -->
@@ -36,5 +52,4 @@
             </asp:Repeater>
         </div>
     </div>
-    
 </asp:Content>
