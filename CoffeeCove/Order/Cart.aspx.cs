@@ -55,6 +55,9 @@ namespace CoffeeCove.Order
                 //    Response.Redirect("../Menu/Menu.aspx");
                 //}
 
+                excludeTable.Visible = false;
+                
+
                 conn.Close();
             }
 
@@ -64,14 +67,11 @@ namespace CoffeeCove.Order
 
         protected void btnProceed_Click(object sender, EventArgs e)
         {
+            //save total into the db
+
+
             //string orderId = Session["OrderId"].ToString();
             Response.Redirect("../Payment/paymentOpt.aspx?id=" + orderId);
-        }
-
-        protected void btnEdit_Click(object sender, EventArgs e)
-        {
-            //string orderId = Session["OrderId"].ToString();
-            Response.Redirect("cartEdit.aspx?id=" + orderId);
         }
 
         

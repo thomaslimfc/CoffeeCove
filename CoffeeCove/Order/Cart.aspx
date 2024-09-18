@@ -13,7 +13,7 @@
                 <th class="cartRight">Quantity</th>
                 <th class="cartRight">Total</th>
             </tr>
-
+            
             <!--Repeater-->
             <asp:Repeater ID="rptOrdered" runat="server" OnItemDataBound="rptOrdered_ItemDataBound" OnItemCommand="rptOrdered_ItemCommand">
                 <ItemTemplate>
@@ -21,35 +21,37 @@
                         <td class="tableItem" style="text-align:center">
                             <asp:LinkButton ID="lbDelete" runat="server" CommandName="btnDelete" CommandArgument='<%# Eval("OrderedItemID") %>' CssClass="btnDelete" Font-Underline="false"><img src="../img/trash-bin.png" alt="Delete" class="imgDelete"/></asp:LinkButton>
                         </td>
-                        <td class="tableItem">
+                        <td class="tableItem" style="text-align:center">
                             <asp:Label ID="lblId" runat="server" Text='<%# Eval("ProductId") %>' Font-Bold="True" />
                         </td>
                         <td class="tableItem">
                             <asp:Label ID="lblName" runat="server" Font-Bold="true" Text='<%# Eval("ProductName") %>' CssClass="itemName" />
-                            <table id="excludeTable">
-                                <tr>
-                                    <td>
-                                        Size:&nbsp&nbsp<asp:Label ID="lblSize" runat="server" Text='<%# Eval("Size") %>' />
-                                    </td>
-                                    <td>
-                                        &nbsp
-                                    </td>
-                                    <td>
-                                        Flavour:&nbsp&nbsp<asp:Label ID="lblFlavour" runat="server" Text='<%# Eval("Flavour") %>' />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Ice Level:&nbsp&nbsp<asp:Label ID="lblIce" runat="server" Text='<%# Eval("IceLevel") %>' />
-                                    </td>
-                                    <td>
-                                        &nbsp
-                                    </td>
-                                    <td>
-                                        Add-Ons:&nbsp&nbsp<asp:Label ID="lblAddOn" runat="server" Text='<%# Eval("AddOn") %>' />
-                                    </td>
-                                </tr>
-                            </table>
+
+                                <table ID="excludeTable" runat="server">
+                                    <tr>
+                                        <td>
+                                            Size:&nbsp&nbsp<asp:Label ID="lblSize" runat="server" Text='<%# Eval("Size") %>' />
+                                        </td>
+                                        <td>
+                                            &nbsp
+                                        </td>
+                                        <td>
+                                            Flavour:&nbsp&nbsp<asp:Label ID="lblFlavour" runat="server" Text='<%# Eval("Flavour") %>' />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Ice Level:&nbsp&nbsp<asp:Label ID="lblIce" runat="server" Text='<%# Eval("IceLevel") %>' />
+                                        </td>
+                                        <td>
+                                            &nbsp
+                                        </td>
+                                        <td>
+                                            Add-Ons:&nbsp&nbsp<asp:Label ID="lblAddOn" runat="server" Text='<%# Eval("AddOn") %>' />
+                                        </td>
+                                    </tr>
+                                </table>
+
                         </td>
                         <td style="text-align:center" class="tableItem">
                             <asp:Label ID="lblPrice" runat="server" Text='<%# Eval("Price") %>' />
