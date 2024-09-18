@@ -46,6 +46,10 @@ namespace CoffeeCove.Security
 
         private bool IsEmailAvailable(string email)
         {
+            // show message box
+            // dissapaera error message of recaptcha
+
+
             return !db.Customers.Any(u => u.EmailAddress == email);
         }
 

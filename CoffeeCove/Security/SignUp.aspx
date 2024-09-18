@@ -338,7 +338,12 @@
                     data-sitekey="6LdzASAqAAAAAHhQdlfCCZOOzfx17iEXeR-140zQ">
                 </div>
             </div>
-            <asp:Label ID="lblCaptchaError" runat="server" visible="false"></asp:Label>
+            <asp:Label ID="lblCaptchaError" 
+                runat="server" 
+                CssClass="rqdValidator"
+                Forecolor="Red"
+                visible="false">
+            </asp:Label>
         </center>
         <div class="trMarginBottom20"></div>
     </div>
