@@ -2,43 +2,71 @@
 using System.Net;
 using System.Web.UI;
 using Newtonsoft.Json;
-using System.Data.SqlClient;
-using System.Configuration;
 using Newtonsoft.Json.Linq;
-using System.Web.UI.WebControls;
-using System.Linq;
 using CoffeeCove.Securities;
+using System.Net.Mail;
+using System.Linq;
+using System.Web.UI.WebControls;
 
 namespace CoffeeCove.Security
 {
-    public partial class SignUp : Page
+    public partial class SignUp : System.Web.UI.Page
     {
         dbCoffeeCoveEntities db = new dbCoffeeCoveEntities();
 
-        private const string ReCaptchaSecretKey = "6LdzASAqAAAAABzxRO667snXXntcj6L0-QDrxH_u"; // Replace with your Secret Key
+        private const string ReCaptchaSecretKey = "6LdzASAqAAAAABzxRO667snXXntcj6L0-QDrxH_u";
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Your logic for Page_Load
+
+        }
+
+        private bool IsUsernameAvailable(string username)
+        {
+            return !(db.Customers.Any(u => u.Username == username) || db.Admins.Any(u => u.Username == username));
         }
 
         protected void Username_SU_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            //string username = args.Value;
+            string username = args.Value;
 
-            //// Check if the username exists in the database
-            //if (db.Customers.Any(u => u.Username == username))
-            //{
-            //    args.IsValid = true; // Username found, validation succeeds
-            //    UsernameErrorMessage2.Visible = false;
-            //}
-            //else
-            //{
-            //    args.IsValid = false; // Username not found, validation fails
-            //    UsernameErrorMessage2.Text = "Username is not found in the database.";
-            //    UsernameErrorMessage2.Visible = true;
-            //}
+            // Check if the username exists in the database
+            if (db.Customers.Any(u => u.Username == username) || db.Admins.Any(u => u.Username == username))
+            {
+                args.IsValid = false; // Username already exists
+                UsernameErrorMessage2.Text = "Your username has been used.";
+                UsernameErrorMessage2.Visible = true;
+            }
+            else
+            {
+                args.IsValid = true; // Username is available
+                UsernameErrorMessage2.Visible = false;
+            }
         }
+
+        private bool IsEmailAvailable(string email)
+        {
+            return !db.Customers.Any(u => u.EmailAddress == email);
+        }
+
+        protected void EmailAdd_SU_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            string email = args.Value;
+
+            // Check if the email address exists in the database
+            if (db.Customers.Any(u => u.EmailAddress == email))
+            {
+                args.IsValid = false; // Email already exists
+                UsernameErrorMessage2.Text = "Your email has been used.";
+                UsernameErrorMessage2.Visible = true;
+            }
+            else
+            {
+                args.IsValid = true; // Email is available to register
+                UsernameErrorMessage2.Visible = false;
+            }
+        }
+
 
         protected void SignUpBtn_SU_Click(object sender, EventArgs e)
         {
@@ -47,11 +75,36 @@ namespace CoffeeCove.Security
 
             if (isValidCaptcha)
             {
-                Response.Redirect("SignIn.aspx");
+                if (IsUsernameAvailable(Username_SU.Text) && 
+                    IsEmailAvailable(EmailAdd_SU.Text))
+                {
+                    var newCust = new Customer
+                    {
+                        Username = Username_SU.Text,
+                        FirstName = FirstName_SU.Text,
+                        LastName = LastName_SU.Text,
+                        EmailAddress = EmailAdd_SU.Text,
+                        HashedPassword = HashPassword(Password_SU.Text),
+                        DateOfBirth = DateTime.Parse(DateOfBirth_PR.Text),
+                        ContactNo = ContactNo_SU.Text,
+                        Gender = Gender_SU.SelectedValue,
+                        ResidenceState = location.SelectedValue
+                    };
+
+                    // before save , email confirmation first
+                    // ConfirmationEmail(newCust.EmailAddress)
+
+                    db.Customers.Add(newCust);
+                    db.SaveChanges();
+
+                    Response.Redirect("SignIn.aspx");
+                }
             }
             else
             {
-                // Show an error message
+                // Show an CAPTCHA error message
+                lblCaptchaError.Text = "Click at empty box beside I'm not a robot";
+                lblCaptchaError.Visible = true;
             }
         }
 
@@ -67,22 +120,19 @@ namespace CoffeeCove.Security
             }
         }
 
-        //private bool IsUsernameTaken(string username)
-        //{
-        //    string cs = Global.CS;
+        private string HashPassword(string password)
+        {
+            // Placeholder: implement a real password hashing mechanism
+            // This is just an example using SHA256. You should ideally use a library like BCrypt.Net for stronger security.
+            using (var sha256 = System.Security.Cryptography.SHA256.Create())
+            {
+                byte[] bytes = sha256.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+                return Convert.ToBase64String(bytes);
+            }
+        }
 
-        //    using (SqlConnection connection = new SqlConnection(cs))
-        //    {
-        //        string query = "SELECT COUNT(*) FROM Users WHERE Username = @Username";
-        //        using (SqlCommand command = new SqlCommand(query, connection))
-        //        {
-        //            command.Parameters.AddWithValue("@Username", username);
-        //            connection.Open();
-        //            int count = (int)command.ExecuteScalar();
-        //            return count > 0;
-        //        }
-        //    }
-        //}
+        // check duplicate gmail
+
 
         protected void SignUpUsernameBtn_SU_Click(object sender, EventArgs e)
         {
