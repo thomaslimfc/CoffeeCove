@@ -5,6 +5,7 @@ using CoffeeCove.Securities;
 
 namespace CoffeeCove.Security
 {
+    //@asdfghjklASDFGHJKL12345#
     public partial class SignIn : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
@@ -16,7 +17,7 @@ namespace CoffeeCove.Security
             if (Page.IsValid)
             {
                 string username = Username_SI.Text;
-                string password = Password_SI.Text;
+                string password = HashPassword(Password_SI.Text);
 
                 using (dbCoffeeCoveEntities db = new dbCoffeeCoveEntities())
                 {
@@ -26,6 +27,7 @@ namespace CoffeeCove.Security
                     // Check for a matching admin
                     var admin = db.Admins.SingleOrDefault(a => a.Username == username && a.HashedPassword == password);
 
+                    // If not identity of customer or admin
                     if (customer != null || admin != null)
                     {
                         // Store user role and username in session
@@ -36,14 +38,24 @@ namespace CoffeeCove.Security
                         Session["2FARequired"] = true;
 
                         // Redirect to the two-factor authentication page
-                        Response.Redirect("~/Security/TwoFactorAuthentication.aspx");
+                        Response.Redirect("TwoFactorAuthentication.aspx");
                     }
                     else
                     {
-                        // Handle invalid credentials
-                        System.Diagnostics.Debug.WriteLine($"Failed login attempt for user: {username}");
+                        // cannot access to 2-factor
                     }
                 }
+            }
+        }
+
+        private string HashPassword(string password)
+        {
+            // Placeholder: implement a real password hashing mechanism
+            // This is just an example using SHA256. You should ideally use a library like BCrypt.Net for stronger security.
+            using (var sha256 = System.Security.Cryptography.SHA256.Create())
+            {
+                byte[] bytes = sha256.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+                return Convert.ToBase64String(bytes);
             }
         }
     }
