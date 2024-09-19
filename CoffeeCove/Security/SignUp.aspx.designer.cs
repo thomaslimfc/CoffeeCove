@@ -132,15 +132,6 @@ namespace CoffeeCove.Security
         protected global::System.Web.UI.WebControls.Label UsernameErrorMessage;
 
         /// <summary>
-        /// UsernameErrorMessage2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label UsernameErrorMessage2;
-
-        /// <summary>
         /// EmailAdd_SU control.
         /// </summary>
         /// <remarks>
@@ -166,6 +157,15 @@ namespace CoffeeCove.Security
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator EmailAdd_SU_regexValidator;
+
+        /// <summary>
+        /// EmailAddErrorMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label EmailAddErrorMessage;
 
         /// <summary>
         /// ContactNo_SU control.

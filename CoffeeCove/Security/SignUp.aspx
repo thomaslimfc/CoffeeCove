@@ -87,7 +87,8 @@
             runat="server" 
             placeholder="desmundchau7668" 
             title="Username"
-            ValidationGroup="SignUp">
+            ValidationGroup="SignUp"
+            onblur="validateUsername()">
         </asp:TextBox>
         <asp:RequiredFieldValidator 
             ID="Username_SU_rqdValidator" runat="server" 
@@ -108,17 +109,23 @@
         <asp:CustomValidator 
             ID="Username_SU_customValidator" 
             runat="server" 
-            ControlToValidate="Username_SU" 
+            ControlToValidate="Username_SU"
+            OnServerValidate="Username_SU_ServerValidate"
             CssClass="error" 
             Display="Dynamic" 
-            ErrorMessage="Your username has been used." 
-            OnServerValidate="Username_SU_ServerValidate"></asp:CustomValidator>
+            ErrorMessage="Your username has been used."
+            ValidationGroup="SignUp">
+        </asp:CustomValidator>
         <asp:Label ID="UsernameErrorMessage" 
             runat="server" ForeColor="Red" Visible="False">
         </asp:Label>
-        <asp:Label ID="UsernameErrorMessage2" 
-            runat="server" ForeColor="Red" Visible="False">
-        </asp:Label>
+        <script type="text/javascript">
+            function validateUsername() {
+                // Triggers a postback when the user clicks outside the Username_SU textbox
+                __doPostBack('<%= Username_SU.ClientID %>', '');
+            }
+        </script>
+
     </div>
     
     <!-- Email Address -->
@@ -147,6 +154,15 @@
             ForeColor="Red" 
             CssClass="rqdValidator" 
             ValidationExpression="^[^@\s]+@[^@\s]+\.[^@\s]+$" />
+        <asp:Label ID="EmailAddErrorMessage" 
+            runat="server" ForeColor="Red" Visible="False">
+        </asp:Label>
+        <script type="text/javascript">
+            function validateEmail() {
+                // Triggers a postback when the user clicks outside the Username_SU textbox
+                __doPostBack('<%= EmailAdd_SU.ClientID %>', '');
+            }
+        </script>
     </div>
 
     <!-- Contact Number -->
