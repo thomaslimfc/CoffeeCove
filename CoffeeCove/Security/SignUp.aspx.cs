@@ -1,13 +1,10 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
-using System.Web.UI;
+using System.Net.Mail;
+using System.Web.UI.WebControls;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using CoffeeCove.Securities;
-using System.Net.Mail;
-using System.Linq;
-using System.Web.UI.WebControls;
-using System.EnterpriseServices;
 
 namespace CoffeeCove.Security
 {
@@ -18,21 +15,39 @@ namespace CoffeeCove.Security
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (IsPostBack)
-            {
-                string target = Request["__EVENTTARGET"];
-                if (target == Username_SU.ClientID)
-                {
-                    // Handle server-side validation for Username_SU
-                    ValidateUsernameServerSide();
-                    ValidateEmailAddServerSide();
-                }
-            }
+            //try
+            //{
+            //    if (IsPostBack)
+            //    {
+            //        string target = Request["__EVENTTARGET"];
+            //        if (target == Username_SU.ClientID)
+            //        {
+            //            ValidateUsernameServerSide();
+            //            ValidateEmailAddServerSide();
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    // Log the error or handle it appropriately
+            //    // For example: LogError(ex);
+            //    throw;
+            //}
         }
+
 
         private bool IsUsernameAvailable(string username)
         {
             return !(db.Customers.Any(u => u.Username == username) || db.Admins.Any(u => u.Username == username));
+        }
+
+        protected void Username_SU_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            args.IsValid = IsUsernameAvailable(args.Value);
+            if (!args.IsValid)
+            {
+                Username_SU_customValidator.ErrorMessage = "Your username has been used.";
+            }
         }
 
         private bool IsEmailAvailable(string email)
@@ -40,72 +55,52 @@ namespace CoffeeCove.Security
             return !db.Customers.Any(u => u.EmailAddress == email);
         }
 
-        // must key in password, then only reenteer
-
-        private void ValidateUsernameServerSide()
-        {
-            string username = Username_SU.Text;
-            if (!IsUsernameAvailable(username))
-            {
-                UsernameErrorMessage.Text = "Your username has been used.";
-                UsernameErrorMessage.Visible = true;
-            }
-            else
-            {
-                UsernameErrorMessage.Visible = false;
-            }
-        }
-
-        private void ValidateEmailAddServerSide()
-        {
-            string email = EmailAdd_SU.Text;
-            if (!IsEmailAvailable(email))
-            {
-                UsernameErrorMessage.Text = "Your email has been used.";
-                UsernameErrorMessage.Visible = true;
-            }
-            else
-            {
-                UsernameErrorMessage.Visible = false;
-            }
-        }
-
-        // click into txtbox, then after touch other region auto check aaibalility
-        protected void Username_SU_ServerValidate(object source, ServerValidateEventArgs args)
-        {
-            string username = args.Value;
-
-            // Check if the username exists in the database
-            if (!IsUsernameAvailable(username))
-            {
-                args.IsValid = false; // Username already exists
-                UsernameErrorMessage.Text = "Your username has been used.";
-                UsernameErrorMessage.Visible = true;
-            }
-            else
-            {
-                args.IsValid = true; // Username is available
-                UsernameErrorMessage.Visible = false;
-            }
-        }
-
         protected void EmailAdd_SU_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            string email = args.Value;
-
-            // Check if the email address exists in the database
-            if (!IsEmailAvailable(email))
+            args.IsValid = IsEmailAvailable(args.Value);
+            if (!args.IsValid)
             {
-                args.IsValid = false; // Email already exists
-                EmailAddErrorMessage.Text = "Your email has been used.";
-                EmailAddErrorMessage.Visible = true;
-            }
-            else
-            {
-                args.IsValid = true; // Email is available to register
-                EmailAddErrorMessage.Visible = false;
+                EmailAdd_SU_customValidator.ErrorMessage = "Your email has been used.";
             }
         }
+
+        //protected void ValidateUsernameServerSide()
+        //{
+        //    // Ensure Username_SU and UsernameErrorMessage are not null
+        //    if (Username_SU != null && UsernameErrorMessage != null)
+        //    {
+        //        string username = Username_SU.Text;
+        //        if (!IsUsernameAvailable(username))
+        //        {
+        //            UsernameErrorMessage.Text = "Your username has been used.";
+        //            UsernameErrorMessage.Visible = true;
+        //        }
+        //        else
+        //        {
+        //            UsernameErrorMessage.Visible = false;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        // Handle the case where Username_SU or UsernameErrorMessage is null
+        //        // Log an error or provide a fallback mechanism
+        //    }
+        //}
+
+
+        //private void ValidateEmailAddServerSide()
+        //{
+        //    string email = EmailAdd_SU.Text;
+        //    if (!IsEmailAvailable(email))
+        //    {
+        //        EmailAddErrorMessage.Text = "Your email has been used.";
+        //        EmailAddErrorMessage.Visible = true;
+        //    }
+        //    else
+        //    {
+        //        EmailAddErrorMessage.Visible = false;
+        //    }
+        //}
 
         protected void SignUpBtn_SU_Click(object sender, EventArgs e)
         {
@@ -114,9 +109,12 @@ namespace CoffeeCove.Security
 
             if (isValidCaptcha)
             {
-                if (IsUsernameAvailable(Username_SU.Text) && 
-                    IsEmailAvailable(EmailAdd_SU.Text))
+                if (IsUsernameAvailable(Username_SU.Text) && IsEmailAvailable(EmailAdd_SU.Text))
                 {
+                    // Generate verification token
+                    string verificationToken = GenerateVerificationToken();
+
+                    // Create a new user record (unverified)
                     var newCust = new Customer
                     {
                         Username = Username_SU.Text,
@@ -127,38 +125,39 @@ namespace CoffeeCove.Security
                         DateOfBirth = DateTime.Parse(DateOfBirth_PR.Text),
                         ContactNo = ContactNo_SU.Text,
                         Gender = Gender_SU.SelectedValue,
-                        ResidenceState = location.SelectedValue
+                        ResidenceState = location.SelectedValue,
+                        VerificationToken = verificationToken,
+                        VerificationStatus = false
                     };
-
-                    // before save , email confirmation first
-                    // ConfirmationEmail(newCust.EmailAddress)
-
 
                     db.Customers.Add(newCust);
                     db.SaveChanges();
 
-                    Response.Redirect("SignIn.aspx");
-                } else
-                {
-                    // If username or email is not available, handle the error messages
-                    if (!IsUsernameAvailable(Username_SU.Text))
-                    {
-                        UsernameErrorMessage.Text = "Your username has been used.";
-                        UsernameErrorMessage.Visible = true;
-                    }
+                    // Send verification email
+                    SendVerificationEmail(EmailAdd_SU.Text, verificationToken);
 
-                    if (!IsEmailAvailable(EmailAdd_SU.Text))
-                    {
-                        // Email already registered alert will be handled in IsEmailAvailable
-                        lblCaptchaError.Text = "Your email has been used.";
-                        lblCaptchaError.Visible = true;
-                    }
+                    // Show confirmation message
+                    lblEmailVerification.Text = "A verification email has been sent. Please verify your email.";
+                    lblEmailVerification.Visible = true;
+                }
+                else
+                {
+                    //if (!IsUsernameAvailable(Username_SU.Text))
+                    //{
+                    //    UsernameErrorMessage.Text = "Your username has been used.";
+                    //    UsernameErrorMessage.Visible = true;
+                    //}
+
+                    //if (!IsEmailAvailable(EmailAdd_SU.Text))
+                    //{
+                    //    lblCaptchaError.Text = "Your email has been used.";
+                    //    lblCaptchaError.Visible = true;
+                    //}
                 }
             }
             else
             {
-                // Show an CAPTCHA error message
-                lblCaptchaError.Text = "Click at empty box beside I'm not a robot";
+                lblCaptchaError.Text = "Please complete the CAPTCHA.";
                 lblCaptchaError.Visible = true;
             }
         }
@@ -170,16 +169,12 @@ namespace CoffeeCove.Security
             {
                 string jsonResult = client.DownloadString(apiUrl);
                 var jsonData = JsonConvert.DeserializeObject<JObject>(jsonResult);
-                bool success = jsonData["success"].Value<bool>(); // Access 'success' as a bool
-                return success;
+                return jsonData["success"].Value<bool>();
             }
         }
 
         private string HashPassword(string password)
         {
-            // just using SHA256.
-            // library like BCrypt.Net for stronger security.
-
             using (var sha256 = System.Security.Cryptography.SHA256.Create())
             {
                 byte[] bytes = sha256.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
@@ -187,14 +182,39 @@ namespace CoffeeCove.Security
             }
         }
 
-        protected void SignUpUsernameBtn_SU_Click(object sender, EventArgs e)
+        private string GenerateVerificationToken()
         {
-            Response.Redirect("SignIn.aspx");
+            return Guid.NewGuid().ToString(); // Generate a unique token
         }
 
-        protected void SignUpEmailBtn_SU_Click(object sender, EventArgs e)
+        private void SendVerificationEmail(string userEmail, string verificationToken)
         {
-            Response.Redirect("SignInWithEmail.aspx");
+            var fromAddress = new MailAddress("tlfc2102@gmail.com", "Coffee Cove");
+            var toAddress = new MailAddress(userEmail);
+            const string fromPassword = "your-gmail-password"; // Use app password if 2FA is enabled
+            const string subject = "Coffee Cove - Confirm your email";
+            string verificationLink = "https://yourwebsite.com/VerifyEmail.aspx?token=" + verificationToken;
+            string body = $"Dear User,<br/><br/>Please click the link below to verify your email:<br/><a href='{verificationLink}'>Verify Email</a>";
+
+            var smtp = new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+            };
+
+            using (var message = new MailMessage(fromAddress, toAddress)
+            {
+                Subject = subject,
+                Body = body,
+                IsBodyHtml = true
+            })
+            {
+                smtp.Send(message);
+            }
         }
     }
 }

@@ -116,16 +116,6 @@
             ErrorMessage="Your username has been used."
             ValidationGroup="SignUp">
         </asp:CustomValidator>
-        <asp:Label ID="UsernameErrorMessage" 
-            runat="server" ForeColor="Red" Visible="False">
-        </asp:Label>
-        <script type="text/javascript">
-            function validateUsername() {
-                // Triggers a postback when the user clicks outside the Username_SU textbox
-                __doPostBack('<%= Username_SU.ClientID %>', '');
-            }
-        </script>
-
     </div>
     
     <!-- Email Address -->
@@ -154,15 +144,21 @@
             ForeColor="Red" 
             CssClass="rqdValidator" 
             ValidationExpression="^[^@\s]+@[^@\s]+\.[^@\s]+$" />
+        <asp:CustomValidator 
+            ID="EmailAdd_SU_customValidator" 
+            runat="server" 
+            ControlToValidate="EmailAdd_SU"
+            OnServerValidate="EmailAdd_SU_ServerValidate"
+            CssClass="error" 
+            Display="Dynamic" 
+            ErrorMessage="Your email has been used."
+            ValidationGroup="SignUp">
+        </asp:CustomValidator>
+        <!--
         <asp:Label ID="EmailAddErrorMessage" 
             runat="server" ForeColor="Red" Visible="False">
         </asp:Label>
-        <script type="text/javascript">
-            function validateEmail() {
-                // Triggers a postback when the user clicks outside the Username_SU textbox
-                __doPostBack('<%= EmailAdd_SU.ClientID %>', '');
-            }
-        </script>
+        -->
     </div>
 
     <!-- Contact Number -->
@@ -363,6 +359,8 @@
         </center>
         <div class="trMarginBottom20"></div>
     </div>
+
+    <asp:Label ID="lblEmailVerification" runat="server" Text=""></asp:Label>
     
     <!-- Sign Up button -->
     <div class="mb-4">
