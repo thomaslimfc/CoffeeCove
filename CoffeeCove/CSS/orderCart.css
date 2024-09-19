@@ -4,6 +4,16 @@
     text-align: center;
 }
 
+#scrollableCart {
+    display: flex;
+    position: relative;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    overflow-y: auto;
+    max-height: calc(100vh - 60px);
+    z-index: 0;
+}
+
 #cartItemTable, #cartTotalTable, #customerTable, #orderTable {
     width: 100%;
     text-align: left;
@@ -11,8 +21,8 @@
 }
 
 #cartItemTable th, .tableItem, .amtTable{
-    padding: 10px; /* Padding inside table cells */
-    border: 1px solid #ddd; /* Border around cells */
+    padding: 10px; 
+    border: 1px solid #ddd; 
 }
 
 .amtTable td{
@@ -20,15 +30,15 @@
 }
 
 #cartItemTable tr:nth-child(even){
-    background-color: #f9f9f9; /* Light gray background for even rows */
+    background-color: #f9f9f9; 
 }
 
 #cartItemTable tr:nth-child(odd), #cartTotalTable tr td{
-    background-color: #fff; /* White background for odd rows */
+    background-color: #fff; 
 }
 
 #cartItemTable tr:hover, #cartTotalTable tr:hover{
-    background-color: #e2e2e2; /* Slightly darker gray for hover effect */
+    background-color: #e2e2e2; 
 }
 
 #excludeTable tr:nth-child(odd), #excludeTable tr:nth-child(even) {
