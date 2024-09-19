@@ -20,7 +20,6 @@ namespace CoffeeCove.AdminSite
             {
                 BindCategoryDropDown();
                 BindProduct();
-                PositionGlyph(gvProduct, SortExpression, SortDirection);
             }
             lblMsg.Visible = false;
         }
@@ -115,9 +114,10 @@ namespace CoffeeCove.AdminSite
                         gvProduct.DataSource = null;
                         gvProduct.DataBind();
                     }
+
+                    UpdateSortIcons();
                 }
             }
-            PositionGlyph(gvProduct, SortExpression, SortDirection);
         }
 
         private string SortDirection
@@ -134,75 +134,56 @@ namespace CoffeeCove.AdminSite
 
         protected void gvProduct_Sorting(object sender, GridViewSortEventArgs e)
         {
-            // Always toggle the sort direction
             SortDirection = (SortDirection == "ASC") ? "DESC" : "ASC";
 
-            // Update the sort expression to the new column or keep the same column
             SortExpression = e.SortExpression;
 
-            // Rebind the GridView with the new sorting applied
             BindProduct();
-            PositionGlyph(gvProduct, SortExpression, SortDirection);
-        }
-
-        private void PositionGlyph(GridView gridView, string currentSortColumn, string currentSortDirection)
-        {
-            if (gridView.HeaderRow == null)
-                return;
-
-            // Remove existing glyphs
-            foreach (TableCell cell in gridView.HeaderRow.Cells)
-            {
-                foreach (Control ctrl in cell.Controls)
-                {
-                    if (ctrl is Image img && img.ID == "sortGlyph")
-                        cell.Controls.Remove(ctrl);
-                }
-            }
-
-            // Create new glyphs for each sortable column
-            foreach (TableCell cell in gridView.HeaderRow.Cells)
-            {
-                if (cell.Controls.OfType<LinkButton>().Any())
-                {
-                    LinkButton linkButton = cell.Controls.OfType<LinkButton>().First();
-                    Image glyph = new Image
-                    {
-                        ID = "sortGlyph",
-                        EnableTheming = false,
-                        Width = Unit.Pixel(10),
-                        Height = Unit.Pixel(10)
-                    };
-
-                    if (string.Compare(currentSortColumn, linkButton.CommandArgument, true) == 0)
-                    {
-                        glyph.ImageUrl = currentSortDirection == "ASC" ? "~/img/up.png" : "~/img/down.png";
-                        glyph.AlternateText = currentSortDirection == "ASC" ? "Ascending" : "Descending";
-                    }
-                    else
-                    {
-                        glyph.ImageUrl = "~/img/up.png";
-                        glyph.AlternateText = "Ascending";
-                    }
-
-                    cell.Controls.Add(glyph);
-                }
-            }
         }
 
         protected void lnkProduct_Click(object sender, EventArgs e)
         {
             if (sender is LinkButton linkButton)
             {
-                // Always toggle the sort direction
-                SortDirection = (SortDirection == "ASC") ? "DESC" : "ASC";
-
-                // Update the sort expression to the column that was clicked
                 SortExpression = linkButton.CommandArgument;
 
-                // Rebind the GridView with the new sorting applied
+                SortDirection = (SortDirection == "ASC" && SortExpression == linkButton.CommandArgument) ? "DESC" : "ASC";
+
                 BindProduct();
-                PositionGlyph(gvProduct, SortExpression, SortDirection);
+            }
+        }
+
+        private void UpdateSortIcons()
+        {
+            Literal litSortIconId = gvProduct.HeaderRow.FindControl("litSortIconId") as Literal;
+            Literal litSortIconName = gvProduct.HeaderRow.FindControl("litSortIconName") as Literal;
+            Literal litSortIconPrice = gvProduct.HeaderRow.FindControl("litSortIconPrice") as Literal;
+            Literal litSortIconDate = gvProduct.HeaderRow.FindControl("litSortIconDate") as Literal;
+
+            string defaultIcon = "<i class='bi bi-caret-up-fill'></i>";
+            string ascendingIcon = "<i class='bi bi-caret-up-fill'></i>";
+            string descendingIcon = "<i class='bi bi-caret-down-fill'></i>";
+
+            litSortIconId.Text = defaultIcon;
+            litSortIconName.Text = defaultIcon;
+            litSortIconPrice.Text = defaultIcon;
+            litSortIconDate.Text = defaultIcon;
+
+            if (SortExpression == "ProductId")
+            {
+                litSortIconId.Text = (SortDirection == "ASC") ? ascendingIcon : descendingIcon;
+            }
+            else if (SortExpression == "ProductName")
+            {
+                litSortIconName.Text = (SortDirection == "ASC") ? ascendingIcon : descendingIcon;
+            }
+            else if (SortExpression == "UnitPrice")
+            {
+                litSortIconPrice.Text = (SortDirection == "ASC") ? ascendingIcon : descendingIcon;
+            }
+            else if (SortExpression == "CreatedDate")
+            {
+                litSortIconDate.Text = (SortDirection == "ASC") ? ascendingIcon : descendingIcon;
             }
         }
 
@@ -498,8 +479,7 @@ namespace CoffeeCove.AdminSite
         {
             txtSearch.Text = string.Empty;
 
-            // Reset the sorting settings
-            SortExpression = "CategoryId"; // Default sorting column
+            SortExpression = "ProductId"; // Default sorting column
             SortDirection = "ASC"; // Default sorting direction
 
             // Reset page index
