@@ -41,7 +41,7 @@ namespace CoffeeCove.Menu
         {
             using (SqlConnection con = new SqlConnection(cs))
             {
-                string sql = "SELECT CategoryId, CategoryName FROM Category";
+                string sql = "SELECT CategoryId, CategoryName FROM Category WHERE IsActive = 1";
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     con.Open();
@@ -56,9 +56,12 @@ namespace CoffeeCove.Menu
         {
             using (SqlConnection con = new SqlConnection(cs))
             {
-                string sql = categoryId == "1"
-                    ? "SELECT * FROM Product"
-                    : "SELECT * FROM Product WHERE CategoryId = @CategoryId";
+                string sql = "SELECT p.* FROM Product p INNER JOIN Category c ON p.CategoryId = c.CategoryId WHERE c.IsActive = 1 AND p.IsActive = 1";
+
+                if (categoryId != "1")
+                {
+                    sql += " AND p.CategoryId = @CategoryId";
+                }
 
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
@@ -258,9 +261,6 @@ namespace CoffeeCove.Menu
                 Response.Redirect("../Order/OrderOption.aspx");
             }
 
-
-
-
             // Retrieve values from form controls
             string productId = lblProductID.Text;
             string productName = lblProductName.Text;
@@ -306,7 +306,7 @@ namespace CoffeeCove.Menu
                             using (SqlCommand insertCmd = new SqlCommand(insertOrderSql, con, transaction))
                             {
                                 insertCmd.Parameters.AddWithValue("@OrderID", orderId);
-                                insertCmd.Parameters.AddWithValue("@OrderDateTime", DateTime.Now); 
+                                insertCmd.Parameters.AddWithValue("@OrderDateTime", DateTime.Now);
                                 insertCmd.ExecuteNonQuery();
                             }
                         }
@@ -346,7 +346,7 @@ namespace CoffeeCove.Menu
                         else
                             cmd.Parameters.AddWithValue("@Instruction", DBNull.Value);
 
-                        cmd.Parameters.AddWithValue("@Price", finalPrice);
+                        cmd.Parameters.AddWithValue("@Price", basePrice);
 
                         cmd.ExecuteNonQuery();
                     }
