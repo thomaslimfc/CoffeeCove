@@ -440,19 +440,16 @@ namespace CoffeeCove
             Response.AddHeader("content-disposition", "attachment;filename=Category.pdf");
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
-            // Query to fetch only the required columns and count products
-            string sql = @"
-        SELECT 
-            c.CategoryId, 
-            c.CategoryName, 
-            c.CreatedDate, 
-            COUNT(p.ProductId) AS TotalProduct 
-        FROM 
-            Category c 
-        LEFT JOIN 
-            Product p ON c.CategoryId = p.CategoryId 
-        GROUP BY 
-            c.CategoryId, c.CategoryName, c.CreatedDate";
+            string sql = @"SELECT 
+                     c.CategoryId, 
+                     c.CategoryName, 
+                     c.CreatedDate, 
+                     COUNT(p.ProductId) AS TotalProduct,
+                     SUM(CASE WHEN p.IsActive = 1 THEN 1 ELSE 0 END) AS ActiveProduct,
+                     SUM(CASE WHEN p.IsActive = 0 THEN 1 ELSE 0 END) AS InactiveProduct
+                     FROM Category c 
+                     LEFT JOIN Product p ON c.CategoryId = p.CategoryId
+                     GROUP BY c.CategoryId, c.CategoryName, c.CreatedDate";
 
             DataTable dt = new DataTable();
 
@@ -471,44 +468,49 @@ namespace CoffeeCove
             PdfWriter.GetInstance(pdfdoc, Response.OutputStream);
             pdfdoc.Open();
 
-            // Add a title to the PDF
-            pdfdoc.Add(new Paragraph("Category Report"));
-            pdfdoc.Add(new Paragraph(" ")); // blank space
+            Paragraph title = new Paragraph("Category Summary Report", FontFactory.GetFont("Arial", 18, Font.BOLD));
+            title.Alignment = Element.ALIGN_CENTER;
+            pdfdoc.Add(title);
 
-            // Create a table in the PDF
-            PdfPTable pdfTable = new PdfPTable(4); // 4 columns: CategoryId, CategoryName, CreatedDate, Total Product
+            Paragraph dateTime = new Paragraph(DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
+            dateTime.Alignment = Element.ALIGN_CENTER;
+            pdfdoc.Add(dateTime);
+
+            pdfdoc.Add(new Paragraph(" "));
+
+            PdfPTable pdfTable = new PdfPTable(6); // 6 columns
             pdfTable.WidthPercentage = 100;
-            pdfTable.SetWidths(new float[] { 1f, 2f, 2f, 1f });
+            pdfTable.SetWidths(new float[] { 1f, 2f, 2f, 1f, 1f, 1f }); // Adjust column widths as necessary
 
             // Add table headers
             pdfTable.AddCell(new PdfPCell(new Phrase("Category ID")) { HorizontalAlignment = Element.ALIGN_CENTER });
             pdfTable.AddCell(new PdfPCell(new Phrase("Category Name")) { HorizontalAlignment = Element.ALIGN_CENTER });
             pdfTable.AddCell(new PdfPCell(new Phrase("Created Date")) { HorizontalAlignment = Element.ALIGN_CENTER });
+            pdfTable.AddCell(new PdfPCell(new Phrase("Active Product")) { HorizontalAlignment = Element.ALIGN_CENTER });
+            pdfTable.AddCell(new PdfPCell(new Phrase("Inactive Product")) { HorizontalAlignment = Element.ALIGN_CENTER });
             pdfTable.AddCell(new PdfPCell(new Phrase("Total Product")) { HorizontalAlignment = Element.ALIGN_CENTER });
 
-            // Loop through the DataTable and add the data to the PDF table
             foreach (DataRow row in dt.Rows)
             {
                 pdfTable.AddCell(new PdfPCell(new Phrase(row["CategoryId"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
                 pdfTable.AddCell(new PdfPCell(new Phrase(row["CategoryName"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
                 pdfTable.AddCell(new PdfPCell(new Phrase(Convert.ToDateTime(row["CreatedDate"]).ToString("dd/MM/yyyy"))) { HorizontalAlignment = Element.ALIGN_CENTER });
+                pdfTable.AddCell(new PdfPCell(new Phrase(row["ActiveProduct"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
+                pdfTable.AddCell(new PdfPCell(new Phrase(row["InactiveProduct"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
                 pdfTable.AddCell(new PdfPCell(new Phrase(row["TotalProduct"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
             }
 
-            // Add the table to the document
             pdfdoc.Add(pdfTable);
 
-            // Close the PDF document and output the file
             pdfdoc.Close();
             Response.Write(pdfdoc);
             Response.End();
         }
 
-
-
         public override void VerifyRenderingInServerForm(Control control)
         {
 
         }
+
     }
 }
