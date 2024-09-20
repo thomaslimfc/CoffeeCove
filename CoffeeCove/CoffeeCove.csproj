@@ -122,6 +122,7 @@
     <Content Include="App_Data\dbCoffeeCove_log.ldf">
       <DependentUpon>dbCoffeeCove.mdf</DependentUpon>
     </Content>
+    <Content Include="AdminSite\Categories.aspx" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\img\apple-touch-icon.png" />
     <Content Include="Content\img\card.jpg" />
@@ -691,6 +692,13 @@
     </Compile>
     <Compile Include="AdminSite\Stores.aspx.designer.cs">
       <DependentUpon>Stores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminSite\Categories.aspx.cs">
+      <DependentUpon>Categories.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminSite\Categories.aspx.designer.cs">
+      <DependentUpon>Categories.aspx</DependentUpon>
     </Compile>
     <Compile Include="Category.cs">
       <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>
