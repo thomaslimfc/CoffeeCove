@@ -19,25 +19,59 @@ namespace CoffeeCove.AdminSite
             }
         }
 
-        private void BindRatingReviews()
+        protected void BindRatingReviews()
         {
             using (SqlConnection conn = new SqlConnection(cs))
             {
+                // SQL query to count ratings for each star (1-5 stars)
                 string query = @"
-                    SELECT R1.RatingScore, R1.ReviewContent, R1.RatingReviewDateTime, R1.CusID, C.Username, 
-                           R2.ReviewContent AS AdminReplyContent, R2.RatingReviewDateTime AS AdminReplyDateTime, A.Username AS AdminUsername
-                    FROM Review R1
-                    LEFT JOIN Review R2 ON R1.RatingReviewID = R2.ReplyTo
-                    LEFT JOIN Customer C ON R1.CusID = C.CusID
-                    LEFT JOIN Admin A ON R2.UsernameAdmin = A.Username
-                    WHERE R1.ReplyTo IS NULL
-                    ORDER BY R1.RatingReviewDateTime DESC";
+            SELECT 
+                COUNT(CASE WHEN RatingScore = 5 THEN 1 END) AS FiveStarCount,
+                COUNT(CASE WHEN RatingScore = 4 THEN 1 END) AS FourStarCount,
+                COUNT(CASE WHEN RatingScore = 3 THEN 1 END) AS ThreeStarCount,
+                COUNT(CASE WHEN RatingScore = 2 THEN 1 END) AS TwoStarCount,
+                COUNT(CASE WHEN RatingScore = 1 THEN 1 END) AS OneStarCount,
+                COUNT(*) AS TotalCount
+            FROM Review";
+
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     conn.Open();
                     SqlDataReader reader = cmd.ExecuteReader();
-                    rptUserRatingReview.DataSource = reader;
-                    rptUserRatingReview.DataBind();
+
+                    if (reader.Read())
+                    {
+                        int fiveStarCount = Convert.ToInt32(reader["FiveStarCount"]);
+                        int fourStarCount = Convert.ToInt32(reader["FourStarCount"]);
+                        int threeStarCount = Convert.ToInt32(reader["ThreeStarCount"]);
+                        int twoStarCount = Convert.ToInt32(reader["TwoStarCount"]);
+                        int oneStarCount = Convert.ToInt32(reader["OneStarCount"]);
+                        int totalCount = Convert.ToInt32(reader["TotalCount"]);
+
+                        if (totalCount > 0)
+                        {
+                            // Calculate percentages
+                            decimal fiveStarPercentage = (decimal)fiveStarCount / totalCount * 100;
+                            decimal fourStarPercentage = (decimal)fourStarCount / totalCount * 100;
+                            decimal threeStarPercentage = (decimal)threeStarCount / totalCount * 100;
+                            decimal twoStarPercentage = (decimal)twoStarCount / totalCount * 100;
+                            decimal oneStarPercentage = (decimal)oneStarCount / totalCount * 100;
+
+                            // Set the widths of the progress bars
+                            progressBar5.Style.Add("width", $"{fiveStarPercentage}%");
+                            progressBar4.Style.Add("width", $"{fourStarPercentage}%");
+                            progressBar3.Style.Add("width", $"{threeStarPercentage}%");
+                            progressBar2.Style.Add("width", $"{twoStarPercentage}%");
+                            progressBar1.Style.Add("width", $"{oneStarPercentage}%");
+
+                            // Set the labels for percentages
+                            lblFiveStarPercentage.Text = $"{Math.Round(fiveStarPercentage)}%";
+                            lblFourStarPercentage.Text = $"{Math.Round(fourStarPercentage)}%";
+                            lblThreeStarPercentage.Text = $"{Math.Round(threeStarPercentage)}%";
+                            lblTwoStarPercentage.Text = $"{Math.Round(twoStarPercentage)}%";
+                            lblOneStarPercentage.Text = $"{Math.Round(oneStarPercentage)}%";
+                        }
+                    }
                 }
             }
         }

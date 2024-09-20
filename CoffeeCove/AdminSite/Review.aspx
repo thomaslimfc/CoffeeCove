@@ -15,61 +15,77 @@
                         <h5 class="mb-0 mb-4">Ratings and Reviews</h5>
                         <div class="graph-star-rating-header">
                             <div class="star-rating">
-                                <b class="text-black ml-2">Total rate: 334</b>
+                                <b class="text-black ml-2">Total rate: <asp:Literal ID="litTotalRatings" runat="server" /></b>
                             </div>
                         </div>
                         <div class="graph-star-rating-body">
                             <div class="rating-list">
-                                <div class="rating-list-left text-black">
-                                    ⭐ 5 Stars
-                                </div>
+                                <div class="rating-list-left text-black">⭐ 5 Stars</div>
                                 <div class="rating-list-center">
                                     <div class="progress">
-                                        <div style="width: 56%; background-color: #433533f0;" aria-valuemax="5" aria-valuemin="0" aria-valuenow="5" role="progressbar" class="progress-bar">
-                                            <span class="sr-only">80% Complete (danger)</span>
+                                        <div id="progressBar5" runat="server" class="progress-bar" role="progressbar" aria-valuemax="5" aria-valuemin="0">
+                                            <span class="sr-only">5 Stars Progress</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="rating-list-right text-black">56%</div>
+                                <div class="rating-list-right text-black">
+                                    <asp:Label ID="lblFiveStarPercentage" runat="server" Text="0%"></asp:Label>
+                                </div>
+                            </div>
+
+                            <div class="rating-list">
+                                <div class="rating-list-left text-black">⭐ 4 Stars</div>
+                                <div class="rating-list-center">
+                                    <div class="progress">
+                                        <div id="progressBar4" runat="server" class="progress-bar" role="progressbar" aria-valuemax="5" aria-valuemin="0">
+                                            <span class="sr-only">4 Stars Progress</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rating-list-right text-black">
+                                    <asp:Label ID="lblFourStarPercentage" runat="server" Text="0%"></asp:Label>
+                                </div>
+                            </div>
+
+                            <div class="rating-list">
+                                <div class="rating-list-left text-black">⭐ 3 Stars</div>
+                                <div class="rating-list-center">
+                                    <div class="progress">
+                                        <div id="progressBar3" runat="server" class="progress-bar" role="progressbar" aria-valuemax="5" aria-valuemin="0">
+                                            <span class="sr-only">3 Stars Progress</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rating-list-right text-black">
+                                    <asp:Label ID="lblThreeStarPercentage" runat="server" Text="0%"></asp:Label>
+                                </div>
+                            </div>
+
+                            <div class="rating-list">
+                                <div class="rating-list-left text-black">⭐ 2 Stars</div>
+                                <div class="rating-list-center">
+                                    <div class="progress">
+                                        <div id="progressBar2" runat="server" class="progress-bar" role="progressbar" aria-valuemax="5" aria-valuemin="0">
+                                            <span class="sr-only">2 Stars Progress</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rating-list-right text-black">
+                                    <asp:Label ID="lblTwoStarPercentage" runat="server" Text="0%"></asp:Label>
+                                </div>
                             </div>
                             <div class="rating-list">
-                                <div class="rating-list-left text-black">
-                                    ⭐ 4 Stars
-                                </div>
+                                <div class="rating-list-left text-black">⭐ 1 Star</div>
                                 <div class="rating-list-center">
                                     <div class="progress">
-                                        <div style="width: 23%; background-color: #433533f0;" aria-valuemax="5" aria-valuemin="0" aria-valuenow="5" role="progressbar" class="progress-bar">
-                                            <span class="sr-only">80% Complete (danger)</span>
+                                        <div id="progressBar1" runat="server" class="progress-bar" role="progressbar" aria-valuemax="5" aria-valuemin="0">
+                                            <span class="sr-only">1 Star Progress</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="rating-list-right text-black">23%</div>
-                            </div>
-                            <div class="rating-list">
-                                <div class="rating-list-left text-black">
-                                    ⭐ 3 Stars
+                                <div class="rating-list-right text-black">
+                                    <asp:Label ID="lblOneStarPercentage" runat="server" Text="0%"></asp:Label>
                                 </div>
-                                <div class="rating-list-center">
-                                    <div class="progress">
-                                        <div style="width: 11%; background-color: #433533f0;" aria-valuemax="5" aria-valuemin="0" aria-valuenow="5" role="progressbar" class="progress-bar">
-                                            <span class="sr-only">80% Complete (danger)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="rating-list-right text-black">11%</div>
-                            </div>
-                            <div class="rating-list">
-                                <div class="rating-list-left text-black">
-                                    ⭐ 2 Stars
-                                </div>
-                                <div class="rating-list-center">
-                                    <div class="progress">
-                                        <div style="width: 2%; background-color: #433533f0;" aria-valuemax="5" aria-valuemin="0" aria-valuenow="5" role="progressbar" class="progress-bar">
-                                            <span class="sr-only">80% Complete (danger)</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="rating-list-right text-black">02%</div>
                             </div>
                         </div>
                     </div>
