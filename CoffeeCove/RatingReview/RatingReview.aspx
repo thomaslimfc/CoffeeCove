@@ -78,12 +78,7 @@
                             <div class="rating-list-right text-black"><%= GetRatingPercentage(OneStarCount) %></div>
                         </div>
                     </div>
-                    <div class="graph-star-rating-footer text-center mt-3 mb-3">
-                        <asp:Button ID="commentButton" CssClass="btnCont" runat="server" Text="Leave a Rating For Us!" OnClick="commentButton_Click" />
-                        
-                    </div>
                 </div>
-
                 <div id="ratingReviewContainer" class="bg-white rounded shadow-sm p-4 mb-4 restaurant-detailed-ratings-and-reviews">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h5 class="mb-1">All Ratings and Reviews</h5>

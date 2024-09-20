@@ -92,7 +92,7 @@ namespace CoffeeCove.Order
             string orderId = ratingButton.CommandArgument;
 
             // Redirect to the rating page, passing the OrderID as a query parameter
-            Response.Redirect($"RateOrder.aspx?OrderID={orderId}");
+            Response.Redirect($"~/RatingReview/comment.aspx?OrderID={orderId}");
         }
     }
 }

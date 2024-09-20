@@ -5,7 +5,7 @@
 
     <div class="tab-pane fade active show" id="pills-reviews" role="tabpanel" aria-labelledby="pills-reviews-tab">
         
-        <asp:Button ID="Btnback" runat="server" Text="Back" PostBackUrl="~/RatingReview/ratingReview.aspx" CssClass="backBtn"/>
+        <asp:Button ID="backBtn" runat="server" Text="Back" CssClass="backBtn" OnClick="backBtn_Click"/>
 
         <div id="rateContainer" class="bg-white rounded shadow-sm p-4 mb-5 rating-review-select-page">
             <h3 class="mb-4">Leave Comment</h3>
@@ -38,7 +38,7 @@
             <form>
                 <div class="form-group">
                     <label>Your Comment</label>
-                    <textarea class="form-control fixed-height" id="txtComment" runat="server"></textarea>
+                    <asp:TextBox ID="txtComment" runat="server" TextMode="MultiLine" CssClass="form-control fixed-height" MaxLength="50"></asp:TextBox>
                 </div>
                 <div class="form-group">
                     <asp:Button ID="btnSubmit" runat="server" CssClass="btnCont" Text="Submit Comment" OnClick="btnSubmit_Click" />
