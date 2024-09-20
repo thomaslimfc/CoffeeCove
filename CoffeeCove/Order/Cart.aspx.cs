@@ -39,6 +39,7 @@ namespace CoffeeCove.Order
                 rptOrdered.DataSource = ds;
                 rptOrdered.DataBind();
 
+
                 string sql1 = @"SELECT COUNT(*) 
                             FROM OrderedItem I JOIN Product P 
                             ON I.ProductId = P.ProductId
@@ -48,14 +49,14 @@ namespace CoffeeCove.Order
                 cmd1.Parameters.AddWithValue("@id", "1");
                 int count = (int)cmd1.ExecuteScalar();
 
-
                 //if no record for this order
-                //if (count <= 0)
-                //{
-                //    Response.Redirect("../Menu/Menu.aspx");
-                //}
+                if (count <= 0)
+                {
+                    Response.Redirect("../Menu/Menu.aspx");
+                }
 
-                excludeTable.Visible = false;
+                
+
                 
 
                 conn.Close();
@@ -82,7 +83,23 @@ namespace CoffeeCove.Order
             Label lblPrice = (Label)e.Item.FindControl("lblPrice");
             decimal price = decimal.Parse(lblPrice.Text);
             Label lblLineTotal = (Label)e.Item.FindControl("lblLineTotal");
+
+            Label lblSize = (Label)e.Item.FindControl("lblSize");
+
+            Panel panelSize = (Panel)e.Item.FindControl("panelSize");
+            Panel panelFlavour = (Panel)e.Item.FindControl("panelFlavour");
+            Panel panelIce = (Panel)e.Item.FindControl("panelIce");
+            Panel panelAddon = (Panel)e.Item.FindControl("panelAddon");
+
+            if (string.IsNullOrEmpty(lblSize.Text))
+            {
+                panelSize.Visible = false;
+                panelFlavour.Visible = false;
+                panelIce.Visible = false;
+                panelAddon.Visible = false;
+            }
             
+
             linePrice = quantity * price;
             subTotal += linePrice;
 
@@ -99,6 +116,7 @@ namespace CoffeeCove.Order
         {
             if (e.CommandName == "btnDelete")
             {
+
                 // Retrieve the ID of the item to edit
                 string orderedItemID = e.CommandArgument.ToString();
 
@@ -114,7 +132,24 @@ namespace CoffeeCove.Order
 
                 cmd.ExecuteNonQuery();
 
-                Response.Redirect("cart.aspx");
+                //Response.Redirect("cart.aspx");
+
+                string sql1 = @"SELECT COUNT(*) 
+                            FROM OrderedItem I JOIN Product P 
+                            ON I.ProductId = P.ProductId
+                            WHERE OrderId = @id";
+
+                SqlCommand cmd1 = new SqlCommand(sql1, conn);
+                cmd1.Parameters.AddWithValue("@id", "1");
+                int count = (int)cmd1.ExecuteScalar();
+
+                //if no record for this order
+                if (count <= 0)
+                {
+                    Response.Redirect("../Menu/Menu.aspx");
+                }
+
+
 
 
                 conn.Close();

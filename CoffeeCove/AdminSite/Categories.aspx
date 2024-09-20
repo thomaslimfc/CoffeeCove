@@ -6,8 +6,8 @@
 
     <link href="../CSS/ProductCategory.css" rel="stylesheet" />
 
-    <div id="main" class="main" style="margin-right:1%">
-        <div class="pagetitle" style="color:#fff">
+    <div id="main" class="main" style="margin-right: 1%">
+        <div class="pagetitle" style="color: #fff">
             <br />
             <h3>Categories Management</h3>
         </div>
@@ -40,7 +40,7 @@
                             <asp:Button ID="btnReset" runat="server" Text="Reset" OnClick="btnReset_Click" CssClass="btn btn-dark" />
                                 </div>
                                 <div class="col-8">
-                                    <asp:Image ID="imgCategory" runat="server" CssClass="img-thumbnail" Width="200px" Height="200px"/>
+                                    <asp:Image ID="imgCategory" runat="server" CssClass="img-box" Width="200px" Height="200px" />
                                 </div>
                             </div>
                         </div>
@@ -57,7 +57,8 @@
                 <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server"></asp:ToolkitScriptManager>
                 <table style="margin-left: 10px; margin-bottom: 10px">
                     <tr>
-                        <td class="search-bar"> <!-- AJAX tools:Search -->
+                        <td class="search-bar">
+                            <!-- AJAX tools:Search -->
                             <asp:TextBox ID="txtSearch" runat="server" Placeholder="Search ID, Name" CssClass="datatable-input"></asp:TextBox>
                             <asp:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtSearch"
                                 EnableCaching="false" CompletionInterval="100" CompletionSetCount="10" MinimumPrefixLength="1" ServiceMethod="GetItemList">
@@ -66,7 +67,8 @@
                             <asp:Button ID="btnClear" runat="server" Text="Clear" OnClick="btnClear_Click" CssClass="btn btn-secondary" />
 
                         </td>
-                        <td><!-- filter -->
+                        <td>
+                            <!-- filter -->
                             <asp:DropDownList ID="ddlFilter" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlFilter_SelectedIndexChanged" CssClass="form-select" Width="80%">
                                 <asp:ListItem Text="All" Value="All" />
                                 <asp:ListItem Text="Active" Value="True" />
@@ -84,8 +86,9 @@
                                 <tr>
                                     <td class="col-10">
                                         <h5 class="card-title">Category List</h5>
-                                    </td><!-- Page dropdown -->
-                                    <td style="padding-left:35px;padding-right:5px">Show</td>
+                                    </td>
+                                    <!-- Page dropdown -->
+                                    <td style="padding-left: 35px; padding-right: 5px">Show</td>
                                     <td class="dataTables_length" id="DataTables_Table_0_length">
                                         <asp:DropDownList ID="ddlPageSize" runat="server" AutoPostBack="True" CssClass="form-select form-select-sm" OnSelectedIndexChanged="ddlPageSize_SelectedIndexChanged">
                                             <asp:ListItem Value="5">5</asp:ListItem>
@@ -94,17 +97,20 @@
                                             <asp:ListItem Value="20">20</asp:ListItem>
                                         </asp:DropDownList>
                                     </td>
-                                    <td style="padding-left:5px">entries</td>
+                                    <td style="padding-left: 5px">entries</td>
                                 </tr>
                             </table>
-                        
+
                             <asp:GridView ID="gvCategory" runat="server" AutoGenerateColumns="False" CssClass="table table-striped"
                                 OnRowCommand="gvCategory_RowCommand" Width="100%" AllowSorting="True" OnSorting="gvCategory_Sorting"
                                 AllowPaging="true" OnPageIndexChanging="gvCategory_PageIndexChanging" PageSize="5" EmptyDataText="No categories found.">
                                 <Columns>
                                     <asp:TemplateField SortExpression="CategoryId" ItemStyle-Width="10px">
                                         <HeaderTemplate>
-                                            <asp:LinkButton ID="lnkCategoryId" runat="server" CommandArgument="CategoryId" CssClass="header-link" ToolTip="Sort" OnClick="lnkCategory_Click">ID</asp:LinkButton>
+                                            <asp:LinkButton ID="lnkCategoryId" runat="server" CommandArgument="CategoryId" CssClass="header-link" 
+                                                ToolTip="Sort" OnClick="lnkCategory_Click">ID
+                                                <asp:Literal ID="litSortIconId" runat="server"></asp:Literal>
+                                            </asp:LinkButton>
                                         </HeaderTemplate>
                                         <ItemTemplate>
                                             <%# Eval("CategoryId") %>
@@ -113,7 +119,10 @@
 
                                     <asp:TemplateField SortExpression="CategoryName" ItemStyle-Width="100px">
                                         <HeaderTemplate>
-                                            <asp:LinkButton ID="lnkCategoryName" runat="server" CommandArgument="CategoryName" CssClass="header-link" ToolTip="Sort" OnClick="lnkCategory_Click">Name</asp:LinkButton>
+                                            <asp:LinkButton ID="lnkCategoryName" runat="server" CommandArgument="CategoryName" CssClass="header-link" 
+                                                ToolTip="Sort" OnClick="lnkCategory_Click">Name
+                                                <asp:Literal ID="litSortIconName" runat="server"></asp:Literal>
+                                            </asp:LinkButton>
                                         </HeaderTemplate>
                                         <ItemTemplate>
                                             <%# Eval("CategoryName") %>
@@ -136,11 +145,14 @@
 
                                     <asp:TemplateField SortExpression="CreatedDate" ItemStyle-Width="20px">
                                         <HeaderTemplate>
-                                            <asp:LinkButton ID="lnkCreatedDate" runat="server" CommandArgument="CreatedDate" CssClass="header-link" ToolTip="Sort" OnClick="lnkCategory_Click">CreatedDate</asp:LinkButton>
+                                            <asp:LinkButton ID="lnkCreatedDate" runat="server" CommandArgument="CreatedDate" CssClass="header-link" 
+                                                ToolTip="Sort" OnClick="lnkCategory_Click">CreatedDate
+                                                <asp:Literal ID="litSortIconDate" runat="server"></asp:Literal>
+                                            </asp:LinkButton>
                                         </HeaderTemplate>
                                         <ItemTemplate>
                                             <div>
-                                                <%# Convert.ToDateTime(Eval("CreatedDate")).ToString("MM/dd/yyyy") %><br />
+                                                <%# Convert.ToDateTime(Eval("CreatedDate")).ToString("dd/MM/yyyy") %><br />
                                                 <span style="font-size: 0.9em;">
                                                     <%# Convert.ToDateTime(Eval("CreatedDate")).ToString("hh:mm:ss tt") %>
                                                 </span>
@@ -160,8 +172,8 @@
                             </asp:GridView>
                         </div>
                     </div>
-                    <div class="col-5" style="margin-left:45%;margin-bottom:20px">
-                        <asp:Button ID="BtnExport" runat="server" Text="Export To PDF" CssClass="btn btn-success"/>
+                    <div class="col-5" style="margin-left: 45%; margin-bottom: 20px">
+                        <asp:Button ID="BtnExport" runat="server" Text="Export To PDF" CssClass="btn btn-success" OnClick="BtnExport_Click" />
                     </div>
                 </div>
             </div>

@@ -50,8 +50,8 @@
                                     &nbsp;&nbsp;
                                 <asp:Button ID="btnReset" runat="server" Text="Reset" OnClick="btnReset_Click" CssClass="btn btn-dark" />
                                 </div>
-                                <div class="col-6">
-                                    <asp:Image ID="imgProduct" runat="server" CssClass="img-thumbnail" Width="200px" Height="200px" />
+                                <div class="col-6">  
+                                    <asp:Image ID="imgProduct" runat="server" CssClass="img-box" Width="200px" Height="200px" />
                                 </div>
                             </div>
                         </div>
@@ -117,7 +117,10 @@
                                 <Columns>
                                     <asp:TemplateField SortExpression="ProductId" ItemStyle-Width="10px">
                                         <HeaderTemplate>
-                                            <asp:LinkButton ID="lnkProductId" runat="server" CommandArgument="ProductId" CssClass="header-link" ToolTip="Sort" OnClick="lnkProduct_Click">ID</asp:LinkButton>
+                                            <asp:LinkButton ID="lnkProductId" runat="server" CommandArgument="ProductId" CssClass="header-link" 
+                                                ToolTip="Sort" OnClick="lnkProduct_Click">ID
+                                                <asp:Literal ID="litSortIconId" runat="server"></asp:Literal>
+                                            </asp:LinkButton>
                                         </HeaderTemplate>
                                         <ItemTemplate>
                                             <%# Eval("ProductId") %>
@@ -126,7 +129,10 @@
 
                                     <asp:TemplateField SortExpression="ProductName" ItemStyle-Width="100px">
                                         <HeaderTemplate>
-                                            <asp:LinkButton ID="lnkProductName" runat="server" CommandArgument="ProductName" CssClass="header-link" ToolTip="Sort" OnClick="lnkProduct_Click">Name</asp:LinkButton>
+                                            <asp:LinkButton ID="lnkProductName" runat="server" CommandArgument="ProductName" CssClass="header-link" 
+                                                ToolTip="Sort" OnClick="lnkProduct_Click">Name
+                                                <asp:Literal ID="litSortIconName" runat="server"></asp:Literal>
+                                            </asp:LinkButton>
                                         </HeaderTemplate>
                                         <ItemTemplate>
                                             <%# Eval("ProductName") %>
@@ -135,7 +141,10 @@
 
                                     <asp:TemplateField SortExpression="UnitPrice" ItemStyle-Width="30px">
                                         <HeaderTemplate>
-                                            <asp:LinkButton ID="lnkUnitPrice" runat="server" CommandArgument="UnitPrice" CssClass="header-link" ToolTip="Sort" OnClick="lnkProduct_Click">Price(RM)</asp:LinkButton>
+                                            <asp:LinkButton ID="lnkUnitPrice" runat="server" CommandArgument="UnitPrice" CssClass="header-link" 
+                                                ToolTip="Sort" OnClick="lnkProduct_Click">Price(RM)
+                                                <asp:Literal ID="litSortIconPrice" runat="server"></asp:Literal>
+                                            </asp:LinkButton>
                                         </HeaderTemplate>
                                         <ItemTemplate>
                                             <%# Eval("UnitPrice", "{0:N2}") %>
@@ -162,14 +171,16 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="CreatedDate" SortExpression="CreatedDate" ItemStyle-Width="20px">
+                                    <asp:TemplateField SortExpression="CreatedDate" ItemStyle-Width="20px">
                                         <HeaderTemplate>
-                                            <asp:LinkButton ID="lnkSortCreatedDate" runat="server" CommandArgument="CreatedDate"
-                                                Text="Created Date" CssClass="sort-link" />
+                                            <asp:LinkButton ID="lnkCreatedDate" runat="server" CommandArgument="CreatedDate" CssClass="header-link" 
+                                                ToolTip="Sort" OnClick="lnkProduct_Click">CreatedDate
+                                                <asp:Literal ID="litSortIconDate" runat="server"></asp:Literal>
+                                            </asp:LinkButton>
                                         </HeaderTemplate>
                                         <ItemTemplate>
                                             <div>
-                                                <%# Convert.ToDateTime(Eval("CreatedDate")).ToString("MM/dd/yyyy") %><br />
+                                                <%# Convert.ToDateTime(Eval("CreatedDate")).ToString("dd/MM/yyyy") %><br />
                                                 <span style="font-size: 0.9em;">
                                                     <%# Convert.ToDateTime(Eval("CreatedDate")).ToString("hh:mm:ss tt") %>
                                                 </span>
