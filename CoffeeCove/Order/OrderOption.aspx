@@ -109,7 +109,7 @@
         <div id="popupDialog" style="width:90%;margin-top:7%;">
             <div id="map" style="height: 85%; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)"></div>
             <br />
-            <table style="width: 80%;margin-left:auto;margin-right:auto">
+            <table style="width: 80%;margin-left:auto;margin-right:auto;margin-top:20px">
                 <tr>
                     <td>
                         <asp:LinkButton ID="lbClose" runat="server" OnClientClick="closeMap()" CssClass="btnCont" Font-Underline="false">Close</asp:LinkButton>
