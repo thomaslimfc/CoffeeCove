@@ -123,15 +123,6 @@ namespace CoffeeCove.Security
         protected global::System.Web.UI.WebControls.CustomValidator Username_SU_customValidator;
 
         /// <summary>
-        /// UsernameErrorMessage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label UsernameErrorMessage;
-
-        /// <summary>
         /// EmailAdd_SU control.
         /// </summary>
         /// <remarks>
@@ -157,6 +148,15 @@ namespace CoffeeCove.Security
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator EmailAdd_SU_regexValidator;
+
+        /// <summary>
+        /// EmailAdd_SU_customValidator control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator EmailAdd_SU_customValidator;
 
         /// <summary>
         /// EmailAddErrorMessage control.
@@ -310,6 +310,15 @@ namespace CoffeeCove.Security
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCaptchaError;
+
+        /// <summary>
+        /// lblEmailVerification control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEmailVerification;
 
         /// <summary>
         /// SignUpBtn_SU control.

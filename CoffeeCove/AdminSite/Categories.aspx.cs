@@ -10,6 +10,8 @@ using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 using System.Data.Entity.Core.Common.CommandTrees;
 using System.Collections.Concurrent;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
 
 namespace CoffeeCove
 {
@@ -22,8 +24,6 @@ namespace CoffeeCove
             if (!Page.IsPostBack)
             {
                 BindCategory();
-                PositionGlyph(gvCategory, SortExpression, SortDirection);
-
             }
             lblMsg.Visible = false;
         }
@@ -65,7 +65,6 @@ namespace CoffeeCove
                     con.Open();
                     SqlDataReader dr = cmd.ExecuteReader();
 
-                    // Use a DataTable for binding
                     DataTable dt = new DataTable();
                     dt.Load(dr);
 
@@ -77,9 +76,10 @@ namespace CoffeeCove
                         gvCategory.DataSource = null;
                         gvCategory.DataBind();
                     }
+
+                    UpdateSortIcons();
                 }
             }
-            PositionGlyph(gvCategory, SortExpression, SortDirection);
         }
 
         private string SortDirection
@@ -98,77 +98,53 @@ namespace CoffeeCove
         {
             SortDirection = (SortDirection == "ASC") ? "DESC" : "ASC";
 
-            // Update the sort expression to the new column 
             SortExpression = e.SortExpression;
 
             BindCategory();
-            PositionGlyph(gvCategory, SortExpression, SortDirection);
-        }
-
-        private void PositionGlyph(GridView gridView, string currentSortColumn, string currentSortDirection)
-        {
-            if (gridView.HeaderRow == null)
-                return;
-
-            // Remove existing glyphs
-            foreach (TableCell cell in gridView.HeaderRow.Cells)
-            {
-                foreach (Control ctrl in cell.Controls)
-                {
-                    if (ctrl is Image img && img.ID == "sortGlyph")
-                        cell.Controls.Remove(ctrl);
-                }
-            }
-
-            // Create new glyphs for each sortable column
-            foreach (TableCell cell in gridView.HeaderRow.Cells)
-            {
-                if (cell.Controls.OfType<LinkButton>().Any())
-                {
-                    LinkButton linkButton = cell.Controls.OfType<LinkButton>().First();
-                    Image glyph = new Image
-                    {
-                        ID = "sortGlyph",
-                        EnableTheming = false,
-                        Width = Unit.Pixel(10),
-                        Height = Unit.Pixel(10)
-                    };
-
-                    if (string.Compare(currentSortColumn, linkButton.CommandArgument, true) == 0)
-                    {
-                        glyph.ImageUrl = currentSortDirection == "ASC" ? "~/img/up.png" : "~/img/down.png";
-                        glyph.AlternateText = currentSortDirection == "ASC" ? "Ascending" : "Descending";
-                    }
-                    else
-                    {
-                        glyph.ImageUrl = "~/img/up.png";
-                        glyph.AlternateText = "Ascending";
-                    }
-
-                    cell.Controls.Add(glyph);
-                }
-            }
         }
 
         protected void lnkCategory_Click(object sender, EventArgs e)
         {
             if (sender is LinkButton linkButton)
             {
-                // Always toggle the sort direction
-                SortDirection = (SortDirection == "ASC") ? "DESC" : "ASC";
-
-                // Update the sort expression to the column that was clicked
                 SortExpression = linkButton.CommandArgument;
 
-                // Rebind the GridView with the new sorting applied
+                SortDirection = (SortDirection == "ASC" && SortExpression == linkButton.CommandArgument) ? "DESC" : "ASC";
+
                 BindCategory();
-                PositionGlyph(gvCategory, SortExpression, SortDirection);
+            }
+        }
+
+        private void UpdateSortIcons()
+        {
+            Literal litSortIconId = gvCategory.HeaderRow.FindControl("litSortIconId") as Literal;
+            Literal litSortIconName = gvCategory.HeaderRow.FindControl("litSortIconName") as Literal;
+            Literal litSortIconDate = gvCategory.HeaderRow.FindControl("litSortIconDate") as Literal;
+
+            string defaultIcon = "<i class='bi bi-caret-up-fill'></i>";
+            string ascendingIcon = "<i class='bi bi-caret-up-fill'></i>";
+            string descendingIcon = "<i class='bi bi-caret-down-fill'></i>";
+
+            litSortIconId.Text = defaultIcon;
+            litSortIconName.Text = defaultIcon;
+            litSortIconDate.Text = defaultIcon;
+
+            if (SortExpression == "CategoryId")
+            {
+                litSortIconId.Text = (SortDirection == "ASC") ? ascendingIcon : descendingIcon;
+            }
+            else if (SortExpression == "CategoryName")
+            {
+                litSortIconName.Text = (SortDirection == "ASC") ? ascendingIcon : descendingIcon;
+            }
+            else if (SortExpression == "CreatedDate")
+            {
+                litSortIconDate.Text = (SortDirection == "ASC") ? ascendingIcon : descendingIcon;
             }
         }
 
         protected void gvCategory_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            // Set the new page index
             gvCategory.PageIndex = e.NewPageIndex;
 
             BindCategory();
@@ -181,7 +157,6 @@ namespace CoffeeCove
 
         protected void ddlPageSize_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Get the selected page size from the dropdown list
             gvCategory.PageSize = int.Parse(ddlPageSize.SelectedValue);
 
             BindCategory();
@@ -314,7 +289,7 @@ namespace CoffeeCove
                 fuCategoryImage.SaveAs(filePath);
                 return "/img/Category/" + fileName;
             }
-            return null; // Return null if no image uploaded
+            return null;
         }
 
         private void DeleteCategory(int categoryId)
@@ -328,8 +303,6 @@ namespace CoffeeCove
                     con.Open();
                     cmd.ExecuteNonQuery();
                 }
-
-                // reorder the remaining categories
                 string sqlReorder = "UPDATE Category SET CategoryId = CategoryId - 1 WHERE CategoryId > @CategoryId";
                 using (SqlCommand cmd = new SqlCommand(sqlReorder, con))
                 {
@@ -353,7 +326,6 @@ namespace CoffeeCove
 
                 if (hdnId.Value != "0")
                 {
-                    // Edit existing category
                     if (fuCategoryImage.HasFile)
                     {
                         categoryImageUrl = UploadImage();
@@ -411,7 +383,6 @@ namespace CoffeeCove
             lblMsg.Text = message;
             lblMsg.Visible = true;
 
-            // Hide the message after a delay using a client-side script
             ScriptManager.RegisterStartupScript(this, GetType(), "hideMessage", "setTimeout(function() { document.getElementById('" + lblMsg.ClientID + "').style.display = 'none'; }, 3000);", true);
         }
 
@@ -426,11 +397,9 @@ namespace CoffeeCove
         {
             txtSearch.Text = string.Empty;
 
-            // Reset the sorting settings
-            SortExpression = "CategoryId"; // Default sorting column
-            SortDirection = "ASC"; // Default sorting direction
+            SortExpression = "CategoryId";
+            SortDirection = "ASC";
 
-            // Reset page index
             gvCategory.PageIndex = 0;
 
             BindCategory();
@@ -464,6 +433,82 @@ namespace CoffeeCove
             return getitem;
         }
 
+        protected void BtnExport_Click(object sender, EventArgs e)
+        {
+            // Set up PDF response properties
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("content-disposition", "attachment;filename=Category.pdf");
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
+            // Query to fetch only the required columns and count products
+            string sql = @"
+        SELECT 
+            c.CategoryId, 
+            c.CategoryName, 
+            c.CreatedDate, 
+            COUNT(p.ProductId) AS TotalProduct 
+        FROM 
+            Category c 
+        LEFT JOIN 
+            Product p ON c.CategoryId = p.CategoryId 
+        GROUP BY 
+            c.CategoryId, c.CategoryName, c.CreatedDate";
+
+            DataTable dt = new DataTable();
+
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    con.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    dt.Load(dr);
+                }
+            }
+
+            // Set up iTextSharp PDF document
+            Document pdfdoc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
+            PdfWriter.GetInstance(pdfdoc, Response.OutputStream);
+            pdfdoc.Open();
+
+            // Add a title to the PDF
+            pdfdoc.Add(new Paragraph("Category Report"));
+            pdfdoc.Add(new Paragraph(" ")); // blank space
+
+            // Create a table in the PDF
+            PdfPTable pdfTable = new PdfPTable(4); // 4 columns: CategoryId, CategoryName, CreatedDate, Total Product
+            pdfTable.WidthPercentage = 100;
+            pdfTable.SetWidths(new float[] { 1f, 2f, 2f, 1f });
+
+            // Add table headers
+            pdfTable.AddCell(new PdfPCell(new Phrase("Category ID")) { HorizontalAlignment = Element.ALIGN_CENTER });
+            pdfTable.AddCell(new PdfPCell(new Phrase("Category Name")) { HorizontalAlignment = Element.ALIGN_CENTER });
+            pdfTable.AddCell(new PdfPCell(new Phrase("Created Date")) { HorizontalAlignment = Element.ALIGN_CENTER });
+            pdfTable.AddCell(new PdfPCell(new Phrase("Total Product")) { HorizontalAlignment = Element.ALIGN_CENTER });
+
+            // Loop through the DataTable and add the data to the PDF table
+            foreach (DataRow row in dt.Rows)
+            {
+                pdfTable.AddCell(new PdfPCell(new Phrase(row["CategoryId"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
+                pdfTable.AddCell(new PdfPCell(new Phrase(row["CategoryName"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
+                pdfTable.AddCell(new PdfPCell(new Phrase(Convert.ToDateTime(row["CreatedDate"]).ToString("dd/MM/yyyy"))) { HorizontalAlignment = Element.ALIGN_CENTER });
+                pdfTable.AddCell(new PdfPCell(new Phrase(row["TotalProduct"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
+            }
+
+            // Add the table to the document
+            pdfdoc.Add(pdfTable);
+
+            // Close the PDF document and output the file
+            pdfdoc.Close();
+            Response.Write(pdfdoc);
+            Response.End();
+        }
+
+
+
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+
+        }
     }
 }
