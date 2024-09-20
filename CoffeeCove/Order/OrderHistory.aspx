@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Customer.Master" AutoEventWireup="true" CodeBehind="orderHistory.aspx.cs" Inherits="CoffeeCove.Order.OrderHistory" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Customer.Master" AutoEventWireup="true" CodeFile="orderHistory.aspx.cs" Inherits="CoffeeCove.Order.OrderHistory" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
     <link href="../CSS/OrderHistory.css" rel="stylesheet" />
     <div class="Content">
@@ -15,6 +15,7 @@
                         <div class="orderHeader">
                             <h4>Order ID: <%# Eval("OrderID") %></h4>
                             <p>Order Date: <%# Eval("OrderDateTime", "{0:dd-MM-yyyy}") %></p>
+                            <p><strong>Order Status:</strong> <%# Eval("OrderStatus") %></p>
                         </div>
 
                         <!-- Product Information -->
@@ -45,6 +46,7 @@
 
                         <!-- Track Order Button -->
                         <div class="trackOrderButton">
+                            <asp:Button ID="RatingButton" runat="server" Text="Rate Order" CssClass="btnCont" Visible="false" CommandArgument='<%# Eval("OrderID") %>' OnClick="RatingButton_Click" />
                             <asp:Button ID="TrackOrderButton" runat="server" Text="Track Order" CommandArgument='<%# Eval("OrderID") %>' OnClick="TrackOrderButton_Click" CssClass="btnCont" />
                         </div>
                     </div>

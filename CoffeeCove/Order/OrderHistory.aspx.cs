@@ -36,13 +36,22 @@ namespace CoffeeCove.Order
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                // Get the current OrderID
+                // Get the current OrderID and OrderStatus
                 int orderId = Convert.ToInt32(DataBinder.Eval(e.Item.DataItem, "OrderID"));
+                string orderStatus = DataBinder.Eval(e.Item.DataItem, "OrderStatus").ToString();
 
-                // Find the nested repeater (ProductListRepeater)
+                // Find the RatingButton and TrackOrderButton controls
+                Button ratingButton = (Button)e.Item.FindControl("RatingButton");
+
+                // Check if the order status is 'Order Delivered'
+                if (orderStatus == "Order Delivered")
+                {
+                    // Show the Rating button for orders that are delivered
+                    ratingButton.Visible = true;
+                }
+
+                // Find the nested repeater (ProductListRepeater) and bind product data for this order
                 Repeater productListRepeater = (Repeater)e.Item.FindControl("ProductListRepeater");
-
-                // Bind product data for this order
                 BindProductList(orderId, productListRepeater);
             }
         }
@@ -72,6 +81,18 @@ namespace CoffeeCove.Order
             var button = (Button)sender;
             string orderId = button.CommandArgument;
             Response.Redirect($"OrderTracking.aspx?OrderID={orderId}");
+        }
+
+        protected void RatingButton_Click(object sender, EventArgs e)
+        {
+            // Get the button that triggered the event
+            Button ratingButton = (Button)sender;
+
+            // Get the OrderID from the CommandArgument
+            string orderId = ratingButton.CommandArgument;
+
+            // Redirect to the rating page, passing the OrderID as a query parameter
+            Response.Redirect($"RateOrder.aspx?OrderID={orderId}");
         }
     }
 }
