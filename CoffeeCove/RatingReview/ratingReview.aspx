@@ -83,7 +83,6 @@
                         
                     </div>
                 </div>
-
                 <div id="ratingReviewContainer" class="bg-white rounded shadow-sm p-4 mb-4 restaurant-detailed-ratings-and-reviews">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h5 class="mb-1">All Ratings and Reviews</h5>

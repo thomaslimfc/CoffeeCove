@@ -1,46 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\",
+  "WorkspaceRootPath": "C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|d:\\visual studio work\\coffeecove\\coffeecove\\coffeecove\\adminsite\\review.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:adminsite\\review.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\adminsite\\review.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:adminsite\\review.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\ratingreview\\ratingreview.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:ratingreview\\ratingreview.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\ratingreview\\ratingreview.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:ratingreview\\ratingreview.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\css\\review.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:css\\review.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\css\\orderhistory.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:css\\orderhistory.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\order\\orderhistory.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:order\\orderhistory.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\order\\orderhistory.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|c:\\users\\thamq\\onedrive\\\u684C\u9762\\assignment\\web\\staffee\\coffeecove\\order\\orderhistory.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:order\\orderhistory.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\payment\\paymentopt.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:payment\\paymentopt.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|c:\\users\\thamq\\onedrive\\\u684C\u9762\\assignment\\web\\staffee\\coffeecove\\order\\orderoption.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:order\\orderoption.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\payment\\paymentopt.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
-      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:payment\\paymentopt.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|c:\\users\\thamq\\onedrive\\\u684C\u9762\\assignment\\web\\staffee\\coffeecove\\order\\orderoption.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:order\\orderoption.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|c:\\users\\thamq\\onedrive\\\u684C\u9762\\assignment\\web\\staffee\\coffeecove\\order\\getlocation.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:order\\getlocation.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,15 +26,45 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 17,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "orderHistory.aspx",
+              "DocumentMoniker": "C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\Order\\OrderHistory.aspx",
+              "RelativeDocumentMoniker": "Order\\OrderHistory.aspx",
+              "ToolTip": "C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\Order\\OrderHistory.aspx",
+              "RelativeToolTip": "Order\\OrderHistory.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-09-20T15:36:32.342Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "OrderOption.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\Order\\OrderOption.aspx.cs",
+              "RelativeDocumentMoniker": "Order\\OrderOption.aspx.cs",
+              "ToolTip": "C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\Order\\OrderOption.aspx.cs",
+              "RelativeToolTip": "Order\\OrderOption.aspx.cs",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAiwFkAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-20T15:35:17.21Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Bookmark",
@@ -74,10 +80,6 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Bookmark",
               "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
             },
             {
@@ -87,10 +89,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
               "$type": "Bookmark",
@@ -105,133 +103,37 @@
               "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Review.css",
-              "DocumentMoniker": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\CSS\\Review.css",
-              "RelativeDocumentMoniker": "CSS\\Review.css",
-              "ToolTip": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\CSS\\Review.css",
-              "RelativeToolTip": "CSS\\Review.css",
-              "ViewState": "AgIAAEsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-09-20T08:04:30.346Z",
+              "DocumentIndex": 1,
+              "Title": "OrderOption.aspx",
+              "DocumentMoniker": "C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\Order\\OrderOption.aspx",
+              "RelativeDocumentMoniker": "Order\\OrderOption.aspx",
+              "ToolTip": "C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\Order\\OrderOption.aspx",
+              "RelativeToolTip": "Order\\OrderOption.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-09-20T15:35:31.089Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "ratingReview.aspx.cs",
-              "DocumentMoniker": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\RatingReview\\RatingReview.aspx.cs",
-              "RelativeDocumentMoniker": "RatingReview\\RatingReview.aspx.cs",
-              "ToolTip": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\RatingReview\\RatingReview.aspx.cs",
-              "RelativeToolTip": "RatingReview\\RatingReview.aspx.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T11:20:20.94Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ratingReview.aspx",
-              "DocumentMoniker": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\RatingReview\\ratingReview.aspx",
-              "RelativeDocumentMoniker": "RatingReview\\ratingReview.aspx",
-              "ToolTip": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\RatingReview\\ratingReview.aspx",
-              "RelativeToolTip": "RatingReview\\ratingReview.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-09-19T11:20:18.14Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Review.aspx.cs",
-              "DocumentMoniker": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\AdminSite\\Review.aspx.cs",
-              "RelativeDocumentMoniker": "AdminSite\\Review.aspx.cs",
-              "ToolTip": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\AdminSite\\Review.aspx.cs",
-              "RelativeToolTip": "AdminSite\\Review.aspx.cs",
-              "ViewState": "AgIAACYAAAAAAAAAAAAYwBsAAAATAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-19T11:19:07.494Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Review.aspx",
-              "DocumentMoniker": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\AdminSite\\Review.aspx",
-              "RelativeDocumentMoniker": "AdminSite\\Review.aspx",
-              "ToolTip": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\AdminSite\\Review.aspx",
-              "RelativeToolTip": "AdminSite\\Review.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-09-19T11:18:58.07Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "OrderHistory.css",
-              "DocumentMoniker": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\CSS\\OrderHistory.css",
-              "RelativeDocumentMoniker": "CSS\\OrderHistory.css",
-              "ToolTip": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\CSS\\OrderHistory.css",
-              "RelativeToolTip": "CSS\\OrderHistory.css",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFcAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-09-17T16:27:40.67Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "orderHistory.aspx.cs",
-              "DocumentMoniker": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\Order\\OrderHistory.aspx.cs",
-              "RelativeDocumentMoniker": "Order\\OrderHistory.aspx.cs",
-              "ToolTip": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\Order\\OrderHistory.aspx.cs",
-              "RelativeToolTip": "Order\\OrderHistory.aspx.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAowDAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-17T16:17:48.179Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "orderHistory.aspx",
-              "DocumentMoniker": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\Order\\OrderHistory.aspx",
-              "RelativeDocumentMoniker": "Order\\OrderHistory.aspx",
-              "ToolTip": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\Order\\OrderHistory.aspx",
-              "RelativeToolTip": "Order\\OrderHistory.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-09-17T16:17:45.833Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "paymentOpt.aspx.cs",
-              "DocumentMoniker": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\Payment\\paymentOpt.aspx.cs",
-              "RelativeDocumentMoniker": "Payment\\paymentOpt.aspx.cs",
-              "ToolTip": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\Payment\\paymentOpt.aspx.cs",
-              "RelativeToolTip": "Payment\\paymentOpt.aspx.cs",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAswCAAAAA/AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-03T15:19:31.599Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "paymentOpt.aspx",
-              "DocumentMoniker": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\Payment\\paymentOpt.aspx",
-              "RelativeDocumentMoniker": "Payment\\paymentOpt.aspx",
-              "ToolTip": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\Payment\\paymentOpt.aspx",
-              "RelativeToolTip": "Payment\\paymentOpt.aspx",
-              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-09-03T13:55:39.84Z",
+              "Title": "getLocation.js",
+              "DocumentMoniker": "C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\Order\\getLocation.js",
+              "RelativeDocumentMoniker": "Order\\getLocation.js",
+              "ToolTip": "C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\Order\\getLocation.js",
+              "RelativeToolTip": "Order\\getLocation.js",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAYwFMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-09-20T15:35:18.843Z",
               "EditorCaption": ""
             }
           ]
