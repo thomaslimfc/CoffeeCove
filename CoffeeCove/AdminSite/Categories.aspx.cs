@@ -10,6 +10,8 @@ using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 using System.Data.Entity.Core.Common.CommandTrees;
 using System.Collections.Concurrent;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
 
 namespace CoffeeCove
 {
@@ -429,6 +431,84 @@ namespace CoffeeCove
             }
 
             return getitem;
+        }
+
+        protected void BtnExport_Click(object sender, EventArgs e)
+        {
+            // Set up PDF response properties
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("content-disposition", "attachment;filename=Category.pdf");
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+
+            // Query to fetch only the required columns and count products
+            string sql = @"
+        SELECT 
+            c.CategoryId, 
+            c.CategoryName, 
+            c.CreatedDate, 
+            COUNT(p.ProductId) AS TotalProduct 
+        FROM 
+            Category c 
+        LEFT JOIN 
+            Product p ON c.CategoryId = p.CategoryId 
+        GROUP BY 
+            c.CategoryId, c.CategoryName, c.CreatedDate";
+
+            DataTable dt = new DataTable();
+
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    con.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    dt.Load(dr);
+                }
+            }
+
+            // Set up iTextSharp PDF document
+            Document pdfdoc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
+            PdfWriter.GetInstance(pdfdoc, Response.OutputStream);
+            pdfdoc.Open();
+
+            // Add a title to the PDF
+            pdfdoc.Add(new Paragraph("Category Report"));
+            pdfdoc.Add(new Paragraph(" ")); // blank space
+
+            // Create a table in the PDF
+            PdfPTable pdfTable = new PdfPTable(4); // 4 columns: CategoryId, CategoryName, CreatedDate, Total Product
+            pdfTable.WidthPercentage = 100;
+            pdfTable.SetWidths(new float[] { 1f, 2f, 2f, 1f });
+
+            // Add table headers
+            pdfTable.AddCell(new PdfPCell(new Phrase("Category ID")) { HorizontalAlignment = Element.ALIGN_CENTER });
+            pdfTable.AddCell(new PdfPCell(new Phrase("Category Name")) { HorizontalAlignment = Element.ALIGN_CENTER });
+            pdfTable.AddCell(new PdfPCell(new Phrase("Created Date")) { HorizontalAlignment = Element.ALIGN_CENTER });
+            pdfTable.AddCell(new PdfPCell(new Phrase("Total Product")) { HorizontalAlignment = Element.ALIGN_CENTER });
+
+            // Loop through the DataTable and add the data to the PDF table
+            foreach (DataRow row in dt.Rows)
+            {
+                pdfTable.AddCell(new PdfPCell(new Phrase(row["CategoryId"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
+                pdfTable.AddCell(new PdfPCell(new Phrase(row["CategoryName"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
+                pdfTable.AddCell(new PdfPCell(new Phrase(Convert.ToDateTime(row["CreatedDate"]).ToString("dd/MM/yyyy"))) { HorizontalAlignment = Element.ALIGN_CENTER });
+                pdfTable.AddCell(new PdfPCell(new Phrase(row["TotalProduct"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
+            }
+
+            // Add the table to the document
+            pdfdoc.Add(pdfTable);
+
+            // Close the PDF document and output the file
+            pdfdoc.Close();
+            Response.Write(pdfdoc);
+            Response.End();
+        }
+
+
+
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+
         }
     }
 }
