@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -9,6 +10,8 @@ namespace CoffeeCove.Order
 {
     public partial class OrderTracking : System.Web.UI.Page
     {
+        string cs = Global.CS;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -16,9 +19,65 @@ namespace CoffeeCove.Order
                 string orderId = Request.QueryString["OrderID"];
                 if (!string.IsNullOrEmpty(orderId))
                 {
-                    // Set the OrderID in the label or literal
+                    // Set the OrderID in the literal
                     OrderIdLiteral.Text = $"#{orderId}";
+
+                    // Fetch and display the progress bar based on the order status
+                    LoadOrderStatus(Convert.ToInt32(orderId));
                 }
+            }
+        }
+
+        private void LoadOrderStatus(int orderId)
+        {
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                string query = "SELECT OrderStatus FROM OrderPlaced WHERE OrderID = @OrderID";
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@OrderID", orderId);
+                    con.Open();
+                    string orderStatus = cmd.ExecuteScalar()?.ToString();
+
+                    if (!string.IsNullOrEmpty(orderStatus))
+                    {
+                        SetProgressBar(orderStatus);
+                    }
+                }
+            }
+        }
+
+        private void SetProgressBar(string orderStatus)
+        {
+            switch (orderStatus)
+            {
+                case "Order Received":
+                    progressbarStep1.Attributes.Add("class", "active step0");
+                    progressbarStep2.Attributes.Add("class", "step0");
+                    progressbarStep3.Attributes.Add("class", "step0");
+                    progressbarStep4.Attributes.Add("class", "step0");
+                    break;
+
+                case "Preparing Your Meal":
+                    progressbarStep1.Attributes.Add("class", "active step0");
+                    progressbarStep2.Attributes.Add("class", "active step0");
+                    progressbarStep3.Attributes.Add("class", "step0");
+                    progressbarStep4.Attributes.Add("class", "step0");
+                    break;
+
+                case "Your Order is Out for Delivery":
+                    progressbarStep1.Attributes.Add("class", "active step0");
+                    progressbarStep2.Attributes.Add("class", "active step0");
+                    progressbarStep3.Attributes.Add("class", "active step0");
+                    progressbarStep4.Attributes.Add("class", "step0");
+                    break;
+
+                case "Order Delivered":
+                    progressbarStep1.Attributes.Add("class", "active step0");
+                    progressbarStep2.Attributes.Add("class", "active step0");
+                    progressbarStep3.Attributes.Add("class", "active step0");
+                    progressbarStep4.Attributes.Add("class", "active step0");
+                    break;
             }
         }
 
@@ -48,7 +107,11 @@ namespace CoffeeCove.Order
 
         protected void InvoiceButton_Click(object sender, EventArgs e)
         {
-            Response.Redirect("OrderInvoice.aspx");
+            string orderId = Request.QueryString["OrderID"];
+            if (!string.IsNullOrEmpty(orderId))
+            {
+                Response.Redirect($"OrderInvoice.aspx?OrderID={orderId}");
+            }
         }
     }
 }

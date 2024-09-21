@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Customer.Master" AutoEventWireup="true" CodeFile="orderHistory.aspx.cs" Inherits="CoffeeCove.Order.OrderHistory" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Customer.Master" AutoEventWireup="true" CodeBehind="orderHistory.aspx.cs" Inherits="CoffeeCove.Order.OrderHistory" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
     <link href="../CSS/OrderHistory.css" rel="stylesheet" />
     <div class="Content">

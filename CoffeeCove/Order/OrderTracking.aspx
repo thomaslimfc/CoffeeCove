@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Customer.Master" AutoEventWireup="true" CodeBehind="OrderTracking.aspx.cs" Inherits="CoffeeCove.Order.OrderTracking" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Customer.Master" AutoEventWireup="true" CodeFile="OrderTracking.aspx.cs" Inherits="CoffeeCove.Order.OrderTracking" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
     <link href="../CSS/trackingBootstrap.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
@@ -21,10 +21,10 @@
                 <div class="row d-flex justify-content-center">
                     <div class="col-12">
                         <ul id="progressbar" class="text-center">
-                            <li class="active step0"></li>
-                            <li class="active step0"></li>
-                            <li class="active step0"></li>
-                            <li class="step0"></li>
+                            <li id="progressbarStep1" runat="server" class="step0"></li>
+                            <li id="progressbarStep2" runat="server" class="step0"></li>
+                            <li id="progressbarStep3" runat="server" class="step0"></li>
+                            <li id="progressbarStep4" runat="server" class="step0"></li>
                         </ul>
                     </div>
                 </div>

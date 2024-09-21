@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Customer.Master" AutoEventWireup="true" CodeFile="comment.aspx.cs" Inherits="CoffeeCove.RatingReview.comment" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Customer.Master" AutoEventWireup="true" CodeBehind="comment.aspx.cs" Inherits="CoffeeCove.RatingReview.comment" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
     <link href="../CSS/ratingBootstrap.css" rel="stylesheet" />
     <link href="../CSS/LeaveAComment.css" rel="stylesheet" />
