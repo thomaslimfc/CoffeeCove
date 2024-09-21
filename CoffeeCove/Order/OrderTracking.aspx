@@ -9,7 +9,7 @@
             <div class="card">
                 <div class="row d-flex justify-content-between px-3 top">
                     <div class="d-flex">
-                        <h5>ORDER <span class="text-primary font-weight-bold"><asp:Literal ID="OrderIdLiteral" runat="server"></asp:Literal></span></h5>
+                        <h5>ORDER #<span class="text-primary font-weight-bold"><asp:Literal ID="OrderIdLiteral" runat="server"></asp:Literal></span></h5>
                     </div>
                     <div class="d-flex flex-column text-sm-right">
                         <p class="mb-0">Expected Arrival <span>01/12/19</span></p>

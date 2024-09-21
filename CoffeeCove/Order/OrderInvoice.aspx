@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Customer.Master" AutoEventWireup="true" CodeBehind="OrderInvoice.aspx.cs" Inherits="CoffeeCove.Order.OrderInvoice" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Customer.Master" AutoEventWireup="true" CodeFile="OrderInvoice.aspx.cs" Inherits="CoffeeCove.Order.OrderInvoice" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
     <link href="../CSS/OrderInvoice.css" rel="stylesheet" />
     <div class="outside-container">
@@ -6,7 +6,7 @@
             <div class="invoice-header">
                 <h1>INVOICE</h1>
                 <div class="invoice-meta">
-                    <p>Invoice Number: 1</p>
+                    <p>Invoice Number: <asp:Literal ID="OrderIdLiteral" runat="server"></asp:Literal></p>
                     <p>Invoice Date: 08/24/2024</p>
                 </div>
             </div>

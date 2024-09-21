@@ -20,7 +20,7 @@ namespace CoffeeCove.Order
                 if (!string.IsNullOrEmpty(orderId))
                 {
                     // Set the OrderID in the literal
-                    OrderIdLiteral.Text = $"#{orderId}";
+                    OrderIdLiteral.Text = $"{orderId}";
 
                     // Fetch and display the progress bar based on the order status
                     LoadOrderStatus(Convert.ToInt32(orderId));
