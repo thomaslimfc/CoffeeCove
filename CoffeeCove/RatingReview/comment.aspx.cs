@@ -13,18 +13,32 @@ namespace CoffeeCove.RatingReview
     {
         string cs = Global.CS;
 
-        int paymentID = 1;
         int customerID = 11;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                LoadPreviousReview();
+                // Retrieve the PaymentID from the query string
+                string paymentIDQuery = Request.QueryString["OrderID"];
+
+                if (!string.IsNullOrEmpty(paymentIDQuery) && int.TryParse(paymentIDQuery, out int paymentID))
+                {
+                    // Save the PaymentID in a ViewState or field for later use
+                    ViewState["PaymentID"] = paymentID;
+
+                    // Load previous review if it exists
+                    LoadPreviousReview(paymentID);
+                }
+                else
+                {
+                    // Handle case when PaymentID is invalid or missing
+                    Response.Redirect("~/Order/OrderHistory.aspx");
+                }
             }
         }
 
-        private void LoadPreviousReview()
+        private void LoadPreviousReview(int paymentID)
         {
             using (SqlConnection conn = new SqlConnection(cs))
             {
@@ -46,6 +60,12 @@ namespace CoffeeCove.RatingReview
                         rblRating.SelectedValue = reader["RatingScore"].ToString();
                         txtComment.Text = reader["ReviewContent"].ToString();
                     }
+                    else
+                    {
+                        // No previous review found, keep the fields empty
+                        rblRating.ClearSelection();
+                        txtComment.Text = string.Empty;
+                    }
                 }
             }
         }
@@ -57,6 +77,8 @@ namespace CoffeeCove.RatingReview
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            int paymentID = Convert.ToInt32(ViewState["PaymentID"]);
+
             // Retrieve form data
             int ratingScore = Convert.ToInt32(rblRating.SelectedValue);
             string reviewContent = txtComment.Text.Trim();

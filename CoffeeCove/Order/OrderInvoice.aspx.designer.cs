@@ -24,6 +24,60 @@ namespace CoffeeCove.Order
         protected global::System.Web.UI.WebControls.Literal OrderIdLiteral;
 
         /// <summary>
+        /// InvoiceDateLiteral control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal InvoiceDateLiteral;
+
+        /// <summary>
+        /// ProductTable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater ProductTable;
+
+        /// <summary>
+        /// NoProductsMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label NoProductsMessage;
+
+        /// <summary>
+        /// InvoiceSubtotal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label InvoiceSubtotal;
+
+        /// <summary>
+        /// InvoiceTax control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label InvoiceTax;
+
+        /// <summary>
+        /// InvoiceTotal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label InvoiceTotal;
+
+        /// <summary>
         /// BackButton control.
         /// </summary>
         /// <remarks>

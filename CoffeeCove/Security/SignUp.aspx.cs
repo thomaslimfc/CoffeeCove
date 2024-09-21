@@ -126,8 +126,8 @@ namespace CoffeeCove.Security
                         ContactNo = ContactNo_SU.Text,
                         Gender = Gender_SU.SelectedValue,
                         ResidenceState = location.SelectedValue,
-                        VerificationToken = verificationToken,
-                        VerificationStatus = false
+                        // VerificationToken = verificationToken,
+                        // VerificationStatus = false
                     };
 
                     db.Customers.Add(newCust);

@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Customer.Master" AutoEventWireup="true" CodeBehind="orderHistory.aspx.cs" Inherits="CoffeeCove.Order.OrderHistory" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link href="../CSS/OrderHistory.css" rel="stylesheet" />
     <div class="Content">
         <div class="pagetitle">
@@ -42,6 +43,14 @@
                                     </div>
                                 </FooterTemplate>
                             </asp:Repeater>
+                        </div>
+
+                        <div class="reviewSection" runat="server" id="ReviewSection" visible="false">
+                            <div class="rating-stars mt-2">
+                                <p><strong>Rate for order: </strong><asp:PlaceHolder ID="phStars" runat="server"></asp:PlaceHolder></p>
+                                
+                            </div>
+                            <p><strong>Comment:</strong> <asp:Literal ID="ReviewContent" runat="server"></asp:Literal></p>
                         </div>
 
                         <!-- Track Order Button -->

@@ -7,7 +7,7 @@
                 <h1>INVOICE</h1>
                 <div class="invoice-meta">
                     <p>Invoice Number: <asp:Literal ID="OrderIdLiteral" runat="server"></asp:Literal></p>
-                    <p>Invoice Date: 08/24/2024</p>
+                    <p>Invoice Date: <asp:Literal ID="InvoiceDateLiteral" runat="server"></asp:Literal></p>
                 </div>
             </div>
             <div class="note">
@@ -38,32 +38,31 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>10</td>
-                        <td>Eggs In Purgatory</td>
-                        <td>RM12.50</td>
-                        <td>RM125</td>
-                    </tr>
-                    <tr>
-                        <td>10</td>
-                        <td>Prosciutto & Fontina On Cornetto</td>
-                        <td>RM10</td>
-                        <td>RM100</td>
-                    </tr>
+                    <asp:Repeater ID="ProductTable" runat="server">
+                        <ItemTemplate>
+                            <tr>
+                                <td><%# Eval("Quantity") %></td>
+                                <td><%# Eval("ProductName") %></td>
+                                <td>RM<%# Eval("Price") %></td>
+                                <td>RM<%# Eval("Subtotal") %></td>
+                            </tr>
+                        </ItemTemplate>
+                    </asp:Repeater>
                 </tbody>
             </table>
+            
+            <asp:Label ID="NoProductsMessage" runat="server" Text="No products found for this order." Visible="false" CssClass="no-products-msg"></asp:Label>
+
             <div class="invoice-footer">
                 <div class="amount-details">
-                    <p>Subtotal: <span>RM225</span></p>
-                    <p>Discount: <span>RM0</span></p>
-                    <p>Tax: <span>RM0</span></p>
-                    <p>Shipment: <span>RM0</span></p>
-                    <p>Total: <span>RM225</span></p>
+                    <p>Subtotal: <span><asp:Label ID="InvoiceSubtotal" runat="server" Text="RM0.00"></asp:Label></span></p>
+                    <p>Tax(6%): <span><asp:Label ID="InvoiceTax" runat="server" Text="RM0.00"></asp:Label></span></p>
+                    <p>Total: <span><asp:Label ID="InvoiceTotal" runat="server" Text="RM0.00"></asp:Label></span></p>
                 </div>
             </div>
             <div class="print-button">
                 <asp:Button ID="BackButton" runat="server" Text="Back" CssClass="btnBack" OnClick="BackButton_Click" />
-                <asp:Button ID="PrintButton" runat="server" Text="Print" CssClass="btnCont"/>
+                <asp:Button ID="PrintButton" runat="server" Text="Print" CssClass="btnCont" OnClick="PrintButton_Click"/>
             </div>
         </div>
     </div>
