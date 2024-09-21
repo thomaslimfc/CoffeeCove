@@ -2,8 +2,184 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
     <link href="../CSS/orderOpt.css" rel="stylesheet" />
-    <script src="getLocation.js"></script>
+    <script type="text/javascript">
+        var streetAddress = "";
+        var postcode = "";
+        var addressComponents;
 
+        function getLocation() {
+            document.getElementById("overlay").style.display = "block";
+            document.getElementById("popupDialog").style.display = "block";
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(handleLocation, handleError);
+
+            }
+            else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function handleLocation(position) {
+            streetAddress = "";
+            postcode = "";
+
+            var latMap = position.coords.latitude;
+            var lonMap = position.coords.longitude;
+
+            var userLocation = { lat: latMap, lng: lonMap };
+            var geocoder = new google.maps.Geocoder();
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: userLocation,
+                zoom: 15
+            });
+
+
+            var marker = new google.maps.Marker({
+                position: userLocation,
+                map: map,
+                draggable: true,
+                title: 'Your Location!'
+            });
+
+            geocoder.geocode({ 'location': userLocation }, function (results, status) {
+                if (status === 'OK') {
+                    if (results[0]) {
+                        addressComponents = results[0].address_components;
+
+
+                        for (var i = 0; i < addressComponents.length; i++) {
+                            var component = addressComponents[i];
+
+                            if (component.types.includes("route") || component.types.includes("street_number")) {
+                                streetAddress += component.long_name + " ";
+                            }
+
+                            if (component.types.includes("postal_code")) {
+                                postcode = component.long_name;
+                            }
+                        }
+
+                        document.getElementById("<%= txtAddress1.ClientID %>").value = streetAddress.trim();
+                        document.getElementById("<%= txtPostCode.ClientID %>").value = postcode;
+
+                    } else {
+                        alert("No results found");
+                    }
+                } else {
+                    alert("Geocoder failed due to: " + status);
+                }
+            });
+
+
+
+            map.addListener('click', function (event) {
+                moveMarker(event.latLng);
+            });
+
+            
+            marker.addListener('dragend', function (event) {
+                updateLocation(event.latLng);
+            });
+        }
+
+        function moveMarker(location) {
+            marker.setPosition(location);
+            updateLocation(location);
+        }
+
+        function updateLocation(location) {
+            streetAddress = "";
+            postcode = "";
+
+            var latMap = location.lat(); 
+            var lonMap = location.lng(); 
+
+            var userLocation = { lat: latMap, lng: lonMap };
+            var geocoder = new google.maps.Geocoder();
+
+            geocoder.geocode({ 'location': userLocation }, function (results, status) {
+                if (status === 'OK') {
+                    if (results[0]) {
+                        addressComponents = results[0].address_components;
+
+
+                        for (var i = 0; i < addressComponents.length; i++) {
+                            var component = addressComponents[i];
+
+                            if (component.types.includes("route") || component.types.includes("street_number")) {
+                                streetAddress += component.long_name + " ";
+                            }
+
+                            if (component.types.includes("postal_code")) {
+                                postcode = component.long_name;
+                            }
+                        }
+
+                        document.getElementById("<%= txtAddress1.ClientID %>").value = streetAddress.trim();
+                document.getElementById("<%= txtPostCode.ClientID %>").value = postcode;
+
+                    } else {
+                        alert("No results found");
+                    }
+                } else {
+                    alert("Geocoder failed due to: " + status);
+                }
+            });
+        }
+
+        function handleError(error) {
+            switch (error.code) {
+                case error.TIMEOUT:
+                    alert('Timeout');
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert('Position unavailable');
+                    break;
+                case error.PERMISSION_DENIED:
+                    alert('Permission denied');
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert('Unknown error');
+                    break;
+            }
+        }
+
+        function closeMap(event) {
+
+            if (event) {
+                event.preventDefault();
+            }
+     
+
+            document.getElementById("overlay").style.display = "none";
+            document.getElementById("popupDialog").style.display = "none";
+
+            var txtAddress1 = document.getElementById("<%= txtAddress1.ClientID %>"); 
+            var txtPostCode = document.getElementById("<%= txtPostCode.ClientID %>");
+
+            if (streetAddress !== "") {
+                txtAddress1.value = streetAddress.trim();
+                txtPvstCode.value = postcode;
+            } else {
+                alert("Address not found. Please try again")
+            }
+            
+        }
+
+        function closeStoreList() {
+            document.getElementById("overlay2").style.display = "none";
+            document.getElementById("popupDialog2").style.display = "none";
+        }
+
+        function openStoreList() {
+            document.getElementById("overlay2").style.display = "block";
+            document.getElementById("popupDialog2").style.display = "block";
+        }
+
+
+    </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3L6SbWC6TopqExyYVoVLWaPX7p8CQUHI&libraries=places&callback=initMap"
         async defer></script>
 
@@ -112,10 +288,10 @@
             <table style="width: 80%;margin-left:auto;margin-right:auto;margin-top:20px">
                 <tr>
                     <td>
-                        <asp:LinkButton ID="lbClose" runat="server" OnClientClick="closeMap()" CssClass="btnCont" Font-Underline="false">Close</asp:LinkButton>
+                        <asp:LinkButton ID="lbClose" runat="server" OnClientClick="closeMap(event); return false;" CssClass="btnCont" Font-Underline="false">Close</asp:LinkButton>
                     </td>
                     <td>
-                        <asp:LinkButton ID="lbConfirmMap" runat="server" OnClientClick="closeMap()" CssClass="btnCont" Font-Underline="false" OnClick="lbConfirmMap_Click">Confirm</asp:LinkButton>
+                        <asp:LinkButton ID="lbConfirmMap" runat="server" OnClientClick="closeMap(event); return false;" CssClass="btnCont" Font-Underline="false" OnClick="lbConfirmMap_Click">Confirm</asp:LinkButton>
                     </td>
                 </tr>
             </table>

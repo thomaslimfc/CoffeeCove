@@ -36,7 +36,7 @@ namespace CoffeeCove.Order
 
             }
 
-            if (string.IsNullOrWhiteSpace(lblStoreAdd.Text)) //if lblStoreAdd is empty
+            if (string.IsNullOrWhiteSpace(lblStoreAdd.Text)) //if the store address is empty
             {
                 lbConfirmPickUp.Enabled = false;
                 lbConfirmPickUp.CssClass = "btnCont-disabled";
@@ -49,7 +49,7 @@ namespace CoffeeCove.Order
         {
             if (e.CommandName == "storeList")
             {
-                // Retrieve the ID of the item to edit
+                
                 string storeId = e.CommandArgument.ToString();
 
                 SqlConnection conn = new SqlConnection(cs);
@@ -63,14 +63,14 @@ namespace CoffeeCove.Order
 
                 if (dr.Read()) 
                 {
-                    // Assign values to label controls
+                    
                     lblStoreName.Text = dr["StoreName"].ToString();
                     lblStoreAdd.Text = dr["StoreAddress"].ToString();
 
                 }
                 else
                 {
-                    // Handle the case where no data is found
+                    
                     lblStoreName.Text = "Store not found.";
                     lblStoreAdd.Text = string.Empty;
                 }
