@@ -1,5 +1,10 @@
 ﻿<%@ Page Title="Payment Success" Language="C#" MasterPageFile="~/Master/Customer.Master" AutoEventWireup="true" CodeBehind="paymentSuccess.aspx.cs" Inherits="CoffeeCove.Payment.paymentSuccess" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
+    <script type="text/javascript">
+        function showError(message) {
+            alert(message);
+        }
+    </script>
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet" />
     <link href="../CSS/PaymentSuccess.css" rel="stylesheet" />
 
