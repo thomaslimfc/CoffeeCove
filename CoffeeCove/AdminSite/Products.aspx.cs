@@ -7,6 +7,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
+using ListItem = System.Web.UI.WebControls.ListItem;
 
 namespace CoffeeCove.AdminSite
 {
@@ -26,7 +29,7 @@ namespace CoffeeCove.AdminSite
 
         private void BindCategoryDropDown()
         {
-            string sql = "SELECT CategoryId, CategoryName FROM Category WHERE CategoryId != 1";
+            string sql = "SELECT CategoryId, CategoryName FROM Category WHERE CategoryId != 0";
             using (SqlConnection con = new SqlConnection(cs))
             {
                 using (SqlCommand cmd = new SqlCommand(sql, con))
@@ -86,7 +89,7 @@ namespace CoffeeCove.AdminSite
                 {
                     if (!string.IsNullOrEmpty(searchTerm))
                     {
-                        cmd.Parameters.AddWithValue("@SearchTerm", searchTerm + '%');
+                        cmd.Parameters.AddWithValue("@SearchTerm", "%" + searchTerm + "%");
                     }
 
                     if (!string.IsNullOrEmpty(selectedCategory))
@@ -492,7 +495,7 @@ namespace CoffeeCove.AdminSite
 
         [System.Web.Script.Services.ScriptMethod()]
         [System.Web.Services.WebMethod]
-        public static List<string> GetItemList(string prefixText)
+        public static List<string> GetItemList(string Text)
         {
             List<string> getitem = new List<string>();
 
@@ -501,7 +504,7 @@ namespace CoffeeCove.AdminSite
             {
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
-                    cmd.Parameters.AddWithValue("@Text", prefixText + '%');
+                    cmd.Parameters.AddWithValue("@Text", "%" + Text + "%");
                     con.Open();
                     SqlDataReader dr = cmd.ExecuteReader();
 
@@ -515,5 +518,99 @@ namespace CoffeeCove.AdminSite
 
             return getitem;
         }
+
+        protected void BtnExport_Click(object sender, EventArgs e)
+        {
+            // Set up PDF response properties
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("content-disposition", "attachment;filename=ProductReport.pdf");
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+
+            string sql = @"SELECT 
+                     p.ProductId, 
+                     p.ProductName, 
+                     p.UnitPrice, 
+                     p.CreatedDate,
+                     COALESCE(SUM(oi.Quantity * oi.Price), 0) AS TotalSales,
+                     COALESCE(SUM(oi.Quantity), 0) AS TotalSold
+                     FROM Product p
+                     LEFT JOIN OrderedItem oi ON p.ProductId = oi.ProductID
+                     GROUP BY p.ProductId, p.ProductName, p.UnitPrice, p.CreatedDate";
+
+            DataTable dt = new DataTable();
+
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    con.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    dt.Load(dr);
+                }
+            }
+
+            // Set up iTextSharp PDF document
+            Document pdfdoc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
+            PdfWriter.GetInstance(pdfdoc, Response.OutputStream);
+            pdfdoc.Open();
+
+            Paragraph title = new Paragraph("Product Summary Report", FontFactory.GetFont("Arial", 18, Font.BOLD));
+            title.Alignment = Element.ALIGN_CENTER;
+            pdfdoc.Add(title);
+            pdfdoc.Add(new Paragraph(" "));
+
+            int totalProducts = dt.Rows.Count;
+
+            Paragraph exportInfo = new Paragraph($"ExportDate: {DateTime.Now:dd/MM/yyyy HH:mm:ss}\nTotal Products: {totalProducts}", FontFactory.GetFont("Arial", 12, Font.NORMAL));
+            exportInfo.Alignment = Element.ALIGN_LEFT;
+            pdfdoc.Add(exportInfo);
+
+            pdfdoc.Add(new Paragraph(" "));
+
+            PdfPTable pdfTable = new PdfPTable(6); // 6 columns
+            pdfTable.WidthPercentage = 100;
+            pdfTable.SetWidths(new float[] { 1f, 2f, 1f, 1f, 1f, 1f });
+            BaseColor lightGrey = new BaseColor(211, 211, 211);
+
+            // table headers
+            pdfTable.AddCell(new PdfPCell(new Phrase("Product ID")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+            pdfTable.AddCell(new PdfPCell(new Phrase("Product Name")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+            pdfTable.AddCell(new PdfPCell(new Phrase("Unit Price (RM)")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+            pdfTable.AddCell(new PdfPCell(new Phrase("Created Date")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+            pdfTable.AddCell(new PdfPCell(new Phrase("Total Sales (RM)")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+            pdfTable.AddCell(new PdfPCell(new Phrase("Total Sold")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+
+            // Initialize sums
+            decimal totalSalesSum = 0;
+            int totalSoldSum = 0;
+
+            foreach (DataRow row in dt.Rows)
+            {
+                pdfTable.AddCell(new PdfPCell(new Phrase(row["ProductId"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
+                pdfTable.AddCell(new PdfPCell(new Phrase(row["ProductName"].ToString())) { HorizontalAlignment = Element.ALIGN_LEFT });
+                pdfTable.AddCell(new PdfPCell(new Phrase(Convert.ToDecimal(row["UnitPrice"]).ToString("N2"))) { HorizontalAlignment = Element.ALIGN_CENTER });
+                pdfTable.AddCell(new PdfPCell(new Phrase(Convert.ToDateTime(row["CreatedDate"]).ToString("dd/MM/yyyy"))) { HorizontalAlignment = Element.ALIGN_CENTER });
+                pdfTable.AddCell(new PdfPCell(new Phrase(row["TotalSales"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
+                pdfTable.AddCell(new PdfPCell(new Phrase(row["TotalSold"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
+
+                totalSalesSum += Convert.ToDecimal(row["TotalSales"]);
+                totalSoldSum += Convert.ToInt32(row["TotalSold"]);
+            }
+
+            pdfTable.AddCell(new PdfPCell(new Phrase("Total")) { Colspan = 4, HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+            pdfTable.AddCell(new PdfPCell(new Phrase(totalSalesSum.ToString("N2"))) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+            pdfTable.AddCell(new PdfPCell(new Phrase(totalSoldSum.ToString())) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+
+            pdfdoc.Add(pdfTable);
+
+            pdfdoc.Close();
+            Response.Write(pdfdoc);
+            Response.End();
+        }
+
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+        }
+
     }
 }

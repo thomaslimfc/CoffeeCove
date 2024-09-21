@@ -32,7 +32,7 @@ namespace CoffeeCove.Menu
                 }
                 else
                 {
-                    BindProducts("1");
+                    BindProducts("0");
                 }
             }
         }
@@ -58,14 +58,14 @@ namespace CoffeeCove.Menu
             {
                 string sql = "SELECT p.* FROM Product p INNER JOIN Category c ON p.CategoryId = c.CategoryId WHERE c.IsActive = 1 AND p.IsActive = 1";
 
-                if (categoryId != "1")
+                if (categoryId != "0")
                 {
                     sql += " AND p.CategoryId = @CategoryId";
                 }
 
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
-                    if (categoryId != "1")
+                    if (categoryId != "0")
                     {
                         cmd.Parameters.AddWithValue("@CategoryId", categoryId);
                     }
