@@ -203,7 +203,7 @@
                         </div>
                     </div>
                     <div class="col-5" style="margin-left:45%;margin-bottom:20px">
-                        <asp:Button ID="BtnExport" runat="server" Text="Export To PDF" CssClass="btn btn-success"/>
+                        <asp:Button ID="BtnExport" runat="server" Text="Export To PDF" CssClass="btn btn-success" OnClick="BtnExport_Click"/>
                     </div>
                 </div>
             </div>
