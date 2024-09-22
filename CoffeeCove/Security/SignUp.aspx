@@ -90,7 +90,7 @@
             placeholder="desmundchau7668" 
             title="Username"
             ValidationGroup="SignUp"
-            Text="djsdkjfdhnkdfj"
+            Text="desmundchau7668"
             onblur="validateUsername()">
         </asp:TextBox>
         <asp:RequiredFieldValidator 
