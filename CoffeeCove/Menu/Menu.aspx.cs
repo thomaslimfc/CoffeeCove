@@ -22,7 +22,7 @@ namespace CoffeeCove.Menu
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (!Page.IsPostBack)
             {
                 BindCategory();
 
