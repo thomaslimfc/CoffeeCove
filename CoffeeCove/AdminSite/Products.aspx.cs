@@ -10,6 +10,7 @@ using System.Web.UI.WebControls;
 using iTextSharp.text.pdf;
 using iTextSharp.text;
 using ListItem = System.Web.UI.WebControls.ListItem;
+using Microsoft.Win32;
 
 namespace CoffeeCove.AdminSite
 {
@@ -59,7 +60,7 @@ namespace CoffeeCove.AdminSite
             string sql = @"SELECT p.ProductId, p.ProductName, p.Description, p.UnitPrice, p.ImageUrl, p.IsActive, 
                         p.CategoryId, c.CategoryName, p.CreatedDate 
                         FROM Product p
-                        INNER JOIN Category c ON p.CategoryId = c.CategoryId WHERE p.IsActive=1";
+                        INNER JOIN Category c ON p.CategoryId = c.CategoryId WHERE 1=1";
             string selectedCategory = ddlFilterCategory.SelectedValue;
             string filterActive = ddlFilterActive.SelectedValue;
 
@@ -219,7 +220,7 @@ namespace CoffeeCove.AdminSite
         protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
         {
             string ProductName = args.Value;
-            string ProductId = hdnId.Value;
+            int ProductId = int.Parse(hdnId.Value);
 
             string sql = "SELECT COUNT(*) FROM Product WHERE ProductName = @ProductName AND ProductId != @ProductId";
             using (SqlConnection con = new SqlConnection(cs))
@@ -236,60 +237,36 @@ namespace CoffeeCove.AdminSite
             }
         }
 
-        public string GetCategoryPrefix(int categoryId)
+        private int GetNextProductId()
         {
-            switch (categoryId)
-            {
-                case 2: return "CC";
-                case 3: return "EC";
-                case 4: return "OB";
-                case 5: return "BF";
-                case 6: return "LC";
-                case 7: return "DS";
-                default: throw new ArgumentException("Invalid category ID");
-            }
-        }
-
-        public int GetNextIndex(int categoryId)
-        {
-            string sql = "SELECT ISNULL(MAX(CAST(SUBSTRING(ProductId, 3, 2) AS INT)), 0) FROM Product WHERE CategoryId = @CategoryId";
+            int nextId = 1;
+            string sql = "SELECT ISNULL(MAX(ProductId), 0) + 1 FROM Product";
             using (SqlConnection con = new SqlConnection(cs))
             {
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
-                    cmd.Parameters.AddWithValue("@CategoryId", categoryId);
                     con.Open();
-                    int highestIndex = (int)cmd.ExecuteScalar();
-                    return highestIndex + 1;
+                    nextId = (int)cmd.ExecuteScalar();
                 }
             }
-        }
-
-        public string GenerateProductId(int categoryId)
-        {
-            string prefix = GetCategoryPrefix(categoryId);
-            int nextIndex = GetNextIndex(categoryId);
-
-            string formattedIndex = nextIndex.ToString("D2");
-
-            return prefix + formattedIndex;
+            return nextId;
         }
 
         protected void gvProduct_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "EditProduct")
             {
-                string productId = (string)e.CommandArgument;
+                int productId = Convert.ToInt32(e.CommandArgument);
                 LoadProductForEdit(productId);
             }
             else if (e.CommandName == "DeleteProduct")
             {
-                string productId = (string)e.CommandArgument;
+                int productId = Convert.ToInt32(e.CommandArgument);
                 DeleteProduct(productId);
             }
         }
 
-        private void LoadProductForEdit(string productId)
+        private void LoadProductForEdit(int productId)
         {
             string sql = "SELECT ProductId, ProductName, Description, UnitPrice, ImageUrl, IsActive, CategoryId FROM Product WHERE ProductId = @ProductId";
             using (SqlConnection con = new SqlConnection(cs))
@@ -314,21 +291,22 @@ namespace CoffeeCove.AdminSite
             btnAdd.Text = "Update";
         }
 
-        private void UpdateProduct(string productName, string description, string imageUrl, decimal unitPrice, bool isActive)
+        private void UpdateProduct(string productName, string description, string imageUrl, decimal unitPrice, bool isActive, int categoryId)
         {
-            string productId = hdnId.Value;
-            string sql = "UPDATE Product SET ProductName = @ProductName, Description = @Description, ImageUrl = @ImageUrl, UnitPrice = @UnitPrice, IsActive = @IsActive, CreatedDate = @CreatedDate WHERE ProductId = @ProductId";
+            int productId = int.Parse(hdnId.Value);
+            string sql = "UPDATE Product SET ProductName = @ProductName, Description = @Description, ImageUrl = @ImageUrl, UnitPrice = @UnitPrice, IsActive = @IsActive, CategoryId = @CategoryId, CreatedDate = @CreatedDate WHERE ProductId = @ProductId";
             using (SqlConnection con = new SqlConnection(cs))
             {
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
+                    cmd.Parameters.AddWithValue("@ProductId", productId);
                     cmd.Parameters.AddWithValue("@ProductName", productName);
                     cmd.Parameters.AddWithValue("@Description", description);
                     cmd.Parameters.AddWithValue("@ImageUrl", string.IsNullOrEmpty(imageUrl) ? (object)DBNull.Value : imageUrl);
                     cmd.Parameters.AddWithValue("@UnitPrice", unitPrice);
                     cmd.Parameters.AddWithValue("@IsActive", isActive);
+                    cmd.Parameters.AddWithValue("@CategoryId", categoryId);
                     cmd.Parameters.AddWithValue("@CreatedDate", DateTime.Now);
-                    cmd.Parameters.AddWithValue("@ProductId", productId);
 
                     con.Open();
                     cmd.ExecuteNonQuery();
@@ -354,7 +332,7 @@ namespace CoffeeCove.AdminSite
             return null; // Return null if no image uploaded
         }
 
-        private void DeleteProduct(string productId)
+        private void DeleteProduct(int productId)
         {
             using (SqlConnection con = new SqlConnection(cs))
             {
@@ -373,18 +351,6 @@ namespace CoffeeCove.AdminSite
                     using (SqlCommand cmd = new SqlCommand(sqlDelete, con))
                     {
                         cmd.Parameters.AddWithValue("@ProductId", productId);
-                        cmd.ExecuteNonQuery();
-                    }
-
-                    string prefix = GetCategoryPrefix(categoryId);
-                    string sqlUpdateIds = @";WITH CTE AS (SELECT ProductId,ROW_NUMBER() OVER (ORDER BY CAST(SUBSTRING(ProductId, 3, 2) AS INT)) AS RowNum
-                FROM Product WHERE CategoryId = @CategoryId) UPDATE Product SET ProductId = @Prefix + RIGHT('00' + CAST(CTE.RowNum AS VARCHAR(2)), 2)
-                FROM Product INNER JOIN CTE ON Product.ProductId = CTE.ProductId";
-
-                    using (SqlCommand cmd = new SqlCommand(sqlUpdateIds, con))
-                    {
-                        cmd.Parameters.AddWithValue("@Prefix", prefix);
-                        cmd.Parameters.AddWithValue("@CategoryId", categoryId);
                         cmd.ExecuteNonQuery();
                     }
 
@@ -427,11 +393,11 @@ namespace CoffeeCove.AdminSite
 
                 if (hdnId.Value != "0")
                 {
-                    UpdateProduct(productName, description, imageUrl, unitPrice, isActive);
+                    UpdateProduct(productName, description, imageUrl, unitPrice, isActive, categoryId);
                 }
                 else
                 {
-                    string productId = GenerateProductId(categoryId);
+                    int newProductId = GetNextProductId();
 
                     string sql = @"INSERT INTO Product (ProductId, ProductName, Description, UnitPrice, CategoryId, ImageUrl, IsActive, CreatedDate)
                     VALUES (@ProductId, @ProductName, @Description, @UnitPrice, @CategoryId, @ImageUrl, @IsActive, @CreatedDate)";
@@ -439,7 +405,7 @@ namespace CoffeeCove.AdminSite
                     {
                         using (SqlCommand cmd = new SqlCommand(sql, con))
                         {
-                            cmd.Parameters.AddWithValue("@ProductId", productId);
+                            cmd.Parameters.AddWithValue("@ProductId", newProductId);
                             cmd.Parameters.AddWithValue("@ProductName", productName);
                             cmd.Parameters.AddWithValue("@Description", description);
                             cmd.Parameters.AddWithValue("@UnitPrice", unitPrice);
@@ -550,11 +516,12 @@ namespace CoffeeCove.AdminSite
                      p.ProductName, 
                      p.UnitPrice, 
                      p.CreatedDate,
+                     p.IsActive,
                      COALESCE(SUM(oi.Quantity * oi.Price), 0) AS TotalSales,
                      COALESCE(SUM(oi.Quantity), 0) AS TotalSold
                      FROM Product p
                      LEFT JOIN OrderedItem oi ON p.ProductId = oi.ProductID
-                     GROUP BY p.ProductId, p.ProductName, p.UnitPrice, p.CreatedDate";
+                     GROUP BY p.ProductId, p.ProductName, p.UnitPrice, p.CreatedDate, p.IsActive";
 
             DataTable dt = new DataTable();
 
@@ -586,9 +553,9 @@ namespace CoffeeCove.AdminSite
 
             pdfdoc.Add(new Paragraph(" "));
 
-            PdfPTable pdfTable = new PdfPTable(6); // 6 columns
+            PdfPTable pdfTable = new PdfPTable(7);
             pdfTable.WidthPercentage = 100;
-            pdfTable.SetWidths(new float[] { 1f, 2f, 1f, 1f, 1f, 1f });
+            pdfTable.SetWidths(new float[] { 1f, 2f, 1f, 1f, 1f, 1f, 1f });
             BaseColor lightGrey = new BaseColor(211, 211, 211);
 
             // table headers
@@ -596,6 +563,7 @@ namespace CoffeeCove.AdminSite
             pdfTable.AddCell(new PdfPCell(new Phrase("Product Name")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
             pdfTable.AddCell(new PdfPCell(new Phrase("Unit Price (RM)")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
             pdfTable.AddCell(new PdfPCell(new Phrase("Created Date")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+            pdfTable.AddCell(new PdfPCell(new Phrase("Is Active")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
             pdfTable.AddCell(new PdfPCell(new Phrase("Total Sales (RM)")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
             pdfTable.AddCell(new PdfPCell(new Phrase("Total Sold")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
 
@@ -609,6 +577,7 @@ namespace CoffeeCove.AdminSite
                 pdfTable.AddCell(new PdfPCell(new Phrase(row["ProductName"].ToString())) { HorizontalAlignment = Element.ALIGN_LEFT });
                 pdfTable.AddCell(new PdfPCell(new Phrase(Convert.ToDecimal(row["UnitPrice"]).ToString("N2"))) { HorizontalAlignment = Element.ALIGN_CENTER });
                 pdfTable.AddCell(new PdfPCell(new Phrase(Convert.ToDateTime(row["CreatedDate"]).ToString("dd/MM/yyyy"))) { HorizontalAlignment = Element.ALIGN_CENTER });
+                pdfTable.AddCell(new PdfPCell(new Phrase(row["IsActive"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
                 pdfTable.AddCell(new PdfPCell(new Phrase(row["TotalSales"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
                 pdfTable.AddCell(new PdfPCell(new Phrase(row["TotalSold"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
 

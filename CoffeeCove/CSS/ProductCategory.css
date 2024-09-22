@@ -11,9 +11,7 @@
 
 .error {
     color: red;
-    background-image: url(../img/error.png);
-    background-repeat: no-repeat;
-    background-position: left center;
+    font-weight:bold;
     padding-left: 25px;
 }
 

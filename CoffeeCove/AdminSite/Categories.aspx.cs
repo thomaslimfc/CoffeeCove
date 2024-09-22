@@ -305,12 +305,6 @@ namespace CoffeeCove
                     con.Open();
                     cmd.ExecuteNonQuery();
                 }
-                string sqlReorder = "UPDATE Category SET CategoryId = CategoryId - 1 WHERE CategoryId > @CategoryId";
-                using (SqlCommand cmd = new SqlCommand(sqlReorder, con))
-                {
-                    cmd.Parameters.AddWithValue("@CategoryId", categoryId);
-                    cmd.ExecuteNonQuery();
-                }
 
                 BindCategory();
                 ClearForm();
@@ -446,6 +440,7 @@ namespace CoffeeCove
                      c.CategoryId, 
                      c.CategoryName, 
                      c.CreatedDate,
+                     c.IsActive,
                      COUNT(p.ProductId) AS TotalProduct, 
                      COALESCE(SUM(oi.Quantity * oi.Price), 0) AS TotalSales,
                      COALESCE(SUM(oi.Quantity), 0) AS TotalSold
@@ -453,7 +448,7 @@ namespace CoffeeCove
                      LEFT JOIN Product p ON c.CategoryId = p.CategoryId
                      LEFT JOIN OrderedItem oi ON p.ProductId = oi.ProductID
                      WHERE c.CategoryId != 0
-                     GROUP BY c.CategoryId, c.CategoryName, c.CreatedDate";
+                     GROUP BY c.CategoryId, c.CategoryName, c.CreatedDate, c.IsActive";
 
 
             DataTable dt = new DataTable();
@@ -486,15 +481,16 @@ namespace CoffeeCove
 
             pdfdoc.Add(new Paragraph(" "));
 
-            PdfPTable pdfTable = new PdfPTable(6); // 6 columns
+            PdfPTable pdfTable = new PdfPTable(7); // 6 columns
             pdfTable.WidthPercentage = 100;
-            pdfTable.SetWidths(new float[] { 1f, 2f, 1f, 1f, 1f, 1f });
+            pdfTable.SetWidths(new float[] { 1f, 2f, 1f, 1f, 1f, 1f, 1f });
             BaseColor lightGrey = new BaseColor(211, 211, 211);
 
             // table headers
             pdfTable.AddCell(new PdfPCell(new Phrase("Category ID")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
             pdfTable.AddCell(new PdfPCell(new Phrase("Category Name")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
             pdfTable.AddCell(new PdfPCell(new Phrase("Created Date")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+            pdfTable.AddCell(new PdfPCell(new Phrase("Is Active")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
             pdfTable.AddCell(new PdfPCell(new Phrase("Total Product")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
             pdfTable.AddCell(new PdfPCell(new Phrase("Total Sales(RM)")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
             pdfTable.AddCell(new PdfPCell(new Phrase("Total Sold")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
@@ -509,6 +505,7 @@ namespace CoffeeCove
                 pdfTable.AddCell(new PdfPCell(new Phrase(row["CategoryId"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
                 pdfTable.AddCell(new PdfPCell(new Phrase(row["CategoryName"].ToString())) { HorizontalAlignment = Element.ALIGN_LEFT });
                 pdfTable.AddCell(new PdfPCell(new Phrase(Convert.ToDateTime(row["CreatedDate"]).ToString("dd/MM/yyyy"))) { HorizontalAlignment = Element.ALIGN_CENTER });
+                pdfTable.AddCell(new PdfPCell(new Phrase(row["IsActive"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
                 pdfTable.AddCell(new PdfPCell(new Phrase(row["TotalProduct"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
                 pdfTable.AddCell(new PdfPCell(new Phrase(row["TotalSales"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
                 pdfTable.AddCell(new PdfPCell(new Phrase(row["TotalSold"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
