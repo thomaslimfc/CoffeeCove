@@ -623,7 +623,6 @@
     <Content Include="img\yellowStar.png" />
     <Content Include="Master\Customer33.html" />
     <Content Include="Menu\Menu.aspx" />
-    <Content Include="Order\getLocation.js" />
     <Content Include="Order\cart.aspx" />
     <Content Include="Order\orderHistory.aspx" />
     <Content Include="Order\OrderInvoice.aspx" />
