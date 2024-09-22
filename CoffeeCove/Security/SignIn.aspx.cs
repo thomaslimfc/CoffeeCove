@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Web.UI;
+
 using CoffeeCove.Securities;
 
 namespace CoffeeCove.Security
@@ -10,6 +11,7 @@ namespace CoffeeCove.Security
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session.Clear();
         }
 
         protected void SignInButton_SI_Click(object sender, EventArgs e)
@@ -33,6 +35,13 @@ namespace CoffeeCove.Security
                         // Store user role and username in session
                         Session["Username"] = username;
                         Session["UserRole"] = customer != null ? "Customer" : "Admin";
+
+                        // need to check with customer only, becoz admin no CusID
+                        if (customer != null)
+                        {
+                            Session["CusID"] = customer.CusID;
+                            Session["ContactNo"] = customer.ContactNo;
+                        }
 
                         // Set a flag indicating that 2FA is required
                         Session["2FARequired"] = true;
