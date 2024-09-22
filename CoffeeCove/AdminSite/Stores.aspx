@@ -29,16 +29,8 @@
                                     <asp:TextBox ID="txtStoreAddress" runat="server" CssClass="form-control" placeholder="Enter Store Address"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Please enter Store Address." ControlToValidate="txtStoreAddress" CssClass="error" Display="Dynamic" ValidationGroup="StoreForm"></asp:RequiredFieldValidator>
                                 </div>
-                                <!--
-                                <div class="col-12">
-                                    <label class="label">PostCode</label>
-                                    <asp:TextBox ID="txtPostCode" runat="server" CssClass="form-control" placeholder="Enter PostCode"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Please enter PostCode." ControlToValidate="txtPostCode" CssClass="error" Display="Dynamic" ValidationGroup="StoreForm" />
-                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Please enter a valid PostCode (5 digits only)." ControlToValidate="txtPostCode" CssClass="error" Display="Dynamic" ValidationGroup="StoreForm" ValidationExpression="^\d{5}$" />
-                                </div>
-                                -->
                                 <div class="col-8">
-                                    <asp:Button ID="btnAdd" runat="server" Text="Add" ValidationGroup="StoreForm" CssClass="btn btn-secondary" />
+                                    <asp:Button ID="btnAdd" runat="server" Text="Add" ValidationGroup="StoreForm" CssClass="btn btn-secondary" OnClick="btnAdd_Click"/>
                                     &nbsp;&nbsp;
                                 <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-dark" OnClick="btnReset_Click"/>
                                 </div>
@@ -49,8 +41,6 @@
                 <div class="col-lg-12">
                     <asp:Label ID="lblMsg" runat="server" CssClass="alert alert-success" Visible="false"></asp:Label>
                 </div>
-                <br />
-                <br />
 
                 
 
@@ -59,7 +49,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Store List</h5>
-                            <asp:GridView ID="gvStoreList" runat="server" DataSourceID="SqlDataSource1" AutoGenerateColumns="False" DataKeyNames="StoreID" CssClass="table table-striped" PageSize="5" AllowPaging="true" AllowSorting="true" EmptyDataText="There are no data records" OnSorting="gvStoreList_Sorting" OnRowCommand="gvStoreList_RowCommand">
+                            <asp:GridView ID="gvStoreList" runat="server" AutoGenerateColumns="false" CssClass="table table-striped" PageSize="5" AllowPaging="true" AllowSorting="true" EmptyDataText="There are no data records" OnRowCommand="gvStoreList_RowCommand" DataKeyNames="StoreID">
                                 <Columns>
                                     <asp:TemplateField SortExpression="StoreID">
                                         <HeaderTemplate>
@@ -90,16 +80,14 @@
 
                                     <asp:TemplateField HeaderText="Action" ItemStyle-Width="150px">
                                         <ItemTemplate>
-                                            <asp:LinkButton ID="btnEdit" runat="server" CommandName="Edit" CommandArgument='<%# Eval("StoreID") %>' Text="Edit" CssClass="btn btn-dark btn-sm" />
-                                            <asp:LinkButton ID="btnDelete" runat="server" CommandName="Delete" CommandArgument='<%# Eval("StoreID") %>' Text="Delete" CssClass="btn btn-danger btn-sm" OnClientClick="return confirmDelete();" />
+                                            <asp:LinkButton ID="btnEdit" runat="server" CommandName="EditStore" CommandArgument='<%# Eval("StoreID") %>' Text="Edit" CssClass="btn btn-dark btn-sm" />
+                                            <asp:LinkButton ID="btnDelete" runat="server" CommandName="DeleteStore" CommandArgument='<%# Eval("StoreID") %>' Text="Delete" CssClass="btn btn-danger btn-sm" OnClientClick="return confirmDelete();" />
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                 </Columns>
                                 <HeaderStyle CssClass="gridview-header" />
                                 <PagerStyle CssClass="datatable-pagination" />
                             </asp:GridView>
-
-                            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" SelectCommand="SELECT [StoreID], [StoreName], [StoreAddress] FROM [Store]"></asp:SqlDataSource>
 
                         </div>
                     </div>

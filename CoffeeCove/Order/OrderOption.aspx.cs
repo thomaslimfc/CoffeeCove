@@ -91,8 +91,33 @@ namespace CoffeeCove.Order
 
         protected void lbConfirmPickUp_Click(object sender, EventArgs e)
         {
-            //int orderID = (int)Session["OrderID"];
-            int orderID = 1;
+            if (Session["access"] == null) //if its their firstTime come here
+            {
+                Session["access"] = 1; //set its session
+
+                //retrieve cusID from session
+                //string cusID = Session["CusID"].ToString();
+                string cusID = "11";
+                //create an orderID for it
+                SqlConnection conn3 = new SqlConnection(cs);
+                string sql3 = @"INSERT INTO OrderPlaced(CusID,OrderDateTime,TotalAmount) 
+                                VALUES (@cusID,@dateTime,0);
+                                SELECT SCOPE_IDENTITY();";
+
+                SqlCommand cmd3 = new SqlCommand(sql3, conn3);
+                cmd3.Parameters.AddWithValue("@cusID", cusID);
+                cmd3.Parameters.AddWithValue("@dateTime", DateTime.Now);
+                conn3.Open();
+
+                object newOrderID = cmd3.ExecuteScalar();
+
+                Session["OrderID"] = Convert.ToInt32(newOrderID);
+
+                conn3.Close();
+            }
+
+
+            int orderID = (int)Session["OrderID"];
             //put the pickup Store inside the database
             string storeID = hfStoreID.Value;
 
@@ -131,8 +156,34 @@ namespace CoffeeCove.Order
         {
             if (Page.IsValid) //means it choose delivery
             {
-                //int orderID = (int)Session["OrderID"];
-                int orderID = 1;
+                if (Session["access"] == null) //if its their firstTime come here
+                {
+                    Session["access"] = 1; //set its session
+
+                    //retrieve cusID from session
+                    //string cusID = Session["CusID"].ToString();
+                    string cusID = "11";
+                    //create an orderID for it
+                    SqlConnection conn3 = new SqlConnection(cs);
+                    string sql3 = @"INSERT INTO OrderPlaced(CusID,OrderDateTime,TotalAmount) 
+                                VALUES (@cusID,@dateTime,0);
+                                SELECT SCOPE_IDENTITY();";
+
+                    SqlCommand cmd3 = new SqlCommand(sql3, conn3);
+                    cmd3.Parameters.AddWithValue("@cusID", cusID);
+                    cmd3.Parameters.AddWithValue("@dateTime", DateTime.Now);
+                    conn3.Open();
+
+                    object newOrderID = cmd3.ExecuteScalar();
+
+                    Session["OrderID"] = Convert.ToInt32(newOrderID);
+
+                    conn3.Close();
+                }
+
+
+                int orderID = (int)Session["OrderID"];
+
                 //get the address from textbox then combine them into one address
                 string address = "";
                 if(txtUnit.Text.Length > 0) //if got write unit
