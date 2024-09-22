@@ -393,8 +393,19 @@ namespace CoffeeCove.Menu
 
         private int GetCurrentOrderId()
         {
-            return 1;
+            // Check if OrderID is present in the session
+            if (Session["OrderID"] != null)
+            {
+                return (int)Session["OrderID"];
+            }
+            else
+            {
+                // Redirect to order option selection if OrderID is missing
+                Response.Redirect("../Order/OrderOption.aspx");
+                return -1; // This line won't be hit but avoids a compilation warning
+            }
         }
+
 
         protected void rptProduct_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
