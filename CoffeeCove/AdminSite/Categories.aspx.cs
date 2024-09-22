@@ -530,10 +530,5 @@ namespace CoffeeCove
             Response.End();
         }
 
-        public override void VerifyRenderingInServerForm(Control control)
-        {
-
-        }
-
     }
 }

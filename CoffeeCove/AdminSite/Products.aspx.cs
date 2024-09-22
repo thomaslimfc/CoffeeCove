@@ -358,38 +358,50 @@ namespace CoffeeCove.AdminSite
         {
             using (SqlConnection con = new SqlConnection(cs))
             {
-                con.Open();
-                string sqlCategory = "SELECT CategoryId FROM Product WHERE ProductId = @ProductId";
-                int categoryId;
-                using (SqlCommand cmd = new SqlCommand(sqlCategory, con))
+                try
                 {
-                    cmd.Parameters.AddWithValue("@ProductId", productId);
-                    categoryId = (int)cmd.ExecuteScalar();
-                }
+                    con.Open();
+                    string sqlCategory = "SELECT CategoryId FROM Product WHERE ProductId = @ProductId";
+                    int categoryId;
+                    using (SqlCommand cmd = new SqlCommand(sqlCategory, con))
+                    {
+                        cmd.Parameters.AddWithValue("@ProductId", productId);
+                        categoryId = (int)cmd.ExecuteScalar();
+                    }
 
-                string sqlDelete = "DELETE FROM Product WHERE ProductId = @ProductId";
-                using (SqlCommand cmd = new SqlCommand(sqlDelete, con))
-                {
-                    cmd.Parameters.AddWithValue("@ProductId", productId);
-                    cmd.ExecuteNonQuery();
-                }
+                    string sqlDelete = "DELETE FROM Product WHERE ProductId = @ProductId";
+                    using (SqlCommand cmd = new SqlCommand(sqlDelete, con))
+                    {
+                        cmd.Parameters.AddWithValue("@ProductId", productId);
+                        cmd.ExecuteNonQuery();
+                    }
 
-                string prefix = GetCategoryPrefix(categoryId);
-                string sqlUpdateIds = @";WITH CTE AS (SELECT ProductId,ROW_NUMBER() OVER (ORDER BY CAST(SUBSTRING(ProductId, 3, 2) AS INT)) AS RowNum
+                    string prefix = GetCategoryPrefix(categoryId);
+                    string sqlUpdateIds = @";WITH CTE AS (SELECT ProductId,ROW_NUMBER() OVER (ORDER BY CAST(SUBSTRING(ProductId, 3, 2) AS INT)) AS RowNum
                 FROM Product WHERE CategoryId = @CategoryId) UPDATE Product SET ProductId = @Prefix + RIGHT('00' + CAST(CTE.RowNum AS VARCHAR(2)), 2)
                 FROM Product INNER JOIN CTE ON Product.ProductId = CTE.ProductId";
 
-                using (SqlCommand cmd = new SqlCommand(sqlUpdateIds, con))
-                {
-                    cmd.Parameters.AddWithValue("@Prefix", prefix);
-                    cmd.Parameters.AddWithValue("@CategoryId", categoryId);
-                    cmd.ExecuteNonQuery();
-                }
+                    using (SqlCommand cmd = new SqlCommand(sqlUpdateIds, con))
+                    {
+                        cmd.Parameters.AddWithValue("@Prefix", prefix);
+                        cmd.Parameters.AddWithValue("@CategoryId", categoryId);
+                        cmd.ExecuteNonQuery();
+                    }
 
-                BindProduct();
-                ClearForm();
+                    BindProduct();
+                    ClearForm();
+                    ShowSuccessMessage("Product deleted successfully.");
+                }
+                catch (SqlException ex)
+                {
+                    if (ex.Number == 547) // SQL Server error code for foreign key violation
+                    {
+                        ShowErrorMessage("This product cannot be deleted because it is referenced in an order. You can soft delete using IsActive");
+                    }
+                }
             }
-            ShowSuccessMessage("Product deleted successfully.");
+
+
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
@@ -469,6 +481,13 @@ namespace CoffeeCove.AdminSite
             lblMsg.Text = message;
             lblMsg.Visible = true;
             ScriptManager.RegisterStartupScript(this, GetType(), "hideMessage", "setTimeout(function() { document.getElementById('" + lblMsg.ClientID + "').style.display = 'none'; }, 3000);", true);
+        }
+
+        private void ShowErrorMessage(string message)
+        {
+            lblErrorMsg.Text = message;
+            lblErrorMsg.Visible = true;
+            ScriptManager.RegisterStartupScript(this, GetType(), "hideMessage", "setTimeout(function() { document.getElementById('" + lblErrorMsg.ClientID + "').style.display = 'none'; }, 3000);", true);
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
@@ -606,10 +625,6 @@ namespace CoffeeCove.AdminSite
             pdfdoc.Close();
             Response.Write(pdfdoc);
             Response.End();
-        }
-
-        public override void VerifyRenderingInServerForm(Control control)
-        {
         }
 
     }
