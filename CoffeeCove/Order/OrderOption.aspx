@@ -146,7 +146,7 @@
             }
         }
 
-        function closeMap(event) {
+        function confirmMap(event) {
 
             if (event) {
                 event.preventDefault();
@@ -166,6 +166,16 @@
                 alert("Address not found. Please try again")
             }
             
+        }
+
+        function closeMap(event) {
+
+            if (event) {
+                event.preventDefault();
+            }
+
+            document.getElementById("overlay").style.display = "none";
+            document.getElementById("popupDialog").style.display = "none";
         }
 
         function closeStoreList() {
@@ -199,7 +209,7 @@
                         OR
                             <table style="width: 100%; padding: 2%; border-spacing: 5px">
                                 <tr>
-                                    <td class="leftElement">Address Line 1:
+                                    <td class="leftElement">Address Line 1: <span style="color:red">*</span>
                                     </td>
                                     <td class="rightElement">
                                         <asp:TextBox runat="server" ID="txtAddress1" CssClass="textAdd" PlaceHolder="Enter Address 1" Width="90%"></asp:TextBox>
@@ -210,18 +220,7 @@
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Please enter Address" ControlToValidate="txtAddress1" CssClass="error" Display="Dynamic" ValidationGroup="AddressForm"></asp:RequiredFieldValidator></td>
                                 </tr>
                                 <tr>
-                                    <td class="leftElement">Address Line 2:
-                                    </td>
-                                    <td class="rightElement">
-                                        <asp:TextBox runat="server" ID="txtAddress2" Width="90%" CssClass="textAdd" PlaceHolder="Enter Address 2"></asp:TextBox>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Please enter Address" ControlToValidate="txtAddress2" CssClass="error" Display="Dynamic" ValidationGroup="AddressForm"></asp:RequiredFieldValidator></td>
-                                </tr>
-                                <tr>
-                                    <td class="leftElement">PostCode:
+                                    <td class="leftElement">PostCode: <span style="color:red">*</span>
                                     </td>
                                     <td class="rightElement">
                                         <asp:TextBox runat="server" ID="txtPostCode" Width="90%" CssClass="textAdd" PlaceHolder="Enter PostCode"></asp:TextBox></td>
@@ -264,6 +263,7 @@
                         </button>
                         <br />
                         <br />
+                        <asp:HiddenField ID="hfStoreID" runat="server" />
                         <section id="storeTxt">
                             <span style="font-weight: bold; font-size: 1.1em">
                                 <asp:Label ID="lblStoreName" runat="server" EnableViewState="False"></asp:Label></span>
@@ -291,7 +291,7 @@
                         <asp:LinkButton ID="lbClose" runat="server" OnClientClick="closeMap(event); return false;" CssClass="btnCont" Font-Underline="false">Close</asp:LinkButton>
                     </td>
                     <td>
-                        <asp:LinkButton ID="lbConfirmMap" runat="server" OnClientClick="closeMap(event); return false;" CssClass="btnCont" Font-Underline="false" OnClick="lbConfirmMap_Click">Confirm</asp:LinkButton>
+                        <asp:LinkButton ID="lbConfirmMap" runat="server" OnClientClick="confirmMap(event); return false;" CssClass="btnCont" Font-Underline="false" OnClick="lbConfirmMap_Click">Confirm</asp:LinkButton>
                     </td>
                 </tr>
             </table>
