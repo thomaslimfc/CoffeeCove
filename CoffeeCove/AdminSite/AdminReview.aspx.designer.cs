@@ -24,13 +24,13 @@ namespace CoffeeCove.AdminSite
         protected global::System.Web.UI.WebControls.Button Btnback;
 
         /// <summary>
-        /// rblRating control.
+        /// CommentPanel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rblRating;
+        protected global::System.Web.UI.WebControls.Panel CommentPanel;
 
         /// <summary>
         /// txtComment control.
@@ -39,7 +39,25 @@ namespace CoffeeCove.AdminSite
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTextArea txtComment;
+        protected global::System.Web.UI.WebControls.TextBox txtComment;
+
+        /// <summary>
+        /// rfvComment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvComment;
+
+        /// <summary>
+        /// revComment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revComment;
 
         /// <summary>
         /// btnSubmit control.

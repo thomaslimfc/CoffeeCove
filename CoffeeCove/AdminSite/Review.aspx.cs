@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,14 @@ namespace CoffeeCove.AdminSite
     public partial class Review : System.Web.UI.Page
     {
         string cs = Global.CS;
+
+        public int TotalRatings { get; set; } = 0;
+        public int FiveStarCount { get; set; } = 0;
+        public int FourStarCount { get; set; } = 0;
+        public int ThreeStarCount { get; set; } = 0;
+        public int TwoStarCount { get; set; } = 0;
+        public int OneStarCount { get; set; } = 0;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -19,61 +28,87 @@ namespace CoffeeCove.AdminSite
             }
         }
 
-        protected void BindRatingReviews()
+        private void BindRatingReviews()
         {
             using (SqlConnection conn = new SqlConnection(cs))
             {
-                // SQL query to count ratings for each star (1-5 stars)
                 string query = @"
-            SELECT 
-                COUNT(CASE WHEN RatingScore = 5 THEN 1 END) AS FiveStarCount,
-                COUNT(CASE WHEN RatingScore = 4 THEN 1 END) AS FourStarCount,
-                COUNT(CASE WHEN RatingScore = 3 THEN 1 END) AS ThreeStarCount,
-                COUNT(CASE WHEN RatingScore = 2 THEN 1 END) AS TwoStarCount,
-                COUNT(CASE WHEN RatingScore = 1 THEN 1 END) AS OneStarCount,
-                COUNT(*) AS TotalCount
-            FROM Review";
-
+                    SELECT RatingScore, COUNT(*) AS RatingCount
+                    FROM Review
+                    WHERE ReplyTo IS NULL
+                    GROUP BY RatingScore";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     conn.Open();
                     SqlDataReader reader = cmd.ExecuteReader();
 
-                    if (reader.Read())
+                    while (reader.Read())
                     {
-                        int fiveStarCount = Convert.ToInt32(reader["FiveStarCount"]);
-                        int fourStarCount = Convert.ToInt32(reader["FourStarCount"]);
-                        int threeStarCount = Convert.ToInt32(reader["ThreeStarCount"]);
-                        int twoStarCount = Convert.ToInt32(reader["TwoStarCount"]);
-                        int oneStarCount = Convert.ToInt32(reader["OneStarCount"]);
-                        int totalCount = Convert.ToInt32(reader["TotalCount"]);
+                        int ratingScore = Convert.ToInt32(reader["RatingScore"]);
+                        int ratingCount = Convert.ToInt32(reader["RatingCount"]);
 
-                        if (totalCount > 0)
+                        TotalRatings += ratingCount;
+
+                        switch (ratingScore)
                         {
-                            // Calculate percentages
-                            decimal fiveStarPercentage = (decimal)fiveStarCount / totalCount * 100;
-                            decimal fourStarPercentage = (decimal)fourStarCount / totalCount * 100;
-                            decimal threeStarPercentage = (decimal)threeStarCount / totalCount * 100;
-                            decimal twoStarPercentage = (decimal)twoStarCount / totalCount * 100;
-                            decimal oneStarPercentage = (decimal)oneStarCount / totalCount * 100;
-
-                            // Set the widths of the progress bars
-                            progressBar5.Style.Add("width", $"{fiveStarPercentage}%");
-                            progressBar4.Style.Add("width", $"{fourStarPercentage}%");
-                            progressBar3.Style.Add("width", $"{threeStarPercentage}%");
-                            progressBar2.Style.Add("width", $"{twoStarPercentage}%");
-                            progressBar1.Style.Add("width", $"{oneStarPercentage}%");
-
-                            // Set the labels for percentages
-                            lblFiveStarPercentage.Text = $"{Math.Round(fiveStarPercentage)}%";
-                            lblFourStarPercentage.Text = $"{Math.Round(fourStarPercentage)}%";
-                            lblThreeStarPercentage.Text = $"{Math.Round(threeStarPercentage)}%";
-                            lblTwoStarPercentage.Text = $"{Math.Round(twoStarPercentage)}%";
-                            lblOneStarPercentage.Text = $"{Math.Round(oneStarPercentage)}%";
+                            case 5:
+                                FiveStarCount = ratingCount;
+                                break;
+                            case 4:
+                                FourStarCount = ratingCount;
+                                break;
+                            case 3:
+                                ThreeStarCount = ratingCount;
+                                break;
+                            case 2:
+                                TwoStarCount = ratingCount;
+                                break;
+                            case 1:
+                                OneStarCount = ratingCount;
+                                break;
                         }
                     }
                 }
+
+                // Set the total ratings count to the Literal control
+                litTotalRatings.Text = TotalRatings.ToString();
+
+                rptUserRatingReview.DataSource = GetRatingReviews();
+                rptUserRatingReview.DataBind();
             }
+        }
+
+        private DataTable GetRatingReviews()
+        {
+            using (SqlConnection conn = new SqlConnection(cs))
+            {
+                string query = @"
+            SELECT R.RatingReviewID, R.RatingScore, R.ReviewContent, R.RatingReviewDateTime, 
+                   C.CusID, C.Username, 
+                   R2.ReviewContent AS AdminReplyContent, 
+                   R2.RatingReviewDateTime AS AdminReplyDateTime, 
+                   A.Username AS AdminUsername
+            FROM Review R
+            LEFT JOIN Review R2 ON R.RatingReviewID = R2.ReplyTo
+            LEFT JOIN PaymentDetail PD ON R.PaymentID = PD.PaymentID
+            LEFT JOIN OrderPlaced O ON PD.OrderID = O.OrderID
+            LEFT JOIN Customer C ON O.CusID = C.CusID
+            LEFT JOIN Admin A ON R2.UsernameAdmin = A.Username
+            WHERE R.ReplyTo IS NULL
+            ORDER BY R.RatingReviewDateTime DESC";
+                using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
+                {
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    return dt;
+                }
+            }
+        }
+
+        public string GetRatingPercentage(int ratingCount)
+        {
+            if (TotalRatings == 0) return "0%";
+            return $"{(ratingCount * 100) / TotalRatings}%";
         }
 
         protected void rptUserRatingReview_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -121,6 +156,42 @@ namespace CoffeeCove.AdminSite
                     "));
                 }
             }
+        }
+
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+            // Get the button that triggered the event
+            Button btn = (Button)sender;
+            int ratingReviewID = Convert.ToInt32(btn.CommandArgument);
+
+            // Call the method to delete the review
+            DeleteReview(ratingReviewID);
+
+            // Rebind the data to refresh the display
+            BindRatingReviews();
+        }
+
+        private void DeleteReview(int ratingReviewID)
+        {
+            using (SqlConnection conn = new SqlConnection(cs))
+            {
+                string query = "DELETE FROM Review WHERE RatingReviewID = @RatingReviewID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@RatingReviewID", ratingReviewID);
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        protected void btnEdit_Click(object sender, EventArgs e)
+        {
+            // Get the button that triggered the event
+            Button btn = (Button)sender;
+            int ratingReviewID = Convert.ToInt32(btn.CommandArgument);
+
+            Response.Redirect($"AdminReview.aspx?RatingReviewID={ratingReviewID}");
         }
     }
 }

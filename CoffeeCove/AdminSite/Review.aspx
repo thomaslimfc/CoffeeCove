@@ -20,72 +20,69 @@
                         </div>
                         <div class="graph-star-rating-body">
                             <div class="rating-list">
-                                <div class="rating-list-left text-black">⭐ 5 Stars</div>
+                                <div class="rating-list-left text-black">
+                                    ⭐ 5 Stars
+                                </div>
                                 <div class="rating-list-center">
                                     <div class="progress">
-                                        <div id="progressBar5" runat="server" class="progress-bar" role="progressbar" aria-valuemax="5" aria-valuemin="0">
-                                            <span class="sr-only">5 Stars Progress</span>
+                                        <div style="width: <%= GetRatingPercentage(FiveStarCount) %>; background-color: #433533f0;" aria-valuemax="5" aria-valuemin="0" aria-valuenow="5" role="progressbar" class="progress-bar">
+                                            <span class="sr-only"><%= GetRatingPercentage(FiveStarCount) %> Complete</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="rating-list-right text-black">
-                                    <asp:Label ID="lblFiveStarPercentage" runat="server" Text="0%"></asp:Label>
-                                </div>
-                            </div>
-
-                            <div class="rating-list">
-                                <div class="rating-list-left text-black">⭐ 4 Stars</div>
-                                <div class="rating-list-center">
-                                    <div class="progress">
-                                        <div id="progressBar4" runat="server" class="progress-bar" role="progressbar" aria-valuemax="5" aria-valuemin="0">
-                                            <span class="sr-only">4 Stars Progress</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="rating-list-right text-black">
-                                    <asp:Label ID="lblFourStarPercentage" runat="server" Text="0%"></asp:Label>
-                                </div>
-                            </div>
-
-                            <div class="rating-list">
-                                <div class="rating-list-left text-black">⭐ 3 Stars</div>
-                                <div class="rating-list-center">
-                                    <div class="progress">
-                                        <div id="progressBar3" runat="server" class="progress-bar" role="progressbar" aria-valuemax="5" aria-valuemin="0">
-                                            <span class="sr-only">3 Stars Progress</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="rating-list-right text-black">
-                                    <asp:Label ID="lblThreeStarPercentage" runat="server" Text="0%"></asp:Label>
-                                </div>
-                            </div>
-
-                            <div class="rating-list">
-                                <div class="rating-list-left text-black">⭐ 2 Stars</div>
-                                <div class="rating-list-center">
-                                    <div class="progress">
-                                        <div id="progressBar2" runat="server" class="progress-bar" role="progressbar" aria-valuemax="5" aria-valuemin="0">
-                                            <span class="sr-only">2 Stars Progress</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="rating-list-right text-black">
-                                    <asp:Label ID="lblTwoStarPercentage" runat="server" Text="0%"></asp:Label>
-                                </div>
+                                <div class="rating-list-right text-black"><%= GetRatingPercentage(FiveStarCount) %></div>
                             </div>
                             <div class="rating-list">
-                                <div class="rating-list-left text-black">⭐ 1 Star</div>
+                                <div class="rating-list-left text-black">
+                                    ⭐ 4 Stars
+                                </div>
                                 <div class="rating-list-center">
                                     <div class="progress">
-                                        <div id="progressBar1" runat="server" class="progress-bar" role="progressbar" aria-valuemax="5" aria-valuemin="0">
-                                            <span class="sr-only">1 Star Progress</span>
+                                        <div style="width: <%= GetRatingPercentage(FourStarCount) %>; background-color: #433533f0;" aria-valuemax="5" aria-valuemin="0" aria-valuenow="4" role="progressbar" class="progress-bar">
+                                            <span class="sr-only"><%= GetRatingPercentage(FourStarCount) %> Complete</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="rating-list-right text-black">
-                                    <asp:Label ID="lblOneStarPercentage" runat="server" Text="0%"></asp:Label>
+                                <div class="rating-list-right text-black"><%= GetRatingPercentage(FourStarCount) %></div>
+                            </div>
+                            <div class="rating-list">
+                                <div class="rating-list-left text-black">
+                                    ⭐ 3 Stars
                                 </div>
+                                <div class="rating-list-center">
+                                    <div class="progress">
+                                        <div style="width: <%= GetRatingPercentage(ThreeStarCount) %>; background-color: #433533f0;" aria-valuemax="5" aria-valuemin="0" aria-valuenow="3" role="progressbar" class="progress-bar">
+                                            <span class="sr-only"><%= GetRatingPercentage(ThreeStarCount) %> Complete</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rating-list-right text-black"><%= GetRatingPercentage(ThreeStarCount) %></div>
+                            </div>
+                            <div class="rating-list">
+                                <div class="rating-list-left text-black">
+                                    ⭐ 2 Stars
+                                </div>
+                                <div class="rating-list-center">
+                                    <div class="progress">
+                                        <div style="width: <%= GetRatingPercentage(TwoStarCount) %>; background-color: #433533f0;" aria-valuemax="5" aria-valuemin="0" aria-valuenow="2" role="progressbar" class="progress-bar">
+                                            <span class="sr-only"><%= GetRatingPercentage(TwoStarCount) %> Complete</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rating-list-right text-black"><%= GetRatingPercentage(TwoStarCount) %></div>
+                            </div>
+                            <div class="rating-list">
+                                <div class="rating-list-left text-black">
+                                    ⭐ 1 Stars
+                                </div>
+                                <div class="rating-list-center">
+                                    <div class="progress">
+                                        <div style="width: <%= GetRatingPercentage(OneStarCount) %>; background-color: #433533f0;" aria-valuemax="5" aria-valuemin="0" aria-valuenow="1" role="progressbar" class="progress-bar">
+                                            <span class="sr-only"><%= GetRatingPercentage(OneStarCount) %> Complete</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rating-list-right text-black"><%= GetRatingPercentage(OneStarCount) %></div>
                             </div>
                         </div>
                     </div>
@@ -114,8 +111,12 @@
                                                 <p><%# Eval("ReviewContent") %></p>
                                             </div>
                                             <div class="d-flex justify-content-end mt-2">
-                                                <asp:Button ID="btnEdit" runat="server" CssClass="btn btn-dark mr-2" Text="Reply/Edit" />
-                                                <asp:Button ID="btnDelete" runat="server" CssClass="btn btn-danger" Text="Delete" />
+                                                <asp:Button ID="btnEdit" runat="server" CssClass="btn btn-dark mr-2" Text="Reply/Edit" 
+                                                    OnClick="btnEdit_Click" CommandArgument='<%# Eval("RatingReviewID") %>' />
+                                                <asp:Button ID="btnDelete" runat="server" CssClass="btn btn-danger" 
+                                                    Text="Delete" OnClick="btnDelete_Click" 
+                                                    CommandArgument='<%# Eval("RatingReviewID") %>' 
+                                                    OnClientClick="return confirm('Are you sure you want to delete this review?');" />
                                             </div>
                                             <asp:PlaceHolder ID="phAdminReply" runat="server"></asp:PlaceHolder>
                                         </div>

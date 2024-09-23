@@ -26,9 +26,9 @@
                             <asp:TextBox ID="txtTo" runat="server" TextMode="Date" CssClass="form-control dateRange"></asp:TextBox>
                         </div>
                         <div class="col-8">
-                            <asp:Button ID="btnSearch" runat="server" Text="Search" ValidationGroup="OrderForm" CssClass="btn btn-secondary" />
+                            <asp:Button ID="btnSearch" runat="server" Text="Search" ValidationGroup="OrderForm" CssClass="btn btn-secondary" OnClick="btnSearch_Click" />
                             &nbsp;&nbsp;
-                            <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-dark" />
+                            <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-dark" OnClick="btnReset_Click" />
                         </div>
                       </div>
 
@@ -51,6 +51,7 @@
                         <asp:ListItem Text="All" Value="All" />
                         <asp:ListItem Text="Pending" Value="True" />
                         <asp:ListItem Text="Complete" Value="False" />
+                        <asp:ListItem Text="Cancel" Value="Cancelled" />
                     </asp:DropDownList>
                 </div>
 
@@ -68,7 +69,8 @@
                     
                             <asp:GridView ID="gvPayment" runat="server" AutoGenerateColumns="False" CssClass="table table-striped"
                                  Width="100%" AllowSorting="True"
-                                AllowPaging="true" OnPageIndexChanging="gvPayment_PageIndexChanging" PageSize="5" EmptyDataText="No categories found.">
+                                AllowPaging="true" OnPageIndexChanging="gvPayment_PageIndexChanging" OnRowDataBound="gvPayment_RowDataBound" 
+                                OnRowCommand="gvPayment_RowCommand" PageSize="5" EmptyDataText="No categories found.">
                                 <Columns>
                                     <asp:TemplateField SortExpression="PaymentId" ItemStyle-Width="10px">
                                         <HeaderTemplate>
@@ -105,8 +107,10 @@
 
                                     <asp:TemplateField HeaderText="Payment Status" ItemStyle-Width="20px">
                                         <ItemTemplate>
-                                            <%# Eval("PaymentStatus").ToString() == "Complete" ? 
-                                            "<span class='badge rounded-pill bg-success'>Complete</span>" : 
+                                            <%# Eval("PaymentStatus").ToString().Trim() == "Complete" ? 
+                                            "<span class='badge rounded-pill bg-success'>Completed</span>" : 
+                                            Eval("PaymentStatus").ToString().Trim() == "Cancel" ? 
+                                            "<span class='badge rounded-pill bg-warning'>Cancel</span>" : 
                                             "<span class='badge rounded-pill bg-danger'>Pending</span>" %>
                                         </ItemTemplate>
                                     </asp:TemplateField>
@@ -127,7 +131,7 @@
 
                                     <asp:TemplateField HeaderText="Action" ItemStyle-Width="100px">
                                         <ItemTemplate>
-                                            <asp:LinkButton ID="lnkUpdate" runat="server" CommandName="UpdateStatus" CommandArgument='<%# Eval("PaymentID") %>' Text="Update" CssClass="btn btn-dark btn-sm" />
+                                            <asp:LinkButton ID="lnkUpdate" runat="server" CommandName="UpdateStatus" CommandArgument='<%# Eval("PaymentID") %>' Text="Update" CssClass="btn btn-dark btn-sm" OnClientClick="return confirmUpdate();" />
                                             <asp:LinkButton ID="lnkCancel" runat="server" CommandName="CancelPayment" CommandArgument='<%# Eval("PaymentID") %>' Text="Cancel" OnClientClick="return confirmDelete();" CssClass="btn btn-danger btn-sm" />
                                         </ItemTemplate>
                                     </asp:TemplateField>
@@ -138,13 +142,17 @@
                         </div>
                     </div>
                     <div class="col-5" style="margin-left:45%;margin-bottom:20px">
-                        <asp:Button ID="BtnExport" runat="server" Text="Export To PDF" CssClass="btn btn-success"/>
+                        <asp:Button ID="BtnExport" runat="server" Text="Export To PDF" CssClass="btn btn-success" OnClick="BtnExport_Click"/>
                     </div>
                 </div>
             </div>
         </section>
     </div>
-
+    <script>
+        function confirmUpdate() {
+            return confirm("Do you confirm you want to complete this payment?");
+        }
+    </script>
     <script>
         function confirmDelete() {
             return confirm("Do you confirm you want to cancel this payment?");
