@@ -26,7 +26,7 @@ namespace CoffeeCove.Security
                     if (customer != null)
                     {
                         // Store user details in session
-                        Session["Username"] = customer.Username; // Assuming you have a Username field
+                        Session["Username"] = customer.Username;
                         Session["UserRole"] = "Customer";
                         Session["CusID"] = customer.CusID;
                         Session["ContactNo"] = customer.ContactNo;
@@ -35,10 +35,12 @@ namespace CoffeeCove.Security
                         Session["2FARequired"] = true;
 
                         // Redirect to the two-factor authentication page
-                        //Response.Redirect("TwoFactorAuthentication2.aspx");
+                        Response.Redirect("TwoFactorAuthentication2.aspx");
                     }
                     else
                     {
+                        Response.Redirect("SignUp.aspx");
+
                         //Optionally, display an error message
                         //InvalidCredentialsLabel.Text = "Invalid email or password.";
                         //InvalidCredentialsLabel.Visible = true;
@@ -46,7 +48,6 @@ namespace CoffeeCove.Security
                         // Log this attempt for security reasons
                         //System.Diagnostics.Debug.WriteLine("Failed login attempt for user: " + email);
                     }
-
                 }
             }
         }
