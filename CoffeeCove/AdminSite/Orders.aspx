@@ -47,7 +47,7 @@
 
                 <!-- Order View -->
 
-                <div class="col-lg-12" id="viewOrder" style="display: none">
+                <div class="col-lg-12" id="viewOrder">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Order Detail</h5>
@@ -114,7 +114,7 @@
                                                         <asp:Label ID="lblPickUp" runat="server" Text=""></asp:Label>
                                                     </td>
                                                 </tr>
-                                                <tr style="display: none">
+                                                <tr>
                                                     <th>Delivery Address:
                                                     </th>
                                                     <td>
@@ -141,68 +141,63 @@
                                                     <th class="cartRight">Quantity</th>
                                                     <th class="cartRight">Total</th>
                                                 </tr>
-
-                                                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                                                    <ContentTemplate>
-                                                        <!--Repeater-->
-                                                        <asp:Repeater ID="rptOrdered" runat="server" OnItemDataBound="rptOrdered_ItemDataBound">
-                                                            <ItemTemplate>
-                                                                <tr style="border-bottom: solid 2px #433533">
-                                                                    <td class="tableItem" style="border-right: none">
-                                                                        <asp:Label ID="lblName" runat="server" Font-Bold="true" Text='<%# Eval("ProductName") %>' CssClass="itemName" />
-                                                                        <br />
-                                                                        <asp:Panel ID="panelTable" runat="server">
-                                                                            <table id="excludeTable">
-                                                                                <tr>
-                                                                                    <td>
-                                                                                        <asp:Panel ID="panelSize" runat="server">
-                                                                                            Size:&nbsp&nbsp<asp:Label ID="lblSize" runat="server" Text='<%# Eval("Size") %>' />
-                                                                                        </asp:Panel>
-                                                                                    </td>
-                                                                                    <td>&nbsp
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <asp:Panel ID="panelFlavour" runat="server">
-                                                                                            Flavour:&nbsp&nbsp<asp:Label ID="lblFlavour" runat="server" Text='<%# Eval("Flavour") %>' />
-                                                                                        </asp:Panel>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <td>
-                                                                                        <asp:Panel ID="panelIce" runat="server">
-                                                                                            Ice Level:&nbsp&nbsp<asp:Label ID="lblIce" runat="server" Text='<%# Eval("IceLevel") %>' />
-                                                                                        </asp:Panel>
-                                                                                    </td>
-                                                                                    <td>&nbsp
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <asp:Panel ID="panelAddon" runat="server">
-                                                                                            Add-Ons:&nbsp&nbsp<asp:Label ID="lblAddOn" runat="server" Text='<%# Eval("AddOn") %>' />
-                                                                                        </asp:Panel>
-                                                                                    </td>
-                                                                                </tr>
-                                                                            </table>
-                                                                        </asp:Panel>
+                                                <!--Repeater-->
+                                                <asp:Repeater ID="rptOrdered" runat="server" OnItemDataBound="rptOrdered_ItemDataBound">
+                                                    <ItemTemplate>
+                                                        <tr style="border-bottom: solid 2px #433533">
+                                                            <td class="tableItem" style="border-right: none">
+                                                                <asp:Label ID="lblName" runat="server" Font-Bold="true" Text='<%# Eval("ProductName") %>' CssClass="itemName" />
+                                                                <br />
+                                                                <asp:Panel ID="panelTable" runat="server">
+                                                                    <table id="excludeTable">
+                                                                        <tr>
+                                                                            <td>
+                                                                                <asp:Panel ID="panelSize" runat="server">
+                                                                                    Size:&nbsp&nbsp<asp:Label ID="lblSize" runat="server" Text='<%# Eval("Size") %>' />
+                                                                                </asp:Panel>
+                                                                            </td>
+                                                                            <td>&nbsp
+                                                                            </td>
+                                                                            <td>
+                                                                                <asp:Panel ID="panelFlavour" runat="server">
+                                                                                    Flavour:&nbsp&nbsp<asp:Label ID="lblFlavour" runat="server" Text='<%# Eval("Flavour") %>' />
+                                                                                </asp:Panel>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <asp:Panel ID="panelIce" runat="server">
+                                                                                    Ice Level:&nbsp&nbsp<asp:Label ID="lblIce" runat="server" Text='<%# Eval("IceLevel") %>' />
+                                                                                </asp:Panel>
+                                                                            </td>
+                                                                            <td>&nbsp
+                                                                            </td>
+                                                                            <td>
+                                                                                <asp:Panel ID="panelAddon" runat="server">
+                                                                                    Add-Ons:&nbsp&nbsp<asp:Label ID="lblAddOn" runat="server" Text='<%# Eval("AddOn") %>' />
+                                                                                </asp:Panel>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </asp:Panel>
 
 
-                                                                    </td>
+                                                            </td>
 
-                                                                    <td style="text-align: center" class="tableItem">
-                                                                        <asp:Label ID="lblPrice" runat="server" Text='<%# Eval("Price") %>' />
-                                                                    </td>
-                                                                    <td style="text-align: center" class="tableItem">
-                                                                        <asp:Label ID="lblQuantity" runat="server" Text='<%# Eval("Quantity") %>' />
-                                                                    </td>
-                                                                    <td style="text-align: center" class="tableItem">
-                                                                        <asp:Label ID="lblLineTotal" runat="server" Text="" />
-                                                                    </td>
-                                                                </tr>
-                                                            </ItemTemplate>
-                                                        </asp:Repeater>
+                                                            <td style="text-align: center" class="tableItem">
+                                                                <asp:Label ID="lblPrice" runat="server" Text='<%# Eval("Price") %>' />
+                                                            </td>
+                                                            <td style="text-align: center" class="tableItem">
+                                                                <asp:Label ID="lblQuantity" runat="server" Text='<%# Eval("Quantity") %>' />
+                                                            </td>
+                                                            <td style="text-align: center" class="tableItem">
+                                                                <asp:Label ID="lblLineTotal" runat="server" Text="" />
+                                                            </td>
+                                                        </tr>
+                                                    </ItemTemplate>
+                                                </asp:Repeater>
 
 
-                                                    </ContentTemplate>
-                                                </asp:UpdatePanel>
                                             </table>
 
                                             <table id="cartTotalTable">
@@ -227,7 +222,6 @@
                                             </table>
                                         </td>
                                     </tr>
-
                                 </table>
                             </div>
 
@@ -244,7 +238,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Order List</h5>
 
-                            <asp:GridView ID="gvOrder" runat="server" AutoGenerateColumns="false" CssClass="table table-striped" PageSize="10" AllowPaging="true" AllowSorting="true" EmptyDataText="There are no data records" OnRowCommand="gvOrder_RowCommand" DataKeyNames="OrderID" OnRowDataBound="gvOrder_RowDataBound">
+                            <asp:GridView ID="gvOrder" runat="server" AutoGenerateColumns="false" CssClass="table table-striped" PageSize="10" AllowPaging="true" AllowSorting="true" EmptyDataText="There are no data records" OnRowCommand="gvOrder_RowCommand" DataKeyNames="OrderID">
                                 <Columns>
                                     <asp:TemplateField SortExpression="OrderID">
                                         <HeaderTemplate>
@@ -296,7 +290,7 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Action" ItemStyle-Width="150px">
                                         <ItemTemplate>
-                                            <asp:LinkButton ID="btnView" runat="server" CommandName="viewOrder" CommandArgument='<%# Eval("OrderID") %>' Text="View" CssClass="btn btn-dark btn-sm" OnClientClick="viewOrder(event);" />
+                                            <asp:LinkButton ID="btnView" runat="server" CommandName="viewOrder" CommandArgument='<%# Eval("OrderID") %>' Text="View" CssClass="btn btn-dark btn-sm" />
                                             <asp:LinkButton ID="btnDelete" runat="server" CommandName="deleteOrder" CommandArgument='<%# Eval("OrderID") %>' Text="Delete" CssClass="btn btn-danger btn-sm" OnClientClick="return confirmDelete();" />
                                         </ItemTemplate>
                                     </asp:TemplateField>
@@ -319,9 +313,6 @@
     <script>
         function confirmDelete() {
             return confirm("Do you confirm you want to delete this store from store list?");
-        }
-        function viewOrder(event) {
-            document.getElementById("viewOrder").style.display = 'block';
         }
 
     </script>

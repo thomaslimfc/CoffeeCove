@@ -15,6 +15,7 @@ namespace CoffeeCove.Order
         string cs = Global.CS;
         decimal subTotal = 0;
         decimal linePrice = 0;
+        decimal total = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -72,8 +73,13 @@ namespace CoffeeCove.Order
         protected void btnProceed_Click(object sender, EventArgs e)
         {
             //save total into the db
-            string total = lblTotal.Text;
-            string orderId = Session["OrderID"].ToString();
+            string orderId = "";
+
+            if (Session["OrderID"] != null)
+            {
+                orderId = Session["OrderID"].ToString();
+            }
+            
 
             using (SqlConnection conn = new SqlConnection(cs))
             {
@@ -126,7 +132,7 @@ namespace CoffeeCove.Order
             subTotal += linePrice;
 
             decimal tax = subTotal * (decimal)0.06;
-            decimal total = subTotal + tax;
+            total = subTotal + tax;
 
             lblSubtotal.Text = subTotal.ToString("C"); // "C" formats the number as currency
             lblTax.Text = tax.ToString("C");

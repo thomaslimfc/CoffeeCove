@@ -19,29 +19,27 @@ namespace CoffeeCove.AdminSite
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //lblOrderNo.Text = "1";
-            //lblDate.Text = "22/7/2024 12:00:00 AM";
-            //lblDelPick.Text = "Pick Up";
-            //lblPaymentMethod.Text = "Cash";
-            //lblUsername.Text = "goldfishyyy";
-            //lblEmail.Text = "goldfizh@gmail.com";
-            //lblPickUp.Text = "CoffeeCove Karpal Singh";
-
 
             if (!Page.IsPostBack)
             {
                 //string orderId = Session["OrderId"].ToString();
                 BindGridView();
-                bindRepeater("1");
             }
         }
 
         protected void rptOrdered_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
+            int quantity = 0;
+            decimal price = 0;
+            decimal subTotal = 0;
+            decimal linePrice = 0;
+            decimal tax = 0;
+            decimal total = 0;
+
             System.Web.UI.WebControls.Label lblQuantity = (System.Web.UI.WebControls.Label)e.Item.FindControl("lblQuantity");
-            int quantity = int.Parse(lblQuantity.Text);
+            quantity = int.Parse(lblQuantity.Text);
             System.Web.UI.WebControls.Label lblPrice = (System.Web.UI.WebControls.Label)e.Item.FindControl("lblPrice");
-            decimal price = decimal.Parse(lblPrice.Text);
+            price = decimal.Parse(lblPrice.Text);
             System.Web.UI.WebControls.Label lblLineTotal = (System.Web.UI.WebControls.Label)e.Item.FindControl("lblLineTotal");
 
             System.Web.UI.WebControls.Label lblSize = (System.Web.UI.WebControls.Label)e.Item.FindControl("lblSize");
@@ -62,14 +60,11 @@ namespace CoffeeCove.AdminSite
                 panelAddon.Visible = false;
             }
 
-            decimal subTotal = 0;
-            decimal linePrice = 0;
-
             linePrice = quantity * price;
             subTotal += linePrice;
 
-            decimal tax = subTotal * (decimal)0.06;
-            decimal total = subTotal + tax;
+            tax = subTotal * (decimal)0.06;
+            total = subTotal + tax;
 
             lblSubtotal.Text = subTotal.ToString("C"); // "C" formats the number as currency
             lblTax.Text = tax.ToString("C");
@@ -83,8 +78,8 @@ namespace CoffeeCove.AdminSite
             {
                 string sql = @"SELECT O.OrderID, O.OrderDateTime, O.TotalAmount, P.PaymentMethod, O.OrderStatus, C.Username
                     FROM OrderPlaced O 
-                    INNER JOIN PaymentDetail P ON O.OrderID = P.OrderID
-                    INNER JOIN Customer C ON O.CusID = C.CusID";
+                    JOIN PaymentDetail P ON O.OrderID = P.OrderID
+                    JOIN Customer C ON O.CusID = C.CusID";
 
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
@@ -99,10 +94,6 @@ namespace CoffeeCove.AdminSite
 
                         gvOrder.DataSource = dt;
                         gvOrder.DataBind();
-                    }
-                    catch (SqlException ex)
-                    {
-
                     }
                     catch (Exception ex)
                     {
@@ -119,9 +110,35 @@ namespace CoffeeCove.AdminSite
             {
                 string orderId = e.CommandArgument.ToString();
                 bindRepeater(orderId);
-
+                displayDetail(orderId);
                 
             }
+            else if(e.CommandName == "deleteOrder")
+            {
+                string orderId = e.CommandArgument.ToString();
+                deleteOrder(orderId);
+            }
+        }
+
+        private void deleteOrder(string orderId)
+        {
+            //delete store then reset the identity() to max num
+            using (SqlConnection conn = new SqlConnection(cs))
+            {
+                conn.Open();
+
+                string sql = @"DELETE FROM OrderPlaced
+                                WHERE OrderID = @orderId";
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@orderId", orderId);
+                    cmd.ExecuteNonQuery();
+                }
+
+            }
+
+            //rebind the gridview
+            BindGridView();
         }
 
         private void bindRepeater(string orderId)
@@ -150,18 +167,69 @@ namespace CoffeeCove.AdminSite
             conn.Close();
         }
 
-
-
-        protected void gvOrder_RowDataBound(object sender, GridViewRowEventArgs e)
+        private void displayDetail(string orderId)
         {
-            if (e.Row.RowType == DataControlRowType.DataRow)
+            //get data from db
+            using (SqlConnection conn = new SqlConnection(cs))
             {
-                LinkButton btnView = (LinkButton)e.Row.FindControl("btnView");
-                if (btnView != null)
+                string sql = @"SELECT *
+                    FROM OrderPlaced O 
+                    JOIN PaymentDetail P ON O.OrderID = P.OrderID
+                    JOIN Customer C ON O.CusID = C.CusID
+                    WHERE O.OrderID = @orderId";
+
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
-                    ScriptManager.GetCurrent(this).RegisterAsyncPostBackControl(btnView);
+                    cmd.Parameters.AddWithValue("@orderId", orderId);
+                    try
+                    {
+                        conn.Open();
+
+                        SqlDataReader dr = cmd.ExecuteReader();
+
+                        if (dr.Read())
+                        {
+                            lblOrderNo.Text = orderId;
+                            lblDate.Text = dr["OrderDateTime"].ToString();
+
+                            //if it is delivery then display delivery and vice versa
+                            if (dr["StoreID"] == DBNull.Value)//if store ID = null, means that it is using delivery
+                            {
+                                lblDelPick.Text = "Delivery";
+                                lblDelivery.Text = dr["DeliveryAddress"].ToString();
+                                lblPickUp.Text = "-";
+                            }
+                            else if (dr["DeliveryAddress"] == DBNull.Value)
+                            {
+                                lblDelPick.Text = "Pick Up";
+                                lblPickUp.Text = dr["StoreName"].ToString();
+                                lblDelivery.Text = "-";
+                            }
+                            else
+                            {
+                                lblDelPick.Text = " ";
+                            }
+
+                            lblPaymentMethod.Text = dr["PaymentMethod"].ToString();
+                            lblUsername.Text = dr["Username"].ToString();
+                            lblEmail.Text = dr["EmailAddress"].ToString();
+
+
+
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+
                 }
             }
+
+
+
+
         }
     }
 }

@@ -65,12 +65,12 @@ namespace CoffeeCove.AdminSite
             }
             else if (e.CommandName == "DeleteStore")
             {
-                int StoreId = Convert.ToInt32(e.CommandArgument);
+                string StoreId = (string)e.CommandArgument;
                 deleteStore(StoreId);
             }
         }
 
-        private void deleteStore(int StoreId)
+        private void deleteStore(string StoreId)
         {
             //delete store then reset the identity() to max num
             using (SqlConnection conn = new SqlConnection(cs))
