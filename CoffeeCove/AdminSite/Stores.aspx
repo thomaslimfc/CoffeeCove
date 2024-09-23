@@ -11,7 +11,6 @@
         </div>
         <section class="section">
             <div class="row" style="margin-top: 2%;">
-                <asp:UpdatePanel ID="UpdatePanel1" runat="server"></asp:UpdatePanel>
                 <!-- Store Form -->
                 <div class="col-lg-12">
                     <div class="card">
@@ -53,7 +52,9 @@
                                 <Columns>
                                     <asp:TemplateField SortExpression="StoreID">
                                         <HeaderTemplate>
-                                            <asp:LinkButton ID="lnkStoreID" runat="server" CommandArgument="StoreID" CssClass="header-link" ToolTip="Sort">No</asp:LinkButton>
+                                            <asp:LinkButton ID="lnkStoreID" runat="server" CommandArgument="StoreID" CssClass="header-link" ToolTip="Sort" OnClick="lnkStore_Click">No
+                                                <asp:Literal ID="litSortIconId" runat="server"></asp:Literal>
+                                            </asp:LinkButton>
                                         </HeaderTemplate>
                                         <ItemTemplate>
                                             <%# Eval("StoreID") %>
@@ -62,7 +63,9 @@
 
                                     <asp:TemplateField SortExpression="StoreName">
                                         <HeaderTemplate>
-                                            <asp:LinkButton ID="lnkStoreName" runat="server" CommandArgument="StoreName" CssClass="header-link" ToolTip="Sort">Store Name</asp:LinkButton>
+                                            <asp:LinkButton ID="lnkStoreName" runat="server" CommandArgument="StoreName" CssClass="header-link" ToolTip="Sort" OnClick="lnkStore_Click">Store Name
+                                                <asp:Literal ID="litSortIconName" runat="server"></asp:Literal>
+                                            </asp:LinkButton>
                                         </HeaderTemplate>
                                         <ItemTemplate>
                                             <%# Eval("StoreName") %>
@@ -71,7 +74,9 @@
 
                                     <asp:TemplateField SortExpression="StoreAddress">
                                         <HeaderTemplate>
-                                            <asp:LinkButton ID="lnkStoreAddress" runat="server" CommandArgument="StoreAddress" CssClass="header-link" ToolTip="Sort">Store Address</asp:LinkButton>
+                                            <asp:LinkButton ID="lnkStoreAddress" runat="server" CommandArgument="StoreAddress" CssClass="header-link" ToolTip="Sort" OnClick="lnkStore_Click">Store Address
+                                                <asp:Literal ID="litSortIconAddress" runat="server"></asp:Literal>
+                                            </asp:LinkButton>
                                         </HeaderTemplate>
                                         <ItemTemplate>
                                             <%# Eval("StoreAddress") %>
@@ -85,6 +90,7 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                 </Columns>
+
                                 <HeaderStyle CssClass="gridview-header" />
                                 <PagerStyle CssClass="datatable-pagination" />
                             </asp:GridView>

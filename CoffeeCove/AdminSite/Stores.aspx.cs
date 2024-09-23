@@ -30,6 +30,11 @@ namespace CoffeeCove.AdminSite
             {
                 string sql = "SELECT * FROM Store";
 
+                if (!string.IsNullOrEmpty(SortExpression))
+                {
+                    sql += $" ORDER BY {SortExpression} {SortDirection}";
+                }
+
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     try
@@ -43,16 +48,13 @@ namespace CoffeeCove.AdminSite
                         gvStoreList.DataSource = dt;
                         gvStoreList.DataBind();
                     }
-                    catch (SqlException ex)
-                    {
-
-                    }
                     catch (Exception ex)
                     {
 
                     }
                     
                 }
+                UpdateSortIcons();
             }
         }
 
@@ -230,6 +232,70 @@ namespace CoffeeCove.AdminSite
             }
             
         }
+
+        private string SortDirection
+        {
+            get { return ViewState["SortDirection"] as string ?? "ASC"; }
+            set { ViewState["SortDirection"] = value; }
+        }
+
+        private string SortExpression
+        {
+            get { return ViewState["SortExpression"] as string ?? "StoreID"; }
+            set { ViewState["SortExpression"] = value; }
+        }
+
+        protected void gvStoreList_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            SortDirection = (SortDirection == "ASC") ? "DESC" : "ASC";
+
+            SortExpression = e.SortExpression;
+
+            BindGridView();
+        }
+
+        protected void lnkStore_Click(object sender, EventArgs e)
+        {
+            if (sender is LinkButton linkButton)
+            {
+                SortExpression = linkButton.CommandArgument;
+
+                SortDirection = (SortDirection == "ASC" && SortExpression == linkButton.CommandArgument) ? "DESC" : "ASC";
+
+                BindGridView();
+            }
+        }
+
+        private void UpdateSortIcons()
+        {
+            Literal litSortIconId = gvStoreList.HeaderRow.FindControl("litSortIconId") as Literal;
+            Literal litSortIconName = gvStoreList.HeaderRow.FindControl("litSortIconName") as Literal;
+            Literal litSortIconAddress = gvStoreList.HeaderRow.FindControl("litSortIconAddress") as Literal;
+
+            string defaultIcon = "<i class='bi bi-caret-up-fill'></i>";
+            string ascendingIcon = "<i class='bi bi-caret-up-fill'></i>";
+            string descendingIcon = "<i class='bi bi-caret-down-fill'></i>";
+
+            litSortIconId.Text = defaultIcon;
+            litSortIconName.Text = defaultIcon;
+            litSortIconAddress.Text = defaultIcon;
+
+            if (SortExpression == "StoreID")
+            {
+                litSortIconId.Text = (SortDirection == "ASC") ? ascendingIcon : descendingIcon;
+            }
+            else if (SortExpression == "StoreName")
+            {
+                litSortIconName.Text = (SortDirection == "ASC") ? ascendingIcon : descendingIcon;
+            }
+            else if (SortExpression == "StoreAddress")
+            {
+                litSortIconAddress.Text = (SortDirection == "ASC") ? ascendingIcon : descendingIcon;
+            }
+        }
+
+
+
     }
 
 }

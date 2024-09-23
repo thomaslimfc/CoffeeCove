@@ -3,11 +3,43 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>File Not Found</title>
+
+    <!-- Vendor CSS Files -->
+    <link href="/Content/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/Content/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+    <link href="/Content/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+
 </head>
 <body>
-<div style='background-color:#BBBBBB; font-family:Calibri; padding: 5px 5px 5px 5px'>
-<h1 style="text-align:center;color:red">Sorry</h1>
-<h2 style="text-align:center;color:red">The file is not available</h2>
-</div>
+    <style>
+        .btnBack {
+            display: inline-block;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-top: 5px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: #413432;
+            color: #fff;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition-duration: 0.4s;
+        }
+    </style>
+    <main>
+        <div class="container">
+
+            <section class="section error-404 min-vh-100 d-flex flex-column align-items-center justify-content-center">
+                <h1 style="font-weight:bold;color:red">Sorry</h1>
+                <h2 style="font-weight:bold;color:red">The file is not available</h2>
+                <img src="/Content/img/not-found.svg" class="img-fluid py-5" alt="file Not Found" style="width:500px;height:500px" />
+                <button class="btnBack">Back to Home</button>
+            </section>
+
+        </div>
+    </main>
 </body>
 </html>

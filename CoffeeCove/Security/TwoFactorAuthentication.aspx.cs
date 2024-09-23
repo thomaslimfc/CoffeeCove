@@ -21,7 +21,7 @@ namespace CoffeeCove.Security
                 if (Session["2FARequired"] != null && (bool)Session["2FARequired"])
                 {
                     string contactNo = Session["ContactNo"] as string;
-                    string otpCode = GenerateOTP(); // Generate the OTP
+                    string otpCode = GenerateOTP();
 
                     // Store the OTP in session
                     OTP = otpCode;
@@ -85,8 +85,8 @@ namespace CoffeeCove.Security
         {
             TwilioClient.Init(AccountSid, AuthToken);
 
-            string cleanPhoneNumber = phoneNumber.Replace("-", "").Trim(); // Remove hyphens and trim spaces
-            string formattedPhoneNumber = $"whatsapp:+6{cleanPhoneNumber}"; // Assuming +6 is the country code for Malaysia
+            string cleanPhoneNumber = phoneNumber.Replace("-", "").Trim();
+            string formattedPhoneNumber = $"whatsapp:+6{cleanPhoneNumber}";
 
             // Log the phone number being used
             Console.WriteLine($"Sending OTP to: {formattedPhoneNumber}");

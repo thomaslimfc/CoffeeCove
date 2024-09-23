@@ -100,8 +100,8 @@ namespace CoffeeCove.Order
                 string cusID = "11";
                 //create an orderID for it
                 SqlConnection conn3 = new SqlConnection(cs);
-                string sql3 = @"INSERT INTO OrderPlaced(CusID,OrderDateTime,TotalAmount) 
-                                VALUES (@cusID,@dateTime,0);
+                string sql3 = @"INSERT INTO OrderPlaced(CusID,OrderDateTime,TotalAmount,OrderType) 
+                                VALUES (@cusID,@dateTime,0,'Pick Up');
                                 SELECT SCOPE_IDENTITY();";
 
                 SqlCommand cmd3 = new SqlCommand(sql3, conn3);
@@ -175,8 +175,8 @@ namespace CoffeeCove.Order
                     string cusID = "11";
                     //create an orderID for it
                     SqlConnection conn3 = new SqlConnection(cs);
-                    string sql3 = @"INSERT INTO OrderPlaced(CusID,OrderDateTime,TotalAmount) 
-                                VALUES (@cusID,@dateTime,0);
+                    string sql3 = @"INSERT INTO OrderPlaced(CusID,OrderDateTime,TotalAmount,OrderType) 
+                                VALUES (@cusID,@dateTime,0,'Delivery');
                                 SELECT SCOPE_IDENTITY();";
 
                     SqlCommand cmd3 = new SqlCommand(sql3, conn3);
