@@ -592,3 +592,7 @@ D:\# GitHub Local Repository\# CoffeeCove\CoffeeCove\CoffeeCove\obj\Debug\Coffee
 D:\# GitHub Local Repository\# CoffeeCove\CoffeeCove\CoffeeCove\obj\Debug\CoffeeCove.csproj.Up2Date
 D:\# GitHub Local Repository\# CoffeeCove\CoffeeCove\CoffeeCove\obj\Debug\CoffeeCove.dll
 D:\# GitHub Local Repository\# CoffeeCove\CoffeeCove\CoffeeCove\obj\Debug\CoffeeCove.pdb
+D:\# GitHub Local Repository\# CoffeeCove\CoffeeCove\CoffeeCove\bin\SendGrid.dll
+D:\# GitHub Local Repository\# CoffeeCove\CoffeeCove\CoffeeCove\bin\StarkbankEcdsa.dll
+D:\# GitHub Local Repository\# CoffeeCove\CoffeeCove\CoffeeCove\bin\SendGrid.pdb
+D:\# GitHub Local Repository\# CoffeeCove\CoffeeCove\CoffeeCove\bin\SendGrid.xml

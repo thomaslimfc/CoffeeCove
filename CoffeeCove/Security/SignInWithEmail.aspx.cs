@@ -1,20 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using CoffeeCove.Securities;
 
 namespace CoffeeCove.Security
 {
     public partial class SignInWithEmail : System.Web.UI.Page
     {
-        //string cs = Global.CS;
-
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Session.Clear();
         }
 
         protected void SignInButton_SI2_Click(object sender, EventArgs e)
@@ -22,26 +17,44 @@ namespace CoffeeCove.Security
             if (Page.IsValid)
             {
                 string email = EmailAdd_SI2.Text;
-                string password = Password_SI2.Text;
+                string password = HashPassword(Password_SI2.Text);
 
                 using (dbCoffeeCoveEntities db = new dbCoffeeCoveEntities())
                 {
-                    var customerQuery = db.Customers;
+                    var customer = db.Customers.SingleOrDefault(c => c.EmailAddress == email && c.HashedPassword == password);
 
-                    Customer cust = customerQuery.SingleOrDefault(c => c.EmailAddress == email && c.HashedPassword == password);
-
-                    if (cust != null)
+                    if (customer != null)
                     {
-                        Response.Redirect("~/Home/Home.aspx");
+                        // Store user details in session
+                        Session["Username"] = customer.Username; // Assuming you have a Username field
+                        Session["UserRole"] = "Customer";
+                        Session["CusID"] = customer.CusID;
+                        Session["ContactNo"] = customer.ContactNo;
                     }
                     else
                     {
-                        //InvalidCredentialsLabel.Text = "Invalid username or password.";
+                         //Optionally, display an error message
+                        //InvalidCredentialsLabel.Text = "Invalid email or password.";
                         //InvalidCredentialsLabel.Visible = true;
-                        // Optionally, log this attempt for security reasons
-                        System.Diagnostics.Debug.WriteLine("Failed login attempt for user: " + email);
+
+                        // Log this attempt for security reasons
+                        //System.Diagnostics.Debug.WriteLine("Failed login attempt for user: " + email);
                     }
+                    // Set a flag indicating that 2FA is required
+                    Session["2FARequired"] = true;
+
+                    // Redirect to the two-factor authentication page
+                    Response.Redirect("TwoFactorAuthentication2.aspx");
                 }
+            }
+        }
+
+        private string HashPassword(string password)
+        {
+            using (var sha256 = System.Security.Cryptography.SHA256.Create())
+            {
+                byte[] bytes = sha256.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+                return Convert.ToBase64String(bytes);
             }
         }
     }

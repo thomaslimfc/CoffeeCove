@@ -30,6 +30,7 @@
                 runat="server" 
                 ControlToValidate="EmailAdd_SI2" 
                 ErrorMessage="Email Address is required." 
+                CssClass="rqdValidator" 
                 Display="Dynamic" 
                 ForeColor="Red" />
             <asp:RegularExpressionValidator 
@@ -37,6 +38,7 @@
                 runat="server" 
                 ControlToValidate="EmailAdd_SI2" 
                 ErrorMessage="Invalid email format." 
+                CssClass="rqdValidator" 
                 Display="Dynamic" 
                 ForeColor="Red" 
                 ValidationExpression="^[^@\s]+@[^@\s]+\.[^@\s]+$" />
@@ -56,19 +58,20 @@
                 </asp:TextBox>
                 <span id="PasswordToggle" class="absolute right-2 top-2 cursor-pointer">👁️</span>
             </div>
-            <br />
             <asp:RequiredFieldValidator 
                 ID="Password_SI2_rqdValidator" 
                 runat="server" 
                 ControlToValidate="Password_SI2" 
-                ErrorMessage="Password is required." 
+                ErrorMessage="Password is required."
+                CssClass="rqdValidator"                 
                 Display="Dynamic" 
                 ForeColor="Red" />
             <asp:RegularExpressionValidator 
                 ID="Password_SI2_regexValidator" 
                 runat="server" 
                 ControlToValidate="Password_SI2" 
-                ErrorMessage="Must contain >10 letters, numbers, and symbols." 
+                ErrorMessage="Must contain >10 letters, numbers, and symbols."
+                CssClass="rqdValidator" 
                 Display="Dynamic" 
                 ForeColor="Red" 
                 ValidationExpression="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{10,}$" />

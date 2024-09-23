@@ -7,7 +7,6 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace CoffeeCove.Security
 {
-    //@asdfghjklASDFGHJKL12345#
     public partial class SignIn : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)

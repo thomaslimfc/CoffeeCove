@@ -18,8 +18,6 @@ namespace CoffeeCove.Security
         {
         }
 
-
-
         private bool IsUsernameAvailable(string username)
         {
             return !(db.Customers.Any(u => u.Username == username) ||
@@ -49,6 +47,20 @@ namespace CoffeeCove.Security
             }
         }
 
+        private bool IsContactNoAvailable(string contactNo)
+        {
+            return !db.Customers.Any(u => u.ContactNo == contactNo);
+        }
+
+        protected void ContactNo_SU_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            args.IsValid = IsContactNoAvailable(args.Value);
+            if (!args.IsValid)
+            {
+                ContactNo_SU_customValidator.ErrorMessage = "Your contact number has been used.";
+            }
+        }
+
         protected void SignUpBtn_SU_Click(object sender, EventArgs e)
         {
             string recaptchaResponse = Request.Form["g-recaptcha-response"];
@@ -58,6 +70,7 @@ namespace CoffeeCove.Security
             {
                 bool isUsernameValid = IsUsernameAvailable(Username_SU.Text);
                 bool isEmailValid = IsEmailAvailable(EmailAdd_SU.Text);
+                bool isContactNoValid = IsContactNoAvailable(ContactNo_SU.Text);
 
                 if (isUsernameValid && isEmailValid)
                 {
@@ -78,9 +91,7 @@ namespace CoffeeCove.Security
                     db.Customers.Add(newCust);
                     db.SaveChanges();
 
-
-
-                    Response.Redirect("SignIn.aspx");
+                    Response.Redirect("AccountRegistrationSuccess.aspx");
                 }
                 else
                 {
@@ -94,6 +105,12 @@ namespace CoffeeCove.Security
                     {
                         EmailAdd_SU_customValidator.ErrorMessage = "Your email has been used.";
                         EmailAdd_SU_customValidator.IsValid = false;
+                    }
+
+                    if (!isContactNoValid)
+                    {
+                        ContactNo_SU_customValidator.ErrorMessage = "This phone number has already been registered.";
+                        ContactNo_SU_customValidator.IsValid = false;
                     }
                 }
             }

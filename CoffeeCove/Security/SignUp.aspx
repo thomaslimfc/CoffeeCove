@@ -130,7 +130,7 @@
             runat="server" 
             placeholder="deschau7668@gmail.com" 
             title="Email Address"
-            Text="thomas.cheapware@gmail.com"
+            Text="deschau@gmail.com"
             ValidationGroup="SignUp">
         </asp:TextBox>
         <asp:RequiredFieldValidator 
@@ -192,6 +192,17 @@
             ForeColor="Red" 
             CssClass="rqdValidator" 
             ValidationExpression="^01[0-9]-[0-9]{7,9}$" />
+        <asp:CustomValidator 
+            ID="ContactNo_SU_customValidator" 
+            runat="server" 
+            ControlToValidate="ContactNo_SU"
+            OnServerValidate="ContactNo_SU_ServerValidate"
+            Display="Dynamic" 
+            ForeColor="Red" 
+            CssClass="rqdValidator"
+            ErrorMessage=""
+            ValidationGroup="SignUp">
+        </asp:CustomValidator>
     </div>
     
     <!-- Password -->

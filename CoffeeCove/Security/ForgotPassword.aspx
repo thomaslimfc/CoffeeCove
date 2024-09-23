@@ -12,7 +12,41 @@
 <div class="max-w-md mx-auto p-6 bg-card rounded-lg shadow-md" style="height: 420px;">
     <h2 class="text-2xl font-bold text-foreground mb-4">Forgot Password</h2>
     <div class="trMarginBottom20"></div>    
+
+        <!-- Contact Number -->
+    <label for="first-name" class="block text-sm text-muted-foreground" style="padding-bottom: 3px;">Contact Number</label>
+    <div class="relative mb-4">
+        <asp:TextBox ID="ContactNo_FP" runat="server" 
+            CssClass="w-full p-2 border border-border rounded-md focus:outline-none"
+            placeholder="012-3456789"
+            Text="010-2897296"
+            ValidationGroup="SignUp"/>
+        <asp:RequiredFieldValidator 
+            ID="ContactNo_FP_rqdValidator" runat="server" 
+            ControlToValidate="ContactNo_FP" 
+            ErrorMessage="Contact Number is required." 
+            Display="Dynamic" 
+            ForeColor="Red" 
+            CssClass="rqdValidator"
+            ValidationGroup="SignUp"/>
+        <asp:RegularExpressionValidator 
+            ID="ContactNo_FP_regexValidator" 
+            runat="server" 
+            ControlToValidate="ContactNo_FP" 
+            ErrorMessage="Must start with 0 in front with '-'." 
+            Display="Dynamic" 
+            ForeColor="Red" 
+            CssClass="rqdValidator" 
+            ValidationExpression="^01[0-9]-[0-9]{7,9}$" />
+    </div>
+
+
+
+    <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
+    <asp:Label ID="lblWrongOtp" runat="server" Text=""></asp:Label>
+
     <!-- Username -->
+    <!--
     <div class="mb-4">
         <label for="first-name" class="block text-sm text-muted-foreground" style="padding-bottom: 3px;">Username / Email</label>
         <asp:TextBox ID="UsernameEmail_FP" 
@@ -41,11 +75,12 @@
             ValidationExpression="(^[a-zA-Z0-9_]{8,}$)|(^[^@\s]+@[^@\s]+\.[^@\s]+$)" />
     </div>
     <div class="trMarginBottom20"></div>
+    -->
     <!-- Description before NEXT -->
     <div class="relative mb-4">
         <center>
             <p>
-                We’ll send a verification code to this email address if it matches an existing CoffeeCove account.
+                We’ll send a verification code to this WhatsApp address if it matches an existing CoffeeCove account.
             </p>
         </center>
     </div>
