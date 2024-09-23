@@ -30,21 +30,23 @@ namespace CoffeeCove.Security
                         Session["UserRole"] = "Customer";
                         Session["CusID"] = customer.CusID;
                         Session["ContactNo"] = customer.ContactNo;
+
+                        // Set a flag indicating that 2FA is required
+                        Session["2FARequired"] = true;
+
+                        // Redirect to the two-factor authentication page
+                        //Response.Redirect("TwoFactorAuthentication2.aspx");
                     }
                     else
                     {
-                         //Optionally, display an error message
+                        //Optionally, display an error message
                         //InvalidCredentialsLabel.Text = "Invalid email or password.";
                         //InvalidCredentialsLabel.Visible = true;
 
                         // Log this attempt for security reasons
                         //System.Diagnostics.Debug.WriteLine("Failed login attempt for user: " + email);
                     }
-                    // Set a flag indicating that 2FA is required
-                    Session["2FARequired"] = true;
 
-                    // Redirect to the two-factor authentication page
-                    Response.Redirect("TwoFactorAuthentication2.aspx");
                 }
             }
         }
