@@ -252,17 +252,18 @@ namespace CoffeeCove.AdminSite
                         {
                             lblOrderNo.Text = orderId;
                             lblDate.Text = dr["OrderDateTime"].ToString();
+                            string orderType = dr["OrderType"].ToString();
 
                             //if it is delivery then display delivery and vice versa
-                            if (dr["StoreID"] == DBNull.Value)//if store ID = null, means that it is using delivery
+                            if (dr["StoreID"] == DBNull.Value && orderType == "Delivery")//if store ID = null, means that it is using delivery
                             {
-                                lblDelPick.Text = "Delivery";
+                                lblDelPick.Text = orderType;
                                 lblDelivery.Text = dr["DeliveryAddress"].ToString();
                                 lblPickUp.Text = "-";
                             }
-                            else if (dr["DeliveryAddress"] == DBNull.Value)
+                            else if (dr["DeliveryAddress"] == DBNull.Value && orderType == "Pick Up")
                             {
-                                lblDelPick.Text = "Pick Up";
+                                lblDelPick.Text = orderType;
                                 lblPickUp.Text = dr["StoreName"].ToString();
                                 lblDelivery.Text = "-";
                             }
@@ -299,15 +300,27 @@ namespace CoffeeCove.AdminSite
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            startDate = DateTime.Parse(txtFrom.Text);
-            endDate = DateTime.Parse(txtTo.Text);
-
-            if(endDate <= startDate)
+            try
             {
-                lblMsg.Text = "End date must be after the start date.";
-                lblMsg.Visible = true;
-                return;
+                startDate = DateTime.Parse(txtFrom.Text);
+                endDate = DateTime.Parse(txtTo.Text);
+
+                if (endDate <= startDate)
+                {
+                    lblMsg.Text = "End date must be after the start date.";
+                    lblMsg.Visible = true;
+                    return;
+                }
             }
+            catch (FormatException ex)
+            {
+
+            }
+            catch(Exception ex)
+            {
+
+            }
+            
 
             BindGridView(startDate,endDate);
 
@@ -436,9 +449,6 @@ namespace CoffeeCove.AdminSite
         }
 
         //export to pdf function from jinhuei
-        [System.Web.Script.Services.ScriptMethod()]
-        [System.Web.Services.WebMethod]
-        
         protected void BtnExport_Click(object sender, EventArgs e)
         {
             // Set up PDF response properties
@@ -450,8 +460,7 @@ namespace CoffeeCove.AdminSite
             //if date selected --> got value
             if (startDate != DateTime.MinValue && endDate != DateTime.MinValue)
             {
-                string sql = @"SELECT O.OrderID, O.OrderDateTime, O.TotalAmount, P.PaymentMethod, 
-                        O.OrderStatus, O.DeliveryAddress, O.StoreID
+                string sql = @"SELECT *
                         FROM OrderPlaced O 
                         JOIN PaymentDetail P ON O.OrderID = P.OrderID
                         JOIN Customer C ON O.CusID = C.CusID
@@ -473,8 +482,7 @@ namespace CoffeeCove.AdminSite
             {
                 //if date not selected
                 //get all the data
-                string sql = @"SELECT O.OrderID, O.OrderDateTime, O.TotalAmount, P.PaymentMethod, 
-                        O.OrderStatus, O.DeliveryAddress, O.StoreID
+                string sql = @"SELECT *
                         FROM OrderPlaced O 
                         JOIN PaymentDetail P ON O.OrderID = P.OrderID
                         JOIN Customer C ON O.CusID = C.CusID";
