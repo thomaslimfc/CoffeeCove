@@ -9,20 +9,22 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using CoffeeCove.Securities;
+using System.Data.Entity.Core.Common.CommandTrees;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
 
 namespace CoffeeCove.AdminSite
 {
     public partial class OrderManagement : System.Web.UI.Page
     {
-        //dbCoffeeCoveEntities db = new dbCoffeeCoveEntities();
         string cs = Global.CS;
-
+        DateTime startDate;
+        DateTime endDate;
         protected void Page_Load(object sender, EventArgs e)
         {
 
             if (!Page.IsPostBack)
             {
-                //string orderId = Session["OrderId"].ToString();
                 BindGridView();
             }
         }
@@ -81,6 +83,10 @@ namespace CoffeeCove.AdminSite
                     JOIN PaymentDetail P ON O.OrderID = P.OrderID
                     JOIN Customer C ON O.CusID = C.CusID";
 
+                if (!string.IsNullOrEmpty(SortExpression))
+                {
+                    sql += $" ORDER BY {SortExpression} {SortDirection}";
+                }
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
@@ -101,6 +107,7 @@ namespace CoffeeCove.AdminSite
                     }
 
                 }
+                UpdateSortIcons();
             }
         }
 
@@ -284,5 +291,274 @@ namespace CoffeeCove.AdminSite
 
 
         }
+
+        protected void btnReset_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Orders.aspx");
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            startDate = DateTime.Parse(txtFrom.Text);
+            endDate = DateTime.Parse(txtTo.Text);
+
+            if(endDate <= startDate)
+            {
+                lblMsg.Text = "End date must be after the start date.";
+                lblMsg.Visible = true;
+                return;
+            }
+
+            BindGridView(startDate,endDate);
+
+        }
+
+        private void BindGridView(DateTime startDate, DateTime endDate)
+        {
+            using (SqlConnection conn = new SqlConnection(cs))
+            {
+                string sql = @"SELECT O.OrderID, O.OrderDateTime, O.TotalAmount, P.PaymentMethod, O.OrderStatus, C.Username
+                    FROM OrderPlaced O 
+                    JOIN PaymentDetail P ON O.OrderID = P.OrderID
+                    JOIN Customer C ON O.CusID = C.CusID
+                    WHERE O.OrderDateTime BETWEEN @startDate AND @endDate
+                    ORDER BY O.OrderDateTime DESC";
+
+                if (!string.IsNullOrEmpty(SortExpression))
+                {
+                    sql += $" ORDER BY {SortExpression} {SortDirection}";
+                }
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    try
+                    {
+                        conn.Open();
+
+                        cmd.Parameters.AddWithValue("@startDate", startDate);
+                        cmd.Parameters.AddWithValue("@endDate", endDate);
+
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+
+                        gvOrder.DataSource = dt;
+                        gvOrder.DataBind();
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                }
+                UpdateSortIcons();
+            }
+        }
+
+        //sorting function from jinhuei
+        private string SortDirection
+        {
+            get { return ViewState["SortDirection"] as string ?? "ASC"; }
+            set { ViewState["SortDirection"] = value; }
+        }
+
+        private string SortExpression
+        {
+            get { return ViewState["SortExpression"] as string ?? "OrderID"; }
+            set { ViewState["SortExpression"] = value; }
+        }
+
+        protected void gvOrder_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            SortDirection = (SortDirection == "ASC") ? "DESC" : "ASC";
+
+            SortExpression = e.SortExpression;
+
+            BindGridView();
+        }
+
+        protected void lnkOrder_Click(object sender, EventArgs e)
+        {
+            if (sender is LinkButton linkButton)
+            {
+                SortExpression = linkButton.CommandArgument;
+
+                SortDirection = (SortDirection == "ASC" && SortExpression == linkButton.CommandArgument) ? "DESC" : "ASC";
+
+                BindGridView();
+            }
+        }
+
+        private void UpdateSortIcons()
+        {
+            Literal litSortIconId = gvOrder.HeaderRow.FindControl("litSortIconId") as Literal;
+            Literal litSortIconName = gvOrder.HeaderRow.FindControl("litSortIconName") as Literal;
+            Literal litSortIconDate = gvOrder.HeaderRow.FindControl("litSortIconDate") as Literal;
+            Literal litSortIconPaymentMethod = gvOrder.HeaderRow.FindControl("litSortIconPaymentMethod") as Literal;
+            Literal litSortIconTotal = gvOrder.HeaderRow.FindControl("litSortIconTotal") as Literal;
+            Literal litSortIconOrderStatus = gvOrder.HeaderRow.FindControl("litSortIconOrderStatus") as Literal;
+
+            string defaultIcon = "<i class='bi bi-caret-up-fill'></i>";
+            string ascendingIcon = "<i class='bi bi-caret-up-fill'></i>";
+            string descendingIcon = "<i class='bi bi-caret-down-fill'></i>";
+
+            litSortIconId.Text = defaultIcon;
+            litSortIconName.Text = defaultIcon;
+            litSortIconDate.Text = defaultIcon;
+            litSortIconPaymentMethod.Text = defaultIcon;
+            litSortIconTotal.Text = defaultIcon;
+            litSortIconOrderStatus.Text = defaultIcon;
+
+            if (SortExpression == "OrderID")
+            {
+                litSortIconId.Text = (SortDirection == "ASC") ? ascendingIcon : descendingIcon;
+            }
+            else if (SortExpression == "Username")
+            {
+                litSortIconName.Text = (SortDirection == "ASC") ? ascendingIcon : descendingIcon;
+            }
+            else if (SortExpression == "Date")
+            {
+                litSortIconDate.Text = (SortDirection == "ASC") ? ascendingIcon : descendingIcon;
+            }
+            else if (SortExpression == "Payment Method")
+            {
+                litSortIconPaymentMethod.Text = (SortDirection == "ASC") ? ascendingIcon : descendingIcon;
+            }
+            else if (SortExpression == "Total")
+            {
+                litSortIconTotal.Text = (SortDirection == "ASC") ? ascendingIcon : descendingIcon;
+            }
+            else if (SortExpression == "OrderStatus")
+            {
+                litSortIconOrderStatus.Text = (SortDirection == "ASC") ? ascendingIcon : descendingIcon;
+            }
+
+        }
+
+        //export to pdf function from jinhuei
+        [System.Web.Script.Services.ScriptMethod()]
+        [System.Web.Services.WebMethod]
+        
+        protected void BtnExport_Click(object sender, EventArgs e)
+        {
+            // Set up PDF response properties
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("content-disposition", "attachment;filename=OrderReport.pdf");
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            DataTable dt = new DataTable();
+            
+            //if date selected --> got value
+            if (startDate != DateTime.MinValue && endDate != DateTime.MinValue)
+            {
+                string sql = @"SELECT O.OrderID, O.OrderDateTime, O.TotalAmount, P.PaymentMethod, 
+                        O.OrderStatus, O.DeliveryAddress, O.StoreID
+                        FROM OrderPlaced O 
+                        JOIN PaymentDetail P ON O.OrderID = P.OrderID
+                        JOIN Customer C ON O.CusID = C.CusID
+                        WHERE O.OrderDateTime BETWEEN @startDate AND @endDate";
+
+                using (SqlConnection con = new SqlConnection(cs))
+                {
+                    using (SqlCommand cmd = new SqlCommand(sql, con))
+                    {
+                        cmd.Parameters.AddWithValue("@startDate", startDate);
+                        cmd.Parameters.AddWithValue("@endDate", endDate);
+                        con.Open();
+                        SqlDataReader dr = cmd.ExecuteReader();
+                        dt.Load(dr);
+                    }
+                }
+            }
+            else
+            {
+                //if date not selected
+                //get all the data
+                string sql = @"SELECT O.OrderID, O.OrderDateTime, O.TotalAmount, P.PaymentMethod, 
+                        O.OrderStatus, O.DeliveryAddress, O.StoreID
+                        FROM OrderPlaced O 
+                        JOIN PaymentDetail P ON O.OrderID = P.OrderID
+                        JOIN Customer C ON O.CusID = C.CusID";
+
+                using (SqlConnection con = new SqlConnection(cs))
+                {
+                    using (SqlCommand cmd = new SqlCommand(sql, con))
+                    {
+                        con.Open();
+                        SqlDataReader dr = cmd.ExecuteReader();
+                        dt.Load(dr);
+                    }
+                }
+            }
+            
+            // Set up iTextSharp PDF document
+            Document pdfdoc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
+            PdfWriter.GetInstance(pdfdoc, Response.OutputStream);
+            pdfdoc.Open();
+
+            iTextSharp.text.Paragraph title = new iTextSharp.text.Paragraph("Order Summary Report", FontFactory.GetFont("Arial", 18, Font.BOLD));
+            title.Alignment = Element.ALIGN_CENTER;
+            pdfdoc.Add(title);
+            pdfdoc.Add(new iTextSharp.text.Paragraph(" "));
+
+            int totalOrders = dt.Rows.Count;
+
+            iTextSharp.text.Paragraph exportInfo = new iTextSharp.text.Paragraph($"ExportDate: {DateTime.Now:dd/MM/yyyy HH:mm:ss}\nTotal Orders: {totalOrders}", FontFactory.GetFont("Arial", 12, Font.NORMAL));
+            exportInfo.Alignment = Element.ALIGN_LEFT;
+
+            pdfdoc.Add(exportInfo);
+
+            pdfdoc.Add(new iTextSharp.text.Paragraph(" "));
+
+            PdfPTable pdfTable = new PdfPTable(5);
+            pdfTable.WidthPercentage = 100;
+            pdfTable.SetWidths(new float[] { 1f, 1f, 2f, 1f, 2f});
+            BaseColor lightGrey = new BaseColor(211, 211, 211);
+
+            // table headers
+            pdfTable.AddCell(new PdfPCell(new Phrase("Order ID")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+            pdfTable.AddCell(new PdfPCell(new Phrase("Date")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+            pdfTable.AddCell(new PdfPCell(new Phrase("Payment Method")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+            pdfTable.AddCell(new PdfPCell(new Phrase("Total Amount")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+            pdfTable.AddCell(new PdfPCell(new Phrase("Status")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+
+            // Initialize sums
+            int totalDelivery = 0;
+            int totalPickUp = 0;
+            decimal totalSales = 0;
+
+            foreach (DataRow row in dt.Rows)
+            {
+                pdfTable.AddCell(new PdfPCell(new Phrase(row["OrderID"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
+                pdfTable.AddCell(new PdfPCell(new Phrase(Convert.ToDateTime(row["OrderDateTime"]).ToString("dd/MM/yyyy"))) { HorizontalAlignment = Element.ALIGN_LEFT });
+                pdfTable.AddCell(new PdfPCell(new Phrase(row["PaymentMethod"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
+                pdfTable.AddCell(new PdfPCell(new Phrase(Convert.ToDecimal(row["TotalAmount"]).ToString("C"))) { HorizontalAlignment = Element.ALIGN_CENTER });
+                pdfTable.AddCell(new PdfPCell(new Phrase(row["OrderStatus"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
+
+                if (row["DeliveryAddress"] != DBNull.Value) 
+                {
+                    totalDelivery++;
+                }
+                else if (row["StoreID"] != DBNull.Value)
+                {
+                    totalPickUp++;
+                }
+
+                totalSales += Convert.ToDecimal(row["TotalAmount"]);
+            }
+
+            pdfTable.AddCell(new PdfPCell(new Phrase("Total")) { Colspan = 4, HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+            pdfTable.AddCell(new PdfPCell(new Phrase(totalDelivery.ToString())) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+            pdfTable.AddCell(new PdfPCell(new Phrase(totalPickUp.ToString())) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+            pdfTable.AddCell(new PdfPCell(new Phrase(totalSales.ToString())) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+
+            pdfdoc.Add(pdfTable);
+
+            pdfdoc.Close();
+            Response.Write(pdfdoc);
+            Response.End();
+        }
+
     }
+
+
 }

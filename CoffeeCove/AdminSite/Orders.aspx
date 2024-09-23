@@ -19,7 +19,6 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Order</h5>
-
                             <div class="row g-3">
                                 <div class="col-12">
                                     <label class="label">From:</label>
@@ -30,12 +29,11 @@
                                     <asp:TextBox ID="txtTo" runat="server" TextMode="Date" CssClass="form-control dateRange"></asp:TextBox>
                                 </div>
                                 <div class="col-8">
-                                    <asp:Button ID="btnSearch" runat="server" Text="Search" ValidationGroup="OrderForm" CssClass="btn btn-secondary" />
+                                    <asp:Button ID="btnSearch" runat="server" Text="Search" ValidationGroup="OrderForm" CssClass="btn btn-secondary" OnClick="btnSearch_Click" />
                                     &nbsp;&nbsp;
-                    <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-dark" />
+                                    <asp:Button ID="btnReset" runat="server" Text="Reset" CssClass="btn btn-dark" OnClick="btnReset_Click" />
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -44,6 +42,92 @@
                     <asp:Label ID="lblMsg" runat="server" CssClass="alert alert-success" Visible="false"></asp:Label>
                 </div>
 
+                <!-- Order List -->
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Order List</h5>
+                            <asp:GridView ID="gvOrder" runat="server" AutoGenerateColumns="false" CssClass="table table-striped" PageSize="10" AllowPaging="true" AllowSorting="true" EmptyDataText="There are no data records" OnRowCommand="gvOrder_RowCommand" DataKeyNames="OrderID" OnSorting="gvOrder_Sorting">
+                                <Columns>
+                                    <asp:TemplateField SortExpression="OrderID">
+                                        <HeaderTemplate>
+                                            <asp:LinkButton ID="lbStoreID" runat="server" CommandArgument="OrderID" CssClass="header-link" ToolTip="Sort" OnClick="lnkOrder_Click">
+                                                Order ID
+                                                <asp:Literal ID="litSortIconId" runat="server"></asp:Literal>
+                                            </asp:LinkButton>
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
+                                            <%# Eval("OrderID") %>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField SortExpression="Username">
+                                        <HeaderTemplate>
+                                            <asp:LinkButton ID="lbUsername" runat="server" CommandArgument="Username" CssClass="header-link" ToolTip="Sort" OnClick="lnkOrder_Click">
+                                                Username
+                                                <asp:Literal ID="litSortIconName" runat="server"></asp:Literal>
+                                            </asp:LinkButton>
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
+                                            <%# Eval("Username") %>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField SortExpression="Date">
+                                        <HeaderTemplate>
+                                            <asp:LinkButton ID="lbDate" runat="server" CommandArgument="Date" CssClass="header-link" ToolTip="Sort" OnClick="lnkOrder_Click">
+                                                Date
+                                                <asp:Literal ID="litSortIconDate" runat="server"></asp:Literal>
+                                            </asp:LinkButton>
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
+                                            <%# Eval("OrderDateTime") %>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField SortExpression="Payment Method">
+                                        <HeaderTemplate>
+                                            <asp:LinkButton ID="lbPayment" runat="server" CommandArgument="Payment" CssClass="header-link" ToolTip="Sort" OnClick="lnkOrder_Click">
+                                                Payment Method
+                                                <asp:Literal ID="litSortIconPaymentMethod" runat="server"></asp:Literal>
+                                            </asp:LinkButton>
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
+                                            <%# Eval("PaymentMethod") %>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField SortExpression="Total">
+                                        <HeaderTemplate>
+                                            <asp:LinkButton ID="lbTotal" runat="server" CommandArgument="Total" CssClass="header-link" ToolTip="Sort" OnClick="lnkOrder_Click">
+                                                Total
+                                                <asp:Literal ID="litSortIconTotal" runat="server"></asp:Literal>
+                                            </asp:LinkButton>
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
+                                            <%# Eval("TotalAmount") %>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField SortExpression="OrderStatus">
+                                        <HeaderTemplate>
+                                            <asp:LinkButton ID="lbOrderStatus" runat="server" CommandArgument="OrderStatus" CssClass="header-link" ToolTip="Sort" OnClick="lnkOrder_Click">
+                                                Order Status
+                                                <asp:Literal ID="litSortIconOrderStatus" runat="server"></asp:Literal>
+                                            </asp:LinkButton>
+                                        </HeaderTemplate>
+                                        <ItemTemplate>
+                                            <%# Eval("OrderStatus") %>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Action" ItemStyle-Width="150px">
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="btnView" runat="server" CommandName="viewOrder" CommandArgument='<%# Eval("OrderID") %>' Text="View" CssClass="btn btn-dark btn-sm" />
+                                            <asp:LinkButton ID="btnDelete" runat="server" CommandName="deleteOrder" CommandArgument='<%# Eval("OrderID") %>' Text="Delete" CssClass="btn btn-danger btn-sm" OnClientClick="return confirmDelete();" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                </Columns>
+                                <HeaderStyle CssClass="gridview-header" />
+                                <PagerStyle CssClass="datatable-pagination" />
+                            </asp:GridView>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Order View -->
 
@@ -58,7 +142,8 @@
                                             <table id="orderTable" style="width: 35%">
                                                 <tr>
                                                     <th>Order ID:</th>
-                                                    <td>#<asp:Label ID="lblOrderNo" runat="server" Text=""></asp:Label>
+                                                    <td>
+                                                        <asp:Label ID="lblOrderNo" runat="server" Text=""></asp:Label>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -130,7 +215,6 @@
                                             <h5 class="card-title">Product Ordered</h5>
                                         </td>
                                     </tr>
-
                                     <!--Display cart-->
                                     <tr>
                                         <td colspan="2">
@@ -180,10 +264,7 @@
                                                                         </tr>
                                                                     </table>
                                                                 </asp:Panel>
-
-
                                                             </td>
-
                                                             <td style="text-align: center" class="tableItem">
                                                                 <asp:Label ID="lblPrice" runat="server" Text='<%# Eval("Price") %>' />
                                                             </td>
@@ -196,10 +277,7 @@
                                                         </tr>
                                                     </ItemTemplate>
                                                 </asp:Repeater>
-
-
                                             </table>
-
                                             <table id="cartTotalTable">
                                                 <tr class="amtTable">
                                                     <td class="cartLeft">Subtotal [RM]</td>
@@ -210,7 +288,7 @@
                                                 <tr class="amtTable">
                                                     <td class="cartLeft">Tax [6%]</td>
                                                     <td class="cartRight">+
-                                                        <asp:Label ID="lblTax" runat="server" Text=""></asp:Label>
+                                        <asp:Label ID="lblTax" runat="server" Text=""></asp:Label>
                                                     </td>
                                                 </tr>
                                                 <tr class="amtTable">
@@ -224,90 +302,14 @@
                                     </tr>
                                 </table>
                             </div>
-
-                        </div>
-                    </div>
-
-
-                </div>
-
-                <!-- Order List -->
-                <div class="col-lg-12">
-
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Order List</h5>
-
-                            <asp:GridView ID="gvOrder" runat="server" AutoGenerateColumns="false" CssClass="table table-striped" PageSize="10" AllowPaging="true" AllowSorting="true" EmptyDataText="There are no data records" OnRowCommand="gvOrder_RowCommand" DataKeyNames="OrderID">
-                                <Columns>
-                                    <asp:TemplateField SortExpression="OrderID">
-                                        <HeaderTemplate>
-                                            <asp:LinkButton ID="lbStoreID" runat="server" CommandArgument="OrderID" CssClass="header-link" ToolTip="Sort">Order ID</asp:LinkButton>
-                                        </HeaderTemplate>
-                                        <ItemTemplate>
-                                            <%# Eval("OrderID") %>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField SortExpression="Username">
-                                        <HeaderTemplate>
-                                            <asp:LinkButton ID="lbUsername" runat="server" CommandArgument="Username" CssClass="header-link" ToolTip="Sort">Username</asp:LinkButton>
-                                        </HeaderTemplate>
-                                        <ItemTemplate>
-                                            <%# Eval("Username") %>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField SortExpression="Date">
-                                        <HeaderTemplate>
-                                            <asp:LinkButton ID="lbDate" runat="server" CommandArgument="Date" CssClass="header-link" ToolTip="Sort">Date</asp:LinkButton>
-                                        </HeaderTemplate>
-                                        <ItemTemplate>
-                                            <%# Eval("OrderDateTime") %>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField SortExpression="Payment Method">
-                                        <HeaderTemplate>
-                                            <asp:LinkButton ID="lbPayment" runat="server" CommandArgument="Payment" CssClass="header-link" ToolTip="Sort">Payment Method</asp:LinkButton>
-                                        </HeaderTemplate>
-                                        <ItemTemplate>
-                                            <%# Eval("PaymentMethod") %>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField SortExpression="Total">
-                                        <HeaderTemplate>
-                                            <asp:LinkButton ID="lbTotal" runat="server" CommandArgument="Total" CssClass="header-link" ToolTip="Sort">Total</asp:LinkButton>
-                                        </HeaderTemplate>
-                                        <ItemTemplate>
-                                            <%# Eval("TotalAmount") %>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField SortExpression="OrderStatus">
-                                        <HeaderTemplate>
-                                            <asp:LinkButton ID="lbOrderStatus" runat="server" CommandArgument="OrderStatus" CssClass="header-link" ToolTip="Sort">Order Status</asp:LinkButton>
-                                        </HeaderTemplate>
-                                        <ItemTemplate>
-                                            <%# Eval("OrderStatus") %>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Action" ItemStyle-Width="150px">
-                                        <ItemTemplate>
-                                            <asp:LinkButton ID="btnView" runat="server" CommandName="viewOrder" CommandArgument='<%# Eval("OrderID") %>' Text="View" CssClass="btn btn-dark btn-sm" />
-                                            <asp:LinkButton ID="btnDelete" runat="server" CommandName="deleteOrder" CommandArgument='<%# Eval("OrderID") %>' Text="Delete" CssClass="btn btn-danger btn-sm" OnClientClick="return confirmDelete();" />
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                </Columns>
-                                <HeaderStyle CssClass="gridview-header" />
-                                <PagerStyle CssClass="datatable-pagination" />
-                            </asp:GridView>
-
                         </div>
                     </div>
                 </div>
-
-
+                <div class="col-5" style="margin-left: 45%; margin-bottom: 20px">
+                    <asp:Button ID="BtnExport" runat="server" Text="Export Report" CssClass="btn btn-success" OnClick="BtnExport_Click" />
+                </div>
             </div>
-
         </section>
-
     </div>
 
     <script>
