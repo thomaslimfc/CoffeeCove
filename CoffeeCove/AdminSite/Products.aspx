@@ -32,6 +32,7 @@
                                     <asp:TextBox ID="txtPrice" runat="server" CssClass="form-control" placeholder="Enter Unit Price"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Please enter Price (RM)." ControlToValidate="txtPrice" CssClass="error" Display="Dynamic" ValidationGroup="ProductForm" />
                                     <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Please enter a valid price (digits only)." ControlToValidate="txtPrice" CssClass="error" Display="Dynamic" ValidationGroup="ProductForm" ValidationExpression="^\d+(\.\d{1,2})?$" />
+                                    <asp:RangeValidator ID="RangeValidator1" runat="server" ErrorMessage="Price must be at least RM 1." ControlToValidate="txtPrice" MinimumValue="1" MaximumValue="100000" Type="Double" CssClass="error" Display="Dynamic" ValidationGroup="ProductForm" />
                                 </div>
                                 <div class="col-6">
                                     <label class="label">Category</label>
