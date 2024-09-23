@@ -11,7 +11,6 @@
         </div>
         <section class="section">
             <div class="row" style="margin-top: 2%;">
-                <asp:UpdatePanel ID="UpdatePanel1" runat="server"></asp:UpdatePanel>
                 <!-- Store Form -->
                 <div class="col-lg-12">
                     <div class="card">
