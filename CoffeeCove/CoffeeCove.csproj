@@ -563,6 +563,9 @@
       <DependentUpon>dbCoffeeCoveEntities.edmx</DependentUpon>
       <LastGenOutput>dbCoffeeCoveEntities.cs</LastGenOutput>
     </Content>
+    <Content Include="ErrorPages\AdminGeneralError.aspx" />
+    <Content Include="ErrorPages\CustomerGeneralError.aspx" />
+    <Content Include="ErrorPages\FileNotFound.htm" />
     <Content Include="Global.asax" />
     <Content Include="Home\Home.aspx" />
     <Content Include="imgProductItems\BF01.jpg" />
@@ -823,6 +826,20 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dbCoffeeCoveEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorPages\AdminGeneralError.aspx.cs">
+      <DependentUpon>AdminGeneralError.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ErrorPages\AdminGeneralError.aspx.designer.cs">
+      <DependentUpon>AdminGeneralError.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorPages\CustomerGeneralError.aspx.cs">
+      <DependentUpon>CustomerGeneralError.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ErrorPages\CustomerGeneralError.aspx.designer.cs">
+      <DependentUpon>CustomerGeneralError.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
