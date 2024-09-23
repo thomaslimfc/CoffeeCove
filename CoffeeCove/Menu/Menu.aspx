@@ -25,9 +25,7 @@
                         <div style="width: 20%; height: 62%; margin: 1%; box-sizing: border-box;" id="productContainer">
                             <img src='<%# Eval("ImageUrl") %>' alt='<%# Eval("ProductName") %>' style="width: 90%; height: auto; border-radius: 10px; border: 1px solid #ffce46; margin: 10px 0px 10px 10px" />
                             <asp:Label ID="lblMostPopular" runat="server" Text="Most Popular" Visible="false" Style="position: absolute; top: 10px; left: 10px; background-color: #90ff6d; color: #000; padding: 5px; border-radius: 5px;" />
-                            <div style="height: 60px; text-align: center; font-size: 19px;">
-                                <%# Eval("ProductId") %><br />
-                                <%# Eval("ProductName") %>
+                            <div style="height: 40px; text-align: center; font-size: 19px;"><%# Eval("ProductName") %>
                             </div>
                             <br />
                             <div style="text-align: center; font-size: 18px"><%# Eval("UnitPrice", "RM {0:N2}") %></div>
@@ -54,7 +52,6 @@
                             <asp:Image ID="imgProduct" runat="server" Width="150px" CssClass="productImg" />
                         </td>
                         <td colspan="3" style="height: 20px">
-                            <asp:Label ID="lblProductID" runat="server" Font-Size="20px" />&nbsp;&nbsp;
                             <asp:HiddenField ID="hfProductId" runat="server" />
                             <asp:Label ID="lblProductName" runat="server" Font-Size="20px" />
                             <asp:HiddenField ID="hfProductName" runat="server" />

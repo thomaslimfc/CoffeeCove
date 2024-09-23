@@ -41,6 +41,8 @@
                                 <div class="col-6">
                                     <label class="label">Product Image</label>
                                     <asp:FileUpload ID="fuProductImage" runat="server" CssClass="form-control" onchange="ImagePreview(this);" />
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Please select Photo." ControlToValidate="fuProductImage" CssClass="error" Display="Dynamic" ValidationGroup="ProductForm"></asp:RequiredFieldValidator>
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Only JPG and PNG are allowed." ControlToValidate="fuProductImage" CssClass="error" Display="Dynamic" ValidationExpression=".+\.(jpg|png)$" ValidationGroup="ProductForm"></asp:RegularExpressionValidator>
                                 </div>
                                 <div class="form-check col-8">
                                     <asp:CheckBox ID="cbIsActive" runat="server" Text="IsActive" />

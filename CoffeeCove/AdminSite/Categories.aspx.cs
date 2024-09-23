@@ -284,15 +284,31 @@ namespace CoffeeCove
         {
             if (fuCategoryImage.HasFile)
             {
-                string fileName = Path.GetFileName(fuCategoryImage.PostedFile.FileName);
-                string filePath = Server.MapPath("/img/Category/") + fileName;
+                string fileName = Guid.NewGuid().ToString("N") + ".jpg";
+                string filePath = Server.MapPath("~/img/Category/") + fileName;
 
-                // Save the uploaded image
-                fuCategoryImage.SaveAs(filePath);
+                // Load the uploaded image into a Bitmap object
+                using (System.Drawing.Image originalImage = System.Drawing.Image.FromStream(fuCategoryImage.PostedFile.InputStream))
+                {
+                    using (var jpgImage = new System.Drawing.Bitmap(originalImage))
+                    {
+                        // Resize image 
+                        using (var resizedImage = new System.Drawing.Bitmap(jpgImage, new System.Drawing.Size(150, 150)))
+                        {
+                            // Save as a jpg file
+                            resizedImage.Save(filePath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                        }
+                    }
+                }
+
+                // Return the relative path store in the database
                 return "/img/Category/" + fileName;
             }
+
+            // if no file is uploaded
             return null;
         }
+
 
         private void DeleteCategory(int categoryId)
         {

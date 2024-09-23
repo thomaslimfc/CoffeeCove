@@ -322,14 +322,25 @@ namespace CoffeeCove.AdminSite
         {
             if (fuProductImage.HasFile)
             {
-                string fileName = Path.GetFileName(fuProductImage.PostedFile.FileName);
-                string filePath = Server.MapPath("/imgProductItems/") + fileName;
+                string fileName = Guid.NewGuid().ToString("N") + ".jpg";
+                string filePath = Server.MapPath("~/imgProductItems/") + fileName;
 
-                // Save the uploaded image
-                fuProductImage.SaveAs(filePath);
+                using (System.Drawing.Image originalImage = System.Drawing.Image.FromStream(fuProductImage.PostedFile.InputStream))
+                {
+                    using (var jpgImage = new System.Drawing.Bitmap(originalImage))
+                    {
+                        using (var resizedImage = new System.Drawing.Bitmap(jpgImage, new System.Drawing.Size(150, 150)))
+                        {
+                            resizedImage.Save(filePath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                        }
+                    }
+                }
+
                 return "/imgProductItems/" + fileName;
             }
-            return null; // Return null if no image uploaded
+
+            // if no file is uploaded
+            return null;
         }
 
         private void DeleteProduct(int productId)

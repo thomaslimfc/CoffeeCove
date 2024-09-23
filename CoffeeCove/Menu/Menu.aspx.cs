@@ -124,7 +124,6 @@ namespace CoffeeCove.Menu
                     {
                         // Set the product details
                         imgProduct.ImageUrl = dr["ImageUrl"].ToString();
-                        lblProductID.Text = dr["ProductId"].ToString();
                         lblProductName.Text = dr["ProductName"].ToString();
                         lblProductDescription.Text = dr["Description"].ToString();
                         lblPrice.Text = $"Price: RM {dr["UnitPrice"]:0.00}";
@@ -254,8 +253,8 @@ namespace CoffeeCove.Menu
 
             if (ddlSize.SelectedValue == "Large") finalPrice += 1.50m;
             if (ddlFlavour.SelectedValue == "Cold") finalPrice += 1.50m;
-            if (ddlAddOn.SelectedValue == "1EspressoShot") finalPrice += 2.50m;
-            if (ddlAddOn.SelectedValue == "2EspressoShots") finalPrice += 5.00m;
+            if (ddlAddOn.SelectedValue == "1 Espresso Shot") finalPrice += 2.50m;
+            if (ddlAddOn.SelectedValue == "2 Espresso Shots") finalPrice += 5.00m;
 
             int quantity = GetQuantity();
             lblPrice.Text = $"Price: RM {finalPrice * quantity:N2}";
@@ -289,7 +288,7 @@ namespace CoffeeCove.Menu
             }
 
             // Retrieve values from form controls
-            string productId = lblProductID.Text;
+            string productId = hfProductId.Value;
             string productName = lblProductName.Text;
             string size = ddlSize.Visible ? ddlSize.SelectedValue : null;
             string flavour = ddlFlavour.Visible ? ddlFlavour.SelectedValue : null;
@@ -304,8 +303,8 @@ namespace CoffeeCove.Menu
 
             if (ddlSize.Visible && ddlSize.SelectedValue == "Large") finalPrice += 1.50m;
             if (ddlFlavour.Visible && ddlFlavour.SelectedValue == "Cold") finalPrice += 1.50m;
-            if (ddlAddOn.Visible && ddlAddOn.SelectedValue == "1EspressoShot") finalPrice += 2.50m;
-            if (ddlAddOn.Visible && ddlAddOn.SelectedValue == "2EspressoShots") finalPrice += 5.00m;
+            if (ddlAddOn.Visible && ddlAddOn.SelectedValue == "1 Espresso Shot") finalPrice += 2.50m;
+            if (ddlAddOn.Visible && ddlAddOn.SelectedValue == "2 Espresso Shots") finalPrice += 5.00m;
 
             finalPrice *= quantity; // Total price based on quantity
 
