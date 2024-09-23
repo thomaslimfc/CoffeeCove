@@ -1,44 +1,109 @@
 ﻿using System;
+using System.Data.SqlClient;
 using System.Web.UI;
+using Twilio;
+using Twilio.Rest.Api.V2010.Account;
+using Twilio.Types;
 
 namespace CoffeeCove.Security
 {
     public partial class TwoFactorAuthentication : System.Web.UI.Page
     {
+        // Twilio API credentials
+        private const string AccountSid = "ACe289765a4a6cc720ac5cf5eb75123c3c";
+        private const string AuthToken = "23c80b950edba3ed68ce646c57a0fc9b";
+        private const string WhatsAppFromNumber = "whatsapp:+14155238886";
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            // Ensure 2FA is required
-            if (Session["2FARequired"] == null || !(bool)Session["2FARequired"])
+            if (!IsPostBack) // Send OTP only on the first page load
             {
-                // If no 2FA is required or the flag is not set, redirect to sign-in
-                Response.Redirect("SignIn.aspx");
+                if (Session["2FARequired"] != null && (bool)Session["2FARequired"])
+                {
+                    string contactNo = Session["ContactNo"] as string;
+                    string otpCode = GenerateOTP(); // Generate the OTP
+
+                    // Store the OTP in session
+                    OTP = otpCode;
+
+                    // Send the OTP via WhatsApp
+                    SendOtpWhatsApp(contactNo, otpCode);
+                }
+                else
+                {
+                    // Redirect to sign-in if 2FA is not required
+                    Response.Redirect("SignIn.aspx");
+                }
             }
         }
 
         protected void VerifyButton_TFA_Click(object sender, EventArgs e)
         {
-            // Assuming 2FA is successfully verified
+            // Get user input OTP from a TextBox (assumed to be named OTPInput)
+            string userInputOtp = otp.Text;
 
-            // Mark 2FA as completed
-            Session["2FARequired"] = false; // Or simply remove the session key with Session.Remove("2FARequired");
-
-            // Get user role from session
-            string userRole = Session["UserRole"] as string;
-
-            if (userRole == "Customer")
+            // Check if the input OTP matches the stored OTP
+            if (userInputOtp == OTP)
             {
-                // Redirect to the customer home page
-                Response.Redirect("~/Home/Home.aspx");
-            }
-            else if (userRole == "Admin")
-            {
-                // Redirect to the admin dashboard
-                Response.Redirect("~/AdminSite/Dashboard.aspx");
+                // Mark 2FA as completed
+                Session["2FARequired"] = false;
+
+                // Get user role from session
+                string userRole = Session["UserRole"] as string;
+
+                // Redirect based on user role
+                if (userRole == "Customer")
+                {
+                    Response.Redirect("~/Home/Home.aspx");
+                }
+                else if (userRole == "Admin")
+                {
+                    Response.Redirect("~/AdminSite/Dashboard.aspx");
+                }
             }
             else
             {
-                // Handle unexpected role or session timeout
-                Response.Redirect("SignIn.aspx");
+                lblWrongOtp.Text = "OTP code entered is incorrect.";
+                lblWrongOtp.Visible = true;
+            }
+        }
+
+        private string OTP
+        {
+            get { return (string)Session["OTP"]; }
+            set { Session["OTP"] = value; }
+        }
+
+        private string GenerateOTP()
+        {
+            Random randOtp = new Random();
+            return randOtp.Next(100000, 999999).ToString(); // Generate a 6-digit OTP
+        }
+
+        // Method to send OTP via WhatsApp using Twilio
+        protected void SendOtpWhatsApp(string phoneNumber, string otpCode)
+        {
+            TwilioClient.Init(AccountSid, AuthToken);
+
+            string cleanPhoneNumber = phoneNumber.Replace("-", "").Trim(); // Remove hyphens and trim spaces
+            string formattedPhoneNumber = $"whatsapp:+6{cleanPhoneNumber}"; // Assuming +6 is the country code for Malaysia
+
+            // Log the phone number being used
+            Console.WriteLine($"Sending OTP to: {formattedPhoneNumber}");
+
+            try
+            {
+                var message = MessageResource.Create(
+                    body: $"Your Coffee Cove OTP is: {otpCode}",
+                    from: new PhoneNumber(WhatsAppFromNumber),
+                    to: new PhoneNumber(formattedPhoneNumber)
+                );
+
+                Console.WriteLine($"WhatsApp OTP sent successfully. Message SID: {message.Sid}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error sending OTP: {ex.Message}");
             }
         }
     }

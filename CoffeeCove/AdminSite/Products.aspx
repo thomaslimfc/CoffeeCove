@@ -41,6 +41,8 @@
                                 <div class="col-6">
                                     <label class="label">Product Image</label>
                                     <asp:FileUpload ID="fuProductImage" runat="server" CssClass="form-control" onchange="ImagePreview(this);" />
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Please select Photo." ControlToValidate="fuProductImage" CssClass="error" Display="Dynamic" ValidationGroup="ProductForm"></asp:RequiredFieldValidator>
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Only JPG and PNG are allowed." ControlToValidate="fuProductImage" CssClass="error" Display="Dynamic" ValidationExpression=".+\.(jpg|png)$" ValidationGroup="ProductForm"></asp:RegularExpressionValidator>
                                 </div>
                                 <div class="form-check col-8">
                                     <asp:CheckBox ID="cbIsActive" runat="server" Text="IsActive" />
@@ -60,6 +62,7 @@
 
                 <div class="col-lg-12">
                     <asp:Label ID="lblMsg" runat="server" CssClass="alert alert-success" Visible="false"></asp:Label>
+                    <asp:Label ID="lblErrorMsg" runat="server" CssClass="alert alert-danger" Visible="false"></asp:Label>
                 </div>
                 <br />
                 <br />
@@ -203,7 +206,7 @@
                         </div>
                     </div>
                     <div class="col-5" style="margin-left:45%;margin-bottom:20px">
-                        <asp:Button ID="BtnExport" runat="server" Text="Export To PDF" CssClass="btn btn-success" OnClick="BtnExport_Click"/>
+                        <asp:Button ID="BtnExport" runat="server" Text="Export Report" CssClass="btn btn-success" OnClick="BtnExport_Click"/>
                     </div>
                 </div>
             </div>

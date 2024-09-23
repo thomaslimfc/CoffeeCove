@@ -18,22 +18,20 @@ namespace CoffeeCove.Menu
     public partial class Menu : System.Web.UI.Page
     {
         string cs = Global.CS;
+        private List<int> top3Products = new List<int>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (!Page.IsPostBack)
             {
                 BindCategory();
 
-                string categoryId = Request.QueryString["CategoryId"];
-                if (!string.IsNullOrEmpty(categoryId))
+                int categoryId = 0;
+                if (!string.IsNullOrEmpty(Request.QueryString["CategoryId"]))
                 {
-                    BindProducts(categoryId);
+                    int.TryParse(Request.QueryString["CategoryId"], out categoryId);
                 }
-                else
-                {
-                    BindProducts("0");
-                }
+                BindProducts(categoryId);
             }
         }
 
@@ -52,25 +50,41 @@ namespace CoffeeCove.Menu
             }
         }
 
-        private void BindProducts(string categoryId)
+        private void BindProducts(int categoryId)
         {
             using (SqlConnection con = new SqlConnection(cs))
             {
-                string sql = "SELECT p.* FROM Product p INNER JOIN Category c ON p.CategoryId = c.CategoryId WHERE c.IsActive = 1 AND p.IsActive = 1";
+                string sql = @"SELECT p.*, COALESCE(SUM(oi.Quantity), 0) AS TotalSold 
+                                FROM Product p LEFT JOIN OrderedItem oi ON p.ProductId = oi.ProductID 
+                                INNER JOIN Category c ON p.CategoryId = c.CategoryId WHERE c.IsActive = 1 AND p.IsActive = 1";
 
-                if (categoryId != "0")
+                if (categoryId != 0)
                 {
                     sql += " AND p.CategoryId = @CategoryId";
                 }
 
+                sql += " GROUP BY p.ProductId, p.ProductName, p.Description, p.ImageUrl, p.UnitPrice, p.CategoryId, p.IsActive, p.CreatedDate ORDER BY TotalSold DESC, p.ProductId ASC";
+
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
-                    if (categoryId != "0")
+                    if (categoryId != 0)
                     {
                         cmd.Parameters.AddWithValue("@CategoryId", categoryId);
                     }
                     con.Open();
                     SqlDataReader dr = cmd.ExecuteReader();
+                    // Check if this is the "All" category (categoryId == 0) and store top 3 product IDs
+                    if (categoryId == 0)
+                    {
+                        int count = 0;
+                        while (dr.Read() && count < 3)
+                        {
+                            top3Products.Add(Convert.ToInt32(dr["ProductId"])); // Add top 3 Product IDs
+                            count++;
+                        }
+                        dr.Close(); // Close and reopen reader for data binding
+                        dr = cmd.ExecuteReader();
+                    }
                     rptProduct.DataSource = dr;
                     rptProduct.DataBind();
                 }
@@ -81,7 +95,7 @@ namespace CoffeeCove.Menu
         {
             if (e.CommandName == "Select")
             {
-                string categoryId = e.CommandArgument.ToString();
+                int categoryId = Convert.ToInt32(e.CommandArgument);
                 BindProducts(categoryId);
             }
 
@@ -91,12 +105,12 @@ namespace CoffeeCove.Menu
         {
             if (e.CommandName == "SelectProduct")
             {
-                string productId = e.CommandArgument.ToString();
+                int productId = Convert.ToInt32(e.CommandArgument);
                 ShowOrderForm(productId);
             }
         }
 
-        private void ShowOrderForm(string productId)
+        private void ShowOrderForm(int productId)
         {
             using (SqlConnection con = new SqlConnection(cs))
             {
@@ -110,7 +124,6 @@ namespace CoffeeCove.Menu
                     {
                         // Set the product details
                         imgProduct.ImageUrl = dr["ImageUrl"].ToString();
-                        lblProductID.Text = dr["ProductId"].ToString();
                         lblProductName.Text = dr["ProductName"].ToString();
                         lblProductDescription.Text = dr["Description"].ToString();
                         lblPrice.Text = $"Price: RM {dr["UnitPrice"]:0.00}";
@@ -127,12 +140,12 @@ namespace CoffeeCove.Menu
                         hfUpdatedPrice.Value = lblPrice.Text;
 
                         // Get the category for the product
-                        string categoryId = GetProductCategoryId(productId);
+                        int categoryId = GetProductCategoryId(productId);
 
                         // Show or hide form elements based on category
-                        if (categoryId == "5" || categoryId == "6" || categoryId == "7")
+                        if (categoryId == 4 || categoryId == 5 || categoryId == 6)
                         {
-                            // For categories 5, 6, 7: only show special instructions
+                            // only show special instructions
                             lblSize.Visible = false;
                             lblFlavour.Visible = false;
                             lblIceLevel.Visible = false;
@@ -144,7 +157,7 @@ namespace CoffeeCove.Menu
                             txtSpecialInstructions.Visible = true;
 
                         }
-                        else if (categoryId == "4")
+                        else if (categoryId == 3)
                         {
                             lblSize.Visible = true;
                             lblFlavour.Visible = true;
@@ -178,7 +191,9 @@ namespace CoffeeCove.Menu
             }
         }
 
-        private string GetProductCategoryId(string productId)
+
+
+        private int GetProductCategoryId(int productId)
         {
             using (SqlConnection con = new SqlConnection(cs))
             {
@@ -187,10 +202,21 @@ namespace CoffeeCove.Menu
                 {
                     cmd.Parameters.AddWithValue("@ProductId", productId);
                     con.Open();
-                    return cmd.ExecuteScalar()?.ToString();
+                    object result = cmd.ExecuteScalar();
+
+                    // Check if result is null, and return 0 or a default value if no result is found
+                    if (result != null && int.TryParse(result.ToString(), out int categoryId))
+                    {
+                        return categoryId;
+                    }
+                    else
+                    {
+                        return 0; // Default value if no category found
+                    }
                 }
             }
         }
+
 
         protected void btnIncrease_Click(object sender, EventArgs e)
         {
@@ -227,8 +253,8 @@ namespace CoffeeCove.Menu
 
             if (ddlSize.SelectedValue == "Large") finalPrice += 1.50m;
             if (ddlFlavour.SelectedValue == "Cold") finalPrice += 1.50m;
-            if (ddlAddOn.SelectedValue == "1EspressoShot") finalPrice += 2.50m;
-            if (ddlAddOn.SelectedValue == "2EspressoShots") finalPrice += 5.00m;
+            if (ddlAddOn.SelectedValue == "1 Espresso Shot") finalPrice += 2.50m;
+            if (ddlAddOn.SelectedValue == "2 Espresso Shots") finalPrice += 5.00m;
 
             int quantity = GetQuantity();
             lblPrice.Text = $"Price: RM {finalPrice * quantity:N2}";
@@ -262,7 +288,7 @@ namespace CoffeeCove.Menu
             }
 
             // Retrieve values from form controls
-            string productId = lblProductID.Text;
+            string productId = hfProductId.Value;
             string productName = lblProductName.Text;
             string size = ddlSize.Visible ? ddlSize.SelectedValue : null;
             string flavour = ddlFlavour.Visible ? ddlFlavour.SelectedValue : null;
@@ -277,8 +303,8 @@ namespace CoffeeCove.Menu
 
             if (ddlSize.Visible && ddlSize.SelectedValue == "Large") finalPrice += 1.50m;
             if (ddlFlavour.Visible && ddlFlavour.SelectedValue == "Cold") finalPrice += 1.50m;
-            if (ddlAddOn.Visible && ddlAddOn.SelectedValue == "1EspressoShot") finalPrice += 2.50m;
-            if (ddlAddOn.Visible && ddlAddOn.SelectedValue == "2EspressoShots") finalPrice += 5.00m;
+            if (ddlAddOn.Visible && ddlAddOn.SelectedValue == "1 Espresso Shot") finalPrice += 2.50m;
+            if (ddlAddOn.Visible && ddlAddOn.SelectedValue == "2 Espresso Shots") finalPrice += 5.00m;
 
             finalPrice *= quantity; // Total price based on quantity
 
@@ -361,18 +387,44 @@ namespace CoffeeCove.Menu
                     throw;
                 }
             }
+            pnlOrderForm.Visible = false;
         }
 
         private int GetCurrentOrderId()
         {
-            return 1;
+            // Check if OrderID is present in the session
+            if (Session["OrderID"] != null)
+            {
+                return (int)Session["OrderID"];
+            }
+            else
+            {
+                // Redirect to order option selection if OrderID is missing
+                Response.Redirect("../Order/OrderOption.aspx");
+                return -1; // This line won't be hit but avoids a compilation warning
+            }
         }
 
+
+        protected void rptProduct_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                Label lblMostPopular = (Label)e.Item.FindControl("lblMostPopular");
+                int productId = Convert.ToInt32(DataBinder.Eval(e.Item.DataItem, "ProductId"));
+
+                // Show label only if product ID is in the top 3
+                if (top3Products.Contains(productId))
+                {
+                    lblMostPopular.Visible = true;
+                }
+                else
+                {
+                    lblMostPopular.Visible = false;
+                }
+            }
+        }
     }
-
-
-
-
-
-
 }
+
+

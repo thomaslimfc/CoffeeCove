@@ -7,6 +7,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Drawing.Imaging;
+using Org.BouncyCastle.Asn1.Ocsp;
+using System.Configuration;
 
 namespace CoffeeCove.AdminSite
 {
@@ -17,110 +19,120 @@ namespace CoffeeCove.AdminSite
         {
             if (!IsPostBack)
             {
-                PositionGlyph(gvStoreList, SortExpression, SortDirection);
+                BindGridView();
+
             }
         }
 
-        private string SortDirection
+        private void BindGridView()
         {
-            get { return ViewState["SortDirection"] as string ?? "ASC"; }
-            set { ViewState["SortDirection"] = value; }
-        }
-
-        private string SortExpression
-        {
-            get { return ViewState["SortExpression"] as string ?? "StoreID"; }
-            set { ViewState["SortExpression"] = value; }
-        }
-
-        protected void gvStoreList_Sorting(object sender, GridViewSortEventArgs e)
-        {
-            SortDirection = (SortDirection == "ASC") ? "DESC" : "ASC";
-            SortExpression = e.SortExpression;
-
-            SqlDataSource1.SelectCommand = $"SELECT [StoreID], [StoreName], [StoreAddress] FROM [Store] ORDER BY {SortExpression} {SortDirection}";
-
-            gvStoreList.DataBind();
-
-            PositionGlyph(gvStoreList, SortExpression, SortDirection);
-        }
-
-
-        private void PositionGlyph(GridView gridView, string currentSortColumn, string currentSortDirection)
-        {
-            if (gridView.HeaderRow == null)
-                return;
-
-            // Remove existing glyphs
-            foreach (TableCell cell in gridView.HeaderRow.Cells)
+            using (SqlConnection conn = new SqlConnection(cs))
             {
-                foreach (Control ctrl in cell.Controls)
+                string sql = "SELECT * FROM Store";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
-                    if (ctrl is Image img && img.ID == "sortGlyph")
-                        cell.Controls.Remove(ctrl);
-                }
-            }
-
-            // Create new glyphs for each sortable column
-            foreach (TableCell cell in gridView.HeaderRow.Cells)
-            {
-                if (cell.Controls.OfType<LinkButton>().Any())
-                {
-                    LinkButton linkButton = cell.Controls.OfType<LinkButton>().First();
-                    Image glyph = new Image
+                    try
                     {
-                        ID = "sortGlyph",
-                        Width = Unit.Pixel(10),
-                        Height = Unit.Pixel(10)
-                    };
+                        conn.Open();
 
-                    if (string.Compare(currentSortColumn, linkButton.CommandArgument, true) == 0)
-                    {
-                        glyph.ImageUrl = currentSortDirection == "ASC" ? "~/img/up.png" : "~/img/down.png";
-                        glyph.AlternateText = currentSortDirection == "ASC" ? "Ascending" : "Descending";
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+
+                        gvStoreList.DataSource = dt;
+                        gvStoreList.DataBind();
                     }
-                    else
+                    catch (SqlException ex)
                     {
-                        glyph.ImageUrl = "~/img/up.png";
-                        glyph.AlternateText = "Ascending";
-                    }
 
-                    cell.Controls.Add(glyph);
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                    
                 }
             }
         }
 
         protected void gvStoreList_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "Edit")
+            if (e.CommandName == "EditStore")
             {
                 string StoreId = (string)e.CommandArgument;
                 LoadStoreForEdit(StoreId);
             }
-            else if (e.CommandName == "Delete")
+            else if (e.CommandName == "DeleteStore")
             {
-                int StoreId = (int)e.CommandArgument;
-                //DeleteStore(StoreId);
+                int StoreId = Convert.ToInt32(e.CommandArgument);
+                deleteStore(StoreId);
             }
+        }
+
+        private void deleteStore(int StoreId)
+        {
+            //delete store then reset the identity() to max num
+            using (SqlConnection conn = new SqlConnection(cs))
+            {
+                conn.Open();
+
+                string sql = @"DELETE FROM Store
+                                WHERE StoreID = @StoreId";
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@StoreId", StoreId);
+                    cmd.ExecuteNonQuery();
+                }
+
+                string sql2 = @"SELECT ISNULL(MAX(StoreID), 0) 
+                                FROM Store";
+                int nextId = 0;
+
+                using (SqlCommand cmd = new SqlCommand(sql2, conn))
+                {
+                    nextId = Convert.ToInt32(cmd.ExecuteScalar());
+                }
+
+                string sql3 = @"DBCC CHECKIDENT ('Store', RESEED, @nextId)";
+                using (SqlCommand cmd = new SqlCommand(sql3, conn))
+                {
+                    cmd.Parameters.AddWithValue("@nextId", nextId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+            //rebind the gridview
+            BindGridView();
         }
 
         private void LoadStoreForEdit(string StoreId)
         {
-            string sql = "SELECT * FROM Store WHERE StoreID = @StoreId";
-            using (SqlConnection con = new SqlConnection(cs))
+            using (SqlConnection conn = new SqlConnection(cs))
             {
-                using (SqlCommand cmd = new SqlCommand(sql, con))
+                string sql = @"SELECT * 
+                        FROM Store 
+                        WHERE StoreID = @StoreId";
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@StoreId", StoreId);
-                    con.Open();
-                    SqlDataReader dr = cmd.ExecuteReader();
-                    if (dr.Read())
+                    try
                     {
-                        txtStoreName.Text = dr["StoreName"].ToString();
-                        txtStoreAddress.Text = dr["StoreAddress"].ToString();
-                        //txtPostCode.Text = dr["StorePostCode"].ToString();
-                        hdnId.Value = StoreId;
+                        conn.Open();
+                        SqlDataReader dr = cmd.ExecuteReader();
+                        if (dr.Read())
+                        {
+                            txtStoreName.Text = dr["StoreName"].ToString();
+                            txtStoreAddress.Text = dr["StoreAddress"].ToString();
+                            //txtPostCode.Text = dr["StorePostCode"].ToString();
+                            hdnId.Value = StoreId;
+                        }
                     }
+                    catch (SqlException ex)
+                    {
+                        Response.Write("An error occurred: " + ex.Message);
+                    }
+                    
                 }
             }
             btnAdd.Text = "Update";
@@ -129,6 +141,94 @@ namespace CoffeeCove.AdminSite
         protected void btnReset_Click(object sender, EventArgs e)
         {
             Response.Redirect("Stores.aspx");
+        }
+
+        protected void btnAdd_Click(object sender, EventArgs e)
+        {
+
+            //if it is "ADD"
+            if(btnAdd.Text == "Add")
+            {
+                if (Page.IsValid)
+                {
+                    //get data from textbox
+                    string storeName = txtStoreName.Text;
+                    string storeAddress = txtStoreAddress.Text;
+
+                    using (SqlConnection conn = new SqlConnection(cs))
+                    {
+                        string sql = @"INSERT INTO Store(StoreName,StoreAddress) 
+                                VALUES (@storeName,@storeAdd);";
+
+                        using (SqlCommand cmd = new SqlCommand(sql, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@storeName", storeName);
+                            cmd.Parameters.AddWithValue("@storeAdd", storeAddress);
+
+                            try
+                            {
+                                conn.Open();
+                                cmd.ExecuteNonQuery();
+                                BindGridView(); //bind the gridview again after adding in new data
+                            }
+                            catch (SqlException ex)
+                            {
+                                Response.Write("An error occurred: " + ex.Message);
+                            }
+                        }
+                    }
+                        
+                    //clear the textbox after insert
+                    txtStoreName.Text = "";
+                    txtStoreAddress.Text = "";
+
+                }
+            }
+            else if(btnAdd.Text == "Update") //if it is update
+            {
+                if (Page.IsValid)
+                {
+                    //get data from textbox
+                    string storeName = txtStoreName.Text;
+                    string storeAddress = txtStoreAddress.Text;
+                    string storeId = hdnId.Value;
+
+                    using (SqlConnection conn = new SqlConnection(cs))
+                    {
+                        string sql = @"UPDATE Store
+                                SET StoreName = @storeName, StoreAddress = @storeAdd
+                                WHERE StoreID = @storeId;";
+
+                        using (SqlCommand cmd = new SqlCommand(sql, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@storeName", storeName);
+                            cmd.Parameters.AddWithValue("@storeAdd", storeAddress);
+                            cmd.Parameters.AddWithValue("@storeId", storeId);
+
+                            try
+                            {
+                                conn.Open();
+                                cmd.ExecuteNonQuery();
+                                BindGridView(); //bind the gridview again after adding in new data
+                            }
+                            catch (SqlException ex)
+                            {
+                                Response.Write("An error occurred: " + ex.Message);
+                            }
+
+
+                        }
+                    }
+                        
+                    //clear the textbox
+                    txtStoreName.Text = "";
+                    txtStoreAddress.Text = "";
+
+                }
+
+                btnAdd.Text = "Add";
+            }
+            
         }
     }
 

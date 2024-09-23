@@ -12,14 +12,30 @@ namespace CoffeeCove.UserManagement
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["cusID"] == null)
+            {
+                Response.Redirect("~/Login.aspx");
+                return;
+            }
+
+            string cusID = Session["cusID"]?.ToString();
+
             if (!IsPostBack)
             {
-                Session["cusID"] = "00001"; // Hardcoded for testing purposes
-
                 LoadUserProfile();
                 SetProfileEditMode(false);
             }
         }
+        //protected void Page_Load(object sender, EventArgs e)
+        //{
+        //    if (!IsPostBack)
+        //    {
+        //        Session["cusID"] = "00001"; // Hardcoded for testing purposes
+
+        //        LoadUserProfile();
+        //        SetProfileEditMode(false);
+        //    }
+        //}
 
         protected void LoadUserProfile()
         {

@@ -31,12 +31,11 @@ namespace CoffeeCove.Order
                 rptStoreList.DataSource = ds;
                 rptStoreList.DataBind();
 
-                
 
 
             }
 
-            if (string.IsNullOrWhiteSpace(lblStoreAdd.Text)) //if lblStoreAdd is empty
+            if (string.IsNullOrWhiteSpace(lblStoreAdd.Text)) //if the store address is empty
             {
                 lbConfirmPickUp.Enabled = false;
                 lbConfirmPickUp.CssClass = "btnCont-disabled";
@@ -49,7 +48,7 @@ namespace CoffeeCove.Order
         {
             if (e.CommandName == "storeList")
             {
-                // Retrieve the ID of the item to edit
+                
                 string storeId = e.CommandArgument.ToString();
 
                 SqlConnection conn = new SqlConnection(cs);
@@ -63,14 +62,14 @@ namespace CoffeeCove.Order
 
                 if (dr.Read()) 
                 {
-                    // Assign values to label controls
+                    hfStoreID.Value = storeId;
                     lblStoreName.Text = dr["StoreName"].ToString();
                     lblStoreAdd.Text = dr["StoreAddress"].ToString();
 
                 }
                 else
                 {
-                    // Handle the case where no data is found
+                    
                     lblStoreName.Text = "Store not found.";
                     lblStoreAdd.Text = string.Empty;
                 }
@@ -92,7 +91,63 @@ namespace CoffeeCove.Order
 
         protected void lbConfirmPickUp_Click(object sender, EventArgs e)
         {
-            
+            if (Session["access"] == null) //if its their firstTime come here
+            {
+                Session["access"] = 1; //set its session
+
+                //retrieve cusID from session
+                //string cusID = Session["CusID"].ToString();
+                string cusID = "11";
+                //create an orderID for it
+                SqlConnection conn3 = new SqlConnection(cs);
+                string sql3 = @"INSERT INTO OrderPlaced(CusID,OrderDateTime,TotalAmount) 
+                                VALUES (@cusID,@dateTime,0);
+                                SELECT SCOPE_IDENTITY();";
+
+                SqlCommand cmd3 = new SqlCommand(sql3, conn3);
+                cmd3.Parameters.AddWithValue("@cusID", cusID);
+                cmd3.Parameters.AddWithValue("@dateTime", DateTime.Now);
+                conn3.Open();
+
+                object newOrderID = cmd3.ExecuteScalar();
+
+                Session["OrderID"] = Convert.ToInt32(newOrderID);
+
+                conn3.Close();
+            }
+
+
+            int orderID = (int)Session["OrderID"];
+            //put the pickup Store inside the database
+            string storeID = hfStoreID.Value;
+
+            SqlConnection conn = new SqlConnection(cs);
+            string sql = @"UPDATE OrderPlaced 
+                                SET StoreID = @storeID
+                                WHERE OrderID = @orderID;";
+
+            SqlCommand cmd = new SqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("@storeID", storeID);
+            cmd.Parameters.AddWithValue("@orderID", orderID);
+            conn.Open();
+
+            cmd.ExecuteNonQuery();
+
+            //clean the deliveryAddress
+            string sql2 = @"UPDATE OrderPlaced 
+                                SET DeliveryAddress = NULL
+                                WHERE OrderID = @orderID;";
+
+            SqlCommand cmd2 = new SqlCommand(sql2, conn);
+            cmd2.Parameters.AddWithValue("@orderID", orderID);
+
+            cmd2.ExecuteNonQuery();
+
+
+
+
+            conn.Close();
+
             Session["orderOpt"] = "PickUp";
             Response.Redirect("../Menu/Menu.aspx");
         }
@@ -101,6 +156,74 @@ namespace CoffeeCove.Order
         {
             if (Page.IsValid) //means it choose delivery
             {
+                if (Session["access"] == null) //if its their firstTime come here
+                {
+                    Session["access"] = 1; //set its session
+
+                    //retrieve cusID from session
+                    //string cusID = Session["CusID"].ToString();
+                    string cusID = "11";
+                    //create an orderID for it
+                    SqlConnection conn3 = new SqlConnection(cs);
+                    string sql3 = @"INSERT INTO OrderPlaced(CusID,OrderDateTime,TotalAmount) 
+                                VALUES (@cusID,@dateTime,0);
+                                SELECT SCOPE_IDENTITY();";
+
+                    SqlCommand cmd3 = new SqlCommand(sql3, conn3);
+                    cmd3.Parameters.AddWithValue("@cusID", cusID);
+                    cmd3.Parameters.AddWithValue("@dateTime", DateTime.Now);
+                    conn3.Open();
+
+                    object newOrderID = cmd3.ExecuteScalar();
+
+                    Session["OrderID"] = Convert.ToInt32(newOrderID);
+
+                    conn3.Close();
+                }
+
+
+                int orderID = (int)Session["OrderID"];
+
+                //get the address from textbox then combine them into one address
+                string address = "";
+                if(txtUnit.Text.Length > 0) //if got write unit
+                {
+                    address = txtUnit.Text + "," + txtAddress1.Text + "," + txtPostCode.Text;
+                }
+                else
+                {
+                    address = txtAddress1.Text + "," + txtPostCode.Text;
+                }
+                
+                
+
+                //save the address into the database
+                SqlConnection conn = new SqlConnection(cs);
+                string sql = @"UPDATE OrderPlaced 
+                                SET DeliveryAddress = @address
+                                WHERE OrderID = @orderID;";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@address", address);
+                cmd.Parameters.AddWithValue("@orderID", orderID);
+                conn.Open();
+
+                cmd.ExecuteNonQuery();
+
+                //clean the pickupStore
+                string sql2 = @"UPDATE OrderPlaced 
+                                SET StoreID = NULL
+                                WHERE OrderID = @orderID;";
+
+                SqlCommand cmd2 = new SqlCommand(sql2, conn);
+                cmd2.Parameters.AddWithValue("@orderID", orderID);
+
+                cmd2.ExecuteNonQuery();
+
+
+
+                conn.Close();
+
                 Session["orderOpt"] = "Delivery";
                 Response.Redirect("../Menu/Menu.aspx");
             }

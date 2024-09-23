@@ -20,6 +20,7 @@
             runat="server" 
             placeholder="Desmund" 
             title="First Name"
+            Text="Desmund"
             ValidationGroup="SignUp">
         </asp:TextBox>
         <asp:RequiredFieldValidator 
@@ -54,6 +55,7 @@
             runat="server" 
             placeholder="Chau" 
             title="Name"
+            Text="Chau"
             ValidationGroup="SignUp">
         </asp:TextBox>
         <asp:RequiredFieldValidator 
@@ -88,6 +90,7 @@
             placeholder="desmundchau7668" 
             title="Username"
             ValidationGroup="SignUp"
+            Text="desmundchau7668"
             onblur="validateUsername()">
         </asp:TextBox>
         <asp:RequiredFieldValidator 
@@ -111,9 +114,10 @@
             runat="server" 
             ControlToValidate="Username_SU"
             OnServerValidate="Username_SU_ServerValidate"
-            CssClass="error" 
             Display="Dynamic" 
-            ErrorMessage="Your username has been used."
+            ForeColor="Red" 
+            CssClass="rqdValidator"
+            ErrorMessage=""
             ValidationGroup="SignUp">
         </asp:CustomValidator>
     </div>
@@ -126,6 +130,7 @@
             runat="server" 
             placeholder="deschau7668@gmail.com" 
             title="Email Address"
+            Text="thomas.cheapware@gmail.com"
             ValidationGroup="SignUp">
         </asp:TextBox>
         <asp:RequiredFieldValidator 
@@ -149,9 +154,10 @@
             runat="server" 
             ControlToValidate="EmailAdd_SU"
             OnServerValidate="EmailAdd_SU_ServerValidate"
-            CssClass="error" 
             Display="Dynamic" 
-            ErrorMessage="Your email has been used."
+            ForeColor="Red" 
+            CssClass="rqdValidator"
+            ErrorMessage=""
             ValidationGroup="SignUp">
         </asp:CustomValidator>
         <!--
@@ -167,6 +173,7 @@
         <asp:TextBox ID="ContactNo_SU" runat="server" 
             CssClass="w-full p-2 border border-border rounded-md focus:outline-none"
             placeholder="012-3456789"
+            Text="010-2897296"
             ValidationGroup="SignUp"/>
         <asp:RequiredFieldValidator 
             ID="ContactNo_SU_rqdValidator" runat="server" 
@@ -196,6 +203,7 @@
             placeholder="**********" 
             title="Password" 
             AutoPostBack="false"
+            text="@asdfghjklASDFGHJKL12345#"
             ValidationGroup="SignUp">
         </asp:TextBox>
         <span id="PasswordToggle_SU" class="absolute right-2 top-2 cursor-pointer">👁️</span>
@@ -227,6 +235,7 @@
             placeholder="**********" 
             title="Re-enter Password" 
             AutoPostBack="false"
+            text="@asdfghjklASDFGHJKL12345#"
             ValidationGroup="SignUp">
         </asp:TextBox>
         <span id="PasswordToggle_SU2" class="absolute right-2 top-2 cursor-pointer">👁️</span>
@@ -530,4 +539,5 @@
 
 <!--- reCAPTCHA -->
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 </asp:Content>

@@ -16,21 +16,24 @@ namespace CoffeeCove.Order
         decimal subTotal = 0;
         decimal linePrice = 0;
 
-        string orderId = "1";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
-                //string orderId = Session["OrderId"].ToString();
+                if (Session["OrderID"] == null)
+                {
+                    Response.Redirect("../Home/Home.aspx");
+                }
+                string orderId = Session["OrderID"].ToString();
 
                 SqlConnection conn = new SqlConnection(cs);
                 string sql = @"SELECT * 
                             FROM OrderedItem I JOIN Product P 
                             ON I.ProductId = P.ProductId
-                            WHERE OrderId = @ID";
+                            WHERE OrderId = @orderId";
 
                 SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@ID", "1");
+                cmd.Parameters.AddWithValue("@orderId", orderId);
                 conn.Open();
 
                 DataSet ds = new DataSet();
@@ -43,10 +46,10 @@ namespace CoffeeCove.Order
                 string sql1 = @"SELECT COUNT(*) 
                             FROM OrderedItem I JOIN Product P 
                             ON I.ProductId = P.ProductId
-                            WHERE OrderId = @id";
+                            WHERE OrderId = @orderId";
 
                 SqlCommand cmd1 = new SqlCommand(sql1, conn);
-                cmd1.Parameters.AddWithValue("@id", "1");
+                cmd1.Parameters.AddWithValue("@orderId", orderId);
                 int count = (int)cmd1.ExecuteScalar();
 
                 //if no record for this order
@@ -69,10 +72,26 @@ namespace CoffeeCove.Order
         protected void btnProceed_Click(object sender, EventArgs e)
         {
             //save total into the db
+            string total = lblTotal.Text;
+            string orderId = Session["OrderID"].ToString();
 
+            using (SqlConnection conn = new SqlConnection(cs))
+            {
+                conn.Open();
+                string sql = @"UPDATE OrderPlaced
+                            SET TotalAmount = @total
+                            WHERE OrderID = @orderId";
 
-            //string orderId = Session["OrderId"].ToString();
-            Response.Redirect("../Payment/paymentOpt.aspx?id=" + orderId);
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@orderId", orderId);
+                    cmd.Parameters.AddWithValue("@total", total);
+                    cmd.ExecuteNonQuery();
+                }
+                    
+            }
+
+            Response.Redirect("../Payment/paymentOpt.aspx");
         }
 
         
@@ -91,8 +110,11 @@ namespace CoffeeCove.Order
             Panel panelIce = (Panel)e.Item.FindControl("panelIce");
             Panel panelAddon = (Panel)e.Item.FindControl("panelAddon");
 
+            Panel panelTable = (Panel)e.Item.FindControl("panelTable");
+
             if (string.IsNullOrEmpty(lblSize.Text))
             {
+                panelTable.Visible = false;
                 panelSize.Visible = false;
                 panelFlavour.Visible = false;
                 panelIce.Visible = false;
@@ -117,10 +139,8 @@ namespace CoffeeCove.Order
             if (e.CommandName == "btnDelete")
             {
 
-                // Retrieve the ID of the item to edit
                 string orderedItemID = e.CommandArgument.ToString();
-
-                //string id = Request.QueryString["id"] ?? "";
+                string orderId = Session["OrderID"].ToString();
 
                 SqlConnection conn = new SqlConnection(cs);
                 string sql = @"DELETE FROM OrderedItem
@@ -132,15 +152,15 @@ namespace CoffeeCove.Order
 
                 cmd.ExecuteNonQuery();
 
-                //Response.Redirect("cart.aspx");
+                Response.Redirect("cart.aspx");
 
                 string sql1 = @"SELECT COUNT(*) 
                             FROM OrderedItem I JOIN Product P 
                             ON I.ProductId = P.ProductId
-                            WHERE OrderId = @id";
+                            WHERE OrderId = @orderId";
 
                 SqlCommand cmd1 = new SqlCommand(sql1, conn);
-                cmd1.Parameters.AddWithValue("@id", "1");
+                cmd1.Parameters.AddWithValue("@orderId", orderId);
                 int count = (int)cmd1.ExecuteScalar();
 
                 //if no record for this order

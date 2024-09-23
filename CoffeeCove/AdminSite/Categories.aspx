@@ -30,6 +30,8 @@
                                 <div class="col-8">
                                     <label class="label">Category Image</label>
                                     <asp:FileUpload ID="fuCategoryImage" runat="server" CssClass="form-control" onchange="ImagePreview(this);" />
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Please select Photo." ControlToValidate="fuCategoryImage" CssClass="error" Display="Dynamic" ValidationGroup="CategoryForm"></asp:RequiredFieldValidator>
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Only JPG and PNG are allowed." ControlToValidate="fuCategoryImage" CssClass="error" Display="Dynamic" ValidationExpression=".+\.(jpg|png)$" ValidationGroup="CategoryForm"></asp:RegularExpressionValidator>
                                 </div>
                                 <div class="form-check col-8">
                                     <asp:CheckBox ID="cbIsActive" runat="server" Text="IsActive" />
@@ -107,8 +109,9 @@
                                 <Columns>
                                     <asp:TemplateField SortExpression="CategoryId" ItemStyle-Width="10px">
                                         <HeaderTemplate>
-                                            <asp:LinkButton ID="lnkCategoryId" runat="server" CommandArgument="CategoryId" CssClass="header-link" 
-                                                ToolTip="Sort" OnClick="lnkCategory_Click">ID
+                                            <asp:LinkButton ID="lnkCategoryId" runat="server" CommandArgument="CategoryId" CssClass="header-link"
+                                                ToolTip="Sort" OnClick="lnkCategory_Click">
+                                                ID
                                                 <asp:Literal ID="litSortIconId" runat="server"></asp:Literal>
                                             </asp:LinkButton>
                                         </HeaderTemplate>
@@ -119,8 +122,9 @@
 
                                     <asp:TemplateField SortExpression="CategoryName" ItemStyle-Width="100px">
                                         <HeaderTemplate>
-                                            <asp:LinkButton ID="lnkCategoryName" runat="server" CommandArgument="CategoryName" CssClass="header-link" 
-                                                ToolTip="Sort" OnClick="lnkCategory_Click">Name
+                                            <asp:LinkButton ID="lnkCategoryName" runat="server" CommandArgument="CategoryName" CssClass="header-link"
+                                                ToolTip="Sort" OnClick="lnkCategory_Click">
+                                                Name
                                                 <asp:Literal ID="litSortIconName" runat="server"></asp:Literal>
                                             </asp:LinkButton>
                                         </HeaderTemplate>
@@ -145,8 +149,9 @@
 
                                     <asp:TemplateField SortExpression="CreatedDate" ItemStyle-Width="20px">
                                         <HeaderTemplate>
-                                            <asp:LinkButton ID="lnkCreatedDate" runat="server" CommandArgument="CreatedDate" CssClass="header-link" 
-                                                ToolTip="Sort" OnClick="lnkCategory_Click">CreatedDate
+                                            <asp:LinkButton ID="lnkCreatedDate" runat="server" CommandArgument="CreatedDate" CssClass="header-link"
+                                                ToolTip="Sort" OnClick="lnkCategory_Click">
+                                                CreatedDate
                                                 <asp:Literal ID="litSortIconDate" runat="server"></asp:Literal>
                                             </asp:LinkButton>
                                         </HeaderTemplate>
@@ -173,7 +178,7 @@
                         </div>
                     </div>
                     <div class="col-5" style="margin-left: 45%; margin-bottom: 20px">
-                        <asp:Button ID="BtnExport" runat="server" Text="Export To PDF" CssClass="btn btn-success" OnClick="BtnExport_Click" />
+                        <asp:Button ID="BtnExport" runat="server" Text="Export Report" CssClass="btn btn-success" OnClick="BtnExport_Click" />
                     </div>
                 </div>
             </div>

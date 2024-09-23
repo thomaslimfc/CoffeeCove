@@ -9,7 +9,7 @@
         <div id="scrollableCart">
             <table id="cartItemTable">
                 <tr id="cartTitle" style="border-bottom: solid 3px #433533">
-                    <th class="cartLeft" colspan="4">Item</th>
+                    <th class="cartLeft" colspan="2">Item</th>
                     <th class="cartRight">Price</th>
                     <th class="cartRight">Quantity</th>
                     <th class="cartRight">Total</th>
@@ -22,14 +22,11 @@
                             <td class="tableItem" style="text-align:center">
                                 <asp:LinkButton ID="lbDelete" runat="server" CommandName="btnDelete" CommandArgument='<%# Eval("OrderedItemID") %>' CssClass="btnDelete" Font-Underline="false"><img src="../img/trash-bin.png" alt="Delete" class="imgDelete"/></asp:LinkButton>
                             </td>
-                            <td class="tableItem" style="text-align:center">
-                                <asp:Label ID="lblId" runat="server" Text='<%# Eval("ProductId") %>' Font-Bold="True" />
-                            </td>
                             <td class="tableItem" style="border-right:none">
                                 <asp:Label ID="lblName" runat="server" Font-Bold="true" Text='<%# Eval("ProductName") %>' CssClass="itemName" />
-                            </td>
-                            <td class="tableItem" style="border-left:none">
-                                    <table ID="excludeTable">
+                                <br />
+                                <asp:Panel ID="panelTable" runat="server">
+                                    <table id="excludeTable">
                                         <tr>
                                             <td>
                                                 <asp:Panel ID="panelSize" runat="server">
@@ -61,8 +58,11 @@
                                             </td>
                                         </tr>
                                     </table>
+                                </asp:Panel>
+
 
                             </td>
+                            
                             <td style="text-align:center" class="tableItem">
                                 <asp:Label ID="lblPrice" runat="server" Text='<%# Eval("Price") %>' />
                             </td>
