@@ -348,3 +348,7 @@ D:\visual studio work\CoffeeCove\CoffeeCove\CoffeeCove\bin\System.IdentityModel.
 D:\visual studio work\CoffeeCove\CoffeeCove\CoffeeCove\bin\System.Text.Encodings.Web.xml
 D:\visual studio work\CoffeeCove\CoffeeCove\CoffeeCove\bin\System.Text.Json.xml
 D:\visual studio work\CoffeeCove\CoffeeCove\CoffeeCove\bin\Twilio.xml
+D:\visual studio work\CoffeeCove\CoffeeCove\CoffeeCove\bin\SendGrid.dll
+D:\visual studio work\CoffeeCove\CoffeeCove\CoffeeCove\bin\StarkbankEcdsa.dll
+D:\visual studio work\CoffeeCove\CoffeeCove\CoffeeCove\bin\SendGrid.pdb
+D:\visual studio work\CoffeeCove\CoffeeCove\CoffeeCove\bin\SendGrid.xml

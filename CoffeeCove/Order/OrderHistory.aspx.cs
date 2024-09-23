@@ -22,7 +22,11 @@ namespace CoffeeCove.Order
         {
             using (SqlConnection conn = new SqlConnection(cs))
             {
-                string query = "SELECT * FROM [OrderPlaced]";
+                string query = @"
+            SELECT O.*, PD.PaymentID
+            FROM [OrderPlaced] O
+            LEFT JOIN PaymentDetail PD ON O.OrderID = PD.OrderID";
+
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     conn.Open();
@@ -140,14 +144,11 @@ namespace CoffeeCove.Order
 
         protected void RatingButton_Click(object sender, EventArgs e)
         {
-            // Get the button that triggered the event
             Button ratingButton = (Button)sender;
 
-            // Get the OrderID from the CommandArgument
-            string orderId = ratingButton.CommandArgument;
+            string paymentId = ratingButton.CommandArgument;
 
-            // Redirect to the rating page, passing the OrderID as a query parameter
-            Response.Redirect($"~/RatingReview/comment.aspx?OrderID={orderId}");
+            Response.Redirect($"~/RatingReview/comment.aspx?PaymentID={paymentId}");
         }
     }
 }

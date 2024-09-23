@@ -20,7 +20,7 @@ namespace CoffeeCove.RatingReview
             if (!IsPostBack)
             {
                 // Retrieve the PaymentID from the query string
-                string paymentIDQuery = Request.QueryString["OrderID"];
+                string paymentIDQuery = Request.QueryString["PaymentID"];
 
                 if (!string.IsNullOrEmpty(paymentIDQuery) && int.TryParse(paymentIDQuery, out int paymentID))
                 {
