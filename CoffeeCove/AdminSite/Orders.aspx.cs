@@ -125,11 +125,64 @@ namespace CoffeeCove.AdminSite
             //delete store then reset the identity() to max num
             using (SqlConnection conn = new SqlConnection(cs))
             {
+                string paymentId = "";
+                //get paymentID
+                string sql5 = @"SELECT PaymentID
+                                FROM PaymentDetail
+                                WHERE OrderID = @orderId";
+                using (SqlCommand cmd = new SqlCommand(sql5, conn))
+                {
+                    cmd.Parameters.AddWithValue("@orderId", orderId);
+                    try
+                    {
+                        conn.Open();
+
+                        SqlDataReader dr = cmd.ExecuteReader();
+
+                        if (dr.Read())
+                        {
+                            paymentId = dr["PaymentID"].ToString();
+
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+
+                    conn.Close();
+                }
+
                 conn.Open();
 
-                string sql = @"DELETE FROM OrderPlaced
+                string sql = @"DELETE FROM OrderedItem
                                 WHERE OrderID = @orderId";
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@orderId", orderId);
+                    cmd.ExecuteNonQuery();
+                }
+
+                //delete review first then only payment
+                string sql4 = @"DELETE FROM Review
+                                WHERE PaymentID = @paymentId";
+                using (SqlCommand cmd = new SqlCommand(sql4, conn))
+                {
+                    cmd.Parameters.AddWithValue("@paymentId", paymentId);
+                    cmd.ExecuteNonQuery();
+                }
+
+                string sql2 = @"DELETE FROM PaymentDetail
+                                WHERE OrderID = @orderId";
+                using (SqlCommand cmd = new SqlCommand(sql2, conn))
+                {
+                    cmd.Parameters.AddWithValue("@orderId", orderId);
+                    cmd.ExecuteNonQuery();
+                }
+
+                string sql3 = @"DELETE FROM OrderPlaced
+                                WHERE OrderID = @orderId";
+                using (SqlCommand cmd = new SqlCommand(sql3, conn))
                 {
                     cmd.Parameters.AddWithValue("@orderId", orderId);
                     cmd.ExecuteNonQuery();
