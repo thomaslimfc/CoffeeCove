@@ -111,7 +111,17 @@ namespace CoffeeCove.Order
 
                 object newOrderID = cmd3.ExecuteScalar();
 
-                Session["OrderID"] = Convert.ToInt32(newOrderID);
+
+                int orderId = Convert.ToInt32(newOrderID);
+
+                string sql4 = @"INSERT INTO PaymentDetail(PaymentStatus,OrderID) 
+                                VALUES ('Pending',@orderId)";
+
+                SqlCommand cmd4 = new SqlCommand(sql4, conn3);
+                cmd4.Parameters.AddWithValue("@orderId", orderId.ToString());
+                cmd4.ExecuteNonQuery();
+
+                Session["OrderID"] = orderId;
 
                 conn3.Close();
             }
@@ -176,7 +186,17 @@ namespace CoffeeCove.Order
 
                     object newOrderID = cmd3.ExecuteScalar();
 
-                    Session["OrderID"] = Convert.ToInt32(newOrderID);
+
+                    int orderId = Convert.ToInt32(newOrderID);
+
+                    string sql4 = @"INSERT INTO PaymentDetail(PaymentStatus,OrderID) 
+                                VALUES ('Pending',@orderId)";
+
+                    SqlCommand cmd4 = new SqlCommand(sql4, conn3);
+                    cmd4.Parameters.AddWithValue("@orderId", orderId.ToString());
+                    cmd4.ExecuteNonQuery();
+
+                    Session["OrderID"] = orderId;
 
                     conn3.Close();
                 }
