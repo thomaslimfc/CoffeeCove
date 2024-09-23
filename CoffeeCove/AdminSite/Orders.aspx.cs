@@ -32,6 +32,7 @@ namespace CoffeeCove.AdminSite
             {
                 //string orderId = Session["OrderId"].ToString();
                 BindGridView();
+                bindRepeater("1");
             }
         }
 
@@ -116,8 +117,8 @@ namespace CoffeeCove.AdminSite
         {
             if (e.CommandName == "viewOrder")
             {
-                int orderId = Convert.ToInt32(e.CommandArgument);
-                bindRepeater(orderId.ToString());
+                string orderId = e.CommandArgument.ToString();
+                bindRepeater(orderId);
 
                 
             }
@@ -150,5 +151,17 @@ namespace CoffeeCove.AdminSite
         }
 
 
+
+        protected void gvOrder_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton btnView = (LinkButton)e.Row.FindControl("btnView");
+                if (btnView != null)
+                {
+                    ScriptManager.GetCurrent(this).RegisterAsyncPostBackControl(btnView);
+                }
+            }
+        }
     }
 }

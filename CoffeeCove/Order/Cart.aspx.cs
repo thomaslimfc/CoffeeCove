@@ -20,6 +20,10 @@ namespace CoffeeCove.Order
         {
             if (!Page.IsPostBack)
             {
+                if (Session["OrderID"] == null)
+                {
+                    Response.Redirect("../Home/Home.aspx");
+                }
                 string orderId = Session["OrderID"].ToString();
 
                 SqlConnection conn = new SqlConnection(cs);

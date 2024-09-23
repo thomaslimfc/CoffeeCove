@@ -5,6 +5,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <link href="../CSS/ProductCategory.css" rel="stylesheet" />
     <link href="../CSS/orderManagement.css" rel="stylesheet" />
+    <asp:ScriptManager ID="ScriptManager1" runat="server" />
+
     <div id="main" class="main">
         <div class="pagetitle" style="color: #fff">
             <br />
@@ -45,104 +47,103 @@
 
                 <!-- Order View -->
 
-                <asp:ScriptManager ID="ScriptManager1" runat="server" />
-                <asp:UpdatePanel ID="UP1" runat="server" ChildrenAsTriggers="True" UpdateMode="Conditional">
-                    <ContentTemplate>
-                        <div class="col-lg-12" id="viewOrder" style="display: none">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">Order Detail</h5>
-                                    <div class="col-12">
-                                        <table style="width: 100%">
-                                            <tr>
-                                                <td>
-                                                    <table id="orderTable" style="width: 35%">
-                                                        <tr>
-                                                            <th>Order ID:</th>
-                                                            <td>#<asp:Label ID="lblOrderNo" runat="server" Text=""></asp:Label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Order Date:
-                                                            </th>
-                                                            <td>
-                                                                <asp:Label ID="lblDate" runat="server" Text=""></asp:Label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Delivery/Pick-Up:
-                                                            </th>
-                                                            <td>
-                                                                <asp:Label ID="lblDelPick" runat="server" Text=""></asp:Label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Payment Method:
-                                                            </th>
-                                                            <td>
-                                                                <asp:Label ID="lblPaymentMethod" runat="server" Text=""></asp:Label>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                                <td>&nbsp</td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="2">
-                                                    <h5 class="card-title">Customer Information</h5>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="2">
-                                                    <table id="customerTable" style="width: 35%">
-                                                        <tr>
-                                                            <th>Username:</th>
-                                                            <td>
-                                                                <asp:Label ID="lblUsername" runat="server" Text=""></asp:Label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Email:
-                                                            </th>
-                                                            <td>
-                                                                <asp:Label ID="lblEmail" runat="server" Text=""></asp:Label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Pick Up Store:
-                                                            </th>
-                                                            <td>
-                                                                <asp:Label ID="lblPickUp" runat="server" Text=""></asp:Label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr style="display: none">
-                                                            <th>Delivery Address:
-                                                            </th>
-                                                            <td>
-                                                                <asp:Label ID="lblDelivery" runat="server" Text=""></asp:Label>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                                <td>&nbsp</td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="2">
-                                                    <h5 class="card-title">Product Ordered</h5>
-                                                </td>
-                                            </tr>
+                <div class="col-lg-12" id="viewOrder" style="display: none">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Order Detail</h5>
+                            <div class="col-12">
+                                <table style="width: 100%">
+                                    <tr>
+                                        <td>
+                                            <table id="orderTable" style="width: 35%">
+                                                <tr>
+                                                    <th>Order ID:</th>
+                                                    <td>#<asp:Label ID="lblOrderNo" runat="server" Text=""></asp:Label>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Order Date:
+                                                    </th>
+                                                    <td>
+                                                        <asp:Label ID="lblDate" runat="server" Text=""></asp:Label>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Delivery/Pick-Up:
+                                                    </th>
+                                                    <td>
+                                                        <asp:Label ID="lblDelPick" runat="server" Text=""></asp:Label>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Payment Method:
+                                                    </th>
+                                                    <td>
+                                                        <asp:Label ID="lblPaymentMethod" runat="server" Text=""></asp:Label>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>&nbsp</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <h5 class="card-title">Customer Information</h5>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <table id="customerTable" style="width: 35%">
+                                                <tr>
+                                                    <th>Username:</th>
+                                                    <td>
+                                                        <asp:Label ID="lblUsername" runat="server" Text=""></asp:Label>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Email:
+                                                    </th>
+                                                    <td>
+                                                        <asp:Label ID="lblEmail" runat="server" Text=""></asp:Label>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Pick Up Store:
+                                                    </th>
+                                                    <td>
+                                                        <asp:Label ID="lblPickUp" runat="server" Text=""></asp:Label>
+                                                    </td>
+                                                </tr>
+                                                <tr style="display: none">
+                                                    <th>Delivery Address:
+                                                    </th>
+                                                    <td>
+                                                        <asp:Label ID="lblDelivery" runat="server" Text=""></asp:Label>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>&nbsp</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <h5 class="card-title">Product Ordered</h5>
+                                        </td>
+                                    </tr>
 
-                                            <!--Display cart-->
-                                            <tr>
-                                                <td colspan="2">
-                                                    <table id="cartItemTable">
-                                                        <tr id="cartTitle" style="border-bottom: solid 3px #433533">
-                                                            <th class="cartLeft">Item</th>
-                                                            <th class="cartRight">Price</th>
-                                                            <th class="cartRight">Quantity</th>
-                                                            <th class="cartRight">Total</th>
-                                                        </tr>
+                                    <!--Display cart-->
+                                    <tr>
+                                        <td colspan="2">
+                                            <table id="cartItemTable">
+                                                <tr id="cartTitle" style="border-bottom: solid 3px #433533">
+                                                    <th class="cartLeft">Item</th>
+                                                    <th class="cartRight">Price</th>
+                                                    <th class="cartRight">Quantity</th>
+                                                    <th class="cartRight">Total</th>
+                                                </tr>
 
+                                                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                                    <ContentTemplate>
                                                         <!--Repeater-->
                                                         <asp:Repeater ID="rptOrdered" runat="server" OnItemDataBound="rptOrdered_ItemDataBound">
                                                             <ItemTemplate>
@@ -198,42 +199,43 @@
                                                                 </tr>
                                                             </ItemTemplate>
                                                         </asp:Repeater>
-                                                    </table>
 
-                                                    <table id="cartTotalTable">
-                                                        <tr class="amtTable">
-                                                            <td class="cartLeft">Subtotal [RM]</td>
-                                                            <td class="cartRight">
-                                                                <asp:Label ID="lblSubtotal" runat="server" Text=""></asp:Label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr class="amtTable">
-                                                            <td class="cartLeft">Tax [6%]</td>
-                                                            <td class="cartRight">+
+
+                                                    </ContentTemplate>
+                                                </asp:UpdatePanel>
+                                            </table>
+
+                                            <table id="cartTotalTable">
+                                                <tr class="amtTable">
+                                                    <td class="cartLeft">Subtotal [RM]</td>
+                                                    <td class="cartRight">
+                                                        <asp:Label ID="lblSubtotal" runat="server" Text=""></asp:Label>
+                                                    </td>
+                                                </tr>
+                                                <tr class="amtTable">
+                                                    <td class="cartLeft">Tax [6%]</td>
+                                                    <td class="cartRight">+
                                                         <asp:Label ID="lblTax" runat="server" Text=""></asp:Label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr class="amtTable">
-                                                            <td class="cartLeft">Total [RM]</td>
-                                                            <td class="cartRight">
-                                                                <asp:Label ID="lblTotal" runat="server" Text=""></asp:Label>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                            </tr>
+                                                    </td>
+                                                </tr>
+                                                <tr class="amtTable">
+                                                    <td class="cartLeft">Total [RM]</td>
+                                                    <td class="cartRight">
+                                                        <asp:Label ID="lblTotal" runat="server" Text=""></asp:Label>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
 
-                                        </table>
-                                    </div>
-
-                                </div>
+                                </table>
                             </div>
 
-
                         </div>
+                    </div>
 
-                    </ContentTemplate>
-                </asp:UpdatePanel>
+
+                </div>
 
                 <!-- Order List -->
                 <div class="col-lg-12">
@@ -242,7 +244,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Order List</h5>
 
-                            <asp:GridView ID="gvOrder" runat="server" AutoGenerateColumns="false" CssClass="table table-striped" PageSize="10" AllowPaging="true" AllowSorting="true" EmptyDataText="There are no data records" OnRowCommand="gvOrder_RowCommand" DataKeyNames="OrderID">
+                            <asp:GridView ID="gvOrder" runat="server" AutoGenerateColumns="false" CssClass="table table-striped" PageSize="10" AllowPaging="true" AllowSorting="true" EmptyDataText="There are no data records" OnRowCommand="gvOrder_RowCommand" DataKeyNames="OrderID" OnRowDataBound="gvOrder_RowDataBound">
                                 <Columns>
                                     <asp:TemplateField SortExpression="OrderID">
                                         <HeaderTemplate>
@@ -294,7 +296,7 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Action" ItemStyle-Width="150px">
                                         <ItemTemplate>
-                                            <asp:LinkButton ID="btnView" runat="server" CommandName="viewOrder" CommandArgument='<%# Eval("OrderID") %>' Text="View" CssClass="btn btn-dark btn-sm" OnClientClick="viewOrder();" />
+                                            <asp:LinkButton ID="btnView" runat="server" CommandName="viewOrder" CommandArgument='<%# Eval("OrderID") %>' Text="View" CssClass="btn btn-dark btn-sm" OnClientClick="viewOrder(event);" />
                                             <asp:LinkButton ID="btnDelete" runat="server" CommandName="deleteOrder" CommandArgument='<%# Eval("OrderID") %>' Text="Delete" CssClass="btn btn-danger btn-sm" OnClientClick="return confirmDelete();" />
                                         </ItemTemplate>
                                     </asp:TemplateField>
@@ -318,9 +320,8 @@
         function confirmDelete() {
             return confirm("Do you confirm you want to delete this store from store list?");
         }
-        function viewOrder() {
+        function viewOrder(event) {
             document.getElementById("viewOrder").style.display = 'block';
-
         }
 
     </script>
