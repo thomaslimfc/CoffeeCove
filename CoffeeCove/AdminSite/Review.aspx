@@ -112,7 +112,7 @@
                                             </div>
                                             <div class="d-flex justify-content-end mt-2">
                                                 <asp:Button ID="btnEdit" runat="server" CssClass="btn btn-dark mr-2" Text="Reply/Edit" 
-                                                    OnClick="btnEdit_Click" CommandArgument='<%# Eval("RatingReviewID") %>' />
+                                                    OnClick="btnEdit_Click" CommandArgument='<%# Eval("RatingReviewID") + "," + Eval("PaymentID") %>' />
                                                 <asp:Button ID="btnDelete" runat="server" CssClass="btn btn-danger" 
                                                     Text="Delete" OnClick="btnDelete_Click" 
                                                     CommandArgument='<%# Eval("RatingReviewID") %>' 

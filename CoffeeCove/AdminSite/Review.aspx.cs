@@ -87,7 +87,8 @@ namespace CoffeeCove.AdminSite
                    C.CusID, C.Username, 
                    R2.ReviewContent AS AdminReplyContent, 
                    R2.RatingReviewDateTime AS AdminReplyDateTime, 
-                   A.Username AS AdminUsername
+                   A.Username AS AdminUsername,
+                   PD.PaymentID  -- Ensure PaymentID is selected here
             FROM Review R
             LEFT JOIN Review R2 ON R.RatingReviewID = R2.ReplyTo
             LEFT JOIN PaymentDetail PD ON R.PaymentID = PD.PaymentID
@@ -189,9 +190,14 @@ namespace CoffeeCove.AdminSite
         {
             // Get the button that triggered the event
             Button btn = (Button)sender;
-            int ratingReviewID = Convert.ToInt32(btn.CommandArgument);
 
-            Response.Redirect($"AdminReview.aspx?RatingReviewID={ratingReviewID}");
+            // Retrieve both RatingReviewID and PaymentID from the CommandArgument, assuming it's passed as "RatingReviewID,PaymentID"
+            string[] args = btn.CommandArgument.Split(',');
+            int ratingReviewID = Convert.ToInt32(args[0]);
+            int paymentID = Convert.ToInt32(args[1]);
+
+            // Pass both RatingReviewID and PaymentID in the query string
+            Response.Redirect($"AdminReview.aspx?RatingReviewID={ratingReviewID}&PaymentID={paymentID}");
         }
     }
 }

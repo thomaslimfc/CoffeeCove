@@ -20,6 +20,8 @@
                 </div>
                 <div class="form-group">
                     <asp:Button ID="btnSubmit" runat="server" CssClass="btnCont" Text="Submit Comment" OnClick="btnSubmit_Click" ValidationGroup="SubmitGroup" />
+                    <asp:Button ID="btnDelete" runat="server" CssClass="btnCont2" Text="Delete Your Comment" OnClick="btnDelete_Click" 
+                        OnClientClick="return confirm('Are you sure you want to delete this comment?');" />
                 </div>
             </asp:Panel>
         </div>
