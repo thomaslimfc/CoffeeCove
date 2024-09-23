@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.UI;
 
 using CoffeeCove.Securities;
+using Microsoft.IdentityModel.Tokens;
 
 namespace CoffeeCove.Security
 {
@@ -27,7 +28,7 @@ namespace CoffeeCove.Security
                     var customer = db.Customers.SingleOrDefault(c => c.Username == username && c.HashedPassword == password);
 
                     // Check for a matching admin
-                    var admin = db.Admins.SingleOrDefault(a => a.Username == username && a.HashedPassword == password);
+                    var admin = db.Admins.SingleOrDefault(a => a.Username == username && a.HashedPassword == Password_SI.Text);
 
                     // If not identity of customer or admin
                     if (customer != null || admin != null)
@@ -40,7 +41,22 @@ namespace CoffeeCove.Security
                         if (customer != null)
                         {
                             Session["CusID"] = customer.CusID;
-                            Session["ContactNo"] = customer.ContactNo;
+
+                            if (!string.IsNullOrEmpty(customer.ContactNo))
+                            {
+                                Session["ContactNo"] = customer.ContactNo;
+                            }
+                            else
+                            {
+                                Response.Redirect("~/Security/SignIn.aspx");
+                                return; // Stop further processing if no contact number is found
+                            }
+                        }
+
+                        //  @asdfghjklASDFGHJKL12345#
+                        if (admin != null)
+                        {
+                            Response.Redirect("~/AdminSite/Dashboard.aspx");
                         }
 
                         // Set a flag indicating that 2FA is required
