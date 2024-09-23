@@ -517,22 +517,22 @@ namespace CoffeeCove.AdminSite
 
         protected void BtnExport_Click(object sender, EventArgs e)
         {
-            // Set up PDF response properties
+            // Set up PDF response properties  
             Response.ContentType = "application/pdf";
             Response.AddHeader("content-disposition", "attachment;filename=ProductReport.pdf");
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
-            string sql = @"SELECT 
-                     p.ProductId, 
-                     p.ProductName, 
-                     p.UnitPrice, 
-                     p.CreatedDate,
-                     p.IsActive,
-                     COALESCE(SUM(oi.Quantity * oi.Price), 0) AS TotalSales,
-                     COALESCE(SUM(oi.Quantity), 0) AS TotalSold
-                     FROM Product p
-                     LEFT JOIN OrderedItem oi ON p.ProductId = oi.ProductID
-                     GROUP BY p.ProductId, p.ProductName, p.UnitPrice, p.CreatedDate, p.IsActive";
+            string sql = @"SELECT   
+            p.ProductId,   
+            p.ProductName,   
+            p.UnitPrice,   
+            p.CreatedDate,  
+            p.IsActive,  
+            COALESCE(SUM(oi.Quantity * oi.Price), 0) AS TotalSales,  
+            COALESCE(SUM(oi.Quantity), 0) AS TotalSold  
+            FROM Product p  
+            LEFT JOIN OrderedItem oi ON p.ProductId = oi.ProductID  
+            GROUP BY p.ProductId, p.ProductName, p.UnitPrice, p.CreatedDate, p.IsActive";
 
             DataTable dt = new DataTable();
 
@@ -546,7 +546,7 @@ namespace CoffeeCove.AdminSite
                 }
             }
 
-            // Set up iTextSharp PDF document
+            // Set up iTextSharp PDF document  
             Document pdfdoc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
             PdfWriter.GetInstance(pdfdoc, Response.OutputStream);
             pdfdoc.Open();
@@ -569,7 +569,7 @@ namespace CoffeeCove.AdminSite
             pdfTable.SetWidths(new float[] { 1f, 2f, 1f, 1f, 1f, 1f, 1f });
             BaseColor lightGrey = new BaseColor(211, 211, 211);
 
-            // table headers
+            // table headers  
             pdfTable.AddCell(new PdfPCell(new Phrase("Product ID")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
             pdfTable.AddCell(new PdfPCell(new Phrase("Product Name")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
             pdfTable.AddCell(new PdfPCell(new Phrase("Unit Price (RM)")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
@@ -578,7 +578,7 @@ namespace CoffeeCove.AdminSite
             pdfTable.AddCell(new PdfPCell(new Phrase("Total Sales (RM)")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
             pdfTable.AddCell(new PdfPCell(new Phrase("Total Sold")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
 
-            // Initialize sums
+            // Initialize sums  
             decimal totalSalesSum = 0;
             int totalSoldSum = 0;
 
@@ -589,19 +589,23 @@ namespace CoffeeCove.AdminSite
                 pdfTable.AddCell(new PdfPCell(new Phrase(Convert.ToDecimal(row["UnitPrice"]).ToString("N2"))) { HorizontalAlignment = Element.ALIGN_CENTER });
                 pdfTable.AddCell(new PdfPCell(new Phrase(Convert.ToDateTime(row["CreatedDate"]).ToString("dd/MM/yyyy"))) { HorizontalAlignment = Element.ALIGN_CENTER });
                 pdfTable.AddCell(new PdfPCell(new Phrase(row["IsActive"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
-                pdfTable.AddCell(new PdfPCell(new Phrase(row["TotalSales"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
-                pdfTable.AddCell(new PdfPCell(new Phrase(row["TotalSold"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
 
-                totalSalesSum += Convert.ToDecimal(row["TotalSales"]);
-                totalSoldSum += Convert.ToInt32(row["TotalSold"]);
+                decimal rowTotalSales = row["TotalSales"] != DBNull.Value ? Convert.ToDecimal(row["TotalSales"]) : 0;
+                int rowTotalSold = row["TotalSold"] != DBNull.Value ? Convert.ToInt32(row["TotalSold"]) : 0;
+
+                pdfTable.AddCell(new PdfPCell(new Phrase(rowTotalSales.ToString("N2"))) { HorizontalAlignment = Element.ALIGN_CENTER });
+                pdfTable.AddCell(new PdfPCell(new Phrase(rowTotalSold.ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
+
+                totalSalesSum += rowTotalSales;
+                totalSoldSum += rowTotalSold;
             }
 
-            pdfTable.AddCell(new PdfPCell(new Phrase("Total")) { Colspan = 4, HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+            // Adding the total row  
+            pdfTable.AddCell(new PdfPCell(new Phrase("Total")) { Colspan = 5, HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
             pdfTable.AddCell(new PdfPCell(new Phrase(totalSalesSum.ToString("N2"))) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
             pdfTable.AddCell(new PdfPCell(new Phrase(totalSoldSum.ToString())) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
 
             pdfdoc.Add(pdfTable);
-
             pdfdoc.Close();
             Response.Write(pdfdoc);
             Response.End();

@@ -523,17 +523,21 @@ namespace CoffeeCove
                 pdfTable.AddCell(new PdfPCell(new Phrase(Convert.ToDateTime(row["CreatedDate"]).ToString("dd/MM/yyyy"))) { HorizontalAlignment = Element.ALIGN_CENTER });
                 pdfTable.AddCell(new PdfPCell(new Phrase(row["IsActive"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
                 pdfTable.AddCell(new PdfPCell(new Phrase(row["TotalProduct"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
-                pdfTable.AddCell(new PdfPCell(new Phrase(row["TotalSales"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
-                pdfTable.AddCell(new PdfPCell(new Phrase(row["TotalSold"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
+                // Check for Null and handle properly  
+                decimal rowTotalSales = row["TotalSales"] != DBNull.Value ? Convert.ToDecimal(row["TotalSales"]) : 0;
+                int rowTotalSold = row["TotalSold"] != DBNull.Value ? Convert.ToInt32(row["TotalSold"]) : 0;
+
+                pdfTable.AddCell(new PdfPCell(new Phrase(rowTotalSales.ToString("0.00"))) { HorizontalAlignment = Element.ALIGN_CENTER });
+                pdfTable.AddCell(new PdfPCell(new Phrase(rowTotalSold.ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
 
                 totalProductSum += Convert.ToInt32(row["TotalProduct"]);
-                totalSalesSum += Convert.ToDecimal(row["TotalSales"]);
-                totalSoldSum += Convert.ToInt32(row["TotalSold"]);
+                totalSalesSum += rowTotalSales;
+                totalSoldSum += rowTotalSold;
             }
 
-            pdfTable.AddCell(new PdfPCell(new Phrase("Total")) { Colspan = 3, HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+            pdfTable.AddCell(new PdfPCell(new Phrase("Total")) { Colspan = 4, HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
             pdfTable.AddCell(new PdfPCell(new Phrase(totalProductSum.ToString())) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
-            pdfTable.AddCell(new PdfPCell(new Phrase(totalSalesSum.ToString())) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+            pdfTable.AddCell(new PdfPCell(new Phrase(totalSalesSum.ToString("0.00"))) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
             pdfTable.AddCell(new PdfPCell(new Phrase(totalSoldSum.ToString())) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
 
             pdfdoc.Add(pdfTable);
