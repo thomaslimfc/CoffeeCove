@@ -21,7 +21,6 @@ namespace CoffeeCove.AdminSite
             {
                 BindGridView();
 
-
             }
         }
 
@@ -33,14 +32,26 @@ namespace CoffeeCove.AdminSite
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
-                    conn.Open();
+                    try
+                    {
+                        conn.Open();
 
-                    SqlDataAdapter da = new SqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
 
-                    gvStoreList.DataSource = dt;
-                    gvStoreList.DataBind();
+                        gvStoreList.DataSource = dt;
+                        gvStoreList.DataBind();
+                    }
+                    catch (SqlException ex)
+                    {
+
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                    
                 }
             }
         }
@@ -66,14 +77,16 @@ namespace CoffeeCove.AdminSite
             {
                 conn.Open();
 
-                string sql = "DELETE FROM Store WHERE StoreID = @StoreId";
-                using (SqlCommand deleteCmd = new SqlCommand(sql, conn))
+                string sql = @"DELETE FROM Store
+                                WHERE StoreID = @StoreId";
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
-                    deleteCmd.Parameters.AddWithValue("@StoreId", StoreId);
-                    deleteCmd.ExecuteNonQuery();
+                    cmd.Parameters.AddWithValue("@StoreId", StoreId);
+                    cmd.ExecuteNonQuery();
                 }
 
-                string sql2 = "SELECT ISNULL(MAX(StoreID), 0) FROM Store";
+                string sql2 = @"SELECT ISNULL(MAX(StoreID), 0) 
+                                FROM Store";
                 int nextId = 0;
 
                 using (SqlCommand cmd = new SqlCommand(sql2, conn))
@@ -81,7 +94,7 @@ namespace CoffeeCove.AdminSite
                     nextId = Convert.ToInt32(cmd.ExecuteScalar());
                 }
 
-                string sql3 = "DBCC CHECKIDENT ('Store', RESEED, @nextId)";
+                string sql3 = @"DBCC CHECKIDENT ('Store', RESEED, @nextId)";
                 using (SqlCommand cmd = new SqlCommand(sql3, conn))
                 {
                     cmd.Parameters.AddWithValue("@nextId", nextId);
@@ -95,21 +108,31 @@ namespace CoffeeCove.AdminSite
 
         private void LoadStoreForEdit(string StoreId)
         {
-            string sql = "SELECT * FROM Store WHERE StoreID = @StoreId";
-            using (SqlConnection con = new SqlConnection(cs))
+            using (SqlConnection conn = new SqlConnection(cs))
             {
-                using (SqlCommand cmd = new SqlCommand(sql, con))
+                string sql = @"SELECT * 
+                        FROM Store 
+                        WHERE StoreID = @StoreId";
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@StoreId", StoreId);
-                    con.Open();
-                    SqlDataReader dr = cmd.ExecuteReader();
-                    if (dr.Read())
+                    try
                     {
-                        txtStoreName.Text = dr["StoreName"].ToString();
-                        txtStoreAddress.Text = dr["StoreAddress"].ToString();
-                        //txtPostCode.Text = dr["StorePostCode"].ToString();
-                        hdnId.Value = StoreId;
+                        conn.Open();
+                        SqlDataReader dr = cmd.ExecuteReader();
+                        if (dr.Read())
+                        {
+                            txtStoreName.Text = dr["StoreName"].ToString();
+                            txtStoreAddress.Text = dr["StoreAddress"].ToString();
+                            //txtPostCode.Text = dr["StorePostCode"].ToString();
+                            hdnId.Value = StoreId;
+                        }
                     }
+                    catch (SqlException ex)
+                    {
+                        Response.Write("An error occurred: " + ex.Message);
+                    }
+                    
                 }
             }
             btnAdd.Text = "Update";
@@ -122,38 +145,90 @@ namespace CoffeeCove.AdminSite
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            if (Page.IsValid)
-            {
-                //get data from textbox
-                string storeName = txtStoreName.Text;
-                string storeAddress = txtStoreAddress.Text;
 
-                SqlConnection conn = new SqlConnection(cs);
-                string sql = @"INSERT INTO Store(StoreName,StoreAddress) 
+            //if it is "ADD"
+            if(btnAdd.Text == "Add")
+            {
+                if (Page.IsValid)
+                {
+                    //get data from textbox
+                    string storeName = txtStoreName.Text;
+                    string storeAddress = txtStoreAddress.Text;
+
+                    using (SqlConnection conn = new SqlConnection(cs))
+                    {
+                        string sql = @"INSERT INTO Store(StoreName,StoreAddress) 
                                 VALUES (@storeName,@storeAdd);";
 
-                using (SqlCommand cmd = new SqlCommand(sql, conn))
-                {
-                    cmd.Parameters.AddWithValue("@storeName", storeName);
-                    cmd.Parameters.AddWithValue("@storeAdd", storeAddress);
+                        using (SqlCommand cmd = new SqlCommand(sql, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@storeName", storeName);
+                            cmd.Parameters.AddWithValue("@storeAdd", storeAddress);
 
-                    try
-                    {
-                        conn.Open();
-                        cmd.ExecuteNonQuery();
-                        BindGridView(); //bind the gridview again after adding in new data
+                            try
+                            {
+                                conn.Open();
+                                cmd.ExecuteNonQuery();
+                                BindGridView(); //bind the gridview again after adding in new data
+                            }
+                            catch (SqlException ex)
+                            {
+                                Response.Write("An error occurred: " + ex.Message);
+                            }
+                        }
                     }
-                    catch (SqlException ex)
+                        
+                    //clear the textbox after insert
+                    txtStoreName.Text = "";
+                    txtStoreAddress.Text = "";
+
+                }
+            }
+            else if(btnAdd.Text == "Update") //if it is update
+            {
+                if (Page.IsValid)
+                {
+                    //get data from textbox
+                    string storeName = txtStoreName.Text;
+                    string storeAddress = txtStoreAddress.Text;
+                    string storeId = hdnId.Value;
+
+                    using (SqlConnection conn = new SqlConnection(cs))
                     {
-                        Response.Write("An error occurred: " + ex.Message);
+                        string sql = @"UPDATE Store
+                                SET StoreName = @storeName, StoreAddress = @storeAdd
+                                WHERE StoreID = @storeId;";
+
+                        using (SqlCommand cmd = new SqlCommand(sql, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@storeName", storeName);
+                            cmd.Parameters.AddWithValue("@storeAdd", storeAddress);
+                            cmd.Parameters.AddWithValue("@storeId", storeId);
+
+                            try
+                            {
+                                conn.Open();
+                                cmd.ExecuteNonQuery();
+                                BindGridView(); //bind the gridview again after adding in new data
+                            }
+                            catch (SqlException ex)
+                            {
+                                Response.Write("An error occurred: " + ex.Message);
+                            }
+
+
+                        }
                     }
+                        
+                    //clear the textbox
+                    txtStoreName.Text = "";
+                    txtStoreAddress.Text = "";
+
                 }
 
-                //clear the textbox after insert
-                txtStoreName.Text = "";
-                txtStoreAddress.Text = "";
-
+                btnAdd.Text = "Add";
             }
+            
         }
     }
 
