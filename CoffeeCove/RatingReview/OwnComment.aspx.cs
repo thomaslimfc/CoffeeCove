@@ -26,19 +26,19 @@ namespace CoffeeCove.RatingReview
             {
                 // Added a WHERE clause to filter by CusID = 2
                 string query = @"
-                    SELECT R.RatingScore, R.ReviewContent, R.RatingReviewDateTime, 
-                           C.CusID, C.Username, 
-                           R2.ReviewContent AS AdminReplyContent, 
-                           R2.RatingReviewDateTime AS AdminReplyDateTime, 
-                           A.Username AS AdminUsername
-                    FROM Review R
-                    LEFT JOIN Review R2 ON R.RatingReviewID = R2.ReplyTo
-                    LEFT JOIN PaymentDetail PD ON R.PaymentID = PD.PaymentID
-                    LEFT JOIN OrderPlaced O ON PD.OrderID = O.OrderID
-                    LEFT JOIN Customer C ON O.CusID = C.CusID
-                    LEFT JOIN Admin A ON R2.UsernameAdmin = A.Username
-                    WHERE R.ReplyTo IS NULL
-                    ORDER BY R.RatingReviewDateTime DESC";
+            SELECT R.RatingReviewID, R.RatingScore, R.ReviewContent, R.RatingReviewDateTime, 
+                   C.CusID, C.Username, 
+                   R2.ReviewContent AS AdminReplyContent, 
+                   R2.RatingReviewDateTime AS AdminReplyDateTime, 
+                   A.Username AS AdminUsername
+            FROM Review R
+            LEFT JOIN Review R2 ON R.RatingReviewID = R2.ReplyTo
+            LEFT JOIN PaymentDetail PD ON R.PaymentID = PD.PaymentID
+            LEFT JOIN OrderPlaced O ON PD.OrderID = O.OrderID
+            LEFT JOIN Customer C ON O.CusID = C.CusID
+            LEFT JOIN Admin A ON R2.UsernameAdmin = A.Username
+            WHERE R.ReplyTo IS NULL
+            ORDER BY R.RatingReviewDateTime DESC";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     // Added parameter to avoid SQL injection
@@ -97,6 +97,26 @@ namespace CoffeeCove.RatingReview
                     "));
                 }
             }
+        }
+
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+            // Get the button that triggered the event
+            Button btn = (Button)sender;
+            int ratingReviewID = Convert.ToInt32(btn.CommandArgument);
+
+            using (SqlConnection conn = new SqlConnection(cs))
+            {
+                conn.Open();
+                string deleteQuery = "DELETE FROM Review WHERE RatingReviewID = @RatingReviewID";
+                using (SqlCommand cmd = new SqlCommand(deleteQuery, conn))
+                {
+                    cmd.Parameters.AddWithValue("@RatingReviewID", ratingReviewID);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+            BindOwnComment();
         }
     }
 }

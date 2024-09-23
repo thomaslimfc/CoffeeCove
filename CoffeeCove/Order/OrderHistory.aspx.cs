@@ -83,9 +83,11 @@ namespace CoffeeCove.Order
         {
             using (SqlConnection conn = new SqlConnection(cs))
             {
-                string query = @"SELECT RatingScore, ReviewContent, RatingReviewDateTime 
-                         FROM Review 
-                         WHERE PaymentID IN (SELECT PaymentID FROM PaymentDetail WHERE OrderID = @OrderID)";
+                string query = @"
+            SELECT R.RatingScore, R.ReviewContent, R.RatingReviewDateTime, PD.PaymentID 
+            FROM Review R 
+            JOIN PaymentDetail PD ON R.PaymentID = PD.PaymentID 
+            WHERE PD.OrderID = @OrderID";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -102,7 +104,6 @@ namespace CoffeeCove.Order
                         HtmlGenericControl reviewSection = (HtmlGenericControl)e.Item.FindControl("ReviewSection");
 
                         int score = Convert.ToInt32(reader["RatingScore"]);
-
                         reviewContent.Text = reader["ReviewContent"].ToString();
 
                         // Generate star icons based on rating score
