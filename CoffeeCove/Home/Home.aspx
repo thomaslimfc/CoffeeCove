@@ -84,7 +84,7 @@
 
         <!-- Feedback -->
         <div class="ourFeedback">
-            <h1 class="feedbackTitle">Our Clients Say</h1>
+            <h1 class="feedbackTitle" style="color:#fff">Our Clients Say</h1>
             <table style="width: 90%;" class="feedbackContainer">
                 <tr>
                     <td class="box1" style="width: 60px;">

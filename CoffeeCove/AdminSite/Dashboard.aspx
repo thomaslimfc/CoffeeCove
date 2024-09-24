@@ -23,7 +23,8 @@
                                             <i class="bi bi-cart"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6><asp:Label ID="lblSalesToday" runat="server" Text="0"></asp:Label></h6>
+                                            <h6>
+                                                <asp:Label ID="lblSalesToday" runat="server" Text="0"></asp:Label></h6>
                                         </div>
                                     </div>
                                 </div>
@@ -41,7 +42,8 @@
                                             <i class="bi bi-currency-dollar"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6><asp:Label ID="lblRevenueToday" runat="server" Text="RM 0.00"></asp:Label></h6>
+                                            <h6>
+                                                <asp:Label ID="lblRevenueToday" runat="server" Text="RM 0.00"></asp:Label></h6>
                                         </div>
                                     </div>
                                 </div>
@@ -58,7 +60,8 @@
                                             <i class="bi bi-people"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6><asp:Label ID="lblOrdersToday" runat="server" Text="0"></asp:Label></h6>
+                                            <h6>
+                                                <asp:Label ID="lblOrdersToday" runat="server" Text="0"></asp:Label></h6>
                                         </div>
                                     </div>
                                 </div>
@@ -77,7 +80,8 @@
                                             <i class="bi bi-tags-fill"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6><asp:Label ID="lblTotalCategory" runat="server" Text="0"></asp:Label></h6>
+                                            <h6>
+                                                <asp:Label ID="lblTotalCategory" runat="server" Text="0"></asp:Label></h6>
                                         </div>
                                     </div>
                                 </div>
@@ -95,7 +99,8 @@
                                             <i class="bi bi-archive-fill"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6><asp:Label ID="lblTotalProduct" runat="server" Text="0"></asp:Label></h6>
+                                            <h6>
+                                                <asp:Label ID="lblTotalProduct" runat="server" Text="0"></asp:Label></h6>
                                         </div>
                                     </div>
                                 </div>
@@ -121,34 +126,24 @@
                         </div>
 
 
-                        <div class="col-8">
+                        <div class="col-12">
                             <div class="card-body pb-0">
                                 <h4 style="color: #fff">Top Selling</h4>
-                                <table class="table table-borderless" style="width: 100%;">
-                                    <thead>
-                                        <tr>
-                                            <th>Preview</th>
-                                            <th>Product</th>
-                                            <th>Price</th>
-                                            <th>Sold</th>
-                                            <th>Sales Amount</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <asp:Repeater ID="rptTopSellingProducts" runat="server">
+
+                                <asp:GridView ID="gvTopSellingProducts" runat="server" AutoGenerateColumns="False" CssClass="table table-borderless" EmptyDataText="No products found">
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="Image">
                                             <ItemTemplate>
-                                                <tr>
-                                                    <td>
-                                                        <img src='<%# Eval("ImageUrl") %>' alt='<%# Eval("ProductName") %>' style="width: 50px; height: auto;" /></td>
-                                                    <td><%# Eval("ProductName") %></td>
-                                                    <td><%# Eval("UnitPrice", "RM {0:N2}") %></td>
-                                                    <td><%# Eval("TotalSold") %></td>
-                                                    <td><%# Eval("TotalSales", "RM {0:N2}") %></td>
-                                                </tr>
+                                                <img src='<%# Eval("ImageUrl") %>' alt='<%# Eval("ProductName") %>' style="width: 50px; height: auto;" />
                                             </ItemTemplate>
-                                        </asp:Repeater>
-                                    </tbody>
-                                </table>
+                                        </asp:TemplateField>
+                                        <asp:BoundField DataField="ProductName" HeaderText="Product Name" />
+                                        <asp:BoundField DataField="UnitPrice" HeaderText="Unit Price" DataFormatString="{0:C}" />
+                                        <asp:BoundField DataField="TotalSold" HeaderText="Total Sold" />
+                                        <asp:BoundField DataField="TotalSales" HeaderText="Total Sales" DataFormatString="{0:C}" />
+                                    </Columns>
+                                </asp:GridView>
+
                             </div>
                         </div>
                     </div>

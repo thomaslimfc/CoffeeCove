@@ -82,14 +82,21 @@ namespace CoffeeCove.Menu
                     }
                     con.Open();
                     SqlDataReader dr = cmd.ExecuteReader();
-                    // Check if this is the "All" category (categoryId == 0) and store top 3 product IDs
+                    top3Products.Clear();
+                    // store top 3 product IDs
                     if (categoryId == 0)
                     {
                         int count = 0;
                         while (dr.Read() && count < 3)
                         {
-                            top3Products.Add(Convert.ToInt32(dr["ProductId"])); // Add top 3 Product IDs
-                            count++;
+                            int totalSold = Convert.ToInt32(dr["TotalSold"]);
+
+                            // Only add products to top3 if TotalSold > 0
+                            if (totalSold > 0)
+                            {
+                                top3Products.Add(Convert.ToInt32(dr["ProductId"]));
+                                count++;
+                            }
                         }
                         dr.Close(); // Close and reopen reader for data binding
                         dr = cmd.ExecuteReader();
