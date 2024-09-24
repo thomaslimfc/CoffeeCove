@@ -20,7 +20,7 @@
             runat="server" 
             placeholder="Desmund" 
             title="First Name"
-            Text="Desmund"
+            Text=""
             ValidationGroup="SignUp">
         </asp:TextBox>
         <asp:RequiredFieldValidator 
@@ -55,7 +55,7 @@
             runat="server" 
             placeholder="Chau" 
             title="Name"
-            Text="Chau"
+            Text=""
             ValidationGroup="SignUp">
         </asp:TextBox>
         <asp:RequiredFieldValidator 
@@ -90,7 +90,7 @@
             placeholder="desmundchau7668" 
             title="Username"
             ValidationGroup="SignUp"
-            Text="desmundchau7668"
+            Text=""
             onblur="validateUsername()">
         </asp:TextBox>
         <asp:RequiredFieldValidator 
@@ -130,7 +130,7 @@
             runat="server" 
             placeholder="deschau7668@gmail.com" 
             title="Email Address"
-            Text="deschau@gmail.com"
+            Text=""
             ValidationGroup="SignUp">
         </asp:TextBox>
         <asp:RequiredFieldValidator 
@@ -172,8 +172,7 @@
     <div class="relative mb-4">
         <asp:TextBox ID="ContactNo_SU" runat="server" 
             CssClass="w-full p-2 border border-border rounded-md focus:outline-none"
-            placeholder="012-3456789"
-            Text="010-2897296"
+            placeholder="010-297296"
             ValidationGroup="SignUp"/>
         <asp:RequiredFieldValidator 
             ID="ContactNo_SU_rqdValidator" runat="server" 
@@ -214,7 +213,7 @@
             placeholder="**********" 
             title="Password" 
             AutoPostBack="false"
-            text="@asdfghjklASDFGHJKL12345#"
+            text=""
             ValidationGroup="SignUp">
         </asp:TextBox>
         <span id="PasswordToggle_SU" class="absolute right-2 top-2 cursor-pointer">👁️</span>
@@ -230,7 +229,7 @@
             ID="Password_SU_regexValidator" 
             runat="server" 
             ControlToValidate="Password_SU" 
-            ErrorMessage="Must contain >10 letters, numbers, and symbols." 
+            ErrorMessage="Must contain >10 small + capital letters, numbers, and symbols." 
             Display="Dynamic" 
             ForeColor="Red" 
             CssClass="rqdValidator" 
@@ -246,7 +245,7 @@
             placeholder="**********" 
             title="Re-enter Password" 
             AutoPostBack="false"
-            text="@asdfghjklASDFGHJKL12345#"
+            text=""
             ValidationGroup="SignUp">
         </asp:TextBox>
         <span id="PasswordToggle_SU2" class="absolute right-2 top-2 cursor-pointer">👁️</span>

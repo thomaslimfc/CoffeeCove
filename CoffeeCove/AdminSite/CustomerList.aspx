@@ -76,7 +76,7 @@
                                         <div class="card-body">
                                             <center>
                                                 <h5 class="card-title">Register Admin Profile Info</h5>
-
+                                                <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
                                                 <table>
                                                     <tr>
                                                         <!-- First Row, First Column -->
@@ -112,6 +112,13 @@
                                                                     ForeColor="Red" 
                                                                     CssClass="rqdValidator" 
                                                                     ValidationExpression="^[a-zA-Z0-9]{8,}$" />
+                                                                <asp:Label ID="lblUsernameRegister_CL" 
+                                                                    runat="server" 
+                                                                    Display="Dynamic" 
+                                                                    ForeColor="Red" 
+                                                                    CssClass="rqdValidator" 
+                                                                    Text="">
+                                                                </asp:Label>
                                                             </div>
                                                         </td>
                                                         <td style="width: 20px"></td>
@@ -281,6 +288,12 @@
                                                                     ForeColor="Red" 
                                                                     CssClass="rqdValidator" 
                                                                     ValidationExpression="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{10,}$" />
+                                                                <asp:Label ID="lblSuperuserPassword_CL" 
+                                                                    runat="server" 
+                                                                    ForeColor="Red" 
+                                                                    CssClass="rqdValidator" 
+                                                                    Text="">
+                                                                </asp:Label>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -568,7 +581,7 @@
                             <th>State</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody style="user-select: text;">
                         <asp:Repeater ID="rptCustomerList" runat="server">
                             <ItemTemplate>
                                 <tr>
@@ -843,4 +856,5 @@
                 }
             });
         });
-    </script></asp:Content>
+    </script>
+</asp:Content>

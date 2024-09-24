@@ -15,6 +15,15 @@ namespace CoffeeCove.AdminSite
     {
 
         /// <summary>
+        /// Label2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
+
+        /// <summary>
         /// UsernameRegister_CL control.
         /// </summary>
         /// <remarks>
@@ -40,6 +49,15 @@ namespace CoffeeCove.AdminSite
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator UsernameRegister_CL_regexValidator;
+
+        /// <summary>
+        /// lblUsernameRegister_CL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblUsernameRegister_CL;
 
         /// <summary>
         /// Gender_CL control.
@@ -166,6 +184,15 @@ namespace CoffeeCove.AdminSite
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator SuperuserPassword_CL_regexValidator;
+
+        /// <summary>
+        /// lblSuperuserPassword_CL control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSuperuserPassword_CL;
 
         /// <summary>
         /// RegisterAcc_CL control.

@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="Sign In" Language="C#" 
-    MasterPageFile="../Master/Customer.Master" 
+    MasterPageFile="../Master/Customer2.Master" 
     AutoEventWireup="true" 
     CodeBehind="SignInWithEmail.aspx.cs" 
     Inherits="CoffeeCove.Security.SignInWithEmail" %>
@@ -20,7 +20,7 @@
             <asp:TextBox ID="EmailAdd_SI2" 
                 CssClass="w-full p-2 border border-border rounded-md focus:outline-none focus:ring focus:ring-ring" 
                 runat="server" 
-                placeholder="Enter your email" 
+                placeholder="deschau7668@gmail.com" 
                 title="Email Address" 
                 AutoPostBack="false">
             </asp:TextBox>
@@ -70,11 +70,19 @@
                 ID="Password_SI2_regexValidator" 
                 runat="server" 
                 ControlToValidate="Password_SI2" 
-                ErrorMessage="Must contain >10 letters, numbers, and symbols."
+                ErrorMessage="Must contain >10 small + capital letters, numbers, and symbols."
                 CssClass="rqdValidator" 
                 Display="Dynamic" 
                 ForeColor="Red" 
                 ValidationExpression="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{10,}$" />
+            <asp:Label ID="lblPassword_SI2" 
+                runat="server"
+                Display="Dynamic" 
+                ForeColor="Red" 
+                CssClass="rqdValidator"
+                Text="Invalid username or password."
+                Visible="false">
+            </asp:Label>
         </div>
 
         <!-- SIGN IN Button -->

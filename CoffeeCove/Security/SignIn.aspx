@@ -56,17 +56,26 @@
             ID="Password_SI_rqdValidator" runat="server" 
             ControlToValidate="Password_SI" 
             ErrorMessage="Password is required." 
-            Display="Dynamic" ForeColor="Red" 
+            Display="Dynamic" 
+            ForeColor="Red" 
             CssClass="rqdValidator" />
         <asp:RegularExpressionValidator 
             ID="Password_SI_regexValidator" 
             runat="server" 
             ControlToValidate="Password_SI" 
-            ErrorMessage="Must contain >10 letters, numbers, and symbols." 
+            ErrorMessage="Must contain >10 small + capital letters, numbers, and symbols." 
             Display="Dynamic" 
             ForeColor="Red" 
             CssClass="rqdValidator" 
             ValidationExpression="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{10,}$" />
+        <asp:Label ID="lblPassword_SI" 
+            runat="server"
+            Display="Dynamic" 
+            ForeColor="Red" 
+            CssClass="rqdValidator"
+            Text="Invalid username or password."
+            Visible="false">
+        </asp:Label>
     </div>
     <div class="trMarginBottom20"></div>
     <!-- SIGN IN Button -->
