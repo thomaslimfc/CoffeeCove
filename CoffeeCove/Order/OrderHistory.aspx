@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Customer.Master" AutoEventWireup="true" CodeBehind="orderHistory.aspx.cs" Inherits="CoffeeCove.Order.OrderHistory" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Customer.Master" AutoEventWireup="true" CodeFile="orderHistory.aspx.cs" Inherits="CoffeeCove.Order.OrderHistory" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link href="../CSS/OrderHistory.css" rel="stylesheet" />
@@ -56,7 +56,7 @@
                         <!-- Track Order Button -->
                         <div class="trackOrderButton">
                             <asp:Button ID="CancelOrderButton" runat="server" Text="Cancel Order" CssClass="btnCont2" Visible="false" OnClick="CancelOrderButton_Click" 
-                                OnClientClick="return confirm('Are you sure you want to cancel this order?');" />
+                                CommandArgument='<%# Eval("OrderID") %>' OnClientClick="return confirm('Are you sure you want to cancel this order?');" />
                             <asp:Button ID="RatingButton" runat="server" Text="Rate Order" CssClass="btnCont" Visible="false" CommandArgument='<%# Eval("PaymentID") %>' OnClick="RatingButton_Click" />
                             <asp:Button ID="TrackOrderButton" runat="server" Text="Track Order" CommandArgument='<%# Eval("OrderID") %>' OnClick="TrackOrderButton_Click" CssClass="btnCont" />
                         </div>
