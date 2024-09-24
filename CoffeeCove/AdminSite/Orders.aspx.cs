@@ -12,6 +12,7 @@ using CoffeeCove.Securities;
 using System.Data.Entity.Core.Common.CommandTrees;
 using iTextSharp.text.pdf;
 using iTextSharp.text;
+using iText.Kernel.Pdf;
 
 namespace CoffeeCove.AdminSite
 {
@@ -78,7 +79,7 @@ namespace CoffeeCove.AdminSite
         {
             using (SqlConnection conn = new SqlConnection(cs))
             {
-                string sql = @"SELECT O.OrderID, O.OrderDateTime, O.TotalAmount, P.PaymentMethod, O.OrderStatus, C.Username
+                string sql = @"SELECT *
                     FROM OrderPlaced O 
                     JOIN PaymentDetail P ON O.OrderID = P.OrderID
                     JOIN Customer C ON O.CusID = C.CusID";
@@ -311,6 +312,7 @@ namespace CoffeeCove.AdminSite
                     lblMsg.Visible = true;
                     return;
                 }
+                BindGridView(startDate, endDate);
             }
             catch (FormatException ex)
             {
@@ -322,7 +324,7 @@ namespace CoffeeCove.AdminSite
             }
             
 
-            BindGridView(startDate,endDate);
+            
 
         }
 
@@ -330,7 +332,7 @@ namespace CoffeeCove.AdminSite
         {
             using (SqlConnection conn = new SqlConnection(cs))
             {
-                string sql = @"SELECT O.OrderID, O.OrderDateTime, O.TotalAmount, P.PaymentMethod, O.OrderStatus, C.Username
+                string sql = @"SELECT *
                     FROM OrderPlaced O 
                     JOIN PaymentDetail P ON O.OrderID = P.OrderID
                     JOIN Customer C ON O.CusID = C.CusID
@@ -368,6 +370,21 @@ namespace CoffeeCove.AdminSite
         }
 
         //sorting function from jinhuei
+        protected void gvOrder_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            // Set the new page index
+            gvOrder.PageIndex = e.NewPageIndex;
+
+            BindGridView();
+        }
+
+        protected void ddlPageSize_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Get the selected page size from the dropdown list
+            gvOrder.PageSize = int.Parse(ddlPageSize.SelectedValue);
+            BindGridView();
+        }
+
         private string SortDirection
         {
             get { return ViewState["SortDirection"] as string ?? "ASC"; }
@@ -500,7 +517,7 @@ namespace CoffeeCove.AdminSite
             
             // Set up iTextSharp PDF document
             Document pdfdoc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
-            PdfWriter.GetInstance(pdfdoc, Response.OutputStream);
+            iTextSharp.text.pdf.PdfWriter.GetInstance(pdfdoc, Response.OutputStream);
             pdfdoc.Open();
 
             iTextSharp.text.Paragraph title = new iTextSharp.text.Paragraph("Order Summary Report", FontFactory.GetFont("Arial", 18, Font.BOLD));
@@ -517,14 +534,15 @@ namespace CoffeeCove.AdminSite
 
             pdfdoc.Add(new iTextSharp.text.Paragraph(" "));
 
-            PdfPTable pdfTable = new PdfPTable(5);
+            PdfPTable pdfTable = new PdfPTable(6);
             pdfTable.WidthPercentage = 100;
-            pdfTable.SetWidths(new float[] { 1f, 1f, 2f, 1f, 2f});
+            pdfTable.SetWidths(new float[] { 1f, 1f, 1f, 2f, 1f, 2f});
             BaseColor lightGrey = new BaseColor(211, 211, 211);
 
             // table headers
             pdfTable.AddCell(new PdfPCell(new Phrase("Order ID")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
             pdfTable.AddCell(new PdfPCell(new Phrase("Date")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+            pdfTable.AddCell(new PdfPCell(new Phrase("Order Type")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
             pdfTable.AddCell(new PdfPCell(new Phrase("Payment Method")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
             pdfTable.AddCell(new PdfPCell(new Phrase("Total Amount")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
             pdfTable.AddCell(new PdfPCell(new Phrase("Status")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
@@ -538,15 +556,16 @@ namespace CoffeeCove.AdminSite
             {
                 pdfTable.AddCell(new PdfPCell(new Phrase(row["OrderID"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
                 pdfTable.AddCell(new PdfPCell(new Phrase(Convert.ToDateTime(row["OrderDateTime"]).ToString("dd/MM/yyyy"))) { HorizontalAlignment = Element.ALIGN_LEFT });
+                pdfTable.AddCell(new PdfPCell(new Phrase(row["OrderType"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
                 pdfTable.AddCell(new PdfPCell(new Phrase(row["PaymentMethod"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
                 pdfTable.AddCell(new PdfPCell(new Phrase(Convert.ToDecimal(row["TotalAmount"]).ToString("C"))) { HorizontalAlignment = Element.ALIGN_CENTER });
                 pdfTable.AddCell(new PdfPCell(new Phrase(row["OrderStatus"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
 
-                if (row["DeliveryAddress"] != DBNull.Value) 
+                if (row["OrderType"].ToString() == "Delivery")
                 {
                     totalDelivery++;
                 }
-                else if (row["StoreID"] != DBNull.Value)
+                else if (row["OrderType"].ToString() == "Pick Up")
                 {
                     totalPickUp++;
                 }
@@ -554,10 +573,13 @@ namespace CoffeeCove.AdminSite
                 totalSales += Convert.ToDecimal(row["TotalAmount"]);
             }
 
-            pdfTable.AddCell(new PdfPCell(new Phrase("Total")) { Colspan = 4, HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+
+            pdfTable.AddCell(new PdfPCell(new Phrase("Total 'Delivery' Orders")) { Colspan = 5, HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
             pdfTable.AddCell(new PdfPCell(new Phrase(totalDelivery.ToString())) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+            pdfTable.AddCell(new PdfPCell(new Phrase("Total 'Pick Up' Orders")) { Colspan = 5, HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
             pdfTable.AddCell(new PdfPCell(new Phrase(totalPickUp.ToString())) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
-            pdfTable.AddCell(new PdfPCell(new Phrase(totalSales.ToString())) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+            pdfTable.AddCell(new PdfPCell(new Phrase("Total Sales")) { Colspan = 5, HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+            pdfTable.AddCell(new PdfPCell(new Phrase(totalSales.ToString("C"))) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
 
             pdfdoc.Add(pdfTable);
 
@@ -565,7 +587,6 @@ namespace CoffeeCove.AdminSite
             Response.Write(pdfdoc);
             Response.End();
         }
-
     }
 
 

@@ -96,8 +96,7 @@ namespace CoffeeCove.Order
                 Session["access"] = 1; //set its session
 
                 //retrieve cusID from session
-                //string cusID = Session["CusID"].ToString();
-                string cusID = "11";
+                string cusID = Session["CusID"].ToString();
                 //create an orderID for it
                 SqlConnection conn3 = new SqlConnection(cs);
                 string sql3 = @"INSERT INTO OrderPlaced(CusID,OrderDateTime,TotalAmount,OrderType) 
@@ -106,7 +105,7 @@ namespace CoffeeCove.Order
 
                 SqlCommand cmd3 = new SqlCommand(sql3, conn3);
                 cmd3.Parameters.AddWithValue("@cusID", cusID);
-                cmd3.Parameters.AddWithValue("@dateTime", DateTime.Now);
+                cmd3.Parameters.AddWithValue("@dateTime", DateTime.Now.ToString("dd/MM/yyyy"));
                 conn3.Open();
 
                 object newOrderID = cmd3.ExecuteScalar();
@@ -171,8 +170,7 @@ namespace CoffeeCove.Order
                     Session["access"] = 1; //set its session
 
                     //retrieve cusID from session
-                    //string cusID = Session["CusID"].ToString();
-                    string cusID = "11";
+                    string cusID = Session["CusID"].ToString();
                     //create an orderID for it
                     SqlConnection conn3 = new SqlConnection(cs);
                     string sql3 = @"INSERT INTO OrderPlaced(CusID,OrderDateTime,TotalAmount,OrderType) 
@@ -181,7 +179,7 @@ namespace CoffeeCove.Order
 
                     SqlCommand cmd3 = new SqlCommand(sql3, conn3);
                     cmd3.Parameters.AddWithValue("@cusID", cusID);
-                    cmd3.Parameters.AddWithValue("@dateTime", DateTime.Now);
+                    cmd3.Parameters.AddWithValue("@dateTime", DateTime.Now.ToString("dd/MM/yyyy"));
                     conn3.Open();
 
                     object newOrderID = cmd3.ExecuteScalar();

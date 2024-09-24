@@ -176,5 +176,7 @@ namespace CoffeeCove.AdminSite
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvOrder;
 
+        protected global::System.Web.UI.WebControls.DropDownList ddlPageSize;
+
     }
 }
