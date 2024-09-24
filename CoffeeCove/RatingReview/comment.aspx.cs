@@ -43,13 +43,12 @@ namespace CoffeeCove.RatingReview
             using (SqlConnection conn = new SqlConnection(cs))
             {
                 string query = @"SELECT RatingScore, ReviewContent 
-                                 FROM Review 
-                                 WHERE PaymentID = @PaymentID AND CusID = @CusID";
+                         FROM Review 
+                         WHERE PaymentID = @PaymentID";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@PaymentID", paymentID);
-                    cmd.Parameters.AddWithValue("@CusID", customerID);
 
                     conn.Open();
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -83,16 +82,12 @@ namespace CoffeeCove.RatingReview
             int ratingScore = Convert.ToInt32(rblRating.SelectedValue);
             string reviewContent = txtComment.Text.Trim();
 
-            // Assuming PaymentID and CusID are passed as query strings or session
-            // int paymentID = Convert.ToInt32(Request.QueryString["PaymentID"]);  // or Session["PaymentID"]
-            // int customerID = Convert.ToInt32(Session["CusID"]);  // Assume you store customer ID in session
-
             using (SqlConnection conn = new SqlConnection(cs))
             {
                 // Check if the review already exists
                 string checkQuery = @"SELECT COUNT(*) 
-                                      FROM Review 
-                                      WHERE PaymentID = @PaymentID AND CusID = @CusID";
+                      FROM Review 
+                      WHERE PaymentID = @PaymentID";
 
                 using (SqlCommand checkCmd = new SqlCommand(checkQuery, conn))
                 {
@@ -107,8 +102,8 @@ namespace CoffeeCove.RatingReview
                     {
                         // Update the existing review
                         string updateQuery = @"UPDATE Review 
-                                               SET RatingScore = @RatingScore, ReviewContent = @ReviewContent, RatingReviewDateTime = @RatingReviewDateTime
-                                               WHERE PaymentID = @PaymentID AND CusID = @CusID";
+                       SET RatingScore = @RatingScore, ReviewContent = @ReviewContent, RatingReviewDateTime = @RatingReviewDateTime
+                       WHERE PaymentID = @PaymentID";
 
                         using (SqlCommand updateCmd = new SqlCommand(updateQuery, conn))
                         {
@@ -124,8 +119,8 @@ namespace CoffeeCove.RatingReview
                     else
                     {
                         // Insert a new review
-                        string insertQuery = @"INSERT INTO Review (RatingScore, ReviewContent, RatingReviewDateTime, PaymentID, CusID)
-                                               VALUES (@RatingScore, @ReviewContent, @RatingReviewDateTime, @PaymentID, @CusID)";
+                        string insertQuery = @"INSERT INTO Review (RatingScore, ReviewContent, RatingReviewDateTime, PaymentID)
+                       VALUES (@RatingScore, @ReviewContent, @RatingReviewDateTime, @PaymentID)";
 
                         using (SqlCommand insertCmd = new SqlCommand(insertQuery, conn))
                         {
@@ -141,8 +136,7 @@ namespace CoffeeCove.RatingReview
                 }
             }
 
-            // Redirect to the review page or confirmation page after submission
-            Response.Redirect("ratingReview.aspx");
+            Response.Redirect("~/Order/orderHistory.aspx");
         }
     }
 }

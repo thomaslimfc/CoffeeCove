@@ -182,6 +182,23 @@
         cursor: pointer;
     }
 
+.btnCont2 {
+    border-radius: 8px;
+    padding: 10px 100px;
+    color: white;
+    background-color: red;
+    transition-duration: 0.4s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+}
+
+    .btnCont2:hover {
+        background-color: transparent;
+        border: 1px solid red;
+        color: red;
+        cursor: pointer;
+    }
+
 .fa-star, .fa-star-o {
     color: #FFD700; /* Gold color for filled stars */
     font-size: 20px;

@@ -55,6 +55,8 @@
 
                         <!-- Track Order Button -->
                         <div class="trackOrderButton">
+                            <asp:Button ID="CancelOrderButton" runat="server" Text="Cancel Order" CssClass="btnCont2" Visible="false" OnClick="CancelOrderButton_Click" 
+                                OnClientClick="return confirm('Are you sure you want to cancel this order?');" />
                             <asp:Button ID="RatingButton" runat="server" Text="Rate Order" CssClass="btnCont" Visible="false" CommandArgument='<%# Eval("PaymentID") %>' OnClick="RatingButton_Click" />
                             <asp:Button ID="TrackOrderButton" runat="server" Text="Track Order" CommandArgument='<%# Eval("OrderID") %>' OnClick="TrackOrderButton_Click" CssClass="btnCont" />
                         </div>

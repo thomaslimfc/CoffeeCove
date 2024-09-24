@@ -23,9 +23,9 @@ namespace CoffeeCove.Order
             using (SqlConnection conn = new SqlConnection(cs))
             {
                 string query = @"
-            SELECT O.*, PD.PaymentID
-            FROM [OrderPlaced] O
-            LEFT JOIN PaymentDetail PD ON O.OrderID = PD.OrderID";
+                SELECT O.*, PD.PaymentID
+                FROM [OrderPlaced] O
+                LEFT JOIN PaymentDetail PD ON O.OrderID = PD.OrderID";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -41,12 +41,14 @@ namespace CoffeeCove.Order
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                // Get the current OrderID and OrderStatus
+                // Get the current OrderID, OrderStatus, and OrderDateTime
                 int orderId = Convert.ToInt32(DataBinder.Eval(e.Item.DataItem, "OrderID"));
                 string orderStatus = DataBinder.Eval(e.Item.DataItem, "OrderStatus").ToString();
+                DateTime orderDateTime = Convert.ToDateTime(DataBinder.Eval(e.Item.DataItem, "OrderDateTime"));
 
-                // Find the RatingButton and TrackOrderButton controls
+                // Find the RatingButton and CancelOrderButton controls
                 Button ratingButton = (Button)e.Item.FindControl("RatingButton");
+                Button cancelOrderButton = (Button)e.Item.FindControl("CancelOrderButton");
 
                 // Check if the order status is 'Order Delivered'
                 if (orderStatus == "Order Delivered")
@@ -55,11 +57,44 @@ namespace CoffeeCove.Order
                     ratingButton.Visible = true;
                 }
 
-                // Find the nested repeater (ProductListRepeater) and bind product data for this order
+                // If the order status is 'Order Received', check the order time
+                if (orderStatus == "Order Received")
+                {
+                    TimeSpan timeDifference = DateTime.Now - orderDateTime;
+
+                    // If the order was placed more than 5 minutes ago, update the status to 'Preparing Your Meal'
+                    if (timeDifference.TotalMinutes > 5)
+                    {
+                        UpdateOrderStatus(orderId, "Preparing Your Meal");
+                        cancelOrderButton.Visible = false;
+                    }
+                    else
+                    {
+                        cancelOrderButton.Visible = true;
+                    }
+                }
+
+                // Bind the product list for the current order
                 Repeater productListRepeater = (Repeater)e.Item.FindControl("ProductListRepeater");
                 BindProductList(orderId, productListRepeater);
 
+                // Check if there is a review for the current order
                 CheckForReview(orderId, e);
+            }
+        }
+
+        private void UpdateOrderStatus(int orderId, string newStatus)
+        {
+            using (SqlConnection conn = new SqlConnection(cs))
+            {
+                string query = "UPDATE [OrderPlaced] SET OrderStatus = @OrderStatus WHERE OrderID = @OrderID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@OrderStatus", newStatus);
+                    cmd.Parameters.AddWithValue("@OrderID", orderId);
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
             }
         }
 
@@ -110,12 +145,11 @@ namespace CoffeeCove.Order
                         int score = Convert.ToInt32(reader["RatingScore"]);
                         reviewContent.Text = reader["ReviewContent"].ToString();
 
-                        // Generate star icons based on rating score
                         for (int i = 0; i < score; i++)
                         {
                             phStars.Controls.Add(new Literal
                             {
-                                Text = "<i class='fa fa-star'></i>" // FontAwesome star icon (or use your own star image)
+                                Text = "<i class='fa fa-star'></i>"
                             });
                         }
 
@@ -124,15 +158,19 @@ namespace CoffeeCove.Order
                         {
                             phStars.Controls.Add(new Literal
                             {
-                                Text = "<i class='fa fa-star-o'></i>" // FontAwesome empty star icon
+                                Text = "<i class='fa fa-star-o'></i>"
                             });
                         }
 
-                        // Show the review section
                         reviewSection.Visible = true;
                     }
                 }
             }
+        }
+
+        protected void CancelOrderButton_Click(object sender, EventArgs e)
+        {
+
         }
 
         protected void TrackOrderButton_Click(object sender, EventArgs e)
@@ -145,9 +183,7 @@ namespace CoffeeCove.Order
         protected void RatingButton_Click(object sender, EventArgs e)
         {
             Button ratingButton = (Button)sender;
-
             string paymentId = ratingButton.CommandArgument;
-
             Response.Redirect($"~/RatingReview/comment.aspx?PaymentID={paymentId}");
         }
     }

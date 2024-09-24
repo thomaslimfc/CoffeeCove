@@ -289,7 +289,7 @@ namespace CoffeeCove.Payment
 
                 using (SqlCommand cmd = new SqlCommand(updateOrderSql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@OrderStatus", "Preparing Your Meal");
+                    cmd.Parameters.AddWithValue("@OrderStatus", "Order Received");
                     cmd.Parameters.AddWithValue("@OrderDateTime", DateTime.Now);
                     cmd.Parameters.AddWithValue("@TotalAmount", totalAmountWithTax);
                     cmd.Parameters.AddWithValue("@OrderID", orderId);
