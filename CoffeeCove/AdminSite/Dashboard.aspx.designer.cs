@@ -13,5 +13,32 @@ namespace CoffeeCove.AdminSite
 
     public partial class Dashboard
     {
+
+        /// <summary>
+        /// lblSalesToday control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSalesToday;
+
+        /// <summary>
+        /// lblRevenueToday control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblRevenueToday;
+
+        /// <summary>
+        /// lblOrdersToday control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblOrdersToday;
     }
 }
