@@ -92,9 +92,9 @@ namespace CoffeeCove.AdminSite
         {
             using (SqlConnection con = new SqlConnection(cs))
             {
-                string sql = @"SELECT TOP 5 p.ImageUrl, p.ProductName, p.UnitPrice, SUM(op.Quantity) AS TotalSold
-                                FROM Product p JOIN OrderPlaced op ON p.ProductId = op.ProductId 
-                                GROUP BY p.ImageUrl, p.ProductName, p.UnitPrice ORDER BY TotalSales DESC;";
+                string sql = @"SELECT TOP 5 p.ImageUrl, p.ProductName, p.UnitPrice, SUM(op.Quantity) AS TotalSold, SUM(op.Quantity * p.UnitPrice) AS TotalSales
+                                FROM Product p JOIN OrderedItem op ON p.ProductId = op.ProductId 
+                                GROUP BY p.ImageUrl, p.ProductName, p.UnitPrice ORDER BY TotalSold DESC;";
 
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {

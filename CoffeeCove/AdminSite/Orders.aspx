@@ -87,13 +87,13 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField SortExpression="Date">
                                         <HeaderTemplate>
-                                            <asp:LinkButton ID="lbDate" runat="server" CommandArgument="Date" CssClass="header-link" ToolTip="Sort" OnClick="lnkOrder_Click">
+                                            <asp:LinkButton ID="lbDate" runat="server" CommandArgument="OderDateTime" CssClass="header-link" ToolTip="Sort" OnClick="lnkOrder_Click">
                                                 Date
                                                 <asp:Literal ID="litSortIconDate" runat="server"></asp:Literal>
                                             </asp:LinkButton>
                                         </HeaderTemplate>
                                         <ItemTemplate>
-                                            <%# Eval("OrderDateTime") %>
+                                            <%# Convert.ToDateTime(Eval("OrderDateTime")).ToString("dd/MM/yyyy") %>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Payment Method">
@@ -103,7 +103,7 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField SortExpression="Total">
                                         <HeaderTemplate>
-                                            <asp:LinkButton ID="lbTotal" runat="server" CommandArgument="Total" CssClass="header-link" ToolTip="Sort" OnClick="lnkOrder_Click">
+                                            <asp:LinkButton ID="lbTotal" runat="server" CommandArgument="TotalAmount" CssClass="header-link" ToolTip="Sort" OnClick="lnkOrder_Click">
                                                 Total
                                                 <asp:Literal ID="litSortIconTotal" runat="server"></asp:Literal>
                                             </asp:LinkButton>
