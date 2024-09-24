@@ -26,7 +26,19 @@ namespace CoffeeCove.AdminSite
 
             if (!Page.IsPostBack)
             {
+                conditionalBind();
+            }
+        }
+
+        protected void conditionalBind()
+        {
+            if (string.IsNullOrEmpty(hfStartDate.Value) || string.IsNullOrEmpty(hfEndDate.Value)) //means it not search with range
+            {
                 BindGridView();
+            }
+            else
+            {
+                bindGridViewWithDate();
             }
         }
 
@@ -79,7 +91,7 @@ namespace CoffeeCove.AdminSite
         {
             using (SqlConnection conn = new SqlConnection(cs))
             {
-                string sql = @"SELECT *
+                string sql = @"SELECT O.OrderID, O.OrderDateTime, O.TotalAmount, P.PaymentMethod, O.OrderStatus, C.Username
                     FROM OrderPlaced O 
                     JOIN PaymentDetail P ON O.OrderID = P.OrderID
                     JOIN Customer C ON O.CusID = C.CusID";
@@ -109,6 +121,46 @@ namespace CoffeeCove.AdminSite
 
                 }
                 UpdateSortIcons();
+            }
+        }
+
+        private void BindGridView(DateTime startDate, DateTime endDate)
+        {
+            using (SqlConnection conn = new SqlConnection(cs))
+            {
+                string sql = @"SELECT O.OrderID, O.OrderDateTime, O.TotalAmount, P.PaymentMethod, O.OrderStatus, C.Username
+                    FROM OrderPlaced O 
+                    JOIN PaymentDetail P ON O.OrderID = P.OrderID
+                    JOIN Customer C ON O.CusID = C.CusID
+                    WHERE O.OrderDateTime BETWEEN @startDate AND @endDate";
+
+                if (!string.IsNullOrEmpty(SortExpression))
+                {
+                    sql += $" ORDER BY {SortExpression} {SortDirection}";
+                }
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    try
+                    {
+                        conn.Open();
+
+                        cmd.Parameters.AddWithValue("@startDate", startDate);
+                        cmd.Parameters.AddWithValue("@endDate", endDate);
+
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+
+                        gvOrder.DataSource = dt;
+                        gvOrder.DataBind();
+                        
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                }
             }
         }
 
@@ -199,7 +251,7 @@ namespace CoffeeCove.AdminSite
             }
 
             //rebind the gridview
-            BindGridView();
+            conditionalBind();
         }
 
         private void bindRepeater(string orderId)
@@ -301,6 +353,11 @@ namespace CoffeeCove.AdminSite
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
+            bindGridViewWithDate();
+        }
+
+        protected void bindGridViewWithDate()
+        {
             try
             {
                 startDate = DateTime.Parse(txtFrom.Text);
@@ -312,77 +369,35 @@ namespace CoffeeCove.AdminSite
                     lblMsg.Visible = true;
                     return;
                 }
+
+                hfStartDate.Value = startDate.ToString("dd/MM/yyyy");
+                hfEndDate.Value = endDate.ToString("dd/MM/yyyy");
+
                 BindGridView(startDate, endDate);
             }
             catch (FormatException ex)
             {
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }
-            
-
-            
-
         }
-
-        private void BindGridView(DateTime startDate, DateTime endDate)
-        {
-            using (SqlConnection conn = new SqlConnection(cs))
-            {
-                string sql = @"SELECT *
-                    FROM OrderPlaced O 
-                    JOIN PaymentDetail P ON O.OrderID = P.OrderID
-                    JOIN Customer C ON O.CusID = C.CusID
-                    WHERE O.OrderDateTime BETWEEN @startDate AND @endDate
-                    ORDER BY O.OrderDateTime DESC";
-
-                if (!string.IsNullOrEmpty(SortExpression))
-                {
-                    sql += $" ORDER BY {SortExpression} {SortDirection}";
-                }
-
-                using (SqlCommand cmd = new SqlCommand(sql, conn))
-                {
-                    try
-                    {
-                        conn.Open();
-
-                        cmd.Parameters.AddWithValue("@startDate", startDate);
-                        cmd.Parameters.AddWithValue("@endDate", endDate);
-
-                        SqlDataAdapter da = new SqlDataAdapter(cmd);
-                        DataTable dt = new DataTable();
-                        da.Fill(dt);
-
-                        gvOrder.DataSource = dt;
-                        gvOrder.DataBind();
-                    }
-                    catch (Exception ex)
-                    {
-
-                    }
-                }
-                UpdateSortIcons();
-            }
-        }
-
         //sorting function from jinhuei
         protected void gvOrder_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             // Set the new page index
             gvOrder.PageIndex = e.NewPageIndex;
 
-            BindGridView();
+            conditionalBind();
         }
 
         protected void ddlPageSize_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Get the selected page size from the dropdown list
             gvOrder.PageSize = int.Parse(ddlPageSize.SelectedValue);
-            BindGridView();
+            conditionalBind();
         }
 
         private string SortDirection
@@ -403,7 +418,7 @@ namespace CoffeeCove.AdminSite
 
             SortExpression = e.SortExpression;
 
-            BindGridView();
+            conditionalBind();
         }
 
         protected void lnkOrder_Click(object sender, EventArgs e)
@@ -414,53 +429,35 @@ namespace CoffeeCove.AdminSite
 
                 SortDirection = (SortDirection == "ASC" && SortExpression == linkButton.CommandArgument) ? "DESC" : "ASC";
 
-                BindGridView();
+                conditionalBind();
             }
         }
 
         private void UpdateSortIcons()
         {
             Literal litSortIconId = gvOrder.HeaderRow.FindControl("litSortIconId") as Literal;
-            Literal litSortIconName = gvOrder.HeaderRow.FindControl("litSortIconName") as Literal;
             Literal litSortIconDate = gvOrder.HeaderRow.FindControl("litSortIconDate") as Literal;
-            Literal litSortIconPaymentMethod = gvOrder.HeaderRow.FindControl("litSortIconPaymentMethod") as Literal;
             Literal litSortIconTotal = gvOrder.HeaderRow.FindControl("litSortIconTotal") as Literal;
-            Literal litSortIconOrderStatus = gvOrder.HeaderRow.FindControl("litSortIconOrderStatus") as Literal;
 
             string defaultIcon = "<i class='bi bi-caret-up-fill'></i>";
             string ascendingIcon = "<i class='bi bi-caret-up-fill'></i>";
             string descendingIcon = "<i class='bi bi-caret-down-fill'></i>";
 
             litSortIconId.Text = defaultIcon;
-            litSortIconName.Text = defaultIcon;
             litSortIconDate.Text = defaultIcon;
-            litSortIconPaymentMethod.Text = defaultIcon;
             litSortIconTotal.Text = defaultIcon;
-            litSortIconOrderStatus.Text = defaultIcon;
 
             if (SortExpression == "OrderID")
             {
                 litSortIconId.Text = (SortDirection == "ASC") ? ascendingIcon : descendingIcon;
             }
-            else if (SortExpression == "Username")
-            {
-                litSortIconName.Text = (SortDirection == "ASC") ? ascendingIcon : descendingIcon;
-            }
             else if (SortExpression == "Date")
             {
                 litSortIconDate.Text = (SortDirection == "ASC") ? ascendingIcon : descendingIcon;
             }
-            else if (SortExpression == "Payment Method")
-            {
-                litSortIconPaymentMethod.Text = (SortDirection == "ASC") ? ascendingIcon : descendingIcon;
-            }
             else if (SortExpression == "Total")
             {
                 litSortIconTotal.Text = (SortDirection == "ASC") ? ascendingIcon : descendingIcon;
-            }
-            else if (SortExpression == "OrderStatus")
-            {
-                litSortIconOrderStatus.Text = (SortDirection == "ASC") ? ascendingIcon : descendingIcon;
             }
 
         }

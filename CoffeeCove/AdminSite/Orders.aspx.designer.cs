@@ -175,5 +175,9 @@ namespace CoffeeCove.AdminSite
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvOrder;
+
+        protected global::System.Web.UI.WebControls.DropDownList ddlPageSize;
+        protected global::System.Web.UI.WebControls.HiddenField hfStartDate;
+        protected global::System.Web.UI.WebControls.HiddenField hfEndDate;
     }
 }
