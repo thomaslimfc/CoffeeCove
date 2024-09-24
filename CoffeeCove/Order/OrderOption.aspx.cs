@@ -105,7 +105,7 @@ namespace CoffeeCove.Order
 
                 SqlCommand cmd3 = new SqlCommand(sql3, conn3);
                 cmd3.Parameters.AddWithValue("@cusID", cusID);
-                cmd3.Parameters.AddWithValue("@dateTime", DateTime.Now.ToString("dd/MM/yyyy"));
+                cmd3.Parameters.AddWithValue("@dateTime", DateTime.Now);
                 conn3.Open();
 
                 object newOrderID = cmd3.ExecuteScalar();
@@ -179,7 +179,7 @@ namespace CoffeeCove.Order
 
                     SqlCommand cmd3 = new SqlCommand(sql3, conn3);
                     cmd3.Parameters.AddWithValue("@cusID", cusID);
-                    cmd3.Parameters.AddWithValue("@dateTime", DateTime.Now.ToString("dd/MM/yyyy"));
+                    cmd3.Parameters.AddWithValue("@dateTime", DateTime.Now);
                     conn3.Open();
 
                     object newOrderID = cmd3.ExecuteScalar();

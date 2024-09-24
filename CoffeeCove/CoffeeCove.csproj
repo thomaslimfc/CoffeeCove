@@ -571,7 +571,7 @@
     </Content>
     <Content Include="ErrorPages\AdminGeneralError.aspx" />
     <Content Include="ErrorPages\CustomerGeneralError.aspx" />
-    <Content Include="ErrorPages\FileNotFound.htm" />
+    <Content Include="ErrorPages\FileNotFound.html" />
     <Content Include="Global.asax" />
     <Content Include="Home\Home.aspx" />
     <Content Include="imgProductItems\BF01.jpg" />

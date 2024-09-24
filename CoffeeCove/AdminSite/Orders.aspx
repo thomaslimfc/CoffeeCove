@@ -40,6 +40,8 @@
 
                 <div class="col-lg-12">
                     <asp:Label ID="lblMsg" runat="server" CssClass="alert alert-success" Visible="false"></asp:Label>
+                    <asp:HiddenField ID="hfStartDate" runat="server" />
+                    <asp:HiddenField ID="hfEndDate" runat="server" />
                 </div>
                 <br />
                 <br />
@@ -78,42 +80,30 @@
                                             <%# Eval("OrderID") %>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField SortExpression="Username">
-                                        <HeaderTemplate>
-                                            <asp:LinkButton ID="lbUsername" runat="server" CommandArgument="Username" CssClass="header-link" ToolTip="Sort" OnClick="lnkOrder_Click">
-                                                Username
-                                                <asp:Literal ID="litSortIconName" runat="server"></asp:Literal>
-                                            </asp:LinkButton>
-                                        </HeaderTemplate>
+                                    <asp:TemplateField HeaderText="Username">
                                         <ItemTemplate>
                                             <%# Eval("Username") %>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField SortExpression="Date">
                                         <HeaderTemplate>
-                                            <asp:LinkButton ID="lbDate" runat="server" CommandArgument="Date" CssClass="header-link" ToolTip="Sort" OnClick="lnkOrder_Click">
+                                            <asp:LinkButton ID="lbDate" runat="server" CommandArgument="OderDateTime" CssClass="header-link" ToolTip="Sort" OnClick="lnkOrder_Click">
                                                 Date
                                                 <asp:Literal ID="litSortIconDate" runat="server"></asp:Literal>
                                             </asp:LinkButton>
                                         </HeaderTemplate>
                                         <ItemTemplate>
-                                            <%# Eval("OrderDateTime") %>
+                                            <%# Convert.ToDateTime(Eval("OrderDateTime")).ToString("dd/MM/yyyy") %>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField SortExpression="Payment Method">
-                                        <HeaderTemplate>
-                                            <asp:LinkButton ID="lbPayment" runat="server" CommandArgument="Payment" CssClass="header-link" ToolTip="Sort" OnClick="lnkOrder_Click">
-                                                Payment Method
-                                                <asp:Literal ID="litSortIconPaymentMethod" runat="server"></asp:Literal>
-                                            </asp:LinkButton>
-                                        </HeaderTemplate>
+                                    <asp:TemplateField HeaderText="Payment Method">
                                         <ItemTemplate>
                                             <%# Eval("PaymentMethod") %>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField SortExpression="Total">
                                         <HeaderTemplate>
-                                            <asp:LinkButton ID="lbTotal" runat="server" CommandArgument="Total" CssClass="header-link" ToolTip="Sort" OnClick="lnkOrder_Click">
+                                            <asp:LinkButton ID="lbTotal" runat="server" CommandArgument="TotalAmount" CssClass="header-link" ToolTip="Sort" OnClick="lnkOrder_Click">
                                                 Total
                                                 <asp:Literal ID="litSortIconTotal" runat="server"></asp:Literal>
                                             </asp:LinkButton>
@@ -122,13 +112,7 @@
                                             <%# Eval("TotalAmount") %>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField SortExpression="OrderStatus">
-                                        <HeaderTemplate>
-                                            <asp:LinkButton ID="lbOrderStatus" runat="server" CommandArgument="OrderStatus" CssClass="header-link" ToolTip="Sort" OnClick="lnkOrder_Click">
-                                                Order Status
-                                                <asp:Literal ID="litSortIconOrderStatus" runat="server"></asp:Literal>
-                                            </asp:LinkButton>
-                                        </HeaderTemplate>
+                                    <asp:TemplateField HeaderText="Order Status">
                                         <ItemTemplate>
                                             <%# Eval("OrderStatus") %>
                                         </ItemTemplate>

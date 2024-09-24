@@ -39,6 +39,7 @@ namespace CoffeeCove.Payment
 
                         // Clear the specific session (OrderID)
                         Session.Remove("OrderID");
+                        Session.Remove("access");
 
                         Response.Redirect("~/Payment/paymentSuccess.aspx");
                     }
@@ -74,6 +75,7 @@ namespace CoffeeCove.Payment
 
                         // Clear session for OrderID after successful order processing
                         Session.Remove("OrderID");
+                        Session.Remove("access");
 
                         // Redirect to a success page
                         Response.Redirect("~/Payment/paymentSuccess.aspx");
@@ -108,6 +110,7 @@ namespace CoffeeCove.Payment
 
                     // Clear session for OrderID after successful order processing
                     Session.Remove("OrderID");
+                    Session.Remove("access");
 
                     // Redirect to a success page
                     Response.Redirect("~/Payment/paymentSuccess.aspx");

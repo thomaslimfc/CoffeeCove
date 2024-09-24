@@ -31,6 +31,15 @@ namespace CoffeeCove.Menu
                 {
                     int.TryParse(Request.QueryString["CategoryId"], out categoryId);
                 }
+
+                if (categoryId == 0)
+                {
+                    lblCategoryName.Text = "All Categories";
+                }
+                else
+                {
+                    SetCategoryName(categoryId);
+                }
                 BindProducts(categoryId);
             }
         }
@@ -96,9 +105,32 @@ namespace CoffeeCove.Menu
             if (e.CommandName == "Select")
             {
                 int categoryId = Convert.ToInt32(e.CommandArgument);
+                SetCategoryName(categoryId);
                 BindProducts(categoryId);
             }
 
+        }
+
+        private void SetCategoryName(int categoryId)
+        {
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                string sql = "SELECT CategoryName FROM Category WHERE CategoryId = @CategoryId";
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@CategoryId", categoryId);
+                    con.Open();
+                    object result = cmd.ExecuteScalar();
+                    if (result != null)
+                    {
+                        lblCategoryName.Text = result.ToString();
+                    }
+                    else
+                    {
+                        lblCategoryName.Text = "Category not found";
+                    }
+                }
+            }
         }
 
         protected void rptProducts_ItemCommand(object source, RepeaterCommandEventArgs e)
