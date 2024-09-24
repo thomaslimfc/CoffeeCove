@@ -33,6 +33,33 @@ namespace CoffeeCove.Order
         protected global::System.Web.UI.WebControls.Literal InvoiceDateLiteral;
 
         /// <summary>
+        /// UsernameLiteral control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal UsernameLiteral;
+
+        /// <summary>
+        /// EmailLiteral control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal EmailLiteral;
+
+        /// <summary>
+        /// PhoneLiteral control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal PhoneLiteral;
+
+        /// <summary>
         /// ProductTable control.
         /// </summary>
         /// <remarks>

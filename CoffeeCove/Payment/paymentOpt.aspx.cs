@@ -33,7 +33,6 @@ namespace CoffeeCove.Payment
                         ExecutePayment(payerId, paymentId, orderId);
 
                         // After successful payment, update payment details in the database
-                        // Make sure you get the total amount with tax
                         decimal totalAmount = CalculateTotalAmountWithTax(orderId);
                         UpdatePaymentStatus(orderId, "Paypal", "Complete");
 
@@ -80,12 +79,10 @@ namespace CoffeeCove.Payment
                         Session.Remove("OrderID");
                         Session.Remove("access");
 
-                        // Redirect to a success page
                         Response.Redirect("~/Payment/paymentSuccess.aspx");
                     }
                     catch (Exception ex)
                     {
-                        // Handle errors (e.g., log the error)
                         Response.Write("An error occurred: " + ex.Message);
                     }
                 }
@@ -115,12 +112,10 @@ namespace CoffeeCove.Payment
                     Session.Remove("OrderID");
                     Session.Remove("access");
 
-                    // Redirect to a success page
                     Response.Redirect("~/Payment/paymentSuccess.aspx");
                 }
                 catch (Exception ex)
                 {
-                    // Handle errors (e.g., log the error)
                     Response.Write("An error occurred: " + ex.Message);
                 }
             }
@@ -211,7 +206,7 @@ namespace CoffeeCove.Payment
 
             // Calculate tax (6%)
             decimal tax = subtotal * 0.06m;
-            totalAmountWithTax = subtotal + tax; // Assign totalAmountWithTax here
+            totalAmountWithTax = subtotal + tax;
 
             // Create item list for PayPal
             var itemList = new ItemList() { items = paypalItems };
@@ -295,9 +290,9 @@ namespace CoffeeCove.Payment
 
                 using (SqlCommand cmd = new SqlCommand(updateSql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@OrderStatus", "Order Received"); // Set status to preparing
+                    cmd.Parameters.AddWithValue("@OrderStatus", "Order Received");
                     cmd.Parameters.AddWithValue("@OrderDateTime", DateTime.Now);
-                    cmd.Parameters.AddWithValue("@TotalAmount", totalAmountWithTax); // Ensure the correct amount is passed
+                    cmd.Parameters.AddWithValue("@TotalAmount", totalAmountWithTax);
                     cmd.Parameters.AddWithValue("@OrderID", orderId);
 
                     cmd.ExecuteNonQuery();
@@ -351,8 +346,8 @@ namespace CoffeeCove.Payment
 
             // Calculate tax (6%)
             decimal tax = subtotal * 0.06m;
-            decimal totalAmountWithTax = subtotal + tax; // Total including tax
-            return totalAmountWithTax; // Return the correct total amount
+            decimal totalAmountWithTax = subtotal + tax;
+            return totalAmountWithTax;
         }
     }
 }

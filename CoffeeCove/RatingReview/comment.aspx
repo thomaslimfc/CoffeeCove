@@ -34,14 +34,17 @@
                         5 Stars
                     </asp:ListItem>
                 </asp:RadioButtonList>
+                <asp:RequiredFieldValidator ID="rfvRating" runat="server" ControlToValidate="rblRating" 
+                    ErrorMessage="Please select a rating." Display="Dynamic" ForeColor="Red" 
+                    InitialValue="" CssClass="error" ValidationGroup="CommentValidation" />
             </div>
             <form>
                 <div class="form-group">
                     <label>Your Comment</label>
-                    <asp:TextBox ID="txtComment" runat="server" TextMode="MultiLine" CssClass="form-control fixed-height" MaxLength="50"></asp:TextBox>
+                    <asp:TextBox ID="txtComment" runat="server" TextMode="MultiLine" CssClass="form-control fixed-height" MaxLength="150"></asp:TextBox>
                 </div>
                 <div class="form-group">
-                    <asp:Button ID="btnSubmit" runat="server" CssClass="btnCont" Text="Submit Comment" OnClick="btnSubmit_Click" />
+                    <asp:Button ID="btnSubmit" runat="server" CssClass="btnCont" Text="Submit Comment" OnClick="btnSubmit_Click" ValidationGroup="CommentValidation" />
                 </div>
             </form>
         </div>

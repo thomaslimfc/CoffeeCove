@@ -33,6 +33,15 @@ namespace CoffeeCove.RatingReview
         protected global::System.Web.UI.WebControls.RadioButtonList rblRating;
 
         /// <summary>
+        /// rfvRating control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvRating;
+
+        /// <summary>
         /// txtComment control.
         /// </summary>
         /// <remarks>

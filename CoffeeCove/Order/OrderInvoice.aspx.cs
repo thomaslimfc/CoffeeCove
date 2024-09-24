@@ -45,10 +45,14 @@ namespace CoffeeCove.Order
                 string query = @"
             SELECT OI.Quantity, P.ProductName, OI.Price, 
                    (OI.Quantity * OI.Price) AS Subtotal,
-                   OP.OrderDateTime
+                   OP.OrderDateTime,
+                   C.Username,
+                   C.EmailAddress,
+                   C.ContactNo
             FROM OrderedItem OI
             INNER JOIN Product P ON OI.ProductID = P.ProductID
             INNER JOIN OrderPlaced OP ON OI.OrderID = OP.OrderID
+            INNER JOIN Customer C ON OP.CusID = C.CusID
             WHERE OI.OrderID = @OrderID";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -64,6 +68,11 @@ namespace CoffeeCove.Order
 
                         while (reader.Read())
                         {
+                            // Retrieve user information
+                            UsernameLiteral.Text = reader["Username"].ToString();
+                            EmailLiteral.Text = reader["EmailAddress"].ToString();
+                            PhoneLiteral.Text = reader["ContactNo"].ToString();
+
                             // Calculate subtotal
                             decimal subtotal = Convert.ToDecimal(reader["Subtotal"]);
                             totalSubtotal += subtotal;
@@ -79,7 +88,7 @@ namespace CoffeeCove.Order
 
                             // Retrieve OrderDateTime
                             DateTime orderDateTime = Convert.ToDateTime(reader["OrderDateTime"]);
-                            InvoiceDateLiteral.Text = orderDateTime.ToString("MM/dd/yyyy"); // Format as needed
+                            InvoiceDateLiteral.Text = orderDateTime.ToString("MM/dd/yyyy");
                         }
 
                         // Bind the products to the Repeater
@@ -124,15 +133,17 @@ namespace CoffeeCove.Order
             Response.AddHeader("content-disposition", "attachment;filename=Invoice.pdf");
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
-            string orderId = OrderIdLiteral.Text; // Retrieve the Order ID
+            string orderId = OrderIdLiteral.Text;
             string sql = @"
-    SELECT OI.Quantity, P.ProductName, OI.Price, 
-           (OI.Quantity * OI.Price) AS Subtotal,
-           OP.OrderDateTime
-    FROM OrderedItem OI
-    INNER JOIN Product P ON OI.ProductID = P.ProductID
-    INNER JOIN OrderPlaced OP ON OI.OrderID = OP.OrderID
-    WHERE OI.OrderID = @OrderID";
+        SELECT OI.Quantity, P.ProductName, OI.Price, 
+               (OI.Quantity * OI.Price) AS Subtotal,
+               OP.OrderDateTime, 
+               C.Username, C.EmailAddress, C.ContactNo
+        FROM OrderedItem OI
+        INNER JOIN Product P ON OI.ProductID = P.ProductID
+        INNER JOIN OrderPlaced OP ON OI.OrderID = OP.OrderID
+        INNER JOIN Customer C ON OP.CusID = C.CusID
+        WHERE OI.OrderID = @OrderID";
 
             DataTable dt = new DataTable();
 
@@ -140,9 +151,7 @@ namespace CoffeeCove.Order
             {
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
-                    // Add the @OrderID parameter to the command
                     cmd.Parameters.AddWithValue("@OrderID", orderId);
-
                     con.Open();
                     SqlDataReader dr = cmd.ExecuteReader();
                     dt.Load(dr);
@@ -154,26 +163,35 @@ namespace CoffeeCove.Order
             PdfWriter.GetInstance(pdfdoc, Response.OutputStream);
             pdfdoc.Open();
 
+            // Title
             Paragraph title = new Paragraph("Invoice", FontFactory.GetFont("Arial", 18, Font.BOLD));
             title.Alignment = Element.ALIGN_CENTER;
             pdfdoc.Add(title);
             pdfdoc.Add(new Paragraph(" "));
 
-            Paragraph exportInfo = new Paragraph($"Order ID: {orderId}\n" +
-                $"ExportDate: {DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")} \n\nUsername: Lim Ler Shean " +
-                $"\nEmail: limlershean@gmail.com \nAddress: Customer Address", FontFactory.GetFont("Arial", 12, Font.NORMAL));
+            // User Information
+            if (dt.Rows.Count > 0)
+            {
+                DataRow userInfo = dt.Rows[0]; // Get user info from the first row
+                Paragraph exportInfo = new Paragraph($"Order ID: {orderId}\n" +
+                    $"Export Date: {DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")} \n\n" +
+                    $"Username: {userInfo["Username"]} \n" +
+                    $"Email: {userInfo["EmailAddress"]} \n" +
+                    $"Contact No: {userInfo["ContactNo"]} \n", FontFactory.GetFont("Arial", 12, Font.NORMAL));
 
-            exportInfo.Alignment = Element.ALIGN_LEFT;
-            pdfdoc.Add(exportInfo);
+                exportInfo.Alignment = Element.ALIGN_LEFT;
+                pdfdoc.Add(exportInfo);
+            }
 
             pdfdoc.Add(new Paragraph(" "));
 
+            // Create the PDF table
             PdfPTable pdfTable = new PdfPTable(4); // 4 columns
             pdfTable.WidthPercentage = 100;
             pdfTable.SetWidths(new float[] { 1f, 2f, 1f, 1f });
             BaseColor lightGrey = new BaseColor(211, 211, 211);
 
-            // table headers
+            // Table headers
             pdfTable.AddCell(new PdfPCell(new Phrase("Quantity")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
             pdfTable.AddCell(new PdfPCell(new Phrase("Product Name")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
             pdfTable.AddCell(new PdfPCell(new Phrase("Price (RM)")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
@@ -196,20 +214,17 @@ namespace CoffeeCove.Order
             decimal tax = totalSubtotal * 0.06m;
             decimal grandTotal = totalSubtotal + tax;
 
-            // Add a row for the subtotal
+            // Add rows for subtotal, tax, and grand total
             pdfTable.AddCell(new PdfPCell(new Phrase("Subtotal")) { Colspan = 3, HorizontalAlignment = Element.ALIGN_RIGHT, BackgroundColor = lightGrey });
             pdfTable.AddCell(new PdfPCell(new Phrase($"RM{totalSubtotal:F2}")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
 
-            // Add a row for the tax
             pdfTable.AddCell(new PdfPCell(new Phrase("Tax (6%)")) { Colspan = 3, HorizontalAlignment = Element.ALIGN_RIGHT, BackgroundColor = lightGrey });
             pdfTable.AddCell(new PdfPCell(new Phrase($"RM{tax:F2}")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
 
-            // Add a row for the grand total
             pdfTable.AddCell(new PdfPCell(new Phrase("Total")) { Colspan = 3, HorizontalAlignment = Element.ALIGN_RIGHT, BackgroundColor = lightGrey });
             pdfTable.AddCell(new PdfPCell(new Phrase($"RM{grandTotal:F2}")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
 
             pdfdoc.Add(pdfTable);
-
             pdfdoc.Close();
             Response.Write(pdfdoc);
             Response.End();

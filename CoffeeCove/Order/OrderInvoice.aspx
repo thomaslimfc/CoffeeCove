@@ -17,15 +17,15 @@
             <div class="invoice-details">
                 <div class="invoice-bill-to">
                     <h2>Bill To</h2>
-                    <p>Username: Lim Ler Shean</p>
-                    <p>Email: Limlershean@gmail.com</p>
-                    <p>Address: Tanjong Bungah</p>
+                    <p>Username: <asp:Literal ID="UsernameLiteral" runat="server"></asp:Literal></p>
+                    <p>Email: <asp:Literal ID="EmailLiteral" runat="server"></asp:Literal></p>
+                    <p>Phone: <asp:Literal ID="PhoneLiteral" runat="server"></asp:Literal></p>
                 </div>
                 <div class="invoice-from">
                     <h2>From</h2>
-                    <p>CoffeeCove Gurney Plaza</p>
-                    <p>adminCoffeeCove@gmail.com</p>
-                    <p>170-G-23,24 Gurney Plaza, Pulau Tikus, 10250 George Town, Penang</p>
+                    <p>CoffeeCove Malaysia</p>
+                    <p>Website: </p>
+                    <p>https://localhost:44324/Home/Home.aspx</p>
                 </div>
             </div>
             <table class="invoice-table">

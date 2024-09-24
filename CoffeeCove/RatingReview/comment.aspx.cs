@@ -71,7 +71,7 @@ namespace CoffeeCove.RatingReview
 
         protected void backBtn_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Order/OrderHistory.aspx");
+            Response.Redirect("~/Order/orderHistory.aspx");
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)

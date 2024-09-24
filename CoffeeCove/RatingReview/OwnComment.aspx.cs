@@ -16,7 +16,15 @@ namespace CoffeeCove.RatingReview
         {
             if (!IsPostBack)
             {
-                BindOwnComment();
+                // Check if CusID is available in the session
+                if (Session["CusID"] != null)
+                {
+                    BindOwnComment();
+                }
+                else
+                {
+                    Response.Redirect("~/Login.aspx");
+                }
             }
         }
 
@@ -24,25 +32,28 @@ namespace CoffeeCove.RatingReview
         {
             using (SqlConnection conn = new SqlConnection(cs))
             {
-                // Added a WHERE clause to filter by CusID = 2
                 string query = @"
-            SELECT R.RatingReviewID, R.RatingScore, R.ReviewContent, R.RatingReviewDateTime, 
-                   C.CusID, C.Username, 
-                   R2.ReviewContent AS AdminReplyContent, 
-                   R2.RatingReviewDateTime AS AdminReplyDateTime, 
-                   A.Username AS AdminUsername
-            FROM Review R
-            LEFT JOIN Review R2 ON R.RatingReviewID = R2.ReplyTo
-            LEFT JOIN PaymentDetail PD ON R.PaymentID = PD.PaymentID
-            LEFT JOIN OrderPlaced O ON PD.OrderID = O.OrderID
-            LEFT JOIN Customer C ON O.CusID = C.CusID
-            LEFT JOIN Admin A ON R2.UsernameAdmin = A.Username
-            WHERE R.ReplyTo IS NULL
-            ORDER BY R.RatingReviewDateTime DESC";
+        SELECT R.RatingReviewID, R.RatingScore, R.ReviewContent, R.RatingReviewDateTime, 
+               C.CusID, C.Username, C.ProfilePicturePath, 
+               O.OrderID, 
+               R2.ReviewContent AS AdminReplyContent, 
+               R2.RatingReviewDateTime AS AdminReplyDateTime, 
+               A.Username AS AdminUsername
+        FROM Review R
+        LEFT JOIN Review R2 ON R.RatingReviewID = R2.ReplyTo
+        LEFT JOIN PaymentDetail PD ON R.PaymentID = PD.PaymentID
+        LEFT JOIN OrderPlaced O ON PD.OrderID = O.OrderID
+        LEFT JOIN Customer C ON O.CusID = C.CusID
+        LEFT JOIN Admin A ON R2.UsernameAdmin = A.Username
+        WHERE R.ReplyTo IS NULL
+        AND C.CusID = @CusID
+        ORDER BY R.RatingReviewDateTime DESC";
+
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    // Added parameter to avoid SQL injection
-                    cmd.Parameters.AddWithValue("@CusID", 3);
+                    // Retrieve CusID from session
+                    int cusID = Convert.ToInt32(Session["CusID"]);
+                    cmd.Parameters.AddWithValue("@CusID", cusID);
 
                     conn.Open();
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -56,6 +67,20 @@ namespace CoffeeCove.RatingReview
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
+                // Retrieve the profile picture path
+                string profilePicturePath = DataBinder.Eval(e.Item.DataItem, "ProfilePicturePath")?.ToString();
+                Image imgProfile = (Image)e.Item.FindControl("imgProfilePicture");
+
+                // Set default image if no profile picture exists
+                if (!string.IsNullOrEmpty(profilePicturePath))
+                {
+                    imgProfile.ImageUrl = "/UserManagement/UserProfilePictures/" + profilePicturePath;
+                }
+                else
+                {
+                    imgProfile.ImageUrl = "http://bootdey.com/img/Content/avatar/avatar1.png";
+                }
+
                 // Retrieve the rating value from the data item
                 int rating = Convert.ToInt32(DataBinder.Eval(e.Item.DataItem, "RatingScore"));
                 PlaceHolder phStars = (PlaceHolder)e.Item.FindControl("phStars");
