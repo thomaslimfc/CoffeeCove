@@ -47,8 +47,25 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Order List</h5>
-                            <asp:GridView ID="gvOrder" runat="server" AutoGenerateColumns="false" CssClass="table table-striped" PageSize="10" AllowPaging="true" AllowSorting="true" EmptyDataText="There are no data records" OnRowCommand="gvOrder_RowCommand" DataKeyNames="OrderID" OnSorting="gvOrder_Sorting">
+                            <table>
+                                <tr>
+                                    <td class="col-10">
+                                        <h5 class="card-title">Order List</h5>
+                                    </td>
+                                    <!-- Page dropdown -->
+                                    <td style="padding-left: 35px; padding-right: 5px">Show</td>
+                                    <td class="dataTables_length" id="DataTables_Table_0_length">
+                                        <asp:DropDownList ID="ddlPageSize" runat="server" AutoPostBack="True" CssClass="form-select form-select-sm" OnSelectedIndexChanged="ddlPageSize_SelectedIndexChanged">
+                                            <asp:ListItem Value="5">5</asp:ListItem>
+                                            <asp:ListItem Value="10">10</asp:ListItem>
+                                            <asp:ListItem Value="15">15</asp:ListItem>
+                                            <asp:ListItem Value="20">20</asp:ListItem>
+                                        </asp:DropDownList>
+                                    </td>
+                                    <td style="padding-left: 5px">entries</td>
+                                </tr>
+                            </table>
+                            <asp:GridView ID="gvOrder" runat="server" AutoGenerateColumns="false" CssClass="table table-striped" PageSize="5" AllowPaging="true" AllowSorting="true" EmptyDataText="There are no data records" OnRowCommand="gvOrder_RowCommand" DataKeyNames="OrderID" OnSorting="gvOrder_Sorting" OnPageIndexChanging="gvOrder_PageIndexChanging">
                                 <Columns>
                                     <asp:TemplateField SortExpression="OrderID">
                                         <HeaderTemplate>

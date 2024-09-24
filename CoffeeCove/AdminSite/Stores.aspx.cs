@@ -294,8 +294,13 @@ namespace CoffeeCove.AdminSite
             }
         }
 
+        protected void gvStoreList_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            // Set the new page index
+            gvStoreList.PageIndex = e.NewPageIndex;
 
-
+            BindGridView();
+        }
     }
 
 }
