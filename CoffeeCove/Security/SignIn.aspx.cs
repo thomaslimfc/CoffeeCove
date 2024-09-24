@@ -29,7 +29,7 @@ namespace CoffeeCove.Security
                     // Check for a matching admin
                     var admin = db.Admins.SingleOrDefault(a => a.Username == username && a.HashedPassword == Password_SI.Text);
 
-                    // If not identity of customer or admin
+                    // Should be identity of customer or admin
                     if (customer != null || admin != null)
                     {
                         // Store user role and username in session
@@ -47,15 +47,10 @@ namespace CoffeeCove.Security
                             }
                             else
                             {
+                                // just extra: all account must have an unique contact number
                                 Response.Redirect("~/Security/SignIn.aspx");
                                 return; // Stop further processing if no contact number is found
                             }
-                        }
-
-                        //  @asdfghjklASDFGHJKL12345#
-                        if (admin != null)
-                        {
-                            Response.Redirect("~/AdminSite/Dashboard.aspx");
                         }
 
                         // Set a flag indicating that 2FA is required
@@ -66,7 +61,7 @@ namespace CoffeeCove.Security
                     }
                     else
                     {
-                        // cannot access to 2-factor
+                        lblPassword_SI.Visible = true;
                     }
                 }
             }

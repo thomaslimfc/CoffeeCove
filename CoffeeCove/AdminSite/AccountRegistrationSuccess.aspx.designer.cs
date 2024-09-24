@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CoffeeCove.Security
+namespace CoffeeCove.AdminSite
 {
 
 
-    public partial class WebForm1
+    public partial class AccountRegistrationSuccess
     {
     }
 }

@@ -18,8 +18,7 @@
     <div class="relative mb-4">
         <asp:TextBox ID="ContactNo_FP" runat="server" 
             CssClass="w-full p-2 border border-border rounded-md focus:outline-none"
-            placeholder="012-3456789"
-            Text="010-2897296"
+            placeholder="010-2897296"
             ValidationGroup="SignUp"/>
         <asp:RequiredFieldValidator 
             ID="ContactNo_FP_rqdValidator" runat="server" 

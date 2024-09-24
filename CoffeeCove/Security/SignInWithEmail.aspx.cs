@@ -39,14 +39,7 @@ namespace CoffeeCove.Security
                     }
                     else
                     {
-                        Response.Redirect("SignUp.aspx");
-
-                        //Optionally, display an error message
-                        //InvalidCredentialsLabel.Text = "Invalid email or password.";
-                        //InvalidCredentialsLabel.Visible = true;
-
-                        // Log this attempt for security reasons
-                        //System.Diagnostics.Debug.WriteLine("Failed login attempt for user: " + email);
+                        lblPassword_SI2.Visible = true;
                     }
                 }
             }

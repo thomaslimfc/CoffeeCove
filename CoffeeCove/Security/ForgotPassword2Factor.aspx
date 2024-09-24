@@ -1,5 +1,6 @@
-﻿<%@ Page Title="" Language="C#" 
-    MasterPageFile="~/Master/Customer.Master" AutoEventWireup="true" 
+﻿<%@ Page Title="2-Factor Authentication" Language="C#" 
+    MasterPageFile="~/Master/Customer2.Master" 
+    AutoEventWireup="true" 
     CodeBehind="ForgotPassword2Factor.aspx.cs" 
     Inherits="CoffeeCove.Security.ForgotPassword2Factor" %>
 

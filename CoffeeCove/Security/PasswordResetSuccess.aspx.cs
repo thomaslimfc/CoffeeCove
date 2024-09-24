@@ -13,7 +13,7 @@ namespace CoffeeCove.Security
         {
             if (!IsPostBack)
             {
-                Response.AddHeader("Refresh", "5; URL=SignIn.aspx");
+                Response.AddHeader("Refresh", "3; URL=SignIn.aspx");
             }
         }
     }

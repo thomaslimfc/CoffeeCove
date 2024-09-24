@@ -36,7 +36,7 @@
             ID="Password_PR_regexValidator" 
             runat="server" 
             ControlToValidate="Password_PR" 
-            ErrorMessage="Must contain >10 letters, numbers, and symbols." 
+            ErrorMessage="Must contain >10 small + capital letters, numbers, and symbols." 
             Display="Dynamic" 
             ForeColor="Red" 
             CssClass="rqdValidator" 
