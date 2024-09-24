@@ -92,16 +92,26 @@ namespace CoffeeCove.AdminSite
         {
             using (SqlConnection con = new SqlConnection(cs))
             {
-                string sql = @"SELECT TOP 5 p.ImageUrl, p.ProductName, p.UnitPrice, SUM(op.Quantity) AS TotalSold, SUM(op.Quantity * p.UnitPrice) AS TotalSales
-                                FROM Product p JOIN OrderedItem op ON p.ProductId = op.ProductId 
-                                GROUP BY p.ImageUrl, p.ProductName, p.UnitPrice ORDER BY TotalSold DESC;";
+                string sql = @"SELECT TOP 5 p.ImageUrl, p.ProductName, p.UnitPrice, SUM(oi.Quantity) AS TotalSold, SUM(oi.Quantity * p.UnitPrice) AS TotalSales
+                                FROM Product p JOIN OrderedItem oi ON p.ProductId = oi.ProductId JOIN OrderPlaced op ON oi.OrderID = op.OrderID
+                                GROUP BY p.ImageUrl, p.ProductName, p.UnitPrice ORDER BY TotalSales DESC;";
 
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
                     con.Open();
                     SqlDataReader reader = cmd.ExecuteReader();
-                    rptTopSellingProducts.DataSource = reader;
-                    rptTopSellingProducts.DataBind();
+
+                    if (reader.HasRows)
+                    {
+                        // Bind the data to GridView
+                        gvTopSellingProducts.DataSource = reader;
+                        gvTopSellingProducts.DataBind();
+                    }
+                    else
+                    {
+                        // No data, GridView will handle the empty case with EmptyDataText
+                        gvTopSellingProducts.DataBind();
+                    }
                 }
             }
         }

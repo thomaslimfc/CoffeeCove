@@ -19,17 +19,17 @@
                                 <!-- Credit card form tabs -->
                                 <ul role="tablist" class="nav bg-light nav-pills rounded nav-fill mb-3">
                                     <li class="nav-item">
-                                        <a data-toggle="pill" href="#credit-card" class="nav-link active" style="color: white;background-color: #413432;">
+                                        <a data-toggle="pill" href="#credit-card" class="nav-link active">
                                             <i class="fas fa-credit-card mr-2"></i> Credit Card
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a data-toggle="pill" href="#COD" class="nav-link" style="color: white;background-color: #413432;">
+                                        <a data-toggle="pill" href="#COD" class="nav-link">
                                             <i class="fas fa-mobile-alt mr-2"></i> Cash on Delivery
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a data-toggle="pill" href="#paypal" class="nav-link" style="color: white;background-color: #413432;">
+                                        <a data-toggle="pill" href="#paypal" class="nav-link">
                                             <i class="fab fa-paypal mr-2"></i> Paypal
                                         </a>
                                     </li>
