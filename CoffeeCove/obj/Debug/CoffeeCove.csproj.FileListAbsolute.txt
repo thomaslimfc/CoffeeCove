@@ -296,8 +296,6 @@ D:\visual studio work\CoffeeCove\CoffeeCove\CoffeeCove\bin\SendGrid.dll
 D:\visual studio work\CoffeeCove\CoffeeCove\CoffeeCove\bin\StarkbankEcdsa.dll
 D:\visual studio work\CoffeeCove\CoffeeCove\CoffeeCove\bin\SendGrid.pdb
 D:\visual studio work\CoffeeCove\CoffeeCove\CoffeeCove\bin\SendGrid.xml
-C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\obj\Debug\CoffeeCove.csproj.AssemblyReference.cache
-C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\obj\Debug\CoffeeCove.csproj.CoreCompileInputs.cache
 C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\bin\CoffeeCove.dll.config
 C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\bin\CoffeeCove.dll
 C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\bin\CoffeeCove.pdb
@@ -421,6 +419,8 @@ C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\bin\System.Text
 C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\bin\System.Text.Json.xml
 C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\bin\System.ValueTuple.xml
 C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\bin\Twilio.xml
+C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\obj\Debug\CoffeeCove.csproj.AssemblyReference.cache
+C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\obj\Debug\CoffeeCove.csproj.CoreCompileInputs.cache
 C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\obj\Debug\CoffeeCove.csproj.Up2Date
 C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\obj\Debug\CoffeeCove.dll
 C:\Users\thamq\OneDrive\桌面\Assignment\WEB\Staffee\CoffeeCove\obj\Debug\CoffeeCove.pdb
