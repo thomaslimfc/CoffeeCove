@@ -87,7 +87,7 @@ namespace CoffeeCove.Order
                     TimeSpan timeDifference = DateTime.Now - orderDateTime;
 
                     // If the order was prepared more than 5 minutes ago, update the status to 'Your Order is Out for Delivery'
-                    if (timeDifference.TotalSeconds > 20)
+                    if (timeDifference.TotalSeconds > 30)
                     {
                         UpdateOrderStatus(orderId, "Your Order is Out for Delivery");
                     }
@@ -98,7 +98,7 @@ namespace CoffeeCove.Order
                     TimeSpan timeDifference = DateTime.Now - orderDateTime;
 
                     // If the order was prepared more than 5 minutes ago, update the status to 'Order Delivered'
-                    if (timeDifference.TotalSeconds > 20)
+                    if (timeDifference.TotalSeconds > 40)
                     {
                         UpdateOrderStatus(orderId, "Order Delivered");
                     }

@@ -29,13 +29,16 @@ namespace CoffeeCove.Payment
                         var payerId = Request.QueryString["PayerID"];
                         var paymentId = Request.QueryString["paymentId"];
 
+                        // Execute the payment
                         ExecutePayment(payerId, paymentId, orderId);
 
                         // After successful payment, update payment details in the database
+                        // Make sure you get the total amount with tax
+                        decimal totalAmount = CalculateTotalAmountWithTax(orderId);
                         UpdatePaymentStatus(orderId, "Paypal", "Complete");
 
                         // Update OrderPlaced table (OrderStatus, OrderDateTime, TotalAmount)
-                        UpdateOrderPlaced(orderId, totalAmountWithTax);
+                        UpdateOrderPlaced(orderId, totalAmount);
 
                         // Clear the specific session (OrderID)
                         Session.Remove("OrderID");
@@ -286,15 +289,15 @@ namespace CoffeeCove.Payment
             using (SqlConnection conn = new SqlConnection(cs))
             {
                 conn.Open();
-                string updateOrderSql = @"UPDATE OrderPlaced
-                                          SET OrderStatus = @OrderStatus, OrderDateTime = @OrderDateTime, TotalAmount = @TotalAmount
-                                          WHERE OrderID = @OrderID";
+                string updateSql = @"UPDATE OrderPlaced 
+                             SET OrderStatus = @OrderStatus, OrderDateTime = @OrderDateTime, TotalAmount = @TotalAmount 
+                             WHERE OrderID = @OrderID";
 
-                using (SqlCommand cmd = new SqlCommand(updateOrderSql, conn))
+                using (SqlCommand cmd = new SqlCommand(updateSql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@OrderStatus", "Order Received");
+                    cmd.Parameters.AddWithValue("@OrderStatus", "Order Received"); // Set status to preparing
                     cmd.Parameters.AddWithValue("@OrderDateTime", DateTime.Now);
-                    cmd.Parameters.AddWithValue("@TotalAmount", totalAmountWithTax);
+                    cmd.Parameters.AddWithValue("@TotalAmount", totalAmountWithTax); // Ensure the correct amount is passed
                     cmd.Parameters.AddWithValue("@OrderID", orderId);
 
                     cmd.ExecuteNonQuery();
@@ -302,38 +305,54 @@ namespace CoffeeCove.Payment
             }
         }
 
+        // Calculate the total amount for the order
         private decimal CalculateTotalAmount(string orderId)
+        {
+            decimal totalAmount = 0;
+            using (SqlConnection conn = new SqlConnection(cs))
+            {
+                conn.Open();
+                string sql = @"SELECT SUM(P.UnitPrice * I.Quantity) AS Total
+                       FROM OrderedItem I 
+                       JOIN Product P ON I.ProductId = P.ProductId
+                       WHERE I.OrderId = @OrderId
+                       GROUP BY I.OrderId";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@OrderId", orderId);
+                    var result = cmd.ExecuteScalar();
+                    totalAmount = result != DBNull.Value ? Convert.ToDecimal(result) : 0;
+                }
+            }
+            return totalAmount;
+        }
+
+        private decimal CalculateTotalAmountWithTax(string orderId)
         {
             decimal subtotal = 0;
 
             using (SqlConnection conn = new SqlConnection(cs))
             {
                 conn.Open();
-                string sql = @"SELECT P.UnitPrice AS Price, I.Quantity 
+                string sql = @"SELECT SUM(P.UnitPrice * I.Quantity) AS Subtotal
                        FROM OrderedItem I 
                        JOIN Product P ON I.ProductId = P.ProductId
-                       WHERE I.OrderId = @orderId";
+                       WHERE I.OrderId = @OrderId
+                       GROUP BY I.OrderId";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@orderId", orderId);
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            decimal price = Convert.ToDecimal(reader["Price"]);
-                            int quantity = Convert.ToInt32(reader["Quantity"]);
-                            subtotal += price * quantity;
-                        }
-                    }
+                    cmd.Parameters.AddWithValue("@OrderId", orderId);
+                    var result = cmd.ExecuteScalar();
+                    subtotal = result != DBNull.Value ? Convert.ToDecimal(result) : 0;
                 }
             }
 
             // Calculate tax (6%)
             decimal tax = subtotal * 0.06m;
-            decimal totalAmountWithTax = subtotal + tax;
-
-            return totalAmountWithTax;
+            decimal totalAmountWithTax = subtotal + tax; // Total including tax
+            return totalAmountWithTax; // Return the correct total amount
         }
     }
 }
