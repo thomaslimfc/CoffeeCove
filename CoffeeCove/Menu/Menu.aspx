@@ -17,6 +17,11 @@
             </asp:Repeater>
         </div>
 
+        <!-- Category Name Display -->
+        <div id="categoryNameContainer" style="text-align: center; padding: 10px; font-size: 20px; font-weight: bold;">
+            <asp:Label ID="lblCategoryName" runat="server" Text="All Categories"></asp:Label>
+        </div>
+
         <!-- Product -->
         <div id="productContainer">
             <div id="productItem">

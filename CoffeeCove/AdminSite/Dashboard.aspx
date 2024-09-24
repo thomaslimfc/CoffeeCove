@@ -5,14 +5,14 @@
 
         <div class="pagetitle" style="color: #fff">
             <br />
-            <h3 style="font-weight:600">Dashboard</h3>
+            <h3 style="font-weight: 600">Dashboard</h3>
         </div>
 
         <div class="section dashboard">
             <div class="row" style="margin-top: 2%;">
                 <div>
                     <div class="row">
-                        <h5 style="color:#fff">Todays</h5>
+                        <h4 style="color: #fff">Todays</h4>
                         <!-- Sales Record -->
                         <div class="col-xxl-4 col-md-5">
                             <div class="card info-card sales-card">
@@ -65,7 +65,7 @@
                             </div>
                         </div>
 
-                        <h5 style="color:#fff">Totals</h5>
+                        <h4 style="color: #fff">Totals</h4>
 
                         <!-- Category Record -->
                         <div class="col-xxl-4 col-md-5">
@@ -77,7 +77,7 @@
                                             <i class="bi bi-tags-fill"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6>7</h6>
+                                            <h6><asp:Label ID="lblTotalCategory" runat="server" Text="0"></asp:Label></h6>
                                         </div>
                                     </div>
                                 </div>
@@ -95,59 +95,7 @@
                                             <i class="bi bi-archive-fill"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6>30</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Total Order Record -->
-                        <div class="col-xxl-4 col-xl-5">
-                            <div class="card info-card customers-card">
-                                <div class="card-body">
-                                    <h5 class="card-title">Total Orders</h5>
-                                    <div class="d-flex align-items-center">
-                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                            <i class="bi bi-journal-text"></i>
-                                        </div>
-                                        <div class="ps-3">
-                                            <h6>51</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Delivered Record -->
-                        <div class="col-xxl-4 col-md-5">
-                            <div class="card info-card sales-card">
-                                <div class="card-body">
-                                    <h5 class="card-title">Delivered Meals</h5>
-                                    <div class="d-flex align-items-center">
-                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                            <i class="bi bi-truck"></i>
-                                        </div>
-                                        <div class="ps-3">
-                                            <h6>45</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pending Record -->
-                        <div class="col-xxl-4 col-md-5">
-                            <div class="card info-card revenue-card">
-                                <div class="card-body">
-                                    <h5 class="card-title">Pending Meals</h5>
-
-                                    <div class="d-flex align-items-center">
-                                        <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                            <i class="bi bi-clock-history"></i>
-                                        </div>
-                                        <div class="ps-3">
-                                            <h6>6</h6>
+                                            <h6><asp:Label ID="lblTotalProduct" runat="server" Text="0"></asp:Label></h6>
                                         </div>
                                     </div>
                                 </div>
@@ -164,15 +112,45 @@
                                             <i class="bi bi-chat-left-heart-fill"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6>3</h6>
+                                            <h6>
+                                                <asp:Label ID="lblTotalFeedback" runat="server" Text="0"></asp:Label></h6>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                     
 
+                        <div class="col-8">
+                            <div class="card-body pb-0">
+                                <h4 style="color: #fff">Top Selling</h4>
+                                <table class="table table-borderless" style="width: 100%;">
+                                    <thead>
+                                        <tr>
+                                            <th>Preview</th>
+                                            <th>Product</th>
+                                            <th>Price</th>
+                                            <th>Sold</th>
+                                            <th>Sales Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <asp:Repeater ID="rptTopSellingProducts" runat="server">
+                                            <ItemTemplate>
+                                                <tr>
+                                                    <td>
+                                                        <img src='<%# Eval("ImageUrl") %>' alt='<%# Eval("ProductName") %>' style="width: 50px; height: auto;" /></td>
+                                                    <td><%# Eval("ProductName") %></td>
+                                                    <td><%# Eval("UnitPrice", "RM {0:N2}") %></td>
+                                                    <td><%# Eval("TotalSold") %></td>
+                                                    <td><%# Eval("TotalSales", "RM {0:N2}") %></td>
+                                                </tr>
+                                            </ItemTemplate>
+                                        </asp:Repeater>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

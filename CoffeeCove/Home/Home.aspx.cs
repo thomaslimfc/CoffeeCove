@@ -84,7 +84,7 @@ namespace CoffeeCove.Home
                     url = "/Menu/Menu.aspx";
                     break;
                 case 2:
-                    url = "/Menu/Menu.aspx";
+                    url = "/Menu/Menu.aspx?CategoryId=2";
                     break;
                 case 3:
                     url = "/Order/OrderOption.aspx";
@@ -120,6 +120,6 @@ namespace CoffeeCove.Home
 
 
 
-        
+
     }
 }
