@@ -20,17 +20,23 @@ namespace CoffeeCove.Order
 
         private void BindOrderHistory()
         {
+            int cusId = (int)(Session["CusID"] ?? 0);
+
             using (SqlConnection conn = new SqlConnection(cs))
             {
                 string query = @"
-                    SELECT O.*, PD.PaymentID
-                    FROM [OrderPlaced] O
-                    LEFT JOIN PaymentDetail PD ON O.OrderID = PD.OrderID
-                    WHERE O.OrderStatus IS NOT NULL
-                    AND O.OrderStatus IN ('Order Delivered', 'Preparing Your Meal', 'Your Order is Out for Delivery', 'Order Received')";
+            SELECT O.*, PD.PaymentID
+            FROM [OrderPlaced] O
+            LEFT JOIN PaymentDetail PD ON O.OrderID = PD.OrderID
+            WHERE O.CusID = @CusID
+            AND O.OrderStatus IS NOT NULL
+            AND O.OrderStatus IN ('Order Delivered', 'Preparing Your Meal', 'Your Order is Out for Delivery', 'Order Received')";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
+                    // Pass the CusID as a parameter
+                    cmd.Parameters.AddWithValue("@CusID", cusId);
+
                     conn.Open();
                     SqlDataReader reader = cmd.ExecuteReader();
                     OrderHistoryList.DataSource = reader;
@@ -67,7 +73,7 @@ namespace CoffeeCove.Order
                     // If the order was placed more than 5 minutes ago, update the status to 'Preparing Your Meal'
                     if (timeDifference.TotalSeconds > 20)
                     {
-                        UpdateOrderStatus(orderId, "Preparing Your Meal", DateTime.Now);
+                        UpdateOrderStatus(orderId, "Preparing Your Meal");
                         cancelOrderButton.Visible = false;
                     }
                     else
@@ -83,7 +89,7 @@ namespace CoffeeCove.Order
                     // If the order was prepared more than 5 minutes ago, update the status to 'Your Order is Out for Delivery'
                     if (timeDifference.TotalSeconds > 20)
                     {
-                        UpdateOrderStatus(orderId, "Your Order is Out for Delivery", DateTime.Now);
+                        UpdateOrderStatus(orderId, "Your Order is Out for Delivery");
                     }
                 }
 
@@ -94,7 +100,7 @@ namespace CoffeeCove.Order
                     // If the order was prepared more than 5 minutes ago, update the status to 'Order Delivered'
                     if (timeDifference.TotalSeconds > 20)
                     {
-                        UpdateOrderStatus(orderId, "Order Delivered", DateTime.Now);
+                        UpdateOrderStatus(orderId, "Order Delivered");
                     }
                 }
 
@@ -107,17 +113,16 @@ namespace CoffeeCove.Order
             }
         }
 
-        private void UpdateOrderStatus(int orderId, string newStatus, DateTime newOrderDateTime)
+        private void UpdateOrderStatus(int orderId, string newStatus)
         {
             using (SqlConnection conn = new SqlConnection(cs))
             {
                 string query = @"UPDATE [OrderPlaced] 
-                    SET OrderStatus = @OrderStatus, OrderDateTime = @OrderDateTime 
+                    SET OrderStatus = @OrderStatus
                     WHERE OrderID = @OrderID";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@OrderStatus", newStatus);
-                    cmd.Parameters.AddWithValue("@OrderDateTime", newOrderDateTime);
                     cmd.Parameters.AddWithValue("@OrderID", orderId);
                     conn.Open();
                     cmd.ExecuteNonQuery();
@@ -201,7 +206,7 @@ namespace CoffeeCove.Order
             int orderId = Convert.ToInt32(button.CommandArgument);
 
             // Update the order status to "Order Cancelled"
-            UpdateOrderStatus(orderId, "Order Cancelled", DateTime.Now);
+            UpdateOrderStatus(orderId, "Order Cancelled");
 
             BindOrderHistory();
         }
