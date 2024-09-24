@@ -100,3 +100,20 @@ input[type="radio"] {
     padding-top: 6%;
     padding-bottom: 30px;
 }
+
+.btnCont {
+    border-radius: 8px;
+    padding: 10px 50px;
+    color: white;
+    background-color: #413432;
+    transition-duration: 0.4s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+}
+
+    .btnCont:hover {
+        background-color: white;
+        border: 1px solid #413432;
+        color: #413432;
+        cursor: pointer;
+    }

@@ -8,6 +8,7 @@
         <h1 class="serviceTitle">Payment</h1>
         <!-- Element -->
         <div class="container py-5">
+        <asp:Button ID="btnBackToCart" runat="server" Text="&larr; Back to Cart" CssClass="btnCont" OnClick="btnBackToCart_Click" />
 
             <div class="row">
                 <!-- Payment Method Card -->
