@@ -8,8 +8,6 @@
     <link rel="icon" href="../img/cup2.png" type="image/x-icon">
     <!-- CSS Style -->
     <link href="../CSS/Customer.css" rel="stylesheet" />
-   
-
 </head>
 
 <body>
@@ -36,7 +34,7 @@
                                     <asp:Image ID="ImgUser" runat="server" ImageUrl="../img/user.png" CssClass="UserIcon" />
                                 </td>
                                 <td>
-                                    <asp:Label ID="lblUserName" runat="server" Text="UserName" ForeColor="White" Font-Size="17px" CssClass="Username"></asp:Label>
+                                    <asp:Label ID="lblUserName" runat="server" Text="" ForeColor="White" Font-Size="17px" CssClass="Username"></asp:Label>
                                 </td>
                                 <td>
                                     <img src="../img/down-white.png" class="dropdown-icon" />

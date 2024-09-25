@@ -26,6 +26,18 @@ namespace CoffeeCove.Master
                 Session["OrderID"] = cooOrder.ToString();
             }
 
+            string username = Session["Username"] as string;
+            bool statusTFA = Session["statusTFA"] as bool? ?? false;
+            if (!string.IsNullOrEmpty(username) && statusTFA)
+            {
+                lblUserName.Text = username;
+            }
+            else
+            {
+                lblUserName.Text = "Register Now";
+            }
+
+
             if (IsPostBack)
             {
                 pnlDropdownMenu.Visible = ViewState["DropdownVisible"] != null && (bool)ViewState["DropdownVisible"];

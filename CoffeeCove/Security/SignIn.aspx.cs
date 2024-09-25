@@ -47,7 +47,7 @@ namespace CoffeeCove.Security
                     var customer = db.Customers.SingleOrDefault(c => c.Username == username && c.HashedPassword == password);
 
                     // Check for a matching admin
-                    var admin = db.Admins.SingleOrDefault(a => a.Username == username && a.HashedPassword == Password_SI.Text);
+                    var admin = db.Admins.SingleOrDefault(a => a.Username == username && a.HashedPassword == password);
 
                     // Should be identity of customer or admin
                     if (customer != null || admin != null)
@@ -83,7 +83,6 @@ namespace CoffeeCove.Security
                             Response.Redirect("~/Security/SignIn.aspx");
                             return; // Stop further processing if no contact number is found
                         }
-
 
                         // Set a flag indicating that 2FA is required
                         Session["2FARequired"] = true;

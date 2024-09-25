@@ -52,6 +52,7 @@ namespace CoffeeCove.Security
                 // Get user role from session
                 string username = Session["Username"] as string;
                 string userRole = Session["UserRole"] as string;
+                Session["statusTFA"] = true;
                 Boolean rememberMe = false;
                 UserSecurity.LoginUser(username, userRole, rememberMe);
                 
