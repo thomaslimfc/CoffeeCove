@@ -17,8 +17,17 @@ namespace CoffeeCove.Master
         {
             if (Context.User.Identity.IsAuthenticated)
             {
-                pnlLoggedIn.Visible = true;
-                pnlGuest.Visible = false;
+                
+                    if (Session["CusID"] == null) //means its admin
+                    {
+                        pnlLoggedIn.Visible = false;
+                        pnlGuest.Visible = true;
+                    }
+                    else
+                    {
+                        pnlLoggedIn.Visible = true;
+                        pnlGuest.Visible = false;
+                    }
             }
             else
             {
