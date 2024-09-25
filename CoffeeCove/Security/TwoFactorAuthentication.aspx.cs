@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Net.PeerToPeer;
 using System.Web.UI;
 using Twilio;
 using Twilio.Rest.Api.V2010.Account;
@@ -49,7 +50,10 @@ namespace CoffeeCove.Security
                 Session["2FARequired"] = false;
 
                 // Get user role from session
+                string username = Session["Username"] as string;
                 string userRole = Session["UserRole"] as string;
+                Boolean rememberMe = false;
+                UserSecurity.LoginUser(username, userRole, rememberMe);
                 // Redirect based on user role
                 if (userRole == "User")
                 {

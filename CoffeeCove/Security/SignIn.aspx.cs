@@ -13,6 +13,25 @@ namespace CoffeeCove.Security
         protected void Page_Load(object sender, EventArgs e)
         {
             Session.Clear();
+            //remove the cookie of orderID
+            HttpCookie cookie = Request.Cookies["OrderID"];
+            HttpCookie cookieCus = Request.Cookies["CusID"];
+            if (cookie != null)
+            {
+                // Set the cookie's expiration date to a time in the past
+                cookie.Expires = DateTime.Now.AddDays(-1);
+
+                // Add the cookie to the Response to overwrite the existing cookie
+                Response.Cookies.Add(cookie);
+            }
+            if (cookieCus != null)
+            {
+                // Set the cookie's expiration date to a time in the past
+                cookieCus.Expires = DateTime.Now.AddDays(-1);
+
+                // Add the cookie to the Response to overwrite the existing cookie
+                Response.Cookies.Add(cookieCus);
+            }
         }
 
         protected void SignInButton_SI_Click(object sender, EventArgs e)
@@ -59,10 +78,8 @@ namespace CoffeeCove.Security
                                 return; // Stop further processing if no contact number is found
                             }
                         }
+                        
 
-                        string userRole = Session["UserRole"].ToString();
-                        Boolean rememberMe = false;
-                        UserSecurity.LoginUser(username, userRole, rememberMe);
 
                         // Set a flag indicating that 2FA is required
                         Session["2FARequired"] = true;
