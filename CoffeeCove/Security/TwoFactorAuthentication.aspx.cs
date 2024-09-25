@@ -17,7 +17,7 @@ namespace CoffeeCove.Security
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack) // Send OTP only on the first page load
+            if (!IsPostBack)
             {
                 if (Session["2FARequired"] != null && (bool)Session["2FARequired"])
                 {

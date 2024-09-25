@@ -11,9 +11,12 @@ namespace CoffeeCove.Security
         {
             if (!IsPostBack)
             {
-                // Check if OTP session exists; redirect if not
+                // if no otp, go forgot password again
                 if (Session["OTP_FP"] == null)
                 {
+                    lblWrongOtp.Text = "Session expired, please request a new OTP.";
+                    lblWrongOtp.Visible = true;
+
                     Response.Redirect("ForgotPassword.aspx");
                 }
             }
@@ -21,13 +24,12 @@ namespace CoffeeCove.Security
 
         protected void VerifyButton_FPTF_Click(object sender, EventArgs e)
         {
-            string userInputOtp = otp_FPTF.Text; // Get the user input OTP
+            string userInputOtp = otp_FPTF.Text;
 
             if (userInputOtp == OTP_FP)
             {
                 Session["statusTFA"] = true;
 
-                // OTP is correct, proceed to reset password
                 Response.Redirect("PasswordReset.aspx");
             }
             else
