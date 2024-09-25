@@ -50,9 +50,8 @@ namespace CoffeeCove.Security
 
                 // Get user role from session
                 string userRole = Session["UserRole"] as string;
-
                 // Redirect based on user role
-                if (userRole == "Customer")
+                if (userRole == "User")
                 {
                     Response.Redirect("~/Home/Home.aspx");
                 }

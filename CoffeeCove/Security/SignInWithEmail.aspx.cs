@@ -29,7 +29,7 @@ namespace CoffeeCove.Security
                     {
                         // Store user details in session
                         Session["Username"] = customer.Username;
-                        Session["UserRole"] = "Customer";
+                        Session["UserRole"] = "User";
                         Session["CusID"] = customer.CusID;
                         Session["ContactNo"] = customer.ContactNo;
                         //create cookies
@@ -40,7 +40,7 @@ namespace CoffeeCove.Security
                         Response.Cookies.Add(coo);
 
                         Boolean rememberMe = false;
-                        UserSecurity.LoginUser(customer.Username, "Customer", rememberMe);
+                        UserSecurity.LoginUser(customer.Username, "User", rememberMe);
 
                         // Set a flag indicating that 2FA is required
                         Session["2FARequired"] = true;

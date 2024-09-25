@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Reflection.Emit;
+using CoffeeCove.Master;
 
 namespace CoffeeCove.Order
 {
@@ -118,21 +119,22 @@ namespace CoffeeCove.Order
 
             Session["OrderID"] = orderId;
 
+            //create cookies
+            HttpCookie coo = new HttpCookie("OrderID", orderId.ToString());
+            //coo.Expires = DateTime.Now.AddMinutes(1);
+
+            //send the cookie to client pc
+            Response.Cookies.Add(coo);
+
             conn3.Close();
         }
 
         protected void lbConfirmPickUp_Click(object sender, EventArgs e)
         {
-            if (Session["access"] == null) //if its their firstTime come here or second time but dont have order ID
+            if (Session["access"] == null) //if its their firstTime come here 
             {
                 Session["access"] = 1; //set its session
 
-                createOrderID();
-            }
-
-            if (Session["OrderID"] == null)
-            {
-                //if dont have orderID even thou its their second time enter
                 createOrderID();
             }
 
@@ -175,38 +177,11 @@ namespace CoffeeCove.Order
         {
             if (Page.IsValid) //means it choose delivery
             {
-                if (Session["access"] == null) //if its their firstTime come here
+                if (Session["access"] == null) //if its their firstTime come here 
                 {
                     Session["access"] = 1; //set its session
 
-                    //retrieve cusID from session
-                    string cusID = Session["CusID"].ToString();
-                    //create an orderID for it
-                    SqlConnection conn3 = new SqlConnection(cs);
-                    string sql3 = @"INSERT INTO OrderPlaced(CusID,OrderDateTime,TotalAmount,OrderType) 
-                                VALUES (@cusID,@dateTime,0,'Delivery');
-                                SELECT SCOPE_IDENTITY();";
-
-                    SqlCommand cmd3 = new SqlCommand(sql3, conn3);
-                    cmd3.Parameters.AddWithValue("@cusID", cusID);
-                    cmd3.Parameters.AddWithValue("@dateTime", DateTime.Now);
-                    conn3.Open();
-
-                    object newOrderID = cmd3.ExecuteScalar();
-
-
-                    int orderId = Convert.ToInt32(newOrderID);
-
-                    string sql4 = @"INSERT INTO PaymentDetail(PaymentStatus,OrderID) 
-                                VALUES ('Pending',@orderId)";
-
-                    SqlCommand cmd4 = new SqlCommand(sql4, conn3);
-                    cmd4.Parameters.AddWithValue("@orderId", orderId.ToString());
-                    cmd4.ExecuteNonQuery();
-
-                    Session["OrderID"] = orderId;
-
-                    conn3.Close();
+                    createOrderID();
                 }
 
 

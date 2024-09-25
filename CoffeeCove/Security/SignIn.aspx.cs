@@ -35,7 +35,7 @@ namespace CoffeeCove.Security
                     {
                         // Store user role and username in session
                         Session["Username"] = username;
-                        Session["UserRole"] = customer != null ? "Customer" : "Admin";
+                        Session["UserRole"] = customer != null ? "User" : "Admin";
 
                         // need to check with customer only, becoz admin no CusID
                         if (customer != null)

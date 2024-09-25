@@ -16,10 +16,14 @@ namespace CoffeeCove.Master
         {
             //retrieve cookie
             HttpCookie coo = Request.Cookies["CusID"];
-
+            HttpCookie cooOrder = Request.Cookies["OrderID"];
             if (coo != null)
             {
                 Session["CusID"] = coo.ToString();
+            }
+            if (cooOrder != null)
+            {
+                Session["OrderID"] = cooOrder.ToString();
             }
 
             if (IsPostBack)

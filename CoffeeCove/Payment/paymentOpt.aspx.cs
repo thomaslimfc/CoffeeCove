@@ -43,6 +43,18 @@ namespace CoffeeCove.Payment
                         Session.Remove("OrderID");
                         Session.Remove("access");
 
+                        //remove the cookie of orderID
+                        HttpCookie cookie = Request.Cookies["OrderID"];
+
+                        if (cookie != null)
+                        {
+                            // Set the cookie's expiration date to a time in the past
+                            cookie.Expires = DateTime.Now.AddDays(-1);
+
+                            // Add the cookie to the Response to overwrite the existing cookie
+                            Response.Cookies.Add(cookie);
+                        }
+
                         Response.Redirect("~/Payment/paymentSuccess.aspx");
                     }
                 }
