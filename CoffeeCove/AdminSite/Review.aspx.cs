@@ -84,11 +84,11 @@ namespace CoffeeCove.AdminSite
             {
                 string query = @"
             SELECT R.RatingReviewID, R.RatingScore, R.ReviewContent, R.RatingReviewDateTime, 
-                   C.CusID, C.Username, 
+                   C.CusID, C.Username, C.ProfilePicturePath,
                    R2.ReviewContent AS AdminReplyContent, 
                    R2.RatingReviewDateTime AS AdminReplyDateTime, 
                    A.Username AS AdminUsername,
-                   PD.PaymentID  -- Ensure PaymentID is selected here
+                   PD.PaymentID, O.OrderID
             FROM Review R
             LEFT JOIN Review R2 ON R.RatingReviewID = R2.ReplyTo
             LEFT JOIN PaymentDetail PD ON R.PaymentID = PD.PaymentID
@@ -116,6 +116,20 @@ namespace CoffeeCove.AdminSite
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
+                // Retrieve the profile picture path
+                string profilePicturePath = DataBinder.Eval(e.Item.DataItem, "ProfilePicturePath")?.ToString();
+                Image imgProfile = (Image)e.Item.FindControl("imgProfilePicture");
+
+                // Set default image if no profile picture exists
+                if (!string.IsNullOrEmpty(profilePicturePath))
+                {
+                    imgProfile.ImageUrl = "/UserManagement/UserProfilePictures/" + profilePicturePath;
+                }
+                else
+                {
+                    imgProfile.ImageUrl = "http://bootdey.com/img/Content/avatar/avatar1.png";
+                }
+
                 // Retrieve the rating value from the data item
                 int rating = Convert.ToInt32(DataBinder.Eval(e.Item.DataItem, "RatingScore"));
                 PlaceHolder phStars = (PlaceHolder)e.Item.FindControl("phStars");

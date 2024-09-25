@@ -19,7 +19,9 @@ namespace CoffeeCove.Home
             {
                 UpdateSlide();
                 BindCategory();
+                BindFeedback();
             }
+            rptFeedback.ItemDataBound += rptFeedback_ItemDataBound;
         }
 
         // Array to store slide images
@@ -117,9 +119,46 @@ namespace CoffeeCove.Home
             }
         }
 
+        private void BindFeedback()
+        {
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                string sql = @"SELECT TOP 3 r.ReviewContent, r.RatingReviewDateTime, c.Username, c.ProfilePicturePath 
+                               FROM Review r 
+                               INNER JOIN PaymentDetail p ON r.PaymentID = p.PaymentID 
+                               INNER JOIN OrderPlaced o ON p.OrderID = o.OrderID 
+                               INNER JOIN Customer c ON o.CusID = c.CusID 
+                               WHERE r.RatingScore = 5 AND r.ReviewContent IS NOT NULL AND r.ReviewContent <> '' 
+                               ORDER BY r.RatingReviewDateTime DESC";
 
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    con.Open();
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    rptFeedback.DataSource = dr;
+                    rptFeedback.DataBind();
+                }
+            }
+        }
 
+        protected void rptFeedback_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                // Retrieve the profile picture path
+                string profilePicturePath = DataBinder.Eval(e.Item.DataItem, "ProfilePicturePath")?.ToString();
+                Image imgProfile = (Image)e.Item.FindControl("imgProfilePicture");
 
-
+                // Set default image if no profile picture exists
+                if (!string.IsNullOrEmpty(profilePicturePath))
+                {
+                    imgProfile.ImageUrl = "/UserManagement/UserProfilePictures/" + profilePicturePath;
+                }
+                else
+                {
+                    imgProfile.ImageUrl = "http://bootdey.com/img/Content/avatar/avatar1.png"; // Path to your default image
+                }
+            }
+        }
     }
 }

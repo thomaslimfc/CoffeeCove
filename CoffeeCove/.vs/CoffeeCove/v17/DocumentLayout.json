@@ -17,6 +17,14 @@
     {
       "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\adminsite\\payment.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:adminsite\\payment.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|d:\\visual studio work\\coffeecove\\coffeecove\\coffeecove\\adminsite\\adminreview.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:adminsite\\adminreview.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|d:\\visual studio work\\coffeecove\\coffeecove\\coffeecove\\adminsite\\adminreview.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:adminsite\\adminreview.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 223,
-          "SelectedChildIndex": 15,
+          "SelectedChildIndex": 17,
           "Children": [
             {
               "$type": "Bookmark",
@@ -82,6 +90,32 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AdminReview.aspx.cs",
+              "DocumentMoniker": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\AdminSite\\AdminReview.aspx.cs",
+              "RelativeDocumentMoniker": "AdminSite\\AdminReview.aspx.cs",
+              "ToolTip": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\AdminSite\\AdminReview.aspx.cs",
+              "RelativeToolTip": "AdminSite\\AdminReview.aspx.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-25T19:29:19.997Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AdminReview.aspx",
+              "DocumentMoniker": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\AdminSite\\AdminReview.aspx",
+              "RelativeDocumentMoniker": "AdminSite\\AdminReview.aspx",
+              "ToolTip": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\AdminSite\\AdminReview.aspx",
+              "RelativeToolTip": "AdminSite\\AdminReview.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-09-25T19:29:18.163Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
               "Title": "Payment.aspx.cs",
               "DocumentMoniker": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\AdminSite\\Payment.aspx.cs",
@@ -114,7 +148,7 @@
               "RelativeDocumentMoniker": "AdminSite\\Review.aspx.cs",
               "ToolTip": "D:\\visual studio work\\CoffeeCove\\CoffeeCove\\CoffeeCove\\AdminSite\\Review.aspx.cs",
               "RelativeToolTip": "AdminSite\\Review.aspx.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAGoAAAAAAAAAAAAuwHQAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-25T18:59:13.794Z",
               "EditorCaption": ""

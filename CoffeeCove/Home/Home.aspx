@@ -87,38 +87,22 @@
             <h1 class="feedbackTitle" style="color:#fff">Our Clients Say</h1>
             <table style="width: 90%;" class="feedbackContainer">
                 <tr>
-                    <td class="box1" style="width: 60px;">
-                        <div class="feedbackItem">
-                            <img src="../img/user1.jpg" class="userImg" />
-                            <div class="feedbackContent">
-                                <h3>xylim2002</h3>
-                                <small>8/23/2024 6:51:30 PM</small>
-                                <h4>This website is perfect! I like it!</h4>
-                            </div>
-                        </div>
-                    </td>
-                    <td width="20px"></td>
-                    <td class="box1" style="width: 60px;">
-                        <div class="feedbackItem">
-                            <img src="../img/user2.jpg" class="userImg" />
-                            <div class="feedbackContent">
-                                <h3>thomas1232</h3>
-                                <small>8/24/2024 10:31:30 AM</small>
-                                <h4>The food and drinks are great!</h4>
-                            </div>
-                        </div>
-                    </td>
-                    <td width="20px"></td>
-                    <td class="box1" style="width: 60px;">
-                        <div class="feedbackItem">
-                            <img src="../img/user3.jpg" class="userImg" />
-                            <div class="feedbackContent">
-                                <h3>qilunblublu</h3>
-                                <small>8/26/2024 8:41:30 PM</small>
-                                <h4>I really enjoyed the pastries and coffee!</h4>
-                            </div>
-                        </div>
-                    </td>
+                    <asp:Repeater ID="rptFeedback" runat="server" OnItemDataBound="rptFeedback_ItemDataBound">
+                        <ItemTemplate>
+                            <td class="box1" style="width: 60px;">
+                                <div class="feedbackItem">
+                                    <!-- Use Image control for profile picture -->
+                                    <asp:Image ID="imgProfilePicture" runat="server" CssClass="userImg" />
+                                    <div class="feedbackContent">
+                                        <h3><%# Eval("Username") %></h3>
+                                        <small><%# Eval("RatingReviewDateTime", "{0:MM/dd/yyyy hh:mm:ss tt}") %></small>
+                                        <h4><%# Eval("ReviewContent") %></h4>
+                                    </div>
+                                </div>
+                            </td>
+                            <td width="20px"></td>
+                        </ItemTemplate>
+                    </asp:Repeater>
                 </tr>
             </table>
             <div class="buttonContainer">

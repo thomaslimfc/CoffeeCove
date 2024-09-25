@@ -97,13 +97,14 @@
                                 <div class="review-container mb-4">
                                     <div class="media">
                                         <a href="#">
-                                            <img alt="User avatar" src="http://bootdey.com/img/Content/avatar/avatar1.png" class="mr-3 rounded-circle" />
+                                            <asp:Image ID="imgProfilePicture" runat="server" CssClass="mr-3 rounded-circle" Width="50" Height="50" />
                                         </a>
                                         <div class="media-body">
                                             <div class="d-flex justify-content-between">
                                                 <h6 class="mt-0 mb-1"><a class="text-dark" href="#"><strong><%# Eval("Username") %></strong></a></h6>
                                                 <p class="text-muted mb-0"><%# Eval("RatingReviewDateTime") %></p>
                                             </div>
+                                            <p class="mb-1"><strong>Order ID: </strong><%# Eval("OrderID") %></p>
                                             <div class="rating-stars mt-2">
                                                 <asp:PlaceHolder ID="phStars" runat="server"></asp:PlaceHolder>
                                             </div>
