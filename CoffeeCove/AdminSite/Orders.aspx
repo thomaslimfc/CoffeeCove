@@ -87,7 +87,7 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField SortExpression="Date">
                                         <HeaderTemplate>
-                                            <asp:LinkButton ID="lbDate" runat="server" CommandArgument="OderDateTime" CssClass="header-link" ToolTip="Sort" OnClick="lnkOrder_Click">
+                                            <asp:LinkButton ID="lbDate" runat="server" CommandArgument="OrderDateTime" CssClass="header-link" ToolTip="Sort" OnClick="lnkOrder_Click">
                                                 Date
                                                 <asp:Literal ID="litSortIconDate" runat="server"></asp:Literal>
                                             </asp:LinkButton>

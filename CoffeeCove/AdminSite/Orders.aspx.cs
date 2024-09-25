@@ -21,6 +21,13 @@ namespace CoffeeCove.AdminSite
         string cs = Global.CS;
         DateTime startDate;
         DateTime endDate;
+
+        int quantity = 0;
+        decimal price = 0;
+        decimal subTotal = 0;
+        decimal linePrice = 0;
+        decimal tax = 0;
+        decimal total = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -44,12 +51,6 @@ namespace CoffeeCove.AdminSite
 
         protected void rptOrdered_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-            int quantity = 0;
-            decimal price = 0;
-            decimal subTotal = 0;
-            decimal linePrice = 0;
-            decimal tax = 0;
-            decimal total = 0;
 
             System.Web.UI.WebControls.Label lblQuantity = (System.Web.UI.WebControls.Label)e.Item.FindControl("lblQuantity");
             quantity = int.Parse(lblQuantity.Text);
@@ -161,6 +162,7 @@ namespace CoffeeCove.AdminSite
 
                     }
                 }
+                UpdateSortIcons();
             }
         }
 
@@ -285,7 +287,7 @@ namespace CoffeeCove.AdminSite
             //get data from db
             using (SqlConnection conn = new SqlConnection(cs))
             {
-                string sql = @"SELECT *
+                string sql = @"SELECT O.OrderDateTime, O.OrderType, O.DeliveryAddress, O.StoreID, P.PaymentMethod, C.Username, C.EmailAddress
                     FROM OrderPlaced O 
                     JOIN PaymentDetail P ON O.OrderID = P.OrderID
                     JOIN Customer C ON O.CusID = C.CusID
@@ -317,7 +319,30 @@ namespace CoffeeCove.AdminSite
                             else if (dr["DeliveryAddress"] == DBNull.Value && orderType == "Pick Up")
                             {
                                 lblDelPick.Text = orderType;
-                                lblPickUp.Text = dr["StoreName"].ToString();
+                                string storeID = dr["StoreID"].ToString();
+                                //find store name based on id
+                                string sql1 = @"SELECT StoreName
+                                            FROM Store
+                                            WHERE StoreID = @storeId";
+                                using (SqlCommand cmd1 = new SqlCommand(sql1, conn))
+                                {
+                                    cmd1.Parameters.AddWithValue("@storeId", storeID);
+                                    try
+                                    {
+                                        SqlDataReader dr1 = cmd1.ExecuteReader();
+
+                                        if (dr1.Read())
+                                        {
+                                            lblPickUp.Text = dr1["StoreName"].ToString();
+                                        }
+                                    }
+                                    catch (Exception ex)
+                                    {
+
+                                    }
+
+                                }
+ 
                                 lblDelivery.Text = "-";
                             }
                             else
@@ -361,7 +386,7 @@ namespace CoffeeCove.AdminSite
             try
             {
                 startDate = DateTime.Parse(txtFrom.Text);
-                endDate = DateTime.Parse(txtTo.Text);
+                endDate = DateTime.Parse(txtTo.Text).AddDays(1);
 
                 if (endDate <= startDate)
                 {
@@ -451,11 +476,11 @@ namespace CoffeeCove.AdminSite
             {
                 litSortIconId.Text = (SortDirection == "ASC") ? ascendingIcon : descendingIcon;
             }
-            else if (SortExpression == "Date")
+            else if (SortExpression == "OrderDateTime")
             {
                 litSortIconDate.Text = (SortDirection == "ASC") ? ascendingIcon : descendingIcon;
             }
-            else if (SortExpression == "Total")
+            else if (SortExpression == "TotalAmount")
             {
                 litSortIconTotal.Text = (SortDirection == "ASC") ? ascendingIcon : descendingIcon;
             }

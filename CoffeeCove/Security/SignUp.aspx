@@ -321,7 +321,7 @@
             CssClass="mt-1 p-2 border border-border rounded w-full"
             ValidationGroup="SignUp">
             <asp:ListItem Text="~ Select a location ~" Value="" />
-            <asp:ListItem>Batu Feringggi</asp:ListItem>
+            <asp:ListItem>Batu Feringghi</asp:ListItem>
             <asp:ListItem>Tanjung Bungah</asp:ListItem>
             <asp:ListItem>Tanjung Tokong</asp:ListItem>
             <asp:ListItem>Pulau Tikus</asp:ListItem>

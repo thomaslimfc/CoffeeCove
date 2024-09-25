@@ -47,18 +47,25 @@
         <center>
             <p>Enter the 6 digit code generated in your WhatsApp.
                 <br />
-            <asp:Label ID="lblWrongOtp" runat="server" Text=""
-                Display="Dynamic" ForeColor="Red"></asp:Label>
+            <asp:Label 
+                ID="lblWrongOtp" 
+                runat="server" 
+                Text=""
+                Display="Dynamic" 
+                ForeColor="Red"></asp:Label>
         </center>
     </div>
     <div class="trMarginBottom20"></div>
+
     <!-- VERIFY Button -->
     <asp:Button ID="VerifyButton_FPTF" 
         runat="server" 
         Text="Verify Now" 
         CssClass="w-full bg-primary text-primary-foreground p-2 rounded-md hover:bg-primary/80" 
-        style="cursor: pointer" OnClick="VerifyButton_FPTF_Click"/>
+        style="cursor: pointer" 
+        OnClick="VerifyButton_FPTF_Click"/>
     <div class="trMarginBottom20"></div>
+
     <!-- Join Now -->
     <div class="text-center mt-4">
         <span class="text-muted-foreground">Having Trouble? </span>

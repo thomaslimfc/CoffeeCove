@@ -16,53 +16,63 @@
         <!--header-->
         <div id="header">
             <div class="headerContainer"
-                
-                style="height: 72px">   <!-- height adjustment -->
-                <h2><a class="logo" 
-                    
+                style="height: 72px">
+                <!-- height adjustment -->
+                <h2><a class="logo"
                     style="font-size: 18pt"
-                    href="../Home/Home.aspx">COFFEECOVE&#174;</a></h2>  <!-- LOGO size -->
+                    href="../Home/Home.aspx">COFFEECOVE&#174;</a></h2>
+                <!-- LOGO size -->
                 <div id="menuContainer" aria-disabled="False">
                     <asp:Menu ID="Menu" runat="server" BorderStyle="None" DataSourceID="SiteMapDataSource1" Font-Size="17px" Orientation="Horizontal" StaticDisplayLevels="2" StaticSubMenuIndent="0px" ForeColor="White">
                         <StaticMenuItemStyle CssClass="menuItem" />
                         <DynamicHoverStyle BorderStyle="None" />
                     </asp:Menu>
                 </div>
-                <div class="headerBtn">
-                    <asp:ImageButton ID="cartBtn" runat="server" ImageUrl="~/img/cartLogo.png" PostBackUrl="../Order/Cart.aspx" Width="25px" />
-                    <asp:Label ID="lblCount" runat="server" Text="0" CssClass="cart-badge"
-                        
-                        style="width: 15px; height: 15px; margin-bottom: 0px"></asp:Label>    <!-- Cart Red Circle -->
-                    
-                    <div style="margin-bottom: 50px">
-                        <asp:HiddenField ID="hdnCartCount" runat="server" Value="0" />
-                    </div>  <!-- Cart Count -->
-                    
-                    <asp:LinkButton ID="lbtnLogin" runat="server" CssClass="loginContainer" OnClick="lbtnLogin_Click" CausesValidation="false">
-                        <table>
-                            <tr>
-                                <td style="padding-right: 10px; padding-left: 10px">
-                                    <asp:Image ID="ImgUser" runat="server" ImageUrl="../img/user.png" CssClass="UserIcon" />
-                                </td>
-                                <td>
-                                    <asp:Label ID="lblUserName" runat="server" Text="UserName" ForeColor="White" Font-Size="17px" CssClass="Username"></asp:Label>
-                                </td>
-                                <td>
-                                    <img src="../img/down-white.png" class="dropdown-icon" 
-                                        style="padding-left: 2px; height: 15px; width: 17px; margin-bottom: 5px"/>
-                                </td>       <!-- DOWN ARROW -->
-                            </tr>
-                        </table>
-                    </asp:LinkButton>
+                <asp:Panel ID="pnlLoggedIn" runat="server">
+                    <div class="headerBtn">
+                        <asp:ImageButton ID="cartBtn" runat="server" ImageUrl="~/img/cartLogo.png" PostBackUrl="../Order/Cart.aspx" Width="25px" />
+                        <asp:Label ID="lblCount" runat="server" Text="0" CssClass="cart-badge"
+                            Style="width: 15px; height: 15px; margin-bottom: 0px"></asp:Label>
+                        <!-- Cart Red Circle -->
 
-                    <asp:Panel ID="pnlDropdownMenu" runat="server" CssClass="dropdown-content" Visible="false"
-                        
-                        style="margin-top: 133%">   <!-- DROP-DOWN LIST -->
-                        <asp:HyperLink ID="lnkProfile" runat="server" NavigateUrl="~/UserManagement/UserProfile.aspx">Profile</asp:HyperLink><br />
-                        <asp:HyperLink ID="lnkOrderHistory" runat="server" NavigateUrl="~/Order/orderHistory.aspx">Order History</asp:HyperLink><br />
-                        <asp:HyperLink ID="lnkLogin" runat="server" NavigateUrl="~/Security/SignIn.aspx">Login</asp:HyperLink>
-                    </asp:Panel>
-                </div>
+                        <div style="margin-bottom: 50px">
+                            <asp:HiddenField ID="hdnCartCount" runat="server" Value="0" />
+                        </div>
+                        <!-- Cart Count -->
+
+                        <asp:LinkButton ID="lbtnLogin" runat="server" CssClass="loginContainer" OnClick="lbtnLogin_Click" CausesValidation="false">
+                            <table>
+                                <tr>
+                                    <td style="padding-right: 10px; padding-left: 10px">
+                                        <asp:Image ID="ImgUser" runat="server" ImageUrl="../img/user.png" CssClass="UserIcon" />
+                                    </td>
+                                    <td>
+                                        <asp:Label ID="lblUserName" runat="server" Text="UserName" ForeColor="White" Font-Size="17px" CssClass="Username"></asp:Label>
+                                    </td>
+                                    <td>
+                                        <img src="../img/down-white.png" class="dropdown-icon"
+                                            style="padding-left: 2px; height: 15px; width: 17px; margin-bottom: 5px" />
+                                    </td>
+                                    <!-- DOWN ARROW -->
+                                </tr>
+                            </table>
+                        </asp:LinkButton>
+
+                        <asp:Panel ID="pnlDropdownMenu" runat="server" CssClass="dropdown-content" Visible="false"
+                            Style="margin-top: 133%">
+                            <!-- DROP-DOWN LIST -->
+                            <asp:HyperLink ID="lnkProfile" runat="server" NavigateUrl="~/UserManagement/UserProfile.aspx">Profile</asp:HyperLink><br />
+                            <asp:HyperLink ID="lnkOrderHistory" runat="server" NavigateUrl="~/Order/orderHistory.aspx">Order History</asp:HyperLink><br />
+                            <asp:LoginStatus ID="LoginStatus1" runat="server" />
+                        </asp:Panel>
+                    </div>
+                </asp:Panel>
+
+                <asp:Panel ID="pnlGuest" runat="server">
+                    <div class="headerBtn">
+                        <asp:LoginStatus ID="LoginStatus2" runat="server" />
+                    </div>
+                </asp:Panel>
             </div>
         </div>
 
@@ -73,8 +83,8 @@
         </div>
 
         <!--footer-->
-        <div id="footer" style=" font-size: 17px; font-weight: 500; color: #FFFFFF; top: 0; left: 0px;">
-            <div class="footerContainer" style="padding-top:20px;">
+        <div id="footer" style="font-size: 17px; font-weight: 500; color: #FFFFFF; top: 0; left: 0px;">
+            <div class="footerContainer" style="padding-top: 20px;">
                 <div>
                     <h4>Quick Links</h4>
                     <asp:HyperLink ID="homeLink" runat="server" NavigateUrl="../Home/Home.aspx" CssClass="quickLink">Home</asp:HyperLink>
@@ -94,9 +104,9 @@
                 </div>
                 <div>
                     <h4>Follow Us</h4>
-                    <asp:ImageButton ID="facebookBtn" runat="server" ImageUrl="~/img/facebook.png" PostBackUrl="https://www.facebook.com" EnableTheming="True" Width="25px" Height="25px" CssClass="SocialImg"/>
-                    <asp:ImageButton ID="instaBtn" runat="server" ImageUrl="~/img/instagram.png" PostBackUrl="https://www.instagram.com" Width="25px" Height="25px" CssClass="SocialImg"/>
-                    <asp:ImageButton ID="twitterBtn" runat="server" ImageUrl="~/img/twitter.png" PostBackUrl="https://www.twitter.com" Width="25px" Height="25px" CssClass="SocialImg"/>
+                    <asp:ImageButton ID="facebookBtn" runat="server" ImageUrl="~/img/facebook.png" PostBackUrl="https://www.facebook.com" EnableTheming="True" Width="25px" Height="25px" CssClass="SocialImg" />
+                    <asp:ImageButton ID="instaBtn" runat="server" ImageUrl="~/img/instagram.png" PostBackUrl="https://www.instagram.com" Width="25px" Height="25px" CssClass="SocialImg" />
+                    <asp:ImageButton ID="twitterBtn" runat="server" ImageUrl="~/img/twitter.png" PostBackUrl="https://www.twitter.com" Width="25px" Height="25px" CssClass="SocialImg" />
                 </div>
             </div>
             <div class="footerBottom" style="font-size: 15px; font-weight: 300; color: #FFFFFF; background-color: #2a2a2a;">

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
@@ -14,6 +15,26 @@ namespace CoffeeCove.Master
         string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Context.User.Identity.IsAuthenticated)
+            {
+                
+                    if (Session["CusID"] == null) //means its admin
+                    {
+                        pnlLoggedIn.Visible = false;
+                        pnlGuest.Visible = true;
+                    }
+                    else
+                    {
+                        pnlLoggedIn.Visible = true;
+                        pnlGuest.Visible = false;
+                    }
+            }
+            else
+            {
+                pnlLoggedIn.Visible = false;
+                pnlGuest.Visible = true;
+            }
+
             //retrieve cookie
             HttpCookie coo = Request.Cookies["CusID"];
             if (coo != null)
@@ -68,6 +89,5 @@ namespace CoffeeCove.Master
             pnlDropdownMenu.Visible = !pnlDropdownMenu.Visible;
             ViewState["DropdownVisible"] = pnlDropdownMenu.Visible;
         }
-
     }
 }

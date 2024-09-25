@@ -25,7 +25,7 @@ namespace CoffeeCove.AdminSite
                 BindTopSellingProducts();
 
                 var monthlyRevenue = GetMonthlyRevenue();
-                string chartData = "[['Month', 'Total Revenue']";
+                string chartData = "[['Month', 'Total Revenue']";// Initialize the chart
 
                 foreach (var data in monthlyRevenue)
                 {
@@ -33,10 +33,10 @@ namespace CoffeeCove.AdminSite
                 }
 
                 chartData += "]";
+                // Register chartData variable to available on the client side 
                 Page.ClientScript.RegisterStartupScript(this.GetType(), "chartData", $"var chartData = {chartData};", true);
             }
         }
-
 
         private void CalculateTodayRecords()
         {
@@ -118,13 +118,12 @@ namespace CoffeeCove.AdminSite
 
                     if (reader.HasRows)
                     {
-                        // Bind the data to GridView
                         gvTopSellingProducts.DataSource = reader;
                         gvTopSellingProducts.DataBind();
                     }
                     else
                     {
-                        // No data, GridView will handle the empty case with EmptyDataText
+                        // No data show EmptyDataText
                         gvTopSellingProducts.DataBind();
                     }
                 }
@@ -149,21 +148,10 @@ namespace CoffeeCove.AdminSite
             using (SqlConnection conn = new SqlConnection(cs))
             {
                 conn.Open();
-                string sql = @"
-            SELECT 
-                MONTH(op.OrderDateTime) AS OrderMonth,
-                YEAR(op.OrderDateTime) AS OrderYear,
-                SUM(op.TotalAmount) AS TotalRevenue
-            FROM 
-                OrderPlaced op
-            INNER JOIN 
-                PaymentDetail p ON op.OrderID = p.OrderID
-            WHERE 
-                p.PaymentStatus = 'Complete'
-            GROUP BY 
-                MONTH(op.OrderDateTime), YEAR(op.OrderDateTime)
-            ORDER BY 
-                OrderYear, OrderMonth";
+                string sql = @"SELECT MONTH(op.OrderDateTime) AS OrderMonth, YEAR(op.OrderDateTime) AS OrderYear, SUM(op.TotalAmount) AS TotalRevenue
+                                FROM OrderPlaced op INNER JOIN PaymentDetail p ON op.OrderID = p.OrderID 
+                                WHERE p.PaymentStatus = 'Complete' GROUP BY MONTH(op.OrderDateTime), YEAR(op.OrderDateTime)
+                                ORDER BY OrderYear, OrderMonth";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
@@ -180,13 +168,13 @@ namespace CoffeeCove.AdminSite
                 }
             }
 
-            // Merge the actual data with the placeholder data
+            // put data into placeholder data
             foreach (var data in revenueData)
             {
                 var monthData = allMonths.FirstOrDefault(m => m.Month == data.Month && m.Year == data.Year);
                 if (monthData != null)
                 {
-                    monthData.TotalRevenue = data.TotalRevenue; // Replace placeholder value with actual revenue
+                    monthData.TotalRevenue = data.TotalRevenue;
                 }
             }
 
