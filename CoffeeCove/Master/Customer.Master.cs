@@ -17,13 +17,13 @@ namespace CoffeeCove.Master
         {
             if (Context.User.Identity.IsAuthenticated) // Use Context.User if User is not accessible
             {
-                pnLoggedIn.Visible = true;  // Show logged-in panel
-                pnGuest.Visible = false; // Hide logged-out panel
+                lbtnLogin.Visible = true;  // Show logged-in panel
+                lbLogin.Visible = false; // Hide logged-out panel
             }
             else
             {
-                pnLoggedIn.Visible = false; // Hide logged-in panel
-                pnGuest.Visible = true;  // Show logged-out panel
+                lbtnLogin.Visible = false; // Hide logged-in panel
+                lbLogin.Visible = true;  // Show logged-out panel
             }
 
             //retrieve cookie
