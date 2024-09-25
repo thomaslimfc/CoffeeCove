@@ -25,6 +25,8 @@ namespace CoffeeCove.Security
 
             if (userInputOtp == OTP_FP)
             {
+                Session["statusTFA"] = true;
+
                 // OTP is correct, proceed to reset password
                 Response.Redirect("PasswordReset.aspx");
             }
