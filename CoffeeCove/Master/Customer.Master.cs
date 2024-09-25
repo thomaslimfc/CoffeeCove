@@ -16,14 +16,9 @@ namespace CoffeeCove.Master
         {
             //retrieve cookie
             HttpCookie coo = Request.Cookies["CusID"];
-            HttpCookie cooOrder = Request.Cookies["OrderID"];
             if (coo != null)
             {
-                Session["CusID"] = coo.ToString();
-            }
-            if (cooOrder != null)
-            {
-                Session["OrderID"] = cooOrder.ToString();
+                Session["CusID"] = coo.Value;
             }
 
             string username = Session["Username"] as string;
@@ -49,7 +44,7 @@ namespace CoffeeCove.Master
         {
             if (Session["OrderId"] != null)
             {
-                int orderId = (int)Session["OrderId"];
+                string orderId = Session["OrderId"].ToString();
                 string sql = "SELECT COUNT(*) FROM OrderedItem WHERE OrderId = @OrderId";
 
                 using (SqlConnection con = new SqlConnection(cs))

@@ -131,18 +131,34 @@ namespace CoffeeCove.Order
 
         protected void lbConfirmPickUp_Click(object sender, EventArgs e)
         {
-            if (Session["access"] == null) //if its their firstTime come here 
+            if (Session["OrderID"] == null) //if its their firstTime come here 
             {
-                Session["access"] = 1; //set its session
-
                 createOrderID();
             }
 
-            int orderID = (int)Session["OrderID"];
+            string orderID = Session["OrderID"].ToString();
             //put the pickup Store inside the database
             string storeID = hfStoreID.Value;
 
             SqlConnection conn = new SqlConnection(cs);
+            ////clean those empty order
+            //string sql3 = @"DELETE FROM PaymentDetail 
+            //                    WHERE PaymentMethod IS NULL AND OrderID <> @orderId;";
+
+            //SqlCommand cmd3 = new SqlCommand(sql3, conn);
+            //cmd3.Parameters.AddWithValue("@orderId", orderID);
+
+            //conn.Open();
+            //cmd3.ExecuteNonQuery();
+
+            //string sql4 = @"DELETE FROM OrderPlaced 
+            //                    WHERE TotalAmount = 0.00 AND OrderStatus IS NULL AND OrderID <> @orderId;";
+
+            //SqlCommand cmd4 = new SqlCommand(sql4, conn);
+            //cmd4.Parameters.AddWithValue("@orderId", orderID);
+
+            //cmd4.ExecuteNonQuery();
+
             string sql = @"UPDATE OrderPlaced 
                                 SET StoreID = @storeID
                                 WHERE OrderID = @orderID;";
@@ -151,7 +167,6 @@ namespace CoffeeCove.Order
             cmd.Parameters.AddWithValue("@storeID", storeID);
             cmd.Parameters.AddWithValue("@orderID", orderID);
             conn.Open();
-
             cmd.ExecuteNonQuery();
 
             //clean the deliveryAddress
@@ -164,9 +179,6 @@ namespace CoffeeCove.Order
 
             cmd2.ExecuteNonQuery();
 
-
-
-
             conn.Close();
 
             Session["orderOpt"] = "PickUp";
@@ -177,15 +189,34 @@ namespace CoffeeCove.Order
         {
             if (Page.IsValid) //means it choose delivery
             {
-                if (Session["access"] == null) //if its their firstTime come here 
+                if (Session["OrderID"] == null) //if its their firstTime come here 
                 {
-                    Session["access"] = 1; //set its session
 
                     createOrderID();
                 }
 
+                string orderID = Session["OrderID"].ToString();
+                //put the pickup Store inside the database
+                string storeID = hfStoreID.Value;
 
-                int orderID = (int)Session["OrderID"];
+                SqlConnection conn = new SqlConnection(cs);
+                //clean those empty order
+                //string sql3 = @"DELETE FROM PaymentDetail 
+                //                WHERE PaymentMethod IS NULL AND OrderID <> @orderId;";
+
+                //SqlCommand cmd3 = new SqlCommand(sql3, conn);
+                //cmd3.Parameters.AddWithValue("@orderId", orderID);
+
+                //conn.Open();
+                //cmd3.ExecuteNonQuery();
+
+                //string sql4 = @"DELETE FROM OrderPlaced 
+                //                WHERE TotalAmount = 0.00 AND OrderStatus IS NULL AND OrderID <> @orderId;";
+
+                //SqlCommand cmd4 = new SqlCommand(sql4, conn);
+                //cmd4.Parameters.AddWithValue("@orderId", orderID);
+
+                //cmd4.ExecuteNonQuery();
 
                 //get the address from textbox then combine them into one address
                 string address = "";
@@ -197,11 +228,8 @@ namespace CoffeeCove.Order
                 {
                     address = txtAddress1.Text + "," + txtPostCode.Text;
                 }
-                
-                
-
+            
                 //save the address into the database
-                SqlConnection conn = new SqlConnection(cs);
                 string sql = @"UPDATE OrderPlaced 
                                 SET DeliveryAddress = @address
                                 WHERE OrderID = @orderID;";
@@ -210,7 +238,6 @@ namespace CoffeeCove.Order
                 cmd.Parameters.AddWithValue("@address", address);
                 cmd.Parameters.AddWithValue("@orderID", orderID);
                 conn.Open();
-
                 cmd.ExecuteNonQuery();
 
                 //clean the pickupStore
@@ -222,8 +249,6 @@ namespace CoffeeCove.Order
                 cmd2.Parameters.AddWithValue("@orderID", orderID);
 
                 cmd2.ExecuteNonQuery();
-
-
 
                 conn.Close();
 
