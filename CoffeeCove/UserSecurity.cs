@@ -21,11 +21,12 @@ namespace CoffeeCove
         {
             HttpContext ctx = HttpContext.Current;
 
-            //retrieving old cookie/ticket
+            // Retrieving old cookie/ticket
             HttpCookie authCookie = FormsAuthentication.GetAuthCookie(username, rememberMe);
-            //decrypt old cookie/ticket
+            // Decrypt old cookie/ticket
             FormsAuthenticationTicket oldTicket = FormsAuthentication.Decrypt(authCookie.Value);
-            //adding role into ticket, and form new ticket
+
+            // Adding role into ticket and form new ticket
             FormsAuthenticationTicket newTicket = new FormsAuthenticationTicket(
                 oldTicket.Version,
                 oldTicket.Name,
@@ -34,22 +35,22 @@ namespace CoffeeCove
                 oldTicket.IsPersistent,
                 role
             );
-            //encrypt new ticket
+            // Encrypt new ticket
             authCookie.Value = FormsAuthentication.Encrypt(newTicket);
-            //pass the new ticket to client
+            // Pass the new ticket to client
             ctx.Response.Cookies.Add(authCookie);
 
-            string redirectUrl = FormsAuthentication.GetRedirectUrl(username, rememberMe);
+            // Custom redirect logic based on role
+            string redirectUrl = role == "Admin" ? "~/AdminSite/Dashboard.aspx" : "~/Home/Home.aspx";
             ctx.Response.Redirect(redirectUrl);
         }
+
 
         public static void ProcessRoles()
         {
             HttpContext ctx = HttpContext.Current;
 
-            if (ctx.User != null &&
-                ctx.User.Identity.IsAuthenticated &&
-                ctx.User.Identity is FormsIdentity)
+            if (ctx.User != null && ctx.User.Identity.IsAuthenticated && ctx.User.Identity is FormsIdentity)
             {
                 FormsIdentity identity = (FormsIdentity)ctx.User.Identity;
                 string[] roles = identity.Ticket.UserData.Split(',');
@@ -59,6 +60,7 @@ namespace CoffeeCove
                 Thread.CurrentPrincipal = principal;
             }
         }
+
 
 
 

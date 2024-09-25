@@ -24,9 +24,9 @@ namespace CoffeeCove
         public string HashedPassword { get; set; }
         public string Gender { get; set; }
         public string Branch { get; set; }
+        public string ContactNo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Review> Reviews { get; set; }
-        public object ContactNo { get; internal set; }
     }
 }

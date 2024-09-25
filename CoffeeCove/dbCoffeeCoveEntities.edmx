@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="dbCoffeeCoveModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="dbCoffeeCoveModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="Username" />
@@ -13,6 +13,7 @@
           <Property Name="HashedPassword" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Gender" Type="varchar" MaxLength="6" Nullable="false" />
           <Property Name="Branch" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="ContactNo" Type="varchar" MaxLength="12" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -47,7 +48,7 @@
             <PropertyRef Name="OrderID" />
           </Key>
           <Property Name="OrderedItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ProductID" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
           <Property Name="OrderID" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="int" />
           <Property Name="Size" Type="varchar" MaxLength="10" />
@@ -65,15 +66,17 @@
           <Property Name="CusID" Type="int" Nullable="false" />
           <Property Name="StoreID" Type="int" />
           <Property Name="DeliveryAddress" Type="nvarchar(max)" />
-          <Property Name="OrderDateTime" Type="date" Nullable="false" />
+          <Property Name="OrderDateTime" Type="datetime" Nullable="false" />
           <Property Name="TotalAmount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="OrderStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="OrderType" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="PaymentDetail">
           <Key>
             <PropertyRef Name="PaymentID" />
           </Key>
           <Property Name="PaymentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PaymentMethod" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="PaymentMethod" Type="nchar" MaxLength="20" />
           <Property Name="PaymentStatus" Type="nchar" MaxLength="10" />
           <Property Name="OrderID" Type="int" Nullable="false" />
         </EntityType>
@@ -81,7 +84,7 @@
           <Key>
             <PropertyRef Name="ProductId" />
           </Key>
-          <Property Name="ProductId" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
           <Property Name="ProductName" Type="varchar" MaxLength="50" />
           <Property Name="Description" Type="varchar(max)" />
           <Property Name="UnitPrice" Type="decimal" Precision="5" Scale="2" />
@@ -96,10 +99,9 @@
           </Key>
           <Property Name="RatingReviewID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RatingScore" Type="int" Nullable="false" />
-          <Property Name="ReviewContent" Type="varchar" MaxLength="50" />
+          <Property Name="ReviewContent" Type="nvarchar(max)" />
           <Property Name="RatingReviewDateTime" Type="datetime" Nullable="false" />
           <Property Name="PaymentID" Type="int" Nullable="false" />
-          <Property Name="CusID" Type="int" />
           <Property Name="ReplyTo" Type="int" />
           <Property Name="UsernameAdmin" Type="varchar" MaxLength="50" />
         </EntityType>
@@ -195,18 +197,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Review_ToCustomer">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
-          <End Role="Review" Type="Self.Review" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="CusID" />
-            </Principal>
-            <Dependent Role="Review">
-              <PropertyRef Name="CusID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Review_ToPayment">
           <End Role="PaymentDetail" Type="Self.PaymentDetail" Multiplicity="1" />
           <End Role="Review" Type="Self.Review" Multiplicity="*" />
@@ -257,29 +247,68 @@
             <End Role="Admin" EntitySet="Admin" />
             <End Role="Review" EntitySet="Review" />
           </AssociationSet>
-          <AssociationSet Name="FK_Review_ToCustomer" Association="Self.FK_Review_ToCustomer">
-            <End Role="Customer" EntitySet="Customer" />
-            <End Role="Review" EntitySet="Review" />
-          </AssociationSet>
           <AssociationSet Name="FK_Review_ToPayment" Association="Self.FK_Review_ToPayment">
             <End Role="PaymentDetail" EntitySet="PaymentDetail" />
             <End Role="Review" EntitySet="Review" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="dbCoffeeCoveModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="dbCoffeeCoveEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="dbCoffeeCoveModel.Admin" />
+          <EntitySet Name="Categories" EntityType="dbCoffeeCoveModel.Category" />
+          <EntitySet Name="Customers" EntityType="dbCoffeeCoveModel.Customer" />
+          <EntitySet Name="OrderedItems" EntityType="dbCoffeeCoveModel.OrderedItem" />
+          <EntitySet Name="OrderPlaceds" EntityType="dbCoffeeCoveModel.OrderPlaced" />
+          <EntitySet Name="PaymentDetails" EntityType="dbCoffeeCoveModel.PaymentDetail" />
+          <EntitySet Name="Products" EntityType="dbCoffeeCoveModel.Product" />
+          <EntitySet Name="Reviews" EntityType="dbCoffeeCoveModel.Review" />
+          <EntitySet Name="Stores" EntityType="dbCoffeeCoveModel.Store" />
+          <AssociationSet Name="FK_Review_ToAdmin" Association="dbCoffeeCoveModel.FK_Review_ToAdmin">
+            <End Role="Admin" EntitySet="Admins" />
+            <End Role="Review" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Category" Association="dbCoffeeCoveModel.FK_Product_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderPlaced_ToCustomer" Association="dbCoffeeCoveModel.FK_OrderPlaced_ToCustomer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="OrderPlaced" EntitySet="OrderPlaceds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderedItem_Order" Association="dbCoffeeCoveModel.FK_OrderedItem_Order">
+            <End Role="OrderPlaced" EntitySet="OrderPlaceds" />
+            <End Role="OrderedItem" EntitySet="OrderedItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderedItem_Product" Association="dbCoffeeCoveModel.FK_OrderedItem_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="OrderedItem" EntitySet="OrderedItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderPlaced_ToPickUp" Association="dbCoffeeCoveModel.FK_OrderPlaced_ToPickUp">
+            <End Role="Store" EntitySet="Stores" />
+            <End Role="OrderPlaced" EntitySet="OrderPlaceds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_ToOrder" Association="dbCoffeeCoveModel.FK_Payment_ToOrder">
+            <End Role="OrderPlaced" EntitySet="OrderPlaceds" />
+            <End Role="PaymentDetail" EntitySet="PaymentDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Review_ToPayment" Association="dbCoffeeCoveModel.FK_Review_ToPayment">
+            <End Role="PaymentDetail" EntitySet="PaymentDetails" />
+            <End Role="Review" EntitySet="Reviews" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="Username" />
           </Key>
-          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="HashedPassword" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Gender" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Branch" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Reviews" Relationship="Self.FK_Review_ToAdmin" FromRole="Admin" ToRole="Review" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HashedPassword" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="Branch" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="ContactNo" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Reviews" Relationship="dbCoffeeCoveModel.FK_Review_ToAdmin" FromRole="Admin" ToRole="Review" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -290,25 +319,24 @@
           <Property Name="CategoryImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Products" Relationship="Self.FK_Product_Category" FromRole="Category" ToRole="Product" />
+          <NavigationProperty Name="Products" Relationship="dbCoffeeCoveModel.FK_Product_Category" FromRole="Category" ToRole="Product" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="CusID" />
           </Key>
           <Property Name="CusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="EmailAddress" Type="String" MaxLength="320" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="HashedPassword" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="320" FixedLength="false" Unicode="false" />
+          <Property Name="HashedPassword" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="ContactNo" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Gender" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ResidenceState" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ContactNo" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="Gender" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="ResidenceState" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="ProfilePicturePath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="OrderPlaceds" Relationship="Self.FK_OrderPlaced_ToCustomer" FromRole="Customer" ToRole="OrderPlaced" />
-          <NavigationProperty Name="Reviews" Relationship="Self.FK_Review_ToCustomer" FromRole="Customer" ToRole="Review" />
+          <NavigationProperty Name="OrderPlaceds" Relationship="dbCoffeeCoveModel.FK_OrderPlaced_ToCustomer" FromRole="Customer" ToRole="OrderPlaced" />
         </EntityType>
         <EntityType Name="OrderedItem">
           <Key>
@@ -317,7 +345,7 @@
             <PropertyRef Name="OrderID" />
           </Key>
           <Property Name="OrderedItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductID" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
           <Property Name="OrderID" Type="Int32" Nullable="false" />
           <Property Name="Quantity" Type="Int32" />
           <Property Name="Size" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
@@ -326,8 +354,8 @@
           <Property Name="AddOn" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Instruction" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Price" Type="Decimal" Precision="5" Scale="2" />
-          <NavigationProperty Name="OrderPlaced" Relationship="Self.FK_OrderedItem_Order" FromRole="OrderedItem" ToRole="OrderPlaced" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_OrderedItem_Product" FromRole="OrderedItem" ToRole="Product" />
+          <NavigationProperty Name="OrderPlaced" Relationship="dbCoffeeCoveModel.FK_OrderedItem_Order" FromRole="OrderedItem" ToRole="OrderPlaced" />
+          <NavigationProperty Name="Product" Relationship="dbCoffeeCoveModel.FK_OrderedItem_Product" FromRole="OrderedItem" ToRole="Product" />
         </EntityType>
         <EntityType Name="OrderPlaced">
           <Key>
@@ -337,29 +365,31 @@
           <Property Name="CusID" Type="Int32" Nullable="false" />
           <Property Name="StoreID" Type="Int32" />
           <Property Name="DeliveryAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="OrderDateTime" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="TotalAmount" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <NavigationProperty Name="Customer" Relationship="Self.FK_OrderPlaced_ToCustomer" FromRole="OrderPlaced" ToRole="Customer" />
-          <NavigationProperty Name="OrderedItems" Relationship="Self.FK_OrderedItem_Order" FromRole="OrderPlaced" ToRole="OrderedItem" />
-          <NavigationProperty Name="Store" Relationship="Self.FK_OrderPlaced_ToPickUp" FromRole="OrderPlaced" ToRole="Store" />
-          <NavigationProperty Name="PaymentDetails" Relationship="Self.FK_Payment_ToOrder" FromRole="OrderPlaced" ToRole="PaymentDetail" />
+          <Property Name="OrderDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TotalAmount" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="OrderStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OrderType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Customer" Relationship="dbCoffeeCoveModel.FK_OrderPlaced_ToCustomer" FromRole="OrderPlaced" ToRole="Customer" />
+          <NavigationProperty Name="OrderedItems" Relationship="dbCoffeeCoveModel.FK_OrderedItem_Order" FromRole="OrderPlaced" ToRole="OrderedItem" />
+          <NavigationProperty Name="Store" Relationship="dbCoffeeCoveModel.FK_OrderPlaced_ToPickUp" FromRole="OrderPlaced" ToRole="Store" />
+          <NavigationProperty Name="PaymentDetails" Relationship="dbCoffeeCoveModel.FK_Payment_ToOrder" FromRole="OrderPlaced" ToRole="PaymentDetail" />
         </EntityType>
         <EntityType Name="PaymentDetail">
           <Key>
             <PropertyRef Name="PaymentID" />
           </Key>
           <Property Name="PaymentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PaymentMethod" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="PaymentMethod" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="PaymentStatus" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="OrderID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="OrderPlaced" Relationship="Self.FK_Payment_ToOrder" FromRole="PaymentDetail" ToRole="OrderPlaced" />
-          <NavigationProperty Name="Reviews" Relationship="Self.FK_Review_ToPayment" FromRole="PaymentDetail" ToRole="Review" />
+          <NavigationProperty Name="OrderPlaced" Relationship="dbCoffeeCoveModel.FK_Payment_ToOrder" FromRole="PaymentDetail" ToRole="OrderPlaced" />
+          <NavigationProperty Name="Reviews" Relationship="dbCoffeeCoveModel.FK_Review_ToPayment" FromRole="PaymentDetail" ToRole="Review" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="ProductId" />
           </Key>
-          <Property Name="ProductId" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
           <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="UnitPrice" Type="Decimal" Precision="5" Scale="2" />
@@ -367,8 +397,8 @@
           <Property Name="CategoryId" Type="Int32" Nullable="false" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="IsActive" Type="Boolean" />
-          <NavigationProperty Name="Category" Relationship="Self.FK_Product_Category" FromRole="Product" ToRole="Category" />
-          <NavigationProperty Name="OrderedItems" Relationship="Self.FK_OrderedItem_Product" FromRole="Product" ToRole="OrderedItem" />
+          <NavigationProperty Name="Category" Relationship="dbCoffeeCoveModel.FK_Product_Category" FromRole="Product" ToRole="Category" />
+          <NavigationProperty Name="OrderedItems" Relationship="dbCoffeeCoveModel.FK_OrderedItem_Product" FromRole="Product" ToRole="OrderedItem" />
         </EntityType>
         <EntityType Name="Review">
           <Key>
@@ -376,28 +406,26 @@
           </Key>
           <Property Name="RatingReviewID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RatingScore" Type="Int32" Nullable="false" />
-          <Property Name="ReviewContent" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ReviewContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="RatingReviewDateTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="PaymentID" Type="Int32" Nullable="false" />
-          <Property Name="CusID" Type="Int32" />
           <Property Name="ReplyTo" Type="Int32" />
           <Property Name="UsernameAdmin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Admin" Relationship="Self.FK_Review_ToAdmin" FromRole="Review" ToRole="Admin" />
-          <NavigationProperty Name="Customer" Relationship="Self.FK_Review_ToCustomer" FromRole="Review" ToRole="Customer" />
-          <NavigationProperty Name="PaymentDetail" Relationship="Self.FK_Review_ToPayment" FromRole="Review" ToRole="PaymentDetail" />
+          <NavigationProperty Name="Admin" Relationship="dbCoffeeCoveModel.FK_Review_ToAdmin" FromRole="Review" ToRole="Admin" />
+          <NavigationProperty Name="PaymentDetail" Relationship="dbCoffeeCoveModel.FK_Review_ToPayment" FromRole="Review" ToRole="PaymentDetail" />
         </EntityType>
         <EntityType Name="Store">
           <Key>
             <PropertyRef Name="StoreID" />
           </Key>
           <Property Name="StoreID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StoreName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="StoreAddress" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="OrderPlaceds" Relationship="Self.FK_OrderPlaced_ToPickUp" FromRole="Store" ToRole="OrderPlaced" />
+          <Property Name="StoreName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StoreAddress" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OrderPlaceds" Relationship="dbCoffeeCoveModel.FK_OrderPlaced_ToPickUp" FromRole="Store" ToRole="OrderPlaced" />
         </EntityType>
         <Association Name="FK_Review_ToAdmin">
-          <End Role="Admin" Type="Self.Admin" Multiplicity="0..1" />
-          <End Role="Review" Type="Self.Review" Multiplicity="*" />
+          <End Type="dbCoffeeCoveModel.Admin" Role="Admin" Multiplicity="0..1" />
+          <End Type="dbCoffeeCoveModel.Review" Role="Review" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Admin">
               <PropertyRef Name="Username" />
@@ -408,8 +436,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Product_Category">
-          <End Role="Category" Type="Self.Category" Multiplicity="1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <End Type="dbCoffeeCoveModel.Category" Role="Category" Multiplicity="1" />
+          <End Type="dbCoffeeCoveModel.Product" Role="Product" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Category">
               <PropertyRef Name="CategoryId" />
@@ -420,8 +448,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderPlaced_ToCustomer">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
-          <End Role="OrderPlaced" Type="Self.OrderPlaced" Multiplicity="*" />
+          <End Type="dbCoffeeCoveModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="dbCoffeeCoveModel.OrderPlaced" Role="OrderPlaced" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Customer">
               <PropertyRef Name="CusID" />
@@ -431,21 +459,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Review_ToCustomer">
-          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
-          <End Role="Review" Type="Self.Review" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customer">
-              <PropertyRef Name="CusID" />
-            </Principal>
-            <Dependent Role="Review">
-              <PropertyRef Name="CusID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_OrderedItem_Order">
-          <End Role="OrderPlaced" Type="Self.OrderPlaced" Multiplicity="1" />
-          <End Role="OrderedItem" Type="Self.OrderedItem" Multiplicity="*" />
+          <End Type="dbCoffeeCoveModel.OrderPlaced" Role="OrderPlaced" Multiplicity="1" />
+          <End Type="dbCoffeeCoveModel.OrderedItem" Role="OrderedItem" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="OrderPlaced">
               <PropertyRef Name="OrderID" />
@@ -456,8 +472,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderedItem_Product">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="OrderedItem" Type="Self.OrderedItem" Multiplicity="*" />
+          <End Type="dbCoffeeCoveModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="dbCoffeeCoveModel.OrderedItem" Role="OrderedItem" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
               <PropertyRef Name="ProductId" />
@@ -468,8 +484,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderPlaced_ToPickUp">
-          <End Role="Store" Type="Self.Store" Multiplicity="0..1" />
-          <End Role="OrderPlaced" Type="Self.OrderPlaced" Multiplicity="*" />
+          <End Type="dbCoffeeCoveModel.Store" Role="Store" Multiplicity="0..1" />
+          <End Type="dbCoffeeCoveModel.OrderPlaced" Role="OrderPlaced" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Store">
               <PropertyRef Name="StoreID" />
@@ -480,8 +496,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Payment_ToOrder">
-          <End Role="OrderPlaced" Type="Self.OrderPlaced" Multiplicity="1" />
-          <End Role="PaymentDetail" Type="Self.PaymentDetail" Multiplicity="*" />
+          <End Type="dbCoffeeCoveModel.OrderPlaced" Role="OrderPlaced" Multiplicity="1" />
+          <End Type="dbCoffeeCoveModel.PaymentDetail" Role="PaymentDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="OrderPlaced">
               <PropertyRef Name="OrderID" />
@@ -492,8 +508,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Review_ToPayment">
-          <End Role="PaymentDetail" Type="Self.PaymentDetail" Multiplicity="1" />
-          <End Role="Review" Type="Self.Review" Multiplicity="*" />
+          <End Type="dbCoffeeCoveModel.PaymentDetail" Role="PaymentDetail" Multiplicity="1" />
+          <End Type="dbCoffeeCoveModel.Review" Role="Review" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PaymentDetail">
               <PropertyRef Name="PaymentID" />
@@ -503,53 +519,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="dbCoffeeCoveEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Admins" EntityType="Self.Admin" />
-          <EntitySet Name="Categories" EntityType="Self.Category" />
-          <EntitySet Name="Customers" EntityType="Self.Customer" />
-          <EntitySet Name="OrderedItems" EntityType="Self.OrderedItem" />
-          <EntitySet Name="OrderPlaceds" EntityType="Self.OrderPlaced" />
-          <EntitySet Name="PaymentDetails" EntityType="Self.PaymentDetail" />
-          <EntitySet Name="Products" EntityType="Self.Product" />
-          <EntitySet Name="Reviews" EntityType="Self.Review" />
-          <EntitySet Name="Stores" EntityType="Self.Store" />
-          <AssociationSet Name="FK_Review_ToAdmin" Association="Self.FK_Review_ToAdmin">
-            <End Role="Admin" EntitySet="Admins" />
-            <End Role="Review" EntitySet="Reviews" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
-            <End Role="Category" EntitySet="Categories" />
-            <End Role="Product" EntitySet="Products" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OrderPlaced_ToCustomer" Association="Self.FK_OrderPlaced_ToCustomer">
-            <End Role="Customer" EntitySet="Customers" />
-            <End Role="OrderPlaced" EntitySet="OrderPlaceds" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Review_ToCustomer" Association="Self.FK_Review_ToCustomer">
-            <End Role="Customer" EntitySet="Customers" />
-            <End Role="Review" EntitySet="Reviews" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OrderedItem_Order" Association="Self.FK_OrderedItem_Order">
-            <End Role="OrderPlaced" EntitySet="OrderPlaceds" />
-            <End Role="OrderedItem" EntitySet="OrderedItems" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OrderedItem_Product" Association="Self.FK_OrderedItem_Product">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="OrderedItem" EntitySet="OrderedItems" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OrderPlaced_ToPickUp" Association="Self.FK_OrderPlaced_ToPickUp">
-            <End Role="Store" EntitySet="Stores" />
-            <End Role="OrderPlaced" EntitySet="OrderPlaceds" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Payment_ToOrder" Association="Self.FK_Payment_ToOrder">
-            <End Role="OrderPlaced" EntitySet="OrderPlaceds" />
-            <End Role="PaymentDetail" EntitySet="PaymentDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Review_ToPayment" Association="Self.FK_Review_ToPayment">
-            <End Role="PaymentDetail" EntitySet="PaymentDetails" />
-            <End Role="Review" EntitySet="Reviews" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -559,113 +528,115 @@
           <EntitySetMapping Name="Admins">
             <EntityTypeMapping TypeName="dbCoffeeCoveModel.Admin">
               <MappingFragment StoreEntitySet="Admin">
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="HashedPassword" ColumnName="HashedPassword" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
                 <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="HashedPassword" ColumnName="HashedPassword" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="dbCoffeeCoveModel.Category">
               <MappingFragment StoreEntitySet="Category">
-                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
-                <ScalarProperty Name="CategoryImageUrl" ColumnName="CategoryImageUrl" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CategoryImageUrl" ColumnName="CategoryImageUrl" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="dbCoffeeCoveModel.Customer">
               <MappingFragment StoreEntitySet="Customer">
-                <ScalarProperty Name="CusID" ColumnName="CusID" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
-                <ScalarProperty Name="HashedPassword" ColumnName="HashedPassword" />
-                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
-                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="ResidenceState" ColumnName="ResidenceState" />
                 <ScalarProperty Name="ProfilePicturePath" ColumnName="ProfilePicturePath" />
+                <ScalarProperty Name="ResidenceState" ColumnName="ResidenceState" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="HashedPassword" ColumnName="HashedPassword" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="CusID" ColumnName="CusID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OrderedItems">
             <EntityTypeMapping TypeName="dbCoffeeCoveModel.OrderedItem">
               <MappingFragment StoreEntitySet="OrderedItem">
-                <ScalarProperty Name="OrderedItemID" ColumnName="OrderedItemID" />
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="Size" ColumnName="Size" />
-                <ScalarProperty Name="Flavour" ColumnName="Flavour" />
-                <ScalarProperty Name="IceLevel" ColumnName="IceLevel" />
-                <ScalarProperty Name="AddOn" ColumnName="AddOn" />
-                <ScalarProperty Name="Instruction" ColumnName="Instruction" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Instruction" ColumnName="Instruction" />
+                <ScalarProperty Name="AddOn" ColumnName="AddOn" />
+                <ScalarProperty Name="IceLevel" ColumnName="IceLevel" />
+                <ScalarProperty Name="Flavour" ColumnName="Flavour" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="OrderedItemID" ColumnName="OrderedItemID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OrderPlaceds">
             <EntityTypeMapping TypeName="dbCoffeeCoveModel.OrderPlaced">
               <MappingFragment StoreEntitySet="OrderPlaced">
-                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
-                <ScalarProperty Name="CusID" ColumnName="CusID" />
-                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
-                <ScalarProperty Name="DeliveryAddress" ColumnName="DeliveryAddress" />
-                <ScalarProperty Name="OrderDateTime" ColumnName="OrderDateTime" />
+                <ScalarProperty Name="OrderType" ColumnName="OrderType" />
+                <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
                 <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="OrderDateTime" ColumnName="OrderDateTime" />
+                <ScalarProperty Name="DeliveryAddress" ColumnName="DeliveryAddress" />
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
+                <ScalarProperty Name="CusID" ColumnName="CusID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PaymentDetails">
             <EntityTypeMapping TypeName="dbCoffeeCoveModel.PaymentDetail">
               <MappingFragment StoreEntitySet="PaymentDetail">
-                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
-                <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
-                <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
+                <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="dbCoffeeCoveModel.Product">
               <MappingFragment StoreEntitySet="Product">
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
-                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
-                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Reviews">
             <EntityTypeMapping TypeName="dbCoffeeCoveModel.Review">
               <MappingFragment StoreEntitySet="Review">
-                <ScalarProperty Name="RatingReviewID" ColumnName="RatingReviewID" />
-                <ScalarProperty Name="RatingScore" ColumnName="RatingScore" />
-                <ScalarProperty Name="ReviewContent" ColumnName="ReviewContent" />
-                <ScalarProperty Name="RatingReviewDateTime" ColumnName="RatingReviewDateTime" />
-                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
-                <ScalarProperty Name="CusID" ColumnName="CusID" />
-                <ScalarProperty Name="ReplyTo" ColumnName="ReplyTo" />
                 <ScalarProperty Name="UsernameAdmin" ColumnName="UsernameAdmin" />
+                <ScalarProperty Name="ReplyTo" ColumnName="ReplyTo" />
+                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+                <ScalarProperty Name="RatingReviewDateTime" ColumnName="RatingReviewDateTime" />
+                <ScalarProperty Name="ReviewContent" ColumnName="ReviewContent" />
+                <ScalarProperty Name="RatingScore" ColumnName="RatingScore" />
+                <ScalarProperty Name="RatingReviewID" ColumnName="RatingReviewID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Stores">
             <EntityTypeMapping TypeName="dbCoffeeCoveModel.Store">
               <MappingFragment StoreEntitySet="Store">
-                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
-                <ScalarProperty Name="StoreName" ColumnName="StoreName" />
                 <ScalarProperty Name="StoreAddress" ColumnName="StoreAddress" />
+                <ScalarProperty Name="StoreName" ColumnName="StoreName" />
+                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

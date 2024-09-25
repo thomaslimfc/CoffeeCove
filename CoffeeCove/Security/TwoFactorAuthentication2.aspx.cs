@@ -53,15 +53,6 @@ namespace CoffeeCove.Security
                 string userRole = Session["UserRole"] as string;
                 Boolean rememberMe = false;
                 UserSecurity.LoginUser(username, userRole, rememberMe);
-                // Redirect based on user role
-                if (userRole == "User")
-                {
-                    Response.Redirect("~/Home/Home.aspx");
-                }
-                else if (userRole == "Admin")
-                {
-                    Response.Redirect("~/AdminSite/Dashboard.aspx");
-                }
             }
             else
             {

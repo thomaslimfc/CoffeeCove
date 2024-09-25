@@ -67,18 +67,22 @@ namespace CoffeeCove.Security
                             //send the cookie to client pc
                             Response.Cookies.Add(coo);
 
-                            if (!string.IsNullOrEmpty(customer.ContactNo))
-                            {
-                                Session["ContactNo"] = customer.ContactNo;
-                            }
-                            else
-                            {
-                                // just extra: all account must have an unique contact number
-                                Response.Redirect("~/Security/SignIn.aspx");
-                                return; // Stop further processing if no contact number is found
-                            }
                         }
-                        
+
+                        if (customer != null && !string.IsNullOrEmpty(customer.ContactNo))
+                        {
+                            Session["ContactNo"] = customer.ContactNo;
+                        }
+                        else if (admin != null && !string.IsNullOrEmpty(admin.ContactNo))
+                        {
+                            Session["ContactNo"] = admin.ContactNo;
+                        }
+                        else
+                        {
+                            // Redirect if contact number is missing for both customer and admin
+                            Response.Redirect("~/Security/SignIn.aspx");
+                            return; // Stop further processing if no contact number is found
+                        }
 
 
                         // Set a flag indicating that 2FA is required
