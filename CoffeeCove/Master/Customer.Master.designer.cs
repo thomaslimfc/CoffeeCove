@@ -70,9 +70,10 @@ namespace CoffeeCove.Master
         protected global::System.Web.UI.WebControls.Label lblCount;
         protected global::System.Web.UI.WebControls.HiddenField hdnCartCount;
         protected global::System.Web.UI.WebControls.LinkButton lbtnLogin;
-        protected global::System.Web.UI.WebControls.LinkButton lbLogin;
         protected global::System.Web.UI.WebControls.Label lblUserName;
         protected global::System.Web.UI.WebControls.Panel pnlDropdownMenu;
+        protected global::System.Web.UI.WebControls.Panel pnlLoggedIn;
+        protected global::System.Web.UI.WebControls.Panel pnlGuest;
         protected global::System.Web.UI.WebControls.HyperLink hplProfile;
         protected global::System.Web.UI.WebControls.HyperLink hplOrderHistory;
         protected global::System.Web.UI.WebControls.HyperLink hplLogout;

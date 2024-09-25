@@ -19,7 +19,6 @@
             runat="server"
             placeholder="desmundchau7668" 
             title="Username"
-            Text="thomaslim7296"
             AutoPostBack="false">
         </asp:TextBox>
         <br />
@@ -49,7 +48,6 @@
             placeholder="**********" 
             title="Password" 
             TextMode="Password"
-            Text="@aA1234567890"
             AutoPostBack="false">
         </asp:TextBox>
         <span id="PasswordToggle" class="absolute right-2 top-2 cursor-pointer">👁️</span>

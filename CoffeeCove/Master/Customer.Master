@@ -23,6 +23,7 @@
                         <DynamicHoverStyle BorderStyle="None" />
                     </asp:Menu>
                 </div>
+                <asp:Panel ID="pnlLoggedIn" runat="server">
                     <div class="headerBtn">
                         <asp:ImageButton ID="cartBtn" runat="server" ImageUrl="~/img/cartLogo.png" PostBackUrl="../Order/Cart.aspx" Width="25px" />
                         <asp:Label ID="lblCount" runat="server" Text="0" CssClass="cart-badge"></asp:Label>
@@ -44,16 +45,22 @@
                             </table>
                         </asp:LinkButton>
 
-                        <asp:LinkButton ID="lbLogin" runat="server" OnClick="lbLogin_Click">Log In</asp:LinkButton>
-
                         <asp:Panel ID="pnlDropdownMenu" runat="server" CssClass="dropdown-content" Visible="false">
                             <asp:HyperLink ID="lnkProfile" runat="server" NavigateUrl="~/UserManagement/UserProfile.aspx">Profile</asp:HyperLink><br />
                             <asp:HyperLink ID="lnkOrderHistory" runat="server" NavigateUrl="~/Order/orderHistory.aspx">Order History</asp:HyperLink><br />
-                            <asp:LoginStatus ID="LoginStatus1" runat="server"/>
+                            <asp:LoginStatus ID="LoginStatus1" runat="server" />
                         </asp:Panel>
-                    
+
                     </div>
-                
+                </asp:Panel>
+                <asp:Panel ID="pnlGuest" runat="server">
+                    <div class="headerBtn">
+                            <asp:LoginStatus ID="LoginStatus2" runat="server" />
+
+                    </div>
+
+                </asp:Panel>
+
             </div>
         </div>
 
@@ -64,7 +71,7 @@
         </div>
 
         <!--footer-->
-        <div id="footer" style=" font-size: 17px; font-weight: 500; color: #FFFFFF; top: 0px; left: 0px;">
+        <div id="footer" style="font-size: 17px; font-weight: 500; color: #FFFFFF; top: 0px; left: 0px;">
             <div class="footerContainer">
                 <div>
                     <h4>Quick Links</h4>
@@ -85,9 +92,9 @@
                 </div>
                 <div>
                     <h4>Follow Us</h4>
-                    <asp:ImageButton ID="facebookBtn" runat="server" ImageUrl="~/img/facebook.png" PostBackUrl="https://www.facebook.com" EnableTheming="True" Width="25px" Height="25px" CssClass="SocialImg"/>
-                    <asp:ImageButton ID="instaBtn" runat="server" ImageUrl="~/img/instagram.png" PostBackUrl="https://www.instagram.com" Width="25px" Height="25px" CssClass="SocialImg"/>
-                    <asp:ImageButton ID="twitterBtn" runat="server" ImageUrl="~/img/twitter.png" PostBackUrl="https://www.twitter.com" Width="25px" Height="25px" CssClass="SocialImg"/>
+                    <asp:ImageButton ID="facebookBtn" runat="server" ImageUrl="~/img/facebook.png" PostBackUrl="https://www.facebook.com" EnableTheming="True" Width="25px" Height="25px" CssClass="SocialImg" />
+                    <asp:ImageButton ID="instaBtn" runat="server" ImageUrl="~/img/instagram.png" PostBackUrl="https://www.instagram.com" Width="25px" Height="25px" CssClass="SocialImg" />
+                    <asp:ImageButton ID="twitterBtn" runat="server" ImageUrl="~/img/twitter.png" PostBackUrl="https://www.twitter.com" Width="25px" Height="25px" CssClass="SocialImg" />
                 </div>
             </div>
             <div class="footerBottom" style="font-size: 15px; font-weight: 300; color: #FFFFFF; background-color: #2a2a2a;">

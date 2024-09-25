@@ -15,15 +15,15 @@ namespace CoffeeCove.Master
         string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Context.User.Identity.IsAuthenticated) // Use Context.User if User is not accessible
+            if (Context.User.Identity.IsAuthenticated)
             {
-                lbtnLogin.Visible = true;  // Show logged-in panel
-                lbLogin.Visible = false; // Hide logged-out panel
+                pnlLoggedIn.Visible = true;
+                pnlGuest.Visible = false;
             }
             else
             {
-                lbtnLogin.Visible = false; // Hide logged-in panel
-                lbLogin.Visible = true;  // Show logged-out panel
+                pnlLoggedIn.Visible = false;
+                pnlGuest.Visible = true;
             }
 
             //retrieve cookie
@@ -79,11 +79,6 @@ namespace CoffeeCove.Master
             // Toggle the visibility of the dropdown menu panel
             pnlDropdownMenu.Visible = !pnlDropdownMenu.Visible;
             ViewState["DropdownVisible"] = pnlDropdownMenu.Visible;
-        }
-
-        protected void lbLogin_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/Security/SignIn.aspx");
         }
     }
 }
