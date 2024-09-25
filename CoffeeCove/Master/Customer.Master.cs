@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
@@ -16,13 +17,13 @@ namespace CoffeeCove.Master
         {
             if (Context.User.Identity.IsAuthenticated) // Use Context.User if User is not accessible
             {
-                pnlLoggedIn.Visible = true;  // Show logged-in panel
-                pnlGuest.Visible = false; // Hide logged-out panel
+                pnLoggedIn.Visible = true;  // Show logged-in panel
+                pnGuest.Visible = false; // Hide logged-out panel
             }
             else
             {
-                pnlLoggedIn.Visible = false; // Hide logged-in panel
-                pnlGuest.Visible = true;  // Show logged-out panel
+                pnLoggedIn.Visible = false; // Hide logged-in panel
+                pnGuest.Visible = true;  // Show logged-out panel
             }
 
             //retrieve cookie

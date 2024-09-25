@@ -23,7 +23,7 @@
                         <DynamicHoverStyle BorderStyle="None" />
                     </asp:Menu>
                 </div>
-                <asp:Panel ID="pnlLoggedIn" runat="server">
+                <asp:Panel ID="pnLoggedIn" runat="server" Visible="false">
                     <div class="headerBtn">
                         <asp:ImageButton ID="cartBtn" runat="server" ImageUrl="~/img/cartLogo.png" PostBackUrl="../Order/Cart.aspx" Width="25px" />
                         <asp:Label ID="lblCount" runat="server" Text="0" CssClass="cart-badge"></asp:Label>
@@ -53,7 +53,7 @@
                     
                     </div>
                 </asp:Panel>
-                <asp:Panel ID="pnlGuest" runat="server">
+                <asp:Panel ID="pnGuest" runat="server" Visible="true">
                     <div class="headerBtn">
                         <asp:LoginStatus ID="LoginStatus2" runat="server"/>
     
