@@ -20,17 +20,17 @@ namespace CoffeeCove.Order
 
         private void BindOrderHistory()
         {
-            int cusId = (int)(Session["CusID"] ?? 0);
+            int cusId = Convert.ToInt32(Session["CusID"] ?? 0);
 
             using (SqlConnection conn = new SqlConnection(cs))
             {
                 string query = @"
-            SELECT O.*, PD.PaymentID
-            FROM [OrderPlaced] O
-            LEFT JOIN PaymentDetail PD ON O.OrderID = PD.OrderID
-            WHERE O.CusID = @CusID
-            AND O.OrderStatus IS NOT NULL
-            AND O.OrderStatus IN ('Order Delivered', 'Preparing Your Meal', 'Your Order is Out for Delivery', 'Order Received')";
+        SELECT O.*, PD.PaymentID
+        FROM [OrderPlaced] O
+        LEFT JOIN PaymentDetail PD ON O.OrderID = PD.OrderID
+        WHERE O.CusID = @CusID
+        AND O.OrderStatus IS NOT NULL
+        AND O.OrderStatus IN ('Order Delivered', 'Preparing Your Meal', 'Your Order is Out for Delivery', 'Order Received')";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -118,11 +118,34 @@ namespace CoffeeCove.Order
             using (SqlConnection conn = new SqlConnection(cs))
             {
                 string query = @"UPDATE [OrderPlaced] 
-                    SET OrderStatus = @OrderStatus
-                    WHERE OrderID = @OrderID";
+                         SET OrderStatus = @OrderStatus
+                         WHERE OrderID = @OrderID";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@OrderStatus", newStatus);
+                    cmd.Parameters.AddWithValue("@OrderID", orderId);
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+            // If the new status is "Order Delivered", update the PaymentStatus to "Complete"
+            if (newStatus == "Order Delivered")
+            {
+                UpdatePaymentStatus(orderId, "Complete");
+            }
+        }
+
+        private void UpdatePaymentStatus(int orderId, string paymentStatus)
+        {
+            using (SqlConnection conn = new SqlConnection(cs))
+            {
+                string query = @"UPDATE PaymentDetail 
+                         SET PaymentStatus = @PaymentStatus
+                         WHERE OrderID = @OrderID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@PaymentStatus", paymentStatus);
                     cmd.Parameters.AddWithValue("@OrderID", orderId);
                     conn.Open();
                     cmd.ExecuteNonQuery();

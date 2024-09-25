@@ -13,7 +13,6 @@ namespace CoffeeCove.RatingReview
     {
         string cs = Global.CS;
 
-        int customerID = 11;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -92,7 +91,6 @@ namespace CoffeeCove.RatingReview
                 using (SqlCommand checkCmd = new SqlCommand(checkQuery, conn))
                 {
                     checkCmd.Parameters.AddWithValue("@PaymentID", paymentID);
-                    checkCmd.Parameters.AddWithValue("@CusID", customerID);
 
                     conn.Open();
                     int reviewExists = (int)checkCmd.ExecuteScalar();
@@ -111,7 +109,6 @@ namespace CoffeeCove.RatingReview
                             updateCmd.Parameters.AddWithValue("@ReviewContent", reviewContent);
                             updateCmd.Parameters.AddWithValue("@RatingReviewDateTime", DateTime.Now);
                             updateCmd.Parameters.AddWithValue("@PaymentID", paymentID);
-                            updateCmd.Parameters.AddWithValue("@CusID", customerID);
 
                             updateCmd.ExecuteNonQuery();
                         }
@@ -128,7 +125,6 @@ namespace CoffeeCove.RatingReview
                             insertCmd.Parameters.AddWithValue("@ReviewContent", reviewContent);
                             insertCmd.Parameters.AddWithValue("@RatingReviewDateTime", DateTime.Now);
                             insertCmd.Parameters.AddWithValue("@PaymentID", paymentID);
-                            insertCmd.Parameters.AddWithValue("@CusID", customerID);
 
                             insertCmd.ExecuteNonQuery();
                         }

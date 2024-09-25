@@ -9,7 +9,7 @@
 
         <div id="rateContainer" class="bg-white rounded shadow-sm p-4 mb-5 rating-review-select-page">
             <h3 class="mb-4">Leave Comment</h3>
-            <p class="mb-2">Rate the Place</p>
+            <p class="mb-2">Rate the Order</p>
             <div class="mb-4">
                 <!-- Rating Score Selection -->
                 <asp:RadioButtonList ID="rblRating" runat="server" CssClass="rating" RepeatDirection="Horizontal" Width="800px">

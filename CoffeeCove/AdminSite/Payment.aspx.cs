@@ -32,14 +32,24 @@ namespace CoffeeCove.AdminSite
                 LinkButton lnkUpdate = (LinkButton)e.Row.FindControl("lnkUpdate");
                 LinkButton lnkCancel = (LinkButton)e.Row.FindControl("lnkCancel");
 
-                // Get the PaymentStatus value
+                // Get the PaymentStatus and PaymentMethod values
                 string paymentStatus = DataBinder.Eval(e.Row.DataItem, "PaymentStatus").ToString().Trim();
+                string paymentMethod = DataBinder.Eval(e.Row.DataItem, "PaymentMethod").ToString().Trim();
 
                 // Check the status and control the visibility of buttons
                 if (paymentStatus == "Pending")
                 {
-                    lnkUpdate.Visible = true;
-                    lnkCancel.Visible = true;
+                    // Show lnkCancel button if PaymentMethod is NULL or empty
+                    if (string.IsNullOrEmpty(paymentMethod))
+                    {
+                        lnkUpdate.Visible = false;
+                        lnkCancel.Visible = true;
+                    }
+                    else
+                    {
+                        lnkUpdate.Visible = true;
+                        lnkCancel.Visible = true;
+                    }
                 }
                 else
                 {
@@ -73,11 +83,40 @@ namespace CoffeeCove.AdminSite
         protected void ddlFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
             string filterCondition = ddlFilter.SelectedValue;
+
+            // Save filter condition in ViewState
+            ViewState["FilterCondition"] = filterCondition;
+
+            // Call the method to bind filtered payment data
+            BindPaymentWithFilter(filterCondition);
+        }
+
+        protected void gvPayment_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            // Set the new page index
+            gvPayment.PageIndex = e.NewPageIndex;
+
+            // Check if a filter condition is stored in ViewState
+            if (ViewState["FilterCondition"] != null)
+            {
+                string filterCondition = ViewState["FilterCondition"].ToString();
+                BindPaymentWithFilter(filterCondition);
+            }
+            else
+            {
+                // If no filter is selected, bind the normal payment data
+                BindPayment();
+            }
+        }
+
+        private void BindPaymentWithFilter(string filterCondition)
+        {
             string sql = @"
         SELECT pd.PaymentID, pd.PaymentMethod, pd.PaymentStatus, pd.OrderID, op.OrderDateTime, op.TotalAmount
         FROM PaymentDetail pd
         INNER JOIN OrderPlaced op ON pd.OrderID = op.OrderID";
 
+            // Apply the filter condition
             if (filterCondition == "True")
             {
                 sql += " WHERE pd.PaymentStatus = 'Pending'";
@@ -106,14 +145,6 @@ namespace CoffeeCove.AdminSite
             }
         }
 
-        protected void gvPayment_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            // Set the new page index
-            gvPayment.PageIndex = e.NewPageIndex;
-
-            BindPayment();
-        }
-
         protected void gvPayment_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "UpdateStatus")
@@ -121,22 +152,25 @@ namespace CoffeeCove.AdminSite
                 // Get the PaymentID from the CommandArgument
                 int paymentId = Convert.ToInt32(e.CommandArgument);
 
-                // Call method to update the PaymentStatus to 'Complete'
-                UpdatePaymentStatus(paymentId);
+                // Call method to update the PaymentStatus to 'Complete' and OrderStatus to 'Order Delivered'
+                UpdatePaymentAndOrderStatus(paymentId);
             }
             else if (e.CommandName == "CancelPayment")
             {
                 // Get the PaymentID from the CommandArgument
                 int paymentId = Convert.ToInt32(e.CommandArgument);
 
-                // Call method to cancel the payment
+                // Call method to cancel the payment and update OrderStatus
                 CancelPayment(paymentId);
             }
         }
 
-        private void UpdatePaymentStatus(int paymentId)
+        private void UpdatePaymentAndOrderStatus(int paymentId)
         {
-            string updateSql = "UPDATE PaymentDetail SET PaymentStatus = 'Complete' WHERE PaymentID = @PaymentID";
+            string updateSql = @"
+        UPDATE PaymentDetail SET PaymentStatus = 'Complete' WHERE PaymentID = @PaymentID;
+        UPDATE OrderPlaced SET OrderStatus = 'Order Delivered' 
+        WHERE OrderID = (SELECT OrderID FROM PaymentDetail WHERE PaymentID = @PaymentID)";
 
             using (SqlConnection con = new SqlConnection(cs))
             {
@@ -154,14 +188,17 @@ namespace CoffeeCove.AdminSite
             BindPayment();
 
             // Optionally, show a success message
-            lblMsg.Text = "Payment status complete successfully.";
+            lblMsg.Text = "Payment status updated to Complete and order marked as Delivered successfully.";
             lblMsg.CssClass = "alert alert-success";
             lblMsg.Visible = true;
         }
 
         private void CancelPayment(int paymentId)
         {
-            string updateSql = "UPDATE PaymentDetail SET PaymentStatus = 'Cancel' WHERE PaymentID = @PaymentID";
+            string updateSql = @"
+        UPDATE PaymentDetail SET PaymentStatus = 'Cancel' WHERE PaymentID = @PaymentID;
+        UPDATE OrderPlaced SET OrderStatus = 'Order Cancelled' 
+        WHERE OrderID = (SELECT OrderID FROM PaymentDetail WHERE PaymentID = @PaymentID)";
 
             using (SqlConnection con = new SqlConnection(cs))
             {
@@ -179,7 +216,7 @@ namespace CoffeeCove.AdminSite
             BindPayment();
 
             // Optionally, show a success message
-            lblMsg.Text = "Payment status cancel successfully.";
+            lblMsg.Text = "Payment status cancelled successfully.";
             lblMsg.CssClass = "alert alert-success";
             lblMsg.Visible = true;
         }
@@ -193,8 +230,22 @@ namespace CoffeeCove.AdminSite
             // Check if the dates are valid
             if (DateTime.TryParse(txtFrom.Text, out fromDate) && DateTime.TryParse(txtTo.Text, out toDate))
             {
-                // Call a method to bind the payments based on the date range
-                BindPaymentByDate(fromDate, toDate);
+                // Validate that fromDate is not greater than toDate
+                if (fromDate > toDate)
+                {
+                    // Show an error message if fromDate is greater than toDate
+                    lblMsg.Text = "End date must be after the start date.";
+                    lblMsg.CssClass = "alert alert-danger";
+                    lblMsg.Visible = true;
+                }
+                else
+                {
+                    // Call a method to bind the payments based on the date range
+                    BindPaymentByDate(fromDate, toDate);
+
+                    // Optionally hide the message if the search is successful
+                    lblMsg.Visible = false;
+                }
             }
             else
             {

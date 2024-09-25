@@ -124,6 +124,16 @@ namespace CoffeeCove.RatingReview
             }
         }
 
+        protected void btnEdit_Click(object sender, EventArgs e)
+        {
+            // Get the button that triggered the event
+            Button btn = (Button)sender;
+            // Get the RatingReviewID from the CommandArgument
+            int ratingReviewID = Convert.ToInt32(btn.CommandArgument);
+            // Redirect to editComment.aspx with RatingReviewID as a query string parameter
+            Response.Redirect($"~/RatingReview/editComment.aspx?RatingReviewID={ratingReviewID}");
+        }
+
         protected void btnDelete_Click(object sender, EventArgs e)
         {
             // Get the button that triggered the event

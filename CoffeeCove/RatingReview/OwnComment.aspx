@@ -32,7 +32,8 @@
                                         <p><%# Eval("ReviewContent") %></p>
                                     </div>
                                     <div class="d-flex justify-content-end mt-2">
-                                        <asp:Button ID="btnEdit" runat="server" CssClass="btn btn-primary mr-2" Text="Edit" />
+                                        <asp:Button ID="btnEdit" runat="server" CssClass="btn btn-primary mr-2" Text="Edit" OnClick="btnEdit_Click" 
+                                            CommandArgument='<%# Eval("RatingReviewID") %>' />
                                         <asp:Button ID="btnDelete" runat="server" CssClass="btn btn-danger" Text="Delete" OnClick="btnDelete_Click" 
                                             CommandArgument='<%# Eval("RatingReviewID") %>' OnClientClick="return confirm('Are you sure you want to delete this comment?');" />
                                     </div>

@@ -725,6 +725,7 @@
     <Content Include="Payment\paymentOpt.aspx" />
     <Content Include="Payment\paymentSuccess.aspx" />
     <Content Include="RatingReview\comment.aspx" />
+    <Content Include="RatingReview\editComment.aspx" />
     <Content Include="RatingReview\OwnComment.aspx" />
     <Content Include="RatingReview\ratingReview.aspx" />
     <Content Include="Security\ForgotPassword2Factor.aspx" />
@@ -957,6 +958,13 @@
     </Compile>
     <Compile Include="RatingReview\comment.aspx.designer.cs">
       <DependentUpon>comment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RatingReview\editComment.aspx.cs">
+      <DependentUpon>editComment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RatingReview\editComment.aspx.designer.cs">
+      <DependentUpon>editComment.aspx</DependentUpon>
     </Compile>
     <Compile Include="RatingReview\OwnComment.aspx.cs">
       <DependentUpon>OwnComment.aspx</DependentUpon>
