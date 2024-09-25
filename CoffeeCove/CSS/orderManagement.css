@@ -21,6 +21,10 @@
     background-color: #fff; /* White background for odd rows */
 }
 
+#excludeTable tr:nth-child(odd), #excludeTable tr:nth-child(even) {
+    background-color: inherit;
+}
+
 #cartTitle th {
     text-align: center;
 }

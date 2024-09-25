@@ -23,32 +23,42 @@
                         <DynamicHoverStyle BorderStyle="None" />
                     </asp:Menu>
                 </div>
-                <div class="headerBtn">
-                    <asp:ImageButton ID="cartBtn" runat="server" ImageUrl="~/img/cartLogo.png" PostBackUrl="../Order/Cart.aspx" Width="25px" />
-                    <asp:Label ID="lblCount" runat="server" Text="0" CssClass="cart-badge"></asp:Label>
-                    <asp:HiddenField ID="hdnCartCount" runat="server" Value="0" />
-                    <asp:LinkButton ID="lbtnLogin" runat="server" CssClass="loginContainer" OnClick="lbtnLogin_Click" CausesValidation="false">
-                        <table>
-                            <tr>
-                                <td style="padding-right: 10px; padding-left: 10px">
-                                    <asp:Image ID="ImgUser" runat="server" ImageUrl="../img/user.png" CssClass="UserIcon" />
-                                </td>
-                                <td>
-                                    <asp:Label ID="lblUserName" runat="server" Text="" ForeColor="White" Font-Size="17px" CssClass="Username"></asp:Label>
-                                </td>
-                                <td>
-                                    <img src="../img/down-white.png" class="dropdown-icon" />
-                                </td>
-                            </tr>
-                        </table>
-                    </asp:LinkButton>
+                <asp:Panel ID="pnlLoggedIn" runat="server">
+                    <div class="headerBtn">
+                        <asp:ImageButton ID="cartBtn" runat="server" ImageUrl="~/img/cartLogo.png" PostBackUrl="../Order/Cart.aspx" Width="25px" />
+                        <asp:Label ID="lblCount" runat="server" Text="0" CssClass="cart-badge"></asp:Label>
+                        <asp:HiddenField ID="hdnCartCount" runat="server" Value="0" />
 
-                    <asp:Panel ID="pnlDropdownMenu" runat="server" CssClass="dropdown-content" Visible="false">
-                        <asp:HyperLink ID="lnkProfile" runat="server" NavigateUrl="~/UserManagement/UserProfile.aspx">Profile</asp:HyperLink><br />
-                        <asp:HyperLink ID="lnkOrderHistory" runat="server" NavigateUrl="~/Order/orderHistory.aspx">Order History</asp:HyperLink><br />
-                        <asp:LoginStatus ID="LoginStatus1" runat="server" />
-                    </asp:Panel>
-                </div>
+                        <asp:LinkButton ID="lbtnLogin" runat="server" CssClass="loginContainer" OnClick="lbtnLogin_Click" CausesValidation="false">
+                            <table>
+                                <tr>
+                                    <td style="padding-right: 10px; padding-left: 10px">
+                                        <asp:Image ID="ImgUser" runat="server" ImageUrl="../img/user.png" CssClass="UserIcon" />
+                                    </td>
+                                    <td>
+                                        <asp:Label ID="lblUserName" runat="server" Text="" ForeColor="White" Font-Size="17px" CssClass="Username"></asp:Label>
+                                    </td>
+                                    <td>
+                                        <img src="../img/down-white.png" class="dropdown-icon" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </asp:LinkButton>
+
+                        <asp:Panel ID="pnlDropdownMenu" runat="server" CssClass="dropdown-content" Visible="false">
+                            <asp:HyperLink ID="lnkProfile" runat="server" NavigateUrl="~/UserManagement/UserProfile.aspx">Profile</asp:HyperLink><br />
+                            <asp:HyperLink ID="lnkOrderHistory" runat="server" NavigateUrl="~/Order/orderHistory.aspx">Order History</asp:HyperLink><br />
+                            <asp:LoginStatus ID="LoginStatus1" runat="server"/>
+                        </asp:Panel>
+                    
+                    </div>
+                </asp:Panel>
+                <asp:Panel ID="pnlGuest" runat="server">
+                    <div class="headerBtn">
+                        <asp:LoginStatus ID="LoginStatus2" runat="server"/>
+    
+                    </div>
+                </asp:Panel>
             </div>
         </div>
 

@@ -20,7 +20,7 @@ namespace CoffeeCove.Order
 
         private void BindOrderHistory()
         {
-            int cusId = (int)(Session["CusID"] ?? 0);
+            string cusId = Session["CusID"].ToString();
 
             using (SqlConnection conn = new SqlConnection(cs))
             {
