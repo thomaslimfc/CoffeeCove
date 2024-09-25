@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Web;
 using System.Web.UI;
 
 using CoffeeCove.Securities;
@@ -40,6 +41,12 @@ namespace CoffeeCove.Security
                         if (customer != null)
                         {
                             Session["CusID"] = customer.CusID;
+                            //create cookies
+                            HttpCookie coo = new HttpCookie("CusID", customer.CusID.ToString());
+                            //coo.Expires = DateTime.Now.AddMinutes(1);
+
+                            //send the cookie to client pc
+                            Response.Cookies.Add(coo);
 
                             if (!string.IsNullOrEmpty(customer.ContactNo))
                             {
@@ -52,6 +59,10 @@ namespace CoffeeCove.Security
                                 return; // Stop further processing if no contact number is found
                             }
                         }
+
+                        string userRole = Session["UserRole"].ToString();
+                        Boolean rememberMe = false;
+                        UserSecurity.LoginUser(username, userRole, rememberMe);
 
                         // Set a flag indicating that 2FA is required
                         Session["2FARequired"] = true;

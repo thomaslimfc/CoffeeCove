@@ -48,7 +48,7 @@
                     <asp:Panel ID="pnlDropdownMenu" runat="server" CssClass="dropdown-content" Visible="false">
                         <asp:HyperLink ID="lnkProfile" runat="server" NavigateUrl="~/UserManagement/UserProfile.aspx">Profile</asp:HyperLink><br />
                         <asp:HyperLink ID="lnkOrderHistory" runat="server" NavigateUrl="~/Order/orderHistory.aspx">Order History</asp:HyperLink><br />
-                        <asp:HyperLink ID="lnkLogin" runat="server" NavigateUrl="~/Security/SignIn.aspx">Login</asp:HyperLink>
+                        <asp:LoginStatus ID="LoginStatus1" runat="server" />
                     </asp:Panel>
                 </div>
             </div>

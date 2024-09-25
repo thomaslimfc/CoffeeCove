@@ -14,6 +14,17 @@ namespace CoffeeCove.Master
         string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
+            //retrieve cookie
+            HttpCookie coo = Request.Cookies["CusID"];
+
+            if (coo != null)
+            {
+                if (Session["CusID"] != null)
+                {
+                    Session["CusID"] = coo;
+                }
+                
+            }
 
             if (IsPostBack)
             {
