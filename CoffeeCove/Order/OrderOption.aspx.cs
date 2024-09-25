@@ -89,42 +89,52 @@ namespace CoffeeCove.Order
             //txtUnit.Text = "8A-15-1";
         }
 
-        protected void lbConfirmPickUp_Click(object sender, EventArgs e)
+        protected void createOrderID()
         {
-            if (Session["access"] == null) //if its their firstTime come here
-            {
-                Session["access"] = 1; //set its session
-
-                //retrieve cusID from session
-                string cusID = Session["CusID"].ToString();
-                //create an orderID for it
-                SqlConnection conn3 = new SqlConnection(cs);
-                string sql3 = @"INSERT INTO OrderPlaced(CusID,OrderDateTime,TotalAmount,OrderType) 
+            //retrieve cusID from session
+            string cusID = Session["CusID"].ToString();
+            //create an orderID for it
+            SqlConnection conn3 = new SqlConnection(cs);
+            string sql3 = @"INSERT INTO OrderPlaced(CusID,OrderDateTime,TotalAmount,OrderType) 
                                 VALUES (@cusID,@dateTime,0,'Pick Up');
                                 SELECT SCOPE_IDENTITY();";
 
-                SqlCommand cmd3 = new SqlCommand(sql3, conn3);
-                cmd3.Parameters.AddWithValue("@cusID", cusID);
-                cmd3.Parameters.AddWithValue("@dateTime", DateTime.Now);
-                conn3.Open();
+            SqlCommand cmd3 = new SqlCommand(sql3, conn3);
+            cmd3.Parameters.AddWithValue("@cusID", cusID);
+            cmd3.Parameters.AddWithValue("@dateTime", DateTime.Now);
+            conn3.Open();
 
-                object newOrderID = cmd3.ExecuteScalar();
+            object newOrderID = cmd3.ExecuteScalar();
 
 
-                int orderId = Convert.ToInt32(newOrderID);
+            int orderId = Convert.ToInt32(newOrderID);
 
-                string sql4 = @"INSERT INTO PaymentDetail(PaymentStatus,OrderID) 
+            string sql4 = @"INSERT INTO PaymentDetail(PaymentStatus,OrderID) 
                                 VALUES ('Pending',@orderId)";
 
-                SqlCommand cmd4 = new SqlCommand(sql4, conn3);
-                cmd4.Parameters.AddWithValue("@orderId", orderId.ToString());
-                cmd4.ExecuteNonQuery();
+            SqlCommand cmd4 = new SqlCommand(sql4, conn3);
+            cmd4.Parameters.AddWithValue("@orderId", orderId.ToString());
+            cmd4.ExecuteNonQuery();
 
-                Session["OrderID"] = orderId;
+            Session["OrderID"] = orderId;
 
-                conn3.Close();
+            conn3.Close();
+        }
+
+        protected void lbConfirmPickUp_Click(object sender, EventArgs e)
+        {
+            if (Session["access"] == null) //if its their firstTime come here or second time but dont have order ID
+            {
+                Session["access"] = 1; //set its session
+
+                createOrderID();
             }
 
+            if (Session["OrderID"] == null)
+            {
+                //if dont have orderID even thou its their second time enter
+                createOrderID();
+            }
 
             int orderID = (int)Session["OrderID"];
             //put the pickup Store inside the database

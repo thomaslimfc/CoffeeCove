@@ -19,11 +19,7 @@ namespace CoffeeCove.Master
 
             if (coo != null)
             {
-                if (Session["CusID"] != null)
-                {
-                    Session["CusID"] = coo;
-                }
-                
+                Session["CusID"] = coo.ToString();
             }
 
             if (IsPostBack)
