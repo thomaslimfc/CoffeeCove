@@ -24,7 +24,7 @@ namespace CoffeeCove.Security
 
         protected void VerifyButton_FPTF_Click(object sender, EventArgs e)
         {
-            string userInputOtp = otp_FPTF.Text;
+            string userInputOtp = otp_FPTF.Text.Trim();
 
             if (userInputOtp == OTP_FP)
             {
