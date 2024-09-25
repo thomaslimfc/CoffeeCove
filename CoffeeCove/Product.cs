@@ -20,7 +20,7 @@ namespace CoffeeCove
             this.OrderedItems = new HashSet<OrderedItem>();
         }
     
-        public string ProductId { get; set; }
+        public int ProductId { get; set; }
         public string ProductName { get; set; }
         public string Description { get; set; }
         public Nullable<decimal> UnitPrice { get; set; }

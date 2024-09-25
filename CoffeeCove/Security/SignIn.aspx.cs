@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Web;
 using System.Web.UI;
 
 using CoffeeCove.Securities;
@@ -12,6 +13,25 @@ namespace CoffeeCove.Security
         protected void Page_Load(object sender, EventArgs e)
         {
             Session.Clear();
+            //remove the cookie of orderID
+            HttpCookie cookie = Request.Cookies["OrderID"];
+            HttpCookie cookieCus = Request.Cookies["CusID"];
+            if (cookie != null)
+            {
+                // Set the cookie's expiration date to a time in the past
+                cookie.Expires = DateTime.Now.AddDays(-1);
+
+                // Add the cookie to the Response to overwrite the existing cookie
+                Response.Cookies.Add(cookie);
+            }
+            if (cookieCus != null)
+            {
+                // Set the cookie's expiration date to a time in the past
+                cookieCus.Expires = DateTime.Now.AddDays(-1);
+
+                // Add the cookie to the Response to overwrite the existing cookie
+                Response.Cookies.Add(cookieCus);
+            }
         }
 
         protected void SignInButton_SI_Click(object sender, EventArgs e)
@@ -27,30 +47,41 @@ namespace CoffeeCove.Security
                     var customer = db.Customers.SingleOrDefault(c => c.Username == username && c.HashedPassword == password);
 
                     // Check for a matching admin
-                    var admin = db.Admins.SingleOrDefault(a => a.Username == username && a.HashedPassword == Password_SI.Text);
+                    var admin = db.Admins.SingleOrDefault(a => a.Username == username && a.HashedPassword == password);
 
                     // Should be identity of customer or admin
                     if (customer != null || admin != null)
                     {
                         // Store user role and username in session
                         Session["Username"] = username;
-                        Session["UserRole"] = customer != null ? "Customer" : "Admin";
+                        Session["UserRole"] = customer != null ? "User" : "Admin";
 
                         // need to check with customer only, becoz admin no CusID
                         if (customer != null)
                         {
                             Session["CusID"] = customer.CusID;
+                            //create cookies
+                            HttpCookie coo = new HttpCookie("CusID", customer.CusID.ToString());
+                            //coo.Expires = DateTime.Now.AddMinutes(1);
 
-                            if (!string.IsNullOrEmpty(customer.ContactNo))
-                            {
-                                Session["ContactNo"] = customer.ContactNo;
-                            }
-                            else
-                            {
-                                // just extra: all account must have an unique contact number
-                                Response.Redirect("~/Security/SignIn.aspx");
-                                return; // Stop further processing if no contact number is found
-                            }
+                            //send the cookie to client pc
+                            Response.Cookies.Add(coo);
+
+                        }
+
+                        if (customer != null && !string.IsNullOrEmpty(customer.ContactNo))
+                        {
+                            Session["ContactNo"] = customer.ContactNo;
+                        }
+                        else if (admin != null && !string.IsNullOrEmpty(admin.ContactNo))
+                        {
+                            Session["ContactNo"] = admin.ContactNo;
+                        }
+                        else
+                        {
+                            // Redirect if contact number is missing for both customer and admin
+                            Response.Redirect("~/Security/SignIn.aspx");
+                            return; // Stop further processing if no contact number is found
                         }
 
                         // Set a flag indicating that 2FA is required

@@ -975,6 +975,7 @@
     <Compile Include="Review.cs">
       <DependentUpon>dbCoffeeCoveEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="UserSecurity.cs" />
     <Compile Include="Security\dbCoffeeCoveEntities.cs" />
     <Compile Include="Security\ForgotPassword2Factor.aspx.cs">
       <DependentUpon>ForgotPassword2Factor.aspx</DependentUpon>

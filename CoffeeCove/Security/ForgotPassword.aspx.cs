@@ -1,4 +1,5 @@
-﻿using CoffeeCove.Master;
+﻿using AjaxControlToolkit.HTMLEditor.ToolbarButton;
+using CoffeeCove.Master;
 using PayPal.Log;
 using System;
 using System.Linq;
@@ -28,8 +29,11 @@ namespace CoffeeCove.Security
                     // Check for a matching customer
                     var customer = db.Customers.SingleOrDefault(c => c.ContactNo == contactNo);
 
+                    // Check for a matching admin
+                    var admin = db.Admins.SingleOrDefault(a => a.ContactNo == contactNo);
+
                     // If not identity of customer or admin
-                    if (customer != null)
+                    if (customer != null || admin != null)
                     {
                         Session["ContactNo_FP"] = contactNo;
 

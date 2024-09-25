@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using System.Net.PeerToPeer;
+using System.Web;
 using System.Web.UI;
 using CoffeeCove.Securities;
 
@@ -27,9 +29,15 @@ namespace CoffeeCove.Security
                     {
                         // Store user details in session
                         Session["Username"] = customer.Username;
-                        Session["UserRole"] = "Customer";
+                        Session["UserRole"] = "User";
                         Session["CusID"] = customer.CusID;
                         Session["ContactNo"] = customer.ContactNo;
+                        //create cookies
+                        HttpCookie coo = new HttpCookie("CusID", customer.CusID.ToString());
+                        //coo.Expires = DateTime.Now.AddMinutes(1);
+
+                        //send the cookie to client pc
+                        Response.Cookies.Add(coo);
 
                         // Set a flag indicating that 2FA is required
                         Session["2FARequired"] = true;

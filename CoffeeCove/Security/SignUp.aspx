@@ -315,25 +315,24 @@
     
     <!-- Residence State -->
     <div class="mb-4">
-        <label for="location" class="block text-sm text-muted-foreground">Residence State</label>
+        <label for="location" class="block text-sm text-muted-foreground">Residence Area</label>
         <asp:DropDownList ID="location" 
             runat="server" 
             CssClass="mt-1 p-2 border border-border rounded w-full"
             ValidationGroup="SignUp">
             <asp:ListItem Text="~ Select a location ~" Value="" />
-            <asp:ListItem>Selangor</asp:ListItem>
-            <asp:ListItem>Penang</asp:ListItem>
-            <asp:ListItem>Johor</asp:ListItem>
-            <asp:ListItem>Malacca</asp:ListItem>
-            <asp:ListItem>Negeri Sembilan</asp:ListItem>
-            <asp:ListItem>Pahang</asp:ListItem>
-            <asp:ListItem>Perak</asp:ListItem>
-            <asp:ListItem>Kedah</asp:ListItem>
-            <asp:ListItem>Kelantan</asp:ListItem>
-            <asp:ListItem>Terengganu</asp:ListItem>
-            <asp:ListItem>Perlis</asp:ListItem>
-            <asp:ListItem>Sarawak</asp:ListItem>
-            <asp:ListItem>Sabah</asp:ListItem>
+            <asp:ListItem>Batu Feringggi</asp:ListItem>
+            <asp:ListItem>Tanjung Bungah</asp:ListItem>
+            <asp:ListItem>Tanjung Tokong</asp:ListItem>
+            <asp:ListItem>Pulau Tikus</asp:ListItem>
+            <asp:ListItem>George Town</asp:ListItem>
+            <asp:ListItem>Batu Lancang</asp:ListItem>
+            <asp:ListItem>Air Itam</asp:ListItem>
+            <asp:ListItem>Paya Terubong</asp:ListItem>
+            <asp:ListItem>Jelutong</asp:ListItem>
+            <asp:ListItem>Gelugor</asp:ListItem>
+            <asp:ListItem>Batu Maung</asp:ListItem>
+            <asp:ListItem>Bayan Lepas</asp:ListItem>
         </asp:DropDownList>
         <asp:RequiredFieldValidator 
             ID="location_rqdValidator" 

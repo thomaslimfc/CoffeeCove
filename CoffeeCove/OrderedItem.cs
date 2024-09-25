@@ -15,7 +15,7 @@ namespace CoffeeCove
     public partial class OrderedItem
     {
         public int OrderedItemID { get; set; }
-        public string ProductID { get; set; }
+        public int ProductID { get; set; }
         public int OrderID { get; set; }
         public Nullable<int> Quantity { get; set; }
         public string Size { get; set; }

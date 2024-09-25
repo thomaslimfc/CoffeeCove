@@ -14,6 +14,24 @@ namespace CoffeeCove.Master
         string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
+            //retrieve cookie
+            HttpCookie coo = Request.Cookies["CusID"];
+            if (coo != null)
+            {
+                Session["CusID"] = coo.Value;
+            }
+
+            string username = Session["Username"] as string;
+            bool statusTFA = Session["statusTFA"] as bool? ?? false;
+            if (!string.IsNullOrEmpty(username) && statusTFA)
+            {
+                lblUserName.Text = username;
+            }
+            else
+            {
+                lblUserName.Text = "Register Now";
+            }
+
 
             if (IsPostBack)
             {
@@ -26,7 +44,7 @@ namespace CoffeeCove.Master
         {
             if (Session["OrderId"] != null)
             {
-                int orderId = (int)Session["OrderId"];
+                string orderId = Session["OrderId"].ToString();
                 string sql = "SELECT COUNT(*) FROM OrderedItem WHERE OrderId = @OrderId";
 
                 using (SqlConnection con = new SqlConnection(cs))

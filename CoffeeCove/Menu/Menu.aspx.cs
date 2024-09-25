@@ -347,7 +347,7 @@ namespace CoffeeCove.Menu
 
             finalPrice *= quantity; // Total price based on quantity
 
-            int orderId = GetCurrentOrderId();
+            string orderId = GetCurrentOrderId();
 
             // Ensure the OrderID exists in OrderPlaced table
             using (SqlConnection con = new SqlConnection(cs))
@@ -429,18 +429,18 @@ namespace CoffeeCove.Menu
             pnlOrderForm.Visible = false;
         }
 
-        private int GetCurrentOrderId()
+        private string GetCurrentOrderId()
         {
             // Check if OrderID is present in the session
             if (Session["OrderID"] != null)
             {
-                return (int)Session["OrderID"];
+                return Session["OrderID"].ToString();
             }
             else
             {
                 // Redirect to order option selection if OrderID is missing
                 Response.Redirect("../Order/OrderOption.aspx");
-                return -1; // This line won't be hit but avoids a compilation warning
+                return null; // This line won't be hit but avoids a compilation warning
             }
         }
 

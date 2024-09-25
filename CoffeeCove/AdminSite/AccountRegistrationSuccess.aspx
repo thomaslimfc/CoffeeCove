@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" 
+﻿<%@ Page Title="Account Registration - Success" Language="C#" 
     MasterPageFile="~/Master/Admin.Master" 
     AutoEventWireup="true" 
     CodeBehind="AccountRegistrationSuccess.aspx.cs" 

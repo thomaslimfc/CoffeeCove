@@ -19,12 +19,10 @@ namespace CoffeeCove
         public string ReviewContent { get; set; }
         public System.DateTime RatingReviewDateTime { get; set; }
         public int PaymentID { get; set; }
-        public Nullable<int> CusID { get; set; }
         public Nullable<int> ReplyTo { get; set; }
         public string UsernameAdmin { get; set; }
     
         public virtual Admin Admin { get; set; }
-        public virtual Customer Customer { get; set; }
         public virtual PaymentDetail PaymentDetail { get; set; }
     }
 }

@@ -49,17 +49,11 @@ namespace CoffeeCove.Security
                 Session["2FARequired"] = false;
 
                 // Get user role from session
+                string username = Session["Username"] as string;
                 string userRole = Session["UserRole"] as string;
-
-                // Redirect based on user role
-                if (userRole == "Customer")
-                {
-                    Response.Redirect("~/Home/Home.aspx");
-                }
-                else if (userRole == "Admin")
-                {
-                    Response.Redirect("~/AdminSite/Dashboard.aspx");
-                }
+                Session["statusTFA"] = true;
+                Boolean rememberMe = false;
+                UserSecurity.LoginUser(username, userRole, rememberMe);
             }
             else
             {

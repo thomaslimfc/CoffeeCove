@@ -12,6 +12,18 @@ namespace CoffeeCove.Master
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string username = (string)Session["Username"];
+            Session["statusTFA"] = "done";
+            string statusTFA = (string)Session["statusTFA"];
+            if (username != null && statusTFA == "done")
+            {
+                lblUserName.Text = username;
+            }
+            else
+            {
+                lblUserName.Text = "Register Now";
+            }
+
             if (IsPostBack)
             {
                 pnlDropdownMenu.Visible = ViewState["DropdownVisible"] != null && (bool)ViewState["DropdownVisible"];
