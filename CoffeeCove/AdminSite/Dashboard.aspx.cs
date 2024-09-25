@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
 using System.Web;
+using System.Web.Script.Services;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -20,8 +23,20 @@ namespace CoffeeCove.AdminSite
                 CalculateTodayRecords();
                 LoadDashboardData();
                 BindTopSellingProducts();
+
+                var monthlyRevenue = GetMonthlyRevenue();
+                string chartData = "[['Month', 'Total Revenue']";
+
+                foreach (var data in monthlyRevenue)
+                {
+                    chartData += $",['{data.Year}-{data.Month}', {data.TotalRevenue}]";
+                }
+
+                chartData += "]";
+                Page.ClientScript.RegisterStartupScript(this.GetType(), "chartData", $"var chartData = {chartData};", true);
             }
         }
+
 
         private void CalculateTodayRecords()
         {
@@ -115,6 +130,77 @@ namespace CoffeeCove.AdminSite
                 }
             }
         }
+
+        public List<RevenueData> GetMonthlyRevenue()
+        {
+            List<RevenueData> revenueData = new List<RevenueData>();
+            List<RevenueData> allMonths = new List<RevenueData>();
+
+            for (int month = 1; month <= 12; month++)
+            {
+                allMonths.Add(new RevenueData
+                {
+                    Month = month,
+                    Year = DateTime.Now.Year,
+                    TotalRevenue = 0
+                });
+            }
+
+            using (SqlConnection conn = new SqlConnection(cs))
+            {
+                conn.Open();
+                string sql = @"
+            SELECT 
+                MONTH(op.OrderDateTime) AS OrderMonth,
+                YEAR(op.OrderDateTime) AS OrderYear,
+                SUM(op.TotalAmount) AS TotalRevenue
+            FROM 
+                OrderPlaced op
+            INNER JOIN 
+                PaymentDetail p ON op.OrderID = p.OrderID
+            WHERE 
+                p.PaymentStatus = 'Complete'
+            GROUP BY 
+                MONTH(op.OrderDateTime), YEAR(op.OrderDateTime)
+            ORDER BY 
+                OrderYear, OrderMonth";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        revenueData.Add(new RevenueData
+                        {
+                            Month = reader.GetInt32(0),
+                            Year = reader.GetInt32(1),
+                            TotalRevenue = reader.GetDecimal(2)
+                        });
+                    }
+                }
+            }
+
+            // Merge the actual data with the placeholder data
+            foreach (var data in revenueData)
+            {
+                var monthData = allMonths.FirstOrDefault(m => m.Month == data.Month && m.Year == data.Year);
+                if (monthData != null)
+                {
+                    monthData.TotalRevenue = data.TotalRevenue; // Replace placeholder value with actual revenue
+                }
+            }
+
+            return allMonths;
+        }
+
+        public class RevenueData
+        {
+            public int Month { get; set; }
+            public int Year { get; set; }
+            public decimal TotalRevenue { get; set; }
+        }
+
+
 
     }
 }

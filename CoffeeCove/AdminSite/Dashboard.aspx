@@ -125,27 +125,53 @@
                             </div>
                         </div>
 
-
                         <div class="col-12">
-                            <div class="card-body pb-0">
-                                <h4 style="color: #fff">Top Selling</h4>
+     <div class="card-body pb-0">
+         <div id="chart_div" style="width: 100%; height: 500px;"></div>
+     </div>
+ </div>
 
-                                <asp:GridView ID="gvTopSellingProducts" runat="server" AutoGenerateColumns="False" CssClass="table table-borderless" EmptyDataText="No products found">
-                                    <Columns>
-                                        <asp:TemplateField HeaderText="Image">
-                                            <ItemTemplate>
-                                                <img src='<%# Eval("ImageUrl") %>' alt='<%# Eval("ProductName") %>' style="width: 50px; height: auto;" />
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                        <asp:BoundField DataField="ProductName" HeaderText="Product Name" />
-                                        <asp:BoundField DataField="UnitPrice" HeaderText="Unit Price" DataFormatString="{0:C}" />
-                                        <asp:BoundField DataField="TotalSold" HeaderText="Total Sold" />
-                                        <asp:BoundField DataField="TotalSales" HeaderText="Total Sales" DataFormatString="{0:C}" />
-                                    </Columns>
-                                </asp:GridView>
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+ <script type="text/javascript">
+     google.charts.load("current", { packages: ["corechart"] });
+     google.charts.setOnLoadCallback(drawChart);
 
-                            </div>
-                        </div>
+     function drawChart() {
+         var data = google.visualization.arrayToDataTable(chartData);
+
+         var options = {
+             title: 'Monthly Revenue',
+             legend: { position: 'none' },
+             hAxis: { title: 'Month' },
+             vAxis: { title: 'Total Revenue', format: 'RM#,##0.00' },
+         };
+
+         var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+         chart.draw(data, options);
+     }
+ </script>
+
+  <div class="col-12">
+      <div class="card-body pb-0">
+          <h4 style="color: #fff">Top Selling</h4>
+
+          <asp:GridView ID="gvTopSellingProducts" runat="server" AutoGenerateColumns="False" CssClass="table table-borderless" EmptyDataText="No products found">
+              <Columns>
+                  <asp:TemplateField HeaderText="Image">
+                      <ItemTemplate>
+                          <img src='<%# Eval("ImageUrl") %>' alt='<%# Eval("ProductName") %>' style="width: 50px; height: auto;" />
+                      </ItemTemplate>
+                  </asp:TemplateField>
+                  <asp:BoundField DataField="ProductName" HeaderText="Product Name" />
+                  <asp:BoundField DataField="UnitPrice" HeaderText="Unit Price" DataFormatString="{0:C}" />
+                  <asp:BoundField DataField="TotalSold" HeaderText="Total Sold" />
+                  <asp:BoundField DataField="TotalSales" HeaderText="Total Sales" DataFormatString="{0:C}" />
+              </Columns>
+          </asp:GridView>
+      </div>
+  </div>
+
+
                     </div>
                 </div>
             </div>
