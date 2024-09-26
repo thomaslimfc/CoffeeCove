@@ -26,6 +26,7 @@ namespace CoffeeCove.AdminSite
             }
         }
 
+
         protected void RegisterAcc_CL_Click(object sender, EventArgs e)
         {
             lblUsernameRegister_CL.Text = "";
@@ -53,10 +54,18 @@ namespace CoffeeCove.AdminSite
                 try
                 {
                     // Check if the username already exists
-                    var admin = db.Admins.SingleOrDefault(a => a.Username == username);
-                    if (admin != null)
+                    var adminByUsername = db.Admins.SingleOrDefault(a => a.Username == username);
+                    if (adminByUsername != null)
                     {
                         lblUsernameRegister_CL.Text = "Username has already been taken.";
+                        return;
+                    }
+
+                    // Check if the contact number already exists
+                    var adminByContactNo = db.Admins.SingleOrDefault(a => a.ContactNo == contactNo);
+                    if (adminByContactNo != null)
+                    {
+                        lblContactNo_CL.Text = "Contact number has already been taken.";
                         return;
                     }
 
@@ -91,7 +100,8 @@ namespace CoffeeCove.AdminSite
                 }
                 catch (Exception ex)
                 {
-                    lblUsernameRegister_CL.Text = "Database error: " + ex.Message;
+                    //lblUsernameRegister_CL.Text = "Database error: " + ex.Message;
+                    lblContactNo_CL.Text = "Contact number has already been taken.";
                 }
             }
         }
@@ -297,5 +307,32 @@ namespace CoffeeCove.AdminSite
                 rptCustomerList.DataBind();
             }
         }
+
+
+        //protected void resetBtn_CL3_Click(object sender, EventArgs e)
+        //{
+        //    // Clear text fields
+        //    UsernameRegister_CL.Text = "";
+        //    Password_CL.Text = "";
+        //    PasswordReenter_CL.Text = "";
+        //    SuperuserPassword_CL.Text = "";
+        //    ContactNo_CL.Text = "";
+
+        //    // Clear selections for dropdowns
+        //    Gender_CL.ClearSelection(); // Make sure you have a dropdown for Gender
+        //    BranchLocation_CL.Items.Clear(); // Clear existing items in BranchLocation
+        //    BranchLocation_CL.Items.Insert(0, new ListItem("-- Select Branch --", "0")); // Insert default item
+
+        //    // Reset other labels or selections
+        //    lblUsernameEdit_CL2.Text = "";
+        //    GenderEdit_CL2.ClearSelection(); // Make sure you have a dropdown for GenderEdit
+        //    lblSuperuserPassword_CL2.Text = "";
+
+        //    BranchLocationEdit_CL2.Items.Clear(); // Clear existing items in BranchLocationEdit
+        //    BranchLocationEdit_CL2.Items.Insert(0, new ListItem("-- Select Branch --", "0")); // Insert default item
+
+        //    UsernameDeletion_CL3.Text = "";
+        //    SuperuserPassword_CL3.Text = "";
+        //}
     }
 }
