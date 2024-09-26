@@ -1,37 +1,37 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\# GitHub Local Repository\\# CoffeeCove\\CoffeeCove\\CoffeeCove\\",
+  "WorkspaceRootPath": "C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|d:\\# github local repository\\# coffeecove\\coffeecove\\coffeecove\\security\\signin.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|c:\\users\\thamq\\onedrive\\\u684C\u9762\\assignment\\web\\staffee\\coffeecove\\security\\signin.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:security\\signin.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|D:\\# GitHub Local Repository\\# CoffeeCove\\CoffeeCove\\CoffeeCove\\security\\signin.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\security\\signin.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:security\\signin.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|D:\\# GitHub Local Repository\\# CoffeeCove\\CoffeeCove\\CoffeeCove\\adminsite\\adminreview.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\adminsite\\adminreview.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:adminsite\\adminreview.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|D:\\# GitHub Local Repository\\# CoffeeCove\\CoffeeCove\\CoffeeCove\\AdminSite\\AdminReview.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\AdminSite\\AdminReview.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:AdminSite\\AdminReview.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|D:\\# GitHub Local Repository\\# CoffeeCove\\CoffeeCove\\CoffeeCove\\AdminSite\\Payment.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\AdminSite\\Payment.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:AdminSite\\Payment.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|D:\\# GitHub Local Repository\\# CoffeeCove\\CoffeeCove\\CoffeeCove\\AdminSite\\Payment.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\AdminSite\\Payment.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:AdminSite\\Payment.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|D:\\# GitHub Local Repository\\# CoffeeCove\\CoffeeCove\\CoffeeCove\\AdminSite\\Review.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\AdminSite\\Review.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:AdminSite\\Review.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|D:\\# GitHub Local Repository\\# CoffeeCove\\CoffeeCove\\CoffeeCove\\AdminSite\\Review.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\AdminSite\\Review.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:AdminSite\\Review.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     }
   ],
@@ -42,11 +42,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 223,
-          "SelectedChildIndex": 13,
+          "SelectedChildIndex": 14,
           "Children": [
             {
               "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Bookmark",
@@ -59,14 +67,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
               "$type": "Bookmark",
@@ -97,14 +97,18 @@
               "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "SignIn.aspx.cs",
-              "DocumentMoniker": "D:\\# GitHub Local Repository\\# CoffeeCove\\CoffeeCove\\CoffeeCove\\Security\\SignIn.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\Security\\SignIn.aspx.cs",
               "RelativeDocumentMoniker": "Security\\SignIn.aspx.cs",
-              "ToolTip": "D:\\# GitHub Local Repository\\# CoffeeCove\\CoffeeCove\\CoffeeCove\\Security\\SignIn.aspx.cs",
+              "ToolTip": "C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\Security\\SignIn.aspx.cs",
               "RelativeToolTip": "Security\\SignIn.aspx.cs",
-              "ViewState": "AgIAAEkAAAAAAAAAAAAwwFUAAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAAEcAAAAAAAAAAAAiwFYAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-26T09:21:29.508Z",
               "EditorCaption": ""
@@ -113,92 +117,85 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "SignIn.aspx",
-              "DocumentMoniker": "D:\\# GitHub Local Repository\\# CoffeeCove\\CoffeeCove\\CoffeeCove\\Security\\SignIn.aspx",
+              "DocumentMoniker": "C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\Security\\SignIn.aspx",
               "RelativeDocumentMoniker": "Security\\SignIn.aspx",
-              "ToolTip": "D:\\# GitHub Local Repository\\# CoffeeCove\\CoffeeCove\\CoffeeCove\\Security\\SignIn.aspx",
+              "ToolTip": "C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\Security\\SignIn.aspx",
               "RelativeToolTip": "Security\\SignIn.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-09-26T09:21:28.108Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-26T09:21:28.108Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "AdminReview.aspx.cs",
-              "DocumentMoniker": "D:\\# GitHub Local Repository\\# CoffeeCove\\CoffeeCove\\CoffeeCove\\AdminSite\\AdminReview.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\AdminSite\\AdminReview.aspx.cs",
               "RelativeDocumentMoniker": "AdminSite\\AdminReview.aspx.cs",
-              "ToolTip": "D:\\# GitHub Local Repository\\# CoffeeCove\\CoffeeCove\\CoffeeCove\\AdminSite\\AdminReview.aspx.cs",
+              "ToolTip": "C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\AdminSite\\AdminReview.aspx.cs",
               "RelativeToolTip": "AdminSite\\AdminReview.aspx.cs",
               "ViewState": "AgIAAHoAAAAAAAAAAAAIwJEAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-25T19:29:19.997Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-25T19:29:19.997Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "AdminReview.aspx",
-              "DocumentMoniker": "D:\\# GitHub Local Repository\\# CoffeeCove\\CoffeeCove\\CoffeeCove\\AdminSite\\AdminReview.aspx",
+              "DocumentMoniker": "C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\AdminSite\\AdminReview.aspx",
               "RelativeDocumentMoniker": "AdminSite\\AdminReview.aspx",
-              "ToolTip": "D:\\# GitHub Local Repository\\# CoffeeCove\\CoffeeCove\\CoffeeCove\\AdminSite\\AdminReview.aspx",
+              "ToolTip": "C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\AdminSite\\AdminReview.aspx",
               "RelativeToolTip": "AdminSite\\AdminReview.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-09-25T19:29:18.163Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-25T19:29:18.163Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "Payment.aspx.cs",
-              "DocumentMoniker": "D:\\# GitHub Local Repository\\# CoffeeCove\\CoffeeCove\\CoffeeCove\\AdminSite\\Payment.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\AdminSite\\Payment.aspx.cs",
               "RelativeDocumentMoniker": "AdminSite\\Payment.aspx.cs",
-              "ToolTip": "D:\\# GitHub Local Repository\\# CoffeeCove\\CoffeeCove\\CoffeeCove\\AdminSite\\Payment.aspx.cs",
+              "ToolTip": "C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\AdminSite\\Payment.aspx.cs",
               "RelativeToolTip": "AdminSite\\Payment.aspx.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-25T18:59:11.469Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-25T18:59:11.469Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
               "Title": "Payment.aspx",
-              "DocumentMoniker": "D:\\# GitHub Local Repository\\# CoffeeCove\\CoffeeCove\\CoffeeCove\\AdminSite\\Payment.aspx",
+              "DocumentMoniker": "C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\AdminSite\\Payment.aspx",
               "RelativeDocumentMoniker": "AdminSite\\Payment.aspx",
-              "ToolTip": "D:\\# GitHub Local Repository\\# CoffeeCove\\CoffeeCove\\CoffeeCove\\AdminSite\\Payment.aspx",
+              "ToolTip": "C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\AdminSite\\Payment.aspx",
               "RelativeToolTip": "AdminSite\\Payment.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-09-25T16:29:47.105Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-25T16:29:47.105Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
               "Title": "Review.aspx.cs",
-              "DocumentMoniker": "D:\\# GitHub Local Repository\\# CoffeeCove\\CoffeeCove\\CoffeeCove\\AdminSite\\Review.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\AdminSite\\Review.aspx.cs",
               "RelativeDocumentMoniker": "AdminSite\\Review.aspx.cs",
-              "ToolTip": "D:\\# GitHub Local Repository\\# CoffeeCove\\CoffeeCove\\CoffeeCove\\AdminSite\\Review.aspx.cs",
+              "ToolTip": "C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\AdminSite\\Review.aspx.cs",
               "RelativeToolTip": "AdminSite\\Review.aspx.cs",
               "ViewState": "AgIAAIMAAAAAAAAAAAAswIgAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-25T18:59:13.794Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-25T18:59:13.794Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
               "Title": "Review.aspx",
-              "DocumentMoniker": "D:\\# GitHub Local Repository\\# CoffeeCove\\CoffeeCove\\CoffeeCove\\AdminSite\\Review.aspx",
+              "DocumentMoniker": "C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\AdminSite\\Review.aspx",
               "RelativeDocumentMoniker": "AdminSite\\Review.aspx",
-              "ToolTip": "D:\\# GitHub Local Repository\\# CoffeeCove\\CoffeeCove\\CoffeeCove\\AdminSite\\Review.aspx",
+              "ToolTip": "C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\AdminSite\\Review.aspx",
               "RelativeToolTip": "AdminSite\\Review.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2024-09-25T16:29:49.219Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-25T16:29:49.219Z"
             }
           ]
         },
