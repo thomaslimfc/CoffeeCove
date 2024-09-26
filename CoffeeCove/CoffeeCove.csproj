@@ -806,6 +806,7 @@
     </Compile>
     <Compile Include="AdminSite\Stores.aspx.cs">
       <DependentUpon>Stores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="AdminSite\Stores.aspx.designer.cs">
       <DependentUpon>Stores.aspx</DependentUpon>
