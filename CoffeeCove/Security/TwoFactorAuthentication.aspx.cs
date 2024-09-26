@@ -76,6 +76,7 @@ namespace CoffeeCove.Security
             return randOtp.Next(100000, 999999).ToString(); // Generate a 6-digit OTP
         }
 
+
         // Method to send OTP via WhatsApp using Twilio
         protected void SendOtpWhatsApp(string phoneNumber, string otpCode)
         {
@@ -90,7 +91,7 @@ namespace CoffeeCove.Security
             try
             {
                 var message = MessageResource.Create(
-                    body: $"Your Coffee Cove OTP is: {otpCode}",
+                    body: $"CoffeeCove OTP :  {otpCode}",
                     from: new PhoneNumber(WhatsAppFromNumber),
                     to: new PhoneNumber(formattedPhoneNumber)
                 );

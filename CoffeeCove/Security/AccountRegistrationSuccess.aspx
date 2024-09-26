@@ -5,8 +5,8 @@
     Inherits="CoffeeCove.Security.WebForm1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
-<br /><br /><br />
-<br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br />
 
     <center>
         <h1>Account Registered Successful</h1>

@@ -1,10 +1,5 @@
-﻿using AjaxControlToolkit.HTMLEditor.ToolbarButton;
-using CoffeeCove.Master;
-using PayPal.Log;
-using System;
+﻿using System;
 using System.Linq;
-using System.Net.PeerToPeer;
-using System.Web.UI;
 using Twilio;
 using Twilio.Rest.Api.V2010.Account;
 using Twilio.Types;
@@ -20,41 +15,57 @@ namespace CoffeeCove.Security
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session.Clear();
+
             if (!IsPostBack)
             {
-                string contactNo = ContactNo_FP.Text;
+                string contactNo = ContactNo_FP.Text.Trim();
 
                 using (dbCoffeeCoveEntities db = new dbCoffeeCoveEntities())
                 {
-                    // Check for a matching customer
+                    // Check for a matching customer or admin
                     var customer = db.Customers.SingleOrDefault(c => c.ContactNo == contactNo);
-
-                    // Check for a matching admin
                     var admin = db.Admins.SingleOrDefault(a => a.ContactNo == contactNo);
 
-                    // If not identity of customer or admin
                     if (customer != null || admin != null)
                     {
+                        // Store contact number in session
                         Session["ContactNo_FP"] = contactNo;
 
+                        // Store the appropriate username and ID in session
                         if (customer != null)
                         {
-                            Session["Username_FP"] = customer.Username;
-                            Session["CusID_FP"] = customer.CusID;
+                            if (!string.IsNullOrEmpty(customer.Username))
+                            {
+                                Session["Username_FP"] = customer.Username;
+                                Session["CusID_FP"] = customer.CusID;
+                            }
+                            else
+                            {
+                                lblMessage.Text = "Customer username not found.";
+                            }
                         }
-                    }
-                    else
-                    {
-                        // cannot access to 2-factor
+                        else if (admin != null)
+                        {
+                            if (!string.IsNullOrEmpty(admin.Username))
+                            {
+                                Session["Username_FP"] = admin.Username;
+                            }
+                            else
+                            {
+                                lblMessage.Text = "Admin username not found.";
+                            }
+                        }
                     }
                 }
             }
         }
 
+
         protected void NextBtn_FP_Click(object sender, EventArgs e)
         {
             string contactNo = ContactNo_FP.Text;
-
+            Session["ContactNo"] = contactNo;
             if (!string.IsNullOrEmpty(contactNo))
             {
                 string otpCode = GenerateOTP();
@@ -74,17 +85,20 @@ namespace CoffeeCove.Security
             }
         }
 
+
         private string OTP_FP
         {
             get { return (string)Session["OTP_FP"]; }
             set { Session["OTP_FP"] = value; }
         }
 
+
         private string GenerateOTP()
         {
             Random randOtp = new Random();
             return randOtp.Next(100000, 999999).ToString(); // Generate a 6-digit OTP
         }
+
 
         // Method to send OTP via WhatsApp using Twilio
         protected void SendOtpWhatsApp(string phoneNumber, string otpCode)
@@ -100,7 +114,7 @@ namespace CoffeeCove.Security
             try
             {
                 var message = MessageResource.Create(
-                    body: $"Your Coffee Cove OTP for password reset is: {otpCode}",
+                    body: $"CoffeeCove Password Reset :  {otpCode}",
                     from: new PhoneNumber(WhatsAppFromNumber),
                     to: new PhoneNumber(formattedPhoneNumber)
                 );
@@ -112,6 +126,7 @@ namespace CoffeeCove.Security
                 Console.WriteLine($"Error sending OTP: {ex.Message}");
             }
         }
+
         protected void BackBtn_FP_Click(object sender, EventArgs e)
         {
             Response.Redirect("SignIn.aspx");

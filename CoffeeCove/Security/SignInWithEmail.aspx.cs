@@ -39,10 +39,8 @@ namespace CoffeeCove.Security
                         //send the cookie to client pc
                         Response.Cookies.Add(coo);
 
-                        // Set a flag indicating that 2FA is required
                         Session["2FARequired"] = true;
 
-                        // Redirect to the two-factor authentication page
                         Response.Redirect("TwoFactorAuthentication2.aspx");
                     }
                     else

@@ -60,33 +60,6 @@ namespace CoffeeCove.Security
         protected global::System.Web.UI.WebControls.Label lblWrongOtp;
 
         /// <summary>
-        /// UsernameEmail_FP control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox UsernameEmail_FP;
-
-        /// <summary>
-        /// Username_FP_rqdValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator Username_FP_rqdValidator;
-
-        /// <summary>
-        /// UsernameEmail_FP_regexValidator control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator UsernameEmail_FP_regexValidator;
-
-        /// <summary>
         /// NextBtn_FP control.
         /// </summary>
         /// <remarks>

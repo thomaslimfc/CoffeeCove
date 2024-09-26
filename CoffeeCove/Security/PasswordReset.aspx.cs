@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web.UI;
 
@@ -10,84 +11,52 @@ namespace CoffeeCove.Security
         {
             if (!IsPostBack)
             {
-                // Check if the user is authorized to reset the password (e.g., session validation)
-                if (Session["CusID_FP"] == null)
+                if (Session["ContactNo"] == null)
                 {
                     Response.Redirect("SignIn.aspx");
                 }
             }
         }
 
+
         protected void ResetPasswordBtn_PR_Click(object sender, EventArgs e)
         {
-            string newPassword = Password_PR.Text;
-            string confirmPassword = PasswordConfirm_PR.Text;
+            string newPassword = HashPassword(NewPassword_PR.Text);
+            string contactNo = (string)Session["ContactNo"];
 
-            // Ensure passwords match
-            if (newPassword != confirmPassword)
+            using (dbCoffeeCoveEntities db = new dbCoffeeCoveEntities())
             {
-                // Show an error message (handled by CompareValidator)
-                return;
-            }
-
-            string cusID = Session["CusID_FP"].ToString(); // Get the customer ID from session
-
-            // Update the password in the database
-            bool isUpdated = UpdatePassword(cusID, newPassword);
-            if (isUpdated)
-            {
-                // Store the username in session
-                string username = GetUsernameByCusID(cusID);
-                if (!string.IsNullOrEmpty(username))
+                try
                 {
-                    Session["Username"] = username; // Store username in session
-                }
+                    // Retrieve the customer by contact no
+                    var customer = db.Customers.SingleOrDefault(c => c.ContactNo == contactNo);
 
-                Response.Redirect("PasswordResetSuccess.aspx");
-            }
-            else
-            {
-                // Handle error updating password (e.g., show an error message)
-                // You might want to use a label to display the error
-            }
-        }
-
-        private bool UpdatePassword(string cusID, string newPassword)
-        {
-            try
-            {
-                // Hash the password and update in the database
-                string hashedPassword = HashPassword(newPassword);
-
-                using (var db = new dbCoffeeCoveEntities())
-                {
-                    // Find the customer by CusID and update their password
-                    var customer = db.Customers.SingleOrDefault(c => c.CusID.ToString() == cusID);
                     if (customer != null)
                     {
-                        customer.HashedPassword = hashedPassword; // Update password
-                        db.SaveChanges(); // Save changes to the database
-                        return true; // Return true if update was successful
+                        customer.HashedPassword = newPassword;
+                        db.SaveChanges();
+                        Response.Redirect("PasswordResetSuccess.aspx");
                     }
                 }
+                catch (DbEntityValidationException ex)
+                {
+                    // Capture validation errors
+                    foreach (var validationError in ex.EntityValidationErrors)
+                    {
+                        foreach (var error in validationError.ValidationErrors)
+                        {
+                            lblNewPassword_PR.Text += $"Property: {error.PropertyName}, Error: {error.ErrorMessage} <br/>";
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Handle generic errors
+                    lblNewPassword_PR.Text = "Error: " + ex.Message;
+                }
             }
-            catch (Exception ex)
-            {
-                // Log the exception (optional)
-                System.Diagnostics.Debug.WriteLine($"Error updating password: {ex.Message}");
-            }
-            return false; // Return false if there was an error
         }
 
-        private string GetUsernameByCusID(string cusID)
-        {
-            using (var db = new dbCoffeeCoveEntities())
-            {
-                // Fetch the customer based on CusID
-                var customer = db.Customers.SingleOrDefault(c => c.CusID.ToString() == cusID);
-                return customer?.Username; // Return the username or null if not found
-            }
-        }
 
         private string HashPassword(string password)
         {
