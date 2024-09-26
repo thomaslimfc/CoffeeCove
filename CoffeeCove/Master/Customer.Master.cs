@@ -19,14 +19,15 @@ namespace CoffeeCove.Master
         {
             //retrieve cookie
             HttpCookie coo = Request.Cookies["CusID"];
-            if (coo != null)
+
+            if (coo != null && !string.IsNullOrEmpty(coo.Value))//if got cookies
             {
                 Session["CusID"] = coo.Value;
                 string cusId = coo.Value;
                 //use sql to retrieve cusUsername
                 using (SqlConnection conn = new SqlConnection(cs))
                 {
-                    string sql = @"SELECT * FROM Customer WHERE CusID = @cusId";
+                    string sql = @"SELECT Username FROM Customer WHERE CusID = @cusId";
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {

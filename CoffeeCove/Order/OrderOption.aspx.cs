@@ -113,12 +113,17 @@ namespace CoffeeCove.Order
 
         protected void createOrderID()
         {
+            string cusID = "";
             //retrieve cusID from session
-            if (Session["CusID"] == null)//if session not exist
+            if (Session["CusID"] != null)//if session exist
+            {
+                cusID = Session["CusID"].ToString();
+            }
+            else
             {
                 Response.Redirect("../Security/SignIn.aspx");
             }
-            string cusID = Session["CusID"].ToString();
+            
             //create an orderID for it
             using (SqlConnection conn3 = new SqlConnection(cs))
             {
@@ -138,11 +143,11 @@ namespace CoffeeCove.Order
                         conn3.Open();
 
                         object newOrderID = cmd3.ExecuteScalar();
-                        int orderId = Convert.ToInt32(newOrderID);
+                        string orderId = newOrderID.ToString();
 
                         using (SqlCommand cmd4 = new SqlCommand(sql4, conn3))
                         {
-                            cmd4.Parameters.AddWithValue("@orderId", orderId.ToString());
+                            cmd4.Parameters.AddWithValue("@orderId", orderId);
                             cmd4.ExecuteNonQuery();
 
                             Session["OrderID"] = orderId;
@@ -285,6 +290,24 @@ namespace CoffeeCove.Order
                             Response.Write("Oops! An error occurred: " + ex.Message);
                         }
                     }
+
+                    ////clean those empty order
+                    //string sql3 = @"DELETE FROM PaymentDetail 
+                    //                    WHERE PaymentMethod IS NULL AND OrderID <> @orderId;";
+
+                    //SqlCommand cmd3 = new SqlCommand(sql3, conn);
+                    //cmd3.Parameters.AddWithValue("@orderId", orderID);
+
+                    //conn.Open();
+                    //cmd3.ExecuteNonQuery();
+
+                    //string sql4 = @"DELETE FROM OrderPlaced 
+                    //                    WHERE TotalAmount = 0.00 AND OrderStatus IS NULL AND OrderID <> @orderId;";
+
+                    //SqlCommand cmd4 = new SqlCommand(sql4, conn);
+                    //cmd4.Parameters.AddWithValue("@orderId", orderID);
+
+                    //cmd4.ExecuteNonQuery();
                 }
                 Session["orderOpt"] = "Delivery";
                 Response.Redirect("../Menu/Menu.aspx");

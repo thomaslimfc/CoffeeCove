@@ -23,7 +23,7 @@ namespace CoffeeCove.Order
             {
                 if (Session["OrderID"] == null)
                 {
-                    Response.Redirect("../Home/Home.aspx");
+                    Response.Redirect("../Menu/Menu.aspx");
                 }
                 string orderId = Session["OrderID"].ToString();
 
