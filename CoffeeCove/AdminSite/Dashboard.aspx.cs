@@ -22,19 +22,8 @@ namespace CoffeeCove.AdminSite
             {
                 CalculateTodayRecords();
                 LoadDashboardData();
+                BindMonthlyRevenue();
                 BindTopSellingProducts();
-
-                var monthlyRevenue = GetMonthlyRevenue();
-                string chartData = "[['Month', 'Total Revenue']";// Initialize the chart
-
-                foreach (var data in monthlyRevenue)
-                {
-                    chartData += $",['{data.Year}-{data.Month}', {data.TotalRevenue}]";
-                }
-
-                chartData += "]";
-                // Register chartData variable to available on the client side 
-                Page.ClientScript.RegisterStartupScript(this.GetType(), "chartData", $"var chartData = {chartData};", true);
             }
         }
 
@@ -50,7 +39,7 @@ namespace CoffeeCove.AdminSite
                                 FROM OrderedItem oi
                                 JOIN OrderPlaced op ON oi.OrderID = op.OrderID
                                 JOIN PaymentDetail pd ON op.OrderID = pd.OrderID
-                                WHERE pd.PaymentStatus = 'complete'
+                                WHERE pd.PaymentStatus = 'Complete'
                                 AND CAST(op.OrderDateTime AS DATE) = CAST(GETDATE() AS DATE)";
 
                 using (SqlCommand cmd = new SqlCommand(sql, con))
@@ -82,23 +71,59 @@ namespace CoffeeCove.AdminSite
             {
                 con.Open();
 
+                // total category
                 using (SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Category", con))
                 {
                     int totalCategories = (int)cmd.ExecuteScalar();
                     lblTotalCategory.Text = totalCategories.ToString();
                 }
-
+                // total product
                 using (SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Product", con))
                 {
                     int totalProducts = (int)cmd.ExecuteScalar();
                     lblTotalProduct.Text = totalProducts.ToString();
                 }
-
-                // Get total feedbacks
+                // total feedback
                 using (SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Review", con))
                 {
                     int totalFeedback = (int)cmd.ExecuteScalar();
                     lblTotalFeedback.Text = totalFeedback.ToString();
+                }
+            }
+        }
+
+        private void BindMonthlyRevenue()
+        {
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                string query = @"WITH AllMonths AS (  
+                                SELECT 1 AS OrderMonth UNION ALL  
+                                SELECT 2 UNION ALL  
+                                SELECT 3 UNION ALL  
+                                SELECT 4 UNION ALL  
+                                SELECT 5 UNION ALL  
+                                SELECT 6 UNION ALL  
+                                SELECT 7 UNION ALL  
+                                SELECT 8 UNION ALL  
+                                SELECT 9 UNION ALL  
+                                SELECT 10 UNION ALL  
+                                SELECT 11 UNION ALL  
+                                SELECT 12  
+                            )  
+                            SELECT am.OrderMonth, COALESCE(YEAR(op.OrderDateTime), YEAR(GETDATE())) AS OrderYear, COALESCE(SUM(op.TotalAmount), 0) AS TotalRevenue  
+                            FROM AllMonths am 
+                            LEFT JOIN OrderPlaced op ON MONTH(op.OrderDateTime) = am.OrderMonth  
+                            LEFT JOIN PaymentDetail p ON op.OrderID = p.OrderID AND p.PaymentStatus = 'Complete'  
+                            WHERE (op.OrderDateTime IS NULL OR p.PaymentStatus = 'Complete') 
+                            GROUP BY am.OrderMonth, YEAR(op.OrderDateTime)  
+                            ORDER BY OrderYear, am.OrderMonth;";
+
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    con.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    gvMonthlyRevenue.DataSource = reader;
+                    gvMonthlyRevenue.DataBind();
                 }
             }
         }
@@ -118,77 +143,17 @@ namespace CoffeeCove.AdminSite
 
                     if (reader.HasRows)
                     {
+                        // Bind the data to GridView
                         gvTopSellingProducts.DataSource = reader;
                         gvTopSellingProducts.DataBind();
                     }
                     else
                     {
-                        // No data show EmptyDataText
+                        // if no data show EmptyDataText
                         gvTopSellingProducts.DataBind();
                     }
                 }
             }
         }
-
-        public List<RevenueData> GetMonthlyRevenue()
-        {
-            List<RevenueData> revenueData = new List<RevenueData>();
-            List<RevenueData> allMonths = new List<RevenueData>();
-
-            for (int month = 1; month <= 12; month++)
-            {
-                allMonths.Add(new RevenueData
-                {
-                    Month = month,
-                    Year = DateTime.Now.Year,
-                    TotalRevenue = 0
-                });
-            }
-
-            using (SqlConnection conn = new SqlConnection(cs))
-            {
-                conn.Open();
-                string sql = @"SELECT MONTH(op.OrderDateTime) AS OrderMonth, YEAR(op.OrderDateTime) AS OrderYear, SUM(op.TotalAmount) AS TotalRevenue
-                                FROM OrderPlaced op INNER JOIN PaymentDetail p ON op.OrderID = p.OrderID 
-                                WHERE p.PaymentStatus = 'Complete' GROUP BY MONTH(op.OrderDateTime), YEAR(op.OrderDateTime)
-                                ORDER BY OrderYear, OrderMonth";
-
-                using (SqlCommand cmd = new SqlCommand(sql, conn))
-                {
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        revenueData.Add(new RevenueData
-                        {
-                            Month = reader.GetInt32(0),
-                            Year = reader.GetInt32(1),
-                            TotalRevenue = reader.GetDecimal(2)
-                        });
-                    }
-                }
-            }
-
-            // put data into placeholder data
-            foreach (var data in revenueData)
-            {
-                var monthData = allMonths.FirstOrDefault(m => m.Month == data.Month && m.Year == data.Year);
-                if (monthData != null)
-                {
-                    monthData.TotalRevenue = data.TotalRevenue;
-                }
-            }
-
-            return allMonths;
-        }
-
-        public class RevenueData
-        {
-            public int Month { get; set; }
-            public int Year { get; set; }
-            public decimal TotalRevenue { get; set; }
-        }
-
-
-
     }
 }
