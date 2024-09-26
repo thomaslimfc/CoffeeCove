@@ -332,7 +332,7 @@ namespace CoffeeCove.AdminSite
             //get data from db
             using (SqlConnection conn = new SqlConnection(cs))
             {
-                string sql = @"SELECT O.OrderDateTime, O.OrderType, O.DeliveryAddress, O.StoreID, P.PaymentMethod, C.Username, C.EmailAddress
+                string sql = @"SELECT O.OrderDateTime, O.OrderType, O.DeliveryAddress, O.StoreID, P.PaymentMethod, C.Username, C.EmailAddress, O.OrderStatus
                     FROM OrderPlaced O 
                     JOIN PaymentDetail P ON O.OrderID = P.OrderID
                     JOIN Customer C ON O.CusID = C.CusID
@@ -356,8 +356,8 @@ namespace CoffeeCove.AdminSite
                             lblDate.Text = orderDate.ToString("dd/MM/yyyy");
                             string orderType = dr["OrderType"].ToString();
 
-                            
 
+                            lblOrderStatus.Text = dr["OrderStatus"].ToString();
                             lblPaymentMethod.Text = dr["PaymentMethod"].ToString();
                             lblUsername.Text = dr["Username"].ToString();
                             lblEmail.Text = dr["EmailAddress"].ToString();
@@ -834,7 +834,9 @@ namespace CoffeeCove.AdminSite
             exportInfo.Add(new iTextSharp.text.Phrase("Order Type: ", FontFactory.GetFont("Arial", 12, iTextSharp.text.Font.NORMAL)));
             exportInfo.Add(new iTextSharp.text.Phrase(row1["OrderType"].ToString() + "\n", FontFactory.GetFont("Arial", 12, iTextSharp.text.Font.NORMAL)));
             exportInfo.Add(new iTextSharp.text.Phrase("Payment Method: ", FontFactory.GetFont("Arial", 12, iTextSharp.text.Font.NORMAL)));
-            exportInfo.Add(new iTextSharp.text.Phrase(row1["PaymentMethod"].ToString(), FontFactory.GetFont("Arial", 12, iTextSharp.text.Font.NORMAL)));
+            exportInfo.Add(new iTextSharp.text.Phrase(row1["PaymentMethod"].ToString() + "\n", FontFactory.GetFont("Arial", 12, iTextSharp.text.Font.NORMAL)));
+            exportInfo.Add(new iTextSharp.text.Phrase("Status: ", FontFactory.GetFont("Arial", 12, iTextSharp.text.Font.NORMAL)));
+            exportInfo.Add(new iTextSharp.text.Phrase(row1["OrderStatus"].ToString(), FontFactory.GetFont("Arial", 12, iTextSharp.text.Font.NORMAL)));
 
 
 

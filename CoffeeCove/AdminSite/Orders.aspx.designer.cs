@@ -95,6 +95,7 @@ namespace CoffeeCove.AdminSite
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblPaymentMethod;
+        protected global::System.Web.UI.WebControls.Label lblOrderStatus;
 
         /// <summary>
         /// lblUsername control.

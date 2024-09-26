@@ -6,7 +6,7 @@
             <div class="invoice-header">
                 <h1>INVOICE</h1>
                 <div class="invoice-meta">
-                    <p>Invoice Number: <asp:Literal ID="OrderIdLiteral" runat="server"></asp:Literal></p>
+                    <p>Order Number: <asp:Literal ID="OrderIdLiteral" runat="server"></asp:Literal></p>
                     <p>Invoice Date: <asp:Literal ID="InvoiceDateLiteral" runat="server"></asp:Literal></p>
                 </div>
             </div>

@@ -172,6 +172,13 @@
                                                         <asp:Label ID="lblPaymentMethod" runat="server" Text=""></asp:Label>
                                                     </td>
                                                 </tr>
+                                                <tr>
+                                                    <th>Order Status:
+                                                    </th>
+                                                    <td>
+                                                        <asp:Label ID="lblOrderStatus" runat="server" Text=""></asp:Label>
+                                                    </td>
+                                                </tr>
                                             </table>
                                         </td>
                                         <td>&nbsp</td>
