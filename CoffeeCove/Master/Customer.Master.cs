@@ -16,13 +16,22 @@ namespace CoffeeCove.Master
         string cs = Global.CS;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Context.User.Identity.IsAuthenticated)
+            //retrieve cookie
+            HttpCookie coo = Request.Cookies["CusID"];
+            if (coo != null)
+            {
+                Session["CusID"] = coo.Value;
+            }
+
+            if (Context.User.Identity.IsAuthenticated || coo != null)
             {
                 
                 if (Session["CusID"] == null) //means its admin
                 {
                     pnlLoggedIn.Visible = false;
                     pnlGuest.Visible = true;
+                    //sign out when it coming back to customer page
+                    FormsAuthentication.SignOut();
                 }
                 else
                 {
@@ -45,13 +54,6 @@ namespace CoffeeCove.Master
             {
                 pnlLoggedIn.Visible = false;
                 pnlGuest.Visible = true;
-            }
-
-            //retrieve cookie
-            HttpCookie coo = Request.Cookies["CusID"];
-            if (coo != null)
-            {
-                Session["CusID"] = coo.Value;
             }
 
             string username = Session["Username"] as string;
