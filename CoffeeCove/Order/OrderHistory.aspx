@@ -16,7 +16,7 @@
                         <div class="orderHeader">
                             <h4>Order ID: <%# Eval("OrderID") %></h4>
                             <p>Order Date: <%# Eval("OrderDateTime", "{0:dd-MM-yyyy}") %></p>
-                            <p><strong>Order Status:</strong> <%# Eval("OrderStatus") %></p>
+                            <p>Order Status: <strong><%# Eval("OrderStatus") %></strong></p>
                         </div>
 
                         <!-- Product Information -->

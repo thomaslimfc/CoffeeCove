@@ -25,12 +25,12 @@ namespace CoffeeCove.Order
             using (SqlConnection conn = new SqlConnection(cs))
             {
                 string query = @"
-        SELECT O.*, PD.PaymentID
-        FROM [OrderPlaced] O
-        LEFT JOIN PaymentDetail PD ON O.OrderID = PD.OrderID
-        WHERE O.CusID = @CusID
-        AND O.OrderStatus IS NOT NULL
-        AND O.OrderStatus IN ('Order Delivered', 'Preparing Your Meal', 'Your Order is Out for Delivery', 'Order Received')";
+                    SELECT O.*, PD.PaymentID
+                    FROM [OrderPlaced] O
+                    LEFT JOIN PaymentDetail PD ON O.OrderID = PD.OrderID
+                    WHERE O.CusID = @CusID
+                    AND O.OrderStatus IS NOT NULL
+                    AND O.OrderStatus IN ('Order Delivered', 'Preparing Your Meal', 'Your Order is Out for Delivery', 'Order Received', 'Order Cancelled')";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -54,53 +54,59 @@ namespace CoffeeCove.Order
                 string orderStatus = DataBinder.Eval(e.Item.DataItem, "OrderStatus").ToString();
                 DateTime orderDateTime = Convert.ToDateTime(DataBinder.Eval(e.Item.DataItem, "OrderDateTime"));
 
-                // Find the RatingButton and CancelOrderButton controls
+                // Find the buttons
                 Button ratingButton = (Button)e.Item.FindControl("RatingButton");
                 Button cancelOrderButton = (Button)e.Item.FindControl("CancelOrderButton");
+                Button trackOrderButton = (Button)e.Item.FindControl("TrackOrderButton");
 
-                // Check if the order status is 'Order Delivered'
-                if (orderStatus == "Order Delivered")
+                // If the order status is "Order Cancelled", make all buttons invisible
+                if (orderStatus == "Order Cancelled")
                 {
-                    // Show the Rating button for orders that are delivered
-                    ratingButton.Visible = true;
+                    ratingButton.Visible = false;
+                    cancelOrderButton.Visible = false;
+                    trackOrderButton.Visible = false;
                 }
-
-                // If the order status is 'Order Received', check the order time
-                if (orderStatus == "Order Received")
+                else
                 {
-                    TimeSpan timeDifference = DateTime.Now - orderDateTime;
-
-                    // If the order was placed more than 5 minutes ago, update the status to 'Preparing Your Meal'
-                    if (timeDifference.TotalSeconds > 20)
+                    // Existing conditions for other statuses
+                    if (orderStatus == "Order Delivered")
                     {
-                        UpdateOrderStatus(orderId, "Preparing Your Meal");
-                        cancelOrderButton.Visible = false;
+                        ratingButton.Visible = true;
                     }
-                    else
+
+                    if (orderStatus == "Order Received")
                     {
-                        cancelOrderButton.Visible = true;
+                        TimeSpan timeDifference = DateTime.Now - orderDateTime;
+
+                        if (timeDifference.TotalSeconds > 20)
+                        {
+                            UpdateOrderStatus(orderId, "Preparing Your Meal");
+                            cancelOrderButton.Visible = false;
+                        }
+                        else
+                        {
+                            cancelOrderButton.Visible = true;
+                        }
                     }
-                }
 
-                if (orderStatus == "Preparing Your Meal")
-                {
-                    TimeSpan timeDifference = DateTime.Now - orderDateTime;
-
-                    // If the order was prepared more than 5 minutes ago, update the status to 'Your Order is Out for Delivery'
-                    if (timeDifference.TotalSeconds > 30)
+                    if (orderStatus == "Preparing Your Meal")
                     {
-                        UpdateOrderStatus(orderId, "Your Order is Out for Delivery");
+                        TimeSpan timeDifference = DateTime.Now - orderDateTime;
+
+                        if (timeDifference.TotalSeconds > 30)
+                        {
+                            UpdateOrderStatus(orderId, "Your Order is Out for Delivery");
+                        }
                     }
-                }
 
-                if (orderStatus == "Your Order is Out for Delivery")
-                {
-                    TimeSpan timeDifference = DateTime.Now - orderDateTime;
-
-                    // If the order was prepared more than 5 minutes ago, update the status to 'Order Delivered'
-                    if (timeDifference.TotalSeconds > 40)
+                    if (orderStatus == "Your Order is Out for Delivery")
                     {
-                        UpdateOrderStatus(orderId, "Order Delivered");
+                        TimeSpan timeDifference = DateTime.Now - orderDateTime;
+
+                        if (timeDifference.TotalSeconds > 40)
+                        {
+                            UpdateOrderStatus(orderId, "Order Delivered");
+                        }
                     }
                 }
 
@@ -108,7 +114,7 @@ namespace CoffeeCove.Order
                 Repeater productListRepeater = (Repeater)e.Item.FindControl("ProductListRepeater");
                 BindProductList(orderId, productListRepeater);
 
-                // Check if there is a review for the current order
+                // Check for a review for the current order
                 CheckForReview(orderId, e);
             }
         }
