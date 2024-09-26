@@ -53,8 +53,11 @@
 
                     </div>
                 </asp:Panel>
-                <asp:Panel ID="pnlGuest" runat="server">
-                        <asp:LinkButton ID="lbLogin" runat="server" Font-Underline="false" OnClick="lbLogin_Click" CssClass="loginBtn">Log In</asp:LinkButton>
+                <asp:Panel ID="pnlGuest" runat="server" CssClass="loginBtn">
+                    <div class="headerBtn">
+                        <asp:LinkButton ID="lbLogin" runat="server" Font-Underline="false" OnClick="lbLogin_Click">Log In</asp:LinkButton>
+                    </div>
+
                 </asp:Panel>
 
             </div>

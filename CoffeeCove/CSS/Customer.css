@@ -51,6 +51,14 @@
     text-decoration: none; 
 }
 
+.UserIcon {
+    width: 40px;
+    height: 40px; 
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+
 .dropdown-icon {
     width:15px;
     height:15px;
@@ -143,12 +151,12 @@
     border:1px solid white;
 }
 
-.loginBtn{
+.loginBtn a{
     font-weight: bold;
     color: black;
 }
 
-.loginBtn:hover{
+.loginBtn:hover a{
     font-weight: bold;
     color: white;
 }
