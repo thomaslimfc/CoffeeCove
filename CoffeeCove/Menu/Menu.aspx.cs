@@ -98,7 +98,7 @@ namespace CoffeeCove.Menu
                                 count++;
                             }
                         }
-                        dr.Close(); // Close and reopen reader for data binding
+                        dr.Close(); 
                         dr = cmd.ExecuteReader();
                     }
                     rptProduct.DataSource = dr;
@@ -230,8 +230,6 @@ namespace CoffeeCove.Menu
             }
         }
 
-
-
         private int GetProductCategoryId(int productId)
         {
             using (SqlConnection con = new SqlConnection(cs))
@@ -243,19 +241,18 @@ namespace CoffeeCove.Menu
                     con.Open();
                     object result = cmd.ExecuteScalar();
 
-                    // Check if result is null, and return 0 or a default value if no result is found
+                    // Check if result is null, and return 0 if no result is found
                     if (result != null && int.TryParse(result.ToString(), out int categoryId))
                     {
                         return categoryId;
                     }
                     else
                     {
-                        return 0; // Default value if no category found
+                        return 0; // if no category found
                     }
                 }
             }
         }
-
 
         protected void btnIncrease_Click(object sender, EventArgs e)
         {
@@ -349,10 +346,8 @@ namespace CoffeeCove.Menu
 
             string orderId = GetCurrentOrderId();
 
-            // Ensure the OrderID exists in OrderPlaced table
             using (SqlConnection con = new SqlConnection(cs))
             {
-                // Begin a transaction
                 con.Open();
                 SqlTransaction transaction = con.BeginTransaction();
 
@@ -416,34 +411,32 @@ namespace CoffeeCove.Menu
                         cmd.ExecuteNonQuery();
                     }
 
-                    // Commit the transaction
                     transaction.Commit();
                 }
                 catch
                 {
-                    // Rollback the transaction if an error occurs
+                    // Rollback the transaction if error occurs
                     transaction.Rollback();
                     throw;
                 }
             }
+            Response.Redirect(Request.RawUrl);
             pnlOrderForm.Visible = false;
         }
 
         private string GetCurrentOrderId()
         {
-            // Check if OrderID is present in the session
             if (Session["OrderID"] != null)
             {
                 return Session["OrderID"].ToString();
             }
             else
             {
-                // Redirect to order option selection if OrderID is missing
+                // if OrderID is missing
                 Response.Redirect("../Order/OrderOption.aspx");
-                return null; // This line won't be hit but avoids a compilation warning
+                return null; 
             }
         }
-
 
         protected void rptProduct_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
