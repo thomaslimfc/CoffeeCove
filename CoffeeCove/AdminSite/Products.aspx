@@ -119,7 +119,7 @@
                                 OnRowCommand="gvProduct_RowCommand" Width="100%" AllowSorting="True" OnSorting="gvProduct_Sorting"
                                 AllowPaging="true" OnPageIndexChanging="gvProduct_PageIndexChanging" PageSize="5" EmptyDataText="No Products found.">
                                 <Columns>
-                                    <asp:TemplateField SortExpression="ProductId" ItemStyle-Width="10px">
+                                    <asp:TemplateField SortExpression="ProductId" ItemStyle-Width="20px">
                                         <HeaderTemplate>
                                             <asp:LinkButton ID="lnkProductId" runat="server" CommandArgument="ProductId" CssClass="header-link" 
                                                 ToolTip="Sort" OnClick="lnkProduct_Click">ID
