@@ -1,7 +1,24 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\# GitHub Local Repository\\# CoffeeCove\\CoffeeCove\\CoffeeCove\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|d:\\# github local repository\\# coffeecove\\coffeecove\\coffeecove\\security\\signup.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:security\\signup.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|d:\\# github local repository\\# coffeecove\\coffeecove\\coffeecove\\usermanagement\\userprofile.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:usermanagement\\userprofile.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|d:\\# github local repository\\# coffeecove\\coffeecove\\coffeecove\\security\\forgotpassword2factor.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:security\\forgotpassword2factor.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|d:\\# github local repository\\# coffeecove\\coffeecove\\coffeecove\\security\\forgotpassword.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:security\\forgotpassword.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,8 +26,47 @@
       "DocumentGroups": [
         {
           "DockedWidth": 215,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SignUp.aspx",
+              "DocumentMoniker": "D:\\# GitHub Local Repository\\# CoffeeCove\\CoffeeCove\\CoffeeCove\\Security\\SignUp.aspx",
+              "RelativeDocumentMoniker": "Security\\SignUp.aspx",
+              "ToolTip": "D:\\# GitHub Local Repository\\# CoffeeCove\\CoffeeCove\\CoffeeCove\\Security\\SignUp.aspx",
+              "RelativeToolTip": "Security\\SignUp.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-09-26T12:38:33.288Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UserProfile.aspx",
+              "DocumentMoniker": "D:\\# GitHub Local Repository\\# CoffeeCove\\CoffeeCove\\CoffeeCove\\UserManagement\\UserProfile.aspx",
+              "RelativeDocumentMoniker": "UserManagement\\UserProfile.aspx",
+              "ToolTip": "D:\\# GitHub Local Repository\\# CoffeeCove\\CoffeeCove\\CoffeeCove\\UserManagement\\UserProfile.aspx",
+              "RelativeToolTip": "UserManagement\\UserProfile.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-09-26T12:38:18.473Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ForgotPassword.aspx",
+              "DocumentMoniker": "D:\\# GitHub Local Repository\\# CoffeeCove\\CoffeeCove\\CoffeeCove\\Security\\ForgotPassword.aspx",
+              "RelativeDocumentMoniker": "Security\\ForgotPassword.aspx",
+              "ToolTip": "D:\\# GitHub Local Repository\\# CoffeeCove\\CoffeeCove\\CoffeeCove\\Security\\ForgotPassword.aspx",
+              "RelativeToolTip": "Security\\ForgotPassword.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-09-26T12:31:36.011Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
@@ -62,6 +118,19 @@
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ForgotPassword2Factor.aspx",
+              "DocumentMoniker": "D:\\# GitHub Local Repository\\# CoffeeCove\\CoffeeCove\\CoffeeCove\\Security\\ForgotPassword2Factor.aspx",
+              "RelativeDocumentMoniker": "Security\\ForgotPassword2Factor.aspx",
+              "ToolTip": "D:\\# GitHub Local Repository\\# CoffeeCove\\CoffeeCove\\CoffeeCove\\Security\\ForgotPassword2Factor.aspx",
+              "RelativeToolTip": "Security\\ForgotPassword2Factor.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-09-26T12:37:25.746Z",
+              "EditorCaption": ""
             }
           ]
         },

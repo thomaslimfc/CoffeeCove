@@ -216,7 +216,7 @@
                         <tr class="oddRow">
                             <td class="blankCol"></td>
                             <td class="contentCol">Contact Number</td>
-                            <td class="contentCol">Residence State</td>
+                            <td class="contentCol">Residence Area</td>
                             <td class="blankCol"></td>
                         </tr>
                         <tr class="evenRow">
