@@ -123,6 +123,15 @@ namespace CoffeeCove.UserManagement
         protected global::System.Web.UI.WebControls.RegularExpressionValidator txtUsername_regexValidator;
 
         /// <summary>
+        /// lblUsernameError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblUsernameError;
+
+        /// <summary>
         /// lblGender control.
         /// </summary>
         /// <remarks>
@@ -229,6 +238,15 @@ namespace CoffeeCove.UserManagement
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator txtContactNo_regexValidator;
+
+        /// <summary>
+        /// lblContactNoError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblContactNoError;
 
         /// <summary>
         /// lblResidenceState control.

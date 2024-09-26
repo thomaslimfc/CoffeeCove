@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Data;
 using System.Data.SqlClient;
-using System.Configuration;
-using System.Text.RegularExpressions;
 
 namespace CoffeeCove.UserManagement
 {
     public partial class UserProfile : System.Web.UI.Page
     {
         string cs = Global.CS;
-
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["CusID"] == null)
@@ -24,6 +21,7 @@ namespace CoffeeCove.UserManagement
                 SetProfileEditMode(false);
             }
         }
+
 
         protected void LoadUserProfile()
         {
@@ -84,10 +82,15 @@ namespace CoffeeCove.UserManagement
             }
         }
 
+
         protected void EditBtn_UP_Click(object sender, EventArgs e)
         {
+            lblUsernameError.Text = "";
+            lblContactNoError.Text = "";
+
             SetProfileEditMode(true);
         }
+
 
         protected void SetProfileEditMode(bool isEditMode)
         {
@@ -128,8 +131,12 @@ namespace CoffeeCove.UserManagement
             EditPictureBtn_UP.Visible = isEditMode && !IsEditingPicture;
         }
 
+
         protected void SaveBtn_UP_Click(object sender, EventArgs e)
         {
+            lblUsernameError.Text = "";
+            lblContactNoError.Text = "";
+
             Page.Validate("SaveProfile");
 
             if (Page.IsValid)
@@ -148,6 +155,7 @@ namespace CoffeeCove.UserManagement
             lblRemoveMessage.Text = "";
         }
 
+
         protected void UpdateUserProfile()
         {
             string CusID = Session["CusID"]?.ToString();
@@ -155,38 +163,67 @@ namespace CoffeeCove.UserManagement
             {
                 using (SqlConnection con = new SqlConnection(cs))
                 {
-                    string query = "UPDATE [dbo].[Customer] SET Username = @Username, Gender = @Gender, " +
-                                   "DateOfBirth = @DateOfBirth, ContactNo = @ContactNo, ResidenceState = @ResidenceState " +
-                                   "WHERE CusID = @CusID";
-
-                    SqlCommand cmd = new SqlCommand(query, con);
-
-                    cmd.Parameters.AddWithValue("@Username", txtUsername.Text.Trim());
-                    cmd.Parameters.AddWithValue("@Gender", txtGender.SelectedValue.Trim());
-
-                    DateTime dob;
-                    if (DateTime.TryParse(txtDOB.Text.Trim(), out dob))
-                    {
-                        cmd.Parameters.AddWithValue("@DateOfBirth", dob);
-                    }
-                    else
-                    {
-                        lblUsername.Text = "Invalid date format.";
-                        return;
-                    }
-
-                    cmd.Parameters.AddWithValue("@ContactNo", txtContactNo.Text.Trim());
-                    cmd.Parameters.AddWithValue("@ResidenceState", txtResidenceState.SelectedValue.Trim());
-                    cmd.Parameters.AddWithValue("@CusID", CusID);
-
                     try
                     {
                         con.Open();
+
+                        // Check if the new username already exists for another user
+                        string checkUsernameQuery = "SELECT COUNT(*) FROM [dbo].[Customer] WHERE Username = @Username AND CusID != @CusID";
+                        SqlCommand checkUsernameCmd = new SqlCommand(checkUsernameQuery, con);
+                        checkUsernameCmd.Parameters.AddWithValue("@Username", txtUsername.Text.Trim());
+                        checkUsernameCmd.Parameters.AddWithValue("@CusID", CusID);
+                        int usernameCount = (int)checkUsernameCmd.ExecuteScalar();
+
+                        // If the username is already taken
+                        if (usernameCount > 0)
+                        {
+                            lblUsernameError.Text = "This username has already taken.";
+                            return;
+                        }
+
+                        // Check if duplicate new contact number
+                        string checkContactNoQuery = "SELECT COUNT(*) FROM [dbo].[Customer] WHERE ContactNo = @ContactNo AND CusID != @CusID";
+                        SqlCommand checkContactNoCmd = new SqlCommand(checkContactNoQuery, con);
+                        checkContactNoCmd.Parameters.AddWithValue("@ContactNo", txtContactNo.Text.Trim());
+                        checkContactNoCmd.Parameters.AddWithValue("@CusID", CusID);
+                        int contactNoCount = (int)checkContactNoCmd.ExecuteScalar();
+
+                        // If the contact number is already taken
+                        if (contactNoCount > 0)
+                        {
+                            lblContactNoError.Text = "This contact number has already taken.";
+                            return;
+                        }
+
+                        // Proceed with the update if both the username and contact number are unique
+                        string query = "UPDATE [dbo].[Customer] SET Username = @Username, Gender = @Gender, " +
+                                       "DateOfBirth = @DateOfBirth, ContactNo = @ContactNo, ResidenceState = @ResidenceState " +
+                                       "WHERE CusID = @CusID";
+
+                        SqlCommand cmd = new SqlCommand(query, con);
+                        cmd.Parameters.AddWithValue("@Username", txtUsername.Text.Trim());
+                        cmd.Parameters.AddWithValue("@Gender", txtGender.SelectedValue.Trim());
+
+                        DateTime dob;
+                        if (DateTime.TryParse(txtDOB.Text.Trim(), out dob))
+                        {
+                            cmd.Parameters.AddWithValue("@DateOfBirth", dob);
+                        }
+                        else
+                        {
+                            lblUsernameError.Text = "Invalid date format.";
+                            return;
+                        }
+
+                        cmd.Parameters.AddWithValue("@ContactNo", txtContactNo.Text.Trim());
+                        cmd.Parameters.AddWithValue("@ResidenceState", txtResidenceState.SelectedValue.Trim());
+                        cmd.Parameters.AddWithValue("@CusID", CusID);
+
                         int rowsAffected = cmd.ExecuteNonQuery();
 
                         if (rowsAffected == 0)
                         {
-                            lblUsername.Text = "No rows were updated. Please check the provided data.";
+                            lblUsername.Text = "Check entered data.";
                         }
                         else
                         {
@@ -201,6 +238,7 @@ namespace CoffeeCove.UserManagement
             }
         }
 
+
         private bool IsEditingPicture
         {
             get
@@ -213,11 +251,13 @@ namespace CoffeeCove.UserManagement
             }
         }
 
+
         protected void EditPictureBtn_UP_Click(object sender, EventArgs e)
         {
             IsEditingPicture = true;
             SetProfileEditMode(true);
         }
+
 
         protected void UploadPictureBtn_UP_Click(object sender, EventArgs e)
         {
@@ -285,6 +325,7 @@ namespace CoffeeCove.UserManagement
             }
         }
 
+
         protected void UploadBackBtn_UP_Click(object sender, EventArgs e)
         {
             // Reset the picture editing mode to false
@@ -297,6 +338,7 @@ namespace CoffeeCove.UserManagement
             lblUploadMessage.Text = "";
             lblRemoveMessage.Text = "";
         }
+
 
         protected void RemovePictureBtn_UP_Click(object sender, EventArgs e)
         {

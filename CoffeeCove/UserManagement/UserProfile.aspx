@@ -116,6 +116,7 @@
                                     CssClass="mt-1 p-2 border border-border rounded w-full" 
                                     Visible="false"
                                     placeholder="desmundchau7668" />
+                                <br />
                                 <asp:RequiredFieldValidator 
                                     ID="txtUsername_rqdValidator" runat="server" 
                                     ControlToValidate="txtUsername" 
@@ -133,6 +134,14 @@
                                     ForeColor="Red" 
                                     CssClass="rqdValidator" 
                                     ValidationExpression="^[a-zA-Z0-9_]{8,}$" />
+                                <asp:Label 
+                                    ID="lblUsernameError" 
+                                    runat="server" 
+                                    Display="Dynamic" 
+                                    ForeColor="Red" 
+                                    CssClass="rqdValidator" 
+                                    Text="">
+                                </asp:Label>
                             </td>
                             <td class="contentCol">
                                 <asp:Label ID="lblGender" runat="server" 
@@ -216,10 +225,11 @@
                                 <asp:Label ID="lblContactNo" runat="server"
                                     style="font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
                                             color: black; font-size: 12pt; font-weight: 450"/>
-                                <asp:TextBox ID="txtContactNo" runat="server" 
+                                <asp:TextBox ID="txtContactNo" runat="server"
                                     CssClass="mt-1 p-2 border border-border rounded w-full"  
                                     Visible="false"
                                     placeholder="012-3456789" />
+                                <br />
                                 <asp:RequiredFieldValidator 
                                     ID="ContactNo_rqdValidator" runat="server" 
                                     ControlToValidate="txtContactNo" 
@@ -237,12 +247,19 @@
                                     ForeColor="Red" 
                                     CssClass="rqdValidator" 
                                     ValidationExpression="^01[0-9]-[0-9]{7,9}$" />
+                                <asp:Label 
+                                    ID="lblContactNoError" 
+                                    runat="server" 
+                                    Display="Dynamic" 
+                                    ForeColor="Red" 
+                                    CssClass="rqdValidator" 
+                                    Text="">
+                                </asp:Label>
                             </td>
                             <td class="contentCol">
                                 <asp:Label ID="lblResidenceState" runat="server" CssClass="block text-sm text-muted-foreground"
                                     style="font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
                                         color: black; font-size: 12pt; font-weight: 450" />
-                                
                                 <asp:DropDownList ID="txtResidenceState" runat="server" 
                                     CssClass="mt-1 p-2 border border-border rounded w-full" 
                                     style="font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
@@ -264,7 +281,7 @@
                                     <asp:ListItem>Batu Maung</asp:ListItem>
                                     <asp:ListItem>Bayan Lepas</asp:ListItem>
                                 </asp:DropDownList>
-                            
+                                <br />
                                 <asp:RequiredFieldValidator 
                                     ID="ResidenceState_rqdValidator" runat="server" 
                                     ControlToValidate="txtResidenceState" 
