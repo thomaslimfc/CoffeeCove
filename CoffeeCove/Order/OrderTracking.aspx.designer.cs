@@ -60,6 +60,24 @@ namespace CoffeeCove.Order
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl progressbarStep4;
 
         /// <summary>
+        /// LabelStep3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal LabelStep3;
+
+        /// <summary>
+        /// LabelStep4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal LabelStep4;
+
+        /// <summary>
         /// BackButton control.
         /// </summary>
         /// <remarks>

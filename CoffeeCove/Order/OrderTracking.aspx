@@ -40,13 +40,17 @@
                     <div class="row d-flex icon-content">
                         <img class="icon" src="https://i.imgur.com/TkPm63y.png">
                         <div class="d-flex flex-column">
-                            <p class="font-weight-bold">Your Order is<br>Out for Delivery</p>
+                            <p class="font-weight-bold">
+                                <asp:Literal ID="LabelStep3" runat="server" Text="Your Order is<br>Out for Delivery"></asp:Literal>
+                            </p>
                         </div>
                     </div>
                     <div class="row d-flex icon-content">
                         <img class="icon" src="https://i.imgur.com/HdsziHP.png">
                         <div class="d-flex flex-column">
-                            <p class="font-weight-bold">Order<br>Delivered</p>
+                            <p class="font-weight-bold">
+                                <asp:Literal ID="LabelStep4" runat="server" Text="Order<br>Delivered"></asp:Literal>
+                            </p>
                         </div>
                     </div>
                 </div>

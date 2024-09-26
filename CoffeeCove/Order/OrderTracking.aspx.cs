@@ -32,23 +32,33 @@ namespace CoffeeCove.Order
         {
             using (SqlConnection con = new SqlConnection(cs))
             {
-                string query = "SELECT OrderStatus FROM OrderPlaced WHERE OrderID = @OrderID";
+                string query = "SELECT OrderStatus, OrderType FROM OrderPlaced WHERE OrderID = @OrderID";
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
                     cmd.Parameters.AddWithValue("@OrderID", orderId);
                     con.Open();
-                    string orderStatus = cmd.ExecuteScalar()?.ToString();
-
-                    if (!string.IsNullOrEmpty(orderStatus))
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        SetProgressBar(orderStatus);
+                        if (reader.Read())
+                        {
+                            string orderStatus = reader["OrderStatus"].ToString();
+                            string orderType = reader["OrderType"].ToString();
+
+                            // Update the progress bar
+                            SetProgressBar(orderStatus, orderType);
+                        }
                     }
                 }
             }
         }
 
-        private void SetProgressBar(string orderStatus)
+        private void SetProgressBar(string orderStatus, string orderType)
         {
+            // Define the wording based on OrderType
+            string readyText = orderType == "Pick Up" ? "Your Order<br>is Ready" : "Your Order is<br>Out for Delivery";
+            string pickedUpText = orderType == "Pick Up" ? "Order<br>Picked Up" : "Order<br>Delivered";
+
+            // Update the progress bar steps based on the OrderStatus
             switch (orderStatus)
             {
                 case "Order Received":
@@ -66,6 +76,7 @@ namespace CoffeeCove.Order
                     break;
 
                 case "Your Order is Out for Delivery":
+                case "Your Order is Ready":  // Handle for Pick Up case
                     progressbarStep1.Attributes.Add("class", "active step0");
                     progressbarStep2.Attributes.Add("class", "active step0");
                     progressbarStep3.Attributes.Add("class", "active step0");
@@ -73,20 +84,23 @@ namespace CoffeeCove.Order
                     break;
 
                 case "Order Delivered":
+                case "Order Picked Up":  // Handle for Pick Up case
                     progressbarStep1.Attributes.Add("class", "active step0");
                     progressbarStep2.Attributes.Add("class", "active step0");
                     progressbarStep3.Attributes.Add("class", "active step0");
                     progressbarStep4.Attributes.Add("class", "active step0");
                     break;
             }
+
+            // Update the labels dynamically
+            LabelStep3.Text = readyText;
+            LabelStep4.Text = pickedUpText;
         }
 
         protected void BackButton_Click(object sender, EventArgs e)
         {
-            // Check if the UrlReferrer is not null and redirect
             if (Request.UrlReferrer != null)
             {
-                // Additional check to prevent looping back to the same page
                 string referrerUrl = Request.UrlReferrer.ToString();
                 if (!referrerUrl.Contains("OrderTracking.aspx"))
                 {
@@ -94,13 +108,11 @@ namespace CoffeeCove.Order
                 }
                 else
                 {
-                    // Fallback to orderHistory.aspx if the referrer is the current page
                     Response.Redirect("orderHistory.aspx");
                 }
             }
             else
             {
-                // Fallback if UrlReferrer is null
                 Response.Redirect("orderHistory.aspx");
             }
         }

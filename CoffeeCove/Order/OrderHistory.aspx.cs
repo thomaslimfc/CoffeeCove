@@ -30,7 +30,7 @@ namespace CoffeeCove.Order
                     LEFT JOIN PaymentDetail PD ON O.OrderID = PD.OrderID
                     WHERE O.CusID = @CusID
                     AND O.OrderStatus IS NOT NULL
-                    AND O.OrderStatus IN ('Order Delivered', 'Preparing Your Meal', 'Your Order is Out for Delivery', 'Order Received', 'Order Cancelled')";
+                    AND O.OrderStatus IN ('Order Delivered', 'Order Picked Up', 'Preparing Your Meal', 'Your Order is Out for Delivery', 'Your Order is Ready', 'Order Received', 'Order Cancelled')";
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
@@ -52,6 +52,7 @@ namespace CoffeeCove.Order
                 // Get the current OrderID, OrderStatus, and OrderDateTime
                 int orderId = Convert.ToInt32(DataBinder.Eval(e.Item.DataItem, "OrderID"));
                 string orderStatus = DataBinder.Eval(e.Item.DataItem, "OrderStatus").ToString();
+                string orderType = DataBinder.Eval(e.Item.DataItem, "OrderType").ToString();
                 DateTime orderDateTime = Convert.ToDateTime(DataBinder.Eval(e.Item.DataItem, "OrderDateTime"));
 
                 // Find the buttons
@@ -69,7 +70,7 @@ namespace CoffeeCove.Order
                 else
                 {
                     // Existing conditions for other statuses
-                    if (orderStatus == "Order Delivered")
+                    if (orderStatus == "Order Delivered" || orderStatus == "Order Picked Up")
                     {
                         ratingButton.Visible = true;
                     }
@@ -95,17 +96,29 @@ namespace CoffeeCove.Order
 
                         if (timeDifference.TotalSeconds > 30)
                         {
-                            UpdateOrderStatus(orderId, "Your Order is Out for Delivery");
+                            if(orderType == "Delivery")
+                            {
+                                UpdateOrderStatus(orderId, "Your Order is Out for Delivery");
+                            } 
+                            else if (orderType == "Pick Up")
+                            {
+                                UpdateOrderStatus(orderId, "Your Order is Ready");
+                            }
+                            
                         }
                     }
 
-                    if (orderStatus == "Your Order is Out for Delivery")
+                    if (orderStatus == "Your Order is Out for Delivery" || orderStatus == "Your Order is Ready")
                     {
                         TimeSpan timeDifference = DateTime.Now - orderDateTime;
 
-                        if (timeDifference.TotalSeconds > 40)
+                        if (orderType == "Delivery")
                         {
                             UpdateOrderStatus(orderId, "Order Delivered");
+                        }
+                        else if (orderType == "Pick Up")
+                        {
+                            UpdateOrderStatus(orderId, "Order Picked Up");
                         }
                     }
                 }
