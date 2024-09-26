@@ -19,18 +19,30 @@ namespace CoffeeCove.Order
 
             if (!Page.IsPostBack)
             {
-                SqlConnection conn = new SqlConnection(cs);
-                string sql = @"SELECT * 
+                using(SqlConnection conn = new SqlConnection(cs)){
+
+                    string sql = @"SELECT * 
                             FROM Store";
 
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        try
+                        {
+                            conn.Open();
 
-                DataSet ds = new DataSet();
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(ds);
-                rptStoreList.DataSource = ds;
-                rptStoreList.DataBind();
+                            DataSet ds = new DataSet();
+                            SqlDataAdapter da = new SqlDataAdapter(cmd);
+                            da.Fill(ds);
+                            rptStoreList.DataSource = ds;
+                            rptStoreList.DataBind();
+
+                        }
+                        catch (Exception ex)
+                        {
+                            Response.Write("Oops! An error occurred: " + ex.Message);
+                        }
+                    }
+                }
 
 
 
@@ -52,33 +64,42 @@ namespace CoffeeCove.Order
                 
                 string storeId = e.CommandArgument.ToString();
 
-                SqlConnection conn = new SqlConnection(cs);
-                string sql = @"SELECT * FROM Store WHERE StoreID = @storeId";
-
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@storeId", storeId);
-                conn.Open();
-
-                SqlDataReader dr = cmd.ExecuteReader();
-
-                if (dr.Read()) 
+                using (SqlConnection conn = new SqlConnection(cs))
                 {
-                    hfStoreID.Value = storeId;
-                    lblStoreName.Text = dr["StoreName"].ToString();
-                    lblStoreAdd.Text = dr["StoreAddress"].ToString();
+                    string sql = @"SELECT * FROM Store WHERE StoreID = @storeId";
 
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        try
+                        {
+                            cmd.Parameters.AddWithValue("@storeId", storeId);
+                            conn.Open();
+
+                            SqlDataReader dr = cmd.ExecuteReader();
+
+                            if (dr.Read())
+                            {
+                                hfStoreID.Value = storeId;
+                                lblStoreName.Text = dr["StoreName"].ToString();
+                                lblStoreAdd.Text = dr["StoreAddress"].ToString();
+
+                            }
+                            else
+                            {
+
+                                lblStoreName.Text = "Store not found.";
+                                lblStoreAdd.Text = string.Empty;
+                            }
+                            lbConfirmPickUp.Enabled = true;
+                            lbConfirmPickUp.CssClass = "btnCont";
+                        }
+                        catch (Exception ex)
+                        {
+                            Response.Write("Oops! An error occurred: " + ex.Message);
+                        }
+                    }
+                        
                 }
-                else
-                {
-                    
-                    lblStoreName.Text = "Store not found.";
-                    lblStoreAdd.Text = string.Empty;
-                }
-
-                lbConfirmPickUp.Enabled = true;
-                lbConfirmPickUp.CssClass = "btnCont";
-
-                conn.Close();
             }
         }
 
@@ -95,38 +116,49 @@ namespace CoffeeCove.Order
             //retrieve cusID from session
             string cusID = Session["CusID"].ToString();
             //create an orderID for it
-            SqlConnection conn3 = new SqlConnection(cs);
-            string sql3 = @"INSERT INTO OrderPlaced(CusID,OrderDateTime,TotalAmount,OrderType) 
+            using (SqlConnection conn3 = new SqlConnection(cs))
+            {
+                string sql3 = @"INSERT INTO OrderPlaced(CusID,OrderDateTime,TotalAmount,OrderType) 
                                 VALUES (@cusID,@dateTime,0,'Pick Up');
                                 SELECT SCOPE_IDENTITY();";
 
-            SqlCommand cmd3 = new SqlCommand(sql3, conn3);
-            cmd3.Parameters.AddWithValue("@cusID", cusID);
-            cmd3.Parameters.AddWithValue("@dateTime", DateTime.Now);
-            conn3.Open();
-
-            object newOrderID = cmd3.ExecuteScalar();
-
-
-            int orderId = Convert.ToInt32(newOrderID);
-
-            string sql4 = @"INSERT INTO PaymentDetail(PaymentStatus,OrderID) 
+                string sql4 = @"INSERT INTO PaymentDetail(PaymentStatus,OrderID) 
                                 VALUES ('Pending',@orderId)";
 
-            SqlCommand cmd4 = new SqlCommand(sql4, conn3);
-            cmd4.Parameters.AddWithValue("@orderId", orderId.ToString());
-            cmd4.ExecuteNonQuery();
+                using (SqlCommand cmd3 = new SqlCommand(sql3, conn3))
+                {
+                    try
+                    {
+                        cmd3.Parameters.AddWithValue("@cusID", cusID);
+                        cmd3.Parameters.AddWithValue("@dateTime", DateTime.Now);
+                        conn3.Open();
 
-            Session["OrderID"] = orderId;
+                        object newOrderID = cmd3.ExecuteScalar();
+                        int orderId = Convert.ToInt32(newOrderID);
 
-            //create cookies
-            HttpCookie coo = new HttpCookie("OrderID", orderId.ToString());
-            //coo.Expires = DateTime.Now.AddMinutes(1);
+                        using (SqlCommand cmd4 = new SqlCommand(sql4, conn3))
+                        {
+                            cmd4.Parameters.AddWithValue("@orderId", orderId.ToString());
+                            cmd4.ExecuteNonQuery();
 
-            //send the cookie to client pc
-            Response.Cookies.Add(coo);
+                            Session["OrderID"] = orderId;
 
-            conn3.Close();
+                            //create cookies
+                            HttpCookie coo = new HttpCookie("OrderID", orderId.ToString());
+                            //coo.Expires = DateTime.Now.AddMinutes(1);
+
+                            //send the cookie to client pc
+                            Response.Cookies.Add(coo);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Response.Write("Oops! An error occurred: " + ex.Message);
+                    }
+                    
+                }
+            }
+                
         }
 
         protected void lbConfirmPickUp_Click(object sender, EventArgs e)
@@ -140,47 +172,48 @@ namespace CoffeeCove.Order
             //put the pickup Store inside the database
             string storeID = hfStoreID.Value;
 
-            SqlConnection conn = new SqlConnection(cs);
-            ////clean those empty order
-            //string sql3 = @"DELETE FROM PaymentDetail 
-            //                    WHERE PaymentMethod IS NULL AND OrderID <> @orderId;";
-
-            //SqlCommand cmd3 = new SqlCommand(sql3, conn);
-            //cmd3.Parameters.AddWithValue("@orderId", orderID);
-
-            //conn.Open();
-            //cmd3.ExecuteNonQuery();
-
-            //string sql4 = @"DELETE FROM OrderPlaced 
-            //                    WHERE TotalAmount = 0.00 AND OrderStatus IS NULL AND OrderID <> @orderId;";
-
-            //SqlCommand cmd4 = new SqlCommand(sql4, conn);
-            //cmd4.Parameters.AddWithValue("@orderId", orderID);
-
-            //cmd4.ExecuteNonQuery();
-
-            string sql = @"UPDATE OrderPlaced 
+            using (SqlConnection conn = new SqlConnection(cs))
+            {
+                string sql = @"UPDATE OrderPlaced 
                                 SET StoreID = @storeID
                                 WHERE OrderID = @orderID;";
 
-            SqlCommand cmd = new SqlCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@storeID", storeID);
-            cmd.Parameters.AddWithValue("@orderID", orderID);
-            conn.Open();
-            cmd.ExecuteNonQuery();
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    try
+                    {
+                        cmd.Parameters.AddWithValue("@storeID", storeID);
+                        cmd.Parameters.AddWithValue("@orderID", orderID);
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
 
-            //clean the deliveryAddress
-            string sql2 = @"UPDATE OrderPlaced 
+                        //clean the deliveryAddress
+                        string sql2 = @"UPDATE OrderPlaced 
                                 SET DeliveryAddress = NULL
                                 WHERE OrderID = @orderID;";
 
-            SqlCommand cmd2 = new SqlCommand(sql2, conn);
-            cmd2.Parameters.AddWithValue("@orderID", orderID);
+                        using (SqlCommand cmd2 = new SqlCommand(sql2, conn))
+                        {
+                            try
+                            {
+                                cmd2.Parameters.AddWithValue("@orderID", orderID);
 
-            cmd2.ExecuteNonQuery();
-
-            conn.Close();
-
+                                cmd2.ExecuteNonQuery();
+                            }
+                            catch (Exception ex)
+                            {
+                                Response.Write("Oops! An error occurred: " + ex.Message);
+                            }
+                            
+                        }
+                            
+                    }
+                    catch (Exception ex)
+                    {
+                        Response.Write("Oops! An error occurred: " + ex.Message);
+                    }
+                }
+            }
             Session["orderOpt"] = "PickUp";
             Response.Redirect("../Menu/Menu.aspx");
         }
@@ -199,59 +232,58 @@ namespace CoffeeCove.Order
                 //put the pickup Store inside the database
                 string storeID = hfStoreID.Value;
 
-                SqlConnection conn = new SqlConnection(cs);
-                //clean those empty order
-                //string sql3 = @"DELETE FROM PaymentDetail 
-                //                WHERE PaymentMethod IS NULL AND OrderID <> @orderId;";
-
-                //SqlCommand cmd3 = new SqlCommand(sql3, conn);
-                //cmd3.Parameters.AddWithValue("@orderId", orderID);
-
-                //conn.Open();
-                //cmd3.ExecuteNonQuery();
-
-                //string sql4 = @"DELETE FROM OrderPlaced 
-                //                WHERE TotalAmount = 0.00 AND OrderStatus IS NULL AND OrderID <> @orderId;";
-
-                //SqlCommand cmd4 = new SqlCommand(sql4, conn);
-                //cmd4.Parameters.AddWithValue("@orderId", orderID);
-
-                //cmd4.ExecuteNonQuery();
-
-                //get the address from textbox then combine them into one address
-                string address = "";
-                if(txtUnit.Text.Length > 0) //if got write unit
+                using (SqlConnection conn = new SqlConnection(cs))
                 {
-                    address = txtUnit.Text + "," + txtAddress1.Text + "," + txtPostCode.Text;
-                }
-                else
-                {
-                    address = txtAddress1.Text + "," + txtPostCode.Text;
-                }
-            
-                //save the address into the database
-                string sql = @"UPDATE OrderPlaced 
+                    string address = "";
+                    if (txtUnit.Text.Length > 0) //if got write unit
+                    {
+                        address = txtUnit.Text + "," + txtAddress1.Text + "," + txtPostCode.Text;
+                    }
+                    else
+                    {
+                        address = txtAddress1.Text + "," + txtPostCode.Text;
+                    }
+
+                    //save the address into the database
+                    string sql = @"UPDATE OrderPlaced 
                                 SET DeliveryAddress = @address
                                 WHERE OrderID = @orderID;";
 
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@address", address);
-                cmd.Parameters.AddWithValue("@orderID", orderID);
-                conn.Open();
-                cmd.ExecuteNonQuery();
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        try
+                        {
+                            cmd.Parameters.AddWithValue("@address", address);
+                            cmd.Parameters.AddWithValue("@orderID", orderID);
+                            conn.Open();
+                            cmd.ExecuteNonQuery();
 
-                //clean the pickupStore
-                string sql2 = @"UPDATE OrderPlaced 
+                            //clean the pickupStore
+                            string sql2 = @"UPDATE OrderPlaced 
                                 SET StoreID = NULL
                                 WHERE OrderID = @orderID;";
 
-                SqlCommand cmd2 = new SqlCommand(sql2, conn);
-                cmd2.Parameters.AddWithValue("@orderID", orderID);
+                            using (SqlCommand cmd2 = new SqlCommand(sql2, conn))
+                            {
+                                try
+                                {
+                                    cmd2.Parameters.AddWithValue("@orderID", orderID);
 
-                cmd2.ExecuteNonQuery();
-
-                conn.Close();
-
+                                    cmd2.ExecuteNonQuery();
+                                }
+                                catch (Exception ex)
+                                {
+                                    Response.Write("Oops! An error occurred: " + ex.Message);
+                                }
+                            }
+                                
+                        }
+                        catch(Exception ex)
+                        {
+                            Response.Write("Oops! An error occurred: " + ex.Message);
+                        }
+                    }
+                }
                 Session["orderOpt"] = "Delivery";
                 Response.Redirect("../Menu/Menu.aspx");
             }

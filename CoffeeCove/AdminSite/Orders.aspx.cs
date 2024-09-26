@@ -119,7 +119,7 @@ namespace CoffeeCove.AdminSite
                     }
                     catch (Exception ex)
                     {
-
+                        Response.Write("Oops! An error occurred: " + ex.Message);
                     }
 
                 }
@@ -161,7 +161,7 @@ namespace CoffeeCove.AdminSite
                     }
                     catch (Exception ex)
                     {
-
+                        Response.Write("Oops! An error occurred: " + ex.Message);
                     }
                 }
                 UpdateSortIcons();
@@ -198,9 +198,10 @@ namespace CoffeeCove.AdminSite
                                 WHERE OrderID = @orderId";
                 using (SqlCommand cmd = new SqlCommand(sql5, conn))
                 {
-                    cmd.Parameters.AddWithValue("@orderId", orderId);
                     try
                     {
+                        cmd.Parameters.AddWithValue("@orderId", orderId);
+                    
                         conn.Open();
 
                         SqlDataReader dr = cmd.ExecuteReader();
@@ -210,23 +211,28 @@ namespace CoffeeCove.AdminSite
                             paymentId = dr["PaymentID"].ToString();
 
                         }
+
+                        dr.Close();
                     }
                     catch (Exception ex)
                     {
-
+                        Response.Write("Oops! An error occurred: " + ex.Message);
                     }
-
-                    conn.Close();
                 }
-
-                conn.Open();
 
                 string sql = @"DELETE FROM OrderedItem
                                 WHERE OrderID = @orderId";
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@orderId", orderId);
-                    cmd.ExecuteNonQuery();
+                    try
+                    {
+                        cmd.Parameters.AddWithValue("@orderId", orderId);
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch(Exception ex)
+                    {
+                        Response.Write("Oops! An error occurred: " + ex.Message);
+                    }
                 }
 
                 //delete review first then only payment
@@ -234,25 +240,49 @@ namespace CoffeeCove.AdminSite
                                 WHERE PaymentID = @paymentId";
                 using (SqlCommand cmd = new SqlCommand(sql4, conn))
                 {
-                    cmd.Parameters.AddWithValue("@paymentId", paymentId);
-                    cmd.ExecuteNonQuery();
+                    try
+                    {
+                        cmd.Parameters.AddWithValue("@paymentId", paymentId);
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        Response.Write("Oops! An error occurred: " + ex.Message);
+                    }
                 }
 
                 string sql2 = @"DELETE FROM PaymentDetail
                                 WHERE OrderID = @orderId";
                 using (SqlCommand cmd = new SqlCommand(sql2, conn))
                 {
-                    cmd.Parameters.AddWithValue("@orderId", orderId);
-                    cmd.ExecuteNonQuery();
+                    try
+                    {
+                        cmd.Parameters.AddWithValue("@orderId", orderId);
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        Response.Write("Oops! An error occurred: " + ex.Message);
+                    }
                 }
 
                 string sql3 = @"DELETE FROM OrderPlaced
                                 WHERE OrderID = @orderId";
                 using (SqlCommand cmd = new SqlCommand(sql3, conn))
                 {
-                    cmd.Parameters.AddWithValue("@orderId", orderId);
-                    cmd.ExecuteNonQuery();
+                    try
+                    {
+                        cmd.Parameters.AddWithValue("@orderId", orderId);
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        Response.Write("Oops! An error occurred: " + ex.Message);
+                    }
                 }
+
+                lblMsg.Text = "Order Deleted Successfully";
+                lblMsg.Visible = true;
 
             }
 
@@ -262,28 +292,39 @@ namespace CoffeeCove.AdminSite
 
         private void bindRepeater(string orderId)
         {
-            SqlConnection conn = new SqlConnection(cs);
-            string sql = @"SELECT * 
+            using (SqlConnection conn = new SqlConnection(cs))
+            {
+                string sql = @"SELECT * 
                             FROM OrderedItem I JOIN Product P 
                             ON I.ProductId = P.ProductId
                             WHERE OrderId = @orderId";
 
-            SqlCommand cmd = new SqlCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@orderId", orderId);
-            conn.Open();
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    try
+                    {
+                        cmd.Parameters.AddWithValue("@orderId", orderId);
+                        conn.Open();
 
-            DataSet ds = new DataSet();
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            da.Fill(ds);
+                        DataSet ds = new DataSet();
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        da.Fill(ds);
 
-            //clear the repeater to null
-            rptOrdered.DataSource = null;
-            rptOrdered.DataBind();
+                        //clear the repeater
+                        rptOrdered.DataSource = null;
+                        rptOrdered.DataBind();
 
-            rptOrdered.DataSource = ds;
-            rptOrdered.DataBind();
-
-            conn.Close();
+                        rptOrdered.DataSource = ds;
+                        rptOrdered.DataBind();
+                    }
+                    catch (Exception ex)
+                    {
+                        Response.Write("Oops! An error occurred: " + ex.Message);
+                    }
+                }
+                    
+            }
+                
         }
 
         private void displayDetail(string orderId)
@@ -300,9 +341,10 @@ namespace CoffeeCove.AdminSite
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@orderId", orderId);
                     try
                     {
+                        cmd.Parameters.AddWithValue("@orderId", orderId);
+                    
                         conn.Open();
 
                         SqlDataReader dr = cmd.ExecuteReader();
@@ -314,26 +356,35 @@ namespace CoffeeCove.AdminSite
                             lblDate.Text = orderDate.ToString("dd/MM/yyyy");
                             string orderType = dr["OrderType"].ToString();
 
+                            
+
+                            lblPaymentMethod.Text = dr["PaymentMethod"].ToString();
+                            lblUsername.Text = dr["Username"].ToString();
+                            lblEmail.Text = dr["EmailAddress"].ToString();
+
                             //if it is delivery then display delivery and vice versa
-                            if (dr["StoreID"] == DBNull.Value && orderType == "Delivery")//if store ID = null, means that it is using delivery
+                            if (orderType == "Delivery")//if store ID = null, means that it is using delivery
                             {
                                 lblDelPick.Text = orderType;
                                 lblDelivery.Text = dr["DeliveryAddress"].ToString();
                                 lblPickUp.Text = "-";
                             }
-                            else if (dr["DeliveryAddress"] == DBNull.Value && orderType == "Pick Up")
+                            else if (orderType == "Pick Up")
                             {
                                 lblDelPick.Text = orderType;
                                 string storeID = dr["StoreID"].ToString();
+
+                                dr.Close();
                                 //find store name based on id
                                 string sql1 = @"SELECT StoreName
                                             FROM Store
                                             WHERE StoreID = @storeId";
                                 using (SqlCommand cmd1 = new SqlCommand(sql1, conn))
                                 {
-                                    cmd1.Parameters.AddWithValue("@storeId", storeID);
                                     try
                                     {
+                                        cmd1.Parameters.AddWithValue("@storeId", storeID);
+                                    
                                         SqlDataReader dr1 = cmd1.ExecuteReader();
 
                                         if (dr1.Read())
@@ -343,11 +394,11 @@ namespace CoffeeCove.AdminSite
                                     }
                                     catch (Exception ex)
                                     {
-
+                                        Response.Write("Oops! An error occurred: " + ex.Message);
                                     }
 
                                 }
- 
+
                                 lblDelivery.Text = "-";
                             }
                             else
@@ -355,17 +406,11 @@ namespace CoffeeCove.AdminSite
                                 lblDelPick.Text = " ";
                             }
 
-                            lblPaymentMethod.Text = dr["PaymentMethod"].ToString();
-                            lblUsername.Text = dr["Username"].ToString();
-                            lblEmail.Text = dr["EmailAddress"].ToString();
-
-
-
                         }
                     }
                     catch (Exception ex)
                     {
-
+                        Response.Write("Oops! An error occurred: " + ex.Message);
                     }
 
                 }
@@ -375,6 +420,7 @@ namespace CoffeeCove.AdminSite
 
 
         }
+
 
         protected void btnReset_Click(object sender, EventArgs e)
         {
@@ -395,8 +441,8 @@ namespace CoffeeCove.AdminSite
 
                 if (endDate <= startDate)
                 {
-                    lblMsg.Text = "End date must be after the start date.";
-                    lblMsg.Visible = true;
+                    lblErrorMsg.Text = "End Date must be after the Start Date.";
+                    lblErrorMsg.Visible = true;
                     return;
                 }
 
@@ -407,11 +453,12 @@ namespace CoffeeCove.AdminSite
             }
             catch (FormatException ex)
             {
-
+                lblErrorMsg.Text = "Please enter date range";
+                lblErrorMsg.Visible = true;
             }
             catch (Exception ex)
             {
-
+                Response.Write("Oops! An error occurred: " + ex.Message);
             }
         }
         //sorting function from jinhuei
@@ -517,11 +564,18 @@ namespace CoffeeCove.AdminSite
                 {
                     using (SqlCommand cmd = new SqlCommand(sql, con))
                     {
-                        cmd.Parameters.AddWithValue("@startDate", fromDate);
-                        cmd.Parameters.AddWithValue("@endDate", toDate);
-                        con.Open();
-                        SqlDataReader dr = cmd.ExecuteReader();
-                        dt.Load(dr);
+                        try
+                        {
+                            cmd.Parameters.AddWithValue("@startDate", fromDate);
+                            cmd.Parameters.AddWithValue("@endDate", toDate);
+                            con.Open();
+                            SqlDataReader dr = cmd.ExecuteReader();
+                            dt.Load(dr);
+                        }
+                        catch (Exception ex)
+                        {
+                            Response.Write("Oops! An error occurred: " + ex.Message);
+                        }
                     }
                 }
 
@@ -608,9 +662,16 @@ namespace CoffeeCove.AdminSite
                 {
                     using (SqlCommand cmd = new SqlCommand(sql, con))
                     {
-                        con.Open();
-                        SqlDataReader dr = cmd.ExecuteReader();
-                        dt.Load(dr);
+                        try
+                        {
+                            con.Open();
+                            SqlDataReader dr = cmd.ExecuteReader();
+                            dt.Load(dr);
+                        }
+                        catch (Exception ex) 
+                        {
+                            Response.Write("Oops! An error occurred: " + ex.Message);
+                        }
                     }
                 }
 
@@ -691,7 +752,7 @@ namespace CoffeeCove.AdminSite
         {
             // Set up PDF response properties
             Response.ContentType = "application/pdf";
-            Response.AddHeader("content-disposition", "attachment;filename=OrderReceipt.pdf");
+            Response.AddHeader("content-disposition", "attachment;filename=Invoice.pdf");
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             DataTable dt = new DataTable();
             string invoiceNum = "";
@@ -710,28 +771,35 @@ namespace CoffeeCove.AdminSite
             {
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
-                    con.Open();
-                    cmd.Parameters.AddWithValue("@orderID", orderID);
-                    SqlDataReader dr = cmd.ExecuteReader();
-
-                    if (dr.Read())
+                    try
                     {
-                        //generate invoice number
-                        DateTime orderDate = Convert.ToDateTime(dr["OrderDateTime"]);
-                        string cusID = dr["CusID"].ToString();
-                        string orderType = dr["OrderType"].ToString();
-                        if(orderType == "Delivery")
-                        {
-                            invoiceNum = "D" + orderDate.ToString("ddMMyyyy") + orderID + cusID;
-                        }
-                        else if(orderType == "Pick Up")
-                        {
-                            invoiceNum = "P" + orderDate.ToString("ddMMyyyy") + orderID + cusID;
-                        }
+                        con.Open();
+                        cmd.Parameters.AddWithValue("@orderID", orderID);
+                        SqlDataReader dr = cmd.ExecuteReader();
 
-                        
+                        if (dr.Read())
+                        {
+                            //generate invoice number
+                            DateTime orderDate = Convert.ToDateTime(dr["OrderDateTime"]);
+                            string cusID = dr["CusID"].ToString();
+                            string orderType = dr["OrderType"].ToString();
+                            if (orderType == "Delivery")
+                            {
+                                invoiceNum = "D" + orderDate.ToString("ddMMyyyy") + orderID + cusID;
+                            }
+                            else if (orderType == "Pick Up")
+                            {
+                                invoiceNum = "P" + orderDate.ToString("ddMMyyyy") + orderID + cusID;
+                            }
+
+
+                        }
+                        dt.Load(dr);
                     }
-                    dt.Load(dr);
+                    catch(Exception ex)
+                    {
+                        Response.Write("Oops! An error occurred: " + ex.Message);
+                    }
 
                 }
             }
@@ -743,9 +811,14 @@ namespace CoffeeCove.AdminSite
             iTextSharp.text.pdf.PdfWriter.GetInstance(pdfdoc, Response.OutputStream);
             pdfdoc.Open();
 
-            iTextSharp.text.Paragraph title = new iTextSharp.text.Paragraph("COFFEECOVE", FontFactory.GetFont("Arial", 18, Font.BOLD));
+            iTextSharp.text.Paragraph title = new iTextSharp.text.Paragraph("COFFEECOVE", FontFactory.GetFont("Arial", 23, Font.BOLD));
             title.Alignment = Element.ALIGN_CENTER;
             pdfdoc.Add(title);
+            pdfdoc.Add(new iTextSharp.text.Paragraph(" "));
+
+            iTextSharp.text.Paragraph title1 = new iTextSharp.text.Paragraph("INVOICE", FontFactory.GetFont("Arial", 18, Font.BOLD));
+            title1.Alignment = Element.ALIGN_CENTER;
+            pdfdoc.Add(title1);
             pdfdoc.Add(new iTextSharp.text.Paragraph(" "));
 
             DataRow row1 = dt.Rows[0];

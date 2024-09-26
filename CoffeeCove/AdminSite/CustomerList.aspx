@@ -187,6 +187,9 @@
                                                                 <asp:Label 
                                                                     ID="lblPassword_CL" 
                                                                     runat="server" 
+                                                                    Display="Dynamic" 
+                                                                    ForeColor="Red" 
+                                                                    CssClass="rqdValidator"
                                                                     Text="">
                                                                 </asp:Label>
                                                             </div>
@@ -215,7 +218,12 @@
                                                                     CssClass="rqdValidator"
                                                                     ValidationGroup="RegisterAccount" />
                                                                 </div>
-                                                                <asp:Label ID="lblBranchLocation_CL" runat="server" CssClass="block text-sm text-muted-foreground" />
+                                                                <asp:Label 
+                                                                    ID="lblBranchLocation_CL" 
+                                                                    runat="server" 
+                                                                    Display="Dynamic" 
+                                                                    ForeColor="Red" 
+                                                                    CssClass="rqdValidator"/>
                                                             
                                                         </td>
                                                     </tr>
@@ -324,6 +332,7 @@
                                                                     ValidationExpression="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{10,}$" />
                                                                 <asp:Label ID="lblSuperuserPassword_CL" 
                                                                     runat="server" 
+                                                                    Display="Dynamic" 
                                                                     ForeColor="Red" 
                                                                     CssClass="rqdValidator" 
                                                                     Text="">
@@ -456,6 +465,8 @@
                                                                 <asp:Label 
                                                                     ID="lblBranchLocationEdit_CL2" 
                                                                     runat="server" 
+                                                                    Display="Dynamic"
+                                                                    ForeColor="Red"
                                                                     CssClass="block text-sm text-muted-foreground" />
                                                         </td>
                                                         <td></td>
@@ -491,6 +502,12 @@
                                                                     ForeColor="Red" 
                                                                     CssClass="rqdValidator" 
                                                                     ValidationExpression="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{10,}$" />
+                                                                <asp:Label 
+                                                                    ID="lblSuperuserPassword_CL2" 
+                                                                    runat="server" 
+                                                                    Display="Dynamic" 
+                                                                    ForeColor="Red" 
+                                                                    CssClass="rqdValidator"/>
                                                             </div>
                                                         </td>
                                                     </tr>

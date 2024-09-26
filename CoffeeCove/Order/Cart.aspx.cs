@@ -27,43 +27,59 @@ namespace CoffeeCove.Order
                 }
                 string orderId = Session["OrderID"].ToString();
 
-                SqlConnection conn = new SqlConnection(cs);
-                string sql = @"SELECT * 
-                            FROM OrderedItem I JOIN Product P 
-                            ON I.ProductId = P.ProductId
-                            WHERE OrderId = @orderId";
-
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@orderId", orderId);
-                conn.Open();
-
-                DataSet ds = new DataSet();
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                da.Fill(ds);
-                rptOrdered.DataSource = ds;
-                rptOrdered.DataBind();
-
-
-                string sql1 = @"SELECT COUNT(*) 
-                            FROM OrderedItem I JOIN Product P 
-                            ON I.ProductId = P.ProductId
-                            WHERE OrderId = @orderId";
-
-                SqlCommand cmd1 = new SqlCommand(sql1, conn);
-                cmd1.Parameters.AddWithValue("@orderId", orderId);
-                int count = (int)cmd1.ExecuteScalar();
-
-                //if no record for this order
-                if (count <= 0)
+                using (SqlConnection conn = new SqlConnection(cs))
                 {
-                    Response.Redirect("../Menu/Menu.aspx");
+                    string sql = @"SELECT * 
+                            FROM OrderedItem I JOIN Product P 
+                            ON I.ProductId = P.ProductId
+                            WHERE OrderId = @orderId";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        try
+                        {
+                            cmd.Parameters.AddWithValue("@orderId", orderId);
+                            conn.Open();
+
+                            DataSet ds = new DataSet();
+                            SqlDataAdapter da = new SqlDataAdapter(cmd);
+                            da.Fill(ds);
+                            rptOrdered.DataSource = ds;
+                            rptOrdered.DataBind();
+
+
+                            string sql1 = @"SELECT COUNT(*) 
+                            FROM OrderedItem I JOIN Product P 
+                            ON I.ProductId = P.ProductId
+                            WHERE OrderId = @orderId";
+
+                            using(SqlCommand cmd1 = new SqlCommand(sql1, conn))
+                            {
+                                try
+                                {
+                                    cmd1.Parameters.AddWithValue("@orderId", orderId);
+                                    int count = (int)cmd1.ExecuteScalar();
+
+                                    //if no record for this order
+                                    if (count <= 0)
+                                    {
+                                        Response.Redirect("../Menu/Menu.aspx");
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    Response.Write("Oops! An error occurred: " + ex.Message);
+                                }
+                            }
+                            
+                        }
+                        catch (Exception ex)
+                        {
+                            Response.Write("Oops! An error occurred: " + ex.Message);
+                        }
+                    }
+                        
                 }
-
-                
-
-                
-
-                conn.Close();
             }
 
             
@@ -83,16 +99,24 @@ namespace CoffeeCove.Order
 
             using (SqlConnection conn = new SqlConnection(cs))
             {
-                conn.Open();
+                
                 string sql = @"UPDATE OrderPlaced
                             SET TotalAmount = @total
                             WHERE OrderID = @orderId";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@orderId", orderId);
-                    cmd.Parameters.AddWithValue("@total", total);
-                    cmd.ExecuteNonQuery();
+                    try
+                    {
+                        conn.Open();
+                        cmd.Parameters.AddWithValue("@orderId", orderId);
+                        cmd.Parameters.AddWithValue("@total", total);
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        Response.Write("Oops! An error occurred: " + ex.Message);
+                    }
                 }
                     
             }
@@ -144,41 +168,57 @@ namespace CoffeeCove.Order
         {
             if (e.CommandName == "btnDelete")
             {
-
                 string orderedItemID = e.CommandArgument.ToString();
                 string orderId = Session["OrderID"].ToString();
 
-                SqlConnection conn = new SqlConnection(cs);
-                string sql = @"DELETE FROM OrderedItem
+                using (SqlConnection conn = new SqlConnection(cs))
+                {
+                    string sql = @"DELETE FROM OrderedItem
                             WHERE OrderedItemID = @orderedItemID";
 
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@orderedItemID", orderedItemID);
-                conn.Open();
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        try
+                        {
+                            cmd.Parameters.AddWithValue("@orderedItemID", orderedItemID);
+                            conn.Open();
 
-                cmd.ExecuteNonQuery();
+                            cmd.ExecuteNonQuery();
 
-                Response.Redirect("cart.aspx");
+                            Response.Redirect("cart.aspx");
 
-                string sql1 = @"SELECT COUNT(*) 
-                            FROM OrderedItem I JOIN Product P 
-                            ON I.ProductId = P.ProductId
-                            WHERE OrderId = @orderId";
+                            string sql1 = @"SELECT COUNT(*) 
+                                            FROM OrderedItem I JOIN Product P 
+                                            ON I.ProductId = P.ProductId
+                                            WHERE OrderId = @orderId";
 
-                SqlCommand cmd1 = new SqlCommand(sql1, conn);
-                cmd1.Parameters.AddWithValue("@orderId", orderId);
-                int count = (int)cmd1.ExecuteScalar();
+                            using (SqlCommand cmd1 = new SqlCommand(sql1, conn))
+                            {
+                                try
+                                {
+                                    cmd1.Parameters.AddWithValue("@orderId", orderId);
+                                    int count = (int)cmd1.ExecuteScalar();
 
-                //if no record for this order
-                if (count <= 0)
-                {
-                    Response.Redirect("../Menu/Menu.aspx");
+                                    //if no record for this order
+                                    if (count <= 0)
+                                    {
+                                        Response.Redirect("../Menu/Menu.aspx");
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
+                                    Response.Write("Oops! An error occurred: " + ex.Message);
+                                }
+                            }
+                                
+                        }
+                        catch (Exception ex)
+                        {
+                            Response.Write("Oops! An error occurred: " + ex.Message);
+                        }
+                    }
+                        
                 }
-
-
-
-
-                conn.Close();
 
             }
         }

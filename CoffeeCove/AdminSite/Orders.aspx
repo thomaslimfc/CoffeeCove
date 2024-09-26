@@ -40,6 +40,7 @@
 
                 <div class="col-lg-12">
                     <asp:Label ID="lblMsg" runat="server" CssClass="alert alert-success" Visible="false"></asp:Label>
+                    <asp:Label ID="lblErrorMsg" runat="server" CssClass="alert alert-danger" Visible="false"></asp:Label>
                     <asp:HiddenField ID="hfStartDate" runat="server" />
                     <asp:HiddenField ID="hfEndDate" runat="server" />
                     <asp:HiddenField ID="hfOrderID" runat="server" />

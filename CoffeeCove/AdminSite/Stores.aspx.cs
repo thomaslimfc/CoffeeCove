@@ -50,9 +50,9 @@ namespace CoffeeCove.AdminSite
                     }
                     catch (Exception ex)
                     {
-
+                        Response.Write("Oops! An error occurred: " + ex.Message);
                     }
-                    
+
                 }
                 UpdateSortIcons();
             }
@@ -69,6 +69,8 @@ namespace CoffeeCove.AdminSite
             {
                 string StoreId = (string)e.CommandArgument;
                 deleteStore(StoreId);
+                lblMsg.Text = "Store Deleted Successfully";
+                lblMsg.Visible = true;
             }
         }
 
@@ -77,14 +79,20 @@ namespace CoffeeCove.AdminSite
             //delete store then reset the identity() to max num
             using (SqlConnection conn = new SqlConnection(cs))
             {
-                conn.Open();
-
                 string sql = @"DELETE FROM Store
                                 WHERE StoreID = @StoreId";
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@StoreId", StoreId);
-                    cmd.ExecuteNonQuery();
+                    try
+                    {
+                        conn.Open();
+                        cmd.Parameters.AddWithValue("@StoreId", StoreId);
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        Response.Write("Oops! An error occurred: " + ex.Message);
+                    }
                 }
 
                 string sql2 = @"SELECT ISNULL(MAX(StoreID), 0) 
@@ -93,14 +101,28 @@ namespace CoffeeCove.AdminSite
 
                 using (SqlCommand cmd = new SqlCommand(sql2, conn))
                 {
-                    nextId = Convert.ToInt32(cmd.ExecuteScalar());
+                    try
+                    {
+                        nextId = Convert.ToInt32(cmd.ExecuteScalar());
+                    }
+                    catch (Exception ex)
+                    {
+                        Response.Write("Oops! An error occurred: " + ex.Message);
+                    }
                 }
 
                 string sql3 = @"DBCC CHECKIDENT ('Store', RESEED, @nextId)";
                 using (SqlCommand cmd = new SqlCommand(sql3, conn))
                 {
-                    cmd.Parameters.AddWithValue("@nextId", nextId);
-                    cmd.ExecuteNonQuery();
+                    try
+                    {
+                        cmd.Parameters.AddWithValue("@nextId", nextId);
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        Response.Write("Oops! An error occurred: " + ex.Message);
+                    }
                 }
             }
 
@@ -117,9 +139,10 @@ namespace CoffeeCove.AdminSite
                         WHERE StoreID = @StoreId";
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@StoreId", StoreId);
                     try
                     {
+                        cmd.Parameters.AddWithValue("@StoreId", StoreId);
+                    
                         conn.Open();
                         SqlDataReader dr = cmd.ExecuteReader();
                         if (dr.Read())
@@ -130,11 +153,11 @@ namespace CoffeeCove.AdminSite
                             hdnId.Value = StoreId;
                         }
                     }
-                    catch (SqlException ex)
+                    catch (Exception ex)
                     {
-                        Response.Write("An error occurred: " + ex.Message);
+                        Response.Write("Oops! An error occurred: " + ex.Message);
                     }
-                    
+
                 }
             }
             btnAdd.Text = "Update";
@@ -149,7 +172,7 @@ namespace CoffeeCove.AdminSite
         {
 
             //if it is "ADD"
-            if(btnAdd.Text == "Add")
+            if (btnAdd.Text == "Add")
             {
                 if (Page.IsValid)
                 {
@@ -164,29 +187,31 @@ namespace CoffeeCove.AdminSite
 
                         using (SqlCommand cmd = new SqlCommand(sql, conn))
                         {
-                            cmd.Parameters.AddWithValue("@storeName", storeName);
-                            cmd.Parameters.AddWithValue("@storeAdd", storeAddress);
-
                             try
                             {
+                                cmd.Parameters.AddWithValue("@storeName", storeName);
+                                cmd.Parameters.AddWithValue("@storeAdd", storeAddress);
+                            
                                 conn.Open();
                                 cmd.ExecuteNonQuery();
                                 BindGridView(); //bind the gridview again after adding in new data
                             }
-                            catch (SqlException ex)
+                            catch (Exception ex)
                             {
-                                Response.Write("An error occurred: " + ex.Message);
+                                Response.Write("Oops! An error occurred: " + ex.Message);
                             }
                         }
+                        lblMsg.Text = "Store Created Successfully";
+                        lblMsg.Visible = true;
                     }
-                        
+
                     //clear the textbox after insert
                     txtStoreName.Text = "";
                     txtStoreAddress.Text = "";
 
                 }
             }
-            else if(btnAdd.Text == "Update") //if it is update
+            else if (btnAdd.Text == "Update") //if it is update
             {
                 if (Page.IsValid)
                 {
@@ -203,25 +228,28 @@ namespace CoffeeCove.AdminSite
 
                         using (SqlCommand cmd = new SqlCommand(sql, conn))
                         {
-                            cmd.Parameters.AddWithValue("@storeName", storeName);
-                            cmd.Parameters.AddWithValue("@storeAdd", storeAddress);
-                            cmd.Parameters.AddWithValue("@storeId", storeId);
-
                             try
                             {
+                                cmd.Parameters.AddWithValue("@storeName", storeName);
+                                cmd.Parameters.AddWithValue("@storeAdd", storeAddress);
+                                cmd.Parameters.AddWithValue("@storeId", storeId);
+
                                 conn.Open();
                                 cmd.ExecuteNonQuery();
                                 BindGridView(); //bind the gridview again after adding in new data
                             }
-                            catch (SqlException ex)
+                            catch (Exception ex)
                             {
-                                Response.Write("An error occurred: " + ex.Message);
+                                Response.Write("Oops! An error occurred: " + ex.Message);
                             }
 
 
                         }
+                        lblMsg.Text = "Store Updated Successfully";
+                        lblMsg.Visible = true;
+
                     }
-                        
+
                     //clear the textbox
                     txtStoreName.Text = "";
                     txtStoreAddress.Text = "";
@@ -230,7 +258,7 @@ namespace CoffeeCove.AdminSite
 
                 btnAdd.Text = "Add";
             }
-            
+
         }
 
         private string SortDirection

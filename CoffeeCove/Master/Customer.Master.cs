@@ -19,16 +19,27 @@ namespace CoffeeCove.Master
             if (Context.User.Identity.IsAuthenticated)
             {
                 
-                    if (Session["CusID"] == null) //means its admin
+                if (Session["CusID"] == null) //means its admin
+                {
+                    pnlLoggedIn.Visible = false;
+                    pnlGuest.Visible = true;
+                }
+                else
+                {
+                    pnlLoggedIn.Visible = true;
+                    pnlGuest.Visible = false;
+                    
+                    string profilePicturePath = GetProfilePicture(Session["CusID"].ToString());
+
+                    if (!string.IsNullOrEmpty(profilePicturePath))
                     {
-                        pnlLoggedIn.Visible = false;
-                        pnlGuest.Visible = true;
+                        ImgUser.ImageUrl = $"/UserManagement/UserProfilePictures/{profilePicturePath}";
                     }
                     else
                     {
-                        pnlLoggedIn.Visible = true;
-                        pnlGuest.Visible = false;
+                        ImgUser.ImageUrl = "/img/user.png";
                     }
+                }
             }
             else
             {
@@ -94,6 +105,26 @@ namespace CoffeeCove.Master
         protected void lbLogin_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Security/SignIn.aspx");
+        }
+
+        private string GetProfilePicture(string cusID)
+        {
+            string profilePicturePath = string.Empty;
+            string sql = "SELECT ProfilePicturePath FROM Customer WHERE CusID = @CusID";
+
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                SqlCommand cmd = new SqlCommand(sql, con);
+                cmd.Parameters.AddWithValue("@CusID", cusID);
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    profilePicturePath = reader["ProfilePicturePath"].ToString();
+                }
+            }
+
+            return profilePicturePath;
         }
     }
 }
