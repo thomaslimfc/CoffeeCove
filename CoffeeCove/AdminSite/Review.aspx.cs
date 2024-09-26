@@ -161,7 +161,7 @@ namespace CoffeeCove.AdminSite
                                 <img alt='Admin avatar' src='http://bootdey.com/img/Content/avatar/avatar2.png' class='mr-3 rounded-circle' />
                             </a>
                             <div class='media-body'>
-                                <h4 class='mt-0 mb-1 text-muted'><strong>{adminUsername}</strong></h5>
+                                <h4 class='mt-0 mb-1 text-muted'><strong>Admin({adminUsername})</strong></h5>
                                 <p class='text-muted mb-0'>{adminReplyDateTime}</p>
                                 <div class='review-content mt-2'>
                                     <p>{adminReplyContent}</p>

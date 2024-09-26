@@ -15,6 +15,12 @@ namespace CoffeeCove.AdminSite
         {
             if (!IsPostBack)
             {
+                // Ensure the user is logged in and the session contains the admin username
+                if (Session["Username"] == null)
+                {
+                    Response.Redirect("Login.aspx");
+                }
+
                 string ratingReviewId = Request.QueryString["RatingReviewID"];
                 string paymentId = Request.QueryString["PaymentID"];
 
@@ -32,9 +38,9 @@ namespace CoffeeCove.AdminSite
                 con.Open();
 
                 string query = @"
-                    SELECT ReviewContent
-                    FROM Review
-                    WHERE ReplyTo = @RatingReviewID AND PaymentID = @PaymentID AND UsernameAdmin = 'admin'";
+            SELECT ReviewContent
+            FROM Review
+            WHERE ReplyTo = @RatingReviewID AND PaymentID = @PaymentID";
 
                 using (SqlCommand cmd = new SqlCommand(query, con))
                 {
@@ -44,12 +50,10 @@ namespace CoffeeCove.AdminSite
                     object result = cmd.ExecuteScalar();
                     if (result != null)
                     {
-                        // If a reply exists, populate the comment box with the previous ReviewContent
                         txtComment.Text = result.ToString();
                     }
                     else
                     {
-                        // If no reply exists, leave the comment box empty
                         txtComment.Text = string.Empty;
                     }
                 }
@@ -67,6 +71,7 @@ namespace CoffeeCove.AdminSite
         {
             string ratingReviewId = Request.QueryString["RatingReviewID"];
             string paymentId = Request.QueryString["PaymentID"];
+            string adminUsername = Session["Username"].ToString(); // Retrieve the admin username from the session
 
             if (!string.IsNullOrEmpty(ratingReviewId) && !string.IsNullOrEmpty(paymentId))
             {
@@ -74,11 +79,10 @@ namespace CoffeeCove.AdminSite
                 {
                     con.Open();
 
-                    // Check if there's already a reply
                     string checkQuery = @"
                 SELECT COUNT(*)
                 FROM Review
-                WHERE ReplyTo = @RatingReviewID AND PaymentID = @PaymentID AND UsernameAdmin = 'admin'";
+                WHERE ReplyTo = @RatingReviewID AND PaymentID = @PaymentID";
 
                     using (SqlCommand checkCmd = new SqlCommand(checkQuery, con))
                     {
@@ -90,39 +94,36 @@ namespace CoffeeCove.AdminSite
                         string query;
                         if (count > 0)
                         {
-                            // If a reply exists, update the existing reply
                             query = @"
-                        UPDATE Review
-                        SET ReviewContent = @ReviewContent, RatingReviewDateTime = @RatingReviewDateTime
-                        WHERE ReplyTo = @RatingReviewID AND PaymentID = @PaymentID AND UsernameAdmin = 'admin'";
+                                UPDATE Review
+                                SET ReviewContent = @ReviewContent, RatingReviewDateTime = @RatingReviewDateTime, UsernameAdmin = @UsernameAdmin
+                                WHERE ReplyTo = @RatingReviewID AND PaymentID = @PaymentID";
                         }
                         else
                         {
-                            // If no reply exists, insert a new reply
                             query = @"
-                        INSERT INTO Review (RatingScore, ReviewContent, RatingReviewDateTime, PaymentID, ReplyTo, UsernameAdmin)
-                        VALUES (@RatingScore, @ReviewContent, @RatingReviewDateTime, @PaymentID, @ReplyTo, @UsernameAdmin)";
+                                INSERT INTO Review (RatingScore, ReviewContent, RatingReviewDateTime, PaymentID, ReplyTo, UsernameAdmin)
+                                VALUES (@RatingScore, @ReviewContent, @RatingReviewDateTime, @PaymentID, @ReplyTo, @UsernameAdmin)";
                         }
 
                         using (SqlCommand cmd = new SqlCommand(query, con))
                         {
-                            // Add parameters for the query
-                            if (count > 0) // Update scenario
+                            if (count > 0)
                             {
                                 cmd.Parameters.AddWithValue("@ReviewContent", txtComment.Text);
                                 cmd.Parameters.AddWithValue("@RatingReviewDateTime", DateTime.Now);
-                                cmd.Parameters.AddWithValue("@RatingReviewID", ratingReviewId); // Add this line
+                                cmd.Parameters.AddWithValue("@RatingReviewID", ratingReviewId);
                                 cmd.Parameters.AddWithValue("@PaymentID", paymentId);
-                                cmd.Parameters.AddWithValue("@UsernameAdmin", "admin");
+                                cmd.Parameters.AddWithValue("@UsernameAdmin", adminUsername);
                             }
-                            else // Insert scenario
+                            else
                             {
-                                cmd.Parameters.AddWithValue("@RatingScore", 5); // Assuming a fixed rating score of 5
+                                cmd.Parameters.AddWithValue("@RatingScore", 5);
                                 cmd.Parameters.AddWithValue("@ReviewContent", txtComment.Text);
                                 cmd.Parameters.AddWithValue("@RatingReviewDateTime", DateTime.Now);
                                 cmd.Parameters.AddWithValue("@PaymentID", paymentId);
                                 cmd.Parameters.AddWithValue("@ReplyTo", ratingReviewId);
-                                cmd.Parameters.AddWithValue("@UsernameAdmin", "admin");
+                                cmd.Parameters.AddWithValue("@UsernameAdmin", adminUsername);
                             }
 
                             cmd.ExecuteNonQuery();
@@ -146,7 +147,7 @@ namespace CoffeeCove.AdminSite
                 using (SqlConnection con = new SqlConnection(cs))
                 {
                     con.Open();
-                    string deleteQuery = "DELETE FROM Review WHERE ReplyTo = @RatingReviewID AND PaymentID = @PaymentID AND UsernameAdmin = 'admin'";
+                    string deleteQuery = "DELETE FROM Review WHERE ReplyTo = @RatingReviewID AND PaymentID = @PaymentID";
                     using (SqlCommand cmd = new SqlCommand(deleteQuery, con))
                     {
                         cmd.Parameters.AddWithValue("@RatingReviewID", ratingReviewId);
