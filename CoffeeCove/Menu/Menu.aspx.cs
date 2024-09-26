@@ -98,7 +98,7 @@ namespace CoffeeCove.Menu
                                 count++;
                             }
                         }
-                        dr.Close(); 
+                        dr.Close();
                         dr = cmd.ExecuteReader();
                     }
                     rptProduct.DataSource = dr;
@@ -182,17 +182,16 @@ namespace CoffeeCove.Menu
                         int categoryId = GetProductCategoryId(productId);
 
                         // Show or hide form elements based on category
-                        if (categoryId == 4 || categoryId == 5 || categoryId == 6)
+                        if (categoryId == 1 || categoryId == 2)
                         {
-                            // only show special instructions
-                            lblSize.Visible = false;
-                            lblFlavour.Visible = false;
-                            lblIceLevel.Visible = false;
-                            lblAddOn.Visible = false;
-                            ddlSize.Visible = false;
-                            ddlFlavour.Visible = false;
-                            ddlIceLevel.Visible = false;
-                            ddlAddOn.Visible = false;
+                            lblSize.Visible = true;
+                            lblFlavour.Visible = true;
+                            lblIceLevel.Visible = true;
+                            lblAddOn.Visible = true;
+                            ddlSize.Visible = true;
+                            ddlFlavour.Visible = true;
+                            ddlIceLevel.Visible = true;
+                            ddlAddOn.Visible = true;
                             txtSpecialInstructions.Visible = true;
 
                         }
@@ -211,14 +210,15 @@ namespace CoffeeCove.Menu
                         }
                         else
                         {
-                            lblSize.Visible = true;
-                            lblFlavour.Visible = true;
-                            lblIceLevel.Visible = true;
-                            lblAddOn.Visible = true;
-                            ddlSize.Visible = true;
-                            ddlFlavour.Visible = true;
-                            ddlIceLevel.Visible = true;
-                            ddlAddOn.Visible = true;
+                            // only show special instructions
+                            lblSize.Visible = false;
+                            lblFlavour.Visible = false;
+                            lblIceLevel.Visible = false;
+                            lblAddOn.Visible = false;
+                            ddlSize.Visible = false;
+                            ddlFlavour.Visible = false;
+                            ddlIceLevel.Visible = false;
+                            ddlAddOn.Visible = false;
                             txtSpecialInstructions.Visible = true;
 
                         }
@@ -434,7 +434,7 @@ namespace CoffeeCove.Menu
             {
                 // if OrderID is missing
                 Response.Redirect("../Order/OrderOption.aspx");
-                return null; 
+                return null;
             }
         }
 
