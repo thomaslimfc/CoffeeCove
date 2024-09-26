@@ -254,6 +254,9 @@ namespace CoffeeCove.AdminSite
                     cmd.ExecuteNonQuery();
                 }
 
+                lblMsg.Text = "Order Deleted Successfully";
+                lblMsg.Visible = true;
+
             }
 
             //rebind the gridview
@@ -314,17 +317,25 @@ namespace CoffeeCove.AdminSite
                             lblDate.Text = orderDate.ToString("dd/MM/yyyy");
                             string orderType = dr["OrderType"].ToString();
 
+                            
+
+                            lblPaymentMethod.Text = dr["PaymentMethod"].ToString();
+                            lblUsername.Text = dr["Username"].ToString();
+                            lblEmail.Text = dr["EmailAddress"].ToString();
+
                             //if it is delivery then display delivery and vice versa
-                            if (dr["StoreID"] == DBNull.Value && orderType == "Delivery")//if store ID = null, means that it is using delivery
+                            if (orderType == "Delivery")//if store ID = null, means that it is using delivery
                             {
                                 lblDelPick.Text = orderType;
                                 lblDelivery.Text = dr["DeliveryAddress"].ToString();
                                 lblPickUp.Text = "-";
                             }
-                            else if (dr["DeliveryAddress"] == DBNull.Value && orderType == "Pick Up")
+                            else if (orderType == "Pick Up")
                             {
                                 lblDelPick.Text = orderType;
                                 string storeID = dr["StoreID"].ToString();
+
+                                dr.Close();
                                 //find store name based on id
                                 string sql1 = @"SELECT StoreName
                                             FROM Store
@@ -347,19 +358,13 @@ namespace CoffeeCove.AdminSite
                                     }
 
                                 }
- 
+
                                 lblDelivery.Text = "-";
                             }
                             else
                             {
                                 lblDelPick.Text = " ";
                             }
-
-                            lblPaymentMethod.Text = dr["PaymentMethod"].ToString();
-                            lblUsername.Text = dr["Username"].ToString();
-                            lblEmail.Text = dr["EmailAddress"].ToString();
-
-
 
                         }
                     }
@@ -375,6 +380,7 @@ namespace CoffeeCove.AdminSite
 
 
         }
+
 
         protected void btnReset_Click(object sender, EventArgs e)
         {
@@ -395,8 +401,8 @@ namespace CoffeeCove.AdminSite
 
                 if (endDate <= startDate)
                 {
-                    lblMsg.Text = "End date must be after the start date.";
-                    lblMsg.Visible = true;
+                    lblErrorMsg.Text = "End date must be after the start date.";
+                    lblErrorMsg.Visible = true;
                     return;
                 }
 
@@ -691,7 +697,7 @@ namespace CoffeeCove.AdminSite
         {
             // Set up PDF response properties
             Response.ContentType = "application/pdf";
-            Response.AddHeader("content-disposition", "attachment;filename=OrderReceipt.pdf");
+            Response.AddHeader("content-disposition", "attachment;filename=Invoice.pdf");
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             DataTable dt = new DataTable();
             string invoiceNum = "";
@@ -743,9 +749,14 @@ namespace CoffeeCove.AdminSite
             iTextSharp.text.pdf.PdfWriter.GetInstance(pdfdoc, Response.OutputStream);
             pdfdoc.Open();
 
-            iTextSharp.text.Paragraph title = new iTextSharp.text.Paragraph("COFFEECOVE", FontFactory.GetFont("Arial", 18, Font.BOLD));
+            iTextSharp.text.Paragraph title = new iTextSharp.text.Paragraph("COFFEECOVE", FontFactory.GetFont("Arial", 23, Font.BOLD));
             title.Alignment = Element.ALIGN_CENTER;
             pdfdoc.Add(title);
+            pdfdoc.Add(new iTextSharp.text.Paragraph(" "));
+
+            iTextSharp.text.Paragraph title1 = new iTextSharp.text.Paragraph("INVOICE", FontFactory.GetFont("Arial", 18, Font.BOLD));
+            title1.Alignment = Element.ALIGN_CENTER;
+            pdfdoc.Add(title1);
             pdfdoc.Add(new iTextSharp.text.Paragraph(" "));
 
             DataRow row1 = dt.Rows[0];
