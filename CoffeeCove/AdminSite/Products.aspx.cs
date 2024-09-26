@@ -493,7 +493,8 @@ namespace CoffeeCove.AdminSite
 
             SortExpression = "ProductId"; // Default sorting column
             SortDirection = "ASC"; // Default sorting direction
-
+            ddlFilterCategory.SelectedIndex = 0;
+            ddlFilterActive.SelectedIndex = 0;
             // reset page index
             gvProduct.PageIndex = 0;
 

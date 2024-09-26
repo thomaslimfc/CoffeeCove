@@ -420,7 +420,7 @@ namespace CoffeeCove
 
             SortExpression = "CategoryId";
             SortDirection = "ASC";
-
+            ddlFilter.SelectedIndex = 0;
             gvCategory.PageIndex = 0;
 
             BindCategory();
