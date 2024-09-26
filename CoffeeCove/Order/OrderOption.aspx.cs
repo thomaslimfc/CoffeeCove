@@ -114,12 +114,16 @@ namespace CoffeeCove.Order
         protected void createOrderID()
         {
             //retrieve cusID from session
+            if (Session["CusID"] == null)//if session not exist
+            {
+                Response.Redirect("../Security/SignIn.aspx");
+            }
             string cusID = Session["CusID"].ToString();
             //create an orderID for it
             using (SqlConnection conn3 = new SqlConnection(cs))
             {
-                string sql3 = @"INSERT INTO OrderPlaced(CusID,OrderDateTime,TotalAmount,OrderType) 
-                                VALUES (@cusID,@dateTime,0,'Pick Up');
+                string sql3 = @"INSERT INTO OrderPlaced(CusID,OrderDateTime,TotalAmount) 
+                                VALUES (@cusID,@dateTime,0);
                                 SELECT SCOPE_IDENTITY();";
 
                 string sql4 = @"INSERT INTO PaymentDetail(PaymentStatus,OrderID) 
@@ -143,12 +147,12 @@ namespace CoffeeCove.Order
 
                             Session["OrderID"] = orderId;
 
-                            //create cookies
-                            HttpCookie coo = new HttpCookie("OrderID", orderId.ToString());
-                            //coo.Expires = DateTime.Now.AddMinutes(1);
+                            ////create cookies
+                            //HttpCookie coo = new HttpCookie("OrderID", orderId.ToString());
+                            ////coo.Expires = DateTime.Now.AddMinutes(1);
 
-                            //send the cookie to client pc
-                            Response.Cookies.Add(coo);
+                            ////send the cookie to client pc
+                            //Response.Cookies.Add(coo);
                         }
                     }
                     catch (Exception ex)
@@ -175,7 +179,7 @@ namespace CoffeeCove.Order
             using (SqlConnection conn = new SqlConnection(cs))
             {
                 string sql = @"UPDATE OrderPlaced 
-                                SET StoreID = @storeID
+                                SET StoreID = @storeID, OrderType = 'Pick Up'
                                 WHERE OrderID = @orderID;";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
@@ -229,8 +233,6 @@ namespace CoffeeCove.Order
                 }
 
                 string orderID = Session["OrderID"].ToString();
-                //put the pickup Store inside the database
-                string storeID = hfStoreID.Value;
 
                 using (SqlConnection conn = new SqlConnection(cs))
                 {
@@ -246,7 +248,7 @@ namespace CoffeeCove.Order
 
                     //save the address into the database
                     string sql = @"UPDATE OrderPlaced 
-                                SET DeliveryAddress = @address
+                                SET DeliveryAddress = @address, OrderType = 'Delivery'
                                 WHERE OrderID = @orderID;";
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
