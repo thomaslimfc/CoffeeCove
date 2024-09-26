@@ -33,34 +33,33 @@ namespace CoffeeCove.AdminSite
             {
                 con.Open();
 
-                string sql = @"SELECT ISNULL(SUM(oi.Quantity), 0) AS TodaySales,
-                                ISNULL(SUM(op.TotalAmount), 0) AS TodayRevenue,  
-                                ISNULL(COUNT(op.OrderID), 0) AS TodayOrders 
-                                FROM OrderedItem oi
-                                JOIN OrderPlaced op ON oi.OrderID = op.OrderID
-                                JOIN PaymentDetail pd ON op.OrderID = pd.OrderID
-                                WHERE pd.PaymentStatus = 'Complete'
-                                AND CAST(op.OrderDateTime AS DATE) = CAST(GETDATE() AS DATE)";
-
-                using (SqlCommand cmd = new SqlCommand(sql, con))
+                using (SqlCommand cmd = new SqlCommand(@"SELECT ISNULL(SUM(oi.Quantity), 0) AS TotalSales   
+                                                        FROM OrderPlaced op JOIN PaymentDetail pd ON op.OrderID = pd.OrderID
+                                                        JOIN OrderedItem oi ON op.OrderID = oi.OrderID  
+                                                        WHERE CAST(op.OrderDateTime AS DATE) = CAST(GETDATE() AS DATE)  
+                                                        AND pd.PaymentStatus = 'Complete'", con))
                 {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            // total sales 
-                            int salesRecord = reader.GetInt32(0);
-                            lblSalesToday.Text = salesRecord.ToString();
+                    int totalSales = (int)cmd.ExecuteScalar();
+                    lblSalesToday.Text = totalSales.ToString();
+                }
 
-                            // total revenue
-                            decimal revenueRecord = reader.GetDecimal(1);
-                            lblRevenueToday.Text = "RM " + revenueRecord.ToString("F2");
+                using (SqlCommand cmd = new SqlCommand(@"SELECT ISNULL(SUM(op.TotalAmount), 0) AS TotalRevenues   
+                                                        FROM OrderPlaced op
+                                                        JOIN PaymentDetail pd ON op.OrderID = pd.OrderID 
+                                                        WHERE CAST(op.OrderDateTime AS DATE) = CAST(GETDATE() AS DATE)  
+                                                        AND pd.PaymentStatus = 'Complete'", con))
+                {
+                    decimal totalRevenues = (decimal)cmd.ExecuteScalar();
+                    lblRevenueToday.Text = totalRevenues.ToString("C");
+                }
 
-                            // total order 
-                            int orderRecord = reader.GetInt32(2);
-                            lblOrdersToday.Text = orderRecord.ToString();
-                        }
-                    }
+                using (SqlCommand cmd = new SqlCommand(@"SELECT COUNT(DISTINCT op.OrderID) AS TotalOrders 
+                                                        FROM OrderPlaced op 
+                                                        JOIN PaymentDetail pd ON op.OrderID = pd.OrderID 
+                                                        WHERE CAST(op.OrderDateTime AS DATE) = CAST(GETDATE() AS DATE)", con))
+                {
+                    int totalOrders = (int)cmd.ExecuteScalar();
+                    lblOrdersToday.Text = totalOrders.ToString();
                 }
             }
         }
@@ -133,7 +132,8 @@ namespace CoffeeCove.AdminSite
             using (SqlConnection con = new SqlConnection(cs))
             {
                 string sql = @"SELECT TOP 5 p.ImageUrl, p.ProductName, p.UnitPrice, SUM(oi.Quantity) AS TotalSold, SUM(oi.Quantity * p.UnitPrice) AS TotalSales
-                                FROM Product p JOIN OrderedItem oi ON p.ProductId = oi.ProductId JOIN OrderPlaced op ON oi.OrderID = op.OrderID
+                                FROM Product p JOIN OrderedItem oi ON p.ProductId = oi.ProductId JOIN OrderPlaced op ON oi.OrderID = op.OrderID JOIN PaymentDetail pd ON op.OrderID = pd.OrderID
+                                WHERE pd.PaymentStatus = 'Complete'
                                 GROUP BY p.ImageUrl, p.ProductName, p.UnitPrice ORDER BY TotalSales DESC;";
 
                 using (SqlCommand cmd = new SqlCommand(sql, con))
@@ -143,7 +143,6 @@ namespace CoffeeCove.AdminSite
 
                     if (reader.HasRows)
                     {
-                        // Bind the data to GridView
                         gvTopSellingProducts.DataSource = reader;
                         gvTopSellingProducts.DataBind();
                     }

@@ -1,17 +1,25 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\",
+  "WorkspaceRootPath": "C:\\Users\\admin\\Documents\\GitHub\\CoffeeCove\\CoffeeCove\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|c:\\users\\thamq\\onedrive\\\u684C\u9762\\assignment\\web\\staffee\\coffeecove\\security\\signin.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|c:\\users\\admin\\documents\\github\\coffeecove\\coffeecove\\adminsite\\dashboard.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:adminsite\\dashboard.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|c:\\users\\admin\\documents\\github\\coffeecove\\coffeecove\\home\\home.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:home\\home.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|c:\\users\\admin\\documents\\github\\coffeecove\\coffeecove\\security\\signin.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:security\\signin.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|c:\\users\\thamq\\onedrive\\\u684C\u9762\\assignment\\web\\staffee\\coffeecove\\master\\customer.master.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|C:\\Users\\admin\\Documents\\GitHub\\CoffeeCove\\CoffeeCove\\master\\customer.master.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:master\\customer.master.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|c:\\users\\thamq\\onedrive\\\u684C\u9762\\assignment\\web\\staffee\\coffeecove\\security\\twofactorauthentication.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|C:\\Users\\admin\\Documents\\GitHub\\CoffeeCove\\CoffeeCove\\security\\twofactorauthentication.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8AB1EEA8-8A8C-4430-B448-0718EF56D1AF}|CoffeeCove.csproj|solutionrelative:security\\twofactorauthentication.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -21,46 +29,16 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 223,
-          "SelectedChildIndex": 1,
+          "DockedWidth": 215,
+          "SelectedChildIndex": 13,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "TwoFactorAuthentication.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\Security\\TwoFactorAuthentication.aspx.cs",
-              "RelativeDocumentMoniker": "Security\\TwoFactorAuthentication.aspx.cs",
-              "ToolTip": "C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\Security\\TwoFactorAuthentication.aspx.cs",
-              "RelativeToolTip": "Security\\TwoFactorAuthentication.aspx.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAiwD0AAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-26T11:26:47.812Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "SignIn.aspx.cs",
-              "DocumentMoniker": "C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\Security\\SignIn.aspx.cs",
-              "RelativeDocumentMoniker": "Security\\SignIn.aspx.cs",
-              "ToolTip": "C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\Security\\SignIn.aspx.cs",
-              "RelativeToolTip": "Security\\SignIn.aspx.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAAAiwDUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-26T11:04:33.642Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
               "$type": "Bookmark",
@@ -73,6 +51,14 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
             },
             {
               "$type": "Bookmark",
@@ -96,23 +82,71 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
-            },
-            {
-              "$type": "Bookmark",
               "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Dashboard.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\CoffeeCove\\CoffeeCove\\AdminSite\\Dashboard.aspx.cs",
+              "RelativeDocumentMoniker": "AdminSite\\Dashboard.aspx.cs",
+              "ToolTip": "C:\\Users\\admin\\Documents\\GitHub\\CoffeeCove\\CoffeeCove\\AdminSite\\Dashboard.aspx.cs",
+              "RelativeToolTip": "AdminSite\\Dashboard.aspx.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJIAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T11:40:27.657Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "Home.aspx",
+              "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\CoffeeCove\\CoffeeCove\\Home\\Home.aspx",
+              "RelativeDocumentMoniker": "Home\\Home.aspx",
+              "ToolTip": "C:\\Users\\admin\\Documents\\GitHub\\CoffeeCove\\CoffeeCove\\Home\\Home.aspx",
+              "RelativeToolTip": "Home\\Home.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-09-26T11:40:22.967Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TwoFactorAuthentication.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\CoffeeCove\\CoffeeCove\\Security\\TwoFactorAuthentication.aspx.cs",
+              "RelativeDocumentMoniker": "Security\\TwoFactorAuthentication.aspx.cs",
+              "ToolTip": "C:\\Users\\admin\\Documents\\GitHub\\CoffeeCove\\CoffeeCove\\Security\\TwoFactorAuthentication.aspx.cs",
+              "RelativeToolTip": "Security\\TwoFactorAuthentication.aspx.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAiwD0AAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T11:26:47.812Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SignIn.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\CoffeeCove\\CoffeeCove\\Security\\SignIn.aspx.cs",
+              "RelativeDocumentMoniker": "Security\\SignIn.aspx.cs",
+              "ToolTip": "C:\\Users\\admin\\Documents\\GitHub\\CoffeeCove\\CoffeeCove\\Security\\SignIn.aspx.cs",
+              "RelativeToolTip": "Security\\SignIn.aspx.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAAAiwC4AAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-26T11:04:33.642Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Customer.Master.cs",
-              "DocumentMoniker": "C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\Master\\Customer.Master.cs",
+              "DocumentMoniker": "C:\\Users\\admin\\Documents\\GitHub\\CoffeeCove\\CoffeeCove\\Master\\Customer.Master.cs",
               "RelativeDocumentMoniker": "Master\\Customer.Master.cs",
-              "ToolTip": "C:\\Users\\thamq\\OneDrive\\\u684C\u9762\\Assignment\\WEB\\Staffee\\CoffeeCove\\Master\\Customer.Master.cs",
+              "ToolTip": "C:\\Users\\admin\\Documents\\GitHub\\CoffeeCove\\CoffeeCove\\Master\\Customer.Master.cs",
               "RelativeToolTip": "Master\\Customer.Master.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAAADAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -122,7 +156,7 @@
           ]
         },
         {
-          "DockedWidth": 34,
+          "DockedWidth": 42,
           "SelectedChildIndex": -1,
           "Children": [
             {
