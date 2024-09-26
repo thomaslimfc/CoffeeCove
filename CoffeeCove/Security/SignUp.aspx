@@ -213,7 +213,7 @@
             placeholder="**********" 
             title="Password" 
             AutoPostBack="false"
-            text=""
+            text="@aA1234567890"
             ValidationGroup="SignUp">
         </asp:TextBox>
         <span id="PasswordToggle_SU" class="absolute right-2 top-2 cursor-pointer">👁️</span>

@@ -42,6 +42,7 @@
                     <asp:Label ID="lblMsg" runat="server" CssClass="alert alert-success" Visible="false"></asp:Label>
                     <asp:HiddenField ID="hfStartDate" runat="server" />
                     <asp:HiddenField ID="hfEndDate" runat="server" />
+                    <asp:HiddenField ID="hfOrderID" runat="server" />
                 </div>
                 <br />
                 <br />
@@ -132,6 +133,7 @@
                 </div>
 
                 <!-- Order View -->
+                <asp:Panel ID="pnlOrderDetail" runat="server" Visible="false">
 
                 <div class="col-lg-12" id="viewOrder">
                     <div class="card">
@@ -282,19 +284,19 @@
                                             </table>
                                             <table id="cartTotalTable">
                                                 <tr class="amtTable">
-                                                    <td class="cartLeft">Subtotal [RM]</td>
+                                                    <td class="cartLeft">Subtotal</td>
                                                     <td class="cartRight">
                                                         <asp:Label ID="lblSubtotal" runat="server" Text=""></asp:Label>
                                                     </td>
                                                 </tr>
                                                 <tr class="amtTable">
-                                                    <td class="cartLeft">Tax [6%]</td>
+                                                    <td class="cartLeft">Tax 6%</td>
                                                     <td class="cartRight">+
                                         <asp:Label ID="lblTax" runat="server" Text=""></asp:Label>
                                                     </td>
                                                 </tr>
                                                 <tr class="amtTable">
-                                                    <td class="cartLeft">Total [RM]</td>
+                                                    <td class="cartLeft">Total</td>
                                                     <td class="cartRight">
                                                         <asp:Label ID="lblTotal" runat="server" Text=""></asp:Label>
                                                     </td>
@@ -304,9 +306,20 @@
                                     </tr>
                                 </table>
                             </div>
+                            <br />
+
+                            <asp:Panel ID="pnlReceipt" runat="server" Visible="false">
+                                <div class="col-5" style="margin-left: 45%; margin-bottom: 20px">
+                                    <asp:Button ID="BtnReceipt" runat="server" Text="Print Receipt" CssClass="btn btn-success" OnClick="BtnReceipt_Click" />
+                                </div>
+                            </asp:Panel>
                         </div>
                     </div>
                 </div>
+
+
+</asp:Panel>
+
                 <div class="col-5" style="margin-left: 45%; margin-bottom: 20px">
                     <asp:Button ID="BtnExport" runat="server" Text="Export Report" CssClass="btn btn-success" OnClick="BtnExport_Click" />
                 </div>

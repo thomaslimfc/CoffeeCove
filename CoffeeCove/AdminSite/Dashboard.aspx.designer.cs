@@ -69,6 +69,15 @@ namespace CoffeeCove.AdminSite
         protected global::System.Web.UI.WebControls.Label lblTotalFeedback;
 
         /// <summary>
+        /// gvMonthlyRevenue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvMonthlyRevenue;
+
+        /// <summary>
         /// gvTopSellingProducts control.
         /// </summary>
         /// <remarks>

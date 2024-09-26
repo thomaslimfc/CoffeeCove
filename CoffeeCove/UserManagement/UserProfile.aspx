@@ -251,19 +251,18 @@
                                     <asp:ListItem Text="~ Select a location ~" Value=""
                                         style="font-family: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
                                             color: black; font-size: 12pt; font-weight: 450"/>
-                                    <asp:ListItem>Selangor</asp:ListItem>
-                                    <asp:ListItem>Penang</asp:ListItem>
-                                    <asp:ListItem>Johor</asp:ListItem>
-                                    <asp:ListItem>Malacca</asp:ListItem>
-                                    <asp:ListItem>Negeri Sembilan</asp:ListItem>
-                                    <asp:ListItem>Pahang</asp:ListItem>
-                                    <asp:ListItem>Perak</asp:ListItem>
-                                    <asp:ListItem>Kedah</asp:ListItem>
-                                    <asp:ListItem>Kelantan</asp:ListItem>
-                                    <asp:ListItem>Terengganu</asp:ListItem>
-                                    <asp:ListItem>Perlis</asp:ListItem>
-                                    <asp:ListItem>Sarawak</asp:ListItem>
-                                    <asp:ListItem>Sabah</asp:ListItem>
+                                    <asp:ListItem>Batu Feringghi</asp:ListItem>
+                                    <asp:ListItem>Tanjung Bungah</asp:ListItem>
+                                    <asp:ListItem>Tanjung Tokong</asp:ListItem>
+                                    <asp:ListItem>Pulau Tikus</asp:ListItem>
+                                    <asp:ListItem>George Town</asp:ListItem>
+                                    <asp:ListItem>Batu Lancang</asp:ListItem>
+                                    <asp:ListItem>Air Itam</asp:ListItem>
+                                    <asp:ListItem>Paya Terubong</asp:ListItem>
+                                    <asp:ListItem>Jelutong</asp:ListItem>
+                                    <asp:ListItem>Gelugor</asp:ListItem>
+                                    <asp:ListItem>Batu Maung</asp:ListItem>
+                                    <asp:ListItem>Bayan Lepas</asp:ListItem>
                                 </asp:DropDownList>
                             
                                 <asp:RequiredFieldValidator 

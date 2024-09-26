@@ -124,38 +124,23 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Google Chart -->
+                        <!-- Month Revenue -->
                         <div class="col-12">
                             <div class="card-body pb-0">
-                                <div id="chart_div" style="width: 100%; height: 500px;"></div>
+                                <h4 style="color: #fff">Monthly Revenue</h4>
+                                <asp:GridView ID="gvMonthlyRevenue" runat="server" AutoGenerateColumns="False" CssClass="table table-bordered" EmptyDataText="No revenue record">
+                                    <Columns>
+                                        <asp:BoundField DataField="OrderYear" HeaderText="Year" />
+                                        <asp:BoundField DataField="OrderMonth" HeaderText="Month" />
+                                        <asp:BoundField DataField="TotalRevenue" HeaderText="Total Revenue" DataFormatString="RM{0:N2}" />
+                                    </Columns>
+                                </asp:GridView>
+
+
                             </div>
                         </div>
-                        <!-- Load the Google Charts library -->  
-                        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-                        <script type="text/javascript">
-                            // Load the Visualization API and the histogram package
-                            google.charts.load("current", { packages: ["corechart"] });
-                            // Set a callback to run when the Google Visualization API is loaded
-                            google.charts.setOnLoadCallback(drawChart);
 
-                            function drawChart() {
-                                // Create the data table
-                                var data = google.visualization.arrayToDataTable(chartData);
-
-                                // Set chart options
-                                var options = {
-                                    title: 'Monthly Revenue',
-                                    legend: { position: 'none' },
-                                    hAxis: { title: 'Month' },
-                                    vAxis: { title: 'Total Revenue', format: 'RM#,##0.00' },
-                                };
-                                // Create new object draw it in div
-                                var chart = new google.visualization.Histogram(document.getElementById('chart_div'));
-                                chart.draw(data, options);// Draw the chart with data and options 
-                            }
-                        </script>
-
+                        <!-- Top Sales Product -->
                         <div class="col-12">
                             <div class="card-body pb-0">
                                 <h4 style="color: #fff">Top Selling</h4>
@@ -168,13 +153,15 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:BoundField DataField="ProductName" HeaderText="Product Name" />
-                                        <asp:BoundField DataField="UnitPrice" HeaderText="Unit Price" DataFormatString="{0:C}" />
+                                        <asp:BoundField DataField="UnitPrice" HeaderText="Unit Price (RM)" DataFormatString="{0:N2}" />
                                         <asp:BoundField DataField="TotalSold" HeaderText="Total Sold" />
-                                        <asp:BoundField DataField="TotalSales" HeaderText="Total Sales" DataFormatString="{0:C}" />
+                                        <asp:BoundField DataField="TotalSales" HeaderText="Total Sales (RM)" DataFormatString="{0:N2}" />
                                     </Columns>
                                 </asp:GridView>
                             </div>
                         </div>
+
+
                     </div>
                 </div>
             </div>

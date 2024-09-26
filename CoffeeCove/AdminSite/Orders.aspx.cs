@@ -13,6 +13,8 @@ using System.Data.Entity.Core.Common.CommandTrees;
 using iTextSharp.text.pdf;
 using iTextSharp.text;
 using iText.Kernel.Pdf;
+using static System.Data.Entity.Infrastructure.Design.Executor;
+using iText.Layout.Properties;
 
 namespace CoffeeCove.AdminSite
 {
@@ -170,7 +172,9 @@ namespace CoffeeCove.AdminSite
         {
             if (e.CommandName == "viewOrder")
             {
+                pnlOrderDetail.Visible = true;
                 string orderId = e.CommandArgument.ToString();
+                hfOrderID.Value = orderId;
                 bindRepeater(orderId);
                 displayDetail(orderId);
                 
@@ -306,7 +310,8 @@ namespace CoffeeCove.AdminSite
                         if (dr.Read())
                         {
                             lblOrderNo.Text = orderId;
-                            lblDate.Text = dr["OrderDateTime"].ToString();
+                            DateTime orderDate = Convert.ToDateTime(dr["OrderDateTime"]);
+                            lblDate.Text = orderDate.ToString("dd/MM/yyyy");
                             string orderType = dr["OrderType"].ToString();
 
                             //if it is delivery then display delivery and vice versa
@@ -366,7 +371,7 @@ namespace CoffeeCove.AdminSite
                 }
             }
 
-
+            pnlReceipt.Visible = true;
 
 
         }
@@ -495,10 +500,13 @@ namespace CoffeeCove.AdminSite
             Response.AddHeader("content-disposition", "attachment;filename=OrderReport.pdf");
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             DataTable dt = new DataTable();
-            
+
             //if date selected --> got value
-            if (startDate != DateTime.MinValue && endDate != DateTime.MinValue)
+            if (!string.IsNullOrEmpty(hfStartDate.Value) && !string.IsNullOrEmpty(hfEndDate.Value))
             {
+                DateTime fromDate = DateTime.Parse(hfStartDate.Value);
+                DateTime toDate = DateTime.Parse(hfEndDate.Value);
+
                 string sql = @"SELECT *
                         FROM OrderPlaced O 
                         JOIN PaymentDetail P ON O.OrderID = P.OrderID
@@ -509,13 +517,83 @@ namespace CoffeeCove.AdminSite
                 {
                     using (SqlCommand cmd = new SqlCommand(sql, con))
                     {
-                        cmd.Parameters.AddWithValue("@startDate", startDate);
-                        cmd.Parameters.AddWithValue("@endDate", endDate);
+                        cmd.Parameters.AddWithValue("@startDate", fromDate);
+                        cmd.Parameters.AddWithValue("@endDate", toDate);
                         con.Open();
                         SqlDataReader dr = cmd.ExecuteReader();
                         dt.Load(dr);
                     }
                 }
+
+                // Set up iTextSharp PDF document
+                Document pdfdoc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
+                iTextSharp.text.pdf.PdfWriter.GetInstance(pdfdoc, Response.OutputStream);
+                pdfdoc.Open();
+
+                iTextSharp.text.Paragraph title = new iTextSharp.text.Paragraph($"Order Summary Report From {fromDate:dd/MM/yyyy} To {toDate:dd/MM/yyyy}", FontFactory.GetFont("Arial", 18, Font.BOLD));
+                title.Alignment = Element.ALIGN_CENTER;
+                pdfdoc.Add(title);
+                pdfdoc.Add(new iTextSharp.text.Paragraph(" "));
+
+                int totalOrders = dt.Rows.Count;
+
+                iTextSharp.text.Paragraph exportInfo = new iTextSharp.text.Paragraph($"ExportDate: {DateTime.Now:dd/MM/yyyy HH:mm:ss}\nTotal Orders: {totalOrders}", FontFactory.GetFont("Arial", 12, Font.NORMAL));
+                exportInfo.Alignment = Element.ALIGN_LEFT;
+
+                pdfdoc.Add(exportInfo);
+
+                pdfdoc.Add(new iTextSharp.text.Paragraph(" "));
+
+                PdfPTable pdfTable = new PdfPTable(6);
+                pdfTable.WidthPercentage = 100;
+                pdfTable.SetWidths(new float[] { 1f, 1f, 1f, 2f, 1f, 2f });
+                BaseColor lightGrey = new BaseColor(211, 211, 211);
+
+                // table headers
+                pdfTable.AddCell(new PdfPCell(new Phrase("Order ID")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+                pdfTable.AddCell(new PdfPCell(new Phrase("Date")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+                pdfTable.AddCell(new PdfPCell(new Phrase("Order Type")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+                pdfTable.AddCell(new PdfPCell(new Phrase("Payment Method")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+                pdfTable.AddCell(new PdfPCell(new Phrase("Total Amount")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+                pdfTable.AddCell(new PdfPCell(new Phrase("Status")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+
+                // Initialize sums
+                int totalDelivery = 0;
+                int totalPickUp = 0;
+                decimal totalSales = 0;
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    pdfTable.AddCell(new PdfPCell(new Phrase(row["OrderID"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
+                    pdfTable.AddCell(new PdfPCell(new Phrase(Convert.ToDateTime(row["OrderDateTime"]).ToString("dd/MM/yyyy"))) { HorizontalAlignment = Element.ALIGN_LEFT });
+                    pdfTable.AddCell(new PdfPCell(new Phrase(row["OrderType"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
+                    pdfTable.AddCell(new PdfPCell(new Phrase(row["PaymentMethod"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
+                    pdfTable.AddCell(new PdfPCell(new Phrase(Convert.ToDecimal(row["TotalAmount"]).ToString("C"))) { HorizontalAlignment = Element.ALIGN_CENTER });
+                    pdfTable.AddCell(new PdfPCell(new Phrase(row["OrderStatus"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
+
+                    if (row["OrderType"].ToString() == "Delivery")
+                    {
+                        totalDelivery++;
+                    }
+                    else if (row["OrderType"].ToString() == "Pick Up")
+                    {
+                        totalPickUp++;
+                    }
+
+                    totalSales += Convert.ToDecimal(row["TotalAmount"]);
+                }
+
+                pdfdoc.Add(pdfTable);
+
+                iTextSharp.text.Paragraph totalReport = new iTextSharp.text.Paragraph($"Total 'Delivery' Orders: {totalDelivery.ToString()}\nTotal 'Pick Up' Orders: {totalPickUp.ToString()}\nTotal Sales: {totalSales.ToString("C")}", FontFactory.GetFont("Arial", 12, Font.NORMAL));
+                totalReport.Alignment = Element.ALIGN_LEFT;
+
+                pdfdoc.Add(totalReport);
+
+                pdfdoc.Close();
+                Response.Write(pdfdoc);
+                Response.End();
+
             }
             else
             {
@@ -535,73 +613,201 @@ namespace CoffeeCove.AdminSite
                         dt.Load(dr);
                     }
                 }
+
+                // Set up iTextSharp PDF document
+                Document pdfdoc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
+                iTextSharp.text.pdf.PdfWriter.GetInstance(pdfdoc, Response.OutputStream);
+                pdfdoc.Open();
+
+                iTextSharp.text.Paragraph title = new iTextSharp.text.Paragraph("Order Summary Report", FontFactory.GetFont("Arial", 18, Font.BOLD));
+                title.Alignment = Element.ALIGN_CENTER;
+                pdfdoc.Add(title);
+                pdfdoc.Add(new iTextSharp.text.Paragraph(" "));
+
+                int totalOrders = dt.Rows.Count;
+
+                iTextSharp.text.Paragraph exportInfo = new iTextSharp.text.Paragraph($"ExportDate: {DateTime.Now:dd/MM/yyyy HH:mm:ss}\nTotal Orders: {totalOrders}", FontFactory.GetFont("Arial", 12, Font.NORMAL));
+                exportInfo.Alignment = Element.ALIGN_LEFT;
+
+                pdfdoc.Add(exportInfo);
+
+                pdfdoc.Add(new iTextSharp.text.Paragraph(" "));
+
+                PdfPTable pdfTable = new PdfPTable(6);
+                pdfTable.WidthPercentage = 100;
+                pdfTable.SetWidths(new float[] { 1f, 1f, 1f, 2f, 1f, 2f });
+                BaseColor lightGrey = new BaseColor(211, 211, 211);
+
+                // table headers
+                pdfTable.AddCell(new PdfPCell(new Phrase("Order ID")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+                pdfTable.AddCell(new PdfPCell(new Phrase("Date")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+                pdfTable.AddCell(new PdfPCell(new Phrase("Order Type")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+                pdfTable.AddCell(new PdfPCell(new Phrase("Payment Method")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+                pdfTable.AddCell(new PdfPCell(new Phrase("Total Amount")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+                pdfTable.AddCell(new PdfPCell(new Phrase("Status")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+
+                // Initialize sums
+                int totalDelivery = 0;
+                int totalPickUp = 0;
+                decimal totalSales = 0;
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    pdfTable.AddCell(new PdfPCell(new Phrase(row["OrderID"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
+                    pdfTable.AddCell(new PdfPCell(new Phrase(Convert.ToDateTime(row["OrderDateTime"]).ToString("dd/MM/yyyy"))) { HorizontalAlignment = Element.ALIGN_LEFT });
+                    pdfTable.AddCell(new PdfPCell(new Phrase(row["OrderType"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
+                    pdfTable.AddCell(new PdfPCell(new Phrase(row["PaymentMethod"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
+                    pdfTable.AddCell(new PdfPCell(new Phrase(Convert.ToDecimal(row["TotalAmount"]).ToString("C"))) { HorizontalAlignment = Element.ALIGN_CENTER });
+                    pdfTable.AddCell(new PdfPCell(new Phrase(row["OrderStatus"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
+
+                    if (row["OrderType"].ToString() == "Delivery")
+                    {
+                        totalDelivery++;
+                    }
+                    else if (row["OrderType"].ToString() == "Pick Up")
+                    {
+                        totalPickUp++;
+                    }
+
+                    totalSales += Convert.ToDecimal(row["TotalAmount"]);
+                }
+
+                pdfdoc.Add(pdfTable);
+
+                iTextSharp.text.Paragraph totalReport = new iTextSharp.text.Paragraph($"Total 'Delivery' Orders: {totalDelivery.ToString()}\nTotal 'Pick Up' Orders: {totalPickUp.ToString()}\nTotal Sales: {totalSales.ToString("C")}", FontFactory.GetFont("Arial", 12, Font.NORMAL));
+                totalReport.Alignment = Element.ALIGN_LEFT;
+
+                pdfdoc.Add(totalReport);
+
+                pdfdoc.Close();
+                Response.Write(pdfdoc);
+                Response.End();
             }
             
+            
+        }
+
+        protected void BtnReceipt_Click(object sender, EventArgs e)
+        {
+            // Set up PDF response properties
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("content-disposition", "attachment;filename=OrderReceipt.pdf");
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            DataTable dt = new DataTable();
+            string invoiceNum = "";
+            string orderID = hfOrderID.Value.ToString();
+            //if date not selected
+            //get all the data
+            string sql = @"SELECT *
+                        FROM OrderPlaced O 
+                        JOIN PaymentDetail P ON O.OrderID = P.OrderID
+                        JOIN Customer C ON O.CusID = C.CusID
+                        JOIN OrderedItem OI ON O.OrderID = OI.OrderID
+                        JOIN Product PR ON OI.ProductID = PR.ProductID
+                        WHERE O.OrderID = @orderID";
+
+            using (SqlConnection con = new SqlConnection(cs))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    con.Open();
+                    cmd.Parameters.AddWithValue("@orderID", orderID);
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    if (dr.Read())
+                    {
+                        //generate invoice number
+                        DateTime orderDate = Convert.ToDateTime(dr["OrderDateTime"]);
+                        string cusID = dr["CusID"].ToString();
+                        string orderType = dr["OrderType"].ToString();
+                        if(orderType == "Delivery")
+                        {
+                            invoiceNum = "D" + orderDate.ToString("ddMMyyyy") + orderID + cusID;
+                        }
+                        else if(orderType == "Pick Up")
+                        {
+                            invoiceNum = "P" + orderDate.ToString("ddMMyyyy") + orderID + cusID;
+                        }
+
+                        
+                    }
+                    dt.Load(dr);
+
+                }
+            }
+
+            
+
             // Set up iTextSharp PDF document
             Document pdfdoc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
             iTextSharp.text.pdf.PdfWriter.GetInstance(pdfdoc, Response.OutputStream);
             pdfdoc.Open();
 
-            iTextSharp.text.Paragraph title = new iTextSharp.text.Paragraph("Order Summary Report", FontFactory.GetFont("Arial", 18, Font.BOLD));
+            iTextSharp.text.Paragraph title = new iTextSharp.text.Paragraph("COFFEECOVE", FontFactory.GetFont("Arial", 18, Font.BOLD));
             title.Alignment = Element.ALIGN_CENTER;
             pdfdoc.Add(title);
             pdfdoc.Add(new iTextSharp.text.Paragraph(" "));
 
-            int totalOrders = dt.Rows.Count;
+            DataRow row1 = dt.Rows[0];
+            iTextSharp.text.Paragraph exportInfo = new iTextSharp.text.Paragraph();
 
-            iTextSharp.text.Paragraph exportInfo = new iTextSharp.text.Paragraph($"ExportDate: {DateTime.Now:dd/MM/yyyy HH:mm:ss}\nTotal Orders: {totalOrders}", FontFactory.GetFont("Arial", 12, Font.NORMAL));
+            exportInfo.Add(new iTextSharp.text.Phrase($"Print Date: {DateTime.Now:dd/MM/yyyy HH:mm:ss}\n", FontFactory.GetFont("Arial", 12, iTextSharp.text.Font.NORMAL)));
+            exportInfo.Add(new iTextSharp.text.Phrase("Invoice No: ", FontFactory.GetFont("Arial", 12, iTextSharp.text.Font.NORMAL)));
+            exportInfo.Add(new iTextSharp.text.Phrase(invoiceNum + "\n", FontFactory.GetFont("Arial", 12, iTextSharp.text.Font.NORMAL)));
+            exportInfo.Add(new iTextSharp.text.Phrase("Order No: ", FontFactory.GetFont("Arial", 12, iTextSharp.text.Font.NORMAL)));
+            exportInfo.Add(new iTextSharp.text.Phrase(row1["OrderID"].ToString() + "\n", FontFactory.GetFont("Arial", 12, iTextSharp.text.Font.NORMAL)));
+            exportInfo.Add(new iTextSharp.text.Phrase("Customer No: ", FontFactory.GetFont("Arial", 12, iTextSharp.text.Font.NORMAL)));
+            exportInfo.Add(new iTextSharp.text.Phrase(row1["CusID"].ToString() + "\n", FontFactory.GetFont("Arial", 12, iTextSharp.text.Font.NORMAL)));
+            exportInfo.Add(new iTextSharp.text.Phrase("Order Type: ", FontFactory.GetFont("Arial", 12, iTextSharp.text.Font.NORMAL)));
+            exportInfo.Add(new iTextSharp.text.Phrase(row1["OrderType"].ToString() + "\n", FontFactory.GetFont("Arial", 12, iTextSharp.text.Font.NORMAL)));
+            exportInfo.Add(new iTextSharp.text.Phrase("Payment Method: ", FontFactory.GetFont("Arial", 12, iTextSharp.text.Font.NORMAL)));
+            exportInfo.Add(new iTextSharp.text.Phrase(row1["PaymentMethod"].ToString(), FontFactory.GetFont("Arial", 12, iTextSharp.text.Font.NORMAL)));
+
+
+
             exportInfo.Alignment = Element.ALIGN_LEFT;
 
             pdfdoc.Add(exportInfo);
 
             pdfdoc.Add(new iTextSharp.text.Paragraph(" "));
 
-            PdfPTable pdfTable = new PdfPTable(6);
+            PdfPTable pdfTable = new PdfPTable(4);
             pdfTable.WidthPercentage = 100;
-            pdfTable.SetWidths(new float[] { 1f, 1f, 1f, 2f, 1f, 2f});
+            pdfTable.SetWidths(new float[] { 3f, 1f, 1f, 1f});
             BaseColor lightGrey = new BaseColor(211, 211, 211);
 
             // table headers
-            pdfTable.AddCell(new PdfPCell(new Phrase("Order ID")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
-            pdfTable.AddCell(new PdfPCell(new Phrase("Date")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
-            pdfTable.AddCell(new PdfPCell(new Phrase("Order Type")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
-            pdfTable.AddCell(new PdfPCell(new Phrase("Payment Method")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
-            pdfTable.AddCell(new PdfPCell(new Phrase("Total Amount")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
-            pdfTable.AddCell(new PdfPCell(new Phrase("Status")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+            pdfTable.AddCell(new PdfPCell(new Phrase("Item")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+            pdfTable.AddCell(new PdfPCell(new Phrase("Price")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+            pdfTable.AddCell(new PdfPCell(new Phrase("Quantity")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+            pdfTable.AddCell(new PdfPCell(new Phrase("Total")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
 
             // Initialize sums
-            int totalDelivery = 0;
-            int totalPickUp = 0;
-            decimal totalSales = 0;
+            decimal subTotal = 0;
+            decimal tax = 0;
+            decimal total = 0;
 
             foreach (DataRow row in dt.Rows)
             {
-                pdfTable.AddCell(new PdfPCell(new Phrase(row["OrderID"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
-                pdfTable.AddCell(new PdfPCell(new Phrase(Convert.ToDateTime(row["OrderDateTime"]).ToString("dd/MM/yyyy"))) { HorizontalAlignment = Element.ALIGN_LEFT });
-                pdfTable.AddCell(new PdfPCell(new Phrase(row["OrderType"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
-                pdfTable.AddCell(new PdfPCell(new Phrase(row["PaymentMethod"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
-                pdfTable.AddCell(new PdfPCell(new Phrase(Convert.ToDecimal(row["TotalAmount"]).ToString("C"))) { HorizontalAlignment = Element.ALIGN_CENTER });
-                pdfTable.AddCell(new PdfPCell(new Phrase(row["OrderStatus"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
+                decimal lineTotal = Convert.ToDecimal(row["Quantity"]) * Convert.ToDecimal(row["Price"]);
 
-                if (row["OrderType"].ToString() == "Delivery")
-                {
-                    totalDelivery++;
-                }
-                else if (row["OrderType"].ToString() == "Pick Up")
-                {
-                    totalPickUp++;
-                }
 
-                totalSales += Convert.ToDecimal(row["TotalAmount"]);
+                pdfTable.AddCell(new PdfPCell(new Phrase(row["ProductName"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
+                pdfTable.AddCell(new PdfPCell(new Phrase(Convert.ToDecimal(row["Price"]).ToString("C"))) { HorizontalAlignment = Element.ALIGN_CENTER });
+                pdfTable.AddCell(new PdfPCell(new Phrase(row["Quantity"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
+                pdfTable.AddCell(new PdfPCell(new Phrase(lineTotal.ToString("C"))) { HorizontalAlignment = Element.ALIGN_CENTER });
+
+                subTotal += lineTotal;
             }
+            tax = subTotal * (decimal)0.06;
+            total = subTotal + tax;
 
-
-            pdfTable.AddCell(new PdfPCell(new Phrase("Total 'Delivery' Orders")) { Colspan = 5, HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
-            pdfTable.AddCell(new PdfPCell(new Phrase(totalDelivery.ToString())) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
-            pdfTable.AddCell(new PdfPCell(new Phrase("Total 'Pick Up' Orders")) { Colspan = 5, HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
-            pdfTable.AddCell(new PdfPCell(new Phrase(totalPickUp.ToString())) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
-            pdfTable.AddCell(new PdfPCell(new Phrase("Total Sales")) { Colspan = 5, HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
-            pdfTable.AddCell(new PdfPCell(new Phrase(totalSales.ToString("C"))) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+            pdfTable.AddCell(new PdfPCell(new Phrase("SubTotal")) { Colspan = 3, HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+            pdfTable.AddCell(new PdfPCell(new Phrase(subTotal.ToString("C"))) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+            pdfTable.AddCell(new PdfPCell(new Phrase("Tax 6%")) { Colspan = 3, HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+            pdfTable.AddCell(new PdfPCell(new Phrase(tax.ToString("C"))) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+            pdfTable.AddCell(new PdfPCell(new Phrase("Total")) { Colspan = 3, HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
+            pdfTable.AddCell(new PdfPCell(new Phrase(total.ToString("C"))) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
 
             pdfdoc.Add(pdfTable);
 

@@ -12,7 +12,7 @@
           <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="HashedPassword" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="Gender" Type="varchar" MaxLength="6" Nullable="false" />
-          <Property Name="Branch" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Branch" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ContactNo" Type="varchar" MaxLength="12" />
         </EntityType>
         <EntityType Name="Category">
@@ -306,7 +306,7 @@
           <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="HashedPassword" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Gender" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="Branch" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Branch" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ContactNo" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Reviews" Relationship="dbCoffeeCoveModel.FK_Review_ToAdmin" FromRole="Admin" ToRole="Review" />
         </EntityType>

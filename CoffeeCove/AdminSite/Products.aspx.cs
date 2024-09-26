@@ -61,6 +61,7 @@ namespace CoffeeCove.AdminSite
                         p.CategoryId, c.CategoryName, p.CreatedDate 
                         FROM Product p
                         INNER JOIN Category c ON p.CategoryId = c.CategoryId WHERE 1=1";
+
             string selectedCategory = ddlFilterCategory.SelectedValue;
             string filterActive = ddlFilterActive.SelectedValue;
 
@@ -106,7 +107,7 @@ namespace CoffeeCove.AdminSite
                     con.Open();
                     SqlDataReader dr = cmd.ExecuteReader();
 
-                    // Use a DataTable for paging
+                    // Use datatable for paging
                     DataTable dt = new DataTable();
                     dt.Load(dr);
 
@@ -211,7 +212,7 @@ namespace CoffeeCove.AdminSite
 
         protected void ddlPageSize_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Get the selected page size from the dropdown list
+            // get the selected page size from the dropdown list
             gvProduct.PageSize = int.Parse(ddlPageSize.SelectedValue);
 
             BindProduct();
@@ -371,7 +372,7 @@ namespace CoffeeCove.AdminSite
                 }
                 catch (SqlException ex)
                 {
-                    if (ex.Number == 547) // SQL Server error code for foreign key violation
+                    if (ex.Number == 547) // rror code for foreign key violation
                     {
                         ShowErrorMessage("This product cannot be deleted because it is referenced in an order. You can soft delete using IsActive");
                     }
@@ -481,7 +482,7 @@ namespace CoffeeCove.AdminSite
             SortExpression = "ProductId"; // Default sorting column
             SortDirection = "ASC"; // Default sorting direction
 
-            // Reset page index
+            // reset page index
             gvProduct.PageIndex = 0;
 
             BindProduct();
@@ -525,14 +526,13 @@ namespace CoffeeCove.AdminSite
             string sql = @"SELECT   
             p.ProductId,   
             p.ProductName,   
-            p.UnitPrice,   
-            p.CreatedDate,  
+            p.UnitPrice,  
             p.IsActive,  
             COALESCE(SUM(oi.Quantity * oi.Price), 0) AS TotalSales,  
             COALESCE(SUM(oi.Quantity), 0) AS TotalSold  
             FROM Product p  
             LEFT JOIN OrderedItem oi ON p.ProductId = oi.ProductID  
-            GROUP BY p.ProductId, p.ProductName, p.UnitPrice, p.CreatedDate, p.IsActive";
+            GROUP BY p.ProductId, p.ProductName, p.UnitPrice, p.IsActive";
 
             DataTable dt = new DataTable();
 
@@ -564,21 +564,19 @@ namespace CoffeeCove.AdminSite
 
             pdfdoc.Add(new Paragraph(" "));
 
-            PdfPTable pdfTable = new PdfPTable(7);
+            PdfPTable pdfTable = new PdfPTable(6);
             pdfTable.WidthPercentage = 100;
-            pdfTable.SetWidths(new float[] { 1f, 2f, 1f, 1f, 1f, 1f, 1f });
+            pdfTable.SetWidths(new float[] { 1f, 2f, 1f, 1f, 1f, 1f });
             BaseColor lightGrey = new BaseColor(211, 211, 211);
 
             // table headers  
             pdfTable.AddCell(new PdfPCell(new Phrase("Product ID")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
             pdfTable.AddCell(new PdfPCell(new Phrase("Product Name")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
             pdfTable.AddCell(new PdfPCell(new Phrase("Unit Price (RM)")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
-            pdfTable.AddCell(new PdfPCell(new Phrase("Created Date")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
             pdfTable.AddCell(new PdfPCell(new Phrase("Is Active")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
             pdfTable.AddCell(new PdfPCell(new Phrase("Total Sales (RM)")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
             pdfTable.AddCell(new PdfPCell(new Phrase("Total Sold")) { HorizontalAlignment = Element.ALIGN_CENTER, BackgroundColor = lightGrey });
 
-            // Initialize sums  
             decimal totalSalesSum = 0;
             int totalSoldSum = 0;
 
@@ -587,7 +585,6 @@ namespace CoffeeCove.AdminSite
                 pdfTable.AddCell(new PdfPCell(new Phrase(row["ProductId"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
                 pdfTable.AddCell(new PdfPCell(new Phrase(row["ProductName"].ToString())) { HorizontalAlignment = Element.ALIGN_LEFT });
                 pdfTable.AddCell(new PdfPCell(new Phrase(Convert.ToDecimal(row["UnitPrice"]).ToString("N2"))) { HorizontalAlignment = Element.ALIGN_CENTER });
-                pdfTable.AddCell(new PdfPCell(new Phrase(Convert.ToDateTime(row["CreatedDate"]).ToString("dd/MM/yyyy"))) { HorizontalAlignment = Element.ALIGN_CENTER });
                 pdfTable.AddCell(new PdfPCell(new Phrase(row["IsActive"].ToString())) { HorizontalAlignment = Element.ALIGN_CENTER });
 
                 decimal rowTotalSales = row["TotalSales"] != DBNull.Value ? Convert.ToDecimal(row["TotalSales"]) : 0;
