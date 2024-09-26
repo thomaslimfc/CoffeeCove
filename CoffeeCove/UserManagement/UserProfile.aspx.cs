@@ -12,13 +12,11 @@ namespace CoffeeCove.UserManagement
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["cusID"] == null)
+            if (Session["CusID"] == null)
             {
                 Response.Redirect("~/Login.aspx");
                 return;
             }
-
-            string cusID = Session["cusID"]?.ToString();
 
             if (!IsPostBack)
             {
@@ -26,27 +24,17 @@ namespace CoffeeCove.UserManagement
                 SetProfileEditMode(false);
             }
         }
-        //protected void Page_Load(object sender, EventArgs e)
-        //{
-        //    if (!IsPostBack)
-        //    {
-        //        Session["cusID"] = "00001"; // Hardcoded for testing purposes
-
-        //        LoadUserProfile();
-        //        SetProfileEditMode(false);
-        //    }
-        //}
 
         protected void LoadUserProfile()
         {
-            string cusID = Session["cusID"]?.ToString();
-            if (!string.IsNullOrEmpty(cusID))
+            string CusID = Session["CusID"]?.ToString();
+            if (!string.IsNullOrEmpty(CusID))
             {
                 using (SqlConnection con = new SqlConnection(cs))
                 {
-                    string query = "SELECT Username, EmailAddress, Gender, DateOfBirth, ContactNo, ResidenceState, ProfilePicturePath FROM [dbo].[Customer] WHERE cusID = @cusID";
+                    string query = "SELECT Username, EmailAddress, Gender, DateOfBirth, ContactNo, ResidenceState, ProfilePicturePath FROM [dbo].[Customer] WHERE CusID = @CusID";
                     SqlCommand cmd = new SqlCommand(query, con);
-                    cmd.Parameters.AddWithValue("@cusID", cusID);
+                    cmd.Parameters.AddWithValue("@CusID", CusID);
 
                     try
                     {
@@ -162,14 +150,14 @@ namespace CoffeeCove.UserManagement
 
         protected void UpdateUserProfile()
         {
-            string cusID = Session["cusID"]?.ToString();
-            if (!string.IsNullOrEmpty(cusID))
+            string CusID = Session["CusID"]?.ToString();
+            if (!string.IsNullOrEmpty(CusID))
             {
                 using (SqlConnection con = new SqlConnection(cs))
                 {
                     string query = "UPDATE [dbo].[Customer] SET Username = @Username, Gender = @Gender, " +
                                    "DateOfBirth = @DateOfBirth, ContactNo = @ContactNo, ResidenceState = @ResidenceState " +
-                                   "WHERE cusID = @cusID";
+                                   "WHERE CusID = @CusID";
 
                     SqlCommand cmd = new SqlCommand(query, con);
 
@@ -189,7 +177,7 @@ namespace CoffeeCove.UserManagement
 
                     cmd.Parameters.AddWithValue("@ContactNo", txtContactNo.Text.Trim());
                     cmd.Parameters.AddWithValue("@ResidenceState", txtResidenceState.SelectedValue.Trim());
-                    cmd.Parameters.AddWithValue("@cusID", cusID);
+                    cmd.Parameters.AddWithValue("@CusID", CusID);
 
                     try
                     {
@@ -242,10 +230,10 @@ namespace CoffeeCove.UserManagement
                 // Validate the file extension
                 if (fileExtension == ".png" || fileExtension == ".jpg" || fileExtension == ".jpeg")
                 {
-                    string cusID = Session["cusID"]?.ToString();
-                    if (!string.IsNullOrEmpty(cusID))
+                    string CusID = Session["CusID"]?.ToString();
+                    if (!string.IsNullOrEmpty(CusID))
                     {
-                        string filename = cusID + fileExtension;
+                        string filename = CusID + fileExtension;
                         string savePath = Server.MapPath("~/UserManagement/UserProfilePictures/") + filename;
 
                         try
@@ -256,10 +244,10 @@ namespace CoffeeCove.UserManagement
 
                             using (SqlConnection con = new SqlConnection(cs))
                             {
-                                string query = "UPDATE [dbo].[Customer] SET ProfilePicturePath = @ProfilePicturePath WHERE cusID = @cusID";
+                                string query = "UPDATE [dbo].[Customer] SET ProfilePicturePath = @ProfilePicturePath WHERE CusID = @CusID";
                                 SqlCommand cmd = new SqlCommand(query, con);
                                 cmd.Parameters.AddWithValue("@ProfilePicturePath", filename);
-                                cmd.Parameters.AddWithValue("@cusID", cusID);
+                                cmd.Parameters.AddWithValue("@CusID", CusID);
 
                                 con.Open();
                                 cmd.ExecuteNonQuery();
@@ -313,10 +301,10 @@ namespace CoffeeCove.UserManagement
         protected void RemovePictureBtn_UP_Click(object sender, EventArgs e)
         {
             // Delete the picture from the folder
-            string cusID = Session["cusID"]?.ToString();
-            if (!string.IsNullOrEmpty(cusID))
+            string CusID = Session["CusID"]?.ToString();
+            if (!string.IsNullOrEmpty(CusID))
             {
-                string filename = cusID + ".jpg";
+                string filename = CusID + ".jpg";
                 string savePath = Server.MapPath("~/UserManagement/UserProfilePictures/") + filename;
 
                 if (System.IO.File.Exists(savePath))
@@ -327,9 +315,9 @@ namespace CoffeeCove.UserManagement
 
                         using (SqlConnection con = new SqlConnection(cs))
                         {
-                            string query = "UPDATE [dbo].[Customer] SET ProfilePicturePath = NULL WHERE cusID = @cusID";
+                            string query = "UPDATE [dbo].[Customer] SET ProfilePicturePath = NULL WHERE CusID = @CusID";
                             SqlCommand cmd = new SqlCommand(query, con);
-                            cmd.Parameters.AddWithValue("@cusID", cusID);
+                            cmd.Parameters.AddWithValue("@CusID", CusID);
 
                             con.Open();
                             cmd.ExecuteNonQuery();
