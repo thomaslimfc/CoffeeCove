@@ -116,9 +116,11 @@ namespace CoffeeCove.Payment
                     // Update payment method and mark status as "Pending" for COD
                     UpdatePaymentStatus(orderId, "Cash on Delivery", "Pending");
 
+                    // Calculate the total amount including tax (6%)
+                    decimal totalAmountWithTax = CalculateTotalAmountWithTax(orderId);
+
                     // Update OrderPlaced table (OrderStatus, OrderDateTime, TotalAmount)
-                    decimal totalAmount = CalculateTotalAmount(orderId);
-                    UpdateOrderPlaced(orderId, totalAmount);
+                    UpdateOrderPlaced(orderId, totalAmountWithTax);
 
                     // Clear session for OrderID after successful order processing
                     Session.Remove("OrderID");
