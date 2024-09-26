@@ -4,8 +4,8 @@
     Inherits="CoffeeCove.Security.PasswordResetSuccess" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Content" runat="server">
-<br /><br /><br />
-<br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br />
 
     <center>
         <h1>Password Reset Successful</h1>

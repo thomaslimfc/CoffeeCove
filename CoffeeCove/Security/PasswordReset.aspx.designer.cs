@@ -15,31 +15,40 @@ namespace CoffeeCove.Security
     {
 
         /// <summary>
-        /// Password_PR control.
+        /// NewPassword_PR control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Password_PR;
+        protected global::System.Web.UI.WebControls.TextBox NewPassword_PR;
 
         /// <summary>
-        /// Password_PR_rqdValidator control.
+        /// NewPassword_PR_rqdValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator Password_PR_rqdValidator;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator NewPassword_PR_rqdValidator;
 
         /// <summary>
-        /// Password_PR_regexValidator control.
+        /// NewPassword_PR_regexValidator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator Password_PR_regexValidator;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator NewPassword_PR_regexValidator;
+
+        /// <summary>
+        /// lblNewPassword_PR control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNewPassword_PR;
 
         /// <summary>
         /// PasswordConfirm_PR control.

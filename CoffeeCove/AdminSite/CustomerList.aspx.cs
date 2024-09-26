@@ -1,6 +1,4 @@
-﻿using AjaxControlToolkit.HTMLEditor.ToolbarButton;
-using CoffeeCove.Master;
-using System;
+﻿using System;
 using System.Data;
 using System.Data.Entity.Validation;
 using System.Data.SqlClient;
@@ -20,9 +18,6 @@ namespace CoffeeCove.AdminSite
         {
             if (!IsPostBack)
             {
-                // loading information
-                //LoadAdminProfile();
-
                 // show customer list
                 BindCustomerList();
 
@@ -211,6 +206,7 @@ namespace CoffeeCove.AdminSite
             }
         }
 
+
         protected void LoadAdminProfile_CL2_Click(object sender, EventArgs e)
         {
             string username = UsernameEdit_CL2.Text.Trim();
@@ -222,7 +218,6 @@ namespace CoffeeCove.AdminSite
                     var admin = db.Admins.SingleOrDefault(a => a.Username == username);
                     if (admin != null)
                     {
-                        // Populate the fields with admin's data
                         UsernameEdit_CL2.Text = admin.Username;
                         GenderEdit_CL2.SelectedValue = admin.Gender;
                         BranchLocationEdit_CL2.SelectedValue = admin.Branch;
@@ -236,6 +231,7 @@ namespace CoffeeCove.AdminSite
             }
         }
 
+
         private string RetrieveAdminPassword(string username)
         {
             using (dbCoffeeCoveEntities db = new dbCoffeeCoveEntities())
@@ -245,11 +241,13 @@ namespace CoffeeCove.AdminSite
             }
         }
 
+
         private bool VerifyPassword(string enteredPassword, string storedHashedPassword)
         {
             string enteredHashedPassword = enteredPassword;
             return enteredHashedPassword == storedHashedPassword;
         }
+
 
         private string HashPassword(string password)
         {

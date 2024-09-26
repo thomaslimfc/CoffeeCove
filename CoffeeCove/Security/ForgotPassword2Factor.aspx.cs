@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Linq;
-using System.Net.PeerToPeer;
-using System.Web.UI;
 
 namespace CoffeeCove.Security
 {
@@ -11,34 +8,47 @@ namespace CoffeeCove.Security
         {
             if (!IsPostBack)
             {
-                // if no otp, go forgot password again
+                // Check if the OTP session variable is set
                 if (Session["OTP_FP"] == null)
                 {
                     lblWrongOtp.Text = "Session expired, please request a new OTP.";
                     lblWrongOtp.Visible = true;
-
                     Response.Redirect("ForgotPassword.aspx");
                 }
             }
         }
 
+
         protected void VerifyButton_FPTF_Click(object sender, EventArgs e)
         {
             string userInputOtp = otp_FPTF.Text.Trim();
 
+            // Check if session OTP is available
+            if (Session["OTP_FP"] == null)
+            {
+                lblWrongOtp.Text = "Session expired, please request a new OTP.";
+                lblWrongOtp.Visible = true;
+                Response.Redirect("ForgotPassword.aspx");
+                return; // Exit to avoid further execution
+            }
+
+            // Verify the OTP entered by the user
             if (userInputOtp == OTP_FP)
             {
+                // Mark the status of 2FA as true
                 Session["statusTFA"] = true;
 
+                // Redirect to the password reset page
                 Response.Redirect("PasswordReset.aspx");
             }
             else
             {
-                // Display an error message for incorrect OTP
-                lblWrongOtp.Text = "The OTP entered is incorrect.";
+                // Show error message if OTP is incorrect
+                lblWrongOtp.Text = "The OTP entered is incorrect." + Session["Username_FP"] + "22";
                 lblWrongOtp.Visible = true;
             }
         }
+
 
         private string OTP_FP
         {

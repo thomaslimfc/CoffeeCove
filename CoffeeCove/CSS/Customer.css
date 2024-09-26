@@ -151,12 +151,12 @@
     border:1px solid white;
 }
 
-.loginBtn a{
+.loginBtn{
     font-weight: bold;
     color: black;
 }
 
-.loginBtn:hover a{
+.loginBtn:hover{
     font-weight: bold;
     color: white;
 }

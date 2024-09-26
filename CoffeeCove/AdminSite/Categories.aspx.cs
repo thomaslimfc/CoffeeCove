@@ -231,9 +231,19 @@ namespace CoffeeCove
                     {
                         txtCategoryName.Text = dr["CategoryName"].ToString();
                         string imageUrl = dr["CategoryImageUrl"].ToString();
-                        imgCategory.Attributes["src"] = !string.IsNullOrEmpty(imageUrl) ? imageUrl : "/path/to/default/image.jpg";
+                        imgCategory.Attributes["src"] = imageUrl;
                         cbIsActive.Checked = !Convert.IsDBNull(dr["IsActive"]) && (bool)dr["IsActive"];
                         hdnId.Value = categoryId.ToString();
+
+                        if (!string.IsNullOrEmpty(imageUrl))
+                        {
+                            RequiredFieldValidator2.Enabled = false;
+                        }
+                        else
+                        {
+                            RequiredFieldValidator2.Enabled = true;
+                        }
+
                     }
 
 
@@ -276,8 +286,8 @@ namespace CoffeeCove
             }
 
             ShowSuccessMessage("Category updated successfully.");
-            BindCategory(); 
-            ClearForm(); 
+            BindCategory();
+            ClearForm();
         }
 
         private string UploadImage()
@@ -416,6 +426,8 @@ namespace CoffeeCove
             BindCategory();
 
             lblMsg.Visible = false;
+
+            UpdateSortIcons();
         }
 
         [System.Web.Script.Services.ScriptMethod()]
@@ -495,7 +507,7 @@ namespace CoffeeCove
 
             pdfdoc.Add(new Paragraph(" "));
 
-            PdfPTable pdfTable = new PdfPTable(6); 
+            PdfPTable pdfTable = new PdfPTable(6);
             pdfTable.WidthPercentage = 100;
             pdfTable.SetWidths(new float[] { 1f, 2f, 1f, 1f, 1f, 1f });
             BaseColor lightGrey = new BaseColor(211, 211, 211);

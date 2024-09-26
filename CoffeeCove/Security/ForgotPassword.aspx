@@ -37,44 +37,24 @@
             ForeColor="Red" 
             CssClass="rqdValidator" 
             ValidationExpression="^01[0-9]-[0-9]{7,9}$" />
+            <asp:Label 
+                ID="lblMessage" 
+                runat="server" 
+                Display="Dynamic" 
+                ForeColor="Red" 
+                CssClass="rqdValidator" 
+                Text="">
+            </asp:Label>
+            <asp:Label         
+                ID="lblWrongOtp" 
+                runat="server" 
+                Display="Dynamic" 
+                ForeColor="Red" 
+                CssClass="rqdValidator"
+                Text="">
+            </asp:Label>
     </div>
 
-
-
-    <asp:Label ID="lblMessage" runat="server" Text=""></asp:Label>
-    <asp:Label ID="lblWrongOtp" runat="server" Text=""></asp:Label>
-
-    <!-- Username -->
-    <!--
-    <div class="mb-4">
-        <label for="first-name" class="block text-sm text-muted-foreground" style="padding-bottom: 3px;">Username / Email</label>
-        <asp:TextBox ID="UsernameEmail_FP" 
-            CssClass="w-full p-2 border border-border rounded-md focus:outline-none" 
-            runat="server"
-            placeholder="desmundchau7668 / deschau7668@gmail.com" 
-            title="Username / Email Address"
-            AutoPostBack="false">
-        </asp:TextBox>
-        <br />
-        <asp:RequiredFieldValidator 
-            ID="Username_FP_rqdValidator" 
-            runat="server" 
-            ControlToValidate="UsernameEmail_FP" 
-            ErrorMessage="Username or Email is required." 
-            Display="Dynamic" ForeColor="Red" 
-            CssClass="rqdValidator" />
-        <asp:RegularExpressionValidator 
-            ID="UsernameEmail_FP_regexValidator" 
-            runat="server" 
-            ControlToValidate="UsernameEmail_FP" 
-            ErrorMessage="Must contain >8 letters and numbers only or a valid email." 
-            Display="Dynamic" 
-            ForeColor="Red" 
-            CssClass="rqdValidator" 
-            ValidationExpression="(^[a-zA-Z0-9_]{8,}$)|(^[^@\s]+@[^@\s]+\.[^@\s]+$)" />
-    </div>
-    <div class="trMarginBottom20"></div>
-    -->
     <!-- Description before NEXT -->
     <div class="relative mb-4">
         <center>
@@ -103,50 +83,51 @@
     </div>
 </div>
 
-    <script type="text/javascript">
-        window.tailwind.config = {
-            darkMode: ['class'],
-            theme: {
-                extend: {
-                    colors: {
-                        border: 'hsl(var(--border))',
-                        input: 'hsl(var(--input))',
-                        ring: 'hsl(var(--ring))',
-                        background: 'hsl(var(--background))',
-                        foreground: 'hsl(var(--foreground))',
-                        primary: {
-                            DEFAULT: 'hsl(var(--primary))',
-                            foreground: 'hsl(var(--primary-foreground))'
-                        },
-                        secondary: {
-                            DEFAULT: 'hsl(var(--secondary))',
-                            foreground: 'hsl(var(--secondary-foreground))'
-                        },
-                        destructive: {
-                            DEFAULT: 'hsl(var(--destructive))',
-                            foreground: 'hsl(var(--destructive-foreground))'
-                        },
-                        muted: {
-                            DEFAULT: 'hsl(var(--muted))',
-                            foreground: 'hsl(var(--muted-foreground))'
-                        },
-                        accent: {
-                            DEFAULT: 'hsl(var(--accent))',
-                            foreground: 'hsl(var(--accent-foreground))'
-                        },
-                        popover: {
-                            DEFAULT: 'hsl(var(--popover))',
-                            foreground: 'hsl(var(--popover-foreground))'
-                        },
-                        card: {
-                            DEFAULT: 'hsl(var(--card))',
-                            foreground: 'hsl(var(--card-foreground))'
-                        },
+<script type="text/javascript">
+    window.tailwind.config = {
+        darkMode: ['class'],
+        theme: {
+            extend: {
+                colors: {
+                    border: 'hsl(var(--border))',
+                    input: 'hsl(var(--input))',
+                    ring: 'hsl(var(--ring))',
+                    background: 'hsl(var(--background))',
+                    foreground: 'hsl(var(--foreground))',
+                    primary: {
+                        DEFAULT: 'hsl(var(--primary))',
+                        foreground: 'hsl(var(--primary-foreground))'
                     },
-                }
+                    secondary: {
+                        DEFAULT: 'hsl(var(--secondary))',
+                        foreground: 'hsl(var(--secondary-foreground))'
+                    },
+                    destructive: {
+                        DEFAULT: 'hsl(var(--destructive))',
+                        foreground: 'hsl(var(--destructive-foreground))'
+                    },
+                    muted: {
+                        DEFAULT: 'hsl(var(--muted))',
+                        foreground: 'hsl(var(--muted-foreground))'
+                    },
+                    accent: {
+                        DEFAULT: 'hsl(var(--accent))',
+                        foreground: 'hsl(var(--accent-foreground))'
+                    },
+                    popover: {
+                        DEFAULT: 'hsl(var(--popover))',
+                        foreground: 'hsl(var(--popover-foreground))'
+                    },
+                    card: {
+                        DEFAULT: 'hsl(var(--card))',
+                        foreground: 'hsl(var(--card-foreground))'
+                    },
+                },
             }
         }
-    </script>
+    }
+</script>
+
 <style type="text/tailwindcss">
     @layer base {
 	    :root {

@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Text;
 using System.Linq;
 using System.Web.UI.WebControls;
-using System.Threading.Tasks;
-
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -24,6 +21,7 @@ namespace CoffeeCove.Security
                      db.Admins.Any(u => u.Username == username));
         }
 
+
         protected void Username_SU_ServerValidate(object source, ServerValidateEventArgs args)
         {
             args.IsValid = IsUsernameAvailable(args.Value);
@@ -33,10 +31,12 @@ namespace CoffeeCove.Security
             }
         }
 
+
         private bool IsEmailAvailable(string email)
         {
             return !db.Customers.Any(u => u.EmailAddress == email);
         }
+
 
         protected void EmailAdd_SU_ServerValidate(object source, ServerValidateEventArgs args)
         {
@@ -47,10 +47,12 @@ namespace CoffeeCove.Security
             }
         }
 
+
         private bool IsContactNoAvailable(string contactNo)
         {
             return !db.Customers.Any(u => u.ContactNo == contactNo);
         }
+
 
         protected void ContactNo_SU_ServerValidate(object source, ServerValidateEventArgs args)
         {
@@ -60,6 +62,7 @@ namespace CoffeeCove.Security
                 ContactNo_SU_customValidator.ErrorMessage = "Your contact number has been used.";
             }
         }
+
 
         protected void SignUpBtn_SU_Click(object sender, EventArgs e)
         {
@@ -121,6 +124,7 @@ namespace CoffeeCove.Security
             }
         }
 
+
         private bool ValidateReCaptcha(string recaptchaResponse)
         {
             string apiUrl = $"https://www.google.com/recaptcha/api/siteverify?secret={ReCaptchaSecretKey}&response={recaptchaResponse}";
@@ -132,6 +136,7 @@ namespace CoffeeCove.Security
             }
         }
 
+
         private string HashPassword(string password)
         {
             using (var sha256 = System.Security.Cryptography.SHA256.Create())
@@ -141,10 +146,12 @@ namespace CoffeeCove.Security
             }
         }
 
+
         protected void SignUpUsernameBtn_SU_Click(object sender, EventArgs e)
         {
             Response.Redirect("SignIn.aspx");
         }
+
 
         protected void SignUpEmailBtn_SU_Click(object sender, EventArgs e)
         {

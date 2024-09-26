@@ -66,6 +66,14 @@
     display: none; 
 }
 
+.productImage {
+    width: 230px;
+    height: 230px;
+    border-radius: 10px;
+    border: 1px solid #ffce46;
+    margin: 10px 0px 10px 10px
+}
+
 .lnkSelect {
     margin-left:20%;
 }

@@ -3,9 +3,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 
-using CoffeeCove.Securities;
-using Microsoft.IdentityModel.Tokens;
-
 namespace CoffeeCove.Security
 {
     public partial class SignIn : System.Web.UI.Page
@@ -14,16 +11,7 @@ namespace CoffeeCove.Security
         {
             Session.Clear();
             //remove the cookie of orderID
-            HttpCookie cookie = Request.Cookies["OrderID"];
             HttpCookie cookieCus = Request.Cookies["CusID"];
-            if (cookie != null)
-            {
-                // Set the cookie's expiration date to a time in the past
-                cookie.Expires = DateTime.Now.AddDays(-1);
-
-                // Add the cookie to the Response to overwrite the existing cookie
-                Response.Cookies.Add(cookie);
-            }
             if (cookieCus != null)
             {
                 // Set the cookie's expiration date to a time in the past
@@ -100,8 +88,6 @@ namespace CoffeeCove.Security
 
         private string HashPassword(string password)
         {
-            // Placeholder: implement a real password hashing mechanism
-            // This is just an example using SHA256. You should ideally use a library like BCrypt.Net for stronger security.
             using (var sha256 = System.Security.Cryptography.SHA256.Create())
             {
                 byte[] bytes = sha256.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));

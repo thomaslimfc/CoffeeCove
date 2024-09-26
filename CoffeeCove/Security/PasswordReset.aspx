@@ -17,30 +17,38 @@
     <!-- Password -->
     <label for="first-name" class="block text-sm text-muted-foreground" style="padding-bottom: 3px;">Password</label>
     <div class="relative mb-4">
-         <asp:TextBox ID="Password_PR" 
+         <asp:TextBox ID="NewPassword_PR" 
             CssClass="w-full p-2 border border-border rounded-md focus:outline-none focus:ring focus:ring-ring"
             runat="server" 
             placeholder="**********" 
-            title="Password" 
+            title="New Password" 
             AutoPostBack="false">
         </asp:TextBox>
         <span id="PasswordToggle_PR" class="absolute right-2 top-2 cursor-pointer">👁️</span>
         <asp:RequiredFieldValidator 
-            ID="Password_PR_rqdValidator" 
+            ID="NewPassword_PR_rqdValidator" 
             runat="server" 
-            ControlToValidate="Password_PR" 
+            ControlToValidate="NewPassword_PR" 
             ErrorMessage="Password is required." 
             Display="Dynamic" ForeColor="Red" 
             CssClass="rqdValidator" />
         <asp:RegularExpressionValidator 
-            ID="Password_PR_regexValidator" 
+            ID="NewPassword_PR_regexValidator" 
             runat="server" 
-            ControlToValidate="Password_PR" 
+            ControlToValidate="NewPassword_PR" 
             ErrorMessage="Must contain >10 small + capital letters, numbers, and symbols." 
             Display="Dynamic" 
             ForeColor="Red" 
             CssClass="rqdValidator" 
             ValidationExpression="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{10,}$" />
+        <asp:Label 
+            ID="lblNewPassword_PR" 
+            runat="server" 
+            Display="Dynamic" 
+            ForeColor="Red" 
+            CssClass="rqdValidator" 
+            Text="">
+        </asp:Label>
     </div>
     
     <!-- Re-enter Password -->
@@ -65,7 +73,7 @@
             ID="PasswordConfirm_PR_compValidator" 
             runat="server" 
             ControlToValidate="PasswordConfirm_PR" 
-            ControlToCompare="Password_PR" 
+            ControlToCompare="NewPassword_PR" 
             ErrorMessage="Passwords do not match." 
             Display="Dynamic" 
             ForeColor="Red" 
@@ -87,61 +95,58 @@
             runat="server" 
             class="w-full bg-primary text-primary-foreground p-2 rounded-md hover:bg-primary/80"
             style="cursor: pointer;"
-            Text="Next"
+            Text="Reset"
             CausesValidation="true" 
             OnClick="ResetPasswordBtn_PR_Click"/>
     </div>
-    
-    
 </div>
 <br />
 <br />
 
-
-    <script type="text/javascript">
-        window.tailwind.config = {
-            darkMode: ['class'],
-            theme: {
-                extend: {
-                    colors: {
-                        border: 'hsl(var(--border))',
-                        input: 'hsl(var(--input))',
-                        ring: 'hsl(var(--ring))',
-                        background: 'hsl(var(--background))',
-                        foreground: 'hsl(var(--foreground))',
-                        primary: {
-                            DEFAULT: 'hsl(var(--primary))',
-                            foreground: 'hsl(var(--primary-foreground))'
-                        },
-                        secondary: {
-                            DEFAULT: 'hsl(var(--secondary))',
-                            foreground: 'hsl(var(--secondary-foreground))'
-                        },
-                        destructive: {
-                            DEFAULT: 'hsl(var(--destructive))',
-                            foreground: 'hsl(var(--destructive-foreground))'
-                        },
-                        muted: {
-                            DEFAULT: 'hsl(var(--muted))',
-                            foreground: 'hsl(var(--muted-foreground))'
-                        },
-                        accent: {
-                            DEFAULT: 'hsl(var(--accent))',
-                            foreground: 'hsl(var(--accent-foreground))'
-                        },
-                        popover: {
-                            DEFAULT: 'hsl(var(--popover))',
-                            foreground: 'hsl(var(--popover-foreground))'
-                        },
-                        card: {
-                            DEFAULT: 'hsl(var(--card))',
-                            foreground: 'hsl(var(--card-foreground))'
-                        },
+<script type="text/javascript">
+    window.tailwind.config = {
+        darkMode: ['class'],
+        theme: {
+            extend: {
+                colors: {
+                    border: 'hsl(var(--border))',
+                    input: 'hsl(var(--input))',
+                    ring: 'hsl(var(--ring))',
+                    background: 'hsl(var(--background))',
+                    foreground: 'hsl(var(--foreground))',
+                    primary: {
+                        DEFAULT: 'hsl(var(--primary))',
+                        foreground: 'hsl(var(--primary-foreground))'
                     },
-                }
+                    secondary: {
+                        DEFAULT: 'hsl(var(--secondary))',
+                        foreground: 'hsl(var(--secondary-foreground))'
+                    },
+                    destructive: {
+                        DEFAULT: 'hsl(var(--destructive))',
+                        foreground: 'hsl(var(--destructive-foreground))'
+                    },
+                    muted: {
+                        DEFAULT: 'hsl(var(--muted))',
+                        foreground: 'hsl(var(--muted-foreground))'
+                    },
+                    accent: {
+                        DEFAULT: 'hsl(var(--accent))',
+                        foreground: 'hsl(var(--accent-foreground))'
+                    },
+                    popover: {
+                        DEFAULT: 'hsl(var(--popover))',
+                        foreground: 'hsl(var(--popover-foreground))'
+                    },
+                    card: {
+                        DEFAULT: 'hsl(var(--card))',
+                        foreground: 'hsl(var(--card-foreground))'
+                    },
+                },
             }
         }
-    </script>
+    }
+</script>
 <style type="text/tailwindcss">
     @layer base {
         :root {
@@ -193,7 +198,7 @@
 <!-- Password Toggle Tool -->
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function () {
-        var passwordField = document.getElementById("<%= Password_PR.ClientID %>");
+        var passwordField = document.getElementById("<%= NewPassword_PR.ClientID %>");
         var toggleIcon = document.getElementById("PasswordToggle_PR");
 
         toggleIcon.addEventListener("click", function () {
