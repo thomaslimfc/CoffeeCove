@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CoffeeCove.Security;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -43,14 +44,14 @@ namespace CoffeeCove.Master
             }
 
             string username = Session["Username"] as string;
-            bool statusTFA = Session["statusTFA"] as bool? ?? false;
-            if (!string.IsNullOrEmpty(username) && statusTFA)
+            //bool statusTFA = Session["statusTFA"] as bool? ?? false;
+            if (!string.IsNullOrEmpty(username))
             {
                 lblUserName.Text = username;
             }
             else
             {
-                lblUserName.Text = "Register Now";
+                lblUserName.Text = "Login Now";
             }
 
 
@@ -88,6 +89,11 @@ namespace CoffeeCove.Master
             // Toggle the visibility of the dropdown menu panel
             pnlDropdownMenu.Visible = !pnlDropdownMenu.Visible;
             ViewState["DropdownVisible"] = pnlDropdownMenu.Visible;
+        }
+
+        protected void lbLogin_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Security/SignIn.aspx");
         }
     }
 }

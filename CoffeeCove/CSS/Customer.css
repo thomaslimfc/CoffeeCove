@@ -127,7 +127,7 @@
 }
 
 /*login btn style*/
-#loginBtn {
+.loginBtn {
     padding: 8px 20px;
     border-radius: 10px;
     background-color: #fff;
@@ -136,11 +136,21 @@
     margin-left: 20px;
 }
 
-#loginBtn:hover {
+.loginBtn:hover {
     background-color:transparent;
     color: #fff;
     transition: 0.3s;
     border:1px solid white;
+}
+
+.loginBtn a{
+    font-weight: bold;
+    color: black;
+}
+
+.loginBtn:hover a{
+    font-weight: bold;
+    color: white;
 }
 
 /*content style*/
