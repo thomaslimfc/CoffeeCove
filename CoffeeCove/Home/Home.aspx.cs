@@ -54,7 +54,6 @@ namespace CoffeeCove.Home
             SlideText.Text = slideTexts[slideIndex - 1];
         }
 
-        // Event handler for next button
         protected void NextButton_Click(object sender, EventArgs e)
         {
             slideIndex++;
@@ -65,7 +64,6 @@ namespace CoffeeCove.Home
             UpdateSlide();
         }
 
-        // Event handler for previous button
         protected void PrevButton_Click(object sender, EventArgs e)
         {
             slideIndex--;
@@ -156,7 +154,7 @@ namespace CoffeeCove.Home
                 }
                 else
                 {
-                    imgProfile.ImageUrl = "http://bootdey.com/img/Content/avatar/avatar1.png"; // Path to your default image
+                    imgProfile.ImageUrl = "http://bootdey.com/img/Content/avatar/avatar1.png"; 
                 }
             }
         }

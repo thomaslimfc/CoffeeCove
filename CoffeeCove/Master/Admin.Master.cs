@@ -30,7 +30,6 @@ namespace CoffeeCove.Master
 
         protected void lbtnLogin_Click(object sender, EventArgs e)
         {
-            // Toggle the visibility of the dropdown menu panel
             pnlDropdownMenu.Visible = !pnlDropdownMenu.Visible;
             ViewState["DropdownVisible"] = pnlDropdownMenu.Visible;
         }
