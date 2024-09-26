@@ -33,6 +33,9 @@ namespace CoffeeCove.AdminSite
 
         protected void RegisterAcc_CL_Click(object sender, EventArgs e)
         {
+            lblUsernameRegister_CL.Text = "";
+            lblSuperuserPassword_CL.Text = "";
+
             // Retrieve user inputs
             string username = UsernameRegister_CL.Text.Trim();
             string gender = Gender_CL.SelectedValue;
@@ -46,7 +49,7 @@ namespace CoffeeCove.AdminSite
             // Verify superuser password
             if (!VerifyPassword(superuserPassword, superuserHP))
             {
-                lblSuperuserPassword_CL.Text = "oo " + superuserPassword + "00 " + superuserHP + "Invalid superuser password.";
+                lblSuperuserPassword_CL.Text = "Invalid superuser password.";
                 return;
             }
 
@@ -101,6 +104,9 @@ namespace CoffeeCove.AdminSite
 
         protected void SaveChangesBtn_CL2_Click(object sender, EventArgs e)
         {
+            lblUsernameEdit_CL2.Text = "";
+            lblSuperuserPassword_CL2.Text = "";
+
             string username = UsernameEdit_CL2.Text.Trim();
             string superuserPassword = HashPassword(SuperuserPassword_CL2.Text);
 
@@ -128,7 +134,7 @@ namespace CoffeeCove.AdminSite
                             }
                             else
                             {
-                                lblUsernameEdit_CL2.Text = "Invalid superuser password.";
+                                lblSuperuserPassword_CL2.Text = "Invalid superuser password.";
                             }
                         }
                         else
@@ -162,6 +168,9 @@ namespace CoffeeCove.AdminSite
 
         protected void DeleteAccBtn_CL3_Click(object sender, EventArgs e)
         {
+            lblUsernameDeletion_CL3.Text = "";
+            lblSuperuserPassword_CL3.Text = "";
+
             string usernameToDelete = UsernameDeletion_CL3.Text.Trim();
             string superuserHP = RetrieveAdminPassword("superuser");
 
@@ -169,7 +178,7 @@ namespace CoffeeCove.AdminSite
             {
                 try
                 {
-                    // Find the customer by username
+                    // Find the admin by username
                     var admin = db.Admins.SingleOrDefault(c => c.Username == usernameToDelete);
 
                     if (admin == null)
@@ -196,32 +205,11 @@ namespace CoffeeCove.AdminSite
                 }
                 catch (Exception ex)
                 {
-                    // Handle any errors that occur during the deletion
+                    // Handle errors
                     lblUsernameDeletion_CL3.Text = "Error deleting the account: " + ex.Message;
                 }
             }
         }
-
-
-        //private void LoadAdminProfile()
-        //{
-        //    string username = "admin"; // Replace with actual logged-in admin username
-        //    using (dbCoffeeCoveEntities db = new dbCoffeeCoveEntities())
-        //    {
-        //        var admin = db.Admins.SingleOrDefault(a => a.Username == username);
-        //        if (admin != null)
-        //        {
-        //            UsernameEdit_CL2.Text = admin.Username;
-        //            GenderEdit_CL2.SelectedValue = admin.Gender;
-        //            BranchLocationEdit_CL2.SelectedValue = admin.Branch;
-        //        }
-        //        else
-        //        {
-        //            // Handle case where admin is not found
-        //            lblUsernameEdit_CL2.Text = "Admin username is not found.";
-        //        }
-        //    }
-        //}
 
         protected void LoadAdminProfile_CL2_Click(object sender, EventArgs e)
         {
@@ -253,7 +241,7 @@ namespace CoffeeCove.AdminSite
             using (dbCoffeeCoveEntities db = new dbCoffeeCoveEntities())
             {
                 var admin = db.Admins.SingleOrDefault(a => a.Username == username);
-                return admin?.HashedPassword; // Return the hashed password or null if not found
+                return admin?.HashedPassword;
             }
         }
 
