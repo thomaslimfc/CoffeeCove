@@ -194,4 +194,5 @@
 .error {
     color: red;
     padding-left: 25px;
+    font-weight: bold;
 }
