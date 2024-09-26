@@ -342,7 +342,7 @@ namespace CoffeeCove.Menu
             if (ddlAddOn.Visible && ddlAddOn.SelectedValue == "1 Espresso Shot") finalPrice += 2.50m;
             if (ddlAddOn.Visible && ddlAddOn.SelectedValue == "2 Espresso Shots") finalPrice += 5.00m;
 
-            finalPrice *= quantity; // Total price based on quantity
+            //finalPrice *= quantity; // Total price based on quantity
 
             string orderId = GetCurrentOrderId();
 
@@ -406,7 +406,7 @@ namespace CoffeeCove.Menu
                         else
                             cmd.Parameters.AddWithValue("@Instruction", DBNull.Value);
 
-                        cmd.Parameters.AddWithValue("@Price", basePrice);
+                        cmd.Parameters.AddWithValue("@Price", finalPrice);
 
                         cmd.ExecuteNonQuery();
                     }
