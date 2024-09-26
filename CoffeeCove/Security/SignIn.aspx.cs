@@ -10,7 +10,7 @@ namespace CoffeeCove.Security
         protected void Page_Load(object sender, EventArgs e)
         {
             Session.Clear();
-            //remove the cookie of orderID
+            //remove the cookie
             HttpCookie cookieCus = Request.Cookies["CusID"];
             if (cookieCus != null)
             {
@@ -48,12 +48,12 @@ namespace CoffeeCove.Security
                         if (customer != null)
                         {
                             Session["CusID"] = customer.CusID;
-                            //create cookies
-                            HttpCookie coo = new HttpCookie("CusID", customer.CusID.ToString());
-                            //coo.Expires = DateTime.Now.AddMinutes(1);
+                            ////create cookies
+                            //HttpCookie coo = new HttpCookie("CusID", customer.CusID.ToString());
+                            ////coo.Expires = DateTime.Now.AddMinutes(1);
 
-                            //send the cookie to client pc
-                            Response.Cookies.Add(coo);
+                            ////send the cookie to client pc
+                            //Response.Cookies.Add(coo);
 
                         }
 

@@ -1,6 +1,8 @@
-﻿using System;
+﻿using CoffeeCove.Master;
+using System;
 using System.Data.SqlClient;
 using System.Net.PeerToPeer;
+using System.Web;
 using System.Web.UI;
 using Twilio;
 using Twilio.Rest.Api.V2010.Account;
@@ -52,7 +54,21 @@ namespace CoffeeCove.Security
                 // Get user role from session
                 string username = Session["Username"] as string;
                 string userRole = Session["UserRole"] as string;
+                string cusId = Session["CusID"] as string;
                 Session["statusTFA"] = true;
+
+                if(userRole == "User")
+                {
+                    //create cookies
+                    HttpCookie coo = new HttpCookie("CusID", cusId);
+                    //coo.Expires = DateTime.Now.AddMinutes(1);
+
+                    //send the cookie to client pc
+                    Response.Cookies.Add(coo);
+                }
+
+
+
                 Boolean rememberMe = false;
                 UserSecurity.LoginUser(username, userRole, rememberMe);
                 

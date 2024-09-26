@@ -1,4 +1,5 @@
 ﻿using CoffeeCove.Security;
+using Org.BouncyCastle.Asn1.Ocsp;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -21,6 +22,34 @@ namespace CoffeeCove.Master
             if (coo != null)
             {
                 Session["CusID"] = coo.Value;
+                string cusId = coo.Value;
+                //use sql to retrieve cusUsername
+                using (SqlConnection conn = new SqlConnection(cs))
+                {
+                    string sql = @"SELECT * FROM Customer WHERE CusID = @cusId";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        try
+                        {
+                            cmd.Parameters.AddWithValue("@CusID", cusId);
+                            conn.Open();
+
+                            SqlDataReader dr = cmd.ExecuteReader();
+
+                            if (dr.Read())
+                            {
+                                //put username inside session
+                                Session["Username"] = dr["Username"].ToString();
+
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                    }
+                }
             }
 
             if (Context.User.Identity.IsAuthenticated || coo != null)
@@ -127,6 +156,21 @@ namespace CoffeeCove.Master
             }
 
             return profilePicturePath;
+        }
+
+        protected void lbLogout_Click(object sender, EventArgs e)
+        {
+            FormsAuthentication.SignOut();
+            HttpCookie cookieCus = Request.Cookies["CusID"];
+            if (cookieCus != null)
+            {
+                // Set the cookie's expiration date to a time in the past
+                cookieCus.Expires = DateTime.Now.AddDays(-1);
+
+                // Add the cookie to the Response to overwrite the existing cookie
+                Response.Cookies.Add(cookieCus);
+            }
+            Response.Redirect("../Security/SignIn.aspx");
         }
     }
 }
