@@ -282,10 +282,22 @@ namespace CoffeeCove.AdminSite
                         txtProductName.Text = dr["ProductName"].ToString();
                         txtDesc.Text = dr["Description"].ToString();
                         txtPrice.Text = dr["UnitPrice"].ToString();
-                        imgProduct.Attributes["src"] = dr["ImageUrl"].ToString();
+                        string imageUrl = dr["ImageUrl"].ToString();
+                        imgProduct.Attributes["src"] = imageUrl;
                         ddlCategory.SelectedValue = dr["CategoryId"].ToString();
                         cbIsActive.Checked = !Convert.IsDBNull(dr["IsActive"]) && (bool)dr["IsActive"];
                         hdnId.Value = productId.ToString();
+
+                        // Check if have image
+                        if (!string.IsNullOrEmpty(imageUrl))
+                        {
+                            // Disable the validation if image already exists
+                            RequiredFieldValidator4.Enabled = false;
+                        }
+                        else
+                        {
+                            RequiredFieldValidator4.Enabled = true; // Enable if no image
+                        }
                     }
                 }
             }

@@ -27,8 +27,8 @@
             <div id="productItem">
                 <asp:Repeater ID="rptProduct" runat="server" OnItemCommand="rptProducts_ItemCommand" OnItemDataBound="rptProduct_ItemDataBound">
                     <ItemTemplate>
-                        <div style="width: 20%; height: 62%; margin: 1%; box-sizing: border-box;" id="productContainer">
-                            <img src='<%# Eval("ImageUrl") %>' alt='<%# Eval("ProductName") %>' style="width: 90%; height: auto; border-radius: 10px; border: 1px solid #ffce46; margin: 10px 0px 10px 10px" />
+                        <div style="width: 275px; height: 420px; margin: 1%; box-sizing: border-box;" id="productContainer">
+                            <img class="productImage" src='<%# Eval("ImageUrl") %>' alt='<%# Eval("ProductName") %>'/>
                             <asp:Label ID="lblMostPopular" runat="server" Text="Most Popular" Visible="false" Style="position: absolute; top: 10px; left: 10px; background-color: #90ff6d; color: #000; padding: 5px; border-radius: 5px;" />
                             <div style="height: 40px; text-align: center; font-size: 19px;"><%# Eval("ProductName") %>
                             </div>
