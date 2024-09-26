@@ -426,6 +426,7 @@ namespace CoffeeCove.Menu
                     throw;
                 }
             }
+            Response.Redirect(Request.RawUrl);
             pnlOrderForm.Visible = false;
         }
 
