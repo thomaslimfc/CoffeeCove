@@ -179,5 +179,9 @@ namespace CoffeeCove.AdminSite
         protected global::System.Web.UI.WebControls.DropDownList ddlPageSize;
         protected global::System.Web.UI.WebControls.HiddenField hfStartDate;
         protected global::System.Web.UI.WebControls.HiddenField hfEndDate;
+        protected global::System.Web.UI.WebControls.HiddenField hfOrderID;
+        protected global::System.Web.UI.WebControls.Panel pnlReceipt;
+        protected global::System.Web.UI.WebControls.Panel pnlOrderDetail;
+        protected global::System.Web.UI.WebControls.Button BtnReceipt;
     }
 }

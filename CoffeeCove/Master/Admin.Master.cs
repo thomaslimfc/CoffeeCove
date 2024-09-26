@@ -13,15 +13,13 @@ namespace CoffeeCove.Master
         protected void Page_Load(object sender, EventArgs e)
         {
             string username = (string)Session["Username"];
-            Session["statusTFA"] = "done";
-            string statusTFA = (string)Session["statusTFA"];
-            if (username != null && statusTFA == "done")
+            if (username != null)
             {
                 lblUserName.Text = username;
             }
             else
             {
-                lblUserName.Text = "Register Now";
+                lblUserName.Text = "Login Now";
             }
 
             if (IsPostBack)

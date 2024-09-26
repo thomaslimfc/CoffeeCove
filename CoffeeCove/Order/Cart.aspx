@@ -85,19 +85,19 @@
         </div>
         <table id="cartTotalTable">
             <tr class="amtTable">
-                <td class="cartLeft">Subtotal [RM]</td>
+                <td class="cartLeft">Subtotal</td>
                 <td class="cartRight">
                 <asp:Label ID="lblSubtotal" runat="server" Text=""></asp:Label>
                 </td>
             </tr>
             <tr class="amtTable">
-                <td class="cartLeft">Tax [6%]</td>
+                <td class="cartLeft">Tax 6%</td>
                 <td class="cartRight">+
                 <asp:Label ID="lblTax" runat="server" Text=""></asp:Label>
                 </td>
             </tr>
             <tr class="amtTable">
-                <td class="cartLeft">Total [RM]</td>
+                <td class="cartLeft">Total</td>
                 <td class="cartRight">
                 <asp:Label ID="lblTotal" runat="server" Text=""></asp:Label>
                 </td>
